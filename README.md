@@ -45,18 +45,6 @@ The Steel-wall Application is a project built on top of the PHP Framework "BayFr
 
 4. Access the application in your web browser at [http://localhost:8000](http://localhost:8000).
 
-## Contributing
-
-If you'd like to contribute to the Steel-wall Application, please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Acknowledgments
 
 - The Steel-wall Application is built on the solid foundation provided by the BayFrame PHP Framework.
-
----
-
-Feel free to customize this `README.md` file to include specific details about your project, such as additional features, usage instructions, and any other relevant information.
