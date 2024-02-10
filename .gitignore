@@ -3,4 +3,5 @@
 # ignore ide file
 *.idea
 .vscode
+docs
 
