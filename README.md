@@ -21,7 +21,7 @@ The Steel-wall Application is a project built on top of the PHP Framework "BayFr
 ### Prerequisites
 
 - PHP (version 7.x or higher)
-- [BayFrame](https://bayframe.example.com) (included in the project)
+- [BayFrame](https://github.com/baylanka/BayFrame.git) (included in the project)
 
 ### Installation
 
