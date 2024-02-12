@@ -11,6 +11,5 @@ class HomeController extends BaseController
         global $env;
         $data = ["name"=>$env['APP_NAME']];
         return view("home.view.php", $data);
-//        return require('views/home.view.php');
     }
 }
