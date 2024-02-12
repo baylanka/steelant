@@ -1,7 +1,4 @@
 <?php
+global $app;
 
-return [
-    '/' => [
-        "GET"=> ["controllers/HomeController.php", "index"]
-    ],
-];
+$app->get('/',  ["controllers/HomeController.php", "index"]);
