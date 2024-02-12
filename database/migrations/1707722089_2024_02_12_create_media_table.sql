@@ -1,0 +1,10 @@
+CREATE TABLE media
+(
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('image', 'video', 'file'),
+    name VARCHAR(150) NOT NULL,
+    path VARCHAR(255) NOT NULL UNIQUE,
+    parent_media_id INT NULL,
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
+);
