@@ -1,20 +1,16 @@
 <?php
+namespace controllers;
 
 use app\Request;
+use controllers\BaseController;
 
-require_once "Controller.php";
-class HomeController extends Controller
+class HomeController extends BaseController
 {
-    public function __construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
         global $env;
         $data = ["name"=>$env['APP_NAME']];
-        return require('views/home.view.php');
+        return view("home.view.php", $data);
+//        return require('views/home.view.php');
     }
-
 }

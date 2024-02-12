@@ -1,36 +1,40 @@
 <?php
-require_once "helpers/utilities/DateTimeUtility.php";
-use helpers\utilities\DateTimeUtility;
 
-$options = [
-    'make:migration',
-];
+require_once "app/AssistCLI.php";
 
-if($argc <= 1){
-    die("empty arguments.");
-}
+use app\AssistCLI;
 
-switch($argv[1]){
-    case $options[0]:
-        writeCreateTableSqlFile($argv);
-        break;
-    default:
-        print "undefined command";
-}
+$argumentCount = $argc;
+$argumentValues = $argv;
+main($argumentCount, $argumentValues);
 
 
-function writeCreateTableSqlFile($argv)
+
+function main($argCount, $argValues)
 {
-    $template = file_get_contents(__DIR__ . "/storage/framework/templates/sql/create_table.sql");
-    $fileName = time() . "_" . DateTimeUtility::getCurrentDate("Y_m_d") . "_" .$argv[2] . ".sql";
-    $dist = __DIR__ . "/database/migrations/" . $fileName;
-    if(isset($argv[3]) && strpos($argv[3],"--table=") !== false){
-        $tableArgument = explode("=", $argv[3]);
-        $tableName = $tableArgument[1];
-        $template = str_replace("%tbl_name%",$tableName, $template);
+    try{
+
+        if ($argCount <= 1) {
+            throw new Exception("empty arguments.");
+        }
+
+        switch ($argValues[1]) {
+            case 'make:migration':
+                AssistCLI::makeMigration($argValues);
+                break;
+            case 'make:model':
+                AssistCLI::makeModel($argValues);
+                break;
+            case 'make:controller':
+                AssistCLI::makeController($argValues);
+                break;
+            case 'serve':
+                AssistCLI::appStart($argValues);
+                break;
+            default:
+                throw new Exception("undefined assist command");
+        }
+    }catch(Exception $ex){
+        print "error: " . $ex->getMessage();
     }
-
-    file_put_contents($dist, $template);
-    print "\n----------- MIGRATION FILE IS ADDED -----------------\n";
 }
-

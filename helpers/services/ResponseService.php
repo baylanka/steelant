@@ -20,7 +20,7 @@ class ResponseService
             require_once "views/{$status_code}.php";
         }
 
-        return $message;
+        die($message);
     }
 
     public static function dd($resource)
