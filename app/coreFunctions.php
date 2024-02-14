@@ -10,7 +10,8 @@ function basePath($path)
     if($firstChar === "/"){
         $path = substr($path,1, strlen($path));
     }
-    return (__DIR__ . "/../" . $path);
+    $path = __DIR__ . "/../" . $path;
+    return str_replace("\\", "/", $path);
 }
 
 function view($path, $data)
