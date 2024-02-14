@@ -1,0 +1,28 @@
+{
+	"sideBar": 
+	{
+		"dashboard": "Armaturenbrett",
+		"incidents":"Vorfälle",
+		"property":"Immobilien",
+		"properties":"Immobilien",
+		"flats":"Wohnungen",
+
+		"maintenance":"Wartung",
+		"maintenanceMans":"hausmeister",
+		"deputies":"Stellvertreterin",
+
+		"management":"Management",
+
+		"tenant_and_owner":"Mieter und Eigentümer",
+		"tenants":"Mieter",
+		"owners":"Eigentümer",
+
+
+		"utility":"Dienstprogramm",
+		"calendar":"Kalender"
+	},
+	"dashboard":
+	{
+		"heading": "Armaturenbrett"
+	}
+}

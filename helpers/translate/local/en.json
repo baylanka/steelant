@@ -1,0 +1,30 @@
+{
+	"sideBar":
+	{
+		"dashboard": "Dashboard",
+		"incidents":"Incidents",
+		"property":"Property",
+		"properties":"Properties",
+		"flats":"Flats",
+
+		"maintenance":"Maintenance",
+		"maintenanceMans":"Maintenance Mans",
+		"deputies":"Deputies",
+		
+		"management":"Management",
+
+		"tenant_and_owner":"Tenants & Owners",
+		"tenants":"Tenants",
+		"owners":"Owners",
+
+
+		"utility":"Utility",
+		"calendar":"Calendar"
+
+	},
+	"dashboard":
+	{
+		"heading": "Dashboard"
+	}
+
+}

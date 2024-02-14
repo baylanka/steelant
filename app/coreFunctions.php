@@ -1,4 +1,9 @@
 <?php
+
+
+use helpers\services\translate\Translate;
+
+
 function basePath($path)
 {
     $firstChar = substr($path,0,1);
@@ -19,4 +24,19 @@ function url($uri) {
     $host = $_SERVER['HTTP_HOST'];
     $path = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
     return $protocol . $host . $path . '/' . ltrim($uri, '/');
+}
+
+
+function appInit()
+{
+
+    if (isset($_GET['lang'])) {
+        Translate::setLang($_GET['lang']);
+    } else {
+        if(isset($_SESSION["lang"])){
+        Translate::setLang($_SESSION["lang"]);
+        }else{
+            Translate::setLang(Translate::$deutsch);
+        }
+    }
 }
