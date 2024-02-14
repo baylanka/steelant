@@ -58,9 +58,9 @@ class Router
 
         $controllerPath = $routes[$uri][$method][0];
         //controllers may come with directory prefix like admin/UserController.php
-        $controllerPathHierarchy = explode('/', $controllerPath);
-        $controllerName = str_replace('.php', '', $controllerPathHierarchy[sizeof($controllerPathHierarchy) - 1]);
-        $controllerName = "controllers\\" . $controllerName;
+        $controllerPathHierarchy = explode('\\', $controllerPath);
+        $controllerName = "controllers\\" . implode('\\',$controllerPathHierarchy);
+        $controllerName = str_replace('.php', '', $controllerName);
         $controllerPath = basePath($controllerName . ".php");
         $method = $routes[$uri][$method][1];
 

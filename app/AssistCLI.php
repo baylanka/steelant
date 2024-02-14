@@ -40,15 +40,23 @@ class AssistCLI
             $template = file_get_contents("storage/framework/templates/class/SampleController.php");
         }
 
-        $modelName = $argv[2];
-        $fileName = $modelName . ".php";
-        $dist = "controllers/" . $fileName;
+        $controllerPathName = explode('/', $argv[2]);
+        $ControllerName = $controllerPathName[sizeof($controllerPathName)-1];
+        $fileName = $ControllerName . ".php";
+        array_pop($controllerPathName);
+        $directory = "controllers/" . implode("/",$controllerPathName);
+        $dist = $directory . "/". $fileName;
         if(file_exists($dist)){
             throw new \Exception("controller already exists");
         }
 
-        $template = str_replace("SampleController", $modelName, $template);
-
+        $template = str_replace("SampleController", $ControllerName, $template);
+        $template = str_replace("ControllerR", "Controller", $template);
+        $newControllerNameSpace =  "namespace " . str_replace("/","\\",$directory) . ";";
+        $template = str_replace("namespace controllers;", $newControllerNameSpace, $template);
+        if(!is_dir($directory)){
+            throw new \Exception("directory is unavailable");
+        }
         file_put_contents($dist, $template);
         print "\n----------- {$argv[2]} Controller FILE IS ADDED -----------------\n";
     }
