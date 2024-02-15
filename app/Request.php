@@ -71,7 +71,7 @@ class Request
         return $this->payload;
     }
 
-    public function get($key, $default = null): array
+    public function get($key, $default = null)
     {
         if (!array_key_exists($key, $this->payload)) {
             return $default;
