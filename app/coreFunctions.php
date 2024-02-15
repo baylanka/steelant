@@ -1,9 +1,4 @@
 <?php
-
-
-use helpers\services\translate\Translate;
-
-
 function basePath($path)
 {
     $firstChar = substr($path,0,1);
@@ -30,14 +25,22 @@ function url($uri) {
 
 function appInit()
 {
-
     if (isset($_GET['lang'])) {
-        Translate::setLang($_GET['lang']);
+        \helpers\translate\Translate::setLang($_GET['lang']);
     } else {
-        if(isset($_SESSION["lang"])){
-        Translate::setLang($_SESSION["lang"]);
-        }else{
-            Translate::setLang(Translate::$deutsch);
+        if (isset($_SESSION["lang"])) {
+            \helpers\translate\Translate::setLang($_SESSION["lang"]);
+        } else {
+            \helpers\translate\Translate::setLang(\helpers\translate\Translate::DEUTSCH);
         }
     }
 }
+
+function autoRegister()
+{
+    spl_autoload_register(function ($require_class) {
+        $require_class = str_replace('model', 'models', $require_class);
+        require_once basePath($require_class . ".php");
+    });
+}
+

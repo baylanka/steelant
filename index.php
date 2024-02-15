@@ -5,13 +5,9 @@ use helpers\services\ResponseService;
 use app\Router;
 
 require_once __DIR__ . "/app/coreFunctions.php";
-require_once basePath("app/Request.php");
-require_once basePath("app/Router.php");
-const SERVICE_PATH = "helpers/services";
-require_once basePath(SERVICE_PATH . "/ConfigService.php");
-require_once basePath(SERVICE_PATH . "/RequestService.php");
-require_once basePath(SERVICE_PATH . "/ResponseService.php");
-require_once basePath("helpers/translate/Translate.php");
+
+//this function responsible for include only PHP class file, that are not include
+autoRegister();
 
 if(!file_exists(".env")){
     ResponseService::abort("422",'.env file does not exists');

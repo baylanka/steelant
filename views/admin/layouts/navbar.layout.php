@@ -1,5 +1,5 @@
 <?php
-use helpers\services\translate\Translate;
+use helpers\translate\Translate;
 ?>
 
 <nav class="app-header navbar navbar-expand bg-body">
@@ -11,7 +11,7 @@ use helpers\services\translate\Translate;
 
             <li class="nav-item dropdown language-menu">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                    <img src="views/assets/img/flags/<?= $_SESSION["lang"] ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
+                    <img src="views/assets/img/flags/<?= Translate::getLang() ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-1">
