@@ -43,8 +43,9 @@ class AssistCLI
         $controllerPathName = explode('/', $argv[2]);
         $ControllerName = $controllerPathName[sizeof($controllerPathName)-1];
         $fileName = $ControllerName . ".php";
-        array_pop($controllerPathName);
-        $directory = "controllers/" . implode("/",$controllerPathName);
+        array_pop($controllerPathName);  //removing Controller Class name, i.e if, admin/SampleController removing SampleController
+        array_unshift($controllerPathName, "controllers"); //adding an element on first index. we need directory path, for that adding controllers prefix here
+        $directory = implode("/",$controllerPathName);
         $dist = $directory . "/". $fileName;
         if(file_exists($dist)){
             throw new \Exception("controller already exists");

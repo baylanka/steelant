@@ -1,7 +1,7 @@
 
 <?php
 
-use helpers\services\translate\Translate;
+use helpers\translate\Translate;
 
 require_once "views/admin/layouts/start.layout.php" 
 ?>

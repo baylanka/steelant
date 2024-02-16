@@ -1,32 +1,21 @@
 <?php
 
-namespace helpers\services\translate;
+namespace helpers\translate;
 
 session_start();
 class Translate
 {
-
-    public static $english = "en";
-    public static $deutsch = "de";
-    
-    public static $french = "de";
-
-    public static $lang;
-
-
-    public function __construct($lang)
-    {
-        Translate::$lang = strtolower($lang);
-    }
+    const  ENGLISH = "en";
+    const  DEUTSCH = "de";
+    const  FRENCH = "fr";
 
     public static function setLang($lang)
     {
         $_SESSION["lang"] = $lang;
-        new Translate($_SESSION["lang"]);
     }
     public static function get($page, $key)
     {
-        $lang = Translate::$lang;
+        $lang = $_SESSION["lang"];
 
         $translateJson = file_get_contents(basePath("helpers/translate/local/" . $lang . ".json"));
 
@@ -37,5 +26,10 @@ class Translate
         } catch (\Exception $e) {
             print($e);
         }
+    }
+
+    public static function getLang()
+    {
+        return $_SESSION["lang"];
     }
 }
