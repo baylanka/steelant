@@ -22,19 +22,11 @@ function url($uri) {
     return $protocol . $host . $path . '/' . ltrim($uri, '/');
 }
 
-
-function appInit()
+function preloader()
 {
-    if (isset($_GET['lang'])) {
-        \helpers\translate\Translate::setLang($_GET['lang']);
-    } else {
-        if (isset($_SESSION["lang"])) {
-            \helpers\translate\Translate::setLang($_SESSION["lang"]);
-        } else {
-            \helpers\translate\Translate::setLang(\helpers\translate\Translate::DEUTSCH);
-        }
-    }
+    \helpers\services\LanguageService::setLanguage();
 }
+
 
 function autoRegister()
 {

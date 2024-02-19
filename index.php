@@ -15,8 +15,10 @@ if(!file_exists(".env")){
 $env = parse_ini_file('.env');
 $config = ConfigService::getComposedConfigCollection();
 
+// Initialize any logic that occurs when the application starts
+preloader();
+
 try{
-    appInit();
     $app = new Router();
     //web routes
     require_once basePath("routes/web.php");
