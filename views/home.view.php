@@ -1,97 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="base_url" content="<?= url("/") ?>">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css"
+          integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $name ?></title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
+        :root {
+            --blue: #1d357c;
+            --white: #ffffff;
         }
 
-        header {
-            background-color: #0f4eb4;
-            /* Primary color */
-            color: #fff;
-            padding: 20px;
+        .navbar {
+            background-color: var(--white);
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler i {
+            color: var(--blue);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+
+        .nav-text {
+            color: var(--blue);
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        .nav-logo {
             text-align: center;
-        }
-
-        nav {
-            background-color: #0056b3;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        section {
-            padding: 20px;
-            margin: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-        }
-
-        footer {
-            background-color: #0f4eb4;
-            /* Primary color */
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            color: var(--blue);
         }
     </style>
+
 </head>
-
 <body>
-    <header>
-        <h1><?php echo $data['name'] ?></h1>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="https://baylanka.net/">Company Website</a></li>
-        </ul>
-    </nav>
+<?= $name ?>
+<nav class="navbar  fixed-top">
+    <div class="container-fluid">
 
-    <section>
-        <h2>About BayFrame</h2>
-        <p>BayFrame is a PHP framework designed with the MVC (Model-View-Controller) pattern. It provides a structured approach to developing web applications, separating the concerns of data, presentation, and logic.</p>
+        <div class="w-25">
+            <button class="navbar-toggler mt-5" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i><br/>
+                <span class="nav-text">Menu</span>
+            </button>
+        </div>
 
-        <h2>Key Features</h2>
-        <ul>
-            <li>Modularity: BayFrame allows developers to organize code into modules, promoting code reusability and maintainability.</li>
-            <li>Database Integration: BayFrame offers seamless integration with various databases, making data management efficient and scalable.</li>
-            <li>Security: Built-in security features help protect web applications from common vulnerabilities such as SQL injection and cross-site scripting (XSS).</li>
-            <li>Routing: BayFrame's routing system enables clean and customizable URLs, enhancing the user experience and SEO.</li>
-        </ul>
-    </section>
+        <div class="nav-logo w-50">
+            <img src="views/assets/img/logo.jpg" width="300">
+            <h4>Schlossprofile für Spundwandbauwerke</h4>
+        </div>
 
-    <footer>
-        <p>&copy; 2024 <?php echo $data['name'] ?>. All rights reserved.</p>
-    </footer>
+        <div class="text-center position-relative mt-5 w-25 p-4">
+            <div class="row w-50">
+            <div class="col-4"><img src="views/assets/img/user.png" height="30"> <br/><span
+                        class="nav-text">Login</span></div>
+            <div class="col-4 text-center"><img src="views/assets/img/star.png" height="30"><br/><span class="nav-text">Favourite</span>
+            </div>
+            <div class="col-4"><img src="views/assets/img/flags/de.png" height="30"><br/><span
+                        class="nav-text">Language</span></div>
+            </div>
+        </div>
+
+
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
-
 </html>

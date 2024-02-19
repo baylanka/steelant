@@ -15,11 +15,40 @@ function view($path, $data)
     return require_once basePath("views/" . $path);
 }
 
+function public_path($path)
+{
+    $firstChar = substr($path,0,1);
+    if($firstChar === "/"){
+        $path = substr($path,1, strlen($path));
+    }
+    return url("public/" . $path);
+}
+
+function assets($path)
+{
+    $firstChar = substr($path,0,1);
+    if($firstChar === "/"){
+        $path = substr($path,1, strlen($path));
+    }
+    return url("/public/assets/" .$path);
+
+}
+
 function url($uri) {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
-    $path = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-    return $protocol . $host . $path . '/' . ltrim($uri, '/');
+
+    // Get the root directory
+    $rootDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+
+    // Remove trailing slashes
+    $rootDir = rtrim($rootDir, '/');
+
+    // Remove "/index.php" if present
+    $rootDir = str_replace("/index.php", "", $rootDir);
+
+    // Construct the full URL
+    return  $protocol . $host . $rootDir . '/' . ltrim($uri, '/');
 }
 
 function preloader()
