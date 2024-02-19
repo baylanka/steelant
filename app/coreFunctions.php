@@ -21,7 +21,16 @@ function public_path($path)
     if($firstChar === "/"){
         $path = substr($path,1, strlen($path));
     }
-    return url("public/" . $path);
+    return basePath("public/" . $path);
+}
+
+function storage_path($path)
+{
+    $firstChar = substr($path,0,1);
+    if($firstChar === "/"){
+        $path = substr($path,1, strlen($path));
+    }
+    return basePath("storage/" . $path);
 }
 
 function assets($path)
