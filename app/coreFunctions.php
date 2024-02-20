@@ -21,7 +21,16 @@ function public_path($path)
     if($firstChar === "/"){
         $path = substr($path,1, strlen($path));
     }
-    return url("public/" . $path);
+    return basePath("public/" . $path);
+}
+
+function storage_path($path)
+{
+    $firstChar = substr($path,0,1);
+    if($firstChar === "/"){
+        $path = substr($path,1, strlen($path));
+    }
+    return basePath("storage/" . $path);
 }
 
 function assets($path)
@@ -51,19 +60,11 @@ function url($uri) {
     return  $protocol . $host . $rootDir . '/' . ltrim($uri, '/');
 }
 
-
-function appInit()
+function preloader()
 {
-    if (isset($_GET['lang'])) {
-        \helpers\translate\Translate::setLang($_GET['lang']);
-    } else {
-        if (isset($_SESSION["lang"])) {
-            \helpers\translate\Translate::setLang($_SESSION["lang"]);
-        } else {
-            \helpers\translate\Translate::setLang(\helpers\translate\Translate::DEUTSCH);
-        }
-    }
+    \helpers\services\LanguageService::setLanguage();
 }
+
 
 function autoRegister()
 {
