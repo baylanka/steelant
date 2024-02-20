@@ -1,7 +1,7 @@
-<script src="views/admin/assets/js/overlayscrollbars.browser.es6.min.js"></script>
-<script src="views/admin/assets/js/popper.min.js"></script>
-<script src="views/admin/assets/js/bootstrap.min.js"></script>
-<script src="views/admin/assets/js/adminlte.js"></script>
-<script src="views/admin/assets/js/selector.js"></script>
-<script src="views/admin/assets/js/apexcharts.min.js"></script>
-<script src="views/admin/assets/js/chart.js"></script>
+<script src="<?= assets("admin/js/overlayscrollbars.browser.es6.min.js") ?>"></script>
+<script src="<?= assets("admin/js/popper.min.js") ?>"></script>
+<script src="<?= assets("admin/js/bootstrap.min.js") ?>"></script>
+<script src="<?= assets("admin/js/adminlte.js") ?>"></script>
+<script src="<?= assets("admin/js/selector.js") ?>"></script>
+<script src="<?= assets("admin/js/apexcharts.min.js") ?>"></script>
+<script src="<?= assets("admin/js/chart.js") ?>"></script>
