@@ -1,4 +1,4 @@
-CREATE TABLE media
+CREATE TABLE  IF NOT EXISTS  media
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     type ENUM('image', 'video', 'file'),

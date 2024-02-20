@@ -1,4 +1,4 @@
-CREATE TABLE connectors
+CREATE TABLE IF NOT EXISTS  connectors
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(35) NOT NULL COMMENT 'store content in json format based on languages',

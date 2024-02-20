@@ -1,4 +1,4 @@
-CREATE TABLE %tbl_name%
+CREATE TABLE  IF NOT EXISTS   %tbl_name%
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 --   add

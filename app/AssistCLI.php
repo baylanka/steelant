@@ -6,6 +6,52 @@ use helpers\utilities\DateTimeUtility;
 
 class AssistCLI
 {
+    public static function migrate()
+    {
+        global $container;
+        $db =  $container->resolve('DB');
+        try {
+            $latestMigrationEntrySql = "
+                            SELECT batch_number FROM migrations
+                                                ORDER BY batch_number DESC;
+                        ";
+            $latestMigration = $db->query($latestMigrationEntrySql)->first();
+            $latestMigrationBatchNumber = !$latestMigration ? 1 : (int)$latestMigration->batch_number + 1;
+            $migrationsSql = "SELECT name FROM migrations;";
+            $migrations = $db->query($migrationsSql)->get();
+        }catch(\PDOException $ex){
+            $latestMigrationBatchNumber = 1;
+            $migrations = [];
+        }
+        $migratedTableNames = [];
+        foreach ($migrations as $each){
+            $migratedTableNames[] = $each->name;
+        }
+        $migrationDirContents = scandir(basePath("database/migrations"));
+        for($i=2; $i < sizeof($migrationDirContents); $i++){
+            $migrationFile = $migrationDirContents[$i];
+            $migrationName = str_replace(".sql", "", $migrationFile);
+
+            if(in_array($migrationName,$migratedTableNames)){
+                continue;
+            }
+            try {
+                $path = "database/migrations/" . $migrationFile;
+                $migrationFilePath = basePath($path);
+                $sqlContent = file_get_contents($migrationFilePath);
+                $db->execute($sqlContent);
+
+                $addNewMigratedFileName = "
+                                INSERT INTO migrations (name, batch_number)
+                                    VALUES (:name, :batch);
+                                ";
+                $db->execute($addNewMigratedFileName, ['name' => $migrationName, 'batch' => $latestMigrationBatchNumber]);
+            }catch(\Exception $ex){
+                echo "<br/>exception- migration:" . $migrationName . ", exception:" . $ex->getMessage();
+            }
+            $migratedTableNames[] = $migrationName;
+        }
+    }
     /**
      * @throws \Exception
      */

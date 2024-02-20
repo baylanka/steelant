@@ -1,19 +1,22 @@
 <?php
-
-require_once "app/AssistCLI.php";
+require_once __DIR__ . "/app/coreFunctions.php";
 
 use app\AssistCLI;
+use helpers\services\ConfigService;
+
+autoRegister();
+$env = parse_ini_file('.env');
+$config = ConfigService::getComposedConfigCollection();
+require_once basePath("app/resources.php");
 
 $argumentCount = $argc;
 $argumentValues = $argv;
 main($argumentCount, $argumentValues);
 
 
-
 function main($argCount, $argValues)
 {
     try{
-
         if ($argCount <= 1) {
             throw new Exception("empty arguments.");
         }
@@ -21,6 +24,9 @@ function main($argCount, $argValues)
         switch ($argValues[1]) {
             case 'make:migration':
                 AssistCLI::makeMigration($argValues);
+                break;
+            case 'migrate':
+                AssistCLI::migrate();
                 break;
             case 'make:model':
                 AssistCLI::makeModel($argValues);
