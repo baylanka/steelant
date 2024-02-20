@@ -2,7 +2,7 @@
 
     <div class="sidebar-brand">
         <a href="/dashboard" class="brand-link">
-            <img src="views/admin/assets/img/logo.jpg" alt="AdminLTE Logo" class="brand-image shadow">
+            <img src="<?= assets("admin/img/logo.jpg") ?>" alt="AdminLTE Logo" class="brand-image shadow">
         </a>
     </div>
 
