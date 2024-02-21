@@ -3,6 +3,7 @@
 namespace model;
 
 use app\Database;
+use helpers\utilities\DateTimeUtility;
 
 class BaseModel
 {
@@ -71,7 +72,94 @@ class BaseModel
         return $db->queryAsArray($sql, $values, $class);
     }
 
+    public static function getById(int $id, array $columns = [])
+    {
+        $tableName = self::getTableName();
+        $columns = empty($columns) ? "*" : " ( " .  implode(",", $columns) . " ) ";
+        $sql = "SELECT {$columns} FROM {$tableName} WHERE id = :id ; ";
+        $queryValues = ['id'=>$id];
+        return self::query($sql, $queryValues)->first();
+    }
 
+    public static function getAll(array $columns = [])
+    {
+        $tableName = self::getTableName();
+        $columns = empty($columns) ? "*" : " ( " .  implode(",", $columns) . " ) ";
+        $sql = "SELECT {$columns} FROM {$tableName} ; ";
+        return self::query($sql)->get();
+    }
+
+    public static function getAllBy(array $conditions,array $columns = [])
+    {
+        $sql = self::getBySql($conditions, $columns);
+        return self::query($sql, $conditions)->get();
+    }
+
+    public static function getFirstBy(array $conditions,array $columns = [])
+    {
+        $sql = self::getBySql($conditions, $columns);
+        return self::query($sql, $conditions)->first();
+    }
+
+    public static function deleteById(int $id)
+    {
+        $tableName = self::getTableName();
+        $sql = "DELETE FROM {$tableName} WHERE id = :id; ";
+        $queryValues = ['id'=>$id];
+        return self::execute($sql, $queryValues);
+    }
+
+    public static function deleteBy(array $conditions)
+    {
+        $tableName = self::getTableName();
+        $sql = "DELETE FROM {$tableName} ";
+        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, "and") . " ;";
+        return self::execute($sql, $conditions);
+    }
+
+    public static function updateById(int $id, array $values)
+    {
+        $tableName = self::getTableName();
+        $values['updated_at'] = DateTimeUtility::getCurrentDateTime();
+        $sql = "UPDATE {$tableName} ";
+        $sql .= " SET " . self::getNamedPlaceholderStatement($values, ' , ');
+        $sql .= " WHERE id=:id ;";
+        $queryValues = ['id'=>$id];
+        $queryValues = array_merge($queryValues, $values);
+        return self::execute($sql, $queryValues);
+    }
+
+
+    public static function updateBy(array $conditions, array $values)
+    {
+        $tableName = self::getTableName();
+        $values['updated_at'] = DateTimeUtility::getCurrentDateTime();
+        $sql = "UPDATE {$tableName} ";
+        $sql .= " SET " .self::getNamedPlaceholderStatement($values, ",");
+        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, "and") . " ; ";
+        $param = array_merge($conditions, $values);
+        return self::execute($sql, $param);
+    }
+
+
+    private static function getNamedPlaceholderStatement(array $values, string $seperator)
+    {
+        $arrayKeys = array_keys($values);
+        $conditionArray = [];
+        foreach ($arrayKeys as $key){
+            $conditionArray[] = " {$key} = :{$key}";
+        }
+        return implode(" {$seperator} ", $conditionArray);
+    }
+
+    private static function getBySql(array $conditions,array $columns = [])
+    {
+        $tableName = self::getTableName();
+        $columns = empty($columns) ? "*" : " ( " .  implode(",", $columns) . " ) ";
+        $sql = "SELECT {$columns} FROM {$tableName} ";
+        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, " and ");
+        return $sql;
+    }
 
     private static function getObjectFromArray(array $data)
     {
@@ -90,8 +178,7 @@ class BaseModel
             return $instance->table;
         }
 
-        $subClass = get_class($instance);
-        $subClassHierarchy = explode('\\', $subClass);
+        $subClassHierarchy = explode('\\', $instance);
         return strtolower($subClassHierarchy[sizeof($subClassHierarchy)-1]) . "s";
     }
 }

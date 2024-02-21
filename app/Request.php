@@ -10,7 +10,12 @@ class Request
     public function __construct()
     {
         $uri = $_SERVER['REQUEST_URI'];
-        $this->uri = parse_url($uri)['path'];
+        $uriParts = explode('/',parse_url($uri)['path']);
+        $filteredUriParts = array_filter($uriParts, function($value) {
+            return trim($value) !== '';
+        });
+        $uri = "/" . implode("/", $filteredUriParts);
+        $this->uri = $uri;
         $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
 
         $this->setPayload();

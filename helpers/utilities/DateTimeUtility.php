@@ -8,4 +8,9 @@ class DateTimeUtility
     {
         return date($format);
     }
+
+    public static function getCurrentDateTime($format = "Y-m-d H:i:s")
+    {
+        return date($format);
+    }
 }
