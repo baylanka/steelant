@@ -22,13 +22,4 @@ class ResponseService
 
         die($message);
     }
-
-    public static function dd($resource)
-    {
-        $isShellExecution = strtolower(PHP_SAPI) === 'cli';
-        echo $isShellExecution ? "\n" : "<pre>";
-        var_dump($resource);
-        echo $isShellExecution ? "\n" : "</pre>";
-        die;
-    }
 }
