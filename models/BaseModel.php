@@ -173,12 +173,13 @@ class BaseModel
 
     private static function getTableName()
     {
-        $instance = static::class;
-        if(isset($instance->table)){
-            return $instance->table;
+        $class = static::class;
+        $obj = new $class();
+        if(isset($obj->table)){
+            return $obj->table;
         }
 
-        $subClassHierarchy = explode('\\', $instance);
+        $subClassHierarchy = explode('\\', $class);
         return strtolower($subClassHierarchy[sizeof($subClassHierarchy)-1]) . "s";
     }
 }
