@@ -52,11 +52,11 @@ use helpers\translate\Translate;
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                    <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -77,11 +77,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -100,11 +100,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -123,11 +123,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -146,11 +146,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -169,11 +169,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -192,11 +192,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -215,11 +215,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -238,11 +238,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -261,11 +261,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -284,11 +284,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -307,11 +307,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -330,11 +330,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -353,11 +353,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -376,11 +376,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -399,11 +399,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -422,11 +422,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -445,11 +445,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -468,11 +468,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -491,11 +491,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -514,11 +514,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -537,11 +537,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -560,11 +560,11 @@ use helpers\translate\Translate;
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Add sub category</a></li>
+                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -586,7 +586,17 @@ use helpers\translate\Translate;
         $('button#add-main-category').click(async function (event) {
             let path = "admin/categories/main/store";
             await loadModal(modalId, path)
-        })
+        });
+
+        $(document).on('click', 'a.add-sub-category', function(event){
+            event.preventDefault();
+            toast.warning("Feature is under the construction.");
+        });
+
+        $(document).on('click', 'a.edit-category', function(event){
+            event.preventDefault();
+            toast.warning("Feature is under the construction.");
+        });
 
     });
 
