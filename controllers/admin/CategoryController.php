@@ -18,6 +18,12 @@ class CategoryController extends BaseController
         return view('admin/categories/index.view.php', $data);
     }
 
+    public function createMainCategory(Request $request)
+    {
+        $data = [];
+        return view('admin/categories/create-main.view.php', $data);
+    }
+
     public function create(Request $request)
     {
 
