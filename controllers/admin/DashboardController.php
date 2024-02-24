@@ -8,8 +8,9 @@ class DashboardController extends BaseController
 {
     public function index(Request $request)
     {
-        global $env;
-        $data = ["name"=>$env['APP_NAME']];
+        $data = [
+            'heading'=>'Categories',
+        ];
         return view("admin/dashboard.view.php", $data);
     }
 
