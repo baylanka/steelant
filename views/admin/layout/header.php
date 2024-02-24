@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>STEEL WALL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="base_url" content="<?= url("/"); ?>">
+    <meta name="base-url" content="<?= url("/"); ?>">
     <meta name="title" content="Steelwall">
     <meta name="description" content="Steelwall">
     <meta name="keywords" content="steelwall, walls">
