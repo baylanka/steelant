@@ -83,3 +83,9 @@ function dd($resource)
     die;
 }
 
+function isRequestedRoute($route){
+    $firstChar = substr($route,0,1);
+    $route = $firstChar === "/" ? $route : "/{$route}";
+    return strtok($_SERVER['REQUEST_URI'],"?") === $route;
+}
+
