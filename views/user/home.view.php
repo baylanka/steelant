@@ -120,8 +120,8 @@
                 display: none;
             }
 
-            .wide-gallery-image{
-                height:35% !important;
+            .footer .disclaimer-text {
+                padding-right: 0%;
             }
         }
 
@@ -132,6 +132,9 @@
 
             .secondary-nav {
                 display: none;
+            }
+            .footer .disclaimer-text {
+                padding-right: 0%;
             }
         }
 
@@ -186,7 +189,7 @@
         </div>
 
         <div class="text-center row position-relative p-2 login-nav">
-            <div class="col-md-4 mt-5 text-center remove-on-sm">
+            <div class="col-md-4 mt-5 text-center">
                 <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
                 <span class="nav-text">Login</span>
             </div>
@@ -194,7 +197,7 @@
                 <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
                 <span class="nav-text">Favourite</span>
             </div>
-            <div class="col-md-4 col-12 mt-5 ">
+            <div class="col-md-4 col-12 mt-5 remove-on-sm">
                 <div class="dropstart">
                     <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
                          data-bs-toggle="dropdown"
@@ -499,47 +502,70 @@
 
             <ul style="list-style-type: none; padding-left: 0;">
                 <li><a href="#" class="text-decoration-none color-white">Imprint</a></li>
-                <li>Imprint</li>
-                <li>Privacy policy</li>
+                <li><a href="#" class="text-decoration-none color-white">Privacy policy</a></li>
+                <li><a href="#" class="text-decoration-none color-white">General terms and conditions</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Subscribe / unsubsribe newsletter</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Register</a></li>
+            </ul>
+        </div>
 
+        <div class="col-6 col-md-2">
+            <h4 class="mb-4">steelwall.eu</h4>
 
+            <ul style="list-style-type: none; padding-left: 0;">
 
+                <li><a href="#" class="text-decoration-none color-white">Africa</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Asia</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Europe</a></li>
+                <li><a href="#" class="text-decoration-none color-white">India</a></li>
+                <li><a href="#" class="text-decoration-none color-white">South America</a></li>
 
             </ul>
         </div>
 
         <div class="col-6 col-md-2">
-            <h4 class="invisible">Header</h4>
+            <h4 class="mb-4">steelwallus.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li>About SteelWall</li>
-                <li>Imprint</li>
-                <li>Privacy policy</li>
-            </ul>
-        </div>
-
-        <div class="col-6 col-md-2">
-            <h4 class="invisible">Header</h4>
-
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li>About SteelWall</li>
-                <li>Imprint</li>
-                <li>Privacy policy</li>
+                <li><a href="#" class="text-decoration-none color-white">North America</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Caribbean</a></li>
+                <li><a href="#" class="text-decoration-none color-white">South East Asia</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Australia</a></li>
+                <li><a href="#" class="text-decoration-none color-white">New Zealand</a></li>
             </ul>
         </div>
 
 
         <div class="col-6 col-md-5">
-            <h4 class="invisible">Header</h4>
+            <h4 class="mb-4">Follow Us</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li>About SteelWall</li>
-                <li>Imprint</li>
-                <li>Privacy policy</li>
+                <li><a href="#" class="text-decoration-none color-white">Facebook</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Instagram</a></li>
+                <li><a href="#" class="text-decoration-none color-white">Youtube</a></li>
             </ul>
         </div>
 
     </div>
+
+
+
+
+    <div class="row w-100">
+        <div class="col-12 col-md-6">
+
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li>Last website update: 08. Feb. 2024</li>
+                <li>Copyright by SteelWall ISH GmbH</li>
+                <li>Connectors designed by Richard Heindl</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+
 </div>
 <!--footer section-->
 

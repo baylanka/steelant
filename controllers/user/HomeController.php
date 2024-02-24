@@ -1,5 +1,5 @@
 <?php
-namespace controllers;
+namespace controllers\user;
 
 use app\Request;
 use controllers\BaseController;
@@ -10,6 +10,6 @@ class HomeController extends BaseController
     {
         global $env;
         $data = ["name"=>$env['APP_NAME']];
-        return view("home.view.php", $data);
+        return view("user/home.view.php", $data);
     }
 }
