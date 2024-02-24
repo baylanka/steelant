@@ -2,7 +2,7 @@
 <script src="<?= assets("themes/admin/js/popper.min.js") ?>"></script>
 <script src="<?= assets("themes/admin/js/bootstrap.min.js") ?>"></script>
 <script src="<?= assets("themes/admin/js/adminlte.min.js") ?>"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
-<script src="<?= assets("js/steel-wall.js?v=0.1") ?>"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+<script src="<?= assets("js/admin/steel-wall.js?v=0.1") ?>"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
 <script>
     const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
     const Default = {

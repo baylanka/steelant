@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?= assets("themes/admin/css/adminlte.css") ?>">
     <link rel="stylesheet" href="<?= assets("themes/admin/css/apexcharts.css") ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css" integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= assets("css/steel-wall.css?v=0.1") ?>">
+    <link rel="stylesheet" href="<?= assets("css/admin/steel-wall.css?v=0.1") ?>">
 </head> <!--end::Head--> <!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
