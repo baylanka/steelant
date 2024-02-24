@@ -9,7 +9,7 @@ function basePath($path)
     return str_replace("\\", "/", $path);
 }
 
-function view($path, $data)
+function view($path, $data=[])
 {
     extract($data);
     return require_once basePath("views/" . $path);
