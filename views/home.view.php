@@ -25,6 +25,10 @@
             margin: 0;
             padding: 0;
         }
+        body{
+            margin: 0;
+            padding: 0;
+        }
 
         .selected {
             color: var(--cyan) !important;
@@ -32,6 +36,10 @@
 
         .color-blue {
             color: var(--blue);
+        }
+
+        .color-white{
+            color: var(--white);
         }
 
         .link {
@@ -110,6 +118,10 @@
 
             .secondary-nav {
                 display: none;
+            }
+
+            .wide-gallery-image{
+                height:35% !important;
             }
         }
 
@@ -264,7 +276,7 @@
 
 
 <!--body section-->
-<div class="jumbotron">
+<div class="jumbotron w-100 p-0 m-0">
 
     <img src="<?= assets("user/img/hero-image.png") ?>" class="w-100"/>
 
@@ -275,7 +287,7 @@
             <div class="col-12 col-md-12 row" style="gap:1.8%;">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/Earth-work.png") ?>" height="60"/>
                 </div>
                 <div class="col-7">
                     <dl>
@@ -309,7 +321,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -328,7 +340,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -346,7 +358,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -362,7 +374,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -380,7 +392,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -400,7 +412,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("user/img/category/Cell-structures.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -418,13 +430,45 @@
     </div>
     <!--categories section-->
 
-    <div class="row w-100" style="padding:2.3%;">
+    <div class="row w-100 p-5">
 
-        <div class="col-md-3">
-            <img src="<?= assets("user/img/gallery-1.png") ?>">
+
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <img src="<?= assets("user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
         </div>
-        
+
+
+        <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
+            <img src="<?= assets("user/img/gallery-2.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <img src="<?= assets("user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <img src="<?= assets("user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <img src="<?= assets("user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+        <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
+            <img src="<?= assets("user/img/gallery-2.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <img src="<?= assets("user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+        </div>
+
+
+
     </div>
+
 
 
 </div>
@@ -449,9 +493,23 @@
 
     <span class="divider mt-5 mb-5"></span>
 
-    <div class="row">
-        <div class="col-3">
+    <div class="row w-100">
+        <div class="col-6 col-md-3">
             <h4>SteelWall</h4>
+
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li><a href="#" class="text-decoration-none color-white">Imprint</a></li>
+                <li>Imprint</li>
+                <li>Privacy policy</li>
+
+
+
+
+            </ul>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <h4 class="invisible">Header</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
                 <li>About SteelWall</li>
@@ -460,18 +518,8 @@
             </ul>
         </div>
 
-        <div class="col-2">
-            <h4>SteelWall</h4>
-
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li>About SteelWall</li>
-                <li>Imprint</li>
-                <li>Privacy policy</li>
-            </ul>
-        </div>
-
-        <div class="col-2">
-            <h4>SteelWall</h4>
+        <div class="col-6 col-md-2">
+            <h4 class="invisible">Header</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
                 <li>About SteelWall</li>
@@ -481,13 +529,13 @@
         </div>
 
 
-        <div class="col-5">
-            <h4>SteelWall</h4>
+        <div class="col-6 col-md-5">
+            <h4 class="invisible">Header</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
                 <li>About SteelWall</li>
                 <li>Imprint</li>
-                <li>Privacy fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffpolicy</li>
+                <li>Privacy policy</li>
             </ul>
         </div>
 
