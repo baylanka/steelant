@@ -14,4 +14,9 @@ class Category extends BaseModel
     public int $level;
     public ?int $parent_category_id;
 
+    public static function getFirstLevelCategories()
+    {
+        return parent::getAllBy(['level'=>1]);
+    }
+
 }
