@@ -19,7 +19,7 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="<?= url("admin/categories") ?>"
-                       class="nav-link <?= isRequestedRoute("admin/dashboard") ? 'active':'' ?>">
+                       class="nav-link <?= isRequestedRoute("admin/categories") ? 'active':'' ?>">
                         <i class="bi bi-bookmarks"></i>
                         <p> Categories </p>
                     </a>
