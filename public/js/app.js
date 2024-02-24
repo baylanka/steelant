@@ -130,6 +130,23 @@ let makePostFileRequest = (formObject, extra = {}) => {
     });
 }
 
+toastr.options = {
+    closeButton: true,
+    debug: false,
+    newestOnTop: false,
+    progressBar: false,
+    positionClass: "toast-top-right",
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "5000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+};
 
 let toast = {
     'success': function (msg) {
@@ -148,10 +165,11 @@ let toast = {
 
 let loadModal = (modalId, url) => {
     return new Promise(function (resolve, reject) {
-        url = baseURL + '/' + url;
+        url = `${baseURL}${url}`;
         $('#' + modalId).load(url, function (response, status, xhr) {
             if (status !== 'error') {
-                $('#' + modalId).modal();
+                const newModal = new bootstrap.Modal('#' + modalId);
+                newModal.show();
             } else {
                 toast.error('Server Error!');
             }
