@@ -39,7 +39,7 @@ function assets($path)
     if($firstChar === "/"){
         $path = substr($path,1, strlen($path));
     }
-    return url("/public/assets/" .$path);
+    return url("/public/" .$path);
 
 }
 

@@ -149,7 +149,7 @@
         <div class="text-center row position-relative p-2">
             <div class="col-4 mt-5 text-center">
                 <img
-                        src="<?= assets("user/img/menu.png") ?>"
+                        src="<?= assets("themes/user/img/menu.png") ?>"
                         type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasNavbar"
@@ -161,45 +161,45 @@
                 <span class="nav-text">Menu</span>
             </div>
             <div class="col-4 mt-5 text-center invisible remove-on-sm">
-                <img src="<?= assets("user/img/star.png") ?>" height="30"/><br/>
+                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
             </div>
             <div class="col-4 mt-5 text-center invisible remove-on-sm">
-                <img src="<?= assets("user/img/star.png") ?>" height="30"/><br/>
+                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
             </div>
         </div>
 
         <div class="nav-logo w-50">
-            <img src="<?= assets("user/img/logo.jpg") ?>" alt="SteelWall-logo"/>
+            <img src="<?= assets("themes/user/img/logo.jpg") ?>" alt="SteelWall-logo"/>
             <h5>Schlossprofile für Spundwandbauwerke</h5>
         </div>
 
         <div class="text-center row position-relative p-2 login-nav">
             <div class="col-md-4 mt-5 text-center remove-on-sm">
-                <img src="<?= assets("user/img/user.png") ?>" height="30"/><br/>
+                <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
                 <span class="nav-text">Login</span>
             </div>
             <div class="col-md-4 mt-5 text-center remove-on-sm">
-                <img src="<?= assets("user/img/star.png") ?>" height="30"/><br/>
+                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
                 <span class="nav-text">Favourite</span>
             </div>
             <div class="col-md-4 col-12 mt-5 ">
                 <div class="dropstart">
-                    <img src="<?= assets("user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
+                    <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
                          data-bs-toggle="dropdown"
                          aria-expanded="false"/><br/>
                     <span class="nav-text">Language</span>
                     <ul class="dropdown-menu mt-4">
                         <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("user/img/flags/de.png") ?>" height="25"/>
+                                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25"/>
                                 Deustch</a></li>
                         <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("user/img/flags/uk.png") ?>" height="25"/>
+                                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25"/>
                                 English - UK</a></li>
                         <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("user/img/flags/us.png") ?>" height="25"/>
+                                <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25"/>
                                 English - USA</a></li>
                         <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("user/img/flags/fr.png") ?>" height="25"/>
+                                <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25"/>
                                 French</a></li>
                     </ul>
                 </div>
@@ -266,7 +266,7 @@
 <!--body section-->
 <div class="jumbotron">
 
-    <img src="<?= assets("user/img/hero-image.png") ?>" class="w-100"/>
+    <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
 
     <!--categories section-->
     <div class="row w-100 p-5">
@@ -275,7 +275,7 @@
             <div class="col-12 col-md-12 row" style="gap:1.8%;">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7">
                     <dl>
@@ -309,7 +309,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -328,7 +328,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -346,7 +346,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -362,7 +362,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -380,7 +380,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -400,7 +400,7 @@
             <div class="col-12 col-md-6 col-xxl-4 row gap-3">
 
                 <div class="col-3">
-                    <img src="<?= assets("user/img/connector-cat-1.png") ?>" height="60"/>
+                    <img src="<?= assets("themes/user/img/connector-cat-1.png") ?>" height="60"/>
                 </div>
                 <div class="col-7 p-0">
                     <dl>
@@ -421,7 +421,7 @@
     <div class="row w-100" style="padding:2.3%;">
 
         <div class="col-md-3">
-            <img src="<?= assets("user/img/gallery-1.png") ?>">
+            <img src="<?= assets("themes/user/img/gallery-1.png") ?>">
         </div>
         
     </div>

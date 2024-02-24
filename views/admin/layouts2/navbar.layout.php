@@ -11,14 +11,14 @@ use helpers\translate\Translate;
 
             <li class="nav-item dropdown language-menu">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                    <img src="<?= assets("admin/img/flags/") ?><?= Translate::getLang() ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
+                    <img src="<?= assets("themes/admin/img/flags/") ?><?= Translate::getLang() ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-1">
             
                     <a href="?lang=de" class="dropdown-item p-2">
                         <div class="d-flex">
-                            <div class="flex-shrink-0"> <img src="<?= assets("admin/img/flags/de.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
+                            <div class="flex-shrink-0"> <img src="<?= assets("themes/admin/img/flags/de.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
                             <div class="flex-grow-1">
                                 <h4 class="dropdown-item-title">Duestch</h4>
                 
@@ -28,7 +28,7 @@ use helpers\translate\Translate;
                     <div class="dropdown-divider"></div>
                     <a href="?lang=en" class="dropdown-item p-2">
                         <div class="d-flex">
-                            <div class="flex-shrink-0"> <img src="<?= assets("admin/img/flags/en.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
+                            <div class="flex-shrink-0"> <img src="<?= assets("themes/admin/img/flags/en.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
                             <div class="flex-grow-1">
                                 <h4 class="dropdown-item-title">English</h4>
                 
@@ -42,11 +42,11 @@ use helpers\translate\Translate;
 
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="<?= assets("admin/img/default-user-img.jpg") ?>" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline">Alexander</span>
+                    <img src="<?= assets("themes/admin/img/default-user-img.jpg") ?>" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline">Alexander</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <li class="user-header text-bg-primary background-primary">
-                        <img src="<?= assets("admin/img/default-user-img.jpg") ?>" class="rounded-circle shadow" alt="User Image">
+                        <img src="<?= assets("themes/admin/img/default-user-img.jpg") ?>" class="rounded-circle shadow" alt="User Image">
                         <p> Alexander</p>
                     </li>
 
