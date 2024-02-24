@@ -1,7 +1,7 @@
     <div class="modal-dialog modal-md" >
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Main Category</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -10,15 +10,15 @@
 
                    <label for="basic-url" class="form-label">Name</label>
                    <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                       <input type="text" class="form-control" placeholder="Category name" aria-label="Category name" aria-describedby="basic-addon2">
                        <span class="input-group-text" id="basic-addon2">Duestch</span>
                    </div>
                    <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                       <input type="text" class="form-control" placeholder="Category name" aria-label="Category name" aria-describedby="basic-addon2">
                        <span class="input-group-text" id="basic-addon2">English</span>
                    </div>
                    <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                       <input type="text" class="form-control" placeholder="Category name" aria-label="Category name" aria-describedby="basic-addon2">
                        <span class="input-group-text" id="basic-addon2">French</span>
                    </div>
 
