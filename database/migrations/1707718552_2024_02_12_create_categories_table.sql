@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS  categories
     name MEDIUMTEXT NOT NULL,
     title TEXT NOT NULL,
     level TINYINT NOT NULL,
+    display_order INT NULL,
     parent_category_id INT NULL,
+    visibility TIYINT DEFAULT 1,
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
 );

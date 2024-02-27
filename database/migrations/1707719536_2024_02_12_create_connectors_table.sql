@@ -5,20 +5,14 @@ CREATE TABLE IF NOT EXISTS  connectors
     grade VARCHAR(25) NOT NULL,
     description TEXT NULL COMMENT 'store content in json format based on languages',
 
-    weight_m DECIMAL(8,2) COMMENT 'metrics: unit kg/m',
-    weight_tolerance_m VARCHAR(25) COMMENT 'metrics: ex: +0/-5mg' NULL,
-    weight_i DECIMAL(8,2) COMMENT 'imperial: unit lbs/ft',
-    weight_tolerance_i VARCHAR(25) COMMENT 'metrics: ex: +0/-5"' NULL,
+    weight_m VARCHAR(250) COMMENT 'metrics: unit kg/m >> ie: 5kg/m (+0/-5mg). Note admin can able to split by multiple label and its associated values. ',
+    weight_i VARCHAR(250) COMMENT 'imperial: unit lbs/ft >> ie: 5 lbs/ft (+0/-5")',
 
-    thickness_m DECIMAL(8,2) COMMENT 'metrics: unit mm',
-    thickness_tolerance_m VARCHAR(25) COMMENT 'metrics: ex: +0.1/-0.5 micro meter' NULL,
-    thickness_i DECIMAL(8,2) COMMENT 'imperial: unit inch',
-    thickness_tolerance_i VARCHAR(25) COMMENT 'metrics: ex: +0/-5 inch' NULL,
+    thickness_m VARCHAR(250) COMMENT 'metrics: unit mm >> ie: 5mm (+0.1/-0.5)',
+    thickness_i VARCHAR(250) COMMENT 'imperial: unit inch >> ie: 5 inch (+0/-5 inch)',
 
-    standard_length_m DECIMAL(8,2) COMMENT 'metrics: unit m',
-    standard_length_tolerance_m VARCHAR(25) COMMENT 'metrics: ex: +0.1/-0.5 mm' NULL,
-    standard_length_i DECIMAL(8,2) COMMENT 'imperial: unit ft',
-    standard_length_tolerance_i VARCHAR(25) COMMENT 'metrics: ex: +0/-5 inch' NULL,
+    standard_lengths_m VARCHAR(250) COMMENT 'metrics: unit m >> ie: 5m (+0.1/-0.5 mm). note: here multiple standard lengths can be added by a separator',
+    standard_lengths_i VARCHAR(250) COMMENT 'imperial: unit ft >> ie: 15inch (+0/-5 inch). note: here multiple standard lengths can be added by a separator ',
 
 
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
