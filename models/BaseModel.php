@@ -20,7 +20,7 @@ class BaseModel
 
         $columns = implode(", ", array_keys($data));
         $valueClausePlaceHolders = ":" . implode(", :", array_keys($data));
-        $sql = "INSERT INTO {$tableName} ({$columns}) ({$valueClausePlaceHolders}) ;";
+        $sql = "INSERT INTO {$tableName} ({$columns}) VALUES ({$valueClausePlaceHolders}) ;";
         $db = $container->resolve('DB');
         $lastInsertedId =  $db->insert($sql, $data);
         if(empty($lastInsertedId)){
@@ -28,7 +28,6 @@ class BaseModel
         }
 
         $data['id'] = $lastInsertedId;
-        $data['exists'] = $lastInsertedId;
         return static::getObjectFromArray($data);
     }
 
@@ -168,7 +167,7 @@ class BaseModel
         foreach ($data as $attr => $value){
             $instance->$attr = $value;
         }
-        return $class;
+        return $instance;
     }
 
     private static function getTableName()
