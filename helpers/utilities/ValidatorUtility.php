@@ -68,4 +68,29 @@ class ValidatorUtility
     {
         return preg_match($pattern, $value);
     }
+
+    public static function isImage(array $file): bool
+    {
+        return getimagesize($file["tmp_name"]) !== false;
+    }
+
+    public static function isAcceptedType(array $file, array $acceptedValues): bool
+    {
+        $type = FileUtility::getType($file);
+        return in_array($type, $acceptedValues);
+    }
+
+    public static function maxFileSize(array $file, $maxSize): bool
+    {
+        $maxSize = (float) $maxSize;
+        $fileSize = (float) FileUtility::getSize($file);
+        return $fileSize <= $maxSize;
+    }
+
+    public static function minFileSize(array $file, $minSize): bool
+    {
+        $minSize = (float) $minSize;
+        $fileSize = (float) FileUtility::getSize($file);
+        return $fileSize >= $minSize;
+    }
 }
