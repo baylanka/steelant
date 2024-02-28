@@ -5,4 +5,5 @@
 .vscode
 docs
 public/storage/*
+public/storage
 
