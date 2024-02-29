@@ -591,10 +591,15 @@ use helpers\pools\LanguagePool;
         $('button#add-main-category').click(async function (event) {
             let path = "admin/categories/main/store";
             let modal;
+            const btn = $(this);
+            const loadingBtnText = btn.text();
             try{
+                loadButton(btn, "loading ...");
                 modal = await loadModal(modalId, path);
+                resetButton(btn, loadingBtnText);
                 $(document).on('closeMainCategoryModal', function(event) {
                     modal.hide();
+                    console.log(event.originalEvent.detail.category);
                 });
             }catch(err){
                 toast.error("add main category functional break down. " + err);

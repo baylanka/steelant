@@ -22,7 +22,7 @@ class MainCategoryStoreRequestValidator
 
     private static function iconValidation($request)
     {
-        if(!$request->has('icon')){
+        if(!$request->has('icon') || empty($request->get('icon')['tmp_name'])){
             return;
         }
 
@@ -38,11 +38,11 @@ class MainCategoryStoreRequestValidator
 
     private static function bannerValidation($request)
     {
-        if(!$request->has(CategoryMedia::TYPE_BANNER)){
+        if(!$request->has('banner') || empty($request->get('banner')['tmp_name'])){
             return;
         }
 
-        $file = $request->get(CategoryMedia::TYPE_BANNER);
+        $file = $request->get('banner');
         if(!ValidatorUtility::isImage($file)){
             ResponseUtility::response("unsupported banner file.",
                 422, [

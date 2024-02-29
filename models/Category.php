@@ -92,7 +92,7 @@ class Category extends BaseModel
             }
         }
 
-        return assets("/admin/img/no-image.png");
+        return assets("img/admin/no-image.png");
 
     }
 
