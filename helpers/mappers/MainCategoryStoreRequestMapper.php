@@ -41,7 +41,10 @@ class MainCategoryStoreRequestMapper
      */
     private static function setIconMedia(Request $request, Category &$category)
      {
-         if(!$request->has('icon') || empty($request->get('icon'))){
+         if(!$request->has('icon')
+             || empty($request->get('icon'))
+             || empty($request->get('icon')['tmp_name'])
+         ){
              return $category->temp_icon_media = null;
          }
          $file = $request->get('icon');
@@ -56,7 +59,10 @@ class MainCategoryStoreRequestMapper
      */
     private static function setBannerMedia($request, Category &$category)
     {
-        if(!$request->has('banner') || empty($request->get('banner'))){
+        if(!$request->has('banner')
+            || empty($request->get('banner'))
+            || empty($request->get('banner')['tmp_name'])
+        ){
             return $category->temp_banner_media = null;
         }
         $file = $request->get('banner');

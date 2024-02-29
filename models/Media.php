@@ -15,4 +15,17 @@ class Media extends BaseModel
     const TYPE_IMAGE = "image";
     const TYPE_VIDEO = "video";
     const TYPE_FILE = "file";
+
+    public static function getMediaByCategoryId($id)
+    {
+        global $container;
+        $sql = "
+                SELECT * FROM media
+                    INNER JOIN category_media ON category_media.media_id = media.id
+                    WHERE category_media.media_id = :media_id;
+               ";
+        $val = ["media_id"=>$id];
+        $db = $container->resolve('DB');
+        return json_decode(json_encode($db->queryAsArray($sql, $val)->get()));
+    }
 }

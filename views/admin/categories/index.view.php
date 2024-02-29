@@ -1,6 +1,7 @@
 <?php
 
 use helpers\translate\Translate;
+use helpers\pools\LanguagePool;
 
 ?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
@@ -40,11 +41,15 @@ use helpers\translate\Translate;
                     ?>
                     <tr class="align-middle text-center <?= $rowColorClass ?>">
                         <td>
-                            <img class="img-thumbnail" src="<?= assets("/admin/img/no-image.png") ?>"/>
+                            <img class="img-thumbnail"
+                                 src="<?= $category->getThumbnailUrl() ?>"
+                                 alt="<?= $category->getThumbnailName() ?>"
+                                 title="<?= $category->getThumbnailName() ?>"
+                                 width="50"/>
                         </td>
-                        <td><?= $category->getDeName() ?></td>
-                        <td><?= $category->getEnName() ?></td>
-                        <td><?= $category->getFrName() ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::FRENCH()->getLabel()) ?></td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
@@ -586,10 +591,15 @@ use helpers\translate\Translate;
         $('button#add-main-category').click(async function (event) {
             let path = "admin/categories/main/store";
             let modal;
+            const btn = $(this);
+            const loadingBtnText = btn.text();
             try{
+                loadButton(btn, "loading ...");
                 modal = await loadModal(modalId, path);
+                resetButton(btn, loadingBtnText);
                 $(document).on('closeMainCategoryModal', function(event) {
                     modal.hide();
+                    console.log(event.originalEvent.detail.category);
                 });
             }catch(err){
                 toast.error("add main category functional break down. " + err);
