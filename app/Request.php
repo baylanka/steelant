@@ -18,7 +18,112 @@ class Request
         $this->uri = $uri;
         $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
 
+        $this->attachUrlQueries();
         $this->setPayload();
+        $this->filter();
+    }
+
+    public function getRequestedUri()
+    {
+        return $this->uri;
+    }
+
+    public function getRequestedMethod()
+    {
+        return $this->method;
+    }
+
+    public function all($remove_tags=true): array
+    {
+        if(!$remove_tags){
+            return $this->payload;
+        }
+        return array_map("self::removeTags", $this->payload);
+    }
+
+    public function has($key): bool
+    {
+        return array_key_exists($key, $this->payload);
+    }
+
+    public function get($key, $default = null, $remove_tags=true)
+    {
+        if (!array_key_exists($key, $this->payload)) {
+            return $default;
+        }
+
+        if(!$remove_tags) {
+            return $this->payload[$key];
+        }
+
+        return self::removeTags($this->payload[$key]);
+    }
+
+    public function excepts(array $values, $remove_tags=true): array
+    {
+        $filteredArray = array_filter(
+            $this->payload,
+            function ($key) use ($values) {
+                return !in_array($key, $values);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+        if(!$remove_tags) {
+            return $filteredArray;
+        }
+
+        return array_map("self::removeTags", $filteredArray);
+    }
+
+    private function filter()
+    {
+        foreach ($this->payload as $key => $value){
+            $value = self::removeWhiteSpaces($value);
+            $value = self::removeScriptTag($value);
+            $sanitizedInput = self::encodeHtmlSpecialChars($value);
+            $this->payload[$key] = $sanitizedInput;
+        }
+    }
+
+    private static function encodeHtmlSpecialChars($value)
+    {
+        if(!is_array($value)){
+            //encode html tags to html entities
+            return  htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+
+        foreach ($value as $key => $each){
+            $value[$key] = self::encodeHtmlSpecialChars($each);
+        }
+
+        return $value;
+    }
+
+    private static function removeScriptTag($value)
+    {
+        if(!is_array($value)){
+            //remove script tags
+            return  preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $value);
+        }
+
+        foreach ($value as $key => $each){
+            $value[$key] = self::removeScriptTag($each);
+        }
+
+        return $value;
+    }
+
+    private static function removeWhiteSpaces($value)
+    {
+        if(!is_array($value)){
+            return trim($value);
+        }
+
+        foreach ($value as $key => $each){
+            $value[$key] = self::removeWhiteSpaces($each);
+        }
+
+        return $value;
     }
 
     private function setPayload()
@@ -29,6 +134,9 @@ class Request
                 break;
             case 'POST':
                 $this->payload = $_POST;
+                if(!empty(sizeof($_FILES))){
+                    $this->payload = array_merge($this->payload, $_FILES);
+                }
                 break;
             case 'PUT':
             case 'PATCH':
@@ -36,6 +144,16 @@ class Request
                 break;
             default:
                 $this->payload = [];
+        }
+    }
+
+    private function attachUrlQueries()
+    {
+        if(!isset($_SERVER['QUERY_STRING'])) return;
+        $queries = [];
+        parse_str($_SERVER['QUERY_STRING'], $queries);
+        foreach ($queries as $key => $value){
+            $this->payload[$key] = $value;
         }
     }
 
@@ -61,41 +179,16 @@ class Request
 
     }
 
-    public function getRequestedUri()
+    private static function removeTags($value)
     {
-        return $this->uri;
-    }
-
-    public function getRequestedMethod()
-    {
-        return $this->method;
-    }
-
-    public function all(): array
-    {
-        return $this->payload;
-    }
-
-    public function get($key, $default = null)
-    {
-        if (!array_key_exists($key, $this->payload)) {
-            return $default;
+        if(!is_array($value)){
+            return  strip_tags(htmlspecialchars_decode($value));
         }
 
-        return $this->payload[$key];
+        foreach ($value as $key => $each){
+            $value[$key] = self::removeTags($each);
+        }
+
+        return $value;
     }
-
-    public function excepts(array $values): array
-    {
-        return array_filter(
-            $this->payload,
-            function ($key) use ($values) {
-                return !in_array($key, $values);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
-    }
-
-
-
 }

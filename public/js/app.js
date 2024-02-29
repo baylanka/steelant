@@ -1,20 +1,27 @@
-const baseURL = $('meta[name="base-url"]').attr('content');
+const getBaseUrl = ()=>{
+    let baseUrl = $('meta[name="base-url"]').attr('content');
+    if(baseUrl.substring(baseUrl.length) !== '/'){
+        return baseUrl.slice(0,-1);
+    }
+
+    return baseUrl;
+};
 
 let isEmpty = str => {
     return (!str || str.length === 0 || str === '' || str.length === 0 || typeof str === undefined || str === null);
 };
 
-
-let doAjaxPost = (url, method, data = {}) => {
+let makeAjaxCall = (url, data = {}, method = 'POST') => {
+    const params = $.param(data);
     return new Promise(function (resolve, reject) {
         $.ajax({
-            type: method || "POST",
+            type: method,
             url: url,
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            enctype: '',
-            processData: '',
-            data: data,
+            enctype: 'application/x-www-form-urlencoded',
+            processData: false,
+            data: params,
             success: function (data) {
                 resolve(data);
             },
@@ -35,7 +42,7 @@ let doAjaxPost = (url, method, data = {}) => {
                             let i = 0;
                             for (let key in errors) {
                                 if (errors.hasOwnProperty(key)) {
-                                    msg += "<br/>\u2022" + errors[key];
+                                    msg += "<br/>&#9734;&nbsp;" + errors[key];
                                 }
                                 i++;
                             }
@@ -51,7 +58,7 @@ let doAjaxPost = (url, method, data = {}) => {
                 } else if (exception === 'abort') {
                     msg = 'Ajax request aborted.';
                 } else if (jqXHR.responseJSON.hasOwnProperty('message')
-                    && jqXHR.responseJSON.message == 'CSRF token mismatch.') {
+                    && jqXHR.responseJSON.message === 'CSRF token mismatch.') {
                     console.log('CSRF token mismatched, page is reloaded');
                     location.reload();
                 } else {
@@ -61,17 +68,17 @@ let doAjaxPost = (url, method, data = {}) => {
             },
         });
     });
-}
-
+};
 let makePostFileRequest = (formObject, extra = {}) => {
+    let formData = (!extra.hasOwnProperty('data') || extra.data == null)
+        ? new FormData(formObject[0])  : extra.data;
+
+    let url = (!extra.hasOwnProperty('url') || extra.url === null)
+        ? formObject.attr('action') : extra.url;
+
+
+
     return new Promise(function (resolve, reject) {
-        let formData = (!extra.hasOwnProperty('data') || extra.data == null)
-            ? new FormData(formObject[0])  : extra.data;
-
-        let url = (!extra.hasOwnProperty('url') || extra.url === null)
-            ? formObject.attr('action') : extra.url;
-
-
         $.ajax({
             type: "POST",
             url: url,
@@ -102,7 +109,7 @@ let makePostFileRequest = (formObject, extra = {}) => {
                             let i = 0;
                             for (let key in errors) {
                                 if (errors.hasOwnProperty(key)) {
-                                    msg += "<br/>\u2022" + errors[key];
+                                    msg += "<br/>&#9734;&nbsp;" + errors[key];
                                 }
                                 i++;
                             }
@@ -118,7 +125,7 @@ let makePostFileRequest = (formObject, extra = {}) => {
                 } else if (exception === 'abort') {
                     msg = 'Ajax request aborted.';
                 } else if (jqXHR.responseJSON.hasOwnProperty('message')
-                    && jqXHR.responseJSON.message == 'CSRF token mismatch.') {
+                    && jqXHR.responseJSON.message === 'CSRF token mismatch.') {
                     console.log('CSRF token mismatched, page is reloaded');
                     location.reload();
                 } else {
@@ -165,15 +172,16 @@ let toast = {
 
 let loadModal = (modalId, url) => {
     return new Promise(function (resolve, reject) {
-        url = `${baseURL}${url}`;
+        url = `${getBaseUrl()}/${url}`;
         $('#' + modalId).load(url, function (response, status, xhr) {
+            let newModal;
             if (status !== 'error') {
-                const newModal = new bootstrap.Modal('#' + modalId);
+                newModal = new bootstrap.Modal('#' + modalId);
                 newModal.show();
             } else {
-                toast.error('Server Error!');
+                reject(status);
             }
-            resolve(true);
+            resolve(newModal);
         });
     });
 };

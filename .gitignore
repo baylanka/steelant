@@ -4,4 +4,8 @@
 *.idea
 .vscode
 docs
+public/storage/*
+public/storage
+
+
 

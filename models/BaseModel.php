@@ -8,6 +8,7 @@ use helpers\utilities\DateTimeUtility;
 class BaseModel
 {
     protected string $table;
+    protected string $relations;
     /*
      * method for store data into a table
      * table attribute name = $data key
@@ -20,7 +21,7 @@ class BaseModel
 
         $columns = implode(", ", array_keys($data));
         $valueClausePlaceHolders = ":" . implode(", :", array_keys($data));
-        $sql = "INSERT INTO {$tableName} ({$columns}) ({$valueClausePlaceHolders}) ;";
+        $sql = "INSERT INTO {$tableName} ({$columns}) VALUES ({$valueClausePlaceHolders}) ;";
         $db = $container->resolve('DB');
         $lastInsertedId =  $db->insert($sql, $data);
         if(empty($lastInsertedId)){
@@ -28,7 +29,6 @@ class BaseModel
         }
 
         $data['id'] = $lastInsertedId;
-        $data['exists'] = $lastInsertedId;
         return static::getObjectFromArray($data);
     }
 
@@ -141,6 +141,53 @@ class BaseModel
         return self::execute($sql, $param);
     }
 
+    public function save()
+    {
+        $obj = get_class($this);
+        $reflection = new \ReflectionClass($obj);
+        $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $insertValues = [];
+        foreach ($properties as $property){
+            $name = $property->name;
+            if(in_array($property->name, ["table"])
+                || str_contains($property->name, 'temp_')
+                || !isset($this->$name)
+            ){
+                continue;
+            }
+
+            $insertValues[$name] = $this->$name;
+        }
+
+        //if id set on the object update
+        if(isset($this->id)){
+            $this::updateById($this->id, $insertValues);
+            return $this;
+        }
+
+        $newObj = $this::insert($insertValues);
+        $this->id = $newObj->id;
+        return $this;
+    }
+
+    private function getChildAttributes() {
+        $childAttributes = [];
+        $reflection = new \ReflectionClass($this);
+
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PROTECTED) as $property) {
+            if ($property->class !== get_class($this)
+                || in_array($property->name,  ['table'])
+            ) {
+                // Exclude properties defined in the parent class
+               continue;
+            }
+
+            $childAttributes[] = $property->name;
+        }
+
+        return $childAttributes;
+    }
+
 
     private static function getNamedPlaceholderStatement(array $values, string $seperator)
     {
@@ -168,7 +215,7 @@ class BaseModel
         foreach ($data as $attr => $value){
             $instance->$attr = $value;
         }
-        return $class;
+        return $instance;
     }
 
     private static function getTableName()

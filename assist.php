@@ -37,6 +37,12 @@ function main($argCount, $argValues)
             case 'serve':
                 AssistCLI::appStart($argValues);
                 break;
+            case 'storage:link':
+                AssistCLI::createStorageLink();
+                break;
+            case 'storage:unlink':
+                AssistCLI::removeStorageLink();
+                break;
             default:
                 throw new Exception("undefined assist command");
         }

@@ -13,4 +13,14 @@ class AppAssistanceController extends BaseController
         AssistCLI::migrate();
         parent::response("Successfully migrated!");
     }
+
+    public function linkStorage(Request $request)
+    {
+        AssistCLI::createStorageLink();
+    }
+
+    public function unlinkStorage(Request $request)
+    {
+        AssistCLI::removeStorageLink();
+    }
 }

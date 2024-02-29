@@ -2,9 +2,11 @@ CREATE TABLE IF NOT EXISTS  categories
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name MEDIUMTEXT NOT NULL,
-    title TEXT NOT NULL,
+    title TEXT NULL,
     level TINYINT NOT NULL,
+    display_order INT NULL,
     parent_category_id INT NULL,
+    visibility TIYINT DEFAULT 1,
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
 );

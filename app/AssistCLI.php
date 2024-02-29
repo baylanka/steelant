@@ -132,4 +132,37 @@ class AssistCLI
 
         exec("php -S localhost:$portNumber");
     }
+
+    public static function createStorageLink()
+    {
+        $fromPath = storage_path("/public");
+        $linkPath = public_path("/storage");
+        if(function_exists('symlink')) {
+            // Attempt to create a symbolic link
+            if (symlink($fromPath, $linkPath)) {
+                echo 'Storage link is created successfully.';
+            } else {
+                $error = error_get_last();
+                echo 'Error creating Storage link: ' . $error['message'];
+            }
+        } else {
+            echo 'Storage links are not supported on this system.';
+        }
+    }
+
+    public static function removeStorageLink()
+    {
+        $linkPath = public_path("/storage");
+        if (!is_link($linkPath)) {
+            echo "Storage link is not available";
+            return;
+        }
+        try{
+            @unlink($linkPath);
+            exec("rm -r " . $linkPath);
+            echo 'Storage link is removed successfully.';
+        }catch (\Exception $ex){
+            dd($ex->getMessage());
+        }
+    }
 }
