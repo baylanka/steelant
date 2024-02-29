@@ -29,6 +29,11 @@ class FileUtility
         return strtolower(pathinfo($filename,PATHINFO_EXTENSION));
     }
 
+    public static function getName($file)
+    {
+        return pathinfo($file['name'], PATHINFO_FILENAME);
+    }
+
     public static function getSize(array $file)
     {
         return $file["size"];

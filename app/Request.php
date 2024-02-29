@@ -35,7 +35,15 @@ class Request
 
     public function all($remove_tags=true): array
     {
+        if(!$remove_tags){
+            return $this->payload;
+        }
         return array_map("self::removeTags", $this->payload);
+    }
+
+    public function has($key): bool
+    {
+        return array_key_exists($key, $this->payload);
     }
 
     public function get($key, $default = null, $remove_tags=true)
@@ -174,7 +182,7 @@ class Request
     private static function removeTags($value)
     {
         if(!is_array($value)){
-            return strip_tags($value);
+            return  strip_tags(htmlspecialchars_decode($value));
         }
 
         foreach ($value as $key => $each){

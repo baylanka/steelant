@@ -8,6 +8,7 @@ use helpers\utilities\DateTimeUtility;
 class BaseModel
 {
     protected string $table;
+    protected string $relations;
     /*
      * method for store data into a table
      * table attribute name = $data key
@@ -138,6 +139,53 @@ class BaseModel
         $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, "and") . " ; ";
         $param = array_merge($conditions, $values);
         return self::execute($sql, $param);
+    }
+
+    public function save()
+    {
+        $obj = get_class($this);
+        $reflection = new \ReflectionClass($obj);
+        $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $insertValues = [];
+        foreach ($properties as $property){
+            $name = $property->name;
+            if(in_array($property->name, ["table"])
+                || str_contains($property->name, 'temp_')
+                || !isset($this->$name)
+            ){
+                continue;
+            }
+
+            $insertValues[$name] = $this->$name;
+        }
+
+        //if id set on the object update
+        if(isset($this->id)){
+            $this::updateById($this->id, $insertValues);
+            return $this;
+        }
+
+        $newObj = $this::insert($insertValues);
+        $this->id = $newObj->id;
+        return $this;
+    }
+
+    private function getChildAttributes() {
+        $childAttributes = [];
+        $reflection = new \ReflectionClass($this);
+
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PROTECTED) as $property) {
+            if ($property->class !== get_class($this)
+                || in_array($property->name,  ['table'])
+            ) {
+                // Exclude properties defined in the parent class
+               continue;
+            }
+
+            $childAttributes[] = $property->name;
+        }
+
+        return $childAttributes;
     }
 
 

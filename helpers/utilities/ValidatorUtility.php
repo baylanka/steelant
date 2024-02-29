@@ -6,7 +6,21 @@ class ValidatorUtility
 {
     public static function required(array $collection, string $key)
     {
-        return isset($collection[$key]) && self::min($collection[$key], 1);
+        if(!isset($collection[$key])){
+            return false;
+        }
+
+        $value = $collection[$key];
+        if(array($value) || self::string($value)){
+            return self::min($value, 1);
+        }
+
+        return true;
+    }
+
+    public static function array($value)
+    {
+        return is_array($value);
     }
 
     public static function string($value)
@@ -27,7 +41,7 @@ class ValidatorUtility
     public static function min($value, $limit)
     {
         if(is_numeric($value)){
-            $size = $value;
+            $size = (float) $value;
         }elseif(is_array($value)){
             $size = sizeof($value);
         }else{

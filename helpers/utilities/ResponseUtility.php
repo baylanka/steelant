@@ -4,7 +4,7 @@ namespace helpers\utilities;
 
 class ResponseUtility
 {
-    public static function response($message, $statusCode, $errors = [])
+    public static function response(string $message, int $statusCode, array $errors = [])
     {
         http_response_code($statusCode);
 
@@ -13,6 +13,13 @@ class ResponseUtility
             'errors' => $errors
         ]);
 
+        die;
+    }
+
+    public static function sendResponseByArray(array $response, $statusCode=200)
+    {
+        http_response_code($statusCode);
+        echo json_encode($response);
         die;
     }
 }
