@@ -1,12 +1,12 @@
-CREATE TABLE IF NOT EXISTS  categories
+CREATE TABLE IF NOT EXISTS categories
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name MEDIUMTEXT NOT NULL,
     title TEXT NULL,
-    level TINYINT NOT NULL,
+    level TINYINT(10) NOT NULL,
     display_order INT NULL,
     parent_category_id INT NULL,
-    visibility TIYINT DEFAULT 1,
-    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
-);
+    visibility TINYINT(2) DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
