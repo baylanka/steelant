@@ -299,114 +299,91 @@ use helpers\translate\Translate;
 
 
 <div class="modal fade" id="createConnector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create Connector</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-4">
                 <form>
 
-                    <div class="row  mb-3 w-100">
-                        <div class="col-6">
-                            <label for="name" class="form-label">Name :</label>
-                            <input type="text" class="form-control" aria-label="name" id="name" name="name">
+
+
+
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <select class="form-select w-100" aria-label="Default select example" name="category">
+                                <option selected disabled>Select Category</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-5">
+                            <label for="name" class="align-items-center">Name </label>
+                            <input name="name" type="text" class="form-control w-50 align-items-center" placeholder="Connector name" id="name"/>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label for="steel_grade" class="align-items-center">Steel Grade</label>
+                            <input name="steel_grade" type="text" class="form-control w-50 align-items-center" placeholder="Steel Grade" id="name"/>
                         </div>
 
-                        <div class="col-6">
-                            <label for="steel-grade" class="form-label">Steel grade :</label>
-                            <input type="text" class="form-control" aria-label="steel-grade" id="steel-grade"
-                                   name="steel-grade">
-                        </div>
-                    </div>
+                        <hr class="mt-3">
 
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label class="align-items-center">Steel Thickness</label>
+                            <div class="w-50 gap-1">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Steel Thickness">mm</span>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Steel Thickness">inch</span>
+                                </div>
 
-                    <label for="steel-thickness" class="form-label">Steel thickness :</label>
-                    <div class="row mb-3 w-100" id="steel-thickness">
-
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">mm</span>
                             </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
-
                         </div>
 
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">inch</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
+                        <hr class="mt-3">
 
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label class="align-items-center">Weight</label>
+                            <div class="w-75 gap-1">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control ml-1" placeholder="label">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Weight">kg/m</span>
+                                    <button type="button" class="btn btn-danger"><i class="bi bi-dash-lg"></i></button>
+                                    <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i></button>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control ml-1" placeholder="label">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Weight">lbs/ft</span>
+                                    <button type="button" class="btn btn-danger"><i class="bi bi-dash-lg"></i></button>
+                                    <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i></button>
+                                </div>
+
+                            </div>
                         </div>
 
-                    </div>
+                        <hr class="mt-3">
 
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label class="align-items-center">Standard length</label>
+                            <div class="w-50 gap-1">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Steel Thickness">mm</span>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text" placeholder="Steel Thickness">inch</span>
+                                </div>
 
-                    <label for="steel-thickness" class="form-label">Weight :</label>
-                    <div class="row mb-3 w-100" id="steel-thickness">
-
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">kg/m</span>
                             </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
-
-                        </div>
-
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">lbs/ft</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <label for="steel-thickness" class="form-label">Standard length :</label>
-                    <div class="row mb-3 w-100" id="steel-thickness">
-
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">mm</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
-
-                        </div>
-
-                        <div class="col-12 d-flex gap-1">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">inch</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <span class="input-group-text" placeholder="Recipient's username">Tolerance</span>
-                            </div>
-
                         </div>
 
                     </div>
