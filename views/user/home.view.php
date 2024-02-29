@@ -25,7 +25,8 @@
             margin: 0;
             padding: 0;
         }
-        body{
+
+        body {
             margin: 0;
             padding: 0;
         }
@@ -38,7 +39,7 @@
             color: var(--blue);
         }
 
-        .color-white{
+        .color-white {
             color: var(--white);
         }
 
@@ -112,27 +113,36 @@
 
 
         @media (max-width: 575.98px) {
+            .reveal-on-sm{
+                visibility: visible !important;
+            }
+
+
             .remove-on-sm {
                 display: none;
             }
 
-            .secondary-nav {
-                display: none;
-            }
 
             .footer .disclaimer-text {
                 padding-right: 0%;
             }
+
+            .nav-logo{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
         }
 
         @media (max-width: 768px) {
+            .reveal-on-sm{
+                visibility: visible !important;
+            }
             .remove-on-sm {
                 display: none;
             }
 
-            .secondary-nav {
-                display: none;
-            }
+
             .footer .disclaimer-text {
                 padding-right: 0%;
             }
@@ -161,25 +171,18 @@
 <nav class="navbar fixed-top position-relative">
 
     <div class="container-fluid">
-        <div class="text-center row position-relative p-2">
+        <div class="text-center row position-relative reveal-on-sm p-2 invisible">
             <div class="col-4 mt-5 text-center">
-                <img
-                        src="<?= assets("themes/user/img/menu.png") ?>"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar"
-                        aria-controls="offcanvasNavbar"
-                        aria-label="Toggle navigation"
-                        height="30"
-                        alt="menu-image"
+                <img src="<?= assets("themes/user/img/menu.png") ?>"
+                     type="button"
+                     data-bs-toggle="offcanvas"
+                     data-bs-target="#offcanvasNavbar"
+                     aria-controls="offcanvasNavbar"
+                     aria-label="Toggle navigation"
+                     height="30"
+                     alt="menu-image"
                 /><br/>
                 <span class="nav-text">Menu</span>
-            </div>
-            <div class="col-4 mt-5 text-center invisible remove-on-sm">
-                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
-            </div>
-            <div class="col-4 mt-5 text-center invisible remove-on-sm">
-                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
             </div>
         </div>
 
@@ -188,38 +191,13 @@
             <h5>Schlossprofile für Spundwandbauwerke</h5>
         </div>
 
-        <div class="text-center row position-relative p-2 login-nav">
+        <div class="text-center row position-relative reveal-on-sm p-2 invisible">
+
             <div class="col-md-4 mt-5 text-center">
                 <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
                 <span class="nav-text">Login</span>
             </div>
-            <div class="col-md-4 mt-5 text-center remove-on-sm">
-                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
-                <span class="nav-text">Favourite</span>
-            </div>
-            <div class="col-md-4 col-12 mt-5 remove-on-sm">
-                <div class="dropstart">
-                    <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
-                         data-bs-toggle="dropdown"
-                         aria-expanded="false"/><br/>
-                    <span class="nav-text">Language</span>
-                    <ul class="dropdown-menu mt-4">
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25"/>
-                                Deustch</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25"/>
-                                English - UK</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25"/>
-                                English - USA</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25"/>
-                                French</a></li>
-                    </ul>
-                </div>
 
-            </div>
         </div>
 
         <div class="offcanvas offcanvas-start"
@@ -233,8 +211,7 @@
                         type="button"
                         class="btn-close"
                         data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                ></button>
+                        aria-label="Close"></button>
             </div>
 
 
@@ -266,12 +243,53 @@
         </div>
     </div>
 
-    <div class="nav secondary-nav">
-        <a class="nav-link selected" aria-current="page" href="#">Connectors</a>
-        <a class="nav-link" aria-current="page" href="#">Downloads</a>
-        <a class="nav-link" aria-current="page" href="#">Gallery</a>
-        <a class="nav-link" aria-current="page" href="#">Sealant</a>
-        <a class="nav-link" aria-current="page" href="#">Contact</a>
+    <div class="secondary-nav remove-on-sm justify-content-between">
+<div>
+ test
+</div>
+        <div class="nav">
+            <a class="nav-link selected" aria-current="page" href="#">Connectors</a>
+            <a class="nav-link" aria-current="page" href="#">Downloads</a>
+            <a class="nav-link" aria-current="page" href="#">Gallery</a>
+            <a class="nav-link" aria-current="page" href="#">Sealant</a>
+            <a class="nav-link" aria-current="page" href="#">Contact</a>
+        </div>
+
+        <div>
+            <a class="nav-link" aria-current="page" href="#">Gallery</a>
+            <a class="nav-link" aria-current="page" href="#">Sealant</a>
+            <a class="nav-link" aria-current="page" href="#">Contact</a>
+
+
+            <div class="col-md-4 mt-5 text-center remove-on-sm">
+                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
+                <span class="nav-text">Favourite</span>
+            </div>
+            <div class="col-md-4 col-12 mt-5 remove-on-sm">
+                <div class="dropstart">
+                    <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
+                         data-bs-toggle="dropdown"
+                         aria-expanded="false"/><br/>
+                    <span class="nav-text">Language</span>
+                    <ul class="dropdown-menu mt-4">
+                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
+                                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25"/>
+                                Deustch</a></li>
+                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
+                                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25"/>
+                                English - UK</a></li>
+                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
+                                <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25"/>
+                                English - USA</a></li>
+                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
+                                <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25"/>
+                                French</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
 </nav>
@@ -469,9 +487,7 @@
         </div>
 
 
-
     </div>
-
 
 
 </div>
@@ -549,8 +565,6 @@
     </div>
 
 
-
-
     <div class="row w-100">
         <div class="col-12 col-md-6">
 
@@ -563,7 +577,6 @@
 
 
     </div>
-
 
 
 </div>
