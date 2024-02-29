@@ -244,7 +244,7 @@
     </div>
 
     <div class="secondary-nav remove-on-sm justify-content-between">
-<div>
+<div class="invisible">
  test
 </div>
         <div class="nav">
@@ -255,41 +255,9 @@
             <a class="nav-link" aria-current="page" href="#">Contact</a>
         </div>
 
-        <div>
-            <a class="nav-link" aria-current="page" href="#">Gallery</a>
-            <a class="nav-link" aria-current="page" href="#">Sealant</a>
-            <a class="nav-link" aria-current="page" href="#">Contact</a>
-
-
-            <div class="col-md-4 mt-5 text-center remove-on-sm">
-                <img src="<?= assets("themes/user/img/star.png") ?>" height="30"/><br/>
-                <span class="nav-text">Favourite</span>
-            </div>
-            <div class="col-md-4 col-12 mt-5 remove-on-sm">
-                <div class="dropstart">
-                    <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
-                         data-bs-toggle="dropdown"
-                         aria-expanded="false"/><br/>
-                    <span class="nav-text">Language</span>
-                    <ul class="dropdown-menu mt-4">
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25"/>
-                                Deustch</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25"/>
-                                English - UK</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25"/>
-                                English - USA</a></li>
-                        <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle" href="#">
-                                <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25"/>
-                                French</a></li>
-                    </ul>
-                </div>
-
-            </div>
+        <div class="invisible">
+            test
         </div>
-
     </div>
 
 </nav>
