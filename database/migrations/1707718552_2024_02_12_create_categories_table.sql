@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS  categories
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name MEDIUMTEXT NOT NULL,
-    title TEXT NOT NULL,
+    title TEXT NULL,
     level TINYINT NOT NULL,
     display_order INT NULL,
     parent_category_id INT NULL,
