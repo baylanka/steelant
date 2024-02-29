@@ -14,6 +14,6 @@ class CategoryMedia extends BaseModel
 
 
     const TYPE_ICON = "icon";
-    const TYE_BANNER = "banner";
+    const TYPE_BANNER = "banner";
     const TYPE_GALLERY = "gallery";
 }

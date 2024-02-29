@@ -585,7 +585,15 @@ use helpers\translate\Translate;
         const modalId = 'category-modal';
         $('button#add-main-category').click(async function (event) {
             let path = "admin/categories/main/store";
-            await loadModal(modalId, path)
+            let modal;
+            try{
+                modal = await loadModal(modalId, path);
+                $(document).on('closeMainCategoryModal', function(event) {
+                    modal.hide();
+                });
+            }catch(err){
+                toast.error("add main category functional break down. " + err);
+            }
         });
 
         $(document).on('click', 'a.add-sub-category', function(event){
