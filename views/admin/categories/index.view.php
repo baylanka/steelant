@@ -1,6 +1,7 @@
 <?php
 
 use helpers\translate\Translate;
+use helpers\pools\LanguagePool;
 
 ?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
@@ -40,11 +41,15 @@ use helpers\translate\Translate;
                     ?>
                     <tr class="align-middle text-center <?= $rowColorClass ?>">
                         <td>
-                            <img class="img-thumbnail" src="<?= assets("/admin/img/no-image.png") ?>"/>
+                            <img class="img-thumbnail"
+                                 src="<?= $category->getThumbnailUrl() ?>"
+                                 alt="<?= $category->getThumbnailName() ?>"
+                                 title="<?= $category->getThumbnailName() ?>"
+                                 width="50"/>
                         </td>
-                        <td><?= $category->getDeName() ?></td>
-                        <td><?= $category->getEnName() ?></td>
-                        <td><?= $category->getFrName() ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></td>
+                        <td><?= $category->getNameByLang(LanguagePool::FRENCH()->getLabel()) ?></td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"

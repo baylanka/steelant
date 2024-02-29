@@ -27,6 +27,15 @@ class Category extends BaseModel
         return parent::getAllBy(['level'=>1]);
     }
 
+    public function setMedia()
+    {
+        if(isset($this->relations['media'])){
+            return;
+        }
+        $categoryId = $this->id;
+        $this->relations['media'] = Media::getMediaByCategoryId($categoryId);
+    }
+
     public function save()
     {
         parent::save();
@@ -53,6 +62,57 @@ class Category extends BaseModel
         unset($this->temp_banner_media);
 
         return $this;
+    }
+
+    public function getNameByLang(string $language)
+    {
+        $nameArray = json_decode($this->name, true);
+        if(!isset($nameArray[$language])){
+            return "";
+        }
+
+        return $nameArray[$language];
+    }
+
+    public function getThumbnailUrl()
+    {
+        if(isset($this->extra['thumbnail'])){
+            $media = $this->extra['thumbnail'];
+            $fullPath = "storage/" . $media->path;
+            return assets($fullPath);
+        }
+
+        $this->setMedia();
+        $media = $this->relations['media'];
+        foreach ($media as $each){
+            if($each->type == CategoryMedia::TYPE_ICON){
+                $this->extra['thumbnail'] = $each;
+                $fullPath = "storage/" . $each->path;
+                return assets($fullPath);
+            }
+        }
+
+        return assets("/admin/img/no-image.png");
+
+    }
+
+    public function getThumbnailName()
+    {
+        if(isset($this->extra['thumbnail'])){
+            $media = $this->extra['thumbnail'];
+            return $media->name;
+        }
+
+        $this->setMedia();
+        $medias = $this->relations['media'];
+        foreach ($medias as $each){
+            if($each->type == CategoryMedia::TYPE_ICON){
+                $this->extra['thumbnail'] = $each;
+                return $each->name;
+            }
+        }
+
+        return "---";
     }
 
 }
