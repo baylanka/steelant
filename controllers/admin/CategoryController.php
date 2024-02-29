@@ -47,6 +47,14 @@ class CategoryController extends BaseController
         }
     }
 
+
+    public function storeSubCategory(Request $request)
+    {
+        $data = [];
+        return view('admin/categories/create-sub.view.php', $data);
+    }
+
+
     public function create(Request $request)
     {
 

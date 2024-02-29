@@ -596,9 +596,20 @@ use helpers\translate\Translate;
             }
         });
 
-        $(document).on('click', 'a.add-sub-category', function(event){
+
+        $(document).on('click', 'a.add-sub-category',async function(event){
             event.preventDefault();
-            toast.warning("Feature is under the construction.");
+            let path = "admin/categories/sub/store?id=" + $(this).attr("data-id");
+            let modal;
+            try{
+                modal = await loadModal(modalId, path);
+                $(document).on('closeMainCategoryModal', function(event) {
+                    modal.hide();
+                });
+            }catch(err){
+                toast.error("add main category functional break down. " + err);
+            }
+
         });
 
         $(document).on('click', 'a.edit-category', function(event){
