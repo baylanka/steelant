@@ -19,21 +19,22 @@ class Category extends BaseModel
     public ?Media $temp_icon_media;
     public ?Media $temp_banner_media;
 
+    CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
-    CONST UNPUBLISHED = 2;
+
 
     public static function getFirstLevelCategories()
     {
         return parent::getAllBy(['level'=>1]);
     }
 
-    public function setMedia()
+    public function setMedia($force=false)
     {
-        if(isset($this->relations['media'])){
+        if(!$force && isset(static::$relations['media'])){
             return;
         }
         $categoryId = $this->id;
-        $this->relations['media'] = Media::getMediaByCategoryId($categoryId);
+        static::$relations['media'] = Media::getMediaByCategoryId($categoryId);
     }
 
     public function save()
@@ -74,19 +75,13 @@ class Category extends BaseModel
         return $nameArray[$language];
     }
 
-    public function getThumbnailUrl()
+    public function getThumbnailUrl($force=false)
     {
-        if(isset($this->extra['thumbnail'])){
-            $media = $this->extra['thumbnail'];
-            $fullPath = "storage/" . $media->path;
-            return assets($fullPath);
-        }
-
-        $this->setMedia();
-        $media = $this->relations['media'];
+        $this->setMedia($force);
+        $media = static::$relations['media'];
         foreach ($media as $each){
             if($each->type == CategoryMedia::TYPE_ICON){
-                $this->extra['thumbnail'] = $each;
+                static::$extra['thumbnail'] = $each;
                 $fullPath = "storage/" . $each->path;
                 return assets($fullPath);
             }
@@ -96,23 +91,58 @@ class Category extends BaseModel
 
     }
 
-    public function getThumbnailName()
+    public function getBannerUrl($force=false)
     {
-        if(isset($this->extra['thumbnail'])){
-            $media = $this->extra['thumbnail'];
-            return $media->name;
+        $this->setMedia($force);
+        $media = static::$relations['media'];
+        foreach ($media as $each){
+            if($each->type == CategoryMedia::TYPE_BANNER){
+                static::$extra['banner'] = $each;
+                $fullPath = "storage/" . $each->path;
+                return assets($fullPath);
+            }
         }
 
-        $this->setMedia();
-        $medias = $this->relations['media'];
+        return assets("img/admin/no-image.png");
+
+    }
+
+    public function getThumbnailImageName($force=false)
+    {
+        $this->setMedia($force);
+        $medias = static::$relations['media'];
         foreach ($medias as $each){
             if($each->type == CategoryMedia::TYPE_ICON){
-                $this->extra['thumbnail'] = $each;
+                static::$extra['thumbnail'] = $each;
                 return $each->name;
             }
         }
 
-        return "---";
+        return "--- thumbnail icon image ---";
+    }
+
+    public function getBannerImageName($force=false)
+    {
+        $this->setMedia($force);
+        $medias = static::$relations['media'];
+        foreach ($medias as $each){
+            if($each->type == CategoryMedia::TYPE_BANNER){
+                static::$extra['banner'] = $each;
+                return $each->name;
+            }
+        }
+
+        return "--- banner image ---";
+    }
+
+    public function isLeafCategroy()
+    {
+        return !empty($this->title);
+    }
+
+    public function isPublished()
+    {
+        return $this->visibility == self::PUBLISHED;
     }
 
 }

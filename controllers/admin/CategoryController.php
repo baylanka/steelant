@@ -4,6 +4,7 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\CategoryDTO;
 use helpers\mappers\MainCategoryStoreRequestMapper;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\MainCategoryStoreRequestValidator;
@@ -37,9 +38,10 @@ class CategoryController extends BaseController
             $category = MainCategoryStoreRequestMapper::getModel($request);
             $category->save();
             $db->commit();
+            $categoryDTO = new CategoryDTO($category);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
-                "data" => $category
+                "data" => $categoryDTO
             ]);
         }catch (\Exception $ex){
             $db->rollBack();

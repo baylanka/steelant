@@ -15,13 +15,14 @@ use helpers\pools\LanguagePool;
             </div>
         </div> <!-- /.card-header -->
         <div class="card-body p-3">
-            <table class="table table-borderless">
+            <table class="table table-borderless" id="categories-tbl">
                 <thead>
                 <tr class="text-center">
                     <th>Thumbnail</th>
                     <th>German</th>
                     <th>English</th>
                     <th>French</th>
+                    <th>Status</th>
                     <th style="width: 40px"></th>
                 </tr>
                 </thead>
@@ -43,13 +44,20 @@ use helpers\pools\LanguagePool;
                         <td>
                             <img class="img-thumbnail"
                                  src="<?= $category->getThumbnailUrl() ?>"
-                                 alt="<?= $category->getThumbnailName() ?>"
-                                 title="<?= $category->getThumbnailName() ?>"
-                                 width="50"/>
+                                 alt="<?= $category->getThumbnailImageName() ?>"
+                                 title="<?= $category->getThumbnailImageName() ?>"
+                                 width="60"/>
                         </td>
                         <td><?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?></td>
                         <td><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></td>
                         <td><?= $category->getNameByLang(LanguagePool::FRENCH()->getLabel()) ?></td>
+                        <td>
+                            <?=
+                                    $category->isPublished()
+                                        ? '<span class="badge text-bg-success">published</span>'
+                                        : '<span class="badge text-bg-warning">non-published</span>';
+                            ?>
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
@@ -57,523 +65,16 @@ use helpers\pools\LanguagePool;
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
+                                    <li><a class="dropdown-item add-sub-category" data-id="<?=$category->id?>" href="#">Add sub category</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item edit-category" data-id="<?=$category->id?>" href="#">Edit</a></li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
-
-                <tr class="align-middle text-center table-success">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Earthwork</td>
-                    <td class="ps-3">Earthwork</td>
-                    <td class="ps-3">Earthwork</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">LARSSEN</td>
-                    <td class="ps-3">LARSSEN</td>
-                    <td class="ps-3">LARSSEN</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Corner connectors</td>
-                    <td class="ps-3">Corner connectors</td>
-                    <td class="ps-3">Corner connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Omega corner connectors</td>
-                    <td class="ps-3">Omega corner connectors</td>
-                    <td class="ps-3">Omega corner connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">T connectors</td>
-                    <td class="ps-3">T connectors</td>
-                    <td class="ps-3">T connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Cross connectors</td>
-                    <td class="ps-3">Cross connectors</td>
-                    <td class="ps-3">Cross connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Weld-on connectors</td>
-                    <td class="ps-3">Weld-on connectors</td>
-                    <td class="ps-3">Weld-on connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">BALL + SOCKET</td>
-                    <td class="ps-3">BALL + SOCKET</td>
-                    <td class="ps-3">BALL + SOCKET</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">US Corner connectors</td>
-                    <td class="ps-3">US Corner connectors</td>
-                    <td class="ps-3">US Corner connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">US T connectors</td>
-                    <td class="ps-3">US T connectors</td>
-                    <td class="ps-3">US T connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">US Cross connectors</td>
-                    <td class="ps-3">US Cross connectors</td>
-                    <td class="ps-3">US Cross connectors</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">MF connectors, weld-ons?</td>
-                    <td class="ps-3">MF connectors, weld-ons?</td>
-                    <td class="ps-3">MF connectors, weld-ons?</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">COLD FORMED</td>
-                    <td class="ps-3">COLD FORMED</td>
-                    <td class="ps-3">COLD FORMED</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">CF corner connector</td>
-                    <td class="ps-3">CF corner connector</td>
-                    <td class="ps-3">CF corner connector</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-warning">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">CF weld-on connector</td>
-                    <td class="ps-3">CF weld-on connector</td>
-                    <td class="ps-3">CF weld-on connector</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-success">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">Pipe pile steel walls</td>
-                    <td class="ps-3">Pipe pile steel walls</td>
-                    <td class="ps-3">Pipe pile steel walls</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">MF</td>
-                    <td class="ps-3">MF</td>
-                    <td class="ps-3">MF</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">MDF</td>
-                    <td class="ps-3">MDF</td>
-                    <td class="ps-3">MDF</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">LPB</td>
-                    <td class="ps-3">LPB</td>
-                    <td class="ps-3">LPB</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">FD</td>
-                    <td class="ps-3">FD</td>
-                    <td class="ps-3">FD</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-success">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">For DTH driving method</td>
-                    <td class="ps-3">For DTH driving method</td>
-                    <td class="ps-3">For DTH driving method</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle text-center table-primary">
-                    <td>
-                        <img class="img-thumbnail" width="50" src="<?= assets("/img/admin/no-image.png") ?>"/>
-                    </td>
-                    <td class="ps-3">MF DTH</td>
-                    <td class="ps-3">MF DTH</td>
-                    <td class="ps-3">MF DTH</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item add-sub-category" data-id="1" href="#">Add sub category</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item edit-category" data-id="1" href="#">Edit</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div> <!-- /.card-body -->
@@ -585,6 +86,55 @@ use helpers\pools\LanguagePool;
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
+    function getCategoryRow(category)
+    {
+        const rowColors = [
+            'table-success',
+            'table-primary',
+            'table-warning',
+            'table-info',
+            'table-light',
+            'table-secondary',
+            'table-danger',
+        ];
+        const rowColorClass = rowColors[(category.level - 1)] ?? rowColors[(rowColors.length - 1)];
+        return `
+                <tr class="align-middle text-center <?= $rowColorClass ?>">
+                        <td>
+                            <img class="img-thumbnail"
+                                 src="${category.icon_url}"
+                                 alt="${category.icon_name}"
+                                 title="${category.icon_name}"
+                                 width="60"/>
+                        </td>
+                        <td>${category.name_de}</td>
+                        <td>${category.name_en}</td>
+                        <td>${category.name_fr}</td>
+                        <td>
+                             ${category.is_published === true
+                                    ? '<span class="badge text-bg-success">published</span>'
+                                    : '<span class="badge text-bg-warning">non-published</span>'
+                              }
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item add-sub-category" data-id="${category.id}" href="#">Add sub category</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item edit-category" data-id="${category.id}" href="#">Edit</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+        `;
+    }
     //Place your javascript logics here
     $(function () {
         const modalId = 'category-modal';
@@ -597,9 +147,12 @@ use helpers\pools\LanguagePool;
                 loadButton(btn, "loading ...");
                 modal = await loadModal(modalId, path);
                 resetButton(btn, loadingBtnText);
-                $(document).on('closeMainCategoryModal', function(event) {
+                $(document).off('storeCategorySuccessEvent');
+                $(document).on('storeCategorySuccessEvent', function(event) {
                     modal.hide();
-                    console.log(event.originalEvent.detail.category);
+                    const category = event.originalEvent.detail.category;
+                    const categoryRowElement = getCategoryRow(category);
+                    $('table#categories-tbl tbody').prepend(categoryRowElement);
                 });
             }catch(err){
                 toast.error("add main category functional break down. " + err);

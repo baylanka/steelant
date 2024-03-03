@@ -8,8 +8,8 @@ use helpers\utilities\DateTimeUtility;
 class BaseModel
 {
     protected string $table;
-    protected array $relations;
-    protected array $extra;
+    public static array $relations;
+    public static array $extra;
     /*
      * method for store data into a table
      * table attribute name = $data key

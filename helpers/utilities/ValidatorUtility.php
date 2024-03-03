@@ -11,16 +11,12 @@ class ValidatorUtility
         }
 
         $value = $collection[$key];
-        if(array($value) || self::string($value)){
-            return self::min($value, 1);
+        if(is_array($value)){
+            return sizeof($value) > 0;
+        }else if(!self::numeric($value)){
+            return strlen(trim($value)) > 0;
         }
-
         return true;
-    }
-
-    public static function array($value)
-    {
-        return is_array($value);
     }
 
     public static function string($value)

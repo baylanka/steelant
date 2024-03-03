@@ -4,6 +4,7 @@ namespace helpers\validators;
 
 use app\Request;
 use helpers\pools\LanguagePool;
+use helpers\services\CategoryService;
 use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
@@ -28,11 +29,12 @@ class MainCategoryStoreRequestValidator
 
         $file = $request->get('icon');
         if(!ValidatorUtility::isImage($file)){
-            ResponseUtility::response("unsupported icon file.",
-                422, [
-                    "file_type"=>"current file type is " . FileUtility::getType($file),
-                    "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
-                ]);
+            ResponseUtility::sendResponseByArray([
+                "unsupported icon file.",
+                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
+            ],
+                422);
         }
     }
 
@@ -44,11 +46,12 @@ class MainCategoryStoreRequestValidator
 
         $file = $request->get('banner');
         if(!ValidatorUtility::isImage($file)){
-            ResponseUtility::response("unsupported banner file.",
-                422, [
-                    "file_type"=>"current file type is " . FileUtility::getType($file),
-                    "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
-                ]);
+            ResponseUtility::sendResponseByArray([
+                "unsupported banner file.",
+                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
+            ],
+                422);
         }
     }
 
@@ -65,18 +68,75 @@ class MainCategoryStoreRequestValidator
 
     private static function nameValidation(Request $request)
     {
-        if(!ValidatorUtility::required($request->all(), 'visibility')) {
+        if(!ValidatorUtility::required($request->all(), 'name')) {
             ResponseUtility::response("visibility field is required", 422);
         }
 
         if(!ValidatorUtility::required($request->get('name'), LanguagePool::GERMANY()->getLabel())
-            &&
+            ||
             !ValidatorUtility::required($request->get('name'), LanguagePool::ENGLISH()->getLabel())
-            &&
+            ||
             !ValidatorUtility::required($request->get('name'), LanguagePool::FRENCH()->getLabel())
         ) {
-            ResponseUtility::response("name field is required", 422, ["name" => "There must be at least one name required to store a category"]);
+            ResponseUtility::response("name field is required", 422,[
+                "There must not be left name field blank",
+            ]);
         }
+
+
+        if(!self::isUniqueNameSet($request)){
+            ResponseUtility::response("name must be unique", 422,
+                [
+                    "There is/are one or more name(s) already existing.",
+                    "Please try with unique."
+                ]);
+        }
+        if(!self::nameLengthMin($request)){
+            ResponseUtility::response("name length is too short!",422,[
+                "name value length must be more than or equal to 5"
+            ]);
+        }
+        if(!self::nameLengthMax($request)){
+            ResponseUtility::response("name length is exceeded!", 422, [
+                "name values can not be exceed 30 words"
+            ]);
+        }
+
+    }
+
+    private static function nameLengthMin($request)
+    {
+        $nameArr = $request->get('name');
+        return (
+            ValidatorUtility::min($nameArr[LanguagePool::GERMANY()->getLabel()],5)
+            &&
+            ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],5)
+            &&
+            ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],5)
+        );
+    }
+
+    private static function nameLengthMax($request)
+    {
+        $nameArr = $request->get('name');
+        return (
+            ValidatorUtility::max($nameArr[LanguagePool::GERMANY()->getLabel()],30)
+            &&
+            ValidatorUtility::max($nameArr[LanguagePool::ENGLISH()->getLabel()],30)
+            &&
+            ValidatorUtility::max($nameArr[LanguagePool::FRENCH()->getLabel()],30)
+        );
+    }
+
+    private static function isUniqueNameSet($request)
+    {
+        $nameArr = $request->get('name');
+        $nameEn = $nameArr[LanguagePool::ENGLISH()->getLabel()];
+        $nameDe = $nameArr[LanguagePool::GERMANY()->getLabel()];
+        $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
+
+
+        return CategoryService::isNameUnique($nameEn, $nameDe, $nameFr);
     }
 
 }

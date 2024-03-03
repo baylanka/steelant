@@ -22,9 +22,9 @@ class Media extends BaseModel
         $sql = "
                 SELECT * FROM media
                     INNER JOIN category_media ON category_media.media_id = media.id
-                    WHERE category_media.media_id = :media_id;
+                    WHERE category_media.category_id = :category_id;
                ";
-        $val = ["media_id"=>$id];
+        $val = ["category_id"=>$id];
         $db = $container->resolve('DB');
         return json_decode(json_encode($db->queryAsArray($sql, $val)->get()));
     }

@@ -12,16 +12,42 @@
                <form action="<?= url('/admin/categories/main/store') ?>">
                    <div class="row">
                        <div class="col-12 d-flex justify-content-between mt-3">
-                           <label for="name_de" class="align-items-center">Name (in Germany)</label>
-                           <input name="name[<?=LanguagePool::GERMANY()->getLabel()?>]" type="text" class="form-control w-50 align-items-center" placeholder="Category name" id="name_de"/>
+                           <label for="name_[<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                  class="align-items-center">Name (in Germany)</label>
+                           <input
+                                   name="name[<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                   type="text" class="form-control w-50 align-items-center"
+                                   placeholder="Category name"
+                                   id="name_[<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                   required
+                                   min="5"
+                                   max="30"
+                           />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3">
-                           <label>Name (in English)</label>
-                           <input name="name[<?=LanguagePool::ENGLISH()->getLabel()?>]" type="text" class="form-control w-50" placeholder="Category name"/>
+                           <label for="name_[<?=LanguagePool::ENGLISH()->getLabel()?>]">Name (in English)</label>
+                           <input
+                                   name="name[<?=LanguagePool::ENGLISH()->getLabel()?>]"
+                                   type="text"
+                                   class="form-control w-50"
+                                   placeholder="Category name"
+                                   id="name_[<?=LanguagePool::ENGLISH()->getLabel()?>]"
+                                   required
+                                   min="5"
+                                   max="30"
+                           />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3">
-                           <label>Name (in French)</label>
-                           <input name="name[<?=LanguagePool::FRENCH()->getLabel()?>]" type="text" class="form-control w-50" placeholder="Category name"/>
+                           <label for="name_[<?=LanguagePool::FRENCH()->getLabel()?>]">Name (in French)</label>
+                           <input
+                                   name="name[<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                   type="text" class="form-control w-50"
+                                   placeholder="Category name"
+                                   id="name_[<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                   required
+                                   min="5"
+                                   max="30"
+                           />
                        </div>
 
                        <hr class="mt-3">
@@ -83,6 +109,7 @@
         </div>
     </div>
     <script>
+        $('button#store-btn').off('click');
         $('button#store-btn').on('click', async function storeMainCategory(e){
             e.preventDefault();
             const btn = $(this);
@@ -93,7 +120,7 @@
                 let response = await makePostFileRequest(form);
                 toast.success(response.message);
                 //raise an event to close the modal
-                const event = new CustomEvent('closeMainCategoryModal', {
+                const event = new CustomEvent('storeCategorySuccessEvent', {
                     detail: { category: response.data }
                 });
                 document.dispatchEvent(event);
