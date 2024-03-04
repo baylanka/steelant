@@ -75,6 +75,19 @@ class Category extends BaseModel
         return $nameArray[$language];
     }
 
+    public function getTitleByLang(string $language)
+    {
+        if(empty($this->title)){
+            return "";
+        }
+        $titleArray = json_decode($this->title, true);
+        if(!isset($titleArray[$language])){
+            return "";
+        }
+
+        return $titleArray[$language];
+    }
+
     public function getThumbnailUrl($force=false)
     {
         $this->setMedia($force);

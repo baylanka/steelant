@@ -114,7 +114,7 @@ class BaseModel
     {
         $tableName = self::getTableName();
         $sql = "DELETE FROM {$tableName} ";
-        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, "and") . " ;";
+        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, " and ") . " ;";
         return self::execute($sql, $conditions);
     }
 
@@ -137,9 +137,19 @@ class BaseModel
         $values['updated_at'] = DateTimeUtility::getCurrentDateTime();
         $sql = "UPDATE {$tableName} ";
         $sql .= " SET " .self::getNamedPlaceholderStatement($values, ",");
-        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, "and") . " ; ";
+        $sql .= " WHERE " . self::getNamedPlaceholderStatement($conditions, " and ") . " ; ";
         $param = array_merge($conditions, $values);
         return self::execute($sql, $param);
+    }
+
+    public static function existsBy(array $conditions)
+    {
+        $tableName = self::getTableName();
+        $sql = "SELECT COUNT(*) AS result_count FROM {$tableName} WHERE ";
+        $sql .= self::getNamedPlaceholderStatement($conditions, " and ");
+        $sql .= " ;";
+        $categoryCount = self::queryAsArray($sql, $conditions)->first();
+        return (int)$categoryCount['result_count'] > 0;
     }
 
     public function save()

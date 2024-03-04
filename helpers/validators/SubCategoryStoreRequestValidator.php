@@ -9,48 +9,28 @@ use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\Category;
-use model\CategoryMedia;
 
-class MainCategoryStoreRequestValidator
+class SubCategoryStoreRequestValidator
 {
     public static function validate(Request $request)
     {
+        self::parentIdValidation($request);
         self::nameValidation($request);
+        self::titleValidation($request);
         self::visibilityValidation($request);
-        self::iconValidation($request);
-        self::bannerValidation($request);
     }
 
-    private static function iconValidation($request)
+    private static function parentIdValidation(Request $request)
     {
-        if(!$request->has('icon') || empty($request->get('icon')['tmp_name'])){
-            return;
+        if(!$request->has('parent_id') || empty($request->get('parent_id'))){
+            ResponseUtility::response(":parent category identification is failure",422);
         }
 
-        $file = $request->get('icon');
-        if(!ValidatorUtility::isImage($file)){
-            ResponseUtility::response("unsupported icon file.",422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
-                "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
-            ]);
+        $parentCategoryId = $request->get('parent_id');
+        if(!Category::existsBy(['id'=>$parentCategoryId])){
+            ResponseUtility::response("parent category is not detected to proceed",422);
         }
     }
-
-    private static function bannerValidation($request)
-    {
-        if(!$request->has('banner') || empty($request->get('banner')['tmp_name'])){
-            return;
-        }
-
-        $file = $request->get('banner');
-        if(!ValidatorUtility::isImage($file)){
-            ResponseUtility::response("unsupported banner file.", 422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
-                "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
-            ]);
-        }
-    }
-
     private static function visibilityValidation(Request $request)
     {
         if(!ValidatorUtility::required($request->all(), 'visibility')) {
@@ -100,6 +80,45 @@ class MainCategoryStoreRequestValidator
 
     }
 
+
+    private static function titleValidation(Request $request)
+    {
+        if(!$request->has('title')) {
+            return;
+        }
+
+        if(!ValidatorUtility::required($request->get('title'), LanguagePool::GERMANY()->getLabel())
+            ||
+            !ValidatorUtility::required($request->get('title'), LanguagePool::ENGLISH()->getLabel())
+            ||
+            !ValidatorUtility::required($request->get('title'), LanguagePool::FRENCH()->getLabel())
+        ) {
+            ResponseUtility::response("title fields are required", 422,[
+                "It is mandatory to provide a title in all available languages.",
+            ]);
+        }
+
+
+        if(!self::isUniqueTitleSet($request)){
+            ResponseUtility::response("title must be unique", 422,
+                [
+                    "There is/are one or more title(s) already existing.",
+                    "Please try with unique."
+                ]);
+        }
+        if(!self::titleLengthMin($request)){
+            ResponseUtility::response("name length is too short!",422,[
+                "name value length must be more than or equal to 5"
+            ]);
+        }
+        if(!self::titleLengthMax($request)){
+            ResponseUtility::response("name length is exceeded!", 422, [
+                "name values can not be exceed 150 words"
+            ]);
+        }
+
+    }
+
     private static function nameLengthMin($request)
     {
         $nameArr = $request->get('name');
@@ -109,6 +128,18 @@ class MainCategoryStoreRequestValidator
             ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],5)
             &&
             ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],5)
+        );
+    }
+
+    private static function titleLengthMin($request)
+    {
+        $titleArr = $request->get('title');
+        return (
+            ValidatorUtility::min($titleArr[LanguagePool::GERMANY()->getLabel()],5)
+            &&
+            ValidatorUtility::min($titleArr[LanguagePool::ENGLISH()->getLabel()],5)
+            &&
+            ValidatorUtility::min($titleArr[LanguagePool::FRENCH()->getLabel()],5)
         );
     }
 
@@ -124,6 +155,18 @@ class MainCategoryStoreRequestValidator
         );
     }
 
+    private static function titleLengthMax($request)
+    {
+        $titleArr = $request->get('title');
+        return (
+            ValidatorUtility::max($titleArr[LanguagePool::GERMANY()->getLabel()],150)
+            &&
+            ValidatorUtility::max($titleArr[LanguagePool::ENGLISH()->getLabel()],150)
+            &&
+            ValidatorUtility::max($titleArr[LanguagePool::FRENCH()->getLabel()],150)
+        );
+    }
+
     private static function isUniqueNameSet($request)
     {
         $nameArr = $request->get('name');
@@ -133,6 +176,17 @@ class MainCategoryStoreRequestValidator
 
 
         return CategoryService::isNameUnique($nameEn, $nameDe, $nameFr);
+    }
+
+    private static function isUniqueTitleSet($request)
+    {
+        $titleArr = $request->get('title');
+        $nameEn = $titleArr[LanguagePool::ENGLISH()->getLabel()];
+        $nameDe = $titleArr[LanguagePool::GERMANY()->getLabel()];
+        $nameFr = $titleArr[LanguagePool::FRENCH()->getLabel()];
+
+
+        return CategoryService::isTitleUnique($nameEn, $nameDe, $nameFr);
     }
 
 }

@@ -120,7 +120,7 @@
                 let response = await makePostFileRequest(form);
                 toast.success(response.message);
                 //raise an event to close the modal
-                const event = new CustomEvent('storeCategorySuccessEvent', {
+                const event = new CustomEvent('storeMainCategorySuccessEvent', {
                     detail: { category: response.data }
                 });
                 document.dispatchEvent(event);

@@ -42,11 +42,13 @@ use helpers\pools\LanguagePool;
                     ?>
                     <tr class="align-middle text-center <?= $rowColorClass ?>">
                         <td>
-                            <img class="img-thumbnail"
-                                 src="<?= $category->getThumbnailUrl() ?>"
-                                 alt="<?= $category->getThumbnailImageName() ?>"
-                                 title="<?= $category->getThumbnailImageName() ?>"
-                                 width="60"/>
+                            <?php if($category->level === 1): ?>
+                                <img class="img-thumbnail"
+                                     src="<?= $category->getThumbnailUrl() ?>"
+                                     alt="<?= $category->getThumbnailImageName() ?>"
+                                     title="<?= $category->getThumbnailImageName() ?>"
+                                     width="60"/>
+                            <?php endif; ?>
                         </td>
                         <td><?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?></td>
                         <td><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></td>
@@ -86,7 +88,7 @@ use helpers\pools\LanguagePool;
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
-    function getCategoryRow(category)
+    function getCategoryRow(category, avoid_icon=false)
     {
         const rowColors = [
             'table-success',
@@ -98,14 +100,17 @@ use helpers\pools\LanguagePool;
             'table-danger',
         ];
         const rowColorClass = rowColors[(category.level - 1)] ?? rowColors[(rowColors.length - 1)];
-        return `
-                <tr class="align-middle text-center <?= $rowColorClass ?>">
-                        <td>
-                            <img class="img-thumbnail"
+        const icon = avoid_icon ? "" : `
+                                <img class="img-thumbnail"
                                  src="${category.icon_url}"
                                  alt="${category.icon_name}"
                                  title="${category.icon_name}"
                                  width="60"/>
+        `;
+        return `
+                <tr class="align-middle text-center ${rowColorClass}">
+                        <td>
+                            ${icon}
                         </td>
                         <td>${category.name_de}</td>
                         <td>${category.name_en}</td>
@@ -135,8 +140,6 @@ use helpers\pools\LanguagePool;
 
         `;
     }
-    //Place your javascript logics here
-    $(function () {
         const modalId = 'category-modal';
         $('button#add-main-category').click(async function (event) {
             let path = "admin/categories/main/store";
@@ -147,30 +150,36 @@ use helpers\pools\LanguagePool;
                 loadButton(btn, "loading ...");
                 modal = await loadModal(modalId, path);
                 resetButton(btn, loadingBtnText);
-                $(document).off('storeCategorySuccessEvent');
-                $(document).on('storeCategorySuccessEvent', function(event) {
+                $(document).off('storeMainCategorySuccessEvent');
+                $(document).on('storeMainCategorySuccessEvent', function(event) {
                     modal.hide();
                     const category = event.originalEvent.detail.category;
                     const categoryRowElement = getCategoryRow(category);
                     $('table#categories-tbl tbody').prepend(categoryRowElement);
                 });
             }catch(err){
-                toast.error("add main category functional break down. " + err);
+                toast.error("add main category function is broken down. " + err);
             }
         });
 
 
         $(document).on('click', 'a.add-sub-category',async function(event){
             event.preventDefault();
-            let path = "admin/categories/sub/store?id=" + $(this).attr("data-id");
+            const trTag = $(this).closest('tr');
+            const path = "admin/categories/sub/store?parent_id=" + $(this).attr("data-id");
             let modal;
             try{
                 modal = await loadModal(modalId, path);
-                $(document).on('closeMainCategoryModal', function(event) {
+                $(document).off('storeSubCategorySuccessEvent');
+                $(document).on('storeSubCategorySuccessEvent', function(event) {
+                    const category = event.originalEvent.detail.category;
+                    const categoryRowElement = getCategoryRow(category, true);
+                    trTag.after(categoryRowElement);
                     modal.hide();
                 });
+
             }catch(err){
-                toast.error("add main category functional break down. " + err);
+                toast.error("add sub category functional is broken down. " + err);
             }
 
         });
@@ -180,7 +189,6 @@ use helpers\pools\LanguagePool;
             toast.warning("Feature is under the construction.");
         });
 
-    });
 
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>

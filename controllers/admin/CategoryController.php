@@ -50,35 +50,37 @@ class CategoryController extends BaseController
     }
 
 
-    public function storeSubCategory(Request $request)
+    public function createSubCategory(Request $request)
     {
-        $data = [];
+        $parentCategoryId = $request->get('parent_id');
+        $categoryTree = CategoryService::getCategoryTreeFromLeafCategoryId($parentCategoryId);
+        $data = [
+            'categoryTree' => $categoryTree,
+            'parent_id' => $parentCategoryId
+        ];
         return view('admin/categories/create-sub.view.php', $data);
     }
 
-
-    public function create(Request $request)
+    public function storeSubCategory(Request $request)
     {
-
-    }
-
-    public function store(Request $request)
-    {
-
-    }
-
-    public function edit(Request $request)
-    {
-
-    }
-
-    public function update(Request $request)
-    {
-
-    }
-
-    public function destroy(Request $request)
-    {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            SubCategoryStoreRequestValidator::validate($request);
+            $category = SubCategoryStoreRequestMapper::getModel($request);
+            $category->save();
+            $db->commit();
+            $categoryDTO = new CategoryDTO($category);
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully stored",
+                "data" => $categoryDTO
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[
+                $ex->getTraceAsString()
+            ],422);
+        }
     }
 }
