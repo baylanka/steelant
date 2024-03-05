@@ -58,7 +58,7 @@
                                </label>
                            </div>
                            <div class="form-check">
-                               <input class="form-check-input" type="radio" name="visibility" value="<?= Category::PUBLISHED ?>"
+                               <input class="form-check-input" type="radio" name="visibility" value="<?= Category::UNPUBLISHED ?>"
                                       id="unpublished_radio_btn"
                                          <?= !$isLeafCategoryPublishable ? 'checked' : '' ?>
                                       >
