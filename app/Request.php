@@ -9,13 +9,7 @@ class Request
 
     public function __construct()
     {
-        $uri = $_SERVER['REQUEST_URI'];
-        $uriParts = explode('/',parse_url($uri)['path']);
-        $filteredUriParts = array_filter($uriParts, function($value) {
-            return trim($value) !== '';
-        });
-        $uri = "/" . implode("/", $filteredUriParts);
-        $this->uri = $uri;
+        $this->setUri();
         $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
 
         $this->attachUrlQueries();
@@ -190,5 +184,44 @@ class Request
         }
 
         return $value;
+    }
+
+    private function removeSubDirectoryPath(array $uriParts)
+    {
+        global $env;
+        if(!isset($env['SUB_DIR_PATH']) && empty($env['SUB_DIR_PATH'])){
+            return $uriParts;
+        }
+        $subDirPathStr = $env['SUB_DIR_PATH'];
+        $subDirPathArray = explode('/', $subDirPathStr);
+
+        $iteration = 0;
+        foreach ($uriParts as $index => $value){
+            if($value !== $subDirPathArray[$iteration]){
+                continue;
+            }
+
+            unset($uriParts[$index]);
+            if($iteration == sizeof($subDirPathArray)-1){
+                break;
+            }
+            $iteration++;
+        }
+
+        return $uriParts;
+    }
+
+    private function setUri()
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        $uriParts = explode('/',parse_url($uri)['path']);
+        $filteredUriParts = array_filter($uriParts, function($value) {
+            return trim($value) !== '';
+        });
+
+        $filteredUriParts = self::removeSubDirectoryPath($filteredUriParts);
+
+        $uri = "/" . implode("/", $filteredUriParts);
+        $this->uri = $uri;
     }
 }
