@@ -6,17 +6,22 @@ use app\Request;
 use controllers\BaseController;
 use helpers\dto\CategoryDTO;
 use helpers\mappers\MainCategoryStoreRequestMapper;
+use helpers\mappers\SubCategoryStoreRequestMapper;
+use helpers\services\CategoryService;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\MainCategoryStoreRequestValidator;
+use helpers\validators\SubCategoryStoreRequestValidator;
 use model\Category;
 
 class CategoryController extends BaseController
 {
     public function index(Request $request)
     {
+        $categories = Category::getAll();
+        $arrangedCategories = CategoryService::arrangeCategoryHierarchy($categories);
         $data = [
             'heading' => "Category",
-            'categories' => Category::getFirstLevelCategories(),
+            'categories' => $arrangedCategories,
         ];
 
         return view('admin/categories/index.view.php', $data);
