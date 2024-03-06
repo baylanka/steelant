@@ -6,8 +6,6 @@ $app->get('/migrate', ["AppAssistanceController", "migrate"]);
 $app->get('/add_storage_link', ["AppAssistanceController", "linkStorage"]);
 $app->get('/remove_storage_link', ["AppAssistanceController", "unlinkStorage"]);
 
-$app->get('/',  ["user\HomeController", "index"]);
-
 
 $app->get('/admin/dashboard',  ["admin\DashboardController", "index"]);
 $app->get('/admin/connectors',  ["admin\ConnectorController", "index"]);
@@ -18,3 +16,14 @@ $app->post('/admin/categories/main/store', ["admin\CategoryController", "storeMa
 
 $app->get('/admin/categories/sub/store', ["admin\CategoryController", "createSubCategory"]);
 $app->post('/admin/categories/sub/store', ["admin\CategoryController", "storeSubCategory"]);
+
+
+
+$app->get('/',  ["user\HomeController", "connectors"]);
+$app->get('/downloads',  ["user\HomeController", "downloads"]);
+$app->get('/gallery',  ["user\HomeController", "gallery"]);
+$app->get('/sealant',  ["user\HomeController", "sealant"]);
+$app->get('/contact',  ["user\HomeController", "contact"]);
+
+
+$app->get('/connector',  ["user\ConnectorController", "index"]);

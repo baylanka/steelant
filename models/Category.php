@@ -28,6 +28,16 @@ class Category extends BaseModel
         return parent::getAllBy(['level'=>1]);
     }
 
+    public function setChildren(array $children)
+    {
+        self::$extra[$this->id]['children'] = $children;
+    }
+
+    public function getChildren()
+    {
+        return self::$extra[$this->id]['children'] ?? [];
+    }
+
     public function setMedia($force=false)
     {
         if(!$force && isset(static::$relations['media'])){

@@ -2,13 +2,8 @@
 
 namespace helpers\translate;
 
-session_start();
 class Translate
 {
-    const  ENGLISH = "en";
-    const  DEUTSCH = "de";
-    const  FRENCH = "fr";
-
     public static function setLang($lang)
     {
         $_SESSION["lang"] = $lang;

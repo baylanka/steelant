@@ -62,6 +62,7 @@ function url($uri) {
 
 function preloader()
 {
+    session_start();
     \helpers\services\LanguageService::setLanguage();
 }
 
