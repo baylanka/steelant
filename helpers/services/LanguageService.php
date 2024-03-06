@@ -11,12 +11,23 @@ class LanguageService
     {
         try{
 
-            if (isset($_GET['lang'])) {
-                $label = strtolower($_GET['lang']);
-                $languageTag = LanguagePool::getValueFromLabel($label);
-                Translate::setLang($languageTag);
+            if (!isset($_GET['lang']) && Translate::hasLanguageSet()) {
+               return;
+            }
+
+            if (!isset($_GET['lang']) && !Translate::hasLanguageSet()) {
+                Translate::setLang(LanguagePool::GERMANY()->getLabel());
                 return;
             }
+
+
+
+            $label = strtolower($_GET['lang']);
+            $languageTag = LanguagePool::getValueFromLabel($label);
+            Translate::setLang($languageTag);
+            return;
+
+
         }catch (\Exception $ex){
             Translate::setLang(LanguagePool::GERMANY()->getLabel());
         }

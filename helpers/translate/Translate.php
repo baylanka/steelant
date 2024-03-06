@@ -27,4 +27,9 @@ class Translate
     {
         return $_SESSION["lang"];
     }
+
+    public static function hasLanguageSet(){
+        return isset($_SESSION["lang"]);
+
+    }
 }
