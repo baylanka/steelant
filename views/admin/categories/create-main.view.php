@@ -79,18 +79,21 @@
 
                        <div class="col-12 d-flex justify-content-between mt-3 row">
 
-                           <div class="col-6">
+                           <div class="col-6 img-block">
                                <div class="input-group mb-3">
                                    <span class="input-group-text" id="basic-addon3">Thumbnail image</span>
-                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="icon" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                          name="icon" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
                                </div>
+                               <img src="#" class="load-image d-none" width="100" height="100">
                            </div>
 
-                           <div class="col-6">
+                           <div class="col-6 img-block">
                                <div class="input-group mb-3">
                                    <span class="input-group-text" id="basic-addon3">Banner image</span>
-                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="banner" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="banner" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
                                </div>
+                               <img src="#" class="load-image d-none" width="250" height="100">
                            </div>
 
 
@@ -109,6 +112,30 @@
         </div>
     </div>
     <script>
+
+        $(".img-load").change(function () {
+            const fileInputTag = $(this);
+            if (this.files && this.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    fileInputTag.closest("div.img-block").find("img.load-image").removeClass('d-none');
+                    fileInputTag.closest("div.img-block").find("img.load-image").attr('src', e.target.result);
+                    fileInputTag.closest("div.input-group").append(`<button type="button" class="btn btn-danger clear-img"><i class="bi bi-x-lg"></i></button>`);
+                    fileInputTag.addClass('d-none');
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+
+        $(document).on("click",".clear-img",function () {
+            $(this).closest("div.img-block").find("img.load-image").addClass('d-none');
+            $(this).closest("div.img-block").find("input.img-load").removeClass('d-none');
+            $(this).closest("div.img-block").find("input.img-load").val('');
+            $(this).remove();
+        })
+
+
         $('button#store-btn').off('click');
         $('button#store-btn').on('click', async function storeMainCategory(e){
             e.preventDefault();

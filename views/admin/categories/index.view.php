@@ -75,6 +75,10 @@ use helpers\pools\LanguagePool;
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+                                    <li><a class="dropdown-item update-category" data-id="<?=$category->id?>" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                     <li><a class="dropdown-item delete-category" data-id="<?=$category->id?>" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -89,8 +93,185 @@ use helpers\pools\LanguagePool;
 <div class="modal fade" id="category-modal" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 </div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form action="#"  id="sub-category-store-frm">
+                    <input type="hidden" name="parent_id" value=""/>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label for="name_de" class="align-items-center">Name (in Germany)</label>
+                            <input name="name[de]" type="text" class="form-control w-75 align-items-center" placeholder="Category name" id="name_de"/>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label>Name (in English)</label>
+                            <input name="name[en]" type="text" class="form-control w-75" placeholder="Category name"/>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label>Name (in French)</label>
+                            <input name="name[fr]" type="text" class="form-control w-75" placeholder="Category name"/>
+                        </div>
+
+                        <hr class="mt-3">
+
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label for="published_radio_btn" class="form-label align-middle">Visibility</label>
+
+                            <div class="d-flex w-50 justify-content-evenly">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="visibility" value=""
+                                           id="published_radio_btn"
+                                    >
+                                    <label class="form-check-label" for="published_radio_btn">
+                                        Public
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="visibility" value=""
+                                           id="unpublished_radio_btn">
+                                    <label class="form-check-label" for="unpublished_radio_btn">
+                                        Private
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <hr class="mt-3">
+
+                        <div class="col-12 d-flex justify-content-between mt-3 title-container">
+                            <label for="title_enable_btn" class="form-label align-middle">Title</label>
+
+                            <div class="d-flex w-50 justify-content-evenly">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="title_switch" type="radio" value="enable"
+                                           id="title_enable_btn">
+                                    <label class="form-check-label" for="title_enable_btn">
+                                        Enable
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="title_switch" type="radio" value="disable"
+                                           id="title_disable_btn" checked>
+                                    <label class="form-check-label" for="title_disable_btn">
+                                        Disable
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <small class="text-danger sub-cat-title-desc" style="width: 50%; font-size:0.7rem;">Enable Title: If this is your final category. Otherwise, the front page of this category will be without a title.</small>
+
+                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
+                            <label for="title_de"
+                                   class="align-items-center">Title (in Germany)</label>
+                            <input name="title[de]"
+                                   type="text" class="form-control w-75 align-items-center"
+                                   placeholder="Title (in Germany)"
+                                   id="title_de"
+                                   value=""
+                            />
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
+                            <label for="title_en">Title (in English)</label>
+                            <input name="title[en]"
+                                   type="text" class="form-control w-75"
+                                   id="title_en"
+                                   placeholder="Title (in English)"
+                                   value=""
+                            />
+                        </div>
+                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
+                            <label for="title_fr">Title (in French)</label>
+                            <input name="title[fr]"
+                                   type="text" class="form-control w-75"
+                                   id="title_fr"
+                                   placeholder="Title (in French)"
+                                   value=""
+                            />
+                        </div>
+
+                        <hr class="mt-3">
+
+
+                        <div class="col-12 d-flex justify-content-between mt-3 row">
+
+                            <div class="col-6 img-block">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon3">Thumbnail image</span>
+                                    <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                           name="icon" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                                <img src="#" class="load-image d-none" width="100" height="100">
+                            </div>
+
+                            <div class="col-6 img-block">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon3">Banner image</span>
+                                    <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="banner" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                                <img src="#" class="load-image d-none" width="250" height="100">
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="store-btn">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
+
+
+<script>
+    $(".img-load").change(function () {
+        const fileInputTag = $(this);
+        if (this.files && this.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                fileInputTag.closest("div.img-block").find("img.load-image").removeClass('d-none');
+                fileInputTag.closest("div.img-block").find("img.load-image").attr('src', e.target.result);
+                fileInputTag.closest("div.input-group").append(`<button type="button" class="btn btn-danger clear-img"><i class="bi bi-x-lg"></i></button>`);
+                fileInputTag.addClass('d-none');
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    $(document).on("click",".clear-img",function () {
+        $(this).closest("div.img-block").find("img.load-image").addClass('d-none');
+        $(this).closest("div.img-block").find("input.img-load").removeClass('d-none');
+        $(this).closest("div.img-block").find("input.img-load").val('');
+        $(this).remove();
+    })
+
+</script>
+
 <script>
     function getCategoryRow(category, avoid_icon=false)
     {
