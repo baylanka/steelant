@@ -77,11 +77,84 @@
 
         <div class="divider"></div>
 
-        <h3>Corner connectors suitable for Larssen steel sheet piles</h3>
+        <h4 class="connector-heading my-5">Corner connectors suitable for Larssen steel sheet piles</h4>
 
         <div class="divider"></div>
 
 
+
+        <div class="row my-5">
+
+            <div class="col-12 col-md-4 col-xxl-4">
+                <dl>
+                    <dt class="color-blue mb-2">ULTRA-S</dt>
+                    <dd class="mb-4">For Larssen sheet piles (U, Z, Hat-type)</dd>
+
+                    <dd class="custom-dd">Steel grade: S355J2</dd>
+                    <dd class="custom-dd">Steel thickness: 9 mm</dd>
+                    <dd class="custom-dd">Standard length: 11.8 m +0/-100 mm</dd>
+                    <dd class="custom-dd">Weight: 25.3 kg/m</dd>
+
+                    <dd class="my-5">ULTRA-S corner secti on can be driven individually up to
+                        a length of 11.8 meters, provided that there are no weld
+                        joints.</dd>
+
+                    <dd class="custom-dd"><a href="#" class="link">Data sheet (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link">DWG ULTRA-S</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link">DWG connector name 02</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link">Test report (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link">FEM (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link">Request this connector</a></dd>
+                    <dd class="custom-dd d-flex align-middle gap-3">
+                        <a href="#" class="link">Remember this connector</a>
+                        <img class="align-self-center" src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
+                    </dd>
+
+                </dl>
+            </div>
+
+            <div class="col-12 col-md-8 col-xl-8 col-xxl-6 d-flex flex-column">
+             <div class="row justify-content-start">
+
+                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                     <span class="color-blue">Corner connector</span><br>
+                     <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                 </div>
+                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                     <span class="color-blue">Larssen U</span><br>
+                     <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
+                 </div>
+                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                     <span class="color-blue">Larssen Z</span><br>
+                     <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
+                 </div>
+                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                     <span class="color-blue">Larssen Hat-type</span><br>
+                     <img class="img-fluid" src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
+                 </div>
+
+             </div>
+
+                <div class="row mt-2 justify-content-center">
+
+
+                    <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                        <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                        <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                    </div>
+
+
+                </div>
+
+             </div>
+
+        </div>
+
+
+
+        <div class="divider"></div>
     </div>
 
 

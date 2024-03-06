@@ -107,6 +107,13 @@ body {
     margin-right: auto;
 }
 
+.connector-heading{
+    color:var(--blue);
+ }
+
+.custom-dd{
+    margin-bottom: 0.1rem !important;
+}
 
 @media (max-width: 575.98px) {
     .reveal-on-sm {
