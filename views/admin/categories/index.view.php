@@ -40,7 +40,11 @@ use helpers\pools\LanguagePool;
                     ];
                     $rowColorClass = $rowColors[($category->level - 1)] ?? $rowColors[(sizeof($rowColors) - 1)];
                     ?>
-                    <tr class="align-middle text-center <?= $rowColorClass ?>">
+                    <tr
+                            class="align-middle text-center <?= $rowColorClass ?>"
+                            data-id="<?= $category->id ?>"
+                            data-parentid="<?=$category->parent_category_id?>"
+                    >
                         <td>
                             <?php if($category->level === 1): ?>
                                 <img class="img-thumbnail"
@@ -71,7 +75,7 @@ use helpers\pools\LanguagePool;
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item edit-category" data-id="<?=$category->id?>" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item delete-category" data-id="<?=$category->id?>" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -108,7 +112,11 @@ use helpers\pools\LanguagePool;
                                  width="60"/>
         `;
         return `
-                <tr class="align-middle text-center ${rowColorClass}">
+                <tr
+                    class="align-middle text-center ${rowColorClass}"
+                    data-id="${category.id}"
+                    data-parentid="${category.parent_category_id}"
+                >
                         <td>
                             ${icon}
                         </td>
@@ -132,7 +140,7 @@ use helpers\pools\LanguagePool;
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item edit-category" data-id="${category.id}" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item delete-category" data-id="${category.id}" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -184,12 +192,51 @@ use helpers\pools\LanguagePool;
 
         });
 
-        $(document).on('click', 'a.edit-category', function(event){
+        $(document).on('click', 'a.delete-category', async function(event){
             event.preventDefault();
-            toast.warning("Feature is under the construction.");
+            const notice = `
+                <p class="text-danger"><b>If you proceed with deleting the category:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                    <li>Subcategories will be deleted if they exist.</li>
+                    <li>All connectors and add-on contents of this category or its subcategories will also be deleted if they exist.</li>
+                </ol>
+            `;
+            if(!await isConfirmToProcess(notice, 'warning')){
+                return;
+            }
+
+            const categoryId = $(this).attr('data-id');
+            const data = {};
+            const path = `${getBaseUrl()}/admin/categories/sub/destroy?id=${categoryId}`;
+            try {
+                const response = await makeAjaxCall(path, data, 'DELETE');
+                removeCategories(categoryId);
+                toast.success(response.message);
+            }catch(err){
+                toast.error(err);
+            }
         });
 
+    function removeCategories(categoryId)
+    {
+        const categoryRow = $(`tr[data-id="${categoryId}"]`);
+        if(categoryRow.length > 0){
+            categoryRow.remove();
+        }
 
+
+        const children = $(`tr[data-parentid="${categoryId}"]`);
+        if(children.length === 0){
+            return;
+        }
+        children.each(function(){
+            const childCategoryId = $(this).attr('data-id');
+            removeCategories(childCategoryId);
+            $(this).remove();
+        });
+
+    }
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

@@ -181,6 +181,14 @@ class BaseModel
         return $this;
     }
 
+    public function delete()
+    {
+        $tableName = static::getTableName();
+        $sql = "DELETE FROM {$tableName} WHERE id = :id;";
+        $params = ['id'=>$this->id];
+        return self::execute($sql, $params);
+    }
+
     private function getChildAttributes() {
         $childAttributes = [];
         $reflection = new \ReflectionClass($this);

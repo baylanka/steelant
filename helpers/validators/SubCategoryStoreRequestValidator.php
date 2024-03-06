@@ -4,8 +4,7 @@ namespace helpers\validators;
 
 use app\Request;
 use helpers\pools\LanguagePool;
-use helpers\services\CategoryService;
-use helpers\utilities\FileUtility;
+use helpers\repositories\CategoryRepository;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\Category;
@@ -175,7 +174,7 @@ class SubCategoryStoreRequestValidator
         $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
 
 
-        return CategoryService::isNameUnique($nameEn, $nameDe, $nameFr);
+        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr);
     }
 
     private static function isUniqueTitleSet($request)
@@ -186,7 +185,7 @@ class SubCategoryStoreRequestValidator
         $nameFr = $titleArr[LanguagePool::FRENCH()->getLabel()];
 
 
-        return CategoryService::isTitleUnique($nameEn, $nameDe, $nameFr);
+        return CategoryRepository::isTitleUnique($nameEn, $nameDe, $nameFr);
     }
 
 }

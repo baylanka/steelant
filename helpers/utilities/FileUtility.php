@@ -38,4 +38,15 @@ class FileUtility
     {
         return $file["size"];
     }
+
+    public static function deleteFile($path)
+    {
+        if(file_exists($path)){
+            if(@unlink($path)){
+                return;
+            }
+
+            exec("rm -r " . $path);
+        }
+    }
 }

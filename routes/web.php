@@ -18,3 +18,4 @@ $app->post('/admin/categories/main/store', ["admin\CategoryController", "storeMa
 
 $app->get('/admin/categories/sub/store', ["admin\CategoryController", "createSubCategory"]);
 $app->post('/admin/categories/sub/store', ["admin\CategoryController", "storeSubCategory"]);
+$app->delete('/admin/categories/sub/destroy', ["admin\CategoryController", "destroySubCategory"]);

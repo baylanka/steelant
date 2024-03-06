@@ -12,8 +12,8 @@ class Request
         $this->setUri();
         $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
 
-        $this->attachUrlQueries();
         $this->setPayload();
+        $this->attachUrlQueries();
         $this->filter();
     }
 

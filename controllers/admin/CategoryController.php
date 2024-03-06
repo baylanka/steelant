@@ -7,17 +7,18 @@ use controllers\BaseController;
 use helpers\dto\CategoryDTO;
 use helpers\mappers\MainCategoryStoreRequestMapper;
 use helpers\mappers\SubCategoryStoreRequestMapper;
+use helpers\repositories\CategoryRepository;
 use helpers\services\CategoryService;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\MainCategoryStoreRequestValidator;
+use helpers\validators\SubCategoryDeleteRequest;
 use helpers\validators\SubCategoryStoreRequestValidator;
-use model\Category;
 
 class CategoryController extends BaseController
 {
     public function index(Request $request)
     {
-        $categories = Category::getAllByOrder();
+        $categories = CategoryRepository::getAllByOrder();
         $arrangedCategories = CategoryService::arrangeCategoryHierarchy($categories);
         $data = [
             'heading' => "Category",
@@ -81,6 +82,24 @@ class CategoryController extends BaseController
                 "message" => "Successfully stored",
                 "data" => $categoryDTO
             ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[
+                $ex->getTraceAsString()
+            ],422);
+        }
+    }
+
+    public function destroySubCategory(Request $request)
+    {
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            SubCategoryDeleteRequest::validate($request);
+            CategoryRepository::deleteWithRelevantObjects($request->get('id'));
+            $db->commit();
+            parent::response("Successfully deleted",);
         }catch(\Exception $ex){
             $db->rollBack();
             parent::response($ex->getMessage(),[

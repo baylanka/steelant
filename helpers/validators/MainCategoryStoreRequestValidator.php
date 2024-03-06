@@ -4,12 +4,11 @@ namespace helpers\validators;
 
 use app\Request;
 use helpers\pools\LanguagePool;
-use helpers\services\CategoryService;
+use helpers\repositories\CategoryRepository;
 use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\Category;
-use model\CategoryMedia;
 
 class MainCategoryStoreRequestValidator
 {
@@ -132,7 +131,7 @@ class MainCategoryStoreRequestValidator
         $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
 
 
-        return CategoryService::isNameUnique($nameEn, $nameDe, $nameFr);
+        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr);
     }
 
 }

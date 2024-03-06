@@ -232,20 +232,20 @@ let spinnerDisable = ()=>{
     $('.spinner-area').html("");
 }
 
-let isConfirmToProcess = (alert_type, description, title = 'Are you sure!')=>{
+let isConfirmToProcess = (description, alert_type='warning', title = 'Are you sure!')=>{
     return new Promise((resolve, reject)=>{
         Swal.fire({
             title: title,
-            text: description,
-            type: alert_type,
+            html: description,
+            icon: alert_type,
             showCancelButton: true,
             showLoaderOnConfirm: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Confirm',
             confirmButtonClass: 'btn btn-primary',
             cancelButtonClass: 'btn btn-danger ml-1',
-            buttonsStyling: false,
+            buttonsStyling: true,
         })
             .then(async function (result) {
                 if (result.value) {

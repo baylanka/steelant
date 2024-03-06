@@ -22,12 +22,6 @@ class Category extends BaseModel
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
 
-    public static function getAllByOrder($order="desc")
-    {
-        $sql = "SELECT * FROM categories ORDER BY created_at {$order}";
-        return self::query($sql)->get();
-    }
-
     public function setMedia($force=false)
     {
         if(
