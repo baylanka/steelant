@@ -35,6 +35,31 @@ class CategoryService
         return true;
     }
 
+    public static function getMembersCount(Category $category)
+    {
+        $children = $category->getChildren();
+        $childrenCount = sizeof($children);
+        foreach ($children as $child){
+            $childrenCount += self::getMembersCount($child);
+        }
+
+        return $childrenCount;
+    }
+
+    public static function arrangeCategoryTreeView(array $categories)
+    {
+        $array = [];
+        foreach($categories as $category) {
+            if($category->level != 1){
+                continue;
+            }
+            $category->setChildren(self::getChildrenTree($categories, $category));
+            $array[] = $category;
+        }
+
+        return $array;
+    }
+
     public static function arrangeCategoryHierarchy(array $categories)
     {
         $array = [];
@@ -61,6 +86,22 @@ class CategoryService
             $children[] = $category;
             $subChildren = self::getChildren($categories, $category);
             $children = array_merge($children, $subChildren);
+        }
+
+        return $children;
+    }
+
+    private static function getChildrenTree(array $categories, $parentCategory)
+    {
+        $children = [];
+        foreach ($categories as $category){
+            if($category->parent_category_id !== $parentCategory->id){
+                continue;
+            }
+
+            $category->setChildren(self::getChildrenTree($categories, $category));
+            $children[] = $category;
+
         }
 
         return $children;

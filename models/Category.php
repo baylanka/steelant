@@ -22,6 +22,16 @@ class Category extends BaseModel
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
 
+    public function setChildren(array $children)
+    {
+        self::$extra[$this->id]['children'] = $children;
+    }
+
+    public function getChildren()
+    {
+        return self::$extra[$this->id]['children'] ?? [];
+    }
+
     public function setMedia($force=false)
     {
         if(

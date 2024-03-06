@@ -1,15 +1,50 @@
 <?php
+
 namespace controllers\user;
 
 use app\Request;
-use controllers\BaseController;
+use helpers\services\CategoryService;
+use model\Category;
 
-class HomeController extends BaseController
+class HomeController
 {
-    public function index(Request $request)
+
+    public function connectors(Request $request)
     {
-        global $env;
-        $data = ["name"=>$env['APP_NAME']];
-        return view("user/home.view.php", $data);
+        $categories = Category::getAll();
+        $arrangedCategories = CategoryService::arrangeCategoryTreeView($categories);
+        $data = [
+            'heading' => "Category",
+            'categories' => $arrangedCategories,
+        ];
+        return view("user/connectors.view.php", $data);
     }
+
+
+    public function downloads(Request $request)
+    {
+        $data = [];
+        return view("user/downloads.view.php", $data);
+    }
+
+    public function gallery(Request $request)
+    {
+        $data = [];
+        return view("user/gallery.view.php", $data);
+    }
+
+
+    public function sealant(Request $request)
+    {
+        $data = [];
+        return view("user/sealant.view.php", $data);
+    }
+
+
+    public function contact(Request $request)
+    {
+        $data = [];
+        return view("user/contact.view.php", $data);
+    }
+
 }
