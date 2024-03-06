@@ -113,22 +113,22 @@
                 </dl>
             </div>
 
-            <div class="col-12 col-md-8 col-xl-8 col-xxl-6 d-flex flex-column">
+            <div class="col-12 col-md-8 col-xl-8 col-xxl-6 d-flex flex-column margin-top-sm">
              <div class="row justify-content-start">
 
-                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                      <span class="color-blue">Corner connector</span><br>
                      <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                  </div>
-                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                      <span class="color-blue">Larssen U</span><br>
                      <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
                  </div>
-                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                      <span class="color-blue">Larssen Z</span><br>
                      <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
                  </div>
-                 <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                      <span class="color-blue">Larssen Hat-type</span><br>
                      <img class="img-fluid" src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
                  </div>
@@ -138,10 +138,10 @@
                 <div class="row mt-2 justify-content-center">
 
 
-                    <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                         <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-xl-3 col-xxl-3">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                         <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                     </div>
 

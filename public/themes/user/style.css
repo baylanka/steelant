@@ -143,6 +143,9 @@ body {
     .login-btn {
         display: block !important;
     }
+    .margin-top-sm{
+        margin-top: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -165,6 +168,9 @@ body {
 
     .login-btn {
         display: block !important;
+    }
+    .margin-top-sm{
+        margin-top: 2rem;
     }
 }
 
