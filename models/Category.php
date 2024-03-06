@@ -36,8 +36,8 @@ class Category extends BaseModel
     {
         if(
             !$force
-            && isset(static::$relations['media'])
-            && array_key_exists($this->id, static::$relations['media'])
+            && isset(static::$extra['media'])
+            && array_key_exists($this->id, static::$extra['media'])
             )
         {
 
@@ -45,17 +45,17 @@ class Category extends BaseModel
         }
 
         $categoryId = $this->id;
-        static::$relations['media'][$this->id] =  Media::getMediaByCategoryId($categoryId);
+        static::$extra['media'][$this->id] =  Media::getMediaByCategoryId($categoryId);
     }
 
     public function setThumbnail($thumbnail)
     {
-        static::$relations['thumbnail'][$this->id] =  $thumbnail;
+        static::$extra['thumbnail'][$this->id] =  $thumbnail;
     }
 
     public function setBanner($banner)
     {
-        static::$relations['banner'][$this->id] =  $banner;
+        static::$extra['banner'][$this->id] =  $banner;
     }
 
     public function save()
@@ -165,7 +165,7 @@ class Category extends BaseModel
             return  static::$extra['banner'][$this->id];
         }
 
-        $media = static::$relations['banner'][$this->id] ?? [];
+        $media = static::$extra['banner'][$this->id] ?? [];
         foreach ($media as $each){
             if($each->type != CategoryMedia::TYPE_BANNER){
                 continue;
@@ -186,7 +186,7 @@ class Category extends BaseModel
             return  static::$extra['thumbnail'][$this->id];
         }
 
-        $media = static::$relations['media'][$this->id] ?? [];
+        $media = static::$extra['media'][$this->id] ?? [];
         foreach ($media as $each){
             if($each->type != CategoryMedia::TYPE_ICON){
                 continue;
