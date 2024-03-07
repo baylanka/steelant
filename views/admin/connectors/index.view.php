@@ -309,17 +309,24 @@ use helpers\translate\Translate;
                 <form>
 
 
-
-
                     <div class="row">
                         <div class="col-12 mt-3">
-                            <select class="form-select w-100" aria-label="Default select example" name="category">
-                                <option selected disabled>Select Category</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select w-100 select2" name="category">
+                                <option value="0" selected disabled>Select Category</option>
+                                <option value="1">Earth Work > LARSSEN > Corner connectors</option>
+                                <option value="2">Earth Work > LARSSEN > Omega corner connectors</option>
+                                <option value="3">Earth Work > LARSSEN > T connectors</option>
+                                <option value="3">ggggg</option>
+                                <option value="3">ggggg</option>
+                                <option value="3">wwewew</option>
+                                <option value="3">ggggg</option>
+                                <option value="3">sajaath</option>
+                                <option value="3">ggggg</option>
+
                             </select>
                         </div>
+
+
                         <div class="col-12 d-flex justify-content-between mt-5">
                             <label for="name" class="align-items-center">Name </label>
                             <input name="name" type="text" class="form-control w-50 align-items-center" placeholder="Connector name" id="name"/>
@@ -404,6 +411,62 @@ use helpers\translate\Translate;
                             </label>
                         </div>
 
+                    </div>
+
+                    <hr class="mt-3">
+
+
+                    <div class="col-12 mt-3">
+
+
+                        <button class="btn w-100"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">
+                            Select Template <br/> <i class="bi bi-chevron-down"></i>                                </button>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body row flex-row">
+
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div><div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
 
 
@@ -564,7 +627,13 @@ use helpers\translate\Translate;
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
-    //Place your javascript logics here
+    $(document).ready(function (){
+        $(".select2").select2({
+            dropdownParent: $('#createConnector'),
+            theme: 'bootstrap-5'
+        });
+
+    });
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

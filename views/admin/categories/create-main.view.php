@@ -85,7 +85,7 @@
                                    <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
                                           name="icon" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
                                </div>
-                               <img src="#" class="load-image d-none" width="100" height="100">
+                               <img src="#" class="load-image d-none" width="60" height="60">
                            </div>
 
                            <div class="col-6 img-block">
