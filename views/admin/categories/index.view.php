@@ -273,8 +273,7 @@ use helpers\pools\LanguagePool;
 </script>
 
 <script>
-    function getCategoryRow(category, avoid_icon=false)
-    {
+    function getCategoryRow(category, avoid_icon = false) {
         const rowColors = [
             'table-success',
             'table-primary',
@@ -306,9 +305,9 @@ use helpers\pools\LanguagePool;
                         <td>${category.name_fr}</td>
                         <td>
                              ${category.is_published === true
-                                    ? '<span class="badge text-bg-success">published</span>'
-                                    : '<span class="badge text-bg-warning">non-published</span>'
-                              }
+            ? '<span class="badge text-bg-success">published</span>'
+            : '<span class="badge text-bg-warning">non-published</span>'
+        }
                         </td>
                         <td>
                             <div class="btn-group">
@@ -329,53 +328,54 @@ use helpers\pools\LanguagePool;
 
         `;
     }
-        const modalId = 'category-modal';
-        $('button#add-main-category').click(async function (event) {
-            let path = "admin/categories/main/store";
-            let modal;
-            const btn = $(this);
-            const loadingBtnText = btn.text();
-            try{
-                loadButton(btn, "loading ...");
-                modal = await loadModal(modalId, path);
-                resetButton(btn, loadingBtnText);
-                $(document).off('storeMainCategorySuccessEvent');
-                $(document).on('storeMainCategorySuccessEvent', function(event) {
-                    modal.hide();
-                    const category = event.originalEvent.detail.category;
-                    const categoryRowElement = getCategoryRow(category);
-                    $('table#categories-tbl tbody').prepend(categoryRowElement);
-                });
-            }catch(err){
-                toast.error("add main category function is broken down. " + err);
-            }
-        });
+
+    const modalId = 'category-modal';
+    $('button#add-main-category').click(async function (event) {
+        let path = "admin/categories/main/store";
+        let modal;
+        const btn = $(this);
+        const loadingBtnText = btn.text();
+        try {
+            loadButton(btn, "loading ...");
+            modal = await loadModal(modalId, path);
+            resetButton(btn, loadingBtnText);
+            $(document).off('storeMainCategorySuccessEvent');
+            $(document).on('storeMainCategorySuccessEvent', function (event) {
+                modal.hide();
+                const category = event.originalEvent.detail.category;
+                const categoryRowElement = getCategoryRow(category);
+                $('table#categories-tbl tbody').prepend(categoryRowElement);
+            });
+        } catch (err) {
+            toast.error("add main category function is broken down. " + err);
+        }
+    });
 
 
-        $(document).on('click', 'a.add-sub-category',async function(event){
-            event.preventDefault();
-            const trTag = $(this).closest('tr');
-            const path = "admin/categories/sub/store?parent_id=" + $(this).attr("data-id");
-            let modal;
-            try{
-                modal = await loadModal(modalId, path);
-                $(document).off('storeSubCategorySuccessEvent');
-                $(document).on('storeSubCategorySuccessEvent', function(event) {
-                    const category = event.originalEvent.detail.category;
-                    const categoryRowElement = getCategoryRow(category, true);
-                    trTag.after(categoryRowElement);
-                    modal.hide();
-                });
+    $(document).on('click', 'a.add-sub-category', async function (event) {
+        event.preventDefault();
+        const trTag = $(this).closest('tr');
+        const path = "admin/categories/sub/store?parent_id=" + $(this).attr("data-id");
+        let modal;
+        try {
+            modal = await loadModal(modalId, path);
+            $(document).off('storeSubCategorySuccessEvent');
+            $(document).on('storeSubCategorySuccessEvent', function (event) {
+                const category = event.originalEvent.detail.category;
+                const categoryRowElement = getCategoryRow(category, true);
+                trTag.after(categoryRowElement);
+                modal.hide();
+            });
 
-            }catch(err){
-                toast.error("add sub category functional is broken down. " + err);
-            }
+        } catch (err) {
+            toast.error("add sub category functional is broken down. " + err);
+        }
 
-        });
+    });
 
-        $(document).on('click', 'a.delete-category', async function(event){
-            event.preventDefault();
-            const notice = `
+    $(document).on('click', 'a.delete-category', async function (event) {
+        event.preventDefault();
+        const notice = `
                 <p class="text-danger"><b>If you proceed with deleting the category:<b><p>
                 <ol class="text-start text-primary">
                     <li>It cannot be undone.</li>
@@ -383,35 +383,34 @@ use helpers\pools\LanguagePool;
                     <li>All connectors and add-on contents of this category or its subcategories will also be deleted if they exist.</li>
                 </ol>
             `;
-            if(!await isConfirmToProcess(notice, 'warning')){
-                return;
-            }
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
 
-            const categoryId = $(this).attr('data-id');
-            const data = {};
-            const path = `${getBaseUrl()}/admin/categories/sub/destroy?id=${categoryId}`;
-            try {
-                const response = await makeAjaxCall(path, data, 'DELETE');
-                removeCategories(categoryId);
-                toast.success(response.message);
-            }catch(err){
-                toast.error(err);
-            }
-        });
+        const categoryId = $(this).attr('data-id');
+        const data = {};
+        const path = `${getBaseUrl()}/admin/categories/sub/destroy?id=${categoryId}`;
+        try {
+            const response = await makeAjaxCall(path, data, 'DELETE');
+            removeCategories(categoryId);
+            toast.success(response.message);
+        } catch (err) {
+            toast.error(err);
+        }
+    });
 
-    function removeCategories(categoryId)
-    {
+    function removeCategories(categoryId) {
         const categoryRow = $(`tr[data-id="${categoryId}"]`);
-        if(categoryRow.length > 0){
+        if (categoryRow.length > 0) {
             categoryRow.remove();
         }
 
 
         const children = $(`tr[data-parentid="${categoryId}"]`);
-        if(children.length === 0){
+        if (children.length === 0) {
             return;
         }
-        children.each(function(){
+        children.each(function () {
             const childCategoryId = $(this).attr('data-id');
             removeCategories(childCategoryId);
             $(this).remove();
