@@ -10,6 +10,17 @@
             </div>
             <div class="modal-body p-4">
                <form action="<?= url('/admin/categories/main/store') ?>">
+                   <div class="row img-block justify-content-between">
+                       <div class="col input-group mb-3 w-50">
+                           <span class="input-group-text" id="basic-addon3">Thumbnail image</span>
+                           <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                  name="icon" class="form-control img-load"
+                                  id="thumbnail-img" aria-describedby="basic-addon3">
+                       </div>
+                       <div class="col pl-0">
+                           <img src="#" class="img-thumbnail load-image d-none" width="60" height="60">
+                       </div>
+                   </div>
                    <div class="row">
                        <div class="col-12 d-flex justify-content-between mt-3">
                            <label for="name_[<?=LanguagePool::GERMANY()->getLabel()?>]"
@@ -77,32 +88,23 @@
                        <hr class="mt-3">
 
 
-                       <div class="col-12 d-flex justify-content-between mt-3 row">
-
-                           <div class="col-6 img-block">
-                               <div class="input-group mb-3">
-                                   <span class="input-group-text" id="basic-addon3">Thumbnail image</span>
-                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
-                                          name="icon" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
-                               </div>
-                               <img src="#" class="load-image d-none" width="60" height="60">
-                           </div>
-
-                           <div class="col-6 img-block">
+                       <div class="d-flex justify-content-between mt-3 row">
+                           <div class="col-8 img-block">
                                <div class="input-group mb-3">
                                    <span class="input-group-text" id="basic-addon3">Banner image</span>
-                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="banner" class="form-control img-load" id="basic-url" aria-describedby="basic-addon3">
+                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                          name="banner" class="form-control img-load"
+                                          id="banner-img" aria-describedby="basic-addon3">
+
                                </div>
-                               <img src="#" class="load-image d-none" width="250" height="100">
+                               <div>
+                                   <img src="#" class="load-image d-none" height="250" width="750">
+                               </div>
                            </div>
 
 
                        </div>
                    </div>
-
-
-
-
                </form>
             </div>
             <div class="modal-footer">
@@ -112,22 +114,17 @@
         </div>
     </div>
     <script>
-
-        $(".img-load").change(function () {
+        $(".img-load").off('change');
+        $(".img-load").change(async function () {
             const fileInputTag = $(this);
-            if (this.files && this.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    fileInputTag.closest("div.img-block").find("img.load-image").removeClass('d-none');
-                    fileInputTag.closest("div.img-block").find("img.load-image").attr('src', e.target.result);
-                    fileInputTag.closest("div.input-group").append(`<button type="button" class="btn btn-danger clear-img"><i class="bi bi-x-lg"></i></button>`);
-                    fileInputTag.addClass('d-none');
-                }
-                reader.readAsDataURL(this.files[0]);
-            }
+            const image = await imageToBase64(fileInputTag);
+            fileInputTag.closest("div.img-block").find("img.load-image").removeClass('d-none');
+            fileInputTag.closest("div.img-block").find("img.load-image").attr('src', image);
+            fileInputTag.closest("div.input-group").append(`<button type="button" class="btn btn-danger clear-img"><i class="bi bi-x-lg"></i></button>`);
+            fileInputTag.addClass('d-none');
         });
 
-
+        $(document).off("click");
         $(document).on("click",".clear-img",function () {
             $(this).closest("div.img-block").find("img.load-image").addClass('d-none');
             $(this).closest("div.img-block").find("input.img-load").removeClass('d-none');
