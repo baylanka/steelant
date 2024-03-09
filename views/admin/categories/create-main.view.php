@@ -11,13 +11,13 @@
             <div class="modal-body p-4">
                <form action="<?= url('/admin/categories/main/store') ?>">
                    <div class="row img-block justify-content-between">
-                       <div class="col input-group mb-3 w-50">
+                       <div class="col input-group mb-3 w-50 ps-2 pe-0">
                            <span class="input-group-text" id="basic-addon3">Thumbnail image</span>
                            <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
                                   name="icon" class="form-control img-load"
                                   id="thumbnail-img" aria-describedby="basic-addon3">
                        </div>
-                       <div class="col pl-0">
+                       <div class="col ps-0">
                            <img src="#" class="img-thumbnail load-image d-none" width="60" height="60">
                        </div>
                    </div>
@@ -101,8 +101,6 @@
                                    <img src="#" class="load-image d-none" height="250" width="750">
                                </div>
                            </div>
-
-
                        </div>
                    </div>
                </form>
@@ -124,7 +122,7 @@
             fileInputTag.addClass('d-none');
         });
 
-        $(document).off("click");
+        $(document).off("click",".clear-img");
         $(document).on("click",".clear-img",function () {
             $(this).closest("div.img-block").find("img.load-image").addClass('d-none');
             $(this).closest("div.img-block").find("input.img-load").removeClass('d-none');

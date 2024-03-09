@@ -162,7 +162,6 @@
                                   type="text" class="form-control w-75 align-items-center"
                                   placeholder="Title (in Germany)"
                                   id="title_<?= LanguagePool::GERMANY()->getLabel()?>"
-                                  value="<?= $directParent->getTitleByLang(LanguagePool::GERMANY()->getLabel()) ?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -171,7 +170,6 @@
                                   type="text" class="form-control w-75"
                                   id="title_<?= LanguagePool::ENGLISH()->getLabel()?>"
                                   placeholder="Title (in English)"
-                                  value="<?= $directParent->getTitleByLang(LanguagePool::ENGLISH()->getLabel()) ?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">

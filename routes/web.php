@@ -18,6 +18,8 @@ $app->get('/admin/categories/sub/store', ["admin\CategoryController", "createSub
 $app->post('/admin/categories/sub/store', ["admin\CategoryController", "storeSubCategory"]);
 $app->delete('/admin/categories/sub/destroy', ["admin\CategoryController", "destroySubCategory"]);
 
+$app->get('/admin/categories/edit', ["admin\CategoryController", "edit"]);
+$app->post('/admin/categories/update', ["admin\CategoryController", "update"]);
 
 
 $app->get('/',  ["user\HomeController", "connectors"]);

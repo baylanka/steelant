@@ -2,7 +2,7 @@
 
 namespace model;
 
-use model\BaseModel;
+use helpers\repositories\CategoryMediaRepository;
 
 class Category extends BaseModel
 {
@@ -18,6 +18,9 @@ class Category extends BaseModel
 
     public ?Media $temp_icon_media;
     public ?Media $temp_banner_media;
+
+    public string $temp_thumbnail_image_tracker;
+    public string $temp_banner_image_tracker;
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
@@ -86,6 +89,51 @@ class Category extends BaseModel
         return $this;
     }
 
+    public function update()
+    {
+        parent::save();
+        $categoryId = $this->id;
+
+        if($this->temp_thumbnail_image_tracker != 'previous_state')
+        {
+            CategoryMediaRepository::deleteThumbnailByCategoryId($categoryId);
+        }
+        else if($this->temp_thumbnail_image_tracker === 'changed'
+            && isset($this->temp_icon_media)
+            && !empty($this->temp_icon_media))
+        {
+            $icon = $this->temp_icon_media->save();
+            $categoryMedia = new CategoryMedia();
+            $categoryMedia->category_id = $categoryId;
+            $categoryMedia->media_id = $icon->id;
+            $categoryMedia->type = CategoryMedia::TYPE_ICON;
+            $categoryMedia->save();
+        }
+
+        if($this->temp_banner_image_tracker != 'previous_state')
+        {
+            CategoryMediaRepository::deleteBannerByCategoryId($categoryId);
+        }
+        else if($this->temp_banner_image_tracker === 'changed'
+            && isset($this->temp_banner_media)
+            && !empty($this->temp_banner_media))
+        {
+            $banner = $this->temp_banner_media->save();
+            $categoryMedia = new CategoryMedia();
+            $categoryMedia->category_id = $categoryId;
+            $categoryMedia->media_id = $banner->id;
+            $categoryMedia->type = CategoryMedia::TYPE_BANNER;
+            $categoryMedia->save();
+        }
+
+        unset($this->temp_icon_media);
+        unset($this->temp_banner_media);
+        unset($this->temp_thumbnail_image_tracker);
+        unset($this->temp_banner_image_tracker);
+
+        return $this;
+    }
+
     public function getNameByLang(string $language)
     {
         $nameArray = json_decode($this->name, true);
@@ -107,6 +155,22 @@ class Category extends BaseModel
         }
 
         return $titleArray[$language];
+    }
+    public function titleExists()
+    {
+        return !empty($this->title);
+    }
+
+    public function thumbnailExists($force=false)
+    {
+        $thumbnail = $this->getThumbnail($force);
+        return !is_null($thumbnail);
+    }
+
+    public function bannerExists($force=false)
+    {
+        $banner = $this->getBanner($force);
+        return !is_null($banner);
     }
 
     public function getThumbnailUrl($force=false)
@@ -157,6 +221,11 @@ class Category extends BaseModel
         return $this->visibility == self::PUBLISHED;
     }
 
+    public function isParent()
+    {
+        return self::existsBy(['parent_category_id'=>$this->id]);
+    }
+
     private function getBanner($force=false)
     {
         $this->setMedia($force);
@@ -165,7 +234,7 @@ class Category extends BaseModel
             return  static::$extra['banner'][$this->id];
         }
 
-        $media = static::$extra['banner'][$this->id] ?? [];
+        $media = static::$extra['media'][$this->id] ?? [];
         foreach ($media as $each){
             if($each->type != CategoryMedia::TYPE_BANNER){
                 continue;
