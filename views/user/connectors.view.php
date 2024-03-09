@@ -173,25 +173,25 @@
 
 
         <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+            <img src="<?= assets("themes/user/img/gallery-3.png") ?>" class="img-fluid h-100 w-100">
         </div>
 
 
         <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+            <img src="<?= assets("themes/user/img/gallery-4.png") ?>" class="img-fluid h-100 w-100">
         </div>
 
         <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+            <img src="<?= assets("themes/user/img/gallery-5.png") ?>" class="img-fluid h-100 w-100">
         </div>
 
         <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
-            <img src="<?= assets("themes/user/img/gallery-2.png") ?>" class="img-fluid h-100 w-100">
+            <img src="<?= assets("themes/user/img/gallery-7.png") ?>" class="img-fluid h-100 w-100">
         </div>
 
 
         <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-1.png") ?>" class="img-fluid h-100 w-100">
+            <img src="<?= assets("themes/user/img/gallery-6.png") ?>" class="img-fluid h-100 w-100">
         </div>
 
 

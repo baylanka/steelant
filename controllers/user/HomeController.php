@@ -47,4 +47,16 @@ class HomeController
         return view("user/contact.view.php", $data);
     }
 
+    public function login(Request $request)
+    {
+        $data = [];
+        return view("user/login.view.php", $data);
+    }
+
+    public function register(Request $request)
+    {
+        $data = [];
+        return view("user/register.view.php", $data);
+    }
+
 }
