@@ -3,7 +3,7 @@
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
 
-    <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
+
 
 downloads
 

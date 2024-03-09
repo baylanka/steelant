@@ -76,7 +76,6 @@ body {
 
 .footer {
     /*display: none;*/
-    margin-top: 10%;
     color: white;
     background-color: var(--blue);
     padding: 5%;
@@ -86,7 +85,7 @@ body {
     padding-right: 15%;
 }
 
-.divider {
+.divider-white {
     height: 1px;
     width: 100%;
     background-color: #ffffff;

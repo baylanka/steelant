@@ -79,14 +79,16 @@ use helpers\services\RequestService;
             <a class="nav-link <?= RequestService::isRequestedRoute("/downloads") ? "selected" : "" ?>" aria-current="page" href="<?= url("/downloads") ?>">Downloads</a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/gallery") ? "selected" : "" ?>" aria-current="page" href="<?= url("/gallery") ?>">Gallery</a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/sealant") ? "selected" : "" ?>" aria-current="page" href="<?= url("/sealant") ?>">Sealant</a>
-            <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>" aria-current="page" href="<?= url("/contact") ?>">Contact</a>
+            <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>" aria-current="page" href="https://steelant.eu/">Contact</a>
         </div>
 
         <div class="text-center row position-relative login-nav gap-2"
              style="align-content: space-around;">
             <div class="col-5 text-center d-flex gap-1">
+
                 <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/><br/>
-                <span class="">Login</span>
+                <a class="nav-link" href="<?= url("/login") ?>">Login </a>
+
             </div>
             <div class="col-5 text-center d-flex gap-1">
                 <img src="<?= assets("themes/user/img/star-white.png") ?>" height="20"/><br/>

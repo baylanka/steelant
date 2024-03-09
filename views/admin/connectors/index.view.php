@@ -20,25 +20,26 @@ use helpers\translate\Translate;
             <table class="table table-striped">
                 <thead>
                 <tr class="text-center">
+                    <th>Category</th>
                     <th>Name</th>
                     <th>Steel grade</th>
                     <th>Steel thickness</th>
                     <th>Standard length</th>
                     <th>Weight</th>
-                    <th>Max. tensile strength</th>
+<!--                    <th>Max. tensile strength</th>-->
                     <th style="width: 40px"></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr class="align-middle text-center">
-                    <td>LV200</td>
-                    <td>S355J2</td>
-                    <td>9 mm</td>
-                    <td>11.8 m +0/-100 mm</td>
-                    <td>25.3 kg/m</td>
-                    <td>2552 kN/m (FEM)</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Earthwork > LARSSEN > Corner connectors </td>
+                    <td class="text-center">LV200</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">9 mm</td>
+                    <td class="text-center">11.8 m +0/-100 mm</td>
+                    <td class="text-center">25.3 kg/m</td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -66,14 +67,14 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>MF63</td>
-                    <td>S355J2</td>
-                    <td>12 mm</td>
-                    <td>8 m, 11.8 m</td>
-                    <td>4.76 kg/m</td>
-                    <td>2552 kN/m (FEM)</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Earthwork > LARSSEN > Omega corner </td>
+                    <td class="text-center">MF63</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">12 mm</td>
+                    <td class="text-center">8 m, 11.8 m</td>
+                    <td class="text-center">4.76 kg/m</td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -101,14 +102,14 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>LLS170</td>
-                    <td>S355J2</td>
-                    <td>8 mm</td>
-                    <td>8 m, 11.8 m</td>
-                    <td>17.63 kg/m</td>
-                    <td> -</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Earthwork > BALL + SOCKET > US Corner </td>
+                    <td class="text-center">LLS170</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">8 mm</td>
+                    <td class="text-center">8 m, 11.8 m</td>
+                    <td class="text-center">17.63 kg/m</td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -136,19 +137,19 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>MF180a</td>
-                    <td>S355J2</td>
-                    <td>12 mm</td>
-                    <td>8 m, 11,8 m</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Pipe pile steel walls > MF </td>
+                    <td class="text-center">MF180a</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">12 mm</td>
+                    <td class="text-center">8 m, 11,8 m</td>
+                    <td class="text-center">
                         <select class="m-1">
                             <option selected>M90</option>
                             <option value="1">F40</option>
                         </select>
                         4.76 kg/m
                     </td>
-                    <td>3419 kN/m</td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
@@ -177,14 +178,14 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>LLS135</td>
-                    <td>S355J2</td>
-                    <td>9 mm</td>
-                    <td>8 m, 11.8 m</td>
-                    <td>17.66 kg/m</td>
-                    <td> -</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Pipe pile steel walls > MDF </td>
+                    <td class="text-center">LLS135</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">9 mm</td>
+                    <td class="text-center">8 m, 11.8 m</td>
+                    <td class="text-center">17.66 kg/m</td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -212,14 +213,14 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>LLS90</td>
-                    <td>S355J2</td>
-                    <td>9 mm</td>
-                    <td>8 m, 11.8 m</td>
-                    <td>17.66 kg/m</td>
-                    <td> -</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Pipe pile steel walls > FD </td>
+                    <td class="text-center">LLS90</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">9 mm</td>
+                    <td class="text-center">8 m, 11.8 m</td>
+                    <td class="text-center">17.66 kg/m</td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -247,20 +248,20 @@ use helpers\translate\Translate;
                         </div>
                     </td>
                 </tr>
-                <tr class="align-middle text-center">
-                    <td>MF75</td>
-                    <td>S355J2</td>
-                    <td>12 mm</td>
-                    <td>8 m, 11.8 m</td>
-                    <td>
+                <tr class="align-middle">
+                    <td class="text-left">Pipe pile steel walls > LPB </td>
+                    <td class="text-center">MF75</td>
+                    <td class="text-center">S355J2</td>
+                    <td class="text-center">12 mm</td>
+                    <td class="text-center">8 m, 11.8 m</td>
+                    <td class="text-center">
                         <select class="m-1">
                             <option selected>M60</option>
                             <option value="1">F40</option>
                         </select>
                         4.76 kg/m
                     </td>
-                    <td>3419 kN/m</td>
-                    <td>
+                    <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -299,7 +300,7 @@ use helpers\translate\Translate;
 
 
 <div class="modal fade" id="createConnector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create Connector</h5>
@@ -333,7 +334,16 @@ use helpers\translate\Translate;
                         </div>
                         <div class="col-12 d-flex justify-content-between mt-3">
                             <label for="steel_grade" class="align-items-center">Steel Grade</label>
-                            <input name="steel_grade" type="text" class="form-control w-50 align-items-center" placeholder="Steel Grade" id="name"/>
+                            <input name="steel_grade" type="text" class="form-control w-50 align-items-center" placeholder="Steel Grade" id="steel_grade"/>
+                        </div>
+
+
+                        <div class="col-12 d-flex justify-content-between mt-3">
+                            <label for="description" class="align-items-center">Description</label>
+                            <textarea name="description" type="text" class="form-control w-50" rows="3" placeholder="Description" id="description">
+
+                            </textarea>
+
                         </div>
 
                         <hr class="mt-3">
@@ -431,44 +441,65 @@ use helpers\translate\Translate;
                                 <div class="form-check col-6">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
+                                       Template 01
                                     </label>
+                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>" class="w-100"/>
                                 </div>
                                 <div class="form-check col-6">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
+                                        Template 02
                                     </label>
+                                    <img src="<?= assets("themes/user/img/template/template-02.png") ?>" class="w-100"/>
                                 </div>
                                 <div class="form-check col-6">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
+                                        Template 03
                                     </label>
+                                    <img src="<?= assets("themes/user/img/template/template-03.png") ?>" class="w-100"/>
                                 </div>
                                 <div class="form-check col-6">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
+                                        Template 04
                                     </label>
-                                </div><div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
-                                    </label>
+                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>" class="w-100"/>
                                 </div>
                                 <div class="form-check col-6">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
+                                        Template 05
                                     </label>
+                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>" class="w-100"/>
                                 </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Template 06
+                                    </label>
+                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>" class="w-100"/>
+                                </div>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Template 07
+                                    </label>
+                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>" class="w-100"/>
+                                </div>
+
+                                <button type="button" class="btn btn-primary my-4">Select</button>
 
 
                             </div>
                         </div>
                     </div>
 
+                    <hr class="mt-3">
+
+                    <div class="col-12">
+                        <img src="<?= assets("themes/user/img/template/template-03.png") ?>" class="w-100"/
+                    </div>
 
             </div>
             <div class="modal-footer">
