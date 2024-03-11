@@ -2,6 +2,7 @@
 
 namespace model;
 
+use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryMediaRepository;
 
 class Category extends BaseModel
@@ -113,6 +114,21 @@ class Category extends BaseModel
         return $nameArray[$language];
     }
 
+    public function getNameEn()
+    {
+        return $this->getNameByLang(LanguagePool::ENGLISH()->getLabel());
+    }
+
+    public function getNameDe()
+    {
+        return $this->getNameByLang(LanguagePool::GERMANY()->getLabel());
+    }
+
+    public function getNameFr()
+    {
+        return $this->getNameByLang(LanguagePool::GERMANY()->getLabel());
+    }
+
     public function getTitleByLang(string $language)
     {
         if(empty($this->title)){
@@ -125,24 +141,39 @@ class Category extends BaseModel
 
         return $titleArray[$language];
     }
-    public function titleExists()
+
+    public function getTitleEn()
+    {
+        return $this->getTitleByLang(LanguagePool::ENGLISH()->getLabel());
+    }
+
+    public function getTitleDe()
+    {
+        return $this->getTitleByLang(LanguagePool::GERMANY()->getLabel());
+    }
+
+    public function getTitleFr()
+    {
+        return $this->getTitleByLang(LanguagePool::FRENCH()->getLabel());
+    }
+    public function titleExists(): bool
     {
         return !empty($this->title);
     }
 
-    public function thumbnailExists($force=false)
+    public function thumbnailExists($force=false): bool
     {
         $thumbnail = $this->getThumbnail($force);
         return !is_null($thumbnail);
     }
 
-    public function bannerExists($force=false)
+    public function bannerExists($force=false): bool
     {
         $banner = $this->getBanner($force);
         return !is_null($banner);
     }
 
-    public function getThumbnailUrl($force=false)
+    public function getThumbnailUrl($force=false): string
     {
         $thumbnail = $this->getThumbnail($force);
         if(is_null($thumbnail)){
@@ -160,7 +191,7 @@ class Category extends BaseModel
         }
         return $thumbnail->name;
     }
-    public function getBannerUrl($force=false)
+    public function getBannerUrl($force=false): string
     {
         $banner = $this->getBanner($force);
         if(is_null($banner)){
@@ -180,17 +211,17 @@ class Category extends BaseModel
         return $banner->name;
     }
 
-    public function isLeafCategroy()
+    public function isLeafCategroy(): bool
     {
         return !empty($this->title);
     }
 
-    public function isPublished()
+    public function isPublished(): bool
     {
         return $this->visibility == self::PUBLISHED;
     }
 
-    public function isParent()
+    public function isParent(): bool
     {
         return self::existsBy(['parent_category_id'=>$this->id]);
     }

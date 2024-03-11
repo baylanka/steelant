@@ -38,19 +38,19 @@
                         <label for="name_de" class="align-items-center">Name (in Germany)</label>
                         <input name="name[de]" type="text" class="form-control w-50 align-items-center"
                                placeholder="Category name" id="name_de"
-                               value="<?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?>"/>
+                               value="<?=$category->getNameDe()?>"/>
                     </div>
                     <div class="col-12 d-flex justify-content-between mt-3">
                         <label for="name_en">Name (in English)</label>
                         <input name="name[en]" type="text" class="form-control w-50"
                                placeholder="Category name" id="name_en"
-                               value="<?=$category->getNameByLang(LanguagePool::ENGLISH()->getLabel())?>"/>
+                               value="<?=$category->getNameEn()?>"/>
                     </div>
                     <div class="col-12 d-flex justify-content-between mt-3">
                         <label for="name_fr">Name (in French)</label>
                         <input name="name[fr]" type="text" class="form-control w-50"
                                placeholder="Category name"  id="name_fr"
-                               value="<?=$category->getNameByLang(LanguagePool::FRENCH()->getLabel())?>"/>
+                               value="<?=$category->getNameFr()?>"/>
                     </div>
 
                     <hr class="mt-3">
@@ -114,7 +114,7 @@
                                        type="text" class="form-control w-75 align-items-center"
                                        placeholder="Title (in Germany)"
                                        id="title_de"
-                                       value="<?= $category->getTitleByLang(LanguagePool::GERMANY()->getLabel()) ?>"
+                                       value="<?=$category->getTitleDe()?>"
                                 />
                             </div>
                             <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -123,7 +123,7 @@
                                        type="text" class="form-control w-75"
                                        id="title_en"
                                        placeholder="Title (in English)"
-                                       value="<?= $category->getTitleByLang(LanguagePool::ENGLISH()->getLabel()) ?>"
+                                       value="<?=$category->getTitleEn()?>"
                                 />
                             </div>
                             <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -132,7 +132,7 @@
                                        type="text" class="form-control w-75"
                                        id="title_fr"
                                        placeholder="Title (in French)"
-                                       value="<?= $category->getTitleByLang(LanguagePool::FRENCH()->getLabel()) ?>"
+                                       value="<?=$category->getTitleFr()?>"
                                 />
                             </div>
                          <?php endif; ?>
@@ -243,7 +243,7 @@
                                   type="text" class="form-control w-75 align-items-center"
                                   placeholder="Title (in Germany)"
                                   id="title_<?= LanguagePool::GERMANY()->getLabel()?>"
-                                  value="<?= $category->getTitleByLang(LanguagePool::GERMANY()->getLabel()) ?>"
+                                  value="<?=$category->getTitleDe()?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -252,7 +252,7 @@
                                   type="text" class="form-control w-75"
                                   id="title_<?= LanguagePool::ENGLISH()->getLabel()?>"
                                   placeholder="Title (in English)"
-                                  value="<?= $category->getTitleByLang(LanguagePool::ENGLISH()->getLabel()) ?>"
+                                  value="<?=$category->getTitleEn()?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -261,7 +261,7 @@
                                   type="text" class="form-control w-75"
                                   id="title_<?= LanguagePool::FRENCH()->getLabel()?>"
                                   placeholder="Title (in French)"
-                                  value="<?= $category->getTitleByLang(LanguagePool::FRENCH()->getLabel()) ?>"
+                                  value="<?=$category->getTitleFr()?>"
                            />
                        </div>
 

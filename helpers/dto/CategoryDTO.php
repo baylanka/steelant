@@ -43,9 +43,9 @@ class CategoryDTO
 
     private function setName(Category $category)
     {
-        $this->name_en = $category->getNameByLang(LanguagePool::ENGLISH()->getLabel());
-        $this->name_de = $category->getNameByLang(LanguagePool::GERMANY()->getLabel());
-        $this->name_fr = $category->getNameByLang(LanguagePool::FRENCH()->getLabel());
+        $this->name_en = $category->getNameEn();
+        $this->name_de = $category->getNameDe();
+        $this->name_fr = $category->getNameFr();
     }
 
     private function setIsPublished(Category $category)

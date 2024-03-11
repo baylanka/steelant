@@ -162,6 +162,7 @@
                                   type="text" class="form-control w-75 align-items-center"
                                   placeholder="Title (in Germany)"
                                   id="title_<?= LanguagePool::GERMANY()->getLabel()?>"
+                                  value="<?= $directParent->getTitleDe()?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
@@ -170,15 +171,16 @@
                                   type="text" class="form-control w-75"
                                   id="title_<?= LanguagePool::ENGLISH()->getLabel()?>"
                                   placeholder="Title (in English)"
+                                  value="<?= $directParent->getTitleEn()?>"
                            />
                        </div>
                        <div class="col-12 d-flex justify-content-between mt-3 sub-cat-title-inp">
                            <label for="title_<?= LanguagePool::FRENCH()->getLabel()?>">Title (in French)</label>
                            <input name="title[<?= LanguagePool::FRENCH()->getLabel()?>]"
                                   type="text" class="form-control w-75"
-                                  id="title_<?= LanguagePool::FRENCH()->getLabel()?>"
+                                  id="title_<?=LanguagePool::FRENCH()->getLabel()?>"
                                   placeholder="Title (in French)"
-                                  value="<?= $directParent->getTitleByLang(LanguagePool::FRENCH()->getLabel()) ?>"
+                                  value="<?= $directParent->getTitleFr()?>"
                            />
                        </div>
 

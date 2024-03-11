@@ -54,9 +54,9 @@ use helpers\pools\LanguagePool;
                                      width="60"/>
                             <?php endif; ?>
                         </td>
-                        <td><?= $category->getNameByLang(LanguagePool::GERMANY()->getLabel()) ?></td>
-                        <td><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></td>
-                        <td><?= $category->getNameByLang(LanguagePool::FRENCH()->getLabel()) ?></td>
+                        <td><?= $category->getNameDe()?></td>
+                        <td><?= $category->getNameEn()?></td>
+                        <td><?= $category->getNameFr()?></td>
                         <td>
                             <?=
                                     $category->isPublished()
