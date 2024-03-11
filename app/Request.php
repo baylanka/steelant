@@ -32,7 +32,7 @@ class Request
         if(!$remove_tags){
             return $this->payload;
         }
-        return array_map("self::removeTags", $this->payload);
+        return self::removeTags($this->payload);
     }
 
     public function has($key): bool
@@ -66,7 +66,7 @@ class Request
             return $filteredArray;
         }
 
-        return array_map("self::removeTags", $filteredArray);
+        return self::removeTags($filteredArray);
     }
 
     private function filter()
