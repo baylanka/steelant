@@ -239,12 +239,21 @@ use helpers\pools\LanguagePool;
             modal = await loadModal(modalId, path);
             $(document).off('updateCategorySuccessEvent');
             $(document).on('updateCategorySuccessEvent', function (event) {
+                modal.hide();
                 const category = event.originalEvent.detail.category;
                 const categoryRowElement = getCategoryRow(category, true);
                 const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.prepend(categoryRowElement);
+                    return
+
+                }
+
                 trTag.remove();
                 trTagParent.after(categoryRowElement);
-                modal.hide();
+
             });
 
         } catch (err) {

@@ -19,8 +19,8 @@ class Category extends BaseModel
     public ?Media $temp_icon_media;
     public ?Media $temp_banner_media;
 
-    public string $temp_thumbnail_image_tracker;
-    public string $temp_banner_image_tracker;
+    public ?string $temp_thumbnail_image_tracker;
+    public ?string $temp_banner_image_tracker;
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
@@ -92,39 +92,8 @@ class Category extends BaseModel
     public function update()
     {
         parent::save();
-        $categoryId = $this->id;
-
-        if($this->temp_thumbnail_image_tracker != 'previous_state')
-        {
-            CategoryMediaRepository::deleteThumbnailByCategoryId($categoryId);
-        }
-        else if($this->temp_thumbnail_image_tracker === 'changed'
-            && isset($this->temp_icon_media)
-            && !empty($this->temp_icon_media))
-        {
-            $icon = $this->temp_icon_media->save();
-            $categoryMedia = new CategoryMedia();
-            $categoryMedia->category_id = $categoryId;
-            $categoryMedia->media_id = $icon->id;
-            $categoryMedia->type = CategoryMedia::TYPE_ICON;
-            $categoryMedia->save();
-        }
-
-        if($this->temp_banner_image_tracker != 'previous_state')
-        {
-            CategoryMediaRepository::deleteBannerByCategoryId($categoryId);
-        }
-        else if($this->temp_banner_image_tracker === 'changed'
-            && isset($this->temp_banner_media)
-            && !empty($this->temp_banner_media))
-        {
-            $banner = $this->temp_banner_media->save();
-            $categoryMedia = new CategoryMedia();
-            $categoryMedia->category_id = $categoryId;
-            $categoryMedia->media_id = $banner->id;
-            $categoryMedia->type = CategoryMedia::TYPE_BANNER;
-            $categoryMedia->save();
-        }
+        $this->updateThumbnail();
+        $this->updateBanner();
 
         unset($this->temp_icon_media);
         unset($this->temp_banner_media);
@@ -266,6 +235,64 @@ class Category extends BaseModel
         }
 
         return null;
+    }
+
+    private function isThumbnailDeletable()
+    {
+        return !is_null($this->temp_thumbnail_image_tracker)
+            && $this->temp_thumbnail_image_tracker != 'previous_state';
+    }
+
+    private function isThumbnailUpdatable()
+    {
+        return !is_null($this->temp_thumbnail_image_tracker)
+            && $this->temp_thumbnail_image_tracker === 'changed'
+            && isset($this->temp_icon_media)
+            && !empty($this->temp_icon_media);
+    }
+    private function updateThumbnail()
+    {
+        if($this->isThumbnailDeletable()){
+            CategoryMediaRepository::deleteThumbnailByCategoryId($this->id);
+        }
+
+        if($this->isThumbnailUpdatable()){
+            $icon = $this->temp_icon_media->save();
+            $categoryMedia = new CategoryMedia();
+            $categoryMedia->category_id = $this->id;
+            $categoryMedia->media_id = $icon->id;
+            $categoryMedia->type = CategoryMedia::TYPE_ICON;
+            $categoryMedia->save();
+        }
+    }
+    private function isBannerDeletable()
+    {
+        return  !is_null($this->temp_banner_image_tracker)
+            && $this->temp_banner_image_tracker != 'previous_state';
+    }
+
+    private function isBannerUpdatable()
+    {
+        return !is_null($this->temp_banner_image_tracker)
+            && $this->temp_banner_image_tracker === 'changed'
+            && isset($this->temp_banner_media)
+            && !empty($this->temp_banner_media);
+    }
+
+    private function updateBanner()
+    {
+        if($this->isBannerDeletable()){
+            CategoryMediaRepository::deleteBannerByCategoryId($this->id);
+        }
+
+        if($this->isBannerUpdatable()){
+            $banner = $this->temp_banner_media->save();
+            $categoryMedia = new CategoryMedia();
+            $categoryMedia->category_id = $this->id;
+            $categoryMedia->media_id = $banner->id;
+            $categoryMedia->type = CategoryMedia::TYPE_BANNER;
+            $categoryMedia->save();
+        }
     }
 
 }

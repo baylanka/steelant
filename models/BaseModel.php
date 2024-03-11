@@ -160,14 +160,14 @@ class BaseModel
         $insertValues = [];
         foreach ($properties as $property){
             $name = $property->name;
-            if(in_array($property->name, ["table"])
+            if(in_array($property->name, ["table", "relations", "extra"])
                 || str_contains($property->name, 'temp_')
-                || !isset($this->$name)
+                || !property_exists($this, $name)
             ){
                 continue;
             }
 
-            $insertValues[$name] = $this->$name;
+            $insertValues[$name] = $this->$name ?? null;
         }
 
         //if id set on the object update

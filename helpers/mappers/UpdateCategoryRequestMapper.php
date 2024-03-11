@@ -17,12 +17,26 @@ class UpdateCategoryRequestMapper
     {
         $category = Category::getById($request->get('id'));
         $category->name = self::getNameJson($request);
+        $category->title = self::getTitleJson($request);
         $category->visibility = $request->get('visibility');
         self::setIconMedia($request, $category);
         $category->temp_thumbnail_image_tracker = $request->get('thumbnail_image_tracker');
         self::setBannerMedia($request, $category);
         $category->temp_banner_image_tracker = $request->get('banner_image_tracker');
         return $category;
+    }
+
+    private static function getTitleJson(Request $request)
+    {
+        if(!$request->has('title')){
+            return null;
+        }
+        $titleArray = [];
+        $title = $request->get('title',[]);
+        $titleArray[LanguagePool::GERMANY()->getLabel()] = $title[LanguagePool::GERMANY()->getLabel()] ?? '';
+        $titleArray[LanguagePool::ENGLISH()->getLabel()] = $title[LanguagePool::ENGLISH()->getLabel()] ?? '';
+        $titleArray[LanguagePool::FRENCH()->getLabel()] = $title[LanguagePool::FRENCH()->getLabel()] ?? '';
+        return json_encode($titleArray);
     }
 
     private static function getNameJson(Request $request)

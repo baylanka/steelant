@@ -17,7 +17,7 @@ class SubCategoryStoreRequestMapper
         $category->level = self::getLevel($request);
         $category->name = self::getNameJson($request);
         $category->parent_category_id = $request->get('parent_id');
-        self::setTitleJson($request, $category);
+        $category->title = self::getTitleJson($request);
         $category->visibility = $request->get('visibility');
         return $category;
     }
@@ -40,16 +40,16 @@ class SubCategoryStoreRequestMapper
     }
 
 
-    private static function setTitleJson(Request $request, Category &$category)
+    private static function getTitleJson(Request $request)
     {
         if(!$request->has('title')){
-            return;
+            return json_encode([]);
         }
         $titleArray = [];
         $title = $request->get('title',[]);
         $titleArray[LanguagePool::GERMANY()->getLabel()] = $title[LanguagePool::GERMANY()->getLabel()] ?? '';
         $titleArray[LanguagePool::ENGLISH()->getLabel()] = $title[LanguagePool::ENGLISH()->getLabel()] ?? '';
         $titleArray[LanguagePool::FRENCH()->getLabel()] = $title[LanguagePool::FRENCH()->getLabel()] ?? '';
-        $category->title =  json_encode($titleArray);
+        return json_encode($titleArray);
     }
 }
