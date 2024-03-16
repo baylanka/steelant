@@ -20,7 +20,7 @@
                 </thead>
                 <tbody class="text-center">
                 <?php if(empty(sizeof($templates))): ?>
-                    <tr>
+                    <tr  class="no-template-alert">
                         <td colspan="4">
                             <div class="alert alert-warning" role="alert">
                                 Templates are not found.
@@ -134,6 +134,10 @@
                 const template = event.originalEvent.detail.template;
                 const templateRowElement = getTemplateRow(template);
                 $('table#template-tbl tbody').append(templateRowElement);
+                const noTemplateAlert = $('.no-template-alert');
+                if(noTemplateAlert.length > 0){
+                    noTemplateAlert.remove();
+                }
             });
         } catch (err) {
             toast.error("add template function is broken down. " + err);

@@ -17,7 +17,11 @@ class TemplateStoreRequestValidator
 
     private static function templateFileValidation($request)
     {
-        if(!ValidatorUtility::required($request->all(), 'template')) {
+        if(
+               !ValidatorUtility::required($request->all(), 'template')
+            || !ValidatorUtility::required($request->all()['template'],'tmp_name')
+            || empty($request->get('template')['tmp_name'])
+        ) {
             ResponseUtility::response("template file is required", 422);
         }
 
@@ -32,7 +36,11 @@ class TemplateStoreRequestValidator
 
     private static function thumbnailValidation($request)
     {
-        if(!ValidatorUtility::required($request->all(), 'thumbnail')) {
+        if(
+               !ValidatorUtility::required($request->all(), 'thumbnail')
+            || !ValidatorUtility::required($request->get('thumbnail'), 'tmp_name')
+            ||  empty($request->get('thumbnail')['tmp_name'])
+        ) {
             ResponseUtility::response("thumbnail image is required", 422);
         }
 
