@@ -29,29 +29,29 @@
             <div class="col-12 col-md-3 col-xxl-3">
                 <dl>
                     <dt class="color-blue mb-2">LARSSEN</dt>
-                    <dd><a href="#" class="link">Corner connectors</a></dd>
-                    <dd><a href="#" class="link">Omega corner connectors</a></dd>
-                    <dd><a href="#" class="link">T connectors</a></dd>
-                    <dd><a href="#" class="link">Cross connectors</a></dd>
-                    <dd><a href="#" class="link">Weld-on connectors</a></dd>
+                    <dd><a href="#" class="link color-black">Corner connectors</a></dd>
+                    <dd><a href="#" class="link color-black">Omega corner connectors</a></dd>
+                    <dd><a href="#" class="link color-black">T connectors</a></dd>
+                    <dd><a href="#" class="link color-black">Cross connectors</a></dd>
+                    <dd><a href="#" class="link color-black">Weld-on connectors</a></dd>
                 </dl>
 
             </div>
             <div class="col-12 col-md-3 col-xxl-3">
                 <dl>
                     <dt class="color-blue mb-2">BALL + SOCKET</dt>
-                    <dd><a href="#" class="link">US Corner connectors</a></dd>
-                    <dd><a href="#" class="link">US T connectors</a></dd>
-                    <dd><a href="#" class="link">US Cross connectors</a></dd>
-                    <dd><a href="#" class="link">MF connectors, weld-ons?</a></dd>
+                    <dd><a href="#" class="link color-black">US Corner connectors</a></dd>
+                    <dd><a href="#" class="link color-black">US T connectors</a></dd>
+                    <dd><a href="#" class="link color-black">US Cross connectors</a></dd>
+                    <dd><a href="#" class="link color-black">MF connectors, weld-ons?</a></dd>
                 </dl>
 
             </div>
             <div class="col-12 col-md-3 col-xxl-3">
                 <dl>
                     <dt class="color-blue mb-2">COLD FORMED</dt>
-                    <dd><a href="#" class="link">CF corner connector</a></dd>
-                    <dd><a href="#" class="link">CF weld-on connector</a></dd>
+                    <dd><a href="#" class="link color-black">CF corner connector</a></dd>
+                    <dd><a href="#" class="link color-black">CF weld-on connector</a></dd>
                 </dl>
 
             </div>
@@ -99,14 +99,14 @@
                         a length of 11.8 meters, provided that there are no weld
                         joints.</dd>
 
-                    <dd class="custom-dd"><a href="#" class="link">Data sheet (PDF)</a></dd>
-                    <dd class="custom-dd"><a href="#" class="link">DWG ULTRA-S</a></dd>
-                    <dd class="custom-dd"><a href="#" class="link">DWG connector name 02</a></dd>
-                    <dd class="custom-dd"><a href="#" class="link">Test report (PDF)</a></dd>
-                    <dd class="custom-dd"><a href="#" class="link">FEM (PDF)</a></dd>
-                    <dd class="custom-dd"><a href="#" class="link">Request this connector</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">Data sheet (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">DWG ULTRA-S</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">DWG connector name 02</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">Test report (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">FEM (PDF)</a></dd>
+                    <dd class="custom-dd"><a href="#" class="link color-black">Request this connector</a></dd>
                     <dd class="custom-dd d-flex align-middle gap-3">
-                        <a href="#" class="link">Remember this connector</a>
+                        <a href="#" class="link color-black">Remember this connector</a>
                         <img class="align-self-center" src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
                     </dd>
 

@@ -7,6 +7,21 @@ require_once basePath("routes/assets/app.route.php");
 require_once basePath("routes/assets/admin.route.php");
 
 
+$app->get('/admin/pages',  ["admin\PageController", "index"]);
+
+
+
+$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
+
+
+
+
+
+
+
+
+
+
 $app->get('/',  ["user\HomeController", "connectors"]);
 $app->get('/downloads',  ["user\HomeController", "downloads"]);
 $app->get('/gallery',  ["user\HomeController", "gallery"]);

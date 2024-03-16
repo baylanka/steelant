@@ -9,4 +9,5 @@
           integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="<?= assets("themes/user/style.css") ?>"/>
+    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>">
 </head>
