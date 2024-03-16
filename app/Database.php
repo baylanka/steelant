@@ -65,11 +65,17 @@ class Database
         return $this->statement->execute($values);
     }
 
+    /*
+     * false returns, when there is no data
+     */
     public function first()
     {
         return $this->statement->fetch();
     }
 
+    /*
+     * empty array returns, when there is no data
+     */
     public function get()
     {
         return $this->statement->fetchAll();
