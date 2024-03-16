@@ -22,6 +22,21 @@ $app->get('/admin/categories/edit', ["admin\CategoryController", "edit"]);
 $app->post('/admin/categories/update', ["admin\CategoryController", "update"]);
 
 
+$app->get('/admin/pages',  ["admin\PageController", "index"]);
+
+
+
+$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
+
+
+
+
+
+
+
+
+
+
 $app->get('/',  ["user\HomeController", "connectors"]);
 $app->get('/downloads',  ["user\HomeController", "downloads"]);
 $app->get('/gallery',  ["user\HomeController", "gallery"]);

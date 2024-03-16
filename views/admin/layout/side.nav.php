@@ -24,13 +24,6 @@
                         <p> Categories </p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
-                    <a href="<?= url("admin/connectors") ?>"
-                       class="nav-link <?= isRequestedRoute("admin/connectors") ? 'active':'' ?>">
-                        <i class="bi bi-link-45deg"></i>
-                        <p> Connectors </p>
-                    </a>
-                </li>
 
                 <li class="nav-item menu-open">
                     <a href="<?= url("admin/pages") ?>"
@@ -40,8 +33,25 @@
                     </a>
                 </li>
 
+                <li class="nav-item menu-open">
+                    <a href="<?= url("admin/connectors") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/connectors") ? 'active':'' ?>">
+                        <i class="bi bi-link-45deg"></i>
+                        <p> Connectors </p>
+                    </a>
+                </li>
 
-<!--                <li class="nav-header">TEMPLATES</li>-->
+                <li class="nav-item menu-open">
+                    <a href="<?= url("admin/add-on") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/add-on") ? 'active' :'' ?>">
+                        <i class="bi bi-newspaper"></i>
+                        <p> Add-On </p>
+                    </a>
+                </li>
+
+
+
+                <!--                <li class="nav-header">TEMPLATES</li>-->
 <!---->
 <!--                <li class="nav-item menu-open">-->
 <!--                    <a href="/" class="nav-link">-->
