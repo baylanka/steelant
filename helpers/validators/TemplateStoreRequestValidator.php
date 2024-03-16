@@ -2,6 +2,7 @@
 
 namespace helpers\validators;
 
+use app\Request;
 use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;

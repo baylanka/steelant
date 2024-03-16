@@ -2,6 +2,7 @@
 
 namespace controllers\admin;
 
+use app\Request;
 use controllers\BaseController;
 use helpers\dto\TemplateDTO;
 use helpers\mappers\TemplateStoreRequestMapper;

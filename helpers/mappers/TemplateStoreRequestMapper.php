@@ -2,6 +2,7 @@
 
 namespace helpers\mappers;
 
+use app\Request;
 use helpers\utilities\FileUtility;
 use model\Media;
 use model\Template;
