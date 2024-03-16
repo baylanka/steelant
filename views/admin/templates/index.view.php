@@ -53,10 +53,6 @@
                                         Actions
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item edit-category" data-id="<?=$template->id?>" href="#">Edit</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
                                         <li><a class="dropdown-item delete-category" data-id="<?=$template->id?>" href="#">Delete</a></li>
                                     </ul>
                                 </div>
@@ -100,14 +96,8 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item add-sub-category" data-id="${template.id}" href="#">Add sub category</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item edit-category" data-id="${template.id}" href="#">Edit</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+
+
                                     <li><a class="dropdown-item delete-category" data-id="${template.id}" href="#">Delete</a></li>
 
                                 </ul>
@@ -127,6 +117,10 @@
         try {
             loadButton(btn, "loading ...");
             modal = await loadModal(modalId, path);
+            $(".select2").select2({
+                dropdownParent: $(`#${modalId}`),
+                theme: 'bootstrap-5',
+            });
             resetButton(btn, loadingBtnText);
             $(document).off('storedTemplateEvent');
             $(document).on('storedTemplateEvent', function (event) {

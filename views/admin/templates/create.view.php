@@ -1,3 +1,6 @@
+<?php
+use \model\Template;
+?>
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -17,7 +20,7 @@
                         <img src="#" class="img-thumbnail load-image d-none" width="60" height="60">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row  mb-3">
                     <div class="col-3">
                         <label for="template-file" class="form-label align-middle">Template</label>
                     </div>
@@ -25,6 +28,17 @@
                         <input type="file" accept=".php"
                                name="template" class="form-control w-100"
                                id="template-file" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+                <div class="row  mb-3 ">
+                    <div class="col-3">
+                        <label for="template-type" class="form-label align-middle">Type</label>
+                    </div>
+                    <div class="col-9" id="test">
+                        <select name="type" id="template-type" class="form-control w-100 select2">
+                            <option value="<?=Template::TYPE_CONNECTOR?>">Connector Template</option>
+                            <option value="<?=Template::TYPE_ADD_ON?>">Add on Template</option>
+                        </select>
                     </div>
                 </div>
             </form>

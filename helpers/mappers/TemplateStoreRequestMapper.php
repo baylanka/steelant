@@ -13,7 +13,7 @@ class TemplateStoreRequestMapper
     {
         $template = new Template();
         $template->path = self::getTemplateFilePath($request);
-        $template->type = Template::TYPE_CONNECTOR;
+        $template->type = $request->get('type');
         $template->temp_thumbnail_media = self::getTemplateThumbnailMedia($request);
         return $template;
     }

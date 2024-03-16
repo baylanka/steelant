@@ -15,7 +15,7 @@ class TemplateController extends BaseController
 {
     public function index(Request $request)
     {
-        $templates = TemplateRepository::getAllConnectorTypes();
+        $templates = Template::getAll();
         $data = [
             'heading' => "Templates",
             'templates' => $templates,

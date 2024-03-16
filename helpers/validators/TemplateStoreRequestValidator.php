@@ -11,8 +11,16 @@ class TemplateStoreRequestValidator
 {
     public static function validate(Request $request)
     {
+        self::typeValidation($request);
         self::templateFileValidation($request);
         self::thumbnailValidation($request);
+    }
+
+    private static function typeValidation($request)
+    {
+        if(!ValidatorUtility::required($request->all(), 'type')){
+            ResponseUtility::response("template type is required", 422);
+        }
     }
 
     private static function templateFileValidation($request)
