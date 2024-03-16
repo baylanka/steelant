@@ -4,6 +4,7 @@ namespace model;
 
 use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryMediaRepository;
+use helpers\services\FileService;
 
 class Category extends BaseModel
 {
@@ -177,7 +178,7 @@ class Category extends BaseModel
     {
         $thumbnail = $this->getThumbnail($force);
         if(is_null($thumbnail)){
-            return assets("img/admin/no-image.png");
+            return FileService::getNoImage();
         }
         $fullPath = "storage/" . $thumbnail->path;
         return assets($fullPath);
@@ -195,7 +196,7 @@ class Category extends BaseModel
     {
         $banner = $this->getBanner($force);
         if(is_null($banner)){
-            return assets("img/admin/no-image.png");
+            return FileService::getNoImage();
         }
 
         $fullPath = "storage/" . $banner->path;
