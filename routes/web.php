@@ -2,24 +2,9 @@
 global $app;
 
 //App routes
-require_once basePath("routes/assets/app.route.php");
+require_once basePath("routes/assets/app.web.php");
 //Admin routes
-require_once basePath("routes/assets/admin.route.php");
-
-
-$app->get('/admin/pages',  ["admin\PageController", "index"]);
-
-
-
-$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
-
-
-
-
-
-
-
-
+require_once basePath("routes/assets/admin.web.php");
 
 
 $app->get('/',  ["user\HomeController", "connectors"]);
