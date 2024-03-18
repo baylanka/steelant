@@ -6,8 +6,8 @@ use app\Request;
 use controllers\BaseController;
 use helpers\dto\TemplateDTO;
 use helpers\mappers\TemplateStoreRequestMapper;
-use helpers\repositories\TemplateRepository;
 use helpers\utilities\ResponseUtility;
+use helpers\validators\TemplateDeleteRequestValidator;
 use helpers\validators\TemplateStoreRequestValidator;
 use model\Template;
 
@@ -64,6 +64,19 @@ class TemplateController extends BaseController
 
     public function destroy(Request $request)
     {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            TemplateDeleteRequestValidator::validate($request);
+            $db->beginTransaction();
+            Template::deleteById($request->get('id'));
+            $db->commit();
+            parent::response("Successfully deleted",);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[
+                $ex->getTraceAsString()
+            ],422);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace model;
 
 use helpers\services\FileService;
+use helpers\utilities\FileUtility;
 use model\BaseModel;
 class Template extends BaseModel
 {
@@ -12,8 +13,7 @@ class Template extends BaseModel
     public string $type;
     public int $thumbnail_media_id;
     public ?Media $temp_thumbnail_media;
-//    public ?string $temp_template_file_tracker;
-//    public ?string $temp_thumbnail_media_tracker;
+
     const TYPE_CONNECTOR = 1;
     const TYPE_ADD_ON = 2;
 
@@ -83,5 +83,23 @@ class Template extends BaseModel
 
         unset($this->temp_thumbnail_media);
         return $this;
+    }
+
+    public function isDeletable()
+    {
+        return !CategoryContent::existsBy(['template_id'=>$this->id]);
+    }
+
+    public static function deleteById(int $id)
+    {
+        $template = Template::getById($id);
+        //delete template (php) issue
+        $templatePath = storage_path("/public/" .$template->path);
+        FileUtility::deleteFile($templatePath);
+        // delete template entry
+        $template->delete();
+
+        //delete thumbnail
+        Media::deleteById($template->thumbnail_media_id);
     }
 }

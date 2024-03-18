@@ -2,6 +2,8 @@
 
 namespace helpers\repositories;
 
+use helpers\utilities\FileUtility;
+use model\Media;
 use model\Template;
 
 class TemplateRepository extends Template
@@ -10,8 +12,8 @@ class TemplateRepository extends Template
     {
         $sql = "
             SELECT * FROM templates
-                where type = :type
-                order by created_at DESC;
+                WHERE type = :type
+                ORDER BY created_at DESC;
             ";
         $params = ['type'=> Template::TYPE_CONNECTOR];
         return Template::query($sql,$params)->get();

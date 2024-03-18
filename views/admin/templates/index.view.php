@@ -53,7 +53,7 @@
                                         Actions
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item delete-category" data-id="<?=$template->id?>" href="#">Delete</a></li>
+                                        <li><a class="dropdown-item delete-template" data-id="<?=$template->id?>" href="#">Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -98,7 +98,7 @@
                                 <ul class="dropdown-menu">
 
 
-                                    <li><a class="dropdown-item delete-category" data-id="${template.id}" href="#">Delete</a></li>
+                                    <li><a class="dropdown-item delete-template" data-id="${template.id}" href="#">Delete</a></li>
 
                                 </ul>
                             </div>
@@ -139,105 +139,28 @@
     });
 
 
-    $(document).on('click', 'a.add-sub-category', async function (event) {
-        event.preventDefault();
-        const trTag = $(this).closest('tr');
-        const categoryId = $(this).attr("data-id");
-        const path = `admin/categories/sub/store?parent_id=${categoryId}`;
-        let modal;
-        try {
-            modal = await loadModal(modalId, path);
-            $(document).off('storeSubCategorySuccessEvent');
-            $(document).on('storeSubCategorySuccessEvent', function (event) {
-                const category = event.originalEvent.detail.category;
-                const categoryRowElement = getTemplateRow(category);
-                trTag.after(categoryRowElement);
-                modal.hide();
-            });
 
-        } catch (err) {
-            toast.error("add sub category functionality is broken down. " + err);
-        }
 
-    });
-
-    $(document).on('click', 'a.delete-category', async function (event) {
+    $(document).on('click', 'a.delete-template', async function (event) {
         event.preventDefault();
         const notice = `
-                <p class="text-danger"><b>If you proceed with deleting the category:<b><p>
-                <ol class="text-start text-primary">
-                    <li>It cannot be undone.</li>
-                    <li>Subcategories will be deleted if they exist.</li>
-                    <li>All connectors and add-on contents of this category or its subcategories will also be deleted if they exist.</li>
-                </ol>
+                Before delete the template, system will check its usage. If it is not used. then only it can be deleted!
             `;
         if (!await isConfirmToProcess(notice, 'warning')) {
             return;
         }
 
-        const categoryId = $(this).attr('data-id');
+        const templateId = $(this).attr('data-id');
         const data = {};
-        const path = `${getBaseUrl()}/admin/categories/sub/destroy?id=${categoryId}`;
+        const path = `${getBaseUrl()}/admin/templates/destroy?id=${templateId}`;
         try {
             const response = await makeAjaxCall(path, data, 'DELETE');
-            removeCategories(categoryId);
+            $(this).closest('tr').remove()
             toast.success(response.message);
         } catch (err) {
             toast.error(err);
         }
     });
-
-    $(document).on('click', '.edit-category', async function(e){
-        e.preventDefault();
-        const categoryId =  $(this).attr("data-id");
-        const path = `admin/categories/edit?id=${categoryId}`;
-        const trTag = $(this).closest('tr');
-        let modal;
-        try {
-            modal = await loadModal(modalId, path);
-            $(document).off('updateCategorySuccessEvent');
-            $(document).on('updateCategorySuccessEvent', function (event) {
-                modal.hide();
-                const category = event.originalEvent.detail.category;
-                const categoryRowElement = getTemplateRow(category, true);
-                const trTagParent = trTag.prev();
-                if(trTagParent.length === 0){
-                    const tbody = trTag.closest('tbody');
-                    trTag.remove();
-                    tbody.prepend(categoryRowElement);
-                    return
-
-                }
-
-                trTag.remove();
-                trTagParent.after(categoryRowElement);
-
-            });
-
-        } catch (err) {
-            toast.error("edit category functionality is broken down. ");
-        }
-
-    });
-
-    function removeCategories(categoryId) {
-        const categoryRow = $(`tr[data-id="${categoryId}"]`);
-        if (categoryRow.length > 0) {
-            categoryRow.remove();
-        }
-
-
-        const children = $(`tr[data-parentid="${categoryId}"]`);
-        if (children.length === 0) {
-            return;
-        }
-        children.each(function () {
-            const childCategoryId = $(this).attr('data-id');
-            removeCategories(childCategoryId);
-            $(this).remove();
-        });
-
-    }
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

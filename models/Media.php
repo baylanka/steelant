@@ -2,6 +2,7 @@
 
 namespace model;
 
+use helpers\utilities\FileUtility;
 use model\BaseModel;
 
 class Media extends BaseModel
@@ -27,5 +28,13 @@ class Media extends BaseModel
         $val = ["category_id"=>$id];
         $db = $container->resolve('DB');
         return json_decode(json_encode($db->queryAsArray($sql, $val)->get()));
+    }
+
+    public static function deleteById(int $id)
+    {
+        $media = self::getById($id);
+        $mediaPath = storage_path("public/" . $media->path);
+        FileUtility::deleteFile($mediaPath);
+        $media->delete();
     }
 }
