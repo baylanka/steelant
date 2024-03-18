@@ -9,6 +9,7 @@ use helpers\mappers\TemplateStoreRequestMapper;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\TemplateDeleteRequestValidator;
 use helpers\validators\TemplateStoreRequestValidator;
+use helpers\validators\TemplateTypeUpdateRequestValidator;
 use model\Template;
 
 class TemplateController extends BaseController
@@ -54,12 +55,32 @@ class TemplateController extends BaseController
 
     public function edit(Request $request)
     {
-
+        $data = [
+            'template' => Template::getById($request->get('id'))
+        ];
+        return view('admin/templates/edit.view.php', $data);
     }
 
     public function update(Request $request)
     {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            TemplateTypeUpdateRequestValidator::validate($request);
+            $db->beginTransaction();
+            $template = Template::getById($request->get('id'));
+            $template->type = $request->get('type');
+            $template->save();
+            $db->commit();
+            $templateDTO = new TemplateDTO($template);
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully updated",
+                "data" => $templateDTO
+            ]);
+        } catch (\Exception $ex) {
+            $db->rollBack();
+            parent::response($ex->getMessage(), [], 422);
+        }
     }
 
     public function destroy(Request $request)

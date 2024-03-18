@@ -10,7 +10,7 @@ class Template extends BaseModel
     protected string $table = "templates";
     public int $id;
     public string $path;
-    public string $type;
+    public int $type;
     public int $thumbnail_media_id;
     public ?Media $temp_thumbnail_media;
 
@@ -77,11 +77,13 @@ class Template extends BaseModel
 
     public function save()
     {
-        $thumbnail = $this->temp_thumbnail_media->save();
-        $this->thumbnail_media_id = $thumbnail->id;
-        parent::save();
+        if(isset($this->temp_thumbnail_media)){
+            $thumbnail = $this->temp_thumbnail_media->save();
+            $this->thumbnail_media_id = $thumbnail->id;
+            unset($this->temp_thumbnail_media);
+        }
 
-        unset($this->temp_thumbnail_media);
+        parent::save();
         return $this;
     }
 

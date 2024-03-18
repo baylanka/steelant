@@ -20,6 +20,10 @@ $app->post('/admin/categories/update', ["admin\CategoryController", "update"]);
 $app->get('/admin/templates', ["admin\TemplateController", "index"]);
 $app->get('/admin/templates/create', ["admin\TemplateController", "create"]);
 $app->post('/admin/templates/store', ["admin\TemplateController", "store"]);
+$app->get('/admin/templates/type/edit', ["admin\TemplateController", "edit"]);
+$app->post('/admin/templates/type/update', ["admin\TemplateController", "update"]);
+$app->delete('/admin/templates/destroy', ["admin\TemplateController", "destroy"]);
+
 
 //Page routes
 $app->get('/admin/pages',  ["admin\PageController", "index"]);

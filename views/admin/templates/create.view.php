@@ -36,6 +36,7 @@ use \model\Template;
                     </div>
                     <div class="col-9" id="test">
                         <select name="type" id="template-type" class="form-control w-100 select2">
+                            <option value="" selected>Select a type</option>
                             <option value="<?=Template::TYPE_CONNECTOR?>">Connector Template</option>
                             <option value="<?=Template::TYPE_ADD_ON?>">Add on Template</option>
                         </select>
@@ -70,7 +71,7 @@ use \model\Template;
 
 
     $('button#store-btn').off('click');
-    $('button#store-btn').on('click', async function storeMainCategory(e) {
+    $('button#store-btn').on('click', async function storeTemplate(e) {
         e.preventDefault();
         const btn = $(this);
         const btnLabel = btn.text();

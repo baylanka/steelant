@@ -12,7 +12,13 @@ let isEmpty = str => {
 };
 
 let makeAjaxCall = (url, data = {}, method = 'POST') => {
-    const params = $.param(data);
+    let params;
+    if(typeof data === 'object' ){
+         params = $.param(data);
+    }else{
+         params = data;
+    }
+
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: method,

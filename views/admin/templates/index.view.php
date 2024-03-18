@@ -43,7 +43,7 @@
                                      title="<?= $template->getThumbnailImageName() ?>"
                                      width="250"/>
                             </td>
-                            <td style="width: 2%">
+                            <td>
                                 <span class="badge text-bg-info"><?=$template->getTypeDescription()?></span>
                             </td>
                             <td>
@@ -54,6 +54,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item delete-template" data-id="<?=$template->id?>" href="#">Delete</a></li>
+                                        <li><a class="dropdown-item edit-template" data-id="<?=$template->id?>" href="#">Edit Type</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -71,14 +72,13 @@
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
-    function getTemplateRow(template) {
-        let existingRowCount = $('#template-tbl tbody tr.template-row').length;
+    function getTemplateRow(template, rowNo) {
         return `
                 <tr
-                    class="align-middle text-center"
+                    class="align-middle text-center template-row"
                     data-id="${template.id}"
                 >
-                        <td>${existingRowCount+1}</td>
+                        <td>${rowNo}</td>
                         <td>
                             <img class="img-thumbnail"
                                  src="${template.thumbnail_url}"
@@ -96,10 +96,8 @@
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-
-
                                     <li><a class="dropdown-item delete-template" data-id="${template.id}" href="#">Delete</a></li>
-
+                                    <li><a class="dropdown-item edit-template" data-id="${template.id}" href="#">Edit Type</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -117,7 +115,7 @@
         try {
             loadButton(btn, "loading ...");
             modal = await loadModal(modalId, path);
-            $(".select2").select2({
+            $(`#${modalId} .select2`).select2({
                 dropdownParent: $(`#${modalId}`),
                 theme: 'bootstrap-5',
             });
@@ -126,7 +124,9 @@
             $(document).on('storedTemplateEvent', function (event) {
                 modal.hide();
                 const template = event.originalEvent.detail.template;
-                const templateRowElement = getTemplateRow(template);
+                let existingRowCount = $('#template-tbl tbody tr.template-row').length;
+                const newRowNo = existingRowCount+1;
+                const templateRowElement = getTemplateRow(template,newRowNo);
                 $('table#template-tbl tbody').append(templateRowElement);
                 const noTemplateAlert = $('.no-template-alert');
                 if(noTemplateAlert.length > 0){
@@ -137,9 +137,6 @@
             toast.error("add template function is broken down. " + err);
         }
     });
-
-
-
 
     $(document).on('click', 'a.delete-template', async function (event) {
         event.preventDefault();
@@ -159,6 +156,40 @@
             toast.success(response.message);
         } catch (err) {
             toast.error(err);
+        }
+    });
+
+    $(document).on('click', 'a.edit-template', async function (event) {
+        let modal;
+        const btn = $(this);
+        const trTag = btn.closest('tr');
+        const templateId = btn.attr('data-id');
+        const path = "admin/templates/type/edit?id=" + templateId;
+        try {
+            modal = await loadModal(modalId, path);
+            $(`#${modalId} .select2`).select2({
+                dropdownParent: $(`#${modalId}`),
+                theme: 'bootstrap-5',
+            });
+            $(document).off('updatedTemplateTypeEvent');
+            $(document).on('updatedTemplateTypeEvent', function (event) {
+                modal.hide();
+                const template = event.originalEvent.detail.template;
+                let existingRowCount = $('#template-tbl tbody tr.template-row').length;
+                const templateRowElement = getTemplateRow(template,existingRowCount);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.append(templateRowElement);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(templateRowElement);
+            });
+        } catch (err) {
+            toast.error("edit template function is broken down. " + err);
         }
     });
 </script>
