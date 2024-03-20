@@ -76,40 +76,21 @@ class CategoryService
         return $array;
     }
 
-    public static function getCategoryHierarchyArrayByLeafCategoryId($id, &$tree=[])
+    public static function getCategoryNameTreeByLeafCategoryId($id)
     {
-        $isInitialCall = empty($tree);
-        if(sizeof(static::$categoryArray) === 0){
-            static::$categoryArray = Category::getAll();
-        }
-
-        foreach (static::$categoryArray as $each)
+        $categoryHierarchy = self::getCategoryTreeFromLeafCategoryId($id);
+        $categoryNameArray = [];
+        foreach ($categoryHierarchy as $category)
         {
-            if($each->id === $id){
-                $tree[LanguagePool::ENGLISH()->getLabel()][] = $each->getNameEn();
-                $tree[LanguagePool::GERMANY()->getLabel()][] = $each->getNameDe();
-                $tree[LanguagePool::FRENCH()->getLabel()][] = $each->getNameFr();
-
-                if(!empty($each->parent_category_id)){
-                    self::getCategoryHierarchyArrayByLeafCategoryId($each->parent_category_id, $tree);
-                }
-                break;
-            }
-
-
+            $categoryNameArray[LanguagePool::ENGLISH()->getLabel()][] = $category->getNameEn();
+            $categoryNameArray[LanguagePool::GERMANY()->getLabel()][] = $category->getNameDe();
+            $categoryNameArray[LanguagePool::FRENCH()->getLabel()][] = $category->getNameFr();
         }
 
-        if(!$isInitialCall){
-           return;
-        }
-
-        $tree[LanguagePool::ENGLISH()->getLabel()] = array_reverse($tree[LanguagePool::ENGLISH()->getLabel()] ?? []);
-        $tree[LanguagePool::GERMANY()->getLabel()] = array_reverse($tree[LanguagePool::GERMANY()->getLabel()] ?? []);
-        $tree[LanguagePool::FRENCH()->getLabel()] = array_reverse($tree[LanguagePool::FRENCH()->getLabel()] ?? []);
-
-        return $tree;
-
+        return $categoryNameArray;
     }
+
+
 
     private static function getChildren(array $categories, $parentCategory)
     {

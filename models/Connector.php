@@ -26,7 +26,7 @@ class Connector extends BaseModel
 
     public function setCategory()
     {
-        if (isset($this->relations['category_tree_array']) && !empty($this->relations['category_tree_array'])) {
+        if (isset($this->relations['category_name_array']) && !empty($this->relations['category_name_array'])) {
             return;
         }
 
@@ -39,34 +39,34 @@ class Connector extends BaseModel
             return;
         }
 
-        $this->relations['category_tree_array'] = CategoryService::getCategoryHierarchyArrayByLeafCategoryId($content->root_category_id);
+        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->root_category_id);
     }
 
     public function getCategoryHierarchyEn()
     {
         $this->setCategory();
-        if (!isset($this->relations['category_tree_array'])) {
+        if (!isset($this->relations['category_name_array'])) {
             return '';
         }
-        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::ENGLISH()->getLabel()]);
+        return implode(' > ', $this->relations['category_name_array'][LanguagePool::ENGLISH()->getLabel()]);
     }
 
     public function getCategoryHierarchyFr()
     {
         $this->setCategory();
-        if (!isset($this->relations['category_tree_array'])) {
+        if (!isset($this->relations['category_name_array'])) {
             return '';
         }
-        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::FRENCH()->getLabel()]);
+        return implode(' > ', $this->relations['category_name_array'][LanguagePool::FRENCH()->getLabel()]);
     }
 
     public function getCategoryHierarchyDe()
     {
         $this->setCategory();
-        if (!isset($this->relations['category_tree_array'])) {
+        if (!isset($this->relations['category_name_array'])) {
             return '';
         }
-        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::GERMANY()->getLabel()]);
+        return implode(' > ', $this->relations['category_name_array'][LanguagePool::GERMANY()->getLabel()]);
     }
 
     public function getCategoryHierarchyByLanguage($lang)
