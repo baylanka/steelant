@@ -12,7 +12,7 @@ class HomeController
     public function connectors(Request $request)
     {
         $categories = Category::getAll();
-        $arrangedCategories = CategoryService::arrangeCategoryTreeView($categories);
+        $arrangedCategories = CategoryService::organizingCategoriesTreeView($categories);
         $data = [
             'heading' => "Category",
             'categories' => $arrangedCategories,

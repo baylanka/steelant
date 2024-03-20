@@ -47,7 +47,7 @@ class CategoryService
         return $childrenCount;
     }
 
-    public static function arrangeCategoryTreeView(array $categories)
+    public static function organizingCategoriesTreeView(array $categories)
     {
         $array = [];
         foreach($categories as $category) {
@@ -61,7 +61,18 @@ class CategoryService
         return $array;
     }
 
-    public static function arrangeCategoryHierarchy(array $categories)
+    /*
+     * return [
+     *      1,
+     *      1.1
+     *      1.1.1
+     *      2,
+     *      2.1,
+     *      2.1.1,
+     *      3
+     * ]
+     */
+    public static function organizeCategoriesByParentCategories(array $categories): array
     {
         $array = [];
         foreach($categories as $category) {
