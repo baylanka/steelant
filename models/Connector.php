@@ -2,6 +2,8 @@
 
 namespace model;
 
+use helpers\pools\LanguagePool;
+use helpers\services\CategoryService;
 use model\BaseModel;
 
 class Connector extends BaseModel
@@ -21,4 +23,59 @@ class Connector extends BaseModel
 
     public string $standard_length_m;
     public string $standard_length_i;
+
+    public function setCategory()
+    {
+        if (isset($this->relations['category_tree_array']) && !empty($this->relations['category_tree_array'])) {
+            return;
+        }
+
+        $content = CategoryContent::getFirstBy([
+            'type' => CategoryContent::TYPE_CONNECTOR,
+            'element_id' => $this->id
+        ]);
+
+        if (!$content) {
+            return;
+        }
+
+        $this->relations['category_tree_array'] = CategoryService::getCategoryHierarchy($content->root_category_id);
+    }
+
+    public function getCategoryHierarchyEn()
+    {
+        $this->setCategory();
+        if (!isset($this->relations['category_tree_array'])) {
+            return '';
+        }
+        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::ENGLISH()->getLabel()]);
+    }
+
+    public function getCategoryHierarchyFr()
+    {
+        $this->setCategory();
+        if (!isset($this->relations['category_tree_array'])) {
+            return '';
+        }
+        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::FRENCH()->getLabel()]);
+    }
+
+    public function getCategoryHierarchyDe()
+    {
+        $this->setCategory();
+        if (!isset($this->relations['category_tree_array'])) {
+            return '';
+        }
+        return implode(' > ', $this->relations['category_tree_array'][LanguagePool::GERMANY()->getLabel()]);
+    }
+
+    public function getCategoryHierarchyByLanguage($lang)
+    {
+        return match ($lang) {
+            LanguagePool::ENGLISH()->getLabel() => $this->getCategoryHierarchyEn(),
+            LanguagePool::GERMANY()->getLabel() => $this->getCategoryHierarchyDe(),
+            LanguagePool::FRENCH()->getLabel() => $this->getCategoryHierarchyFr(),
+            default => $this->getCategoryHierarchyDe(),
+        };
+    }
 }
