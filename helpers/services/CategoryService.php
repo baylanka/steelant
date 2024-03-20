@@ -76,7 +76,7 @@ class CategoryService
         return $array;
     }
 
-    public static function getCategoryHierarchy($id, &$tree=[])
+    public static function getCategoryHierarchyArrayByLeafCategoryId($id, &$tree=[])
     {
         $isInitialCall = empty($tree);
         if(sizeof(static::$categoryArray) === 0){
@@ -91,7 +91,7 @@ class CategoryService
                 $tree[LanguagePool::FRENCH()->getLabel()][] = $each->getNameFr();
 
                 if(!empty($each->parent_category_id)){
-                    self::getCategoryHierarchy($each->parent_category_id, $tree);
+                    self::getCategoryHierarchyArrayByLeafCategoryId($each->parent_category_id, $tree);
                 }
                 break;
             }
