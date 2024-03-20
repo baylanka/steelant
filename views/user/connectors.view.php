@@ -1,186 +1,162 @@
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
-<div class="jumbotron w-100 p-0 m-0">
+<div class="jumbotron">
 
     <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
 
-    <div>
+    <!--categories section-->
+    <div class="row w-100 p-5">
 
+        <div class="col-12 col-md-4 d-flex p-0">
+            <div class="col-12 col-md-12 row" style="gap:1.8%;">
 
-        <div class="columns m-5">
-
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">Earthwork</p>
-                            <dt class="color-blue mb-2">LARSSEN</dt>
-                            <dd><a href="#" class="link color-black">Corner connectors</a></dd>
-                            <dd><a href="#" class="link color-black">Omega corner connectors</a></dd>
-                            <dd><a href="#" class="link color-black">T connectors</a></dd>
-                            <dd><a href="#" class="link color-black">Cross connectors</a></dd>
-                            <dd><a href="#" class="link color-black">Weld-on connectors</a></dd>
-
-                            <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
-                            <dd><a href="#" class="link color-black">US Corner connectors</a></dd>
-                            <dd><a href="#" class="link color-black">US T connectors</a></dd>
-                            <dd><a href="#" class="link color-black">US Cross connectors</a></dd>
-                            <dd><a href="#" class="link color-black">MF connectors, weld-ons?</a></dd>
-
-                            <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
-                            <dd><a href="#" class="link color-black">CF corner connector</a></dd>
-                            <dd><a href="#" class="link color-black">CF weld-on connector</a></dd>
-                        </dl>
-                    </div>
-                    <div class="col-2"></div>
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
                 </div>
-            </div>
+                <div class="col-7">
+                    <dl>
+                        <p class="category-name">Coff erdam</p>
+                        <dt class="color-blue mb-2">LARSSEN</dt>
+                        <dd><a href="#" class="link">Corner connectors</a></dd>
+                        <dd><a href="#" class="link">Omega corner connectors</a></dd>
+                        <dd><a href="#" class="link">T connectors</a></dd>
+                        <dd><a href="#" class="link">Cross connectors</a></dd>
+                        <dd><a href="#" class="link">Weld-on connectors</a></dd>
 
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">Pipe pile combined walls</p>
-                            <dd><a href="#" class="link color-black">L (Larssen)</a></dd>
-                            <dd><a href="#" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="#" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="#" class="link color-black">MDF (Ball + Socket)</a></dd>
-                            <dd><a href="#" class="link color-black">CF (Cold Formed)</a></dd>
-                        </dl>
+                        <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
+                        <dd><a href="#" class="link">US Corner connectors</a></dd>
+                        <dd><a href="#" class="link">US T connectors</a></dd>
+                        <dd><a href="#" class="link">US Cross connectors</a></dd>
+                        <dd><a href="#" class="link">MF connectors, weld-ons?</a></dd>
 
-                    </div>
-                    <div class="col-2"></div>
+                        <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
+                        <dd><a href="#" class="link">CF corner connector</a></dd>
+                        <dd><a href="#" class="link">CF weld-on connector</a></dd>
+                    </dl>
+
                 </div>
+                <div class="col-2"></div>
 
             </div>
+        </div>
 
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">Cell structures</p>
-                            <dd><a href="#" class="link color-black">FSC</a></dd>
-                        </dl>
+        <div class="col-12 col-md-8 d-flex flex-wrap">
 
-                    </div>
-                    <div class="col-2"></div>
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
+
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
                 </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">Pipe pile steel walls</p>
+                        <dd><a href="#" class="link">MF</a></dd>
+                        <dd><a href="#" class="link">MDF</a></dd>
+                        <dd><a href="#" class="link">LPB</a></dd>
+                        <dd><a href="#" class="link">FD</a></dd>
+                    </dl>
+
+                </div>
+                <div class="col-2"></div>
 
             </div>
 
-            <div class="box">
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">H-pile steel walls</p>
-                            <dd><a href="#" class="link color-black">MF</a></dd>
-                            <dd><a href="#" class="link color-black">MDF</a></dd>
-                            <dd><a href="#" class="link color-black">FD</a></dd>
-                        </dl>
-
-                    </div>
-                    <div class="col-2"></div>
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
                 </div>
-            </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">H-pile steel walls</p>
+                        <dd><a href="#" class="link">MF</a></dd>
+                        <dd><a href="#" class="link">MDF</a></dd>
+                        <dd><a href="#" class="link">FD</a></dd>
+                    </dl>
 
-            <div class="box">
-
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">Pipe pile steel walls</p>
-                            <dd><a href="#" class="link color-black">MF</a></dd>
-                            <dd><a href="#" class="link color-black">MDF</a></dd>
-                            <dd><a href="#" class="link color-black">LPB</a></dd>
-                            <dd><a href="#" class="link color-black">FD</a></dd>
-                        </dl>
-
-                    </div>
-                    <div class="col-2"></div>
                 </div>
+                <div class="col-2"></div>
 
             </div>
 
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">For DTH driving method</p>
-                            <dd><a href="#" class="link color-black">MF DTH</a></dd>
-                        </dl>
-                    </div>
-                    <div class="col-2"></div>
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
+
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
                 </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">For DTH driving method</p>
+                        <dd><a href="#" class="link">MF DTH</a></dd>
+                    </dl>
+                </div>
+                <div class="col-2"></div>
 
             </div>
 
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">H-pile combined walls</p>
-                            <dd><a href="#" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="#" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="#" class="link color-black">MDF (Ball + Socket)</a></dd>
-                        </dl>
 
-                    </div>
-                    <div class="col-2"></div>
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
+
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
                 </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">H-pile combined walls</p>
+                        <dd><a href="#" class="link">LPB (Larssen)</a></dd>
+                        <dd><a href="#" class="link">MF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link">MDF (Ball + Socket)</a></dd>
+                    </dl>
+
+                </div>
+                <div class="col-2"></div>
 
             </div>
 
-            <div class="box">
-                <div class="d-flex">
-                    <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
-                    </div>
-                    <div class="col-7">
-                        <dl>
-                            <p class="category-name">Pipe pile combined walls</p>
-                            <dd><a href="#" class="link color-black">L (Larssen)</a></dd>
-                            <dd><a href="#" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="#" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="#" class="link color-black">MDF (Ball + Socket)</a></dd>
-                            <dd><a href="#" class="link color-black">CF (Cold Formed)</a></dd>
-                        </dl>
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
-                    </div>
-                    <div class="col-2"></div>
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
                 </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">Pipe pile combined walls</p>
+                        <dd><a href="#" class="link">L (Larssen)</a></dd>
+                        <dd><a href="#" class="link">LPB (Larssen)</a></dd>
+                        <dd><a href="#" class="link">MF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link">MDF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link">CF (Cold Formed)</a></dd>
+                    </dl>
+
+                </div>
+                <div class="col-2"></div>
+
+            </div>
+
+            <div class="col-12 col-md-6 col-xxl-6 row gap-3">
+
+                <div class="col-3">
+                    <img src="<?= assets("themes/user/img/category/Cell-structures.png") ?>" height="60"/>
+                </div>
+                <div class="col-7 p-0">
+                    <dl>
+                        <p class="category-name">Cell structures</p>
+                        <dd><a href="#" class="link">FSC</a></dd>
+                    </dl>
+
+                </div>
+                <div class="col-2"></div>
 
             </div>
 
         </div>
 
-
     </div>
+    <!--categories section-->
 
 
-    <div class="row w-100 p-5">
+    <div class="row w-100 mb-5" id="gallery-container">
 
 
         <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
@@ -217,9 +193,7 @@
 
 
     </div>
-
-
 </div>
-<!--body section-->
+
 
 <?php require_once "layout/end.layout.php" ?>

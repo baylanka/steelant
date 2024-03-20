@@ -2,7 +2,12 @@
 global $app;
 
 $app->get('/admin/dashboard',  ["admin\DashboardController", "index"]);
+
+//Connector routes
 $app->get('/admin/connectors',  ["admin\ConnectorController", "index"]);
+$app->get('/admin/connectors/create',  ["admin\ConnectorController", "create"]);
+
+
 
 //Category routes
 $app->get('/admin/categories', ["admin\CategoryController", "index"]);

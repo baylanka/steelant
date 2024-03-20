@@ -19,7 +19,8 @@ class ConnectorController extends BaseController
 
     public function create(Request $request)
     {
-
+        $data = [];
+        return view("admin/connectors/create.view.php", $data);
     }
 
     public function store(Request $request)
