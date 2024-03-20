@@ -53,13 +53,13 @@ class Template extends BaseModel
 
     public function getTemplateFilePath(): string
     {
-        $storagePath = "/public/template_assets/" . $this->path;
+        $storagePath = "/public/" . $this->path;
         return storage_path($storagePath);
     }
 
     public function getTemplateFileContent()
     {
-        $storagePath = "/public/template_assets/" . $this->path;
+        $storagePath = "/public/" . $this->path;
         return file_get_contents(storage_path($storagePath));
     }
 
