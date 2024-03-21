@@ -18,6 +18,10 @@ class BaseModel
     public static function insert(array $data)
     {
         global $container;
+
+        $data['created_at'] = DateTimeUtility::getCurrentDateTime();
+        $data['updated_at'] = DateTimeUtility::getCurrentDateTime();
+
         $tableName = static::getTableName();
 
         $columns = implode(", ", array_keys($data));
