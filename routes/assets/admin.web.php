@@ -1,7 +1,6 @@
 <?php
 global $app;
 
-$app->get('/admin/dashboard',  ["admin\DashboardController", "index"]);
 
 //Connector routes
 $app->get('/admin/connectors',  ["admin\ConnectorController", "index"]);

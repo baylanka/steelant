@@ -6,24 +6,65 @@
 
 <div class="row">
     <div class="card mb-4">
-        <div class="card-header">
-            <h3 class="card-title"></h3>
-            <div class="float-end">
-                <button class="btn btn-sm btn-primary" type="button" id="create-connector">Create Connector
+        <div class="card-header d-flex">
+
+            <div class="w-25 d-flex gap-3 align-middle">
+                <a href="?tableLang=de">
+                    <img src="<?= assets("img/flags/de.png") ?>" height="25" class="flag"/>
+                </a>
+                <a href="?tableLang=uk">
+                    <img src="<?= assets("img/flags/uk.png") ?>" height="25" class="flag"/>
+                </a>
+                <a href="?tableLang=fr">
+                    <img src="<?= assets("img/flags/fr.png") ?>" height="25" class="flag selected-flag"/>
+                </a>
+                <a href="?tableLang=us">
+                    <img src="<?= assets("img/flags/us.png") ?>" height="25" class="flag"/>
+                </a>
+            </div>
+
+
+            <form method="GET" class="d-flex justify-content-center w-50">
+                <div class="input-group mb-3 w-50">
+                    <input type="search" class="form-control" placeholder="Search" aria-label="search"
+                           aria-describedby="search" name="search"
+                           value="<?= isset($_GET["search"]) ? $_GET["search"] : "" ?>" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+
+
+            <div class="w-25 d-flex justify-content-end align-middle">
+                <button class="btn btn-sm btn-primary align-self-start" type="button" id="create-connector">Create
+                    Connector
                 </button>
             </div>
+
+
         </div>
         <div class="card-body p-3">
             <table class="table table-striped">
                 <thead>
-                <tr class="text-center">
-                    <th>Category</th>
-                    <th>Name</th>
-                    <th>Steel grade</th>
-                    <th>Steel thickness</th>
-                    <th>Standard length</th>
-                    <th>Weight</th>
-                    <!--                    <th>Max. tensile strength</th>-->
+                <tr>
+                    <th class="text-left">
+                        Category
+                        <a href="#" class="btn btn-light m-1"><i class="bi bi-arrow-down-up"></i></a>
+                    </th>
+
+                    <th class="text-left">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>All</option>
+                            <option value="1">published</option>
+                            <option value="2">non-published</option>
+                        </select>
+                    </th>
+                    <th class="text-center">Name <a href="#" class="btn btn-light m-1"><i
+                                    class="bi bi-arrow-down-up"></i></a></th>
+                    <th class="text-center">Steel grade</th>
+                    <th class="text-center">Steel thickness</th>
+                    <th class="text-center">Standard length</th>
+                    <th class="text-center">Weight</th>
+                    <!--<th>Max. tensile strength</th>-->
                     <th style="width: 40px"></th>
                 </tr>
                 </thead>
@@ -31,6 +72,7 @@
 
                 <tr class="align-middle">
                     <td class="text-left">Earthwork > LARSSEN > Corner connectors</td>
+                    <td class="text-left"><span class="badge text-bg-success">published</span></td>
                     <td class="text-center">LV200</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">9 mm</td>
@@ -66,6 +108,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Earthwork > LARSSEN > Omega corner</td>
+                    <td class="text-left"><span class="badge text-bg-success">published</span></td>
                     <td class="text-center">MF63</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">12 mm</td>
@@ -101,6 +144,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Earthwork > BALL + SOCKET > US Corner</td>
+                    <td class="text-left"><span class="badge text-bg-success">published</span></td>
                     <td class="text-center">LLS170</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">8 mm</td>
@@ -136,6 +180,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Pipe pile steel walls > MF</td>
+                    <td class="text-left"><span class="badge text-bg-success">published</span></td>
                     <td class="text-center">MF180a</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">12 mm</td>
@@ -177,6 +222,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Pipe pile steel walls > MDF</td>
+                    <td class="text-left"><span class="badge text-bg-danger">non-published</span></td>
                     <td class="text-center">LLS135</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">9 mm</td>
@@ -212,6 +258,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Pipe pile steel walls > FD</td>
+                    <td class="text-left"><span class="badge text-bg-danger">non-published</span></td>
                     <td class="text-center">LLS90</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">9 mm</td>
@@ -247,6 +294,7 @@
                 </tr>
                 <tr class="align-middle">
                     <td class="text-left">Pipe pile steel walls > LPB</td>
+                    <td class="text-left"><span class="badge text-bg-success">published</span></td>
                     <td class="text-center">MF75</td>
                     <td class="text-center">S355J2</td>
                     <td class="text-center">12 mm</td>
@@ -619,19 +667,28 @@
                                                 <dd class="custom-dd">Standard length: 11.8 m +0/-100 mm</dd>
                                                 <dd class="custom-dd">Weight: 25.3 kg/m</dd>
 
-                                                <dd class="my-5">ULTRA-S corner secti on can be driven individually up to
+                                                <dd class="my-5">ULTRA-S corner secti on can be driven individually up
+                                                    to
                                                     a length of 11.8 meters, provided that there are no weld
-                                                    joints.</dd>
+                                                    joints.
+                                                </dd>
 
-                                                <dd class="custom-dd"><a href="#" class="link color-black">Data sheet (PDF)</a></dd>
-                                                <dd class="custom-dd"><a href="#" class="link color-black">DWG ULTRA-S</a></dd>
-                                                <dd class="custom-dd"><a href="#" class="link color-black">DWG connector name 02</a></dd>
-                                                <dd class="custom-dd"><a href="#" class="link color-black">Test report (PDF)</a></dd>
-                                                <dd class="custom-dd"><a href="#" class="link color-black">FEM (PDF)</a></dd>
-                                                <dd class="custom-dd"><a href="#" class="link color-black">Request this connector</a></dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">Data sheet
+                                                        (PDF)</a></dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">DWG
+                                                        ULTRA-S</a></dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">DWG connector
+                                                        name 02</a></dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">Test report
+                                                        (PDF)</a></dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">FEM (PDF)</a>
+                                                </dd>
+                                                <dd class="custom-dd"><a href="#" class="link color-black">Request this
+                                                        connector</a></dd>
                                                 <dd class="custom-dd d-flex align-middle gap-3">
                                                     <a href="#" class="link color-black">Remember this connector</a>
-                                                    <img class="align-self-center" src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
+                                                    <img class="align-self-center"
+                                                         src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
                                                 </dd>
 
                                             </dl>
@@ -642,19 +699,23 @@
 
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                                     <span class="color-blue">Corner connector</span><br>
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                                                 </div>
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                                     <span class="color-blue">Larssen U</span><br>
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
                                                 </div>
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                                     <span class="color-blue">Larssen Z</span><br>
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
                                                 </div>
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                                     <span class="color-blue">Larssen Hat-type</span><br>
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
                                                 </div>
 
                                             </div>
@@ -663,10 +724,12 @@
 
 
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                                                 </div>
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                                    <img class="img-fluid" src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
+                                                    <img class="img-fluid"
+                                                         src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
                                                 </div>
 
 
@@ -720,8 +783,6 @@
             resetButton(btn, loadingBtnText);
         }
     });
-
-
 
 
 </script>
