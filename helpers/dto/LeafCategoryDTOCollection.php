@@ -6,7 +6,7 @@ use helpers\services\CategoryService;
 
 class LeafCategoryDTOCollection
 {
-    public array $collection;
+    private array $collection;
     public function __construct($categories, $lang='de')
     {
         $this->setCollection($categories, $lang);
@@ -18,5 +18,10 @@ class LeafCategoryDTOCollection
         foreach ($categoriesContainer as $categoryGroup){
             $this->collection[] = new LeafCategoryDTO($categoryGroup, $lang);
         }
+    }
+
+    public function getCollection()
+    {
+        return $this->collection;
     }
 }
