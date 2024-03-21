@@ -101,7 +101,37 @@ class CategoryService
         return $categoryNameArray;
     }
 
+    /*
+     * return [
+     *      [
+     *        (obj) 1
+     *        (obj) 1.1
+     *        (obj) 1.1.1
+     *      ],
+     *      [
+     *        (obj) 1
+     *        (obj) 1.1
+     *        (obj) 1.1.2
+     *      ],
+     *      [
+     *        (obj) 1
+     *        (obj) 1.2
+     *        (obj) 1.2.1
+     *      ]
+     * ]
+     */
 
+    public static function groupLeafCategoriesAssociateWithParents($categories)
+    {
+        $categories = self::organizingCategoriesTreeView($categories);
+        $categoryArr = [];
+        foreach ($categories as $category){
+            $collectedArray = self::collectLeafCategories($category);
+            $categoryArr = array_merge($categoryArr, $collectedArray);
+        }
+
+        return $categoryArr;
+    }
 
     private static function getChildren(array $categories, $parentCategory)
     {
@@ -135,6 +165,26 @@ class CategoryService
         return $children;
     }
 
+    private static function collectLeafCategories($category, &$collector=[], $collectorIndex=0)
+    {
+        $collector[$collectorIndex][] = $category;
 
+        $children = $category->getChildren();
+        $noOfChildren = sizeof($children);
+
+        foreach ($children as $childIndex => $child){
+
+            if(!empty($noOfChildren)){
+                self::collectLeafCategories($child, $collector, $collectorIndex);
+            }
+
+            if($childIndex < ($noOfChildren-1)){
+                $collectorIndex++;
+                $collector[$collectorIndex][] = $category;
+            }
+        }
+
+        return $collector;
+    }
 
 }
