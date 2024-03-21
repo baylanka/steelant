@@ -97,6 +97,22 @@ body {
     color: var(--cyan) !important;
 }
 
+.selected-flag{
+    border-radius: 50%;
+    box-shadow: #8d8d8d 1px 1px 10px;
+    transform: scale(1.4);
+}
+
+
+.selected-flag::before{
+    content:"hi";
+
+}
+.flag:hover{
+    transform: scale(1.2);
+}
+
+
 .color-blue {
     color: var(--blue) !important;
 }
