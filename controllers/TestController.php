@@ -3,6 +3,9 @@
 namespace controllers;
 
 use app\Request;
+use helpers\dto\LeafCategoryDTOCollection;
+use helpers\services\CategoryService;
+use model\Category;
 use model\Connector;
 
 
@@ -11,11 +14,9 @@ class TestController extends BaseController
 {
     public function test(Request $request)
     {
-       $connector = Connector::getById(1);
-       dd([
-           $connector->getCategoryHierarchyByLanguage('en'),
-           $connector->getCategoryHierarchyByLanguage('fr'),
-       ]);
+        $categories = Category::getAll();
+        $categoryCollection = new LeafCategoryDTOCollection($categories);
+        print_r($categoryCollection);
 
     }
 }
