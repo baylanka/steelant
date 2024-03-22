@@ -7,6 +7,7 @@ use model\Category;
 
 class CategoryService
 {
+    public static array $categoryArray = [];
 
     public static function getCategoryTreeFromLeafCategoryId($id, &$tree=[])
     {
@@ -46,7 +47,7 @@ class CategoryService
         return $childrenCount;
     }
 
-    public static function arrangeCategoryTreeView(array $categories)
+    public static function organizingCategoriesTreeView(array $categories)
     {
         $array = [];
         foreach($categories as $category) {
@@ -60,7 +61,18 @@ class CategoryService
         return $array;
     }
 
-    public static function arrangeCategoryHierarchy(array $categories)
+    /*
+     * return [
+     *      1,
+     *      1.1
+     *      1.1.1
+     *      2,
+     *      2.1,
+     *      2.1.1,
+     *      3
+     * ]
+     */
+    public static function organizeCategoriesByParentCategories(array $categories): array
     {
         $array = [];
         foreach($categories as $category) {
@@ -73,6 +85,52 @@ class CategoryService
         }
 
         return $array;
+    }
+
+    public static function getCategoryNameTreeByLeafCategoryId($id)
+    {
+        $categoryHierarchy = self::getCategoryTreeFromLeafCategoryId($id);
+        $categoryNameArray = [];
+        foreach ($categoryHierarchy as $category)
+        {
+            $categoryNameArray[LanguagePool::ENGLISH()->getLabel()][] = $category->getNameEn();
+            $categoryNameArray[LanguagePool::GERMANY()->getLabel()][] = $category->getNameDe();
+            $categoryNameArray[LanguagePool::FRENCH()->getLabel()][] = $category->getNameFr();
+        }
+
+        return $categoryNameArray;
+    }
+
+    /*
+     * return [
+     *      [
+     *        (obj) 1
+     *        (obj) 1.1
+     *        (obj) 1.1.1
+     *      ],
+     *      [
+     *        (obj) 1
+     *        (obj) 1.1
+     *        (obj) 1.1.2
+     *      ],
+     *      [
+     *        (obj) 1
+     *        (obj) 1.2
+     *        (obj) 1.2.1
+     *      ]
+     * ]
+     */
+
+    public static function groupLeafCategoriesAssociateWithParents($categories)
+    {
+        $categories = self::organizingCategoriesTreeView($categories);
+        $categoryArr = [];
+        foreach ($categories as $category){
+            $collectedArray = self::collectLeafCategories($category);
+            $categoryArr = array_merge($categoryArr, $collectedArray);
+        }
+
+        return $categoryArr;
     }
 
     private static function getChildren(array $categories, $parentCategory)
@@ -107,6 +165,26 @@ class CategoryService
         return $children;
     }
 
+    private static function collectLeafCategories($category, &$collector=[], $collectorIndex=0)
+    {
+        $collector[$collectorIndex][] = $category;
 
+        $children = $category->getChildren();
+        $noOfChildren = sizeof($children);
+
+        foreach ($children as $childIndex => $child){
+
+            if(!empty($noOfChildren)){
+                self::collectLeafCategories($child, $collector, $collectorIndex);
+            }
+
+            if($childIndex < ($noOfChildren-1)){
+                $collectorIndex++;
+                $collector[$collectorIndex][] = $category;
+            }
+        }
+
+        return $collector;
+    }
 
 }

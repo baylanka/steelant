@@ -48,15 +48,17 @@
 
                         <div class="row w-100 p-5">
 
-                            <div class="col-12 mt-3">
-                                <select class="form-select w-100 select2" name="category">
-                                    <option value="0" selected disabled>Select Category</option>
-                                    <option value="1">Earth Work > LARSSEN > Corner connectors</option>
-                                    <option value="2">Earth Work > LARSSEN > Omega corner connectors
-                                    </option>
-                                    <option value="3">Earth Work > LARSSEN > T connectors</option>
-                                </select>
-                            </div>
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <select class="form-select w-100 select2" name="category">
+                                            <option value="0" selected disabled>Select Category</option>
+                                            <?php foreach ($leafCategories as $leafCategory):?>
+                                                <option value="<?=$leafCategory->id?>">
+                                                    <?=$leafCategory->treePathStr?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
 
 
                             <div class="col-12 d-flex justify-content-between mt-5">

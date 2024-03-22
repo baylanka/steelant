@@ -23,7 +23,7 @@ class CategoryController extends BaseController
     public function index(Request $request)
     {
         $categories = CategoryRepository::getAllByOrder();
-        $arrangedCategories = CategoryService::arrangeCategoryHierarchy($categories);
+        $arrangedCategories = CategoryService::organizeCategoriesByParentCategories($categories);
         $data = [
             'heading' => "Category",
             'categories' => $arrangedCategories,
