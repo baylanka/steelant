@@ -24,8 +24,8 @@
             </div>
 
 
-            <form method="GET" class="d-flex justify-content-center w-50">
-                <div class="input-group mb-3 w-50">
+            <form method="GET" class="d-flex justify-content-center w-75">
+                <div class="input-group mb-3 w-75">
                     <input type="search" class="form-control" placeholder="Search" aria-label="search"
                            aria-describedby="search" name="search"
                            value="<?= isset($_GET["search"]) ? $_GET["search"] : "" ?>" style="text-align: center;">
