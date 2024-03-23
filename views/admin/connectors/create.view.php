@@ -126,69 +126,35 @@
                                     Weight
                                 </label>
 
-                                <div class="w-50 gap-1">
+                                <div class="w-50 gap-1 weight-jumbo-container">
 
-                                    <div class="p-3 mt-3" style="border: #c2c1c1 solid 1px; border-radius:10px;">
+
+                                    <div class="p-3 mt-3 weight-container">
 
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">kg/m</span>
+                                            <span class="input-group-text" placeholder="Weight">metrics</span>
                                         </div>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">lbs/ft</span>
+                                            <span class="input-group-text" placeholder="Weight">imperial</span>
                                         </div>
 
-                                        <div class="input-group">
-                                            <input type="text" class="form-control ml-1" placeholder="label">
+
+                                        <div class="input-group justify-content-end mb-3">
+                                            <button type="button" class="btn btn-light show-label-btn">
+                                                <i class="bi bi-arrow-bar-left"></i>
+                                            </button>
+
+                                            <input type="text" class="form-control ml-1  label" placeholder="label">
                                             <span class="input-group-text" placeholder="Weight">label</span>
-                                            <button type="button" class="btn btn-danger"><i
-                                                        class="bi bi-dash-lg"></i></button>
-                                            <button type="button" class="btn btn-primary"><i
-                                                        class="bi bi-plus-lg"></i></button>
                                         </div>
 
-                                    </div>
 
-                                    <div class="p-3 mt-3" style="border: #c2c1c1 solid 1px; border-radius:10px;">
-
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">kg/m</span>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">lbs/ft</span>
-                                        </div>
-
-                                        <div class="input-group">
-                                            <input type="text" class="form-control ml-1" placeholder="label">
-                                            <span class="input-group-text" placeholder="Weight">label</span>
-                                            <button type="button" class="btn btn-danger"><i
-                                                        class="bi bi-dash-lg"></i></button>
-                                            <button type="button" class="btn btn-primary"><i
-                                                        class="bi bi-plus-lg"></i></button>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="p-3 mt-3" style="border: #c2c1c1 solid 1px; border-radius:10px;">
-
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">kg/m</span>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-text" placeholder="Weight">lbs/ft</span>
-                                        </div>
-
-                                        <div class="input-group">
-                                            <input type="text" class="form-control ml-1" placeholder="label">
-                                            <span class="input-group-text" placeholder="Weight">label</span>
-                                            <button type="button" class="btn btn-danger"><i
-                                                        class="bi bi-dash-lg"></i></button>
-                                            <button type="button" class="btn btn-primary"><i
+                                        <div class="input-group justify-content-end">
+<!--                                            <button type="button" class="btn btn-danger"><i-->
+<!--                                                        class="bi bi-dash-lg"></i></button>-->
+                                            <button type="button" class="btn btn-primary add-new-weight-btn"><i
                                                         class="bi bi-plus-lg"></i></button>
                                         </div>
 
@@ -476,6 +442,9 @@
     $(document).ready(function () {
 
 
+        $("input.label").hide();
+
+
         $(document).off("click", ".next");
         $(document).on("click", ".next", function () {
             let e = $(".nav-tabs .active")
@@ -505,11 +474,80 @@
             theme: 'bootstrap-5'
         });
 
+
+
+        // WEIGHT
+        $(document).off("click", ".show-label-btn");
+        $(document).on("click",".show-label-btn",function (){
+
+            let input = $(this).closest("div.weight-container").find("input.label");
+
+            if(input.hasClass("showed")){
+                input.hide();
+                input.removeClass("showed");
+                $(this).html(`<i class="bi bi-arrow-bar-left"></i>`);
+            }else{
+                input.show();
+                input.addClass("showed");
+                $(this).html(`<i class="bi bi-arrow-bar-right"></i>`);
+            }
+
+        });
+
+        $(document).off("click", ".add-new-weight-btn");
+        $(document).on("click",".add-new-weight-btn",function (){
+            $(this).closest("div.weight-jumbo-container").append(`
+
+               <div class="p-3 mt-3 weight-container">
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-text" placeholder="Weight">metrics</span>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-text" placeholder="Weight">imperial</span>
+                                        </div>
+
+
+                                        <div class="input-group justify-content-end mb-3">
+
+                                           <input type="text" class="form-control ml-1" placeholder="label">
+                                            <span class="input-group-text" placeholder="Weight">label</span>
+                                        </div>
+
+
+                                        <div class="input-group justify-content-end">
+                                            <button type="button" class="btn btn-danger remove-weight-btn"><i
+                                                        class="bi bi-dash-lg"></i></button>
+                                            <button type="button" class="btn btn-primary add-new-weight-btn"><i
+                                                        class="bi bi-plus-lg"></i></button>
+                                        </div>
+
+                                    </div>
+
+
+            `);
+        });
+
+
+        $(document).off("click", ".remove-weight-btn");
+        $(document).on("click",".remove-weight-btn",function (){
+            $(this).closest("div.weight-container").remove();
+        })
+        // WEIGHT
+
+
+
+
+        $(document).on("click", ".set-checked", function () {
+            $("input[name=template]").attr("checked", false);
+            $(this).find("input[type=radio]").attr("checked", true);
+
+        });
+
+
     });
 
-    $(document).on("click", ".set-checked", function () {
-        $("input[name=template]").attr("checked", false);
-        $(this).find("input[type=radio]").attr("checked", true);
 
-    });
 </script>

@@ -79,8 +79,6 @@
 }
 
 
-
-
 * {
     font-family: "Lato", sans-serif;
     font-weight: 400;
@@ -97,18 +95,19 @@ body {
     color: var(--cyan) !important;
 }
 
-.selected-flag{
+.selected-flag {
     border-radius: 50%;
     box-shadow: #8d8d8d 1px 1px 10px;
     transform: scale(1.4);
 }
 
 
-.selected-flag::before{
-    content:"hi";
+.selected-flag::before {
+    content: "hi";
 
 }
-.flag:hover{
+
+.flag:hover {
     transform: scale(1.2);
 }
 
@@ -236,6 +235,11 @@ body {
 }
 
 
+.weight-container {
+    border: #c2c1c1 solid 1px;
+    border-radius: 10px;
+}
+
 
 @media (max-width: 575.98px) {
     .reveal-on-sm {
@@ -278,7 +282,7 @@ body {
 
     }
 
-    #gallery-container{
+    #gallery-container {
         display: block;
         margin-right: auto;
         margin-left: auto;
@@ -319,7 +323,7 @@ body {
 
     }
 
-    #gallery-container{
+    #gallery-container {
         display: block;
         margin-right: auto;
         margin-left: auto;
