@@ -23,6 +23,7 @@ class Connector extends BaseModel
 
     public string $standard_length_m;
     public string $standard_length_i;
+    public bool $visibility;
 
     public function setCategory()
     {
