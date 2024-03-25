@@ -7,6 +7,10 @@ class LanguagePool
     private const GERMANY = 'de';
     private const ENGLISH = 'en';
     private const FRENCH = 'fr';
+
+    private const ENGLISH_US    = 'en-us';
+    private const ENGLISH_UK     = 'en-gd';
+
     private string $label;
 
     private function __construct(string $label)
@@ -22,6 +26,16 @@ class LanguagePool
     public static function ENGLISH(): LanguagePool
     {
         return new LanguagePool(self::ENGLISH);
+    }
+
+    public static function US_ENGLISH(): LanguagePool
+    {
+        return new LanguagePool(self::ENGLISH_US);
+    }
+
+    public static function UK_ENGLISH(): LanguagePool
+    {
+        return new LanguagePool(self::ENGLISH_UK);
     }
 
     public static function FRENCH(): LanguagePool
@@ -40,7 +54,9 @@ class LanguagePool
             self::GERMANY()->getLabel() => self::GERMANY(),
             self::ENGLISH()->getLabel() => self::ENGLISH(),
             self::FRENCH()->getLabel() => self::FRENCH(),
-            default => throw new \Exception('Invalid language'),
+            self::US_ENGLISH()->getLabel() => self::US_ENGLISH(),
+            self::UK_ENGLISH()->getLabel() => self::UK_ENGLISH(),
+            default => self::GERMANY(),
         };
     }
 

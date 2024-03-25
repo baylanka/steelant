@@ -4,14 +4,19 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\LeafCategoryDTOCollection;
+use model\Category;
 
 class PageController extends BaseController
 {
     public function index(Request $request)
     {
-        global $env;
+        $categories = Category::getAll();
+        $leafCategoryDTO = new LeafCategoryDTOCollection($categories,'de',
+            ' <i class="bi bi-arrow-right text-success"></i> ');
         $data = [
-            'heading' => "Pages"
+            'heading' => "Pages",
+            'leaf_categories' => $leafCategoryDTO->getCollection()
         ];
         return view("admin/pages/index.view.php", $data);
 
