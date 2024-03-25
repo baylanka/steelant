@@ -6,6 +6,7 @@ use app\Request;
 use controllers\BaseController;
 use helpers\dto\ConnectorDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
+use helpers\filters\ConnectorFilter;
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
 use model\Category;
@@ -15,7 +16,12 @@ class ConnectorController extends BaseController
     public function index(Request $request)
     {
         $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
-        $connectors = ConnectorRepository::getAllConnectorsWithCategoryMetaData();
+        $search = $request->get('search', '');
+        $filters = $request->get('filters', []);
+        $publishedStatus = $request->get('published', 'none');
+        $connectorsFilter = new ConnectorFilter($lang,$search, $filters,$publishedStatus);
+
+        $connectors = $connectorsFilter->getResult();
         $connectorDTOCollection = ConnectorDTOCollection::getCollection($connectors, $lang,
             '  <i class="bi bi-arrow-right text-success"></i>  ');
         $data = [

@@ -25,6 +25,9 @@ class Connector extends BaseModel
     public string $standard_length_i;
     public bool $visibility;
 
+    CONST UNPUBLISHED = 0;
+    const PUBLISHED = 1;
+
     public function setCategory()
     {
         if (isset($this->relations['category_name_array']) && !empty($this->relations['category_name_array'])) {
