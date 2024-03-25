@@ -51,9 +51,9 @@
                             <div class="col-12 mt-3">
                                 <select class="form-select w-100 select2" name="category">
                                     <option value="0" selected disabled>Select Category</option>
-                                    <?php foreach ($leafCategories as $leafCategory):?>
-                                        <option value="<?=$leafCategory->id?>">
-                                            <?=$leafCategory->treePathStr?>
+                                    <?php foreach ($leafCategories as $leafCategory): ?>
+                                        <option value="<?= $leafCategory->id ?>">
+                                            <?= $leafCategory->treePathStr ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -152,8 +152,7 @@
 
 
                                         <div class="input-group justify-content-end">
-<!--                                            <button type="button" class="btn btn-danger"><i-->
-<!--                                                        class="bi bi-dash-lg"></i></button>-->
+
                                             <button type="button" class="btn btn-primary add-new-weight-btn"><i
                                                         class="bi bi-plus-lg"></i></button>
                                         </div>
@@ -211,7 +210,119 @@
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-                        downloads
+
+                        <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
+
+
+                            <div class="download-container w-75 p-4">
+
+                                <div class="input-group w-100 mb-3 justify-content-center">
+
+                                    <label class="btn btn-light">
+                                        <i class="bi bi-folder2-open"></i>
+                                    </label>
+
+                                    <input type="file" class="form-control w-50 bg-light" name="download-file[]">
+
+
+                                    <button type="button" class="btn btn-primary add-new-download-container">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-3 w-100">
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/de.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible " type="checkbox"
+                                                       value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label"
+                                                   placeholder="Label ( in Germany )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/uk.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox"
+                                                       value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label"
+                                                   placeholder="Label ( in English )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/fr.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox"
+                                                       value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label"
+                                                   placeholder="Label ( in French )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/us.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox"
+                                                       value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label"
+                                                   placeholder="Label ( in English )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
 
                         <div class="d-flex justify-content-between gap-2 px-5">
                             <a class="btn btn-secondary previous"><i class="bi bi-arrow-left"></i></a>
@@ -390,7 +501,7 @@
                                     <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                         <span class="color-blue">Larssen Hat-type</span><br>
                                         <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
+                                             src="<?= assets("themes/user/img/no-image.png") ?>"/>
                                     </div>
 
                                 </div>
@@ -475,18 +586,17 @@
         });
 
 
-
         // WEIGHT
         $(document).off("click", ".show-label-btn");
-        $(document).on("click",".show-label-btn",function (){
+        $(document).on("click", ".show-label-btn", function () {
 
             let input = $(this).closest("div.weight-container").find("input.label");
 
-            if(input.hasClass("showed")){
+            if (input.hasClass("showed")) {
                 input.hide();
                 input.removeClass("showed");
                 $(this).html(`<i class="bi bi-arrow-bar-left"></i>`);
-            }else{
+            } else {
                 input.show();
                 input.addClass("showed");
                 $(this).html(`<i class="bi bi-arrow-bar-right"></i>`);
@@ -495,7 +605,7 @@
         });
 
         $(document).off("click", ".add-new-weight-btn");
-        $(document).on("click",".add-new-weight-btn",function (){
+        $(document).on("click", ".add-new-weight-btn", function () {
             $(this).closest("div.weight-jumbo-container").append(`
 
                <div class="p-3 mt-3 weight-container">
@@ -532,12 +642,152 @@
 
 
         $(document).off("click", ".remove-weight-btn");
-        $(document).on("click",".remove-weight-btn",function (){
+        $(document).on("click", ".remove-weight-btn", function () {
             $(this).closest("div.weight-container").remove();
         })
         // WEIGHT
 
 
+        // DOWNLOADS
+
+
+        $(document).on("change", ".download-label-visible", function () {
+
+            let label = $(this).closest("div.downloadable").find("input.download-label");
+
+            if ($(this).is(":checked")) {
+                label.show("1000");
+                label.attr("disabled", false);
+            } else {
+                label.hide("1000");
+                label.attr("disabled", true);
+            }
+
+        });
+
+
+        $(document).on("click", ".add-new-download-container", function () {
+
+            $(this).closest("div.download-jumbotron").append(`
+                          <div class="download-container w-75 p-4">
+
+                                <div class="input-group w-100 mb-3 justify-content-center">
+
+                                    <label class="btn btn-light">
+                                        <i class="bi bi-folder2-open"></i>
+                                    </label>
+
+                                    <input type="file" class="form-control w-50 bg-light" name="download-file[]">
+
+
+                                    <button type="button" class="btn btn-primary add-new-download-container">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-3 w-100">
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                        <label class="btn btn-light">
+                                            <img src="<?= assets("img/flags/de.png") ?>"
+                                                 height="20" class="flag"/>
+                                        </label>
+
+                                        <label class="btn btn-light">
+                                            <input class="form-check-input download-label-visible " type="checkbox" value="" id="flexCheckDefault">
+                                        </label>
+                                        <input class="form-control download-label" placeholder="Label ( in Germany )" style="display: none;">
+
+
+                                    </div>
+                                    </div>
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/uk.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label" placeholder="Label ( in English )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/fr.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label" placeholder="Label ( in French )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="downloadable">
+                                        <div class="input-group w-100">
+
+
+                                            <label class="btn btn-light">
+                                                <img src="<?= assets("img/flags/us.png") ?>"
+                                                     height="20" class="flag"/>
+                                            </label>
+
+                                            <label class="btn btn-light">
+                                                <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
+                                            </label>
+                                            <input class="form-control download-label" placeholder="Label ( in English )" style="display: none;">
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+            `);
+
+
+            $(this).closest("div.input-group").append(`
+               <button type="button" class="btn btn-danger remove-download-container">
+                  <i class="bi bi-dash"></i>
+               </button>
+            `);
+
+            $(this).remove();
+
+        });
+
+
+        $(document).on("click","button.remove-download-container",function (){
+
+            $(this).closest("div.download-container").remove();
+
+        });
+
+
+        // DOWNLOADS
 
 
         $(document).on("click", ".set-checked", function () {

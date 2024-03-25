@@ -715,7 +715,7 @@
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
                                                     <span class="color-blue">Larssen Hat-type</span><br>
                                                     <img class="img-fluid"
-                                                         src="<?= assets("themes/user/img/connector-image3.png") ?>"/>
+                                                         src="<?= assets("themes/user/img/no-image.png") ?>"/>
                                                 </div>
 
                                             </div>
