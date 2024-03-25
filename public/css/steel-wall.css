@@ -213,6 +213,16 @@ body {
     margin-bottom: 0.1rem !important;
 }
 
+.custom-font {
+    font-size: 0.9rem;
+}
+
+.img-size-text {
+    color: gray;
+    font-size: 10px;
+}
+
+
 .columns {
     max-width: 100vw;
     margin: auto;
@@ -236,6 +246,11 @@ body {
 
 
 .weight-container {
+    border: #c2c1c1 solid 1px;
+    border-radius: 10px;
+}
+
+.download-container{
     border: #c2c1c1 solid 1px;
     border-radius: 10px;
 }
