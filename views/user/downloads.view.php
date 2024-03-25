@@ -10,15 +10,15 @@
 
 
         <!--categories section-->
-        <div class="row w-100">
+        <div class="row w-100 justify-content-between">
 
 
-            <div class="col-12 col-md-4 col-xxl-4 row gap-3">
-                <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/gallery-icon.png") ?>" height="100"/>
+            <div class="col-12 col-md-5 col-xxl-5 row">
+                <div class="col-md-4">
+                    <img src="<?= assets("themes/user/img/download-icon.png") ?>" height="100"/>
                 </div>
-                <div class="col-md-5">
-                    <dl>
+                <div class="col-md-7">
+                    <dl class="pl-3">
                         <h4 class="color-blue">Downloads</h4>
                         <p class="color-blue">Please register before download!</p>
                     </dl>
@@ -27,7 +27,7 @@
 
             </div>
 
-            <div class="col-12 col-md-8 col-xxl-8 row gap-3">
+            <div class="col-12 col-md-7 col-xxl-7 row gap-3 justify-content-end">
                 <div class="col-12 col-md-3 col-xxl-3">
                     <dl>
                         <dt><a href="#" class="link color-blue">TEST REPORTS</a></dt>
@@ -70,16 +70,12 @@
 
         <div class="divider"></div>
 
-
         <div class="d-flex align-middle w-25 justify-content-between">
             <h6 class="connector-heading my-4">Test Report I</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
-
-
         <div class="divider"></div>
-
 
         <div class="d-flex align-middle w-25 justify-content-between">
             <h6 class="connector-heading my-4">Test Report II</h6>
@@ -102,59 +98,70 @@
         <div class="divider"></div>
 
 
-        <div class="d-flex align-middle w-25 justify-content-between my-5">
+        <div class="d-flex align-middle justify-content-between my-5" style="width: 40%;">
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
-            <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" >
+
+            <span class="d-flex">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" class="m-1">
+
+            </span>
+
         </div>
 
 
         <div class="divider"></div>
 
 
-        <div class="d-flex align-middle w-25 justify-content-between my-5">
+        <div class="d-flex align-middle justify-content-between my-5" style="width: 40%;">
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
-            <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" >
+
+            <span class="d-flex">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+            <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25" class="m-1">
+
+            </span>
+
         </div>
 
 
         <div class="divider"></div>
 
 
-        <div class="d-flex align-middle w-25 justify-content-between my-5">
+        <div class="d-flex align-middle justify-content-between my-5" style="width: 40%;">
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
-            <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" >
+
+            <span class="d-flex">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+            <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25" class="m-1">
+
+            </span>
+
         </div>
+
 
 
         <div class="divider"></div>
 
 
-        <div class="d-flex align-middle w-25 justify-content-between my-5">
+        <div class="d-flex align-middle justify-content-between my-5" style="width: 40%;">
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
-            <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" >
+
+            <span class="d-flex">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+            <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25" class="m-1">
+
+            </span>
+
         </div>
+
 
 
         <div class="divider"></div>
 
 
+        <h4 class="connector-heading my-3">Related sections</h4>
 
-        <div class="col-12 col-md-4 col-xxl-4 row gap-3  align-middle my-4">
-            <div class="col-md-3">
-                <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="100"/>
-            </div>
-            <div class="col-md-2 d-flex flex-column justify-content-evenly">
-                <dl class="color-blue m-0">
-                    Copyright
-                </dl>
-
-            </div>
-
-        </div>
 
         <div class="divider"></div>
 
