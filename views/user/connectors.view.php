@@ -16,23 +16,23 @@
                 </div>
                 <div class="col-7">
                     <dl>
-                        <p class="category-name">Coff erdam</p>
+                        <p class="category-name">Cofferdam</p>
                         <dt class="color-blue mb-2">LARSSEN</dt>
-                        <dd><a href="#" class="link">Corner connectors</a></dd>
-                        <dd><a href="#" class="link">Omega corner connectors</a></dd>
-                        <dd><a href="#" class="link">T connectors</a></dd>
-                        <dd><a href="#" class="link">Cross connectors</a></dd>
-                        <dd><a href="#" class="link">Weld-on connectors</a></dd>
+                        <dd><a href="#" class="link color-black">Corner connectors</a></dd>
+                        <dd><a href="#" class="link color-black">Omega corner connectors</a></dd>
+                        <dd><a href="#" class="link color-black">T connectors</a></dd>
+                        <dd><a href="#" class="link color-black">Cross connectors</a></dd>
+                        <dd><a href="#" class="link color-black">Weld-on connectors</a></dd>
 
                         <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
-                        <dd><a href="#" class="link">US Corner connectors</a></dd>
-                        <dd><a href="#" class="link">US T connectors</a></dd>
-                        <dd><a href="#" class="link">US Cross connectors</a></dd>
-                        <dd><a href="#" class="link">MF connectors, weld-ons?</a></dd>
+                        <dd><a href="#" class="link color-black">US Corner connectors</a></dd>
+                        <dd><a href="#" class="link color-black">US T connectors</a></dd>
+                        <dd><a href="#" class="link color-black">US Cross connectors</a></dd>
+                        <dd><a href="#" class="link color-black">MF connectors, weld-ons?</a></dd>
 
                         <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
-                        <dd><a href="#" class="link">CF corner connector</a></dd>
-                        <dd><a href="#" class="link">CF weld-on connector</a></dd>
+                        <dd><a href="#" class="link color-black">CF corner connector</a></dd>
+                        <dd><a href="#" class="link color-black">CF weld-on connector</a></dd>
                     </dl>
 
                 </div>
@@ -51,10 +51,10 @@
                 <div class="col-7 p-0">
                     <dl>
                         <p class="category-name">Pipe pile steel walls</p>
-                        <dd><a href="#" class="link">MF</a></dd>
-                        <dd><a href="#" class="link">MDF</a></dd>
-                        <dd><a href="#" class="link">LPB</a></dd>
-                        <dd><a href="#" class="link">FD</a></dd>
+                        <dd><a href="#" class="link color-black">MF</a></dd>
+                        <dd><a href="#" class="link color-black">MDF</a></dd>
+                        <dd><a href="#" class="link color-black">LPB</a></dd>
+                        <dd><a href="#" class="link color-black">FD</a></dd>
                     </dl>
 
                 </div>
@@ -69,10 +69,10 @@
                 </div>
                 <div class="col-7 p-0">
                     <dl>
-                        <p class="category-name">H-pile steel walls</p>
-                        <dd><a href="#" class="link">MF</a></dd>
-                        <dd><a href="#" class="link">MDF</a></dd>
-                        <dd><a href="#" class="link">FD</a></dd>
+                        <p class="category-name">H-pile walls</p>
+                        <dd><a href="#" class="link color-black">MF</a></dd>
+                        <dd><a href="#" class="link color-black">MDF</a></dd>
+                        <dd><a href="#" class="link color-black">FD</a></dd>
                     </dl>
 
                 </div>
@@ -87,8 +87,8 @@
                 </div>
                 <div class="col-7 p-0">
                     <dl>
-                        <p class="category-name">For DTH driving method</p>
-                        <dd><a href="#" class="link">MF DTH</a></dd>
+                        <p class="category-name">DTH driving method</p>
+                        <dd><a href="#" class="link color-black">MF DTH</a></dd>
                     </dl>
                 </div>
                 <div class="col-2"></div>
@@ -103,10 +103,11 @@
                 </div>
                 <div class="col-7 p-0">
                     <dl>
-                        <p class="category-name">H-pile combined walls</p>
-                        <dd><a href="#" class="link">LPB (Larssen)</a></dd>
-                        <dd><a href="#" class="link">MF (Ball + Socket)</a></dd>
-                        <dd><a href="#" class="link">MDF (Ball + Socket)</a></dd>
+                        <p class="category-name">H-pile + sheet pile
+                            combined walls</p>
+                        <dd><a href="#" class="link color-black">LPB (Larssen)</a></dd>
+                        <dd><a href="#" class="link color-black">MF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link color-black">MDF (Ball + Socket)</a></dd>
                     </dl>
 
                 </div>
@@ -121,12 +122,12 @@
                 </div>
                 <div class="col-7 p-0">
                     <dl>
-                        <p class="category-name">Pipe pile combined walls</p>
-                        <dd><a href="#" class="link">L (Larssen)</a></dd>
-                        <dd><a href="#" class="link">LPB (Larssen)</a></dd>
-                        <dd><a href="#" class="link">MF (Ball + Socket)</a></dd>
-                        <dd><a href="#" class="link">MDF (Ball + Socket)</a></dd>
-                        <dd><a href="#" class="link">CF (Cold Formed)</a></dd>
+                        <p class="category-name">Pipe pile + sheet pile combined walls</p>
+                        <dd><a href="#" class="link color-black">L (Larssen)</a></dd>
+                        <dd><a href="#" class="link color-black">LPB (Larssen)</a></dd>
+                        <dd><a href="#" class="link color-black">MF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link color-black">MDF (Ball + Socket)</a></dd>
+                        <dd><a href="#" class="link color-black">CF (Cold Formed)</a></dd>
                     </dl>
 
                 </div>
@@ -142,7 +143,7 @@
                 <div class="col-7 p-0">
                     <dl>
                         <p class="category-name">Cell structures</p>
-                        <dd><a href="#" class="link">FSC</a></dd>
+                        <dd><a href="#" class="link color-black">FSC</a></dd>
                     </dl>
 
                 </div>

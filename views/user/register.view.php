@@ -41,9 +41,15 @@
                         </ul>
 
                         <form action="#" class="signin-form mt-5">
-                            <div class="form-group mt-3">
+                            <div class="form-group mt-3 d-flex">
                                 <input type="text" class="form-control" required>
-                                <label class="form-control-placeholder" for="name">Your Name</label>
+                                <label class="form-control-placeholder w-75" for="name">Your Name</label>
+                                <select class="form-select w-25" aria-label="Default select example">
+                                    <option selected>Dr</option>
+                                    <option value="1">Mr</option>
+                                    <option value="2">Mrs</option>
+                                </select>
+
                             </div>
                             <div class="form-group mt-3">
                                 <input type="text" class="form-control" required>
@@ -64,6 +70,10 @@
                             <div class="form-group mt-3">
                                 <input type="text" class="form-control" required>
                                 <label class="form-control-placeholder" for="email">E-MAIL</label>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control" required>
+                                <label class="form-control-placeholder" for="email">WEBSITE</label>
                             </div>
                             <div class="form-group mt-3">
                                 <input type="text" class="form-control" required>
