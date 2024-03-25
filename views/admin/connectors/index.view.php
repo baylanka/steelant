@@ -78,7 +78,7 @@
                     <th class="text-left" style="width: 17%">
                         <select class="form-select published-state-filter"
                                 aria-label="Default select example">
-                            <?php $publishedStatus = (int) $_GET['published'] ?? -1 ?>
+                            <?php $publishedStatus =  isset($_GET['published']) ? (int)$_GET['published'] : -1 ?>
                             <option value="none">All</option>
                             <option
                                     value="<?=Connector::PUBLISHED?>"
