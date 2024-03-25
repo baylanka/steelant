@@ -16,7 +16,8 @@ class ConnectorFilter
     {
         $this->setLanguageArrays();
         $this->setBasicSqlAttributes();
-        $this->setFilterAttributes($lang, $search, $publishedStatus);
+        $this->setPublishedStatusFilterAttribute($publishedStatus);
+        $this->setFilterAttributes($lang, $search);
         $this->setOrderAttributes($lang, $filter);
     }
 
@@ -164,12 +165,11 @@ class ConnectorFilter
         }
     }
 
-    private function setFilterAttributes($lang, $search, $publishedStatus)
+    private function setFilterAttributes($lang, $search)
     {
-        if(empty($search) && $publishedStatus === 'none'){
+        if(empty($search)){
             return;
         }
-        $this->setPublishedStatusFilterAttribute($publishedStatus);
         $this->setCategoryNameFilterAttribuates($lang,$search);
         $this->setConnectorNameFilterAttributes($search);
         $this->setThicknessFilterAttribute($lang, $search);

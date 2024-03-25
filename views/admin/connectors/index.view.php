@@ -78,14 +78,15 @@
                     <th class="text-left" style="width: 17%">
                         <select class="form-select published-state-filter"
                                 aria-label="Default select example">
+                            <?php $publishedStatus = (int) $_GET['published'] ?? -1 ?>
                             <option value="none">All</option>
                             <option
                                     value="<?=Connector::PUBLISHED?>"
-                                    <?= $_GET['published'] ?? '' == Connector::PUBLISHED ? 'selected':''?>
+                                    <?= $publishedStatus  === Connector::PUBLISHED ? 'selected':''?>
                             >published</option>
                             <option
                                     value="<?=Connector::UNPUBLISHED?>"
-                                    <?= $_GET['published'] ?? '' == Connector::UNPUBLISHED ? 'selected':''?>
+                                    <?= $publishedStatus === Connector::UNPUBLISHED ? 'selected':''?>
                             >non-published</option>
                         </select>
                     </th>
@@ -224,6 +225,7 @@
 
     function refreshConnectors()
     {
+        debugger
         const publishedFilter = $('select.published-state-filter').val();
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         const params = {
