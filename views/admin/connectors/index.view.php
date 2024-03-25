@@ -1,5 +1,6 @@
 <?php
         use helpers\pools\LanguagePool;
+        use model\Connector;
 ?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
 <!--Place Your Content Here-->
@@ -12,26 +13,42 @@
                 <?php
                     $queryLanguage = LanguagePool::getByLabel($_GET['tableLang'] ?? 'de')->getLabel();
                 ?>
-                <a href="?tableLang=<?=LanguagePool::GERMANY()->getLabel()?>">
+                <a href="?tableLang=<?=LanguagePool::GERMANY()->getLabel()?>"
+                   title="<?=LanguagePool::GERMANY()->getLabel()?>"
+                   class="lang"
+                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                >
                     <img src="<?= assets("img/flags/de.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::GERMANY()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
-                <a href="?tableLang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>">
+                <a href="?tableLang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                   title="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                   class="lang"
+                   data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                >
                     <img src="<?= assets("img/flags/uk.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::UK_ENGLISH()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
-                <a href="?tableLang=<?=LanguagePool::FRENCH()->getLabel()?>">
+                <a href="?tableLang=<?=LanguagePool::FRENCH()->getLabel()?>"
+                   title="<?=LanguagePool::FRENCH()->getLabel()?>"
+                   class="lang"
+                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                >
                     <img src="<?= assets("img/flags/fr.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::FRENCH()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
-                <a href="?tableLang=<?=LanguagePool::US_ENGLISH()->getLabel()?>">
+                <a href="?tableLang=<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                   title="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                   class="lang"
+                   data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                >
                     <img src="<?= assets("img/flags/us.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::US_ENGLISH()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
             </div>
 
 
-            <form method="GET" class="d-flex justify-content-center w-75">
+            <form method="GET" class="d-flex justify-content-center w-75" id="search-form">
                 <div class="input-group mb-3 w-75">
                     <input type="search" class="form-control" placeholder="Search" aria-label="search"
                            aria-describedby="search" name="search"
@@ -55,21 +72,31 @@
                     <tr>
                     <th class="text-left">
                         Category
-                        <a href="#" class="btn btn-light m-1"><i class="bi bi-arrow-down-up"></i></a>
+                        <a href="#" class="btn btn-light m-1 filter-btn" data-filter-name="category" data-filter-mode="<?=$_GET['filters']['category']??'none'?>"><i class="bi bi-arrow-down-up"></i></a>
                     </th>
 
-                    <th class="text-left">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>All</option>
-                            <option value="1">published</option>
-                            <option value="2">non-published</option>
+                    <th class="text-left" style="width: 17%">
+                        <select class="form-select published-state-filter"
+                                aria-label="Default select example">
+                            <option value="none">All</option>
+                            <option
+                                    value="<?=Connector::PUBLISHED?>"
+                                    <?= $_GET['published'] ?? '' == Connector::PUBLISHED ? 'selected':''?>
+                            >published</option>
+                            <option
+                                    value="<?=Connector::UNPUBLISHED?>"
+                                    <?= $_GET['published'] ?? '' == Connector::UNPUBLISHED ? 'selected':''?>
+                            >non-published</option>
                         </select>
                     </th>
-                    <th class="text-center">Name <a href="#" class="btn btn-light m-1"><i
-                                    class="bi bi-arrow-down-up"></i></a></th>
-                    <th class="text-center">Steel grade</th>
-                    <th class="text-center">Steel thickness</th>
-                    <th class="text-center">Standard length</th>
+                    <th class="text-center">Name
+                        <a href="#" class="btn btn-light m-1 filter-btn" data-filter-name="name"  data-filter-mode="<?=$_GET['filters']['name']??'none'?>"><i class="bi bi-arrow-down-up"></i></a></th>
+                    <th class="text-center">Steel grade
+                        <a href="#" class="btn btn-light m-1 filter-btn" data-filter-name="grade"  data-filter-mode="<?=$_GET['filters']['grade']??'none'?>"><i class="bi bi-arrow-down-up"></i></a></th>
+                    <th class="text-center">Steel thickness
+                        <a href="#" class="btn btn-light m-1 filter-btn" data-filter-name="thickness" data-filter-mode="<?=$_GET['filters']['thickness']??'none'?>"><i class="bi bi-arrow-down-up"></i></a></th>
+                    <th class="text-center">Standard length
+                        <a href="#" class="btn btn-light m-1 filter-btn"data-filter-name="length"  data-filter-mode="<?=$_GET['filters']['length']??'none'?>"><i class="bi bi-arrow-down-up"></i></a></th>
                     <th class="text-center">Weight</th>
                     <!--<th>Max. tensile strength</th>-->
                     <th style="width: 40px"></th>
@@ -78,7 +105,7 @@
                 <tbody>
                     <?php foreach ($connectors as $connector):?>
                         <tr class="align-middle">
-                            <td class="text-left"><?=$connector->categoryTree?></td>
+                            <td class="text-left"><small><?=$connector->categoryTree?></small></td>
                             <td class="text-left">
                                     <?php if($connector->isPublished): ?>
                                         <span class="badge text-bg-success">published</span>
@@ -166,6 +193,71 @@
             resetButton(btn, loadingBtnText);
         }
     });
+
+    $(document).on('submit', 'form#search-form', function(e){
+        e.preventDefault();
+        refreshConnectors();
+    })
+
+    $(document).on('click', 'a.lang', function(e){
+        e.preventDefault();
+        $('a.lang img').removeClass('selected-flag');
+        $(this).find('img').addClass('selected-flag');
+        refreshConnectors();
+    });
+
+    $(document).on('click','.filter-btn', function(e){
+        e.preventDefault();
+        const directions = ['asc', 'desc', 'none'];
+        const filterMode = $(this).attr('data-filter-mode');
+        let currentDirectionIndex = directions.indexOf(filterMode);
+        let nextIndex = (currentDirectionIndex+1)  < directions.length ? (currentDirectionIndex+1) : 0;
+        $(this).attr('data-filter-mode',  directions[nextIndex]);
+
+
+        refreshConnectors();
+    })
+
+    $(document).on('change','select.published-state-filter', function(){
+        refreshConnectors();
+    });
+
+    function refreshConnectors()
+    {
+        const publishedFilter = $('select.published-state-filter').val();
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        const params = {
+            'tableLang': language,
+        };
+
+        if(publishedFilter !== 'none'){
+            params['published'] =  publishedFilter;
+        }
+
+        const searchKey = $('form#search-form [name="search"]').val();
+        if(!isEmpty(searchKey)){
+            params['search'] = searchKey
+        }
+
+        params['filters'] = getFilterValues();
+        const queryParams = $.param(params);
+        window.location.href = `${getBaseUrl()}/admin/connectors?${queryParams}`;
+    }
+
+    function getFilterValues()
+    {
+        const filters = {};
+        $('.filter-btn').each(function(){
+            const mode = $(this).attr('data-filter-mode');
+            if(mode !== 'none'){
+                const key = $(this).attr('data-filter-name');
+                filters[key] = $(this).attr('data-filter-mode');
+            }
+
+        });
+
+        return filters;
+    }
 
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
