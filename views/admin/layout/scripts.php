@@ -31,3 +31,4 @@
         }
     });
 </script> <!--end::OverlayScrollbars Configure--> <!-- OPTIONAL SCRIPTS --> <!-- sortablejs -->
+<script  src="<?= assets("themes/admin/js/Sortable.min.js") ?>"></script>

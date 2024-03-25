@@ -22,6 +22,17 @@ class PageController extends BaseController
 
     }
 
+
+    public function page(Request $request)
+    {
+
+        $data = [
+            'heading' => "Cofferdam > LARSSEN > Corner connectors"
+        ];
+        return view("admin/pages/page.view.php", $data);
+
+    }
+
     public function create(Request $request)
     {
 

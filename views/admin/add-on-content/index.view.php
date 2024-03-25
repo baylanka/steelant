@@ -247,6 +247,21 @@
 
                                 <div class="tab-pane fade" role="tabpanel" id="step2" aria-labelledby="step4-tab">
 
+
+
+                                    <div class="col-12 mt-3">
+                                        <select class="form-select w-100 select2" name="category">
+                                            <option value="0" selected disabled>Select Category</option>
+                                            <?php foreach ($leafCategories as $leafCategory): ?>
+                                                <option value="<?= $leafCategory->id ?>">
+                                                    <?= $leafCategory->treePathStr ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+
+
                                     <div class="d-flex justify-content-between m-3">
                                         <label for="name" class="align-items-center">Title </label>
                                         <input name="name" type="text" class="form-control w-50 align-items-center" placeholder="Title" id="title"/>

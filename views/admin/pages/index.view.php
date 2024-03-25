@@ -39,7 +39,7 @@ use helpers\translate\Translate;
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" type="button" data-id="<?= $leaf_category->id?>">
+                                        <a href="<?= url("/admin/pages/view") ?>?id=<?= $leaf_category->id?>" class="dropdown-item" type="button" data-id="<?= $leaf_category->id?>">
                                             View <i class="bi bi-eye float-end"></i>
                                         </a>
                                     </li>

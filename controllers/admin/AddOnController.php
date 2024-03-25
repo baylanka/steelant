@@ -4,18 +4,27 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\LeafCategoryDTOCollection;
+use model\Category;
 
 class AddOnController extends BaseController
 {
     public function index(Request $request)
     {
         global $env;
+        $categories = Category::getAll();
+        $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $data = [
+            'leafCategories' => $leafCategoryDTO->getCollection(),
             'heading' => "Add-on"
         ];
         return view("admin/add-on-content/index.view.php", $data);
 
     }
+
+
+
+
 
     public function create(Request $request)
     {
