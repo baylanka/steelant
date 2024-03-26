@@ -42,17 +42,17 @@
                     </li>
                 </ul>
 
-
+                <input type="hidden" name="id" value="<?=$connector['id']?>"/>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                         <div class="row w-100 p-5">
-
                             <div class="col-12 mt-3">
                                 <select class="form-select w-100 select2" name="category">
-                                    <option value="0" selected disabled>Select Category</option>
+                                    <option value="0" disabled>Select Category</option>
                                     <?php foreach ($leafCategories as $leafCategory): ?>
-                                        <option value="<?= $leafCategory->id ?>">
+                                        <option value="<?= $leafCategory->id ?>"
+                                            <?=$connector['leaf_category_id'] == $leafCategory->id ? 'selected' : '' ?>>
                                             <?= $leafCategory->treePathStr ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -65,7 +65,7 @@
                                     Name
                                 </label>
                                 <input name="name" type="text"
-                                       class="form-control w-50 align-items-center"
+                                       class="form-control w-50 align-items-center" value="<?=$connector['name']?>"
                                        placeholder="Connector name" id="name"/>
                             </div>
 

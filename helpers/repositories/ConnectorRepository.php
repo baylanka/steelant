@@ -22,7 +22,7 @@ class ConnectorRepository extends Connector
         return $content->display_order_no + 1;
     }
 
-    public static function getAllConnectorsWithCategoryMetaData()
+    public static function getConnectorById($id)
     {
         $sql = "
             SELECT
@@ -31,10 +31,10 @@ class ConnectorRepository extends Connector
                 connectors.*
             FROM connectors
             INNER JOIN category_contents ON connectors.id = category_contents.element_id
-           
             WHERE category_contents.`type` = :type
+            AND category_contents.id = :id
         ";
-        $params = ['type' => CategoryContent::TYPE_CONNECTOR];
-        return self::queryAsArray($sql, $params)->get();
+        $params = ['type' => CategoryContent::TYPE_CONNECTOR, 'id'=>$id];
+        return self::queryAsArray($sql, $params)->first();
     }
 }

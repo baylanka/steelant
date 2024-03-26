@@ -149,15 +149,24 @@
                                         Actions
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">
-                                                Delete <i class="bi bi-trash3 float-end"></i></a>
+                                        <li><a class="dropdown-item connector-view" href="#"  data-id="<?=$connector->id?>">
+                                                View <i class="bi bi-exclamation-circle float-end"></i></a>
                                         </li>
 
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">
-                                                View <i class="bi bi-exclamation-circle float-end"></i></a>
+
+                                        <li><a class="dropdown-item connector-edit" href="#"  data-id="<?=$connector->id?>">
+                                                Edit <i class="bi bi-pencil float-end"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item connector-delete" href="#" data-id="<?=$connector->id?>">
+                                                Delete <i class="bi bi-trash3 float-end"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -227,16 +236,25 @@
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">
-                                    Delete <i class="bi bi-trash3 float-end"></i></a>
-                                </li>
+                                        <li><a class="dropdown-item connector-view" href="#"  data-id="${connector.id}">
+                                                View <i class="bi bi-exclamation-circle float-end"></i></a>
+                                        </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">
-                                    View <i class="bi bi-exclamation-circle float-end"></i></a>
-                                </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item connector-edit" href="#"  data-id="${connector.id}">
+                                                Edit <i class="bi bi-pencil float-end"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item connector-delete" href="#" data-id="${connector.id}">
+                                                Delete <i class="bi bi-trash3 float-end"></i></a>
+                                        </li>
                             </ul>
                         </div>
                     </td>
@@ -255,16 +273,52 @@
             resetButton(btn, loadingBtnText);
 
             $(document).off('storeConnectorSuccessEvent');
-            $(document).on('storeConnectorSuccessEvent', function (event) {
+            $(document).on('storeConnectorSuccessEvent', async function (event) {
                 modal.hide();
                 const connector = event.originalEvent.detail.connector;
                 const row = getRow(connector);
                 $('#connector-body').prepend(row);
+                await getConnectorEditModal(connector.id);
             });
         } catch (err) {
             toast.error("An error occurred while attempting to open the create connector.. " + err);
             resetButton(btn, loadingBtnText);
         }
+    });
+
+    async function getConnectorEditModal(connectorId)
+    {
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}`;
+        const trTag = $(`a[data-id="${connectorId}"]`);
+        try {
+            const modal = await loadModal(modalId, path);
+
+            $(document).off('updateConnectorSuccessEvent');
+            $(document).on('updateConnectorSuccessEvent', function (event) {
+                modal.hide();
+                const connector = event.originalEvent.detail.connector;
+                const row = getRow(connector);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.prepend(row);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(row);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+        }
+    }
+
+    $(document).on("click", ".connector-edit", async function (e) {
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        await getConnectorEditModal(connectorId);
     });
 
     $(document).on('submit', 'form#search-form', function(e){

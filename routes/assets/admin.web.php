@@ -6,6 +6,7 @@ global $app;
 $app->get('/admin/connectors',  ["admin\ConnectorController", "index"]);
 $app->get('/admin/connectors/create',  ["admin\ConnectorController", "create"]);
 $app->post('/admin/connectors',  ["admin\ConnectorController", "store"]);
+$app->get('/admin/connectors/edit',  ["admin\ConnectorController", "edit"]);
 
 
 

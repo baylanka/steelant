@@ -73,7 +73,18 @@ class ConnectorController extends BaseController
 
     public function edit(Request $request)
     {
-
+        //@ToDo Language should get from session
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $categories = Category::getAll();
+        $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
+        $connectorId = $request->get('id');
+        $connector = ConnectorRepository::getConnectorById($connectorId);
+        $data = [
+            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'tableLang' => $lang,
+            'connector' => $connector
+        ];
+        return view("admin/connectors/edit.view.php", $data);
     }
 
     public function update(Request $request)
