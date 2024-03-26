@@ -55,10 +55,10 @@ class ConnectorFilter
         $this->params['type'] = CategoryContent::TYPE_CONNECTOR;
 
         $this->sqlArray['base_table'] = "connectors";
-        $this->sqlArray['columns'][] = "category_contents.root_category_id AS leaf_category_id";
+        $this->sqlArray['columns'][] = "category_contents.leaf_category_id";
         $this->sqlArray['columns'][] = "connectors.*";
         $this->sqlArray['join'][] = "INNER JOIN category_contents ON connectors.id = category_contents.element_id";
-        $this->sqlArray['join'][] = "INNER JOIN categories cat1 ON  category_contents.root_category_id = cat1.id";
+        $this->sqlArray['join'][] = "INNER JOIN categories cat1 ON  category_contents.leaf_category_id = cat1.id";
         $this->sqlArray['whereClause'][] = "category_contents.`type` = :type";
         $this->sqlArray['join'][] = "LEFT JOIN categories cat2 ON cat1.parent_category_id = cat2.id";
         $this->sqlArray['join'][] = "LEFT JOIN categories cat3 ON cat2.parent_category_id = cat3.id";

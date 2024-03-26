@@ -9,7 +9,7 @@ class CategoryContent extends BaseModel
     protected string $table = "category_contents";
 
     public int $id;
-    public int $root_category_id;
+    public int $leaf_category_id;
     public int $display_order_no;
     public string $type;
     public int $element_id;

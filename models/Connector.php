@@ -43,7 +43,7 @@ class Connector extends BaseModel
             return;
         }
 
-        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->root_category_id);
+        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->leaf_category_id);
     }
 
     public function getCategoryHierarchyEn()

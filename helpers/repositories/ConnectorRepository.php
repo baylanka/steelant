@@ -13,7 +13,7 @@ class ConnectorRepository extends Connector
         $sql = "
             SELECT
                 
-                category_contents.root_category_id AS leaf_category_id,
+                category_contents.leaf_category_id AS leaf_category_id,
                 connectors.*
             FROM connectors
             INNER JOIN category_contents ON connectors.id = category_contents.element_id
