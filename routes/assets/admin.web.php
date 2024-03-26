@@ -32,7 +32,7 @@ $app->delete('/admin/templates/destroy', ["admin\TemplateController", "destroy"]
 
 //Page routes
 $app->get('/admin/pages',  ["admin\PageController", "index"]);
-$app->get('/admin/pages/view',  ["admin\PageController", "page"]);
+$app->get('/admin/pages/view',  ["admin\PageController", "show"]);
 
 
 //Add-on routes

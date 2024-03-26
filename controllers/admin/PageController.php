@@ -5,6 +5,8 @@ namespace controllers\admin;
 use app\Request;
 use controllers\BaseController;
 use helpers\dto\LeafCategoryDTOCollection;
+use helpers\pools\LanguagePool;
+use helpers\services\CategoryService;
 use model\Category;
 
 class PageController extends BaseController
@@ -23,11 +25,15 @@ class PageController extends BaseController
     }
 
 
-    public function page(Request $request)
+    public function show(Request $request)
     {
-
+        $lang = LanguagePool::GERMANY()->getLabel();
+        $categoryId = $request->get('id');
+        $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        $headingArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
+        $heading  = implode($separator, $headingArray[$lang]);
         $data = [
-            'heading' => "Cofferdam > LARSSEN > Corner connectors"
+            'heading' => $heading
         ];
         return view("admin/pages/page.view.php", $data);
 
