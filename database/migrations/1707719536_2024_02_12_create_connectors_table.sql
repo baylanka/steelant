@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS  connectors
 (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(35) NOT NULL COMMENT 'store content in json format based on languages',
-    grade VARCHAR(25) NOT NULL,
+    grade VARCHAR(25) NULL,
     description TEXT NULL COMMENT 'store content in json format based on languages',
 
     weight_m VARCHAR(250) COMMENT 'metrics: unit kg/m >> ie: 5kg/m (+0/-5mg). Note admin can able to split by multiple label and its associated values. ',
