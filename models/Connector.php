@@ -23,7 +23,9 @@ class Connector extends BaseModel
 
     public string $standard_length_m;
     public string $standard_length_i;
-    public bool $visibility;
+    public int $visibility;
+    public CategoryContent $temp_content;
+    public int $temp_display_order_no;
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
@@ -43,7 +45,7 @@ class Connector extends BaseModel
             return;
         }
 
-        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->root_category_id);
+        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->leaf_category_id);
     }
 
     public function getCategoryHierarchyEn()
@@ -81,5 +83,17 @@ class Connector extends BaseModel
             LanguagePool::FRENCH()->getLabel() => $this->getCategoryHierarchyFr(),
             default => $this->getCategoryHierarchyDe(),
         };
+    }
+
+    public function save()
+    {
+        //store connector
+        parent::save();
+        $connectorId = $this->id;
+
+        //store category-content
+        $content = $this->temp_content;
+        $content->element_id = $connectorId;
+        $content->save();
     }
 }

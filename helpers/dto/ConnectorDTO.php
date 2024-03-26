@@ -4,10 +4,11 @@ namespace helpers\dto;
 
 use helpers\pools\LanguagePool;
 use helpers\services\CategoryService;
+use model\Connector;
 
 class ConnectorDTO
 {
-    private \stdClass $connector;
+    private \stdClass|Connector $connector;
     public int $id;
     public string $categoryTree;
     public bool $isPublished;
@@ -17,13 +18,13 @@ class ConnectorDTO
     public string $standardLength;
     public array $weights;
 
-    public function __construct(array $connector, $lang, $separator)
+    public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
-        $this->connector = json_decode(json_encode($connector));
+        $this->connector = $connector;
 
         $this->id = $this->connector->id;
         $this->name = $this->connector->name;
-        $this->grade = $this->connector->grade;
+        $this->grade = $this->connector->grade ?? '';
         $this->isPublished = $this->connector->visibility;
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -35,7 +36,16 @@ class ConnectorDTO
     {
         $lang = in_array($lang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
                 ? LanguagePool::ENGLISH()->getLabel() : $lang;
-        $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($this->connector->leaf_category_id);
+
+        if(isset($this->connector->leaf_category_id)){
+            $leafCategoryId = $this->connector->leaf_category_id;
+        }else if(isset($this->connector->temp_content->leaf_category_id)){
+            $leafCategoryId = $this->connector->temp_content->leaf_category_id;
+        }else{
+            $this->categoryTree = '';
+            return;
+        }
+        $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($leafCategoryId);
         $this->categoryTree = implode($separator, $tree[$lang]);
     }
 
@@ -45,10 +55,10 @@ class ConnectorDTO
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::US_ENGLISH()->getLabel():
-                $this->thickness = $this->connector->thickness_m;
+                $this->thickness = $this->connector->thickness_m ?? '';
                 break;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                $this->thickness = $this->connector->thickness_i;
+                $this->thickness = $this->connector->thickness_i ?? '';
                 break;
 
         }
@@ -61,18 +71,18 @@ class ConnectorDTO
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::US_ENGLISH()->getLabel():
-                $this->standardLength = $this->connector->standard_lengths_m;
+                $this->standardLength = $this->connector->standard_lengths_m ?? '';
                 break;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                $this->standardLength = $this->connector->standard_lengths_i;
+                $this->standardLength = $this->connector->standard_lengths_i ?? '';
                 break;
         }
     }
 
     private function setWeight($lang)
     {
-        $metricsWeight = json_decode($this->connector->weight_m ?? [], true);
-        $imperialWeight =  json_decode($this->connector->weight_i ?? [], true);
+        $metricsWeight = json_decode($this->connector->weight_m ?? '{}', true);
+        $imperialWeight =  json_decode($this->connector->weight_i ?? '{}', true);
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():

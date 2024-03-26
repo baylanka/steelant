@@ -31,7 +31,7 @@ class CategoryContentRepository extends CategoryContent
         $sql =  "
             SELECT *  FROM category_contents                 
                 WHERE category_contents.type = :type
-                    AND category_contents.root_category_id = :category_id
+                    AND category_contents.leaf_category_id = :category_id
         ";
 
         $params = [

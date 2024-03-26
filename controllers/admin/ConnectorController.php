@@ -4,11 +4,15 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\ConnectorDTO;
 use helpers\dto\ConnectorDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\filters\ConnectorFilter;
+use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
+use helpers\utilities\ResponseUtility;
+use helpers\validators\ConnectorStoreRequestValidator;
 use model\Category;
 
 class ConnectorController extends BaseController
@@ -34,17 +38,37 @@ class ConnectorController extends BaseController
 
     public function create(Request $request)
     {
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
         $categories = Category::getAll();
         $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $data = [
-            'leafCategories' => $leafCategoryDTO->getCollection()
+            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'tableLang' => $lang
         ];
-        return view("admin/connectors/create.view.php", $data);
+        return view("admin/connectors/short_create.view.php", $data);
     }
 
     public function store(Request $request)
     {
-
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            ConnectorStoreRequestValidator::validate($request);
+            $connector = ConnectorStoreRequestMapper::getModel($request);
+            $connector->save();
+            $db->commit();
+            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully stored",
+                "data" => $connectorDTO
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function edit(Request $request)
