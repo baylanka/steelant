@@ -9,4 +9,8 @@ class AddOnContent extends BaseModel
     protected string $table = "add_on_contents";
     public string $title;
     public string $description;
+    public bool $visibility;
+
+    CONST UNPUBLISHED = 0;
+    const PUBLISHED = 1;
 }

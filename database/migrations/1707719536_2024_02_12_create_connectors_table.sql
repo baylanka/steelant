@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS  connectors
     standard_lengths_m VARCHAR(250) COMMENT 'metrics: unit m >> ie: 5m (+0.1/-0.5 mm). note: here multiple standard lengths can be added by a separator',
     standard_lengths_i VARCHAR(250) COMMENT 'imperial: unit ft >> ie: 15inch (+0/-5 inch). note: here multiple standard lengths can be added by a separator ',
 
-    visibility TINYINT(2) DEFAULT 1,
+    visibility TINYINT(2) DEFAULT 0,
 
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
