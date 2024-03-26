@@ -4,11 +4,15 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\ConnectorDTO;
 use helpers\dto\ConnectorDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\filters\ConnectorFilter;
+use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
+use helpers\utilities\ResponseUtility;
+use helpers\validators\ConnectorStoreRequestValidator;
 use model\Category;
 
 class ConnectorController extends BaseController
@@ -39,12 +43,26 @@ class ConnectorController extends BaseController
         $data = [
             'leafCategories' => $leafCategoryDTO->getCollection()
         ];
-        return view("admin/connectors/create.view.php", $data);
+        return view("admin/connectors/short_create.view.php", $data);
     }
 
     public function store(Request $request)
     {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            ConnectorStoreRequestValidator::validate($request);
+            $connector = ConnectorStoreRequestMapper::getModel($request);
+            $connector->save();
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully stored",
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function edit(Request $request)

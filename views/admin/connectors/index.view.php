@@ -186,9 +186,14 @@
         const loadingBtnText = btn.text();
         try {
             loadButton(btn, "loading ...");
-            await loadModal(modalId, path);
+            const modal = await loadModal(modalId, path);
             resetButton(btn, loadingBtnText);
 
+            $(document).off('storeConnectorSuccessEvent');
+            $(document).on('storeConnectorSuccessEvent', function (event) {
+                modal.hide();
+                location.reload();
+            });
         } catch (err) {
             toast.error("An error occurred while attempting to open the create connector.. " + err);
             resetButton(btn, loadingBtnText);

@@ -8,6 +8,7 @@ class ConnectorDTOCollection
     {
         $collection = [];
         foreach ($connectors as $connector){
+            $connector = json_decode(json_encode($connector));
             $collection[] = new ConnectorDTO($connector, $lang, $separator);
         }
         return $collection;

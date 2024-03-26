@@ -158,6 +158,7 @@ class BaseModel
 
     public function save()
     {
+        $currentProperties = array_keys(json_decode(json_encode($this), true));
         $obj = get_class($this);
         $reflection = new \ReflectionClass($obj);
         $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
@@ -166,7 +167,7 @@ class BaseModel
             $name = $property->name;
             if(in_array($property->name, ["table", "relations", "extra"])
                 || str_contains($property->name, 'temp_')
-                || !property_exists($this, $name)
+                || !in_array($name, $currentProperties)
             ){
                 continue;
             }
