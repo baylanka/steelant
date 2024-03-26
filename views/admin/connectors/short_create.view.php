@@ -7,6 +7,7 @@
 
         <div class="modal-body p-2">
             <form action="<?=url('/admin/connectors')?>">
+                <input type="hidden" name="tableLang" value="<?=$tableLang?>">
                 <div class="row w-100 p-2">
                         <div class="col-12 mt-3">
                             <select class="form-select w-100 select2" name="category">
@@ -42,7 +43,6 @@
     $('button#store-btn').off('click');
     $('button#store-btn').on('click', async function storeConnector(e){
         e.preventDefault();
-        debugger
         const btn = $(this);
         const btnLabel = btn.text();
         loadButton(btn, "saving");
@@ -53,7 +53,9 @@
             let response = await makeAjaxCall(URL,formData);
             toast.success(response.message);
             //raise an event to close the modal
-            const event = new CustomEvent('storeConnectorSuccessEvent');
+            const event = new CustomEvent('storeConnectorSuccessEvent',  {
+                detail: { connector: response.data }
+            });
             document.dispatchEvent(event);
         }catch (err){
             toast.error(err);

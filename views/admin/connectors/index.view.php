@@ -103,7 +103,7 @@
                     <th style="width: 40px"></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="connector-body">
                     <?php foreach ($connectors as $connector):?>
                         <tr class="align-middle">
                             <td class="text-left"><small><?=$connector->categoryTree?></small></td>
@@ -180,8 +180,73 @@
 <script>
     const modalId = 'base-modal';
 
+    function getRow(connector)
+    {
+        let weight = '';
+        if(connector.weights.length ===1){
+            weight = connector.weights[0];
+        }else{
+
+            weight = `<table class="table table-striped table-bordered">
+                            <tbody>`
+             for(let label of connector.weights){
+                 weight += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.weights[label]}
+                        </td>
+                    </tr>
+                 `;
+             }
+
+            weight += `    </tbody>
+                       </table>`;
+        }
+
+        return `
+                <tr class="align-middle">
+                    <td class="text-left"><small>${connector.categoryTree}</small></td>
+                    <td class="text-left">
+                        ${connector.isPublished
+                                ? '<span class="badge text-bg-success">published</span>'
+                                : '<span class="badge text-bg-warning">non-published</span>'
+                        }
+                    </td>
+                    <td class="text-center">${connector.name}</td>
+                    <td class="text-center">${connector.grade}</td>
+                    <td class="text-center">${connector.thickness}</td>
+                    <td class="text-center">${connector.standardLength}</td>
+                    <td class="text-center">${weight}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">
+                                    Delete <i class="bi bi-trash3 float-end"></i></a>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">
+                                    View <i class="bi bi-exclamation-circle float-end"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+        `;
+    }
+
     $(document).on("click", "#create-connector", async function () {
-        let path = "admin/connectors/create";
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/connectors/create?tableLang=${language}`;
         const btn = $(this);
         const loadingBtnText = btn.text();
         try {
@@ -192,7 +257,9 @@
             $(document).off('storeConnectorSuccessEvent');
             $(document).on('storeConnectorSuccessEvent', function (event) {
                 modal.hide();
-                location.reload();
+                const connector = event.originalEvent.detail.connector;
+                const row = getRow(connector);
+                $('#connector-body').prepend(row);
             });
         } catch (err) {
             toast.error("An error occurred while attempting to open the create connector.. " + err);
@@ -230,7 +297,6 @@
 
     function refreshConnectors()
     {
-        debugger
         const publishedFilter = $('select.published-state-filter').val();
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         const params = {

@@ -8,7 +8,7 @@ use model\Connector;
 
 class ConnectorDTO
 {
-    private \stdClass $connector;
+    private \stdClass|Connector $connector;
     public int $id;
     public string $categoryTree;
     public bool $isPublished;
@@ -18,7 +18,7 @@ class ConnectorDTO
     public string $standardLength;
     public array $weights;
 
-    public function __construct(\stdClass $connector, $lang, $separator)
+    public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
         $this->connector = $connector;
 
@@ -36,7 +36,16 @@ class ConnectorDTO
     {
         $lang = in_array($lang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
                 ? LanguagePool::ENGLISH()->getLabel() : $lang;
-        $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($this->connector->leaf_category_id);
+
+        if(isset($this->connector->leaf_category_id)){
+            $leafCategoryId = $this->connector->leaf_category_id;
+        }else if(isset($this->connector->temp_content->leaf_category_id)){
+            $leafCategoryId = $this->connector->temp_content->leaf_category_id;
+        }else{
+            $this->categoryTree = '';
+            return;
+        }
+        $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($leafCategoryId);
         $this->categoryTree = implode($separator, $tree[$lang]);
     }
 

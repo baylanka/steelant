@@ -38,16 +38,20 @@ class ConnectorController extends BaseController
 
     public function create(Request $request)
     {
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
         $categories = Category::getAll();
         $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $data = [
-            'leafCategories' => $leafCategoryDTO->getCollection()
+            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'tableLang' => $lang
         ];
         return view("admin/connectors/short_create.view.php", $data);
     }
 
     public function store(Request $request)
     {
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
         global $container;
         $db = $container->resolve('DB');
         try{
@@ -56,8 +60,10 @@ class ConnectorController extends BaseController
             $connector = ConnectorStoreRequestMapper::getModel($request);
             $connector->save();
             $db->commit();
+            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
+                "data" => $connectorDTO
             ]);
         }catch(\Exception $ex){
             $db->rollBack();
