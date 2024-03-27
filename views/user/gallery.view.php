@@ -4,9 +4,7 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-
-
-
+    <div class="p-3">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
@@ -63,7 +61,7 @@
         <h4 class="connector-heading my-3">Pipe pile steel walls</h4>
 
 
-        <div class="row w-100 mb-5">
+        <div class="row w-100 mb-5 m-0 p-0" id="gallery-container">
 
 
             <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
@@ -123,6 +121,9 @@
 
 
     </div>
+
+
+</div>
 
 <!--body section-->
 

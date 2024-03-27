@@ -10,12 +10,11 @@
     <div class="container">
 
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col-md-6 col-12">
                 <div class="wrap">
 
                     <div class="nav-logo w-100 mt-5">
-                        <img src="<?= assets("themes/user/img/logo.jpg") ?>" alt="SteelWall-logo"/>
-                        <h5>Schlossprofile für Spundwandbauwerke</h5>
+                        <?php require_once "layout/brand.view.php" ?>
                     </div>
 
 
@@ -27,7 +26,7 @@
 
                         <ul class="text-center p-0" style=" list-style-type: none;">
                             <li>
-                               <u><b> Adavantages of a registrati on:</b></u>
+                               <u><b> Advantages of a registration:</b></u>
                             </li>
                             <li>
                                 Request products easily!

@@ -21,8 +21,7 @@ use helpers\services\RequestService;
         </div>
 
         <div class="nav-logo w-50">
-            <img src="<?= assets("themes/user/img/logo.jpg") ?>" alt="SteelWall-logo"/>
-            <h5>Schlossprofile für Spundwandbauwerke</h5>
+            <?php require_once "brand.view.php" ?>
         </div>
 
         <div class="text-center row position-relative p-2">
@@ -79,7 +78,7 @@ use helpers\services\RequestService;
             <a class="nav-link <?= RequestService::isRequestedRoute("/downloads") ? "selected" : "" ?>" aria-current="page" href="<?= url("/downloads") ?>">Downloads</a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/gallery") ? "selected" : "" ?>" aria-current="page" href="<?= url("/gallery") ?>">Gallery</a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/sealant") ? "selected" : "" ?>" aria-current="page" href="<?= url("/sealant") ?>">Sealant</a>
-            <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>" aria-current="page" href="https://steelant.eu/">Contact</a>
+            <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>" aria-current="page" href="<?= url("/contact") ?>">Contact</a>
         </div>
 
         <div class="text-center row position-relative login-nav gap-2"

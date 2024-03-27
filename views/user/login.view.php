@@ -14,8 +14,7 @@
                 <div class="wrap">
 
                         <div class="nav-logo w-100 mt-5">
-                            <img src="<?= assets("themes/user/img/logo.jpg") ?>" alt="SteelWall-logo"/>
-                            <h5>Schlossprofile für Spundwandbauwerke</h5>
+                            <?php require_once "layout/brand.view.php" ?>
                         </div>
 
 

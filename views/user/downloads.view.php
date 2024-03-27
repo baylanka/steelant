@@ -6,7 +6,7 @@
     <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
 
 
-    <div class="p-5">
+    <div class="mt-5 p-3">
 
 
         <!--categories section-->
@@ -15,7 +15,7 @@
 
             <div class="col-12 col-md-5 col-xxl-5 row">
                 <div class="col-md-4">
-                    <img src="<?= assets("themes/user/img/download-icon.png") ?>" height="100"/>
+                    <img src="<?= assets("themes/user/img/download-icon.png") ?>" height="100" class="mb-3"/>
                 </div>
                 <div class="col-md-7">
                     <dl class="pl-3">
@@ -51,8 +51,6 @@
         <!--categories section-->
 
 
-
-
         <div class="d-flex w-100 justify-content-end mb-2 my-3">
 
             <div class="text-center end-0">
@@ -70,21 +68,21 @@
 
         <div class="divider"></div>
 
-        <div class="d-flex align-middle w-25 justify-content-between">
+        <div class="d-flex align-middle w-50 justify-content-between">
             <h6 class="connector-heading my-4">Test Report I</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
         <div class="divider"></div>
 
-        <div class="d-flex align-middle w-25 justify-content-between">
+        <div class="d-flex align-middle w-50 justify-content-between">
             <h6 class="connector-heading my-4">Test Report II</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
         <div class="divider"></div>
 
-        <div class="d-flex align-middle w-25 justify-content-between">
+        <div class="d-flex align-middle w-50 justify-content-between">
             <h6 class="connector-heading my-4">Test Report III</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
@@ -102,9 +100,9 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" class="m-1">
-
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                     class="mt-auto mb-auto shadow ">
+                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" class="m-1">
             </span>
 
         </div>
@@ -117,9 +115,9 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25" class="m-1">
-
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                     class="mt-auto mb-auto shadow ">
+                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25" class="m-1">
             </span>
 
         </div>
@@ -132,7 +130,8 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                     class="mt-auto mb-auto shadow ">
             <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25" class="m-1">
 
             </span>
@@ -140,7 +139,6 @@
         </div>
 
 
-
         <div class="divider"></div>
 
 
@@ -148,13 +146,13 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250" class="mt-auto mb-auto shadow ">
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                     class="mt-auto mb-auto shadow ">
             <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25" class="m-1">
 
             </span>
 
         </div>
-
 
 
         <div class="divider"></div>
@@ -164,7 +162,6 @@
 
 
         <div class="divider"></div>
-
 
 
     </div>

@@ -13,6 +13,8 @@ $app->get('/gallery',  ["user\HomeController", "gallery"]);
 $app->get('/sealant',  ["user\HomeController", "sealant"]);
 $app->get('/contact',  ["user\HomeController", "contact"]);
 
+$app->get('/favourite',  ["user\HomeController", "favourite"]);
+
 $app->get('/login',  ["user\HomeController", "login"]);
 $app->get('/register',  ["user\HomeController", "register"]);
 
