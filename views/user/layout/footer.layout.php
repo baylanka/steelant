@@ -1,8 +1,8 @@
 <!--footer section-->
 <div class="nav footer fixed-bottom position-relative">
-    <h4>Disclaimer</h4>
+    <h4 class="color-custom-light">Disclaimer</h4>
 
-    <p class="disclaimer-text">
+    <p class="disclaimer-text color-custom-light">
         SteelWall connectors generally comply with the European standards and
         are manufactured by certified steel processing companies. All figures
         are approximate and may vary. Bar twists are possible up to 2 mm per
@@ -18,56 +18,56 @@
 
     <div class="row w-100">
         <div class="col-6 col-md-3">
-            <h4>SteelWall</h4>
+            <h4 class="color-custom-light">SteelWall</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-white">About SteelWall</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Registration</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Newsletter</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Languages and measures</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">About SteelWall</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Registration</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Newsletter</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Languages and measures</a></li>
 
             </ul>
 
-            <h4 class="mt-5">Legal advice</h4>
+            <h4 class="mt-5 color-custom-light">Legal advice</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-white">Imprint</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Privacy policy</a></li>
-                <li><a href="#" class="text-decoration-none color-white">General terms and conditions</a></li>
-            </ul>
-        </div>
-
-        <div class="col-6 col-md-2">
-            <h4 class="mb-4">steelwall.eu</h4>
-
-            <ul style="list-style-type: none; padding-left: 0;">
-
-                <li><a href="#" class="text-decoration-none color-white">Africa</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Asia</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Australia</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Caribbean</a></li>
-                <li><a href="#" class="text-decoration-none color-white">Europe</a></li>
-                <li><a href="#" class="text-decoration-none color-white">India</a></li>
-                <li><a href="#" class="text-decoration-none color-white">New Zealand</a></li>
-                <li><a href="#" class="text-decoration-none color-white">South America</a></li>
-                <li><a href="#" class="text-decoration-none color-white">South East Asia</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Imprint</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Privacy policy</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">General terms and conditions</a></li>
             </ul>
         </div>
 
         <div class="col-6 col-md-2">
-            <h4 class="mb-4">steelwallus.com</h4>
+            <h4 class="mb-4 color-custom-light">steelwall.eu</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-white">North America</a></li>
+
+                <li><a href="#" class="text-decoration-none color-custom-light">Africa</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Asia</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Australia</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Caribbean</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">Europe</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">India</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">New Zealand</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">South America</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">South East Asia</a></li>
+            </ul>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <h4 class="mb-4 color-custom-light">steelwallus.com</h4>
+
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li><a href="#" class="text-decoration-none color-custom-light">North America</a></li>
             </ul>
         </div>
 
 
         <div class="col-6 col-md-5">
-            <h4 class="mb-4">MF-pipe.com</h4>
+            <h4 class="mb-4 color-custom-light">MF-pipe.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-white">MF-Pipe is a division of SteelWall</a></li>
+                <li><a href="#" class="text-decoration-none color-custom-light">MF-Pipe is a division of SteelWall</a></li>
             </ul>
         </div>
 
@@ -77,11 +77,11 @@
     <div class="row w-100">
         <div class="col-12 col-md-6">
 
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li>Last website update: 01. Mar. 2024</li>
-                <li>Copyright by SteelWall ISH GmbH</li>
-                <li>Connectors designed by Richard Heindl</li>
-            </ul>
+            <p class="color-custom-light">
+                Last website update: 01. Mar. 2024<br/>
+                Copyright by SteelWall ISH GmbH<br/>
+             Connectors designed by Richard Heindl
+            </p>
         </div>
 
 

@@ -59,4 +59,11 @@ class HomeController
         return view("user/register.view.php", $data);
     }
 
+
+    public function favourite(Request $request)
+    {
+        $data = [];
+        return view("user/favourite.view.php", $data);
+    }
+
 }

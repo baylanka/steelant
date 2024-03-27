@@ -42,17 +42,17 @@
                     </li>
                 </ul>
 
-                <input type="hidden" name="id" value="<?=$connector['id']?>"/>
+
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                         <div class="row w-100 p-5">
+
                             <div class="col-12 mt-3">
                                 <select class="form-select w-100 select2" name="category">
-                                    <option value="0" disabled>Select Category</option>
+                                    <option value="0" selected disabled>Select Category</option>
                                     <?php foreach ($leafCategories as $leafCategory): ?>
-                                        <option value="<?= $leafCategory->id ?>"
-                                            <?=$connector['leaf_category_id'] == $leafCategory->id ? 'selected' : '' ?>>
+                                        <option value="<?= $leafCategory->id ?>">
                                             <?= $leafCategory->treePathStr ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -65,7 +65,7 @@
                                     Name
                                 </label>
                                 <input name="name" type="text"
-                                       class="form-control w-50 align-items-center" value="<?=$connector['name']?>"
+                                       class="form-control w-50 align-items-center"
                                        placeholder="Connector name" id="name"/>
                             </div>
 
@@ -441,89 +441,44 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
+                    <div class="tab-pane fade p-2" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
 
+                        <nav>
+                            <div class="nav nav-tabs justify-content-center mt-5" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-de-tab" data-bs-toggle="tab" data-bs-target="#nav-de" type="button" role="tab" aria-controls="nav-de" aria-selected="true">
+                                    <img src="<?= assets("img/flags/de.png") ?>" height="25" class="flag"/>
+                                </button>
 
-                        <div class="row w-100 p-5">
+                                <button class="nav-link" id="nav-uk-tab" data-bs-toggle="tab" data-bs-target="#nav-uk" type="button" role="tab" aria-controls="nav-uk" aria-selected="false">
+                                    <img src="<?= assets("img/flags/uk.png") ?>" height="25" class="flag"/>
+                                </button>
+                                <button class="nav-link" id="nav-fr-tab" data-bs-toggle="tab" data-bs-target="#nav-fr" type="button" role="tab" aria-controls="nav-fr" aria-selected="false">
+                                    <img src="<?= assets("img/flags/fr.png") ?>" height="25" class="flag"/>
+                                </button>
 
-                            <div class="col-12 col-md-4 col-xxl-4">
-                                <dl>
-                                    <dt class="color-blue mb-2">ULTRA-S</dt>
-                                    <dd class="mb-4">For Larssen sheet piles (U, Z, Hat-type)</dd>
-
-                                    <dd class="custom-dd">Steel grade: S355J2</dd>
-                                    <dd class="custom-dd">Steel thickness: 9 mm</dd>
-                                    <dd class="custom-dd">Standard length: 11.8 m +0/-100 mm</dd>
-                                    <dd class="custom-dd">Weight: 25.3 kg/m</dd>
-
-                                    <dd class="my-5">ULTRA-S corner secti on can be driven individually up to
-                                        a length of 11.8 meters, provided that there are no weld
-                                        joints.
-                                    </dd>
-
-                                    <dd class="custom-dd"><a href="#" class="link color-black">Data sheet (PDF)</a>
-                                    </dd>
-                                    <dd class="custom-dd"><a href="#" class="link color-black">DWG ULTRA-S</a></dd>
-                                    <dd class="custom-dd"><a href="#" class="link color-black">DWG connector name
-                                            02</a></dd>
-                                    <dd class="custom-dd"><a href="#" class="link color-black">Test report (PDF)</a>
-                                    </dd>
-                                    <dd class="custom-dd"><a href="#" class="link color-black">FEM (PDF)</a></dd>
-                                    <dd class="custom-dd"><a href="#" class="link color-black">Request this
-                                            connector</a></dd>
-                                    <dd class="custom-dd d-flex align-middle gap-3">
-                                        <a href="#" class="link color-black">Remember this connector</a>
-                                        <img class="align-self-center"
-                                             src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
-                                    </dd>
-
-                                </dl>
+                                <button class="nav-link" id="nav-us-tab" data-bs-toggle="tab" data-bs-target="#nav-us" type="button" role="tab" aria-controls="nav-us" aria-selected="false">
+                                    <img src="<?= assets("img/flags/us.png") ?>" height="25" class="flag"/>
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
+                                <?php require basePath("/views/templates/template-01.php") ?>
+                            </div>
+                            <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
+                                <?php require basePath("/views/templates/template-01.php") ?>
+                            </div>
+                            <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+                                <?php require basePath("/views/templates/template-01.php") ?>
                             </div>
 
-                            <div class="col-12 col-md-8 col-xl-8 col-xxl-6 d-flex flex-column margin-top-sm">
-                                <div class="row justify-content-start">
-
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <span class="color-blue">Corner connector</span><br>
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <span class="color-blue">Larssen U</span><br>
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <span class="color-blue">Larssen Z</span><br>
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image2.png") ?>"/>
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <span class="color-blue">Larssen Hat-type</span><br>
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/no-image.png") ?>"/>
-                                    </div>
-
-                                </div>
-
-                                <div class="row mt-2 justify-content-center">
-
-
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-                                        <img class="img-fluid"
-                                             src="<?= assets("themes/user/img/connector-image1.png") ?>"/>
-                                    </div>
-
-
-                                </div>
-
+                            <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
+                                <?php require basePath("/views/templates/template-01.php") ?>
                             </div>
 
                         </div>
+
+
 
                         <div class="d-flex justify-content-start gap-2 px-5">
                             <a class="btn btn-secondary previous"><i class="bi bi-arrow-left"></i></a>
@@ -780,7 +735,7 @@
         });
 
 
-        $(document).on("click","button.remove-download-container",function (){
+        $(document).on("click", "button.remove-download-container", function () {
 
             $(this).closest("div.download-container").remove();
 
@@ -800,4 +755,7 @@
     });
 
 
+
 </script>
+<script src="<?= assets("js/template-render.js") ?>"></script>
+<!--<script src="--><?php //= assets("js/template-render.min.js") ?><!--"></script>-->

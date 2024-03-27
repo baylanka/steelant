@@ -124,6 +124,10 @@ body {
     color: black !important;
 }
 
+.color-custom-light{
+    color:#dcdcde !important;
+}
+
 .link {
     text-decoration: none;
 }
@@ -253,6 +257,10 @@ body {
 .download-container{
     border: #c2c1c1 solid 1px;
     border-radius: 10px;
+}
+
+.font-weight-700{
+    font-weight: 700;
 }
 
 
