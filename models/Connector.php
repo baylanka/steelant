@@ -24,6 +24,10 @@ class Connector extends BaseModel
     public string $standard_length_m;
     public string $standard_length_i;
     public int $visibility;
+
+    public string $max_tensile_strength_m;
+    public string $max_tensile_strength_i;
+
     public CategoryContent $temp_content;
     public int $temp_display_order_no;
 

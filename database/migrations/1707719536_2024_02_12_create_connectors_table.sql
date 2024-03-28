@@ -14,6 +14,9 @@ CREATE TABLE IF NOT EXISTS  connectors
     standard_lengths_m VARCHAR(250) COMMENT 'metrics: unit m >> ie: 5m (+0.1/-0.5 mm). note: here multiple standard lengths can be added by a separator',
     standard_lengths_i VARCHAR(250) COMMENT 'imperial: unit ft >> ie: 15inch (+0/-5 inch). note: here multiple standard lengths can be added by a separator ',
 
+    max_tensile_strength_m VARCHAR(250) NULL COMMENT 'metrics, ie: 2.552 kN/m (FEM)',
+    max_tensile_strength_i VARCHAR(250) NULL COMMENT 'imperial, ie: 19.52 kips/in (FEM)',
+
     visibility TINYINT(2) DEFAULT 0,
 
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
