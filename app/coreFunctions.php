@@ -79,7 +79,7 @@ function dd($resource)
 {
     $isShellExecution = strtolower(PHP_SAPI) === 'cli';
     echo $isShellExecution ? "\n" : "<pre>";
-    if(is_array($resource)){
+    if(is_array($resource) || is_object($resource)){
         print_r($resource);
     }else{
         var_dump($resource);
