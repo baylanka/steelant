@@ -26,7 +26,6 @@ class ConnectorRepository extends Connector
     {
         $sql = "
             SELECT
-                
                 category_contents.leaf_category_id AS leaf_category_id,
                 connectors.*
             FROM connectors
@@ -35,6 +34,11 @@ class ConnectorRepository extends Connector
             AND category_contents.id = :id
         ";
         $params = ['type' => CategoryContent::TYPE_CONNECTOR, 'id'=>$id];
-        return self::queryAsArray($sql, $params)->first();
+        $connector =  self::queryAsArray($sql, $params)->first();
+        if(!$connector){
+            $connector = [];
+        }
+
+        return json_decode(json_encode($connector));
     }
 }
