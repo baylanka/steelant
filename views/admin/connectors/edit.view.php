@@ -259,7 +259,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/uk.png") ?>"
+                                                <img src="<?= assets("img/flags/en-gd.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
@@ -300,7 +300,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/us.png") ?>"
+                                                <img src="<?= assets("img/flags/en-us.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
@@ -450,14 +450,14 @@
                                 </button>
 
                                 <button class="nav-link" id="nav-uk-tab" data-bs-toggle="tab" data-bs-target="#nav-uk" type="button" role="tab" aria-controls="nav-uk" aria-selected="false">
-                                    <img src="<?= assets("img/flags/uk.png") ?>" height="25" class="flag"/>
+                                    <img src="<?= assets("img/flags/en-gd.png") ?>" height="25" class="flag"/>
                                 </button>
                                 <button class="nav-link" id="nav-fr-tab" data-bs-toggle="tab" data-bs-target="#nav-fr" type="button" role="tab" aria-controls="nav-fr" aria-selected="false">
                                     <img src="<?= assets("img/flags/fr.png") ?>" height="25" class="flag"/>
                                 </button>
 
                                 <button class="nav-link" id="nav-us-tab" data-bs-toggle="tab" data-bs-target="#nav-us" type="button" role="tab" aria-controls="nav-us" aria-selected="false">
-                                    <img src="<?= assets("img/flags/us.png") ?>" height="25" class="flag"/>
+                                    <img src="<?= assets("img/flags/en-us.png") ?>" height="25" class="flag"/>
                                 </button>
                             </div>
                         </nav>
@@ -667,7 +667,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/uk.png") ?>"
+                                                <img src="<?= assets("img/flags/en-gd.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
@@ -704,7 +704,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/us.png") ?>"
+                                                <img src="<?= assets("img/flags/en-us.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 

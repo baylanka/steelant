@@ -54,6 +54,11 @@ let makeAjaxCall = (url, data = {}, method = 'POST') => {
                             }
                         }
                     }
+                }else if (jqXHR.status === 423) {
+                    console.log('Requested page status. [422]');
+                    if (jqXHR.hasOwnProperty('responseJSON')) {
+                        msg += JSON.stringify(jqXHR.responseJSON);
+                    }
                 } else if (jqXHR.status === 500) {
                     msg = 'Internal Server Error [500].';
                 } else if (exception === 'parsererror') {

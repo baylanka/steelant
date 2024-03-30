@@ -26,7 +26,7 @@
                    class="lang"
                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                 >
-                    <img src="<?= assets("img/flags/uk.png") ?>" height="25"
+                    <img src="<?= assets("img/flags/en-gd.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::UK_ENGLISH()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
                 <a href="?tableLang=<?=LanguagePool::FRENCH()->getLabel()?>"
@@ -42,7 +42,7 @@
                    class="lang"
                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                 >
-                    <img src="<?= assets("img/flags/us.png") ?>" height="25"
+                    <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
                          class="flag <?=$queryLanguage === LanguagePool::US_ENGLISH()->getLabel() ? 'selected-flag':'' ?>"/>
                 </a>
             </div>

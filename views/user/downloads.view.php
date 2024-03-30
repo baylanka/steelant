@@ -51,16 +51,7 @@
         <!--categories section-->
 
 
-        <div class="d-flex w-100 justify-content-end mb-2 my-3">
-
-            <div class="text-center end-0">
-                <img src="<?= assets("themes/user/img/home.png") ?>" height="30">
-                <br/>
-                <span class="nav-text">Home</span>
-            </div>
-
-
-        </div>
+        <?php require_once "layout/sub_nav.layout.php" ?>
 
         <div class="divider"></div>
 
@@ -100,7 +91,7 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
                      class="mt-auto mb-auto shadow ">
                 <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="25" class="m-1">
             </span>
@@ -115,9 +106,9 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
                      class="mt-auto mb-auto shadow ">
-                <img src="<?= assets("themes/user/img/flags/uk.png") ?>" height="25" class="m-1">
+                <img src="<?= assets("themes/user/img/flags/en-gd.png") ?>" height="25" class="m-1">
             </span>
 
         </div>
@@ -130,7 +121,7 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-fr.jpg") ?>" height="250"
                      class="mt-auto mb-auto shadow ">
             <img src="<?= assets("themes/user/img/flags/fr.png") ?>" height="25" class="m-1">
 
@@ -146,9 +137,9 @@
             <h6 class="connector-heading my-4">Steelwall connectors overview 2024</h6>
 
             <span class="d-flex">
-                <img src="<?= assets("themes/user/img/brochures-thumbnail/thumb-de.jpg") ?>" height="250"
+                <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
                      class="mt-auto mb-auto shadow ">
-            <img src="<?= assets("themes/user/img/flags/us.png") ?>" height="25" class="m-1">
+            <img src="<?= assets("themes/user/img/flags/en-us.png") ?>" height="25" class="m-1">
 
             </span>
 

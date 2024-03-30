@@ -1,5 +1,7 @@
+<?php use helpers\services\RequestService; ?>
+
 <!--footer section-->
-<div class="nav footer fixed-bottom position-relative">
+<div class="nav footer fixed-bottom position-relative mt-5">
     <h4 class="color-custom-light">Disclaimer</h4>
 
     <p class="disclaimer-text color-custom-light">
@@ -21,9 +23,9 @@
             <h4 class="color-custom-light">SteelWall</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-custom-light">About SteelWall</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Registration</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Newsletter</a></li>
+                <li><a href="<?= url("/about") ?>" class="text-decoration-none  <?= RequestService::isRequestedRoute("/about") ? "selected" : "color-custom-light" ?>">About SteelWall</a></li>
+                <li><a href="<?= url("/register") ?>" class="text-decoration-none <?= RequestService::isRequestedRoute("/register") ? "selected" : "color-custom-light" ?>">Registration</a></li>
+                <li><a href="<?= url("/newsletter") ?>" class="text-decoration-none <?= RequestService::isRequestedRoute("/newsletter") ? "selected" : "color-custom-light" ?>">Newsletter</a></li>
                 <li><a href="#" class="text-decoration-none color-custom-light">Languages and measures</a></li>
 
             </ul>
@@ -31,9 +33,9 @@
             <h4 class="mt-5 color-custom-light">Legal advice</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-custom-light">Imprint</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Privacy policy</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">General terms and conditions</a></li>
+                <li><a href="<?= url("/imprint") ?>" class="text-decoration-none <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "color-custom-light" ?>">Imprint</a></li>
+                <li><a href="<?= url("/privacy&policy") ?>" class="text-decoration-none <?= RequestService::isRequestedRoute("/privacy&policy") ? "selected" : "color-custom-light" ?>">Privacy policy</a></li>
+                <li><a href="<?= url("/general/terms&condition") ?>" class="text-decoration-none <?= RequestService::isRequestedRoute("/general/terms&condition") ? "selected" : "color-custom-light" ?>">General terms and conditions</a></li>
             </ul>
         </div>
 

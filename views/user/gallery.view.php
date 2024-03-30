@@ -45,16 +45,8 @@
         <!--categories section-->
 
 
-        <div class="d-flex w-100 justify-content-end mb-2 my-3">
+        <?php require_once "layout/sub_nav.layout.php" ?>
 
-            <div class="text-center end-0">
-                <img src="<?= assets("themes/user/img/home.png") ?>" height="30">
-                <br/>
-                <span class="nav-text">Home</span>
-            </div>
-
-
-        </div>
 
         <div class="divider"></div>
 

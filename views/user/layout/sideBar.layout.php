@@ -40,8 +40,8 @@ use helpers\services\RequestService;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= RequestService::isRequestedRoute("/sealant") ? "selected" : "" ?>"
-                   aria-current="page" href="<?= url("/sealant") ?>">
+                <a class="nav-link" target="_blank"
+                   aria-current="page" href="https://steelant.eu/">
                     Sealant
                 </a>
             </li>
@@ -57,7 +57,75 @@ use helpers\services\RequestService;
                     Login
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    User information
+                </a>
+                <ul style="list-style-type: none;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About Steelwall
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Newsletter
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Divisions
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Languages and measures
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Favorites
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    Legal advice
+                </a>
+                <ul style="list-style-type: none;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Imprint
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Privacy policy
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            General terms and conditi ons
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
         </ul>
+
 
     </div>
 </div>
