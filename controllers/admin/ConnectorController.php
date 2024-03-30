@@ -12,9 +12,13 @@ use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\mappers\UpdateConnectorRequestMapper;
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
+use helpers\repositories\TemplateRepository;
+use helpers\services\ConnectorService;
+use helpers\services\TemplateService;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\ConnectorStoreRequestValidator;
 use model\Category;
+use model\Template;
 
 class ConnectorController extends BaseController
 {
@@ -80,10 +84,21 @@ class ConnectorController extends BaseController
         $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $connectorId = $request->get('id');
         $connector = ConnectorRepository::getConnectorById($connectorId);
+        $connectorTemplates = ConnectorService::getSelectedConnectorExtraAttributes($connector->id);
+
+        $templates = TemplateRepository::getAllConnectors();
+        $data = [
+            'connector' => $connector,
+            'prev_connector_templates' => $connectorTemplates
+        ];
+        $template = TemplateService::getTemplateByFillingDataById(8,$data);
         $data = [
             'leafCategories' => $leafCategoryDTO->getCollection(),
             'tableLang' => $lang,
-            'connector' => $connector
+            'connector' => $connector,
+            'templates' => $templates,
+            'prev_connector_templates' => $connectorTemplates,
+            'show' => $template
         ];
         return view("admin/connectors/edit.view.php", $data);
     }

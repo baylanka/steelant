@@ -8,7 +8,7 @@ use model\Template;
 
 class TemplateRepository extends Template
 {
-    public static function getAllConnectorTypes()
+    public static function getAllConnectors()
     {
         $sql = "
             SELECT * FROM templates

@@ -8,6 +8,15 @@ use model\Connector;
 
 class CategoryContentRepository extends CategoryContent
 {
+    public static function getContentsInDisplayOrderByCategoryId($categoryId)
+    {
+//        $sql = "
+//            SELECT *
+//            FROM category_contents
+//
+//        "
+    }
+
     public static function deleteByCategoryId($categoryId)
     {
         self::deleteConnectorContentByCategoryId($categoryId);

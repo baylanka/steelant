@@ -85,9 +85,7 @@
                                         </label>
                                         <textarea name="description" type="text"
                                                   class="form-control w-50" rows="3"
-                                                  placeholder="Description" id="description">
-                                            <?=$connector->description ?? ''?>
-                                        </textarea>
+                                                  placeholder="Description" id="description"><?=$connector->description ?? ''?></textarea>
                                     </div>
 
                                     <hr class="mt-3">
@@ -243,104 +241,26 @@
 
                             <div class="row w-100 p-5 flex-row justify-content-around">
 
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-                                    <div class="d-flex justify-content-between p-3">
-                                        <label class="form-check-label w-100" for="flexRadioDefault1">
-                                            Template 01
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
+                                <?php foreach ($templates as $index=> $template): ?>
+                                    <div class="form-check col-5 shadow m-2 p-2 set-checked">
+                                        <div class="d-flex justify-content-between p-3">
+                                            <label class="form-check-label w-100" for="flexRadioDefault1">
+                                                Template <?=str_pad(($index+1),3,"0", STR_PAD_LEFT)?>
+                                            </label>
+                                            <input class="form-check-input" type="radio" name="template"
+                                                   value="<?=$template->id?>"
+                                                   id="template"
+                                                   <?= $prev_connector_templates['template_id'] !== $template->id ? 'checked' : ''?>>
 
+                                        </div>
+                                        <img
+                                             src="<?= assets("/themes/user/img/template/template-02.png") ?>"
+                                             alt="<?= $template->getThumbnailImageName() ?>"
+                                             title="<?= $template->getThumbnailImageName() ?>"
+                                             class="w-100"/>
                                     </div>
-                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>"
-                                         class="w-100"/>
-                                </div>
-
-
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-
-                                    <div class="d-flex justify-content-between p-3">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 02
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-                                    </div>
-
-                                    <img src="<?= assets("themes/user/img/template/template-02.png") ?>"
-                                         class="w-100"/>
-                                </div>
-
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-
-                                    <div class="d-flex justify-content-between p-3">
-
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 03
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-
-                                    </div>
-
-                                    <img src="<?= assets("themes/user/img/template/template-03.png") ?>"
-                                         class="w-100"/>
-                                </div>
-
-
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-                                    <div class="d-flex justify-content-between p-3">
-
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 04
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-
-                                    </div>
-                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>"
-                                         class="w-100"/>
-                                </div>
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-                                    <div class="d-flex justify-content-between p-3">
-
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 05
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-
-                                    </div>
-                                    <img src="<?= assets("themes/user/img/template/template-01.png") ?>"
-                                         class="w-100"/>
-                                </div>
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-                                    <div class="d-flex justify-content-between p-3">
-
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 06
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-
-                                    </div>
-                                    <img src="<?= assets("themes/user/img/template/template-02.png") ?>"
-                                         class="w-100"/>
-                                </div>
-                                <div class="form-check col-5 shadow m-2 p-2 set-checked">
-                                    <div class="d-flex justify-content-between p-3">
-
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Template 07
-                                        </label>
-                                        <input class="form-check-input" type="radio" name="template"
-                                               id="template">
-
-                                    </div>
-                                    <img src="<?= assets("themes/user/img/template/template-03.png") ?>"
-                                         class="w-100"/>
-                                </div>
-
+                                    <?php break; ?>
+                                <?php endforeach; ?>
 
                             </div>
 
@@ -353,8 +273,8 @@
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                             <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
-
-                                <div class="download-container w-75 p-4">
+                                <?php if (sizeof($prev_connector_templates['downloadable_files']) === 0): ?>
+                                    <div class="download-container w-75 p-4">
 
                                     <div class="input-group w-100 mb-3 justify-content-center">
 
@@ -474,7 +394,161 @@
                                     </div>
 
                                 </div>
+                                <?php endif; ?>
+                                <?php foreach ($prev_connector_templates['downloadable_files'] as  $index => $content): ?>
+                                    <div class="download-container w-75 p-4">
+                                        <a href="<?= $content['file_asset_path'] ?>" download>
+                                            <iframe src="<?= $content['file_asset_path'] ?>"
+                                                    width="100%"
+                                                    title="<?=$content['media_name']?>"
+                                            ></iframe>
+                                            <a href="<?= $content['file_asset_path'] ?>" class="btn btn-sm btn-primary blue"
+                                               target="_blank">View file: <?=$content['media_name']?></a>
+                                        </a>
+                                        <div class="input-group w-100 mb-3 justify-content-center">
 
+                                            <label class="btn btn-light">
+                                                <i class="bi bi-folder2-open"></i>
+                                            </label>
+
+                                            <input type="file" class="form-control w-50 bg-light"
+                                                   value=""
+                                                   name="downloadable[<?=$index?>]">
+
+
+
+                                            <button type="button" class="btn btn-primary add-new-download-container">
+                                                <i class="bi bi-plus-lg"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="d-flex flex-wrap gap-3 w-100">
+
+
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+
+                                                    <?php
+                                                          $germany = LanguagePool::GERMANY()->getLabel();
+                                                          $germanyTitleExists = array_key_exists($germany, $content['title'])
+                                                    ?>
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/de.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                               <?= $germanyTitleExists ? 'checked' :'' ?>
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                                                           name="downloadable[title][<?=$index?>][<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                                           placeholder="Label ( in Germany )"
+                                                           <?= $germanyTitleExists ? '' :'disabled="disabled"' ?>
+                                                           <?= $germanyTitleExists ? '' :'style="display: none;"' ?>
+                                                           value="<?=$germanyTitleExists? $content['title'][$germany] : '' ?>"
+                                                    >
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+
+                                                    <?php
+                                                        $englishUk = LanguagePool::UK_ENGLISH()->getLabel();
+                                                        $englishUkTitleExists = array_key_exists($englishUk, $content['title'])
+                                                    ?>
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/uk.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                                <?= $englishUkTitleExists ? 'checked' :'' ?>
+                                                                value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                                           name="downloadable[title][<?=$index?>][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
+                                                           placeholder="Label ( in English )"
+                                                            <?= $englishUkTitleExists ? '' :'disabled="disabled"' ?>
+                                                            <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
+                                                           value="<?=$englishUkTitleExists? $content['title'][$englishUk] : '' ?>"
+                                                    >
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+                                                    <?php
+                                                        $french = LanguagePool::FRENCH()->getLabel();
+                                                        $frenchTitleExists = array_key_exists($french, $content['title'])
+                                                    ?>
+
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/fr.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                               <?= $frenchTitleExists ? 'checked' :'' ?>
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                                           name="downloadable[title][<?=$index?>][<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                                           placeholder="Label ( in French )"
+                                                            <?= $frenchTitleExists ? '' :'disabled="disabled"' ?>
+                                                            <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
+                                                           value="<?=$frenchTitleExists? $content['title'][$french] : '' ?>"
+                                                    >
+
+                                                </div>
+                                            </div>
+
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+                                                    <?php
+                                                        $englishUs = LanguagePool::US_ENGLISH()->getLabel();
+                                                        $englishUsTitleExists = array_key_exists($englishUs, $content['title'])
+                                                    ?>
+
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/us.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                              <?= $frenchTitleExists ? 'checked' :'' ?>
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                                           name="downloadable[title][0][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
+                                                           placeholder="Label ( in English )"
+                                                            <?= $englishUsTitleExists ? '' :'disabled="disabled"' ?>
+                                                            <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
+                                                           value="<?=$englishUsTitleExists? $content['title'][$englishUs] : '' ?>"
+                                                    >
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
 
 
@@ -506,17 +580,21 @@
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
-                                    <?php require basePath("/views/templates/template-01.php") ?>
+<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
+                                    <?=$show?>
                                 </div>
                                 <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
-                                    <?php require basePath("/views/templates/template-01.php") ?>
+<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
+                                    <?=$show?>
                                 </div>
                                 <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
-                                    <?php require basePath("/views/templates/template-01.php") ?>
+<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
+                                    <?=$show?>
                                 </div>
 
                                 <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
-                                    <?php require basePath("/views/templates/template-01.php") ?>
+<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
+                                    <?=$show?>
                                 </div>
 
                             </div>
@@ -687,7 +765,6 @@
         });
 
         $(document).on("click", ".add-new-download-container", function () {
-            debugger
             const downloadableContent = getDownloadableFileContent();
             $(this).closest("div.download-jumbotron").append(downloadableContent);
 
