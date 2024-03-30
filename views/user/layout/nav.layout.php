@@ -31,7 +31,11 @@ global $env;
 
             <div class="col-md-4 mt-5 text-center login-btn" style="display: none;">
                 <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
-                <span class="nav-text">Login</span>
+                <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
+                    <a class="nav-link" href="<?= url("/logout") ?>">Logout </a>
+                <?php } else { ?>
+                    <a class="nav-link" href="<?= url("/login") ?>">Login </a>
+                <?php } ?>
             </div>
 
 

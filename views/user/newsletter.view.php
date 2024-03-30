@@ -48,12 +48,13 @@
 
         if (isset($_SESSION["auth"]) && $_SESSION["auth"] == true) { ?>
 
-            <?php if (intval($_SESSION["user"]->newsletter) === 1) { ?>
-                <a class="btn btn-primary background-blue my-5">
+
+            <?php  if (intval($_SESSION["user"]->newsletter) === 1) { ?>
+                <a href="<?= url("/newsletter/unsubscribe") ?>" class="btn btn-primary background-blue my-5">
                     <i class="bi bi-x-lg m-2"></i> Unsubscribe
                 </a>
             <?php } else { ?>
-                <a class="btn btn-primary background-blue my-5">
+                <a href="<?= url("/newsletter/subscribe") ?>" class="btn btn-primary background-blue my-5">
                     <i class="bi bi-check2 m-2"></i>Subscribe
                 </a>
             <?php } ?>

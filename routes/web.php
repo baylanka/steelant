@@ -26,10 +26,10 @@ $app->post('/login',  ["UserController", "login"]);
 $app->get('/register',  ["UserController", "register_view"]);
 $app->post('/register',  ["UserController", "register"]);
 
-
 $app->get('/logout',  ["UserController", "logout"]);
 
-
+$app->get('/newsletter/unsubscribe',  ["UserController", "unsubscribe"]);
+$app->get('/newsletter/subscribe',  ["UserController", "subscribe"]);
 
 $app->get('/connector',  ["user\ConnectorController", "index"]);
 

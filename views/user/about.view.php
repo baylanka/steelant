@@ -6,6 +6,7 @@
 
     <img src="<?= assets("themes/user/img/hero-image-about-page.png") ?>" class="w-100"/>
 
+    <div class="p-3">
     <h5 class="connector-heading mt-4 mb-5 selected">About SteelWall</h5>
 
     <div class="divider mt-5"></div>
@@ -41,7 +42,6 @@
     <p class="w-50 mt-5" style="font-size: 0.8rem;">
         Explore this website and contact a SteelWall representi ti ve to learn why SteelWall connectors are one of the fastest growing construction industry products world-wide.
     </p>
-
 
     <div class="row w-100 mb-5 mt-5" id="gallery-container">
 
@@ -82,6 +82,7 @@
     </div>
 
 
+    </div>
 </div>
 
 
