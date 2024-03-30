@@ -272,6 +272,9 @@
             scrollTop: $('#heading').offset().top
         }, 'slow');
 
+        $(".request-connector-btn").addClass("request-connector");
+
     });
+
 </script>
 

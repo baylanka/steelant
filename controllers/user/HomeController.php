@@ -3,6 +3,7 @@
 namespace controllers\user;
 
 use app\Request;
+use helpers\middlewears\UserMiddlewear;
 use helpers\services\CategoryService;
 use model\Category;
 
@@ -55,12 +56,10 @@ class HomeController
 
     public function favourite(Request $request)
     {
-        if(isset($_SESSION["auth"]) && $_SESSION["auth"] === true){
-            $data = [];
-            return view("user/favourite.view.php", $data);
-        }
 
-        header('Location: '.url("/login?redirect=favourite"));
+        UserMiddlewear::isLoggedIn();
+        $data = [];
+        return view("user/favourite.view.php", $data);
 
     }
 
