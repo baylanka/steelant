@@ -129,7 +129,9 @@ class Request
             case 'POST':
                 $this->payload = $_POST;
                 if(!empty(sizeof($_FILES))){
-                    $this->payload = array_merge($this->payload, $_FILES);
+                    foreach ($_FILES as $key => $file){
+                        $this->payload[$key] = array_merge($this->payload[$key] ?? [], $file);
+                    }
                 }
                 break;
             case 'PUT':

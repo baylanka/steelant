@@ -3,6 +3,7 @@
 namespace model;
 
 use helpers\pools\LanguagePool;
+use helpers\repositories\ContentTemplateRepository;
 use helpers\services\CategoryService;
 use model\BaseModel;
 
@@ -21,15 +22,15 @@ class Connector extends BaseModel
     public string $thickness_m;
     public string $thickness_i;
 
-    public string $standard_length_m;
-    public string $standard_length_i;
+    public string $standard_lengths_m;
+    public string $standard_lengths_i;
     public int $visibility;
 
-    public string $max_tensile_strength_m;
-    public string $max_tensile_strength_i;
+    public ?string $max_tensile_strength_m;
+    public ?string $max_tensile_strength_i;
 
     public CategoryContent $temp_content;
-    public int $temp_display_order_no;
+    public ?array $temp_content_templates;
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
@@ -95,9 +96,60 @@ class Connector extends BaseModel
         parent::save();
         $connectorId = $this->id;
 
-        //store category-content
+        //store | update category-content
         $content = $this->temp_content;
-        $content->element_id = $connectorId;
+        if(!isset($content->id)) {
+            $content->element_id = $connectorId;
+        }
         $content->save();
+    }
+
+    public function update()
+    {
+        //update connector
+        parent::save();
+
+        //update category-content
+        $content = $this->temp_content;
+        $content->save();
+
+        //delete previous content templates, with its associated `content template media` and `media`
+        ContentTemplateRepository::deleteContentTemplatesByContentId($content->id);
+        //update new content-templates, its template media
+        $this->updateContentTemplates();
+    }
+
+
+
+    private function updateContentTemplates()
+    {
+        foreach ($this->temp_content_templates as $content_template)
+        {
+            $content_template->save();
+            $this->updateContentTemplateMedia($content_template);
+        }
+    }
+
+    private function updateContentTemplateMedia(ContentTemplate $content_template)
+    {
+        $contentTemplateMediaArray = $content_template->temp_content_template_media;
+        foreach ($contentTemplateMediaArray as $each)
+        {
+            $each->content_template_id = $content_template->id;
+            $media = $this->getUpdatedMedia($each);
+            $each->media_id = $media->id;
+            $each->save();
+        }
+    }
+
+    private function getUpdatedMedia(ContentTemplateMedia $contentTemplateMedia)
+    {
+        $existingMedia = Media::getFirstBy(['path' => $contentTemplateMedia->temp_media->path]);
+        if(!$existingMedia){
+            $contentTemplateMedia->temp_media->save();
+            return $contentTemplateMedia->temp_media;
+        }
+
+        return $existingMedia;
     }
 }

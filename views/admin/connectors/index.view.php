@@ -198,7 +198,7 @@
 
             weight = `<table class="table table-striped table-bordered">
                             <tbody>`
-             for(let label of connector.weights){
+             for(let label in connector.weights){
                  weight += `
                     <tr>
                         <th role="row">
@@ -290,12 +290,12 @@
     {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}`;
-        const trTag = $(`a[data-id="${connectorId}"]`);
+        const trTag = $(`a[data-id="${connectorId}"]`).closest('tr');
         try {
             const modal = await loadModal(modalId, path);
 
-            $(document).off('updateConnectorSuccessEvent');
-            $(document).on('updateConnectorSuccessEvent', function (event) {
+            $(document).off('updateCategorySuccessEvent');
+            $(document).on('updateCategorySuccessEvent', function (event) {
                 modal.hide();
                 const connector = event.originalEvent.detail.connector;
                 const row = getRow(connector);

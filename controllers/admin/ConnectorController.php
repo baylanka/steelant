@@ -9,6 +9,7 @@ use helpers\dto\ConnectorDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\filters\ConnectorFilter;
 use helpers\mappers\ConnectorStoreRequestMapper;
+use helpers\mappers\UpdateConnectorRequestMapper;
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
 use helpers\utilities\ResponseUtility;
@@ -89,7 +90,19 @@ class ConnectorController extends BaseController
 
     public function update(Request $request)
     {
-
+        try{
+            $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+            $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+            $connector = UpdateConnectorRequestMapper::getModel($request);
+            $connector->update();
+            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully stored",
+                "data" => $connectorDTO
+            ]);
+        }catch(\Exception $ex){
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function destroy(Request $request)
