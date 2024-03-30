@@ -12,7 +12,6 @@ $(document).ready(function () {
 
 
     $("span.template-img-heading").remove();
-    $("img.template-img").after(` <span class="img-size-text d-block ">180 * 180</span>`);
 });
 
 
@@ -33,8 +32,7 @@ $(document).on("change", "input.template-img-input", function () {
     let image = $(this).closest("div.template-img-container").find("img.template-img");
     let alert_note = $(this).closest("div.template-img-container").find("span.img-size-text");
 
-    let inputWidth = $(this).attr("data-width");
-    let inputHeight = $(this).attr("data-height");
+
 
     reader.onload = function (e) {
 
@@ -42,15 +40,6 @@ $(document).on("change", "input.template-img-input", function () {
         img.src = e.target.result;
 
         img.onload = function () {
-            let width = this.width;
-            let height = this.height;
-
-            if (width > inputWidth || height > inputHeight) {
-                alert_note.html(`Max image dimension size must be <br/> ${inputWidth} * ${inputHeight}`);
-                alert_note.css("color", "red");
-                return;
-            }
-            alert_note.html(`${inputWidth} * ${inputHeight}`);
             alert_note.css("color", "gray");
 
             let img_name = image.attr("data-img");

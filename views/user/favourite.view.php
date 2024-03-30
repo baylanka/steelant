@@ -1,7 +1,9 @@
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
-<div class="jumbotron w-100 p-0 m-0">
+<div class="jumbotron w-100 p-3 m-0">
+
+
 
     <!--categories section-->
     <div class="row w-100 mt-4">
@@ -25,16 +27,8 @@
     <!--categories section-->
 
 
-    <div class="d-flex w-100 justify-content-end mb-2 my-3">
+    <?php require_once "layout/sub_nav.layout.php" ?>
 
-        <div class="text-center end-0">
-            <img src="<?= assets("themes/user/img/home.png") ?>" height="30">
-            <br/>
-            <span class="nav-text">Home</span>
-        </div>
-
-
-    </div>
 
     <div class="divider"></div>
 
@@ -42,91 +36,88 @@
 
     <div class="divider"></div>
 
-    <div class="d-flex justify-content-around my-4">
 
-        <div>
-            <h6 class="color-blue font-weight-700"> Project name</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Connector name</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Date / Time of request</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Amount (running m)</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Location</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Country / State</h6>
-        </div>
-        <div>
-            <h6 class="color-blue font-weight-700"> Delete</h6>
-        </div>
+    <div class="table-responsive">
+        <table class="table border-primary mt-3 mb-5 w-100">
+            <thead>
+            <tr>
+                <th scope="col" class="color-blue font-weight-700">Project name</th>
+                <th scope="col" class="color-blue font-weight-700">Connector name</th>
+                <th scope="col" class="color-blue font-weight-700">Date / Time of request</th>
+                <th scope="col" class="color-blue font-weight-700">Amount (running m)</th>
+                <th scope="col" class="color-blue font-weight-700">Location</th>
+                <th scope="col" class="color-blue font-weight-700">Country / State</th>
+                <th scope="col" class="color-blue font-weight-700 text-center">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Hamburg harbour</td>
+                <td>MF64</td>
+                <td>2024-02-29 / 12:34 h</td>
+                <td>500 running m</td>
+                <td>Hamburg</td>
+                <td>Germany</td>
+                <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+            </tr>
+            <tr>
+                <td>Berlin harbour</td>
+                <td>MF63</td>
+                <td>2024-01-29 / 12:34 h</td>
+                <td>300 running m</td>
+                <td>Hamburg</td>
+                <td>Germany</td>
+                <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+            </tr>
+
+            </tbody>
+        </table>
+
     </div>
 
 
-    <div class="divider mb-5"></div>
+    <div class="divider mt-5"></div>
 
-    <div class="d-flex justify-content-around my-4">
+    <h4 class="connector-heading my-3">Favourite connectors</h4>
 
-        <div>
-            <p> Hamburg harbour</p>
-        </div>
-        <div>
-            <p> MF64</p>
-        </div>
-        <div>
-            <p> 2024-02-29 / 12:34 h</p>
-        </div>
-        <div>
-            <p> 500 running m</p>
-        </div>
-        <div>
-            <p> Hamburg</p>
-        </div>
-        <div>
-            <p> Germany</p>
-        </div>
-        <div>
-            <p> Delete</p>
-        </div>
+    <div class="divider"></div>
+
+    <div class="table-responsive">
+        <table class="table border-primary mt-3 mb-5 w-100">
+            <thead>
+            <tr>
+                <th scope="col" class="color-blue font-weight-700">Project name</th>
+                <th scope="col" class="color-blue font-weight-700">Connector name</th>
+                <th scope="col" class="color-blue font-weight-700">Date / Time of request</th>
+                <th scope="col" class="color-blue font-weight-700">Amount (running m)</th>
+                <th scope="col" class="color-blue font-weight-700">Location</th>
+                <th scope="col" class="color-blue font-weight-700">Country / State</th>
+                <th scope="col" class="color-blue font-weight-700 text-center">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Hamburg harbour</td>
+                <td>MF64</td>
+                <td>2024-02-29 / 12:34 h</td>
+                <td>500 running m</td>
+                <td>Hamburg</td>
+                <td>Germany</td>
+                <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+            </tr>
+            <tr>
+                <td>Berlin harbour</td>
+                <td>MF63</td>
+                <td>2024-01-29 / 12:34 h</td>
+                <td>300 running m</td>
+                <td>Hamburg</td>
+                <td>Germany</td>
+                <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
-
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
-
 
 
 </div>

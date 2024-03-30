@@ -40,8 +40,8 @@ use helpers\services\RequestService;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= RequestService::isRequestedRoute("/sealant") ? "selected" : "" ?>"
-                   aria-current="page" href="<?= url("/sealant") ?>">
+                <a class="nav-link" target="_blank"
+                   aria-current="page" href="https://steelant.eu/">
                     Sealant
                 </a>
             </li>
@@ -52,12 +52,84 @@ use helpers\services\RequestService;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= RequestService::isRequestedRoute("/login") ? "selected" : "" ?>"
-                   aria-current="page" href="<?= url("/login") ?>">
-                    Login
+
+
+                <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
+                    <a class="nav-link" aria-current="page" href="<?= url("/logout") ?>">
+                        Logout
+                    </a>
+                <?php } else { ?>
+                    <a class="nav-link <?= RequestService::isRequestedRoute("/login") ? "selected" : "" ?>"
+                       aria-current="page" href="<?= url("/login") ?>">
+                        Login
+                    </a>
+                <?php } ?>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    User information
                 </a>
+                <ul style="list-style-type: none;">
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/about") ? "selected" : "" ?>" href="<?= url("/about") ?>">
+                            About Steelwall
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/newsletter") ? "selected" : "" ?>" href="<?= url("/newsletter") ?>">
+                            Newsletter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/register") ? "selected" : "" ?>" href="<?= url("/register") ?>">
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item" href="#">
+                        <a class="nav-link">
+                            Languages and measures
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>" href="<?= url("/favourite") ?>">
+                            Favorites
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>" href="<?= url("/contact") ?>">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    Legal advice
+                </a>
+                <ul style="list-style-type: none;">
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "" ?>" href="<?= url("/imprint") ?>">
+                            Imprint
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a  class="nav-link <?= RequestService::isRequestedRoute("/privacy&policy") ? "selected" : "" ?>" href="<?= url("/privacy&policy") ?>">
+                            Privacy policy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/general/terms&condition") ? "selected" : "" ?>" href="<?= url("/general/terms&condition") ?>">
+                            General terms and conditions
+                        </a>
+                    </li>
+
+                </ul>
             </li>
         </ul>
+
 
     </div>
 </div>

@@ -1,0 +1,147 @@
+<?php require_once "layout/start.layout.php" ?>
+
+<!--body section-->
+<div class="jumbotron w-100 p-0 m-0">
+
+
+    <div class="p-3">
+        <!--categories section-->
+        <div class="row w-100 mt-4">
+
+
+            <div class="col-12 col-md-4 col-xxl-4 row gap-3">
+                <div class="col-md-3">
+                    <img src="<?= assets("themes/user/img/imprint-icon.png") ?>" height="100"/>
+                </div>
+                <div class="col-md-2">
+                    <dl>
+                        <h4 class="color-blue selected">Privacy policy</h4>
+                    </dl>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!--categories section-->
+
+
+        <?php require_once "layout/sub_nav.layout.php" ?>
+
+
+        <div class="divider"></div>
+
+        <h4 class="connector-heading my-3">Legal advices</h4>
+
+        <div class="divider"></div>
+
+
+        <p class="mt-5 w-50">
+            Contact details<br/><br/>
+
+            Controller: Richard Heindl, Email: info@steelwall.eu, Telephone: 49-89-74 120 122<br/><br/><br/>
+
+            Collection, storage, use and nature and purpose of the processing of personal data<br/><br/>
+
+            When visiting the company website
+            When you visit our website at www.steelwall.eu, the web browser being used on your
+            device (e.g., PC, laptop, smartphone, etc.) will automatically send information to our
+            web server, which will be stored as log fi les for a limited period and automatically erased after 24
+            months. This includes the following data:<br/><br/>
+
+            - IP address of the computer accessing the website<br/><br/>
+            - Date and ti me of website access<br/><br/>
+            - Name and web link of the fi le retrieved<br/><br/>
+            - Referring web page<br/><br/>
+            - Web browser used<br/><br/>
+            - Operating system used by your computer, and<br/><br/>
+            - Name of internet service provider<br/><br/><br/><br/>
+            Purposes:<br/><br/>
+            Ensuring problem-free access to our website, analysing the stability of the system, security
+            of the system, convenience of using our website, pre-orders, administrative purposes regarding
+            the website. In no case will data be collected in order to trace individual persons.<br/><br/><br/>
+
+            Legal basis:<br/><br/>
+
+            Point 1 (f) of Art. 6(1) of the GDPR: the legitimate interests pursued by the controller as
+            derived from the purposes of the processing.<br/><br/><br/><br/><br/>
+
+
+            When using our contact email address, order form and enquiry form<br/><br/><br/><br/>
+
+            In the Contact section of our website you have the opportunity to send us an email using
+            our general email address. Enquiries made by you will be processed using the data entered
+            by you, from which follow the purpose of the processing as well as any ti me limit for erasure
+            and the legal basis of the processing. A valid email address must be entered for the enquiry
+            to be processed. If no relevant purpose and therefore no legal basis for processing can be
+            derived from this or if the message is suspected to be spam in the absence of genuine
+            content, these data and the entire email will be erased by us immediately.<br/><br/><br/>
+
+
+            Should you have queries of any kind, we off er you the option to contact us using a form
+            provided on our website. This requires entering your name and a valid email address so that we
+            know who sent the enquiry and so that we are able to reply to it. You may volunteer further
+            information if you wish.<br/><br/><br/>
+
+
+            Data processing for the purpose of contacting us takes place in accordance with point 1 (a)
+            of Art. 6(1) of the GDPR on the basis of your freely given consent.<br/><br/><br/>
+
+
+            The personal data collected by us when you use the contact form will be erased automatically
+            once your enquiry has been completely resolved.<br/><br/><br/><br/>
+
+            Newsletter<br/><br/><br/>
+
+            You have the possibility to subscribe to our newsletter via our website. To that end,
+            we required your email address and your declaration of consent to receiving our newsletter.<br/><br/>
+
+
+            You can unsubscribe from our newsletter at any ti me. Please send your unsubscribe request
+            to the following email address: info@steelwall.eu. We will then immediately erase your data
+            in connection with newsletter mailings.<br/><br/><br/><br/><br/><br/>
+
+            Cookies<br/><br/><br/>
+
+            Cookies are very small text fi les necessary for trouble-free access to web pages.
+            These cookies are generated by the website being accessed, such as our website,
+            and sent to the device accessing the site, such as your PC, laptop or smartphone,
+            etc. They contain information
+            such as what font and font size your web browser should use in displaying our website. They
+            are absolutely not computer viruses or other malware! They also do not allow drawing any
+            conclusions about individual persons or their identity.<br/><br/><br/>
+
+
+            Furthermore, we also use cookies to make our website more user-friendly and to critically
+            examine ourselves. To that end, cookies can identify a visitor who has accessed our website
+            before as regards their web browser. However, these cookies are erased after a pre-determined period of time.<br/><br/><br/>
+
+            Another kind of cookies, so-called session cookies, is used during a website visit for logging
+            which pages of our website have already been visited in any one ‘web session’. This also is
+            for making our website more user-friendly. Cookies of this kind are erased immediately on
+            leaving our website.<br/><br/><br/>
+
+
+            So-called temporary cookies are used to avoid having to re-enter settings and inputs each
+            ti me you revisit our website. For these reasons of user-friendliness, they must be stored on
+            the device of our website visitor for a certain period of ti me.<br/><br/><br/>
+
+
+            As a website operator, our organisation and external third parti es have a plausible basis for
+            collecting data by using cookies in the pursuit of our legitimate interests in accordance with
+            point (f) of Art. 6(1) of the GDPR. However, visitors to our website can modify the settings
+            of their web browsers either to reject all cookies or to ask for permission
+            before every individual cookie is set.
+            Rejecting all cookies can lead to our website not being displayed correctly.<br/><br/><br/>
+        </p>
+
+    </div>
+
+
+</div>
+
+<!--body section-->
+
+<?php require_once "layout/end.layout.php" ?>

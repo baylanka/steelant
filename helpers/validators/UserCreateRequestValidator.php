@@ -1,0 +1,79 @@
+<?php
+
+namespace helpers\validators;
+
+use app\Request;
+use helpers\utilities\ResponseUtility;
+use helpers\utilities\ValidatorUtility;
+use model\User;
+
+
+class UserCreateRequestValidator
+{
+
+    public static function validate(Request $request)
+    {
+
+        self::requireds($request);
+
+        $user =  User::query("SELECT COUNT(*) AS mail FROM users WHERE email=:email",["email"=>$request->get("email")])->first();
+        if($user->mail != 0){
+            ResponseUtility::response("You are already registered.",423,["key"=>"email"]);
+        }
+
+        $user =  User::query("SELECT COUNT(*) AS userName FROM users WHERE user_name=:user_name",["user_name"=>$request->get("user_name")])->first();
+        if($user->userName != 0){
+            ResponseUtility::response("Sorry, the username is already taken. Please try a different one.",423,["key"=>"user_name"]);
+        }
+
+        if (!ValidatorUtility::email($request->get("email"))) {
+            ResponseUtility::response("Please provide valid email.",423,["key"=>"email"]);
+        }
+
+        if(strlen($request->get("user_name")) < 1){
+            ResponseUtility::response("Please enter valid username.",423,["key"=>"user_name"]);
+        }
+        if(strlen($request->get("password")) < 8){
+            ResponseUtility::response("Password must contain 8 characters.",423,["key"=>"password"]);
+        }
+
+    }
+
+
+    private static function requireds(Request $request)
+    {
+
+        if (!ValidatorUtility::required($request->all(),"name")) {
+            ResponseUtility::response("Please provide your name.",423,["key"=>"name"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"title")) {
+            ResponseUtility::response("Please provide your title.",423,["key"=>"title"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"job_position")) {
+            ResponseUtility::response("Please provide your job / position.",423,["key"=>"job_position"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"division")) {
+            ResponseUtility::response("Please provide your division.",423,["key"=>"division"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"company_name")) {
+            ResponseUtility::response("Please provide your company name.",423,["key"=>"company_name"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"country_or_state")) {
+            ResponseUtility::response("Please provide your country / state.",423,["key"=>"country_or_state"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"email")) {
+            ResponseUtility::response("Please provide your email.",423,["key"=>"email"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"phone")) {
+            ResponseUtility::response("Please provide your phone.",423,["key"=>"phone"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"user_name")) {
+            ResponseUtility::response("Please provide your username.",423,["key"=>"user_name"]);
+        }
+        if (!ValidatorUtility::required($request->all(),"password")) {
+            ResponseUtility::response("Please provide your password.",423,["key"=>"password"]);
+        }
+
+    }
+
+}

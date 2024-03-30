@@ -19,7 +19,7 @@
             <dd class="custom-dd custom-font"><a href="#" class="link color-black">Downloadable - 02</a></dd>
             <dd class="custom-dd custom-font"><a href="#" class="link color-black">Downloadable - 03</a></dd>
             <dd class="custom-dd custom-font"><a href="#" class="link color-black">Downloadable - 04</a></dd>
-            <dd class="custom-dd custom-font"><a href="#" class="link color-black">Request this connector</a>
+            <dd class="custom-dd custom-font request-connector-btn" data-id="1" style="cursor: pointer;"><a class="link color-black">Request this connector</a>
             </dd>
             <dd class="custom-dd custom-font d-flex align-middle gap-3">
                 <a href="#" class="link color-black">Remember this connector</a>

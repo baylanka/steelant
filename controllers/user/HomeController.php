@@ -3,6 +3,7 @@
 namespace controllers\user;
 
 use app\Request;
+use helpers\middlewears\UserMiddlewear;
 use helpers\services\CategoryService;
 use model\Category;
 
@@ -34,13 +35,6 @@ class HomeController
     }
 
 
-    public function sealant(Request $request)
-    {
-        $data = [];
-        return view("user/sealant.view.php", $data);
-    }
-
-
     public function contact(Request $request)
     {
         $data = [];
@@ -62,8 +56,43 @@ class HomeController
 
     public function favourite(Request $request)
     {
+
+        UserMiddlewear::isLoggedIn();
         $data = [];
         return view("user/favourite.view.php", $data);
+
+    }
+
+
+    public function about(Request $request)
+    {
+        $data = [];
+        return view("user/about.view.php", $data);
+    }
+    public function imprint(Request $request)
+    {
+        $data = [];
+        return view("user/imprint.view.php", $data);
+    }
+
+
+    public function privacy(Request $request)
+    {
+        $data = [];
+        return view("user/privacy.view.php", $data);
+    }
+
+    public function newsLetter(Request $request)
+    {
+        $data = [];
+        return view("user/newsletter.view.php", $data);
+    }
+
+
+    public function generalCondition(Request $request)
+    {
+        $data = [];
+        return view("user/general_condition.view.php", $data);
     }
 
 }

@@ -11,6 +11,23 @@ class LanguageService
     {
         try{
 
+            global $env;
+
+
+
+            if (isset($_GET['langStrict'])) {
+                Translate::setLang($_GET['langStrict']);
+                return;
+            }
+
+
+
+            if($_SERVER['HTTP_HOST'] === $env["HOST_US"]){
+                Translate::setLang(LanguagePool::US_ENGLISH()->getLabel());
+                return;
+            }
+
+
             if (!isset($_GET['lang']) && Translate::hasLanguageSet()) {
                return;
             }
@@ -19,6 +36,7 @@ class LanguageService
                 Translate::setLang(LanguagePool::GERMANY()->getLabel());
                 return;
             }
+
 
 
 

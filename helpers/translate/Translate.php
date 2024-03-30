@@ -7,6 +7,7 @@ class Translate
     public static function setLang($lang)
     {
         $_SESSION["lang"] = $lang;
+
     }
     public static function get($page, $key)
     {

@@ -58,16 +58,8 @@
         <!--categories section-->
 
 
-        <div class="d-flex w-100 justify-content-end mb-2 my-3">
+        <?php require_once "layout/sub_nav.layout.php" ?>
 
-            <div class="text-center end-0">
-                <img src="<?= assets("themes/user/img/home.png") ?>" height="30">
-                <br/>
-                <span class="nav-text">Home</span>
-            </div>
-
-
-        </div>
 
         <div class="divider"></div>
 
@@ -90,6 +82,59 @@
             <br/>info@steelwall.eu</p>
 
 
+        <p class="mt-5"> Please leave a message here: </p>
+
+        <form action="#" class="send-mail mt-5 mb-5">
+            <div class="form-group w-25 mt-3">
+                <label for="inputName">Your Name</label>
+                <input type="text" class="form-control bg-light" id="inputName" aria-describedby="Name">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputJob">JOB / POSITION</label>
+                <input type="text" class="form-control bg-light" id="inputJob" aria-describedby="job">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputDivision">DIVISION</label>
+                <input type="text" class="form-control bg-light" id="inputDivision" aria-describedby="division">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputCompany">COMPANY NAME</label>
+                <input type="text" class="form-control bg-light" id="inputCompany" aria-describedby="company name">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputCountry">COUNTRY / STATE</label>
+                <input type="text" class="form-control bg-light" id="inputCountry" aria-describedby="country">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputEmail">E-MAIL</label>
+                <input type="email" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputEmail">PHONE</label>
+                <input type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+            </div>
+
+            <div class="form-group w-50 mt-3">
+                <label for="inputEmail">YOUR MESSAGE</label>
+                <textarea type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+
+                </textarea>
+            </div>
+
+            <div class="form-group w-25 mt-3">
+                <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
+                    Send
+                </button>
+            </div>
+
+
+
+
+
+
+        </form>
+
+
         <div class="divider"></div>
 
         <h4 class="connector-heading my-3">Sales line North America</h4>
@@ -110,6 +155,58 @@
 
         <p class="mt-3">E-Mail
             <br/>info@steelwall.eu</p>
+
+        <p class="mt-5"> Please leave a message here: </p>
+
+        <form action="#" class="send-mail mt-5 mb-5">
+            <div class="form-group w-25 mt-3">
+                <label for="inputName">Your Name</label>
+                <input type="text" class="form-control bg-light" id="inputName" aria-describedby="Name">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputJob">JOB / POSITION</label>
+                <input type="text" class="form-control bg-light" id="inputJob" aria-describedby="job">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputDivision">DIVISION</label>
+                <input type="text" class="form-control bg-light" id="inputDivision" aria-describedby="division">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputCompany">COMPANY NAME</label>
+                <input type="text" class="form-control bg-light" id="inputCompany" aria-describedby="company name">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputCountry">COUNTRY / STATE</label>
+                <input type="text" class="form-control bg-light" id="inputCountry" aria-describedby="country">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputEmail">E-MAIL</label>
+                <input type="email" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+            </div>
+            <div class="form-group w-25 mt-3">
+                <label for="inputEmail">PHONE</label>
+                <input type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+            </div>
+
+            <div class="form-group w-50 mt-3">
+                <label for="inputEmail">YOUR MESSAGE</label>
+                <textarea type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+
+                </textarea>
+            </div>
+
+            <div class="form-group w-25 mt-3">
+                <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
+                    Send
+                </button>
+            </div>
+
+
+
+
+
+
+        </form>
 
 
         <div class="divider mb-5"></div>
