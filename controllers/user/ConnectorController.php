@@ -1,4 +1,5 @@
 <?php
+
 namespace controllers\user;
 
 use app\Request;
@@ -10,6 +11,9 @@ class ConnectorController extends BaseController
 {
     public function index(Request $request)
     {
+        if (!isset($_GET["id"])) {
+            header('Location: ' . url("/"));
+        }
         $categories = Category::getAll();
         $arrangedCategories = CategoryService::organizingCategoriesTreeView($categories);
         $data = [

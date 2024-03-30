@@ -40,25 +40,25 @@ global $env;
 
 
             <div class="dropstart lang-dropdown">
-                <img src="<?= assets("themes/user/img/flags/de.png") ?>" height="30" class="dropdown-toggle"
+                <img src="<?= assets("img/flags/". $_SESSION["lang"].".png") ?>" height="30" class="dropdown-toggle"
                      data-bs-toggle="dropdown"
                      aria-expanded="false"/><br/>
                 <span class="nav-text">Language</span>
                 <ul class="dropdown-menu mt-4">
                     <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle"
-                           href="<?= $env["HOST_EU"] ?>?lang=de">
+                           href="?langStrict=de">
                             <img src="<?= assets("img/flags/de.png") ?>" height="25"/>
                             Deustch</a></li>
                     <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle"
-                           href="<?= $env["HOST_EU"] ?>?lang=uk">
-                            <img src="<?= assets("img/flags/en-gd.png") ?>" height="25"/>
+                           href="?langStrict=en-gb">
+                            <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"/>
                             English - UK</a></li>
                     <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle"
-                           href="<?= $env["HOST_US"] ?>">
+                           href="?langStrict=en-us">
                             <img src="<?= assets("img/flags/en-us.png") ?>" height="25"/>
                             English - USA</a></li>
                     <li><a class="dropdown-item d-flex justify-content-start gap-2 align-middle"
-                           href="<?= $env["HOST_EU"] ?>?lang=fr">
+                           href="?langStrict=fr">
                             <img src="<?= assets("img/flags/fr.png") ?>" height="25"/>
                             French</a></li>
                 </ul>

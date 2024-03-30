@@ -91,20 +91,18 @@ use helpers\pools\LanguagePool;
 
 
                 <p class="mt-5">
-                    REQUEST FROM:<br/>
+                    REQUEST FROM:<br/><br/>
                     <small>
-                        Mr. Steven Miller<br/>
-                        Disponent<br/>
-                        Einkauf Tiefb au<br/><br/>
+                        <?= $_SESSION["user"]->title ?>. <?= $_SESSION["user"]->name ?><br/>
+                        <?= $_SESSION["user"]->job_position ?><br/>
+                        <?= $_SESSION["user"]->division ?><br/><br/>
 
-                        Hochti ef A.G.<br/>
-                        Benzstraße 2-16<br/>
-                        40003 Düsseldorf<br/>
-                        Germany / NRW<br/><br/>
 
-                        Steven.Miller@hochti ef.de<br/>
-                        -49-211-123 456 456<br/>
-                        hochti ef.com/de
+                        <?= $_SESSION["user"]->country_or_state ?><br/><br/>
+
+                        <?= $_SESSION["user"]->email ?><br/>
+                        <?= $_SESSION["user"]->phone ?><br/>
+                        <?= $_SESSION["user"]->website ?>
                     </small>
                 </p>
 
@@ -112,7 +110,7 @@ use helpers\pools\LanguagePool;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary background-blue">Request</button>
             </div>
 
         </form>

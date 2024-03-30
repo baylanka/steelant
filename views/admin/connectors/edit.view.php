@@ -259,7 +259,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/en-gd.png") ?>"
+                                                <img src="<?= assets("img/flags/en-gb.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
@@ -450,7 +450,7 @@
                                 </button>
 
                                 <button class="nav-link" id="nav-uk-tab" data-bs-toggle="tab" data-bs-target="#nav-uk" type="button" role="tab" aria-controls="nav-uk" aria-selected="false">
-                                    <img src="<?= assets("img/flags/en-gd.png") ?>" height="25" class="flag"/>
+                                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="25" class="flag"/>
                                 </button>
                                 <button class="nav-link" id="nav-fr-tab" data-bs-toggle="tab" data-bs-target="#nav-fr" type="button" role="tab" aria-controls="nav-fr" aria-selected="false">
                                     <img src="<?= assets("img/flags/fr.png") ?>" height="25" class="flag"/>
@@ -667,7 +667,7 @@
 
 
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/en-gd.png") ?>"
+                                                <img src="<?= assets("img/flags/en-gb.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 

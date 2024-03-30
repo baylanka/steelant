@@ -108,7 +108,7 @@
             <span class="d-flex">
                 <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
                      class="mt-auto mb-auto shadow ">
-                <img src="<?= assets("themes/user/img/flags/en-gd.png") ?>" height="25" class="m-1">
+                <img src="<?= assets("themes/user/img/flags/en-gb.png") ?>" height="25" class="m-1">
             </span>
 
         </div>
