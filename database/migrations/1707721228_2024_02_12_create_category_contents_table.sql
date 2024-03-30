@@ -5,7 +5,6 @@ CREATE TABLE  IF NOT EXISTS  category_contents
     display_order_no INT UNSIGNED,
     type ENUM('connector', 'add_on_content'),
     element_id BIGINT UNSIGNED,
-    template_id BIGINT UNSIGNED NULL,
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (leaf_category_id) REFERENCES categories(id),

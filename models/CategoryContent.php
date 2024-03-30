@@ -13,7 +13,6 @@ class CategoryContent extends BaseModel
     public int $display_order_no;
     public string $type;
     public int $element_id;
-    public ?int $template_id;
 
     const TYPE_CONNECTOR = "connector";
     const TYPE_ADD_ON_CONTENT = "add_on_content";
