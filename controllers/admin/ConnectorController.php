@@ -11,14 +11,12 @@ use helpers\filters\ConnectorFilter;
 use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\mappers\UpdateConnectorRequestMapper;
 use helpers\pools\LanguagePool;
-use helpers\repositories\ConnectorRepository;
 use helpers\repositories\TemplateRepository;
 use helpers\services\ConnectorService;
-use helpers\services\TemplateService;
+use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\ConnectorStoreRequestValidator;
 use model\Category;
-use model\Template;
 
 class ConnectorController extends BaseController
 {
@@ -78,27 +76,22 @@ class ConnectorController extends BaseController
 
     public function edit(Request $request)
     {
-        //@ToDo Language should get from session
-        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $lang = Translate::getLang();
         $categories = Category::getAll();
         $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $connectorId = $request->get('id');
-        $connector = ConnectorRepository::getConnectorById($connectorId);
-        $connectorTemplates = ConnectorService::getSelectedConnectorExtraAttributes($connector->id);
-
+        $connector = ConnectorService::getConnectorAssociatedData($connectorId);
+        $connectorDTO = new ConnectorDTO($connector, $lang, '<');
         $templates = TemplateRepository::getAllConnectors();
-        $data = [
-            'connector' => $connector,
-            'prev_connector_templates' => $connectorTemplates
-        ];
-        $template = TemplateService::getTemplateByFillingDataById(8,$data);
+
+//        $template = TemplateService::getTemplateByFillingDataById(8,$data);
         $data = [
             'leafCategories' => $leafCategoryDTO->getCollection(),
             'tableLang' => $lang,
-            'connector' => $connector,
+            'connector' => $connectorDTO,
             'templates' => $templates,
-            'prev_connector_templates' => $connectorTemplates,
-            'show' => $template
+//            'prev_connector_templates' => $connectorTemplates,
+//            'show' => $template
         ];
         return view("admin/connectors/edit.view.php", $data);
     }

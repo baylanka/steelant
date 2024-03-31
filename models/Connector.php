@@ -3,6 +3,7 @@
 namespace model;
 
 use helpers\pools\LanguagePool;
+use helpers\repositories\ConnectorRepository;
 use helpers\repositories\ContentTemplateRepository;
 use helpers\services\CategoryService;
 use model\BaseModel;
@@ -34,6 +35,13 @@ class Connector extends BaseModel
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
+
+    public function setMetaCollection($force = false): void
+    {
+        if($force || !isset($this->relations['meta_collection']) || empty($this->relations['meta_collection'])){
+            $this->relations['meta_collection'] = ConnectorRepository::getConnectorTemplatesByConnectorId($this->id);
+        }
+    }
 
     public function setCategory()
     {

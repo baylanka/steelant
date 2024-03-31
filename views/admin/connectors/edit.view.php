@@ -4,13 +4,11 @@
 <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Connector</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Update Connector</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body p-2">
-
-
             <div class="wizard my-2">
 
                 <ul class="nav nav-tabs justify-content-around" id="myTab" role="tablist">
@@ -54,7 +52,7 @@
                                             <option value="0" selected disabled>Select Category</option>
                                             <?php foreach ($leafCategories as $leafCategory): ?>
                                                 <option value="<?= $leafCategory->id ?>"
-                                                    <?=$leafCategory->id === $connector->leaf_category_id ? 'selected':''?>>
+                                                    <?=$leafCategory->id === $connector->categoryId ? 'selected':''?>>
                                                     <?= $leafCategory->treePathStr ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -85,7 +83,7 @@
                                         </label>
                                         <textarea name="description" type="text"
                                                   class="form-control w-50" rows="3"
-                                                  placeholder="Description" id="description"><?=$connector->description ?? ''?></textarea>
+                                                  placeholder="Description" id="description"><?=$connector->description?></textarea>
                                     </div>
 
                                     <hr class="mt-3">
@@ -100,7 +98,7 @@
 
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="thickness_metrics"
-                                                placeholder="5mm (+0.1/-0.5 mm)" value="<?=$connector->thickness_m ?? ''?>">
+                                                placeholder="5mm (+0.1/-0.5 mm)" value="<?=$connector->thickness_m?>">
                                                 <span class="input-group-text">
                                                     metrics
                                                 </span>
@@ -108,7 +106,7 @@
 
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control"  name="thickness_imperial"
-                                                       placeholder=" 5 inch (+0/-5 inch)" value="<?=$connector->thickness_i ?? ''?>">
+                                                       placeholder=" 5 inch (+0/-5 inch)" value="<?=$connector->thickness_i?>">
                                                 <span class="input-group-text">
                                                     imperial
                                                 </span>
@@ -128,62 +126,79 @@
 
                                         <div class="w-50 gap-1 weight-jumbo-container">
                                             <?php
-                                                $weightIArray = json_decode($connector->weight_i ?? '{}', true);
-                                                $weightMArray = json_decode($connector->weight_m ?? '{}', true);
-                                                $i = -1;
+                                                $weightIArray = $connector->weights_i;
+                                                $weightMArray = $connector->weights_m;
                                             ?>
-                                            <?php foreach ($weightIArray as $key => $value): ?>
-                                                <?php $i++ ?>
+                                            <?php if(empty(sizeof($weightIArray))): ?>
                                                 <div class="p-3 mt-3 weight-container">
 
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" name="weight_metrics[]"
-                                                           placeholder="ie: 49 kg/m"
-                                                           value="<?=$value?>"
-                                                    >
-                                                    <span class="input-group-text">metrics</span>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" name="weight_imperial[]"
-                                                           placeholder="ie: 15lbs/ft"
-                                                           value="<?=$weightMArray[$key]?>"
-                                                    >
-                                                    <span class="input-group-text">imperial</span>
-                                                </div>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-text">metrics</span>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control">
+                                                        <span class="input-group-text">imperial</span>
+                                                    </div>
 
-                                                <?php if($key === 'general'): ?>
+
                                                     <div class="input-group justify-content-end mb-3">
                                                         <button type="button" class="btn btn-light show-label-btn">
                                                             <i class="bi bi-arrow-bar-left"></i>
                                                         </button>
 
-                                                        <input type="text" class="form-control ml-1  label" placeholder="label"
-                                                               value=""
-                                                               name="weight_label[]">
+                                                        <input type="text" class="form-control ml-1  label" placeholder="label">
                                                         <span class="input-group-text">label</span>
                                                     </div>
-                                                <?php else:?>
-                                                    <div class="input-group justify-content-end mb-3">
-                                                        <input type="text" class="form-control ml-1" placeholder="label"
-                                                               value="<?=$key?>"
-                                                               name="weight_label[]"
-                                                        >
-                                                        <span class="input-group-text">label</span>
+
+
+                                                    <div class="input-group justify-content-end">
+
+                                                        <button type="button" class="btn btn-primary add-new-weight-btn"><i
+                                                                    class="bi bi-plus-lg"></i></button>
                                                     </div>
-                                                <?php endif?>
 
-                                                <div class="input-group justify-content-end">
-                                                    <?php if($i !== 0 && $key !== 'general'): ?>
-                                                        <button type="button" class="btn btn-danger remove-weight-btn"><i
-                                                                    class="bi bi-dash-lg"></i></button>
-                                                    <?php endif; ?>
-
-                                                    <button type="button" class="btn btn-primary add-new-weight-btn"><i
-                                                                class="bi bi-plus-lg"></i></button>
                                                 </div>
+                                            <?php else: ?>
+                                                <?php $i=-1; ?>
+                                                <?php foreach ($weightMArray as $key => $value): ?>
+                                                    <?php $i++ ?>
+                                                    <div class="p-3 mt-3 weight-container">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control" name="weight_metrics[]"
+                                                                   placeholder="ie: 49 kg/m"
+                                                                   value="<?=$value?>"
+                                                            >
+                                                            <span class="input-group-text">metrics</span>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control" name="weight_imperial[]"
+                                                                   placeholder="ie: 15lbs/ft"
+                                                                   value="<?=$weightIArray[$key]?>"
+                                                            >
+                                                            <span class="input-group-text">imperial</span>
+                                                        </div>
 
-                                            </div>
-                                            <?php endforeach ?>
+                                                        <div class="input-group justify-content-end mb-3">
+                                                            <input type="text" class="form-control ml-1" placeholder="label"
+                                                                   value="<?=$key === 'general' ? '' : $key?>"
+                                                                   name="weight_label[]"
+                                                            >
+                                                            <span class="input-group-text">label</span>
+                                                        </div>
+
+                                                        <div class="input-group justify-content-end">
+                                                            <button type="button"
+                                                                    class="btn btn-danger remove-weight-btn"><i
+                                                                        class="bi bi-dash-lg"></i></button>
+                                                            <button type="button"
+                                                                    class="btn btn-primary add-new-weight-btn"><i
+                                                                        class="bi bi-plus-lg"></i></button>
+                                                        </div>
+
+                                                    </div>
+                                                 <?php endforeach ?>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
 
@@ -194,13 +209,13 @@
                                         <div class="w-50 gap-1">
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="standard_length_metrics"
-                                                       value="<?=$connector->standard_lengths_m ?? ''?>"
+                                                       value="<?=$connector->standardLength_m ?>"
                                                 >
                                                 <span class="input-group-text">metrics</span>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="standard_length_imperial"
-                                                       value="<?=$connector->standard_lengths_i ?? ''?>"
+                                                       value="<?=$connector->standardLength_i?>"
                                                 >
                                                 <span class="input-group-text">imperial</span>
                                             </div>
@@ -216,13 +231,13 @@
                                         <div class="w-50 gap-1">
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="max_tensile_strength_m"
-                                                       value="<?=$connector->max_tensile_strength_m ?? ''?>"
+                                                       value="<?=$connector->maxTensile_m?>"
                                                        placeholder="ie: 2.552 kN/m or 2.552 kN/m (FEM)">
                                                 <span class="input-group-text">metrics</span>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" name="max_tensile_strength_i"
-                                                       value="<?=$connector->max_tensile_strength_i ?? ''?>"
+                                                       value="<?=$connector->maxTensile_i?>"
                                                        placeholder="ie: 19.52 kips/in or 19.52 kips/in (FEM)">
                                                 <span class="input-group-text">imperial</span>
                                             </div>
@@ -250,7 +265,7 @@
                                             <input class="form-check-input" type="radio" name="template"
                                                    value="<?=$template->id?>"
                                                    id="template"
-                                                   <?= $prev_connector_templates['template_id'] !== $template->id ? 'checked' : ''?>>
+                                                   <?= $connector->templateId === $template->id ? 'checked' : ''?>>
 
                                         </div>
                                         <img
@@ -259,7 +274,6 @@
                                              title="<?= $template->getThumbnailImageName() ?>"
                                              class="w-100"/>
                                     </div>
-                                    <?php break; ?>
                                 <?php endforeach; ?>
 
                             </div>
@@ -273,106 +287,94 @@
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                             <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
-                                <?php if (sizeof($prev_connector_templates['downloadable_files']) === 0): ?>
+                                <?php if (sizeof($connector->downloadableFiles) === 0): ?>
                                     <div class="download-container w-75 p-4">
+                                        <div class="input-group w-100 mb-3 justify-content-center">
 
-                                    <div class="input-group w-100 mb-3 justify-content-center">
+                                            <label class="btn btn-light">
+                                                <i class="bi bi-folder2-open"></i>
+                                            </label>
 
-                                        <label class="btn btn-light">
-                                            <i class="bi bi-folder2-open"></i>
-                                        </label>
-
-                                        <input type="file" class="form-control w-50 bg-light" name="downloadable[0]">
-
-
-                                        <button type="button" class="btn btn-primary add-new-download-container">
-                                            <i class="bi bi-plus-lg"></i>
-                                        </button>
-                                    </div>
-
-                                    <div class="d-flex flex-wrap gap-3 w-100">
+                                            <input type="file" class="form-control w-50 bg-light" name="downloadable[0]">
 
 
-                                        <div class="downloadable">
-                                            <div class="input-group w-100">
-
-
-                                                <label class="btn btn-light">
-                                                    <img src="<?= assets("img/flags/de.png") ?>"
-                                                         height="20" class="flag"/>
-                                                </label>
-
-                                                <label class="btn btn-light">
-                                                    <input class="form-check-input download-label-visible" type="checkbox"
-                                                           value="" id="flexCheckDefault">
-                                                </label>
-                                                <input class="form-control download-label" type="text"
-                                                       data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
-                                                       name="downloadable[title][0][<?=LanguagePool::GERMANY()->getLabel()?>]"
-                                                       placeholder="Label ( in Germany )"
-                                                       style="display: none;"
-                                                       disabled="disabled"
-                                                >
-
-
-                                            </div>
+                                            <button type="button" class="btn btn-primary add-new-download-container">
+                                                <i class="bi bi-plus-lg"></i>
+                                            </button>
                                         </div>
+                                        <div class="d-flex flex-wrap gap-3 w-100">
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/de.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                                                           name="downloadable[title][0][<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                                           placeholder="Label ( in Germany )"
+                                                           style="display: none;"
+                                                           disabled="disabled"
+                                                    >
 
 
-                                        <div class="downloadable">
-                                            <div class="input-group w-100">
-
-
-                                                <label class="btn btn-light">
-                                                    <img src="<?= assets("img/flags/uk.png") ?>"
-                                                         height="20" class="flag"/>
-                                                </label>
-
-                                                <label class="btn btn-light">
-                                                    <input class="form-check-input download-label-visible" type="checkbox"
-                                                           value="" id="flexCheckDefault">
-                                                </label>
-                                                <input class="form-control download-label" type="text"
-                                                       data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
-                                                       name="downloadable[title][0][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
-                                                       placeholder="Label ( in English )"
-                                                       style="display: none;"
-                                                       disabled="disabled"
-                                                >
-
-
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/en-gb.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
+
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                                           name="downloadable[title][0][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
+                                                           placeholder="Label ( in English )"
+                                                           style="display: none;"
+                                                           disabled="disabled"
+                                                    >
 
 
-                                        <div class="downloadable">
-                                            <div class="input-group w-100">
-                                                <label class="btn btn-light">
-                                                    <img src="<?= assets("img/flags/fr.png") ?>"
-                                                         height="20" class="flag"/>
-                                                </label>
-
-                                                <label class="btn btn-light">
-                                                    <input class="form-check-input download-label-visible" type="checkbox"
-                                                           value="" id="flexCheckDefault">
-                                                </label>
-                                                <input class="form-control download-label" type="text"
-                                                       data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
-                                                       name="downloadable[title][0][<?=LanguagePool::FRENCH()->getLabel()?>]"
-                                                       placeholder="Label ( in French )"
-                                                       style="display: none;"
-                                                       disabled="disabled"
-                                                >
-
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="downloadable">
+                                                <div class="input-group w-100">
+                                                    <label class="btn btn-light">
+                                                        <img src="<?= assets("img/flags/fr.png") ?>"
+                                                             height="20" class="flag"/>
+                                                    </label>
 
-                                        <div class="downloadable">
+                                                    <label class="btn btn-light">
+                                                        <input class="form-check-input download-label-visible" type="checkbox"
+                                                               value="" id="flexCheckDefault">
+                                                    </label>
+                                                    <input class="form-control download-label" type="text"
+                                                           data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                                           name="downloadable[title][0][<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                                           placeholder="Label ( in French )"
+                                                           style="display: none;"
+                                                           disabled="disabled"
+                                                    >
+
+                                                </div>
+                                            </div>
+                                            <div class="downloadable">
                                             <div class="input-group w-100">
 
 
                                                 <label class="btn btn-light">
-                                                    <img src="<?= assets("img/flags/us.png") ?>"
+                                                    <img src="<?= assets("img/flags/en-us.png") ?>"
                                                          height="20" class="flag"/>
                                                 </label>
 
@@ -389,13 +391,10 @@
                                                 >
                                             </div>
                                         </div>
-
-
+                                        </div>
                                     </div>
-
-                                </div>
                                 <?php endif; ?>
-                                <?php foreach ($prev_connector_templates['downloadable_files'] as  $index => $content): ?>
+                                <?php foreach ($connector->downloadableFiles as  $index => $content): ?>
                                     <div class="download-container w-75 p-4">
                                         <a href="<?= $content['file_asset_path'] ?>" download>
                                             <iframe src="<?= $content['file_asset_path'] ?>"
@@ -464,7 +463,7 @@
                                                         $englishUkTitleExists = array_key_exists($englishUk, $content['title'])
                                                     ?>
                                                     <label class="btn btn-light">
-                                                        <img src="<?= assets("img/flags/uk.png") ?>"
+                                                        <img src="<?= assets("img/flags/en-gb.png") ?>"
                                                              height="20" class="flag"/>
                                                     </label>
 
@@ -524,7 +523,7 @@
                                                     ?>
 
                                                     <label class="btn btn-light">
-                                                        <img src="<?= assets("img/flags/us.png") ?>"
+                                                        <img src="<?= assets("img/flags/en-us.png") ?>"
                                                              height="20" class="flag"/>
                                                     </label>
 
@@ -567,34 +566,30 @@
                                     </button>
 
                                     <button class="nav-link" id="nav-uk-tab" data-bs-toggle="tab" data-bs-target="#nav-uk" type="button" role="tab" aria-controls="nav-uk" aria-selected="false">
-                                        <img src="<?= assets("img/flags/uk.png") ?>" height="25" class="flag"/>
+                                        <img src="<?= assets("img/flags/en-gb.png") ?>" height="25" class="flag"/>
                                     </button>
                                     <button class="nav-link" id="nav-fr-tab" data-bs-toggle="tab" data-bs-target="#nav-fr" type="button" role="tab" aria-controls="nav-fr" aria-selected="false">
                                         <img src="<?= assets("img/flags/fr.png") ?>" height="25" class="flag"/>
                                     </button>
 
                                     <button class="nav-link" id="nav-us-tab" data-bs-toggle="tab" data-bs-target="#nav-us" type="button" role="tab" aria-controls="nav-us" aria-selected="false">
-                                        <img src="<?= assets("img/flags/us.png") ?>" height="25" class="flag"/>
+                                        <img src="<?= assets("img/flags/en-us.png") ?>" height="25" class="flag"/>
                                     </button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
-<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
-                                    <?=$show?>
+                                    <?php require basePath("/views/templates/template-01.php") ?>
                                 </div>
                                 <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
-<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
-                                    <?=$show?>
+                                    <?php require basePath("/views/templates/template-01.php") ?>
                                 </div>
                                 <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
-<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
-                                    <?=$show?>
+                                    <?php require basePath("/views/templates/template-01.php") ?>
                                 </div>
 
                                 <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
-<!--                                    --><?php //require basePath("/views/templates/template-01.php") ?>
-                                    <?=$show?>
+                                    <?php require basePath("/views/templates/template-01.php") ?>
                                 </div>
 
                             </div>
@@ -647,31 +642,51 @@
         }
     });
 
+    //triggering next tab
+    $(document).off("click", ".next");
+    $(document).on("click", ".next", function () {
+        let e = $(".nav-tabs .active")
+            .closest("li").next("li")
+            .find("a")[0];
+        if (e) {
+            const prevTab = new bootstrap.Tab(e);
+            prevTab.show();
+        }
+    });
+
+    //triggering previous tab
+    $(document).off("click", ".previous");
+    $(document).on("click", ".previous", function () {
+        let e = $(".nav-tabs .active")
+            .closest("li").prev("li")
+            .find("a")[0];
+        if (e) {
+            const prevTab = new bootstrap.Tab(e);
+            prevTab.show();
+        }
+    });
+
+    // weight label toggling
+    $(document).off("click", ".show-label-btn");
+    $(document).on("click", ".show-label-btn", function () {
+        debugger
+        let input = $(this).closest("div.weight-container").find("input.label");
+        if (input.hasClass("showed")) {
+            input.hide();
+            input.removeClass("showed");
+            $(this).html(`<i class="bi bi-arrow-bar-left"></i>`);
+        } else {
+            input.show();
+            input.addClass("showed");
+            $(this).html(`<i class="bi bi-arrow-bar-right"></i>`);
+        }
+
+    });
+
+
+
     $(document).ready(function () {
         $("input.label").hide();
-        $(document).off("click", ".next");
-        $(document).on("click", ".next", function () {
-            let e = $(".nav-tabs .active")
-                .closest("li").next("li")
-                .find("a")[0];
-            if (e) {
-                const prevTab = new bootstrap.Tab(e);
-                prevTab.show();
-            }
-        });
-
-
-        $(document).off("click", ".previous");
-        $(document).on("click", ".previous", function () {
-            let e = $(".nav-tabs .active")
-                .closest("li").prev("li")
-                .find("a")[0];
-            if (e) {
-                const prevTab = new bootstrap.Tab(e);
-                prevTab.show();
-            }
-        });
-
 
         $(".select2").select2({
             dropdownParent: $('#' + modalId),
@@ -679,23 +694,6 @@
         });
 
 
-        // WEIGHT
-        $(document).off("click", ".show-label-btn");
-        $(document).on("click", ".show-label-btn", function () {
-
-            let input = $(this).closest("div.weight-container").find("input.label");
-
-            if (input.hasClass("showed")) {
-                input.hide();
-                input.removeClass("showed");
-                $(this).html(`<i class="bi bi-arrow-bar-left"></i>`);
-            } else {
-                input.show();
-                input.addClass("showed");
-                $(this).html(`<i class="bi bi-arrow-bar-right"></i>`);
-            }
-
-        });
 
         $(document).off("click", ".add-new-weight-btn");
         $(document).on("click", ".add-new-weight-btn", function () {
@@ -850,7 +848,7 @@
                                     <div class="downloadable">
                                         <div class="input-group w-100">
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/uk.png") ?>"
+                                                <img src="<?= assets("img/flags/en-gb.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
@@ -883,7 +881,7 @@
                                     <div class="downloadable">
                                         <div class="input-group w-100">
                                             <label class="btn btn-light">
-                                                <img src="<?= assets("img/flags/us.png") ?>"
+                                                <img src="<?= assets("img/flags/en-us.png") ?>"
                                                      height="20" class="flag"/>
                                             </label>
 
