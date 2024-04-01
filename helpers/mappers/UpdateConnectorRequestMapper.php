@@ -39,19 +39,19 @@ class UpdateConnectorRequestMapper
 
     private static function getContentTemplates(Request $request, $contentId)
     {
-        if(empty($request->get('template_id',5))){
+        if(empty($request->get('template'))){
             return;
         }
 
-        $templateId = $request->get('template_id',5);
+        $templateId = $request->get('template');
 
-        $deContentTemplate = self::getContentTemplateLanguage($templateId, LanguagePool::GERMANY()->getLabel(),
+        $deContentTemplate = self::getContentTemplate($templateId, LanguagePool::GERMANY()->getLabel(),
                                                                 $contentId);
-        $frContentTemplate = self::getContentTemplateLanguage($templateId, LanguagePool::FRENCH()->getLabel(),
+        $frContentTemplate = self::getContentTemplate($templateId, LanguagePool::FRENCH()->getLabel(),
                                                                 $contentId);
-        $enUsContentTemplate = self::getContentTemplateLanguage($templateId, LanguagePool::US_ENGLISH()->getLabel(),
+        $enUsContentTemplate = self::getContentTemplate($templateId, LanguagePool::US_ENGLISH()->getLabel(),
                                                                 $contentId);
-        $enGdContentTemplate =  self::getContentTemplateLanguage($templateId, LanguagePool::UK_ENGLISH()->getLabel(),
+        $enGdContentTemplate =  self::getContentTemplate($templateId, LanguagePool::UK_ENGLISH()->getLabel(),
                                                                 $contentId);
 
         $contentTemplates =  [
@@ -61,10 +61,11 @@ class UpdateConnectorRequestMapper
             LanguagePool::UK_ENGLISH()->getLabel() => $enGdContentTemplate
         ];
 
-        return array_values(self::getContentTemplateWithMediaMetaData($contentTemplates, $request));
+        $contentTemplates = self::getContentTemplateWithDownloadableMediaMetaData($contentTemplates, $request);
+        return array_values($contentTemplates);
     }
 
-    private static function getContentTemplateWithMediaMetaData(array $contentTemplates, $request)
+    private static function getContentTemplateWithDownloadableMediaMetaData(array $contentTemplates, $request): array
     {
         $directoryPath = "content_assets/downloadable_files/";
         $downloadableArray = $request->get('downloadable');
@@ -108,7 +109,7 @@ class UpdateConnectorRequestMapper
         return $media;
     }
 
-    private static function getContentTemplateLanguage($templateId, $language, $contentId)
+    private static function getContentTemplate($templateId, $language, $contentId)
     {
         $contentTemplate = ContentTemplate::getFirstBy([
                                                         'template_id' => $templateId,
@@ -159,11 +160,11 @@ class UpdateConnectorRequestMapper
         return json_encode($array);
     }
 
-    private static function getContent($contentId, Request $request): CategoryContent
+    private static function getContent($connectorId, Request $request): CategoryContent
     {
         $content = CategoryContent::getFirstBy([
             'type' => CategoryContent::TYPE_CONNECTOR,
-            'element_id' => $contentId
+            'element_id' => $connectorId
         ]);
         $content->leaf_category_id = $request->get('category');
         return $content;

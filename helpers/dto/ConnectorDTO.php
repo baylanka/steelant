@@ -90,7 +90,11 @@ class ConnectorDTO
             $files[$each->media_id]['title'][$each->language] =  $each->title ?? null;
             if(!isset($files[$each->media_id]['file_asset_path'])){
                 $files[$each->media_id]['file_asset_path'] = assets('storage/'. $each->media_path);
-                $files[$each->media_id]['media_name'] =  $each->media_name;
+                $pathArray = explode('/', $each->media_path);
+                $storedFileName = $pathArray[sizeof($pathArray)-1];
+                $arr = explode('.',$storedFileName);
+                $extension = $arr[sizeof($arr)-1];
+                $files[$each->media_id]['media_name'] =  $each->media_name . ".{$extension}";
             }
         }
 

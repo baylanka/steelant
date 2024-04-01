@@ -4,7 +4,7 @@ namespace model;
 
 use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
-use helpers\repositories\ContentTemplateRepository;
+use helpers\repositories\ContentTemplateMediaRepository;
 use helpers\services\CategoryService;
 use model\BaseModel;
 
@@ -121,8 +121,8 @@ class Connector extends BaseModel
         $content = $this->temp_content;
         $content->save();
 
-        //delete previous content templates, with its associated `content template media` and `media`
-        ContentTemplateRepository::deleteContentTemplatesByContentId($content->id);
+        //delete previous content templates media, with its associated `media`
+        ContentTemplateMediaRepository::deleteContentTemplateMediaByContentId($content->id);
         //update new content-templates, its template media
         $this->updateContentTemplates();
     }
