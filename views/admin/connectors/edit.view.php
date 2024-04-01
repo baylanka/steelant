@@ -9,28 +9,28 @@
             <div class="wizard my-2">
 
                 <ul class="nav nav-tabs justify-content-around" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" data-position="1">
                         <a class="nav-link active rounded-circle mx-auto d-flex align-items-center justify-content-center"
                            id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
                            aria-controls="home" aria-selected="true">
                             <i class="bi bi-ui-radios size-20"></i>
                         </a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" data-position="2">
                         <a class="nav-link rounded-circle mx-auto d-flex align-items-center justify-content-center"
                            id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
                            aria-controls="contact" aria-selected="false">
                             <i class="bi bi-images size-20"></i>
                         </a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" data-position="3">
                         <a class="nav-link rounded-circle mx-auto d-flex align-items-center justify-content-center"
                            id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                            aria-controls="profile" aria-selected="false">
                             <i class="bi bi-download size-20"></i>
                         </a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" data-position="4">
                         <a class="nav-link rounded-circle mx-auto d-flex align-items-center justify-content-center"
                            id="contact2-tab" data-bs-toggle="tab" data-bs-target="#contact2" type="button" role="tab"
                            aria-controls="contact2" aria-selected="false">
@@ -56,7 +56,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="update-btn">Update</button>
+            <button type="button" class="btn btn-primary" id="update-btn" disabled>Update</button>
         </div>
 
     </div>
@@ -65,15 +65,72 @@
 
 <script>
 
+    $(document).on('click', '.nav-item', function(){
+        const tabPosition = Number($(this).attr('data-position'));
+        tabActiveEventHandler(tabPosition);
+    });
+
+
+    function tabActiveEventHandler(tabPosition)
+    {
+        const templateSettingArea = $('div.template-setting-container');
+        const updateBtn = $('button#update-btn');
+        if(tabPosition <= 3){
+            updateBtn.prop("disabled", true);
+            templateSettingArea.addClass('d-none');
+            $('.generate-btn').closest('div').removeClass('d-none');
+        }
+    }
+
+    async function update(btn)
+    {
+        return new Promise(async (resolve, reject)=>{
+
+            const form = btn.closest('div.modal-dialog').find('form');
+            try{
+                let response = await makePostFileRequest(form);
+                resolve(response);
+            }catch (err){
+                reject(err);
+            }
+        });
+
+    }
+
+
+    $(document).off('click', '.generate-btn');
+    $(document).on('click', '.generate-btn', async function(e){
+        e.preventDefault();
+        const btn = $(this);
+        const btnLabel = btn.text();
+        loadButton(btn, "loading ...");
+        try{
+            const templateSettingArea = $('div.template-setting-container');
+            const response = await update(btn);
+            const templates = response.templatePreviews;
+            $('#nav-de').html(templates['de']);
+            $('#nav-uk').html(templates['en-gd']);
+            $('#nav-fr').html(templates['fr']);
+            $('#nav-us').html(templates['en-us']);
+            templateSettingArea.removeClass('d-none');
+            $('button#update-btn').prop("disabled", false);
+            btn.closest('div').addClass('d-none');
+        }catch (err){
+            toast.error(err);
+        }finally {
+            resetButton(btn, btnLabel);
+
+        }
+    });
+
     $('button#update-btn').off('click');
     $('button#update-btn').on('click', async function updateConnector(e){
         e.preventDefault();
         const btn = $(this);
         const btnLabel = btn.text();
         loadButton(btn, "updating ...");
-        const form = btn.closest('div.modal-dialog').find('form');
         try{
-            let response = await makePostFileRequest(form);
+            const response = await update(btn);
             toast.success(response.message);
             // raise an event to close the modal
             const event = new CustomEvent('updateCategorySuccessEvent', {
@@ -85,29 +142,38 @@
         }finally {
             resetButton(btn, btnLabel);
         }
+
     });
 
     //triggering next tab
     $(document).off("click", ".next");
     $(document).on("click", ".next", function () {
-        let e = $(".nav-tabs .active")
+        const activeTabLink = $(".nav-tabs .active");
+        let nextTabLink = activeTabLink
             .closest("li").next("li")
-            .find("a")[0];
-        if (e) {
-            const prevTab = new bootstrap.Tab(e);
-            prevTab.show();
+            .find("a");
+        if (nextTabLink[0]) {
+            const nextTab = new bootstrap.Tab(nextTabLink[0]);
+            nextTab.show();
+            const currentActiveTab = nextTabLink.closest('li');
+            const currentActivePosition = Number(currentActiveTab.attr('data-position'));
+            tabActiveEventHandler(currentActivePosition);
         }
     });
 
     //triggering previous tab
     $(document).off("click", ".previous");
     $(document).on("click", ".previous", function () {
-        let e = $(".nav-tabs .active")
+        const activeTabLink = $(".nav-tabs .active");
+        let prevTabLink = activeTabLink
             .closest("li").prev("li")
-            .find("a")[0];
-        if (e) {
-            const prevTab = new bootstrap.Tab(e);
+            .find("a");
+        if (prevTabLink[0]) {
+            const prevTab = new bootstrap.Tab(prevTabLink[0]);
             prevTab.show();
+            const currentActiveTab = prevTabLink.closest('li');
+            const currentActivePosition = Number(currentActiveTab.attr('data-position'));
+            tabActiveEventHandler(currentActivePosition);
         }
     });
 

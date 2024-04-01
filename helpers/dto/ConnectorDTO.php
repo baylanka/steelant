@@ -11,6 +11,7 @@ class ConnectorDTO
 {
     private \stdClass|Connector $connector;
     private ?array $connectorProperties;
+    public string $language;
     public int $id;
     public string $categoryTree;
     public bool $isPublished;
@@ -18,26 +19,27 @@ class ConnectorDTO
     public string $grade;
     public string $thickness;
     public string $thickness_i;
-    public ?string $thickness_m;
+    public string $thickness_m;
     public string $description;
     public string $standardLength;
     public string $standardLength_m;
     public string $standardLength_i;
     public array $weights;
-    public ?array $weights_i;
-    public ?array $weights_m;
+    public array $weights_i;
+    public array $weights_m;
 
     public ?int $templateId;
     public ?int $categoryId;
 
-    public ?string $maxTensile;
-    public ?string $maxTensile_m;
-    public ?string $maxTensile_i;
+    public string $maxTensile;
+    public string $maxTensile_m;
+    public string $maxTensile_i;
 
     public array $downloadableFiles;
 
     public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
+        $this->language = $lang;
         $this->connector = $connector;
 
         $this->id = $this->connector->id;
@@ -53,7 +55,86 @@ class ConnectorDTO
         $this->setCategoryTree($lang, $separator);
         $this->setMaxTensileStrength($lang);
         $this->setDownloadableFiles();
+    }
 
+    public function getLengthOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->standardLength_m;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->standardLength_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->standardLength_m . " or " . $this->connector->standard_lengths_i;
+        }
+    }
+
+    public function getThicknessOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->thickness_m ;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->thickness_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->thickness_m . " or " . $this->thickness_i;
+        }
+    }
+
+    public function getWeightArrayOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return $this->weights_m;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return  $this->weights_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                $arr = [];
+                foreach ($this->weights_m as $key => $value){
+                    if(isset($this->weights_i[$key])){
+                        $value = $value . " or " . $this->weights_i[$key];
+                    }
+
+                    $arr[$key] = $value;
+                }
+                return $arr;
+        }
+    }
+
+    public function getDownloadableFiles()
+    {
+        $arr = [];
+        foreach ($this->downloadableFiles as $each){
+
+            foreach ($each['title'] as $lang => $value){
+                if($lang === $this->language){
+                    $arr[] = [
+                        'media_name'  => $each['media_name'],
+                        'file_asset_path' => $each['file_asset_path'],
+                        'title' => $value,
+                    ];
+                    break;
+                }
+            }
+        }
+
+        return $arr;
+    }
+
+    public function getMaxTensileStrengthByLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->maxTensile_m;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->maxTensile_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->maxTensile_m . " or " . $this->maxTensile_i;
+        }
     }
 
     private function setTemplateId(): void
@@ -87,9 +168,11 @@ class ConnectorDTO
         foreach ($this->connector->relations['meta_collection'] as $each){
             if(!isset($each->media_id) || $each->media_type !== Media::TYPE_FILE) continue;
 
-            $files[$each->media_id]['title'][$each->language] =  $each->title ?? null;
+            $files[$each->media_id]['title'][$each->language] =  $each->media_title ?? null;
+
             if(!isset($files[$each->media_id]['file_asset_path'])){
                 $files[$each->media_id]['file_asset_path'] = assets('storage/'. $each->media_path);
+
                 $pathArray = explode('/', $each->media_path);
                 $storedFileName = $pathArray[sizeof($pathArray)-1];
                 $arr = explode('.',$storedFileName);

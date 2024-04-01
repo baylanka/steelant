@@ -70,6 +70,9 @@ class UpdateConnectorRequestMapper
         $directoryPath = "content_assets/downloadable_files/";
         $downloadableArray = $request->get('downloadable');
         foreach ($downloadableArray['name'] as $index => $value){
+            if(empty($value)){
+                continue;
+            }
             $file = [
                 'name' => $value,
                 'full_path' => $downloadableArray['full_path'][$index],

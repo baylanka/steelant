@@ -121,6 +121,9 @@
                     <input type="file" class="form-control w-50 bg-light download-file"
                            value=""
                            name="downloadable[<?=$index?>]">
+                    <button type="button" class="btn btn-danger remove-download-container">
+                        <i class="bi bi-dash"></i>
+                    </button>
                     <button type="button" class="btn btn-primary add-new-download-container">
                         <i class="bi bi-plus-lg"></i>
                     </button>
@@ -281,16 +284,6 @@
     $(document).on("click", ".add-new-download-container", function () {
         const downloadableContent = getDownloadableFileContent();
         $(this).closest("div.download-jumbotron").append(downloadableContent);
-
-
-        $(this).closest("div.input-group").append(`
-               <button type="button" class="btn btn-danger remove-download-container">
-                  <i class="bi bi-dash"></i>
-               </button>
-            `);
-
-        $(this).remove();
-
         setDownloadName();
 
     });
@@ -299,7 +292,15 @@
     $(document).off("click", "button.remove-download-container")
     $(document).on("click", "button.remove-download-container", function () {
         $(this).closest("div.download-container").remove();
-        setDownloadName();
+
+        const remainingContainers =  $('div.download-container').length;
+        if(remainingContainers > 1){
+            setDownloadName();
+        }else){
+            const downloadableContent = getDownloadableFileContent();
+            $("div.download-jumbotron").append(downloadableContent);
+        }
+
     });
 
     $(document).off("click", ".set-checked");
@@ -346,6 +347,9 @@
                                         <i class="bi bi-folder2-open"></i>
                                     </label>
                                     <input type="file" class="form-control w-50 bg-light download-file">
+                                    <button type="button" class="btn btn-danger remove-download-container">
+                                      <i class="bi bi-dash"></i>
+                                   </button>
                                     <button type="button" class="btn btn-primary add-new-download-container">
                                         <i class="bi bi-plus-lg"></i>
                                     </button>

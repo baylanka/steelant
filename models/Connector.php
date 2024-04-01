@@ -140,7 +140,7 @@ class Connector extends BaseModel
 
     private function updateContentTemplateMedia(ContentTemplate $content_template)
     {
-        $contentTemplateMediaArray = $content_template->temp_content_template_media;
+        $contentTemplateMediaArray = $content_template->temp_content_template_media ?? [];
         foreach ($contentTemplateMediaArray as $each)
         {
             $each->content_template_id = $content_template->id;

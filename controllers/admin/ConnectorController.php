@@ -13,6 +13,7 @@ use helpers\mappers\UpdateConnectorRequestMapper;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
 use helpers\services\ConnectorService;
+use helpers\services\TemplateService;
 use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\ConnectorStoreRequestValidator;
@@ -83,16 +84,13 @@ class ConnectorController extends BaseController
         $connector = ConnectorService::getConnectorAssociatedData($connectorId);
         $connectorDTO = new ConnectorDTO($connector, $lang, '<');
         $templates = TemplateRepository::getAllConnectors();
-
-//        $template = TemplateService::getTemplateByFillingDataById(8,$data);
         $data = [
             'leafCategories' => $leafCategoryDTO->getCollection(),
             'tableLang' => $lang,
             'connector' => $connectorDTO,
             'templates' => $templates,
-//            'prev_connector_templates' => $connectorTemplates,
-//            'show' => $template
         ];
+
         return view("admin/connectors/edit.view.php", $data);
     }
 
@@ -104,9 +102,12 @@ class ConnectorController extends BaseController
             $connector = UpdateConnectorRequestMapper::getModel($request);
             $connector->update();
             $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
+            $connector = ConnectorService::getConnectorAssociatedData($connector->id);
+            $templatePreviews = TemplateService::getAllLangTemplates($connector);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
-                "data" => $connectorDTO
+                "data" => $connectorDTO,
+                'templatePreviews' => $templatePreviews
             ]);
         }catch(\Exception $ex){
             parent::response($ex->getMessage(),[],422);
