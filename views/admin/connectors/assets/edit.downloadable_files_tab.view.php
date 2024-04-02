@@ -2,6 +2,7 @@
     use helpers\pools\LanguagePool;
 ?>
 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="w-100 d-flex justify-content-end my-5 add-file-container d-none"><button class="btn btn-sm btn-primary add-new-download-container">Add File Selector</button></div>
 
     <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
         <?php if (sizeof($connector->downloadableFiles) === 0): ?>
@@ -15,6 +16,9 @@
                     <input type="file" class="form-control w-50 bg-light download-file" name="downloadable[0]">
 
 
+                    <button type="button" class="btn btn-danger remove-download-container">
+                        <i class="bi bi-dash"></i>
+                    </button>
                     <button type="button" class="btn btn-primary add-new-download-container">
                         <i class="bi bi-plus-lg"></i>
                     </button>
@@ -265,6 +269,10 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        loadPreviouslySelectedFiles();
+    });
+
     $(document).off("change", ".download-label-visible");
     $(document).on("change", ".download-label-visible", function () {
 
@@ -281,11 +289,12 @@
     });
 
     $(document).off("click", ".add-new-download-container");
-    $(document).on("click", ".add-new-download-container", function () {
+    $(document).on("click", ".add-new-download-container", function (e) {
+        e.preventDefault();
         const downloadableContent = getDownloadableFileContent();
-        $(this).closest("div.download-jumbotron").append(downloadableContent);
+        $("div.download-jumbotron").append(downloadableContent);
         setDownloadName();
-
+        $('.add-file-container').addClass('d-none');
     });
 
 
@@ -294,11 +303,10 @@
         $(this).closest("div.download-container").remove();
 
         const remainingContainers =  $('div.download-container').length;
-        if(remainingContainers > 1){
+        if(remainingContainers >= 1){
             setDownloadName();
-        }else){
-            const downloadableContent = getDownloadableFileContent();
-            $("div.download-jumbotron").append(downloadableContent);
+        }else{
+            $('.add-file-container').removeClass('d-none');
         }
 
     });
