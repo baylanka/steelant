@@ -115,6 +115,8 @@ class ConnectorDTO
             'languageName' => "",
             'placeHolderName' => "",
             'media_name' => '',
+            'title' => '',
+            'titleFieldName'=>''
         ];
 
         foreach ($this->imageFiles as $index => $each){
@@ -128,6 +130,8 @@ class ConnectorDTO
                         'languageName' => "images[language][{$index}][]",
                         'placeHolderName' => "images[placeholder][{$index}][]",
                         'media_name' => $each['media_name'],
+                        'title' => $value ?? '',
+                        'titleFieldName' => "images[title][{$index}][]",
                     ];
 
                     return json_decode(json_encode($arr));

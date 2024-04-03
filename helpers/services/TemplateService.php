@@ -23,6 +23,20 @@ class TemplateService
     {
         $templates = [];
 
+        //germany template
+        $languageDe = LanguagePool::GERMANY()->getLabel();
+        $connectorDTODe = new ConnectorDTO($connector, $languageDe, '>');
+        if(!is_null($connectorDTODe->templateId)){
+            $dataDe = [
+                'connector' => $connectorDTODe,
+            ];
+            $templateDe = self::getTemplateByFillingDataById($connectorDTODe->templateId, $dataDe);
+        }else{
+            $templateDe = '';
+        }
+        $templates[$languageDe] = $templateDe;
+
+
         //english US template
         $languageEnUs = LanguagePool::US_ENGLISH()->getLabel();
         $connectorDTOEnUs = new ConnectorDTO($connector, $languageEnUs, '>');
@@ -36,19 +50,6 @@ class TemplateService
         }
         $templates[$languageEnUs] =  $templateEnUs;
 
-
-        //germany template
-        $languageDe = LanguagePool::GERMANY()->getLabel();
-        $connectorDTODe = new ConnectorDTO($connector, $languageDe, '>');
-        if(!is_null($connectorDTODe->templateId)){
-            $dataDe = [
-                'connector' => $connectorDTODe,
-            ];
-            $templateDe = self::getTemplateByFillingDataById($connectorDTODe->templateId, $dataDe);
-        }else{
-            $templateDe = '';
-        }
-        $templates[$languageDe] = $templateDe;
 
 
         //french template

@@ -2,17 +2,21 @@ function populateTitleFields()
 {
 
     $("span.template-img-heading").each(function () {
-        let head_key = $(this).attr("data-heading");
-        $(this).after(`
+        if($(this).find('input').length === 0){
+            let head_key = $(this).attr("data-heading");
+            $(this).after(`
             <div class=" d-flex align-middle gap-2">
-                <input class="img-heading" type="text" data-heading="${head_key}" data-default="true" placeholder="Heading"> 
+                <input class="img-heading" type="text" data-heading="${head_key}" data-default="true" placeholder="Heading"
+             
+                > 
                 <span class=" d-flex flex-column"><input type="checkbox" class="sync-switch"><small>sync</small></span>
             </div>
         `);
+            $(this).remove();
+        }else{
+            $(this).remove();
+        }
     });
-
-
-    $("span.template-img-heading").remove();
 }
 
 
@@ -90,11 +94,16 @@ $(document).off("keyup", ".img-heading");
 $(document).on("keyup", ".img-heading", function () {
     let heading_key = $(this).attr("data-heading");
     let value = $(this).val();
-    if ($(this).closest("div.template-img-container").find("input[type=checkbox]").is(':checked')) {
+    const imagePlaceHolder = $(this).closest('.template-img-container').find('.image-placeholder');
+    const imagePlaceHolderName = imagePlaceHolder.length ? imagePlaceHolder.attr('name') : '';
+    const titleFieldName = imagePlaceHolderName.replace('placeholder', 'title');
+    $(this).attr('name', titleFieldName);
 
+    if ($(this).closest("div.template-img-container").find("input[type=checkbox]").is(':checked')) {
         $(".img-heading").each(function () {
             if ($(this).attr("data-heading") === heading_key) {
                 $(this).val(value);
+                $(this).attr('name', titleFieldName);
             }
         });
     }
@@ -106,13 +115,23 @@ $(document).on("change", ".sync-switch", function () {
     const inputField = $(this).closest('div').find('.img-heading');
     let heading_key = inputField.attr("data-heading");
     let value = inputField.val();
+
+    const imagePlaceHolder = inputField.closest('.template-img-container').find('.image-placeholder');
+    const imagePlaceHolderName = imagePlaceHolder.length ? imagePlaceHolder.attr('name') : '';
+    const titleFieldName = imagePlaceHolderName.replace('placeholder', 'title');
+    inputField.attr('name', titleFieldName);
+
+
     if ($(this).closest("div.template-img-container").find("input[type=checkbox]").is(':checked')) {
 
         $(".img-heading").each(function () {
+
             if ($(this).attr("data-heading") === heading_key) {
+
                 const syncSwitch = $(this).closest('div').find('.sync-switch');
                 syncSwitch.prop('checked', true);
                 $(this).val(value);
+                $(this).attr('name', titleFieldName);
             }
         });
 

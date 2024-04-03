@@ -88,6 +88,7 @@ class UpdateConnectorRequestMapper
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
                 $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->title =  $imageFilesArray['title'][$index][$langIndex] ?? '';
                 $contentTemplateMedia->placeholder_id = $imageFilesArray['placeholder'][$index][$langIndex];
                 $contentTemplateMedia->temp_media = $imageMedia;
                 //content template mostly can contain multiple media. collection media as am array
@@ -115,6 +116,7 @@ class UpdateConnectorRequestMapper
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
                 $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->title = $imageFilesArray['title'][$index][$langIndex] ?? '';
                 $contentTemplateMedia->placeholder_id = $imageFilesArray['placeholder'][$index][$langIndex];
                 $contentTemplateMedia->temp_media = $imageMedia;
                 //content template mostly can contain multiple media. collection media as am array
