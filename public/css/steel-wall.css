@@ -98,13 +98,12 @@ body {
 .selected-flag {
     border-radius: 50%;
     box-shadow: #8d8d8d 1px 1px 10px;
-    transform: scale(1.4);
+    transform: scale(1.2);
+    filter: brightness(1.3) !important;
 }
 
-
-.selected-flag::before {
-    content: "hi";
-
+.flag{
+    filter: brightness(0.9);
 }
 
 .flag:hover {
@@ -113,7 +112,7 @@ body {
 
 
 .color-blue {
-    color: var(--blue) !important;
+    color: #1f407c !important;
 }
 
 .color-white {
@@ -145,7 +144,7 @@ body {
 
 .nav-logo {
     text-align: center;
-    color: var(--blue);
+    /*color: var(--blue);*/
 }
 
 .secondary-nav {
@@ -188,7 +187,7 @@ body {
 
 
 .category-name {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--blue);
 }
@@ -267,7 +266,19 @@ body {
 }
 
 
+
+
+.tooltip-inner {
+    background-color: white !important;
+    color: var(--blue) !important;
+}
+
+.responsive-width{
+    width:50%;
+}
+
 @media (max-width: 575.98px) {
+
 
     .menu-btn {
         display: block;
@@ -279,7 +290,7 @@ body {
 
 
     .remove-on-sm {
-        display: none;
+        display: none !important;
     }
 
 
@@ -318,6 +329,17 @@ body {
         margin-right: auto;
         margin-left: auto;
     }
+    .responsive-wrap{
+        padding: 1rem !important;
+    }
+
+
+    .responsive-width{
+        width:50%;
+    }
+
+
+
 }
 
 @media (max-width: 768px) {
@@ -332,7 +354,7 @@ body {
     }
 
     .remove-on-sm {
-        display: none;
+        display: none !important;
     }
 
 
@@ -365,11 +387,21 @@ body {
         margin-right: auto;
         margin-left: auto;
     }
+    .responsive-wrap{
+        padding: 1rem !important;
+    }
+
+
+    .responsive-width{
+        width:50%;
+    }
 }
 
 
 @media (max-width: 992px) {
-
+    .responsive-wrap{
+        padding: 1rem !important;
+    }
 
     .columns {
         max-width: 100vw;
@@ -388,6 +420,9 @@ body {
         display: none;
     }
 
+    .responsive-width{
+        width:100%;
+    }
 }
 
 
@@ -409,5 +444,10 @@ body {
 
     .remove-on-lg {
         display: none;
+    }
+
+
+    .responsive-width{
+        width:100%;
     }
 }

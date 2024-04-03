@@ -14,6 +14,11 @@ class ConnectorController extends BaseController
         if (!isset($_GET["id"])) {
             header('Location: ' . url("/"));
         }
+        if($_GET["id"] < 1 || $_GET["id"] > 28 ){
+            header('Location: ' . url("/"));
+        }
+
+
         $categories = Category::getAll();
         $arrangedCategories = CategoryService::organizingCategoriesTreeView($categories);
         $data = [

@@ -3,7 +3,7 @@
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
 
-    <div class="p-3">
+    <div class="responsive-wrap">
 
         <!--categories section-->
         <div class="row w-100 mt-4">
@@ -11,7 +11,7 @@
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/contact-icon.png") ?>" height="100"/>
+                    <img src="<?= assets("themes/user/img/contact-icon.png") ?>" height="80"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -28,25 +28,26 @@
                         <dt>HEADQUARTERS
                             GERMANY
                         </dt>
-                        <dd class="mt-4"><a href="#" class="link selected">Africa</a></dd>
-                        <dd><a href="#" class="link color-black">Asia</a></dd>
-                        <dd><a href="#" class="link color-black">Australia</a></dd>
-                        <dd><a href="#" class="link color-black">Caribbean</a></dd>
-                        <dd><a href="#" class="link color-black">Europe</a></dd>
-                        <dd><a href="#" class="link color-black">India</a></dd>
-                        <dd><a href="#" class="link color-black">New Zealand</a></dd>
-                        <dd><a href="#" class="link color-black">South America</a></dd>
-                        <dd><a href="#" class="link color-black">South East Asia</dd>
+                        <dd class="mt-4"><a href="#eu" class="link color-black">Africa</a></dd>
+                        <dd><a href="#eu" class="link color-black">Asia</a></dd>
+                        <dd><a href="#eu" class="link color-black">Australia</a></dd>
+                        <dd><a href="#eu" class="link color-black">Caribbean</a></dd>
+                        <dd><a href="#eu" class="link color-black">Europe</a></dd>
+                        <dd><a href="#eu" class="link color-black">India</a></dd>
+                        <dd><a href="#eu" class="link color-black">New Zealand</a></dd>
+                        <dd><a href="#eu" class="link color-black">South America</a></dd>
+                        <dd><a href="#eu" class="link color-black">South East Asia</dd>
                     </dl>
 
                 </div>
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
-                        <dt>SALES LINE
+                        <dt>
+                            SALES LINE
                             NORTH AMERICA
                         </dt>
-                        <dd class="mt-4"><a href="#" class="link color-black">Canada</a></dd>
-                        <dd><a href="#" class="link color-black">USA</a></dd>
+                        <dd class="mt-4"><a href="#north-america" class="link color-black">Canada</a></dd>
+                        <dd><a href="#north-america" class="link color-black">USA</a></dd>
                     </dl>
 
                 </div>
@@ -63,7 +64,7 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Headquarters</h4>
+        <h4 class="connector-heading my-3" id="eu">Headquarters</h4>
 
         <div class="divider"></div>
 
@@ -84,44 +85,43 @@
 
         <p class="mt-5"> Please leave a message here: </p>
 
-        <form action="#" class="send-mail mt-5 mb-5">
-            <div class="form-group w-25 mt-3">
+        <form action="<?= url("/contact/sendMessage") ?>" method="POST"  class="send-mail mt-5 mb-5 responsive-width">
+            <input type="hidden" name="location" value="eu">
+            <div class="form-group mt-3">
                 <label for="inputName">Your Name</label>
-                <input type="text" class="form-control bg-light" id="inputName" aria-describedby="Name">
+                <input type="text" class="form-control bg-light" id="inputName" name="name" aria-describedby="Name">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputJob">JOB / POSITION</label>
-                <input type="text" class="form-control bg-light" id="inputJob" aria-describedby="job">
+                <input type="text" class="form-control bg-light" id="inputJob" name="job" aria-describedby="job">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputDivision">DIVISION</label>
-                <input type="text" class="form-control bg-light" id="inputDivision" aria-describedby="division">
+                <input type="text" class="form-control bg-light" id="inputDivision" name="division" aria-describedby="division">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputCompany">COMPANY NAME</label>
-                <input type="text" class="form-control bg-light" id="inputCompany" aria-describedby="company name">
+                <input type="text" class="form-control bg-light" id="inputCompany" name="company" aria-describedby="company name">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputCountry">COUNTRY / STATE</label>
-                <input type="text" class="form-control bg-light" id="inputCountry" aria-describedby="country">
+                <input type="text" class="form-control bg-light" id="inputCountry" name="country" aria-describedby="country">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">E-MAIL</label>
-                <input type="email" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+                <input type="email" class="form-control bg-light" id="inputEmail" name="email" aria-describedby="email">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">PHONE</label>
-                <input type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+                <input type="text" class="form-control bg-light" id="inputEmail" name="phone" aria-describedby="email">
             </div>
 
-            <div class="form-group w-50 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">YOUR MESSAGE</label>
-                <textarea type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
-
-                </textarea>
+                <textarea type="text" class="form-control bg-light" id="inputEmail" name="message" aria-describedby="email"></textarea>
             </div>
 
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
                     Send
                 </button>
@@ -134,10 +134,9 @@
 
         </form>
 
-
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Sales line North America</h4>
+        <h4 class="connector-heading my-3" id="north-america">Sales line North America</h4>
 
         <div class="divider"></div>
 
@@ -158,54 +157,47 @@
 
         <p class="mt-5"> Please leave a message here: </p>
 
-        <form action="#" class="send-mail mt-5 mb-5">
-            <div class="form-group w-25 mt-3">
+        <form action="<?= url("/contact/sendMessage") ?>" method="POST"  class="send-mail mt-5 mb-5 responsive-width">
+            <input type="hidden" name="location" value="north-america">
+            <div class="form-group mt-3">
                 <label for="inputName">Your Name</label>
-                <input type="text" class="form-control bg-light" id="inputName" aria-describedby="Name">
+                <input type="text" class="form-control bg-light" id="inputName" name="name" aria-describedby="Name">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputJob">JOB / POSITION</label>
-                <input type="text" class="form-control bg-light" id="inputJob" aria-describedby="job">
+                <input type="text" class="form-control bg-light" id="inputJob" name="job" aria-describedby="job">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputDivision">DIVISION</label>
-                <input type="text" class="form-control bg-light" id="inputDivision" aria-describedby="division">
+                <input type="text" class="form-control bg-light" id="inputDivision" name="division" aria-describedby="division">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputCompany">COMPANY NAME</label>
-                <input type="text" class="form-control bg-light" id="inputCompany" aria-describedby="company name">
+                <input type="text" class="form-control bg-light" id="inputCompany" name="company" aria-describedby="company name">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputCountry">COUNTRY / STATE</label>
-                <input type="text" class="form-control bg-light" id="inputCountry" aria-describedby="country">
+                <input type="text" class="form-control bg-light" id="inputCountry" name="country" aria-describedby="country">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">E-MAIL</label>
-                <input type="email" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+                <input type="email" class="form-control bg-light" id="inputEmail" name="email" aria-describedby="email">
             </div>
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">PHONE</label>
-                <input type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
+                <input type="text" class="form-control bg-light" id="inputEmail" name="phone" aria-describedby="email">
             </div>
 
-            <div class="form-group w-50 mt-3">
+            <div class="form-group mt-3">
                 <label for="inputEmail">YOUR MESSAGE</label>
-                <textarea type="text" class="form-control bg-light" id="inputEmail" aria-describedby="email">
-
-                </textarea>
+                <textarea type="text" class="form-control bg-light" id="inputEmail" name="message" aria-describedby="email"></textarea>
             </div>
 
-            <div class="form-group w-25 mt-3">
+            <div class="form-group mt-3">
                 <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
                     Send
                 </button>
             </div>
-
-
-
-
-
-
         </form>
 
 

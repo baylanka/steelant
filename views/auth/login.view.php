@@ -26,10 +26,12 @@
 
 
                         <form action="/login" class="signin-form">
-                            <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="user_name" placeholder="USER NAME/ALIAS">
-                                <label class="form-control-placeholder" for="phone">USER NAME/ALIAS</label>
+                            <div class="form-group mt-5 email-group">
+                                <input type="email" class="form-control" name="email" placeholder="Email" value="<?= isset($_GET['mail']) ? $_GET['mail'] : "" ?>">
+                                <label class="form-control-placeholder" for="email">Email</label>
+
                             </div>
+
                             <div class="form-group mt-5">
                                 <input id="password-field" type="password" name="password" class="form-control"
                                        placeholder="PASSWORD">
@@ -116,6 +118,34 @@
             resetButton(btn, btnLabel);
         }
     });
+
+
+    <?php if( isset($_GET['mail_verified'])){ ?>
+
+    $(".email-group").append(`<div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>`);
+
+    $("button[type=submit]").attr("disabled",true);
+    let percentage = 0;
+    setInterval(function (){
+
+        if(percentage == 100){
+            $(".progress").after(` <div class="text-success">Email verified</div>`);
+            $(".progress").remove();
+            $("input[type=email]").addClass("is-valid");
+            $("button[type=submit]").attr("disabled",false);
+        }
+        percentage += 10;
+
+        if(percentage > 60){
+            $(".progress-bar").removeClass("bg-info");
+            $(".progress-bar").addClass("bg-success");
+        }
+        $(".progress-bar").css("width",percentage+"%")
+    },300)
+
+    <?php } ?>
 
 </script>
 </body>

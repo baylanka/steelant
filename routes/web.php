@@ -5,6 +5,8 @@ global $app;
 require_once basePath("routes/assets/app.web.php");
 //Admin routes
 require_once basePath("routes/assets/admin.web.php");
+//SEO routes
+require_once basePath("routes/assets/seo.web.php");
 
 
 $app->get('/',  ["user\HomeController", "connectors"]);
@@ -31,7 +33,20 @@ $app->get('/logout',  ["UserController", "logout"]);
 $app->get('/newsletter/unsubscribe',  ["UserController", "unsubscribe"]);
 $app->get('/newsletter/subscribe',  ["UserController", "subscribe"]);
 
+$app->get('/verify',  ["UserController", "verify_mail"]);
+
+
+
 $app->get('/connector',  ["user\ConnectorController", "index"]);
 
 $app->get('/order/request',  ["user\OrderController", "create_view"]);
 $app->post('/order/request/create',  ["user\OrderController", "create"]);
+
+
+$app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);
+
+
+
+
+
+

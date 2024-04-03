@@ -11,8 +11,9 @@ CREATE TABLE  IF NOT EXISTS   users
     email VARCHAR(255) NOT NULL UNIQUE,
     website VARCHAR(255) NULL,
     phone VARCHAR(100) NOT NULL,
-    user_name VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    email_verified BOOLEAN,
+    verification_key VARCHAR(255) NULL UNIQUE,
     newsletter BOOLEAN,
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
