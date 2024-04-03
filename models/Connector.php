@@ -3,7 +3,8 @@
 namespace model;
 
 use helpers\pools\LanguagePool;
-use helpers\repositories\ContentTemplateRepository;
+use helpers\repositories\ConnectorRepository;
+use helpers\repositories\ContentTemplateMediaRepository;
 use helpers\services\CategoryService;
 use model\BaseModel;
 
@@ -34,6 +35,13 @@ class Connector extends BaseModel
 
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
+
+    public function setMetaCollection($force = false): void
+    {
+        if($force || !isset($this->relations['meta_collection']) || empty($this->relations['meta_collection'])){
+            $this->relations['meta_collection'] = ConnectorRepository::getConnectorTemplatesByConnectorId($this->id);
+        }
+    }
 
     public function setCategory()
     {
@@ -113,8 +121,8 @@ class Connector extends BaseModel
         $content = $this->temp_content;
         $content->save();
 
-        //delete previous content templates, with its associated `content template media` and `media`
-        ContentTemplateRepository::deleteContentTemplatesByContentId($content->id);
+        //delete previous content templates media, with its associated `media`
+        ContentTemplateMediaRepository::deleteContentTemplateMediaByContentId($content->id);
         //update new content-templates, its template media
         $this->updateContentTemplates();
     }
@@ -132,7 +140,7 @@ class Connector extends BaseModel
 
     private function updateContentTemplateMedia(ContentTemplate $content_template)
     {
-        $contentTemplateMediaArray = $content_template->temp_content_template_media;
+        $contentTemplateMediaArray = $content_template->temp_content_template_media ?? [];
         foreach ($contentTemplateMediaArray as $each)
         {
             $each->content_template_id = $content_template->id;

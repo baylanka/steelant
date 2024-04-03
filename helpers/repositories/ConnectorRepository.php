@@ -46,13 +46,14 @@ class ConnectorRepository extends Connector
     {
         $sql = "
             SELECT
-                templates.id AS template_id,
+                content_templates.template_id AS template_id,
                 media.id AS media_id,
                 media.type AS media_type,
                 media.name AS media_name,
                 media.path AS media_path,
-                content_template_media.title,
-                content_templates.language
+                content_template_media.title AS media_title,
+                content_templates.language,
+                category_contents.leaf_category_id
             FROM connectors
             INNER JOIN category_contents ON connectors.id = category_contents.element_id
             INNER JOIN content_templates ON category_contents.id = content_templates.content_id

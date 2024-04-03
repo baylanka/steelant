@@ -10,14 +10,14 @@ use helpers\translate\Translate;
 
             <li class="nav-item dropdown language-menu d-none">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                    <img src="<?= assets("themes/img/flags/") ?><?= Translate::getLang() ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
+                    <img src="<?= assets("/img/flags/") ?><?= Translate::getLang() ?>.png" class="language-image rounded-circle shadow" alt="Language Image">
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-1">
 
                     <a href="?lang=de" class="dropdown-item p-2">
                         <div class="d-flex">
-                            <div class="flex-shrink-0"> <img src="<?= assets("themes/img/flags/de.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
+                            <div class="flex-shrink-0"> <img src="<?= assets("/img/flags/de.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
                             <div class="flex-grow-1">
                                 <h4 class="dropdown-item-title">Duestch</h4>
 
@@ -27,7 +27,7 @@ use helpers\translate\Translate;
                     <div class="dropdown-divider"></div>
                     <a href="?lang=en" class="dropdown-item p-2">
                         <div class="d-flex">
-                            <div class="flex-shrink-0"> <img src="<?= assets("themes/img/flags/en.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
+                            <div class="flex-shrink-0"> <img src="<?= assets("/img/flags/en-us.png") ?>" alt="User Avatar" class="language-image rounded-circle me-3"> </div>
                             <div class="flex-grow-1">
                                 <h4 class="dropdown-item-title">English</h4>
 
