@@ -49,4 +49,25 @@ class FileUtility
             exec("rm -r " . $path);
         }
     }
+
+    public static function getFileNamePhraseFromURL($fileUrl)
+    {
+        $filePathArray = explode('/', $fileUrl);
+        return  $filePathArray[sizeof($filePathArray)-1];
+    }
+
+
+    public static function getFileExtensionFromURL($fileUrl)
+    {
+        $fileName = self::getFileNamePhraseFromURL($fileUrl);
+        $fileNameSplits =  explode('.', $fileName);
+        return $fileNameSplits[sizeof($fileNameSplits)-1];
+    }
+
+    public static function stripeFileName(string $fileNameWithExtension)
+    {
+        $fileNameSplits =  explode('.', $fileNameWithExtension);
+        array_pop($fileNameSplits);
+        return implode(' ', $fileNameSplits);
+    }
 }

@@ -56,7 +56,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="update-btn" disabled>Update</button>
+            <button type="button" class="btn btn-primary" id="update-btn">Update</button>
         </div>
 
     </div>
@@ -64,7 +64,7 @@
 
 
 <script>
-
+    $(document).off('click', '.nav-item');
     $(document).on('click', '.nav-item', function(){
         const tabPosition = Number($(this).attr('data-position'));
         tabActiveEventHandler(tabPosition);
@@ -74,22 +74,23 @@
     async function tabActiveEventHandler(tabPosition)
     {
         const templateSettingArea = $('div.template-setting-container');
-        const updateBtn = $('button#update-btn');
         const spinnerContainer = $('.spinner-container');
         if(tabPosition <= 3){
-            updateBtn.prop("disabled", true);
             templateSettingArea.addClass('d-none');
             spinnerContainer.removeClass('d-none');
         }else{
-            const response = await update(updateBtn);
+            const response = await update(spinnerContainer);
             const templates = response.templatePreviews;
             $('#nav-de').html(templates['de']);
             $('#nav-uk').html(templates['en-gd']);
             $('#nav-fr').html(templates['fr']);
             $('#nav-us').html(templates['en-us']);
+
+            const downlodableContents = response.downloadableContents;
+            $('#profile').replaceWith(downlodableContents);
             templateSettingArea.removeClass('d-none');
-            updateBtn.prop("disabled", false);
             spinnerContainer.addClass('d-none');
+            populateTitleFields();
         }
     }
 

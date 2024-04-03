@@ -62,13 +62,135 @@ class UpdateConnectorRequestMapper
         ];
 
         $contentTemplates = self::getContentTemplateWithDownloadableMediaMetaData($contentTemplates, $request);
+        $contentTemplates = self::getContentTemplateWithImageMetaData($contentTemplates, $request);
         return array_values($contentTemplates);
+    }
+
+    private static function getContentTemplateWithImageFromFile(array $contentTemplates, $request, $directoryPath)
+    {
+        $imageFilesArray = $request->get('images', []);
+        foreach ($imageFilesArray['name'] as $index => $name){
+            if(empty($name)){
+                continue;
+            }
+            $file = [
+                'name' => $name,
+                'full_path' => $imageFilesArray['full_path'][$index],
+                'type' => $imageFilesArray['type'][$index],
+                'tmp_name' => $imageFilesArray['tmp_name'][$index],
+                'error' => $imageFilesArray['error'][$index],
+                'size' => $imageFilesArray['size'][$index],
+            ];
+            $fileOriginalName = FileUtility::getName($file);
+            $fileName = "image_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+
+            $imageMedia = self::uploadFile($file, Media::TYPE_IMAGE, $directoryPath, $fileName);
+
+            foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
+                $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->placeholder_id = $imageFilesArray['placeholder'][$index][$langIndex];
+                $contentTemplateMedia->temp_media = $imageMedia;
+                //content template mostly can contain multiple media. collection media as am array
+                $contentTemplates[$language]->temp_content_template_media[] = $contentTemplateMedia;
+            }
+
+        }
+
+        return $contentTemplates;
+    }
+
+    private static function getContentTemplateWithImageFromURL(array $contentTemplates, $request, $directoryPath)
+    {
+        $imageURLArray = $request->get('image_paths', []);
+        $imageFilesArray = $request->get('images', []);
+
+        foreach ($imageURLArray as $index => $fileURL){
+            if(empty($fileURL)){
+                continue;
+            }
+
+            $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
+            $fileName = "image_" . time() . "." . $fileExtension;
+            $imageMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_IMAGE, $directoryPath);
+
+            foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
+                $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->placeholder_id = $imageFilesArray['placeholder'][$index][$langIndex];
+                $contentTemplateMedia->temp_media = $imageMedia;
+                //content template mostly can contain multiple media. collection media as am array
+                $contentTemplates[$language]->temp_content_template_media[] = $contentTemplateMedia;
+            }
+
+        }
+
+        return $contentTemplates;
+    }
+
+    private static function getContentTemplateWithImageMetaData(array $contentTemplates, $request): array
+    {
+        $directoryPath = "content_assets/media_files/";
+        $imageFilesArray = $request->get('images', []);
+        $imageUrlArray = $request->get('image_paths', []);
+
+        if((empty($imageFilesArray) || empty($imageFilesArray['name'])) &&  empty($imageUrlArray))
+        {
+            return $contentTemplates;
+        }
+
+        $contentTemplates =  self::getContentTemplateWithImageFromURL($contentTemplates,$request, $directoryPath);
+        return self::getContentTemplateWithImageFromFile($contentTemplates, $request, $directoryPath);
     }
 
     private static function getContentTemplateWithDownloadableMediaMetaData(array $contentTemplates, $request): array
     {
         $directoryPath = "content_assets/downloadable_files/";
-        $downloadableArray = $request->get('downloadable');
+        $downloadableArray = $request->get('downloadable', []);
+        $downloadableFileURLArray = $request->get('downloadable_src', []);
+
+        if((empty($downloadableArray) || empty($downloadableArray['name'])) &&  empty($downloadableFileURLArray))
+        {
+            return $contentTemplates;
+        }
+
+        $contentTemplates = self::getContentTemplateWithDownloadableFileFromFile($contentTemplates, $request, $directoryPath);
+        return  self::getContentTemplateWithDownloadableFileFromURL($contentTemplates, $request, $directoryPath);
+    }
+
+    private static function getContentTemplateWithDownloadableFileFromURL(array $contentTemplates, $request, $directoryPath)
+    {
+        $downloadableURLArray = $request->get('downloadable_src', []);
+        $downloadableArray = $request->get('downloadable', []);
+
+        foreach ($downloadableURLArray as $index => $fileURL){
+            if(empty($fileURL)){
+                continue;
+            }
+
+            $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
+            $fileName = "downloadable_" . time() . "." . $fileExtension;
+            $downloadableMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_FILE, $directoryPath);
+
+            foreach ($downloadableArray['title'][$index] as $lang => $title){
+                //downloadable files no need placeholder hint. so, it is ignored here
+                $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->title = $title;
+                $contentTemplateMedia->temp_media = $downloadableMedia;
+                //content template mostly can contain multiple media. collection media as am array
+                $contentTemplates[$lang]->temp_content_template_media[] = $contentTemplateMedia;
+            }
+
+        }
+
+        return $contentTemplates;
+    }
+    private static function getContentTemplateWithDownloadableFileFromFile(array $contentTemplates, $request, $directoryPath)
+    {
+        $downloadableArray = $request->get('downloadable', []);
+
+        if(empty($downloadableArray) || !isset($downloadableArray['name'])){
+            return $contentTemplates;
+        }
+
         foreach ($downloadableArray['name'] as $index => $value){
             if(empty($value)){
                 continue;
@@ -97,6 +219,31 @@ class UpdateConnectorRequestMapper
 
         }
         return $contentTemplates;
+    }
+
+
+    private static function uploadFileFromURL($fileURL, $fileName, $type, $directoryPath)
+    {
+        $path = $directoryPath . $fileName;
+        $target = storage_path("public/{$path}");
+
+        $fileURLParts = explode('/', $fileURL);
+        $indexOfStorageKeyword = array_search('storage', $fileURLParts);
+        array_splice($fileURLParts, 0, $indexOfStorageKeyword+1);
+        $fileRepo = implode('/', $fileURLParts);
+        $filePath = storage_path("public/" . $fileRepo);
+
+        file_put_contents($target, file_get_contents($filePath));
+
+
+        $fileOriginalName = FileUtility::getFileNamePhraseFromURL($fileURL);
+        $fileNamePhrase = FileUtility::stripeFileName($fileOriginalName);
+
+        $media = new Media();
+        $media->type = $type;
+        $media->name =  $fileNamePhrase;
+        $media->path = $path;
+        return $media;
     }
 
     private static function uploadFile($file, $type, $directoryPath, $fileName)

@@ -122,9 +122,10 @@
                         <i class="bi bi-folder2-open"></i>
                     </label>
 
-                    <input type="file" class="form-control w-50 bg-light download-file"
-                           value=""
-                           name="downloadable[<?=$index?>]">
+                    <input type="file" class="form-control w-50 bg-light download-file">
+                    <input type="hidden"
+                           value="<?= $content['file_asset_path'] ?>"
+                           name="downloadable_src[<?=$index?>]">
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
@@ -269,10 +270,6 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        loadPreviouslySelectedFiles();
-    });
-
     $(document).off("change", ".download-label-visible");
     $(document).on("change", ".download-label-visible", function () {
 
@@ -327,24 +324,6 @@
 
         previousFileContainer.remove();
     });
-
-    function loadPreviouslySelectedFiles()
-    {
-        $('a.previous-file-download').each(function(){
-            const inputField = $(this).closest('.download-container').find('input[type="file"]');
-            const fileSrc = $(this).attr('src');
-            const fileName = $(this).find('span.file-name').text();
-            const blob = new Blob([fileSrc]);
-            const file = new File([blob], fileName);
-
-            // Create a DataTransfer object
-            const dataTransfer = new DataTransfer();
-            // Add the file to the DataTransfer object
-            dataTransfer.items.add(file);
-            // Set the files property of the input element to the FileList retrieved from the DataTransfer object
-            inputField[0].files = dataTransfer.files;
-        });
-    }
 
     function getDownloadableFileContent()
     {

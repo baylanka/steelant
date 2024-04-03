@@ -1,18 +1,19 @@
-$(document).ready(function () {
+function populateTitleFields()
+{
 
     $("span.template-img-heading").each(function () {
         let head_key = $(this).attr("data-heading");
         $(this).after(`
-            <span class=" d-flex align-middle gap-2">
+            <div class=" d-flex align-middle gap-2">
                 <input class="img-heading" type="text" data-heading="${head_key}" data-default="true" placeholder="Heading"> 
                 <span class=" d-flex flex-column"><input type="checkbox" class="sync-switch"><small>sync</small></span>
-            </span>
+            </div>
         `);
     });
 
 
     $("span.template-img-heading").remove();
-});
+}
 
 
 $(document).off("click", "img.template-img");
@@ -23,47 +24,65 @@ $(document).on("click", "img.template-img", function () {
 
 
 $(document).off("change", "input.template-img-input");
-$(document).on("change", "input.template-img-input", function () {
+$(document).on("change", "input.template-img-input", async  function (e) {
+    e.preventDefault();
+    const inputField = $(this);
+    let imageValue = inputField.val();
+    const inputFieldContainer = inputField.closest('.template-img-container');
+    const imageLanguageField = inputFieldContainer.find('.image-language');
+    const imagePlaceholderField = inputFieldContainer.find('.image-placeholder');
+    const imagePlaceholderValue= Number(inputFieldContainer.find('.image-placeholder').val());
 
-    let input = $(this);
-    let file = this.files[0];
-    let reader = new FileReader();
-
-    let image = $(this).closest("div.template-img-container").find("img.template-img");
-    let alert_note = $(this).closest("div.template-img-container").find("span.img-size-text");
-
-
-
-    reader.onload = function (e) {
-
-        let img = new Image();
-        img.src = e.target.result;
-
-        img.onload = function () {
-            alert_note.css("color", "gray");
-
-            let img_name = image.attr("data-img");
-
-            $("img[data-img=" + img_name + "]").each(function () {
-
-                if ($(this).attr("data-default") === "true") {
-                    $(this).attr('src', e.target.result);
-                    $(this).attr("data-default", false);
-
-                    $(this).closest("div.template-img-container").find("input[type=file]").remove();
-                    $(this).after(input.clone()[0]);
-
-
-                }
-            })
-
-        };
-
+    if(isEmpty(imageValue)){
+        return;
     }
 
-    reader.readAsDataURL(file);
+    const imageContent = await imageToBase64($(this));
+    inputFieldContainer.find('.template-img').attr('src', imageContent);
+
+    let thisElementIndex;
+    let LanguageFieldName;
+    let placeholderFieldName;
+    if(!inputField.attr('data-index')){
+        let existingImageElementsCount = Number($('.template-img-input[data-file-set="true"]').length);
+        let srcArr = [];
+        $('.file_src').each(function(){
+            const src = $(this).val();
+            if(!srcArr.includes(src)){
+                srcArr.push(src)
+            }
+        });
+
+        existingImageElementsCount += srcArr.length;
+
+        thisElementIndex = existingImageElementsCount > 0 ? existingImageElementsCount : 0;
+        inputField.attr('data-index', thisElementIndex);
+        inputField.attr('data-file-set', 'true');
+
+        const inputName = `images[${thisElementIndex}]`;
+        LanguageFieldName = `images[language][${thisElementIndex}][]`;
+        placeholderFieldName = `images[placeholder][${thisElementIndex}][]`;
+
+        inputField.attr('name', inputName);
+        imageLanguageField.attr('name', LanguageFieldName);
+        imagePlaceholderField.attr('name', placeholderFieldName);
+    }
 
 
+    $('.template-img-container').each(function(){
+        const otherContainer = $(this);
+        const otherElementPlaceHolder = Number(otherContainer.find('.image-placeholder').val());
+        const OtherInputField = otherContainer.find('.template-img-input');
+
+        const otherImageLanguageField = otherContainer.find('.image-language');
+        const otherImagePlaceholderField = otherContainer.find('.image-placeholder');
+
+        if(imagePlaceholderValue === otherElementPlaceHolder && !OtherInputField.attr('data-index')){
+            otherImageLanguageField.attr('name', LanguageFieldName);
+            otherImagePlaceholderField.attr('name', placeholderFieldName);
+            otherContainer.find('.template-img').attr('src', imageContent);
+        }
+    });
 });
 
 
