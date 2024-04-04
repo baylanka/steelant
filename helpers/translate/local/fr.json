@@ -1,14 +1,28 @@
 {
 	"common": {
 		"logo_text" : "Connecteurs pour palplanches en acier",
-		"login": "Login"
+		"login": "Login",
+		"logout": "Se déconnecter",
+		"menu": "Menu",
+		"email": "E-mail",
+		"password": "Mot de passe",
+		"register": "Registre"
 	},
 	"home_nav": {
 		"connectors": "Connecteurs",
 		"downloads": "Téléchargements",
 		"gallery": "Gelée",
 		"sealant": "mastic",
-		"contact": "Contact"
+		"contact": "Contact",
+		"user_information": "Informations de l'utilisateur",
+		"about_steelwall": "À propos de Steelwall",
+		"newsletter": "Bulletin",
+		"languages_and_measures": "Langues et mesures",
+		"legal_advice": "Conseils juridiques",
+		"imprint": "Imprint",
+		"privacy_policy": "Politique de confidentialité",
+		"general_terms_and_conditions": "Termes et conditions généraux",
+		"favourites": "Favoris"
 	},
 	"home_footer": {
 		"disclaimer": "Disclaimer",

@@ -1,14 +1,28 @@
 {
 	"common": {
 		"logo_text" : "Schlossprofile für Stahlspundwände",
-		"login": "Anmeldung"
+		"login": "Anmeldung",
+		"logout": "Ausloggen",
+		"menu": "Speisekarte",
+		"email": "Email",
+		"password": "Passwort",
+		"register": "Neu registrieren"
 	},
 	"home_nav": {
 		"connectors": "Connectors",
 		"downloads": "Downloads",
 		"gallery": "Galerie",
 		"sealant": "Dichtungsmittel",
-		"contact": "Kontakt"
+		"contact": "Kontakt",
+		"user_information": "Benutzerinformation",
+		"about_steelwall": "Über SteelWall",
+		"newsletter": "Newsletter",
+		"languages_and_measures": "Sprachen und Maße",
+		"legal_advice": "Rechtliche Beratung",
+		"imprint": "Impressum",
+		"privacy_policy": "Datenschutzrichtlinie",
+		"general_terms_and_conditions": "Allgemeine Bedingungen",
+		"favourites": "Lieblings"
 	},
 	"home_footer": {
 		"disclaimer": "Beschreibung",

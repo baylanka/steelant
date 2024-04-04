@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
 
-<?php require_once basePath("views/user/layout/head.layout.php") ?>
+<?php
+require_once basePath("views/user/layout/head.layout.php");
+use helpers\translate\Translate;
+
+?>
 <link rel="stylesheet" href="<?= assets("themes/user/style-2.css") ?>"/>
 
 
@@ -21,28 +25,35 @@
                     <div class="login-wrap p-4 p-md-5">
 
                         <div class="w-100 text-center">
-                            <h3 class="mb-4">Sign In</h3>
+                            <h3 class="mb-4">
+                                <?= Translate::get("common","login") ?>
+                            </h3>
                         </div>
 
 
                         <form action="/login" class="signin-form">
                             <div class="form-group mt-5 email-group">
                                 <input type="email" class="form-control" name="email" placeholder="Email" value="<?= isset($_GET['mail']) ? $_GET['mail'] : "" ?>">
-                                <label class="form-control-placeholder" for="email">Email</label>
+                                <label class="form-control-placeholder" for="email">
+                                    <?= Translate::get("common","email") ?>
+                                </label>
 
                             </div>
 
                             <div class="form-group mt-5">
                                 <input id="password-field" type="password" name="password" class="form-control"
                                        placeholder="PASSWORD">
-                                <label class="form-control-placeholder" for="password">PASSWORD</label>
+                                <label class="form-control-placeholder" for="password">
+                                    <?= Translate::get("common","password") ?>
+                                </label>
                                 <span toggle="#password-field"
                                       class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <p class="text-danger text-center error-msg"></p>
                             <p class="text-success text-center success-msg"></p>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">
+                                    <?= Translate::get("common","login") ?>
                                 </button>
                             </div>
 
@@ -50,8 +61,29 @@
                                 <a href="#">Forgot Password</a>
                             </div>
                         </form>
-                        <p class="text-center">Not a member? <a data-toggle="tab" href="<?= url("/register") ?>">Register</a>
+                        <p class="text-center">Not a member? <a data-toggle="tab" href="<?= url("/register") ?>">                        <?= Translate::get("common", "register") ?>
+                            </a>
                         </p>
+
+                        <div class="w-100 d-flex justify-content-center mt-1 pt-5 gap-3 align-middle">
+                            <a href="?langStrict=de" title="" class="lang">
+                                <img src="<?= assets("img/flags/de.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "de" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=en-gb" title="" class="lang">
+                                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "en-gb" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=en-us" title="" class="lang">
+                                <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "en-us" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=fr" title="" class="lang">
+                                <img src="<?= assets("img/flags/fr.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "fr" ? "selected-flag" : "" ?>"/>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>

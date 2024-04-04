@@ -1,15 +1,28 @@
 {
   "common": {
     "logo_text" : "Connectors for sheet pile wall structures",
-    "login": "Login"
-
+    "login": "Login",
+    "logout": "Logout",
+    "menu": "Menu",
+    "email": "Email",
+    "password": "Password",
+    "register": "Register"
   },
   "home_nav": {
     "connectors": "Connectors",
     "downloads": "Downloads",
     "gallery": "Gallery",
     "sealant": "Sealant",
-    "contact": "Contact"
+    "contact": "Contact",
+    "user_information": "User information",
+    "about_steelwall": "About SteelWall",
+    "newsletter": "Newsletter",
+    "languages_and_measures": "Languages and measures",
+    "legal_advice": "Legal advice",
+    "imprint": "Imprint",
+    "privacy_policy": "Privacy policy",
+    "general_terms_and_conditions": "General terms and conditions",
+    "favourites": "Favorites"
   },
   "home_footer": {
     "disclaimer": "Disclaimer",

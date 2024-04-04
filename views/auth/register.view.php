@@ -120,6 +120,26 @@
                         </form>
                         <p class="text-center">Already a member? <a data-toggle="tab" href="<?= url("/login") ?>">sign
                                 in</a></p>
+
+                        <div class="w-100 d-flex justify-content-center mt-1 pt-5 gap-3 align-middle">
+                            <a href="?langStrict=de" title="" class="lang">
+                                <img src="<?= assets("img/flags/de.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "de" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=en-gb" title="" class="lang">
+                                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "en-gb" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=en-us" title="" class="lang">
+                                <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "en-us" ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a href="?langStrict=fr" title="" class="lang">
+                                <img src="<?= assets("img/flags/fr.png") ?>" height="25"
+                                     class="flag <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == "fr" ? "selected-flag" : "" ?>"/>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>

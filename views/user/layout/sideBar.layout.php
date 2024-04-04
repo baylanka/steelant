@@ -1,6 +1,7 @@
 <?php
 
 use helpers\services\RequestService;
+use helpers\translate\Translate;
 
 ?>
 <div class="offcanvas offcanvas-start"
@@ -9,7 +10,9 @@ use helpers\services\RequestService;
      aria-labelledby="offcanvasNavbarLabel" style="z-index:10000;">
 
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <?= Translate::get("common", "menu") ?>
+        </h5>
         <button
                 type="button"
                 class="btn-close"
@@ -68,32 +71,32 @@ use helpers\services\RequestService;
             <li class="nav-item">
                 <a class="nav-link <?= RequestService::isRequestedRoute("/downloads") ? "selected" : "" ?>"
                    aria-current="page" href="<?= url("/downloads") ?>">
-                    Downloads
+                    <?= Translate::get("home_nav", "downloads") ?>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= RequestService::isRequestedRoute("/gallery") ? "selected" : "" ?>"
                    aria-current="page" href="<?= url("/gallery") ?>">
-                    Gallery
+                    <?= Translate::get("home_nav", "gallery") ?>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" target="_blank"
                    aria-current="page" href="https://steelant.eu/">
-                    Sealant
+                    <?= Translate::get("home_nav", "sealant") ?>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>"
                    aria-current="page" href="<?= url("/contact") ?>">
-                    Contact
+                    <?= Translate::get("home_nav", "contact") ?>
                 </a>
             </li>
             <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
                 <li class="nav-item">
                     <a class="nav-link <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
                        href="<?= url("/favourite") ?>">
-                        Favorites
+                        <?= Translate::get("home_nav", "favourites") ?>
                     </a>
                 </li>
             <?php } ?>
@@ -102,12 +105,12 @@ use helpers\services\RequestService;
 
                 <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
                     <a class="nav-link" aria-current="page" href="<?= url("/logout") ?>">
-                        Logout
+                        <?= Translate::get("common", "logout") ?>
                     </a>
                 <?php } else { ?>
                     <a class="nav-link <?= RequestService::isRequestedRoute("/login") ? "selected" : "" ?>"
                        aria-current="page" href="<?= url("/login") ?>">
-                        Login
+                        <?= Translate::get("common", "login") ?>
                     </a>
                 <?php } ?>
 
@@ -115,30 +118,30 @@ use helpers\services\RequestService;
 
             <li class="nav-item">
                 <a class="nav-link color-blue">
-                    User information
+                    <?= Translate::get("home_nav", "user_information") ?>
                 </a>
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/about") ? "selected" : "" ?>"
                            href="<?= url("/about") ?>">
-                            About Steelwall
+                            <?= Translate::get("home_nav", "about_steelwall") ?>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/newsletter") ? "selected" : "" ?>"
                            href="<?= url("/newsletter") ?>">
-                            Newsletter
+                            <?= Translate::get("home_nav", "newsletter") ?>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/register") ? "selected" : "" ?>"
                            href="<?= url("/register") ?>">
-                            Register
+                            <?= Translate::get("home_nav", "register") ?>
                         </a>
                     </li>
                     <li class="nav-item" href="#">
                         <a class="nav-link">
-                            Languages and measures
+                            <?= Translate::get("home_nav", "languages_and_measures") ?>
                         </a>
                     </li>
 
@@ -147,25 +150,25 @@ use helpers\services\RequestService;
 
             <li class="nav-item">
                 <a class="nav-link color-blue">
-                    Legal advice
+                    <?= Translate::get("home_nav", "legal_advice") ?>
                 </a>
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "" ?>"
                            href="<?= url("/imprint") ?>">
-                            Imprint
+                            <?= Translate::get("home_nav", "imprint") ?>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/privacy&policy") ? "selected" : "" ?>"
                            href="<?= url("/privacy&policy") ?>">
-                            Privacy policy
+                            <?= Translate::get("home_nav", "privacy_policy") ?>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/general/terms&condition") ? "selected" : "" ?>"
                            href="<?= url("/general/terms&condition") ?>">
-                            General terms and conditions
+                            <?= Translate::get("home_nav", "general_terms_and_conditions") ?>
                         </a>
                     </li>
 
