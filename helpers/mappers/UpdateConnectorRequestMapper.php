@@ -82,7 +82,7 @@ class UpdateConnectorRequestMapper
                 'size' => $imageFilesArray['size'][$index],
             ];
             $fileOriginalName = FileUtility::getName($file);
-            $fileName = "image_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+            $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
 
             $imageMedia = self::uploadFile($file, Media::TYPE_IMAGE, $directoryPath, $fileName);
 
@@ -110,8 +110,12 @@ class UpdateConnectorRequestMapper
                 continue;
             }
 
+            $fileNameWithExtension = FileUtility::getFileNamePhraseFromURL($fileURL);
+            $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),6,5);
+
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
-            $fileName = "image_" . time() . "." . $fileExtension;
+
+            $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
             $imageMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_IMAGE, $directoryPath);
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
@@ -168,8 +172,10 @@ class UpdateConnectorRequestMapper
                 continue;
             }
 
+            $fileNameWithExtension = FileUtility::getFileNamePhraseFromURL($fileURL);
+            $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),18,5);
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
-            $fileName = "downloadable_" . time() . "." . $fileExtension;
+            $fileName = "downloadable_file_{$fileName}({$index})_" . time() . "." . $fileExtension;
             $downloadableMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_FILE, $directoryPath);
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
@@ -206,7 +212,7 @@ class UpdateConnectorRequestMapper
                 'size' => $downloadableArray['size'][$index],
             ];
             $fileOriginalName = FileUtility::getName($file);
-            $fileName = "downloadable_file_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+            $fileName = "downloadable_file_{$fileOriginalName}({$index})_" . time() . "." . FileUtility::getType($file);
 
             $downloadableMedia = self::uploadFile($file, Media::TYPE_FILE, $directoryPath, $fileName);
 
