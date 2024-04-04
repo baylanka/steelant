@@ -122,4 +122,11 @@ class ConnectorController extends BaseController
     {
 
     }
+
+
+    public function view(Request $request)
+    {
+        return view("admin/connectors/single_view.view.php", []);
+    }
+
 }

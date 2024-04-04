@@ -29,6 +29,26 @@
 		"disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. La base de soudage des serrures LPB et FD peut être en version droite ou oblique. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez avant le montage vérifier à l’aide de spécimens la compatibilité des connecteurs et serrures de palplanches."
 
 	},
+	"login_page": {
+		"forgot_password": "Mot de passe oublié",
+		"not_a_member": "Pas un membre?"
+	},
+	"register_page": {
+		"advantages_of_a_registration": "Avantages d'une inscription",
+		"request_products_easily": "Demandez des produits facilement !",
+		"save_your_requests_and_products": "Sauvegardez vos demandes et produits (Favoris) !",
+		"receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
+		"your_name": "Votre nom",
+		"job_position": "Emploi / Poste",
+		"division": "Division",
+		"company_name": "Nom de l'entreprise",
+		"country_state": "Pays / État",
+		"website": "Site web",
+		"phone": "Téléphone",
+		"subscribe_to_newsletter": "S'inscrire à la Newsletter",
+		"by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter",
+		"already_a_member": "Déjà membre?"
+	},
 
 
 
