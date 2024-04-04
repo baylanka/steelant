@@ -18,12 +18,7 @@ class ConnectorController extends BaseController
             header('Location: ' . url("/"));
         }
 
-
-        $categories = Category::getAll();
-        $arrangedCategories = CategoryService::organizingCategoriesTreeView($categories);
         $data = [
-            'heading' => "Category",
-            'categories' => $arrangedCategories,
         ];
         return view("user/connector.view.php", $data);
     }

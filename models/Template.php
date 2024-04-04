@@ -17,6 +17,10 @@ class Template extends BaseModel
     const TYPE_CONNECTOR = 1;
     const TYPE_ADD_ON = 2;
 
+    const MODE_EDIT = 1;
+    const MODE_VIEW = 2;
+
+
     public function setMedia($force=false)
     {
         if(!$force && isset($this->relations['media'])) {

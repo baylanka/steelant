@@ -9,7 +9,7 @@ use model\Template;
 
 class TemplateService
 {
-    public static function getTemplateByFillingDataById($templateId, $data)
+    public static function getTemplateByFillingDataById($templateId, $data, $mode)
     {
         $template = Template::getById($templateId);
         $templatePath = $template->getTemplateFilePath();
@@ -19,7 +19,22 @@ class TemplateService
         return ob_get_clean();
     }
 
-    public static function getAllLangTemplates(\stdClass|Connector $connector)
+    public static function getConnectorTemplateBy(int $id, string $language, $mode)
+    {
+        $connector = ConnectorService::getConnectorAssociatedData($id);
+        $language = LanguagePool::getByLabel($language)->getLabel();
+        $connectorDTO = new ConnectorDTO($connector, $language, ' | ');
+        if(empty($connectorDTO->templateId)){
+            return null;
+        }
+        $data = [
+            'connector' => $connectorDTO,
+        ];
+
+        return self::getTemplateByFillingDataById($connectorDTO->templateId, $data, $mode);
+    }
+
+    public static function getAllLangTemplates(\stdClass|Connector $connector, $mode=Template::MODE_EDIT)
     {
         $templates = [];
 
@@ -30,7 +45,7 @@ class TemplateService
             $dataDe = [
                 'connector' => $connectorDTODe,
             ];
-            $templateDe = self::getTemplateByFillingDataById($connectorDTODe->templateId, $dataDe);
+            $templateDe = self::getTemplateByFillingDataById($connectorDTODe->templateId, $dataDe, $mode);
         }else{
             $templateDe = '';
         }
@@ -44,7 +59,7 @@ class TemplateService
             $dataEnUs = [
                 'connector' => $connectorDTOEnUs,
             ];
-            $templateEnUs = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUs);
+            $templateEnUs = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUs, $mode);
         }else{
             $templateEnUs = '';
         }
@@ -59,7 +74,7 @@ class TemplateService
             $dataFr = [
                 'connector' => $connectorDTOFr,
             ];
-            $templateFr =  self::getTemplateByFillingDataById($connectorDTOFr->templateId, $dataFr);
+            $templateFr =  self::getTemplateByFillingDataById($connectorDTOFr->templateId, $dataFr, $mode);
         }else{
             $templateFr = '';
         }
@@ -74,7 +89,7 @@ class TemplateService
             $dataEnUk = [
                 'connector' => $connectorDTOEnUK,
             ];
-            $templateEnUk = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUk);
+            $templateEnUk = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUk, $mode);
         }else{
             $templateEnUk = '';
         }

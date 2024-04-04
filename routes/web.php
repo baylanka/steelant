@@ -45,6 +45,8 @@ $app->post('/order/request/create',  ["user\OrderController", "create"]);
 
 $app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);
 
+$app->get('/contents',  ["user\ContentController", "getContentsByCategoryId"]);
+
 
 
 

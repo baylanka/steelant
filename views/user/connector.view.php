@@ -213,71 +213,11 @@
 
         <div class="divider"></div>
 
-        <!--1-->
 
-        <?php require basePath("/views/templates/template-01.php") ?>
-
-        <!--1-->
-
-        <div class="divider"></div>
-
-        <!--2-->
-
-        <?php require basePath("/views/templates/template-02.php") ?>
-
-        <!--2-->
-
-        <div class="divider"></div>
-
-
-        <!--3-->
-
-        <?php require basePath("/views/templates/template-03.php") ?>
-
-        <!--3-->
-
-
-        <div class="divider"></div>
-
-
-        <!--4-->
-
-        <?php require basePath("/views/templates/template-04.php") ?>
-
-        <!--4-->
-
-
-        <div class="divider"></div>
-
-
-        <!--5-->
-
-        <?php require basePath("/views/templates/template-05.php") ?>
-
-
-        <!--5-->
-
-
-        <div class="divider"></div>
-
-
-        <!--6-->
-
-
-        <?php require basePath("/views/templates/template-06.php") ?>
-
-
-        <!--6-->
-
-
-        <div class="divider"></div>
-
-
-        <!--7-->
-
-        <?php require basePath("/views/templates/template-07.php") ?>
-
-        <!--7-->
+        <?php foreach ($templates as $template):?>
+            <?=$template?>
+            <div class="divider"></div>
+        <?php endforeach; ?>
 
     </div>
 

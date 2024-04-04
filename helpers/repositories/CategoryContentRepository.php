@@ -10,11 +10,43 @@ class CategoryContentRepository extends CategoryContent
 {
     public static function getContentsInDisplayOrderByCategoryId($categoryId)
     {
-//        $sql = "
-//            SELECT *
-//            FROM category_contents
-//
-//        "
+        $sql = "
+               SELECT *
+                        FROM (
+                            SELECT
+                                   con.id AS element_id,
+                                   con.name AS element_name,
+                                   cc.id AS category_content_id,
+                                   cc.type,
+                                   cc.display_order_no
+                            FROM category_contents cc
+                            INNER JOIN categories c ON cc.leaf_category_id = c.id
+                            INNER JOIN connectors con ON cc.element_id = con.id AND cc.type = :connector_type
+                            WHERE c.id = :category_id
+                        
+                            UNION ALL
+                        
+                            SELECT
+                                   addc.id AS element_id,
+                                   addc.title AS element_name,
+                                   cc.id AS category_content_id,
+                                   cc.type,
+                                   cc.display_order_no
+                            FROM category_contents cc
+                            INNER JOIN categories c ON cc.leaf_category_id = c.id
+                            INNER JOIN add_on_contents addc ON cc.element_id = addc.id AND cc.type = :add_on_content_type
+                            WHERE c.id = :category_id
+                        ) AS merged_results
+                        ORDER BY display_order_no;
+               ";
+
+        $params = [
+            'connector_type' => CategoryContent::TYPE_CONNECTOR,
+            'category_id' => $categoryId,
+            'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT
+        ];
+
+        return CategoryContent::queryAsArray($sql, $params)->get();
     }
 
     public static function deleteByCategoryId($categoryId)
