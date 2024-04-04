@@ -4,14 +4,14 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-    <div class="p-3">
+    <div class="responsive-wrap">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-12 col-xxl-12 row gap-3">
                 <div class="col-md-1">
-                    <img src="<?= assets("themes/user/img/imprint-icon.png") ?>" height="100"/>
+                    <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80"/>
                 </div>
                 <div class="col-md-8">
                     <dl>

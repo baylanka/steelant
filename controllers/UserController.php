@@ -3,6 +3,7 @@
 namespace controllers;
 
 use app\Request;
+use helpers\clients\EmailClient;
 use helpers\dto\ConnectorDTO;
 use helpers\dto\UserDTO;
 use helpers\mappers\ConnectorStoreRequestMapper;
@@ -13,6 +14,7 @@ use helpers\services\UserService;
 use helpers\utilities\ResponseUtility;
 use Exception;
 use helpers\validators\UserCreateRequestValidator;
+use helpers\validators\UserEmailVerifyRequestValidator;
 use helpers\validators\UserLoginRequestValidator;
 use model\User;
 
@@ -72,8 +74,9 @@ class UserController extends BaseController
 
             $userDTO = new UserDTO($user);
 
-            $_SESSION["user"] = $userDTO;
-            $_SESSION["auth"] = true;
+            $email = new EmailClient();
+            $email->sendVerificationMail($userDTO->email, $userDTO->verification_key);
+
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully registered",
                 "data" => $userDTO
@@ -113,6 +116,34 @@ class UserController extends BaseController
 
         $_SESSION["user"] = $userDTO;
         header('Location: ' . url("/newsletter"));
+    }
+
+
+    public function verify_mail(Request $request)
+    {
+        try {
+            UserEmailVerifyRequestValidator::validate($request);
+            $user = UserService::verify_email($request);
+            header('Location: ' . url("/login?mail=").$user->email.'&mail_verified=true');
+            die;
+        } catch (\Exception $err) {
+            parent::response($err->getMessage(), [], 422);
+        }
+
+    }
+
+
+    public function sendMessage(Request $request)
+    {
+        try {
+            $email = new EmailClient();
+            $email->sendInquiryMail($request);
+            header('Location: ' . url("/contact?alert=") . "Inquiry mail successfully sent");
+            die;
+        } catch (\Exception $err) {
+            parent::response($err->getMessage(), [], 422);
+        }
+
     }
 
 }

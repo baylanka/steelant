@@ -1,19 +1,14 @@
-<?php use helpers\services\RequestService; ?>
+<?php
+use helpers\services\RequestService;
+use helpers\translate\Translate;
+?>
 
 <!--footer section-->
 <div class="nav footer fixed-bottom position-relative mt-5">
-    <h4 class="color-custom-light">Disclaimer</h4>
+    <h4 class="color-custom-light"><?= Translate::get("home_footer","disclaimer") ?></h4>
 
     <p class="disclaimer-text color-custom-light">
-        SteelWall connectors generally comply with the European standards and
-        are manufactured by certified steel processing companies. All figures
-        are approximate and may vary. Bar twists are possible up to 2 mm per
-        meter. Tolerance of steel thickness Â±1 mm. Length tolerance up to Â±200
-        mm. Degree details refer to the connector bar axes. Welding base of LPB
-        and FD clutches can be straight or bevelled. We reserve the right to
-        make technical changes. We refer to DIN EN 12063. Please check the sheet
-        pile interlocks with a physical sample section of the desired connector
-        for compatibility.
+        <?= Translate::get("home_footer","disclaimer_text") ?>
     </p>
 
     <span class="divider-white mt-5 mb-5"></span>
@@ -44,15 +39,15 @@
 
             <ul style="list-style-type: none; padding-left: 0;">
 
-                <li><a href="#" class="text-decoration-none color-custom-light">Africa</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Asia</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Australia</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Caribbean</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">Europe</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">India</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">New Zealand</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">South America</a></li>
-                <li><a href="#" class="text-decoration-none color-custom-light">South East Asia</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">Africa</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">Asia</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">Australia</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">Caribbean</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">Europe</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">India</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">New Zealand</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">South America</a></li>
+                <li><a href="<?= url("/contact") ?>#eu" class="text-decoration-none color-custom-light">South East Asia</a></li>
             </ul>
         </div>
 
@@ -60,7 +55,7 @@
             <h4 class="mb-4 color-custom-light">steelwallus.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-custom-light">North America</a></li>
+                <li><a href="<?= url("/contact") ?>#north-america" class="text-decoration-none color-custom-light">North America</a></li>
             </ul>
         </div>
 
@@ -69,7 +64,7 @@
             <h4 class="mb-4 color-custom-light">MF-pipe.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="#" class="text-decoration-none color-custom-light">MF-Pipe is a division of SteelWall</a></li>
+                <li><a href="https://mf-pipe.com/" target="_blank" class="text-decoration-none color-custom-light">MF-Pipe is a division of SteelWall</a></li>
             </ul>
         </div>
 

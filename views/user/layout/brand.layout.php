@@ -1,2 +1,2 @@
-<a href="<?= url("/") ?>"><img src="<?= assets("themes/user/img/logo.jpg") ?>" alt="SteelWall-logo"/></a>
-<h5>Connectors for sheet pile wall structures</h5>
+<a href="<?= url("/") ?>"><img src="<?= assets("themes/user/img/logo.jpg") ?>" class="img-fluid" alt="SteelWall-logo"/></a>
+<p class="color-blue" style="font-size: 0.85rem;"><?= \helpers\translate\Translate::get("common","logo_text") ?></p>

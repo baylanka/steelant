@@ -21,7 +21,8 @@ class UserDTO
     public string $website;
     public string $phone;
     public string $user_name;
-
+    public bool $newsletter;
+    public string $verification_key;
 
 
     public function __construct(User $user)
@@ -37,8 +38,8 @@ class UserDTO
         $this->email = $user->email;
         $this->website = $user->website;
         $this->phone = $user->phone;
-        $this->user_name = $user->user_name;
         $this->newsletter = $user->newsletter;
+        $this->verification_key = $user->verification_key;
     }
 
 }

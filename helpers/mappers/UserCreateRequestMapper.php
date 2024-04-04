@@ -22,11 +22,12 @@ class UserCreateRequestMapper
         $user->email = $request->get('email');
         $user->website = $request->get('website');
         $user->phone = $request->get('phone');
-        $user->user_name = $request->get('user_name');
-        $user->password = md5($request->get('password'));
+        $user->email_verified = 0;
+        $user->password = password_hash(md5($request->get('password')), PASSWORD_BCRYPT);
+        $user->verification_key =bin2hex(openssl_random_pseudo_bytes(50));
 
         $user->newsletter = 0;
-        if($request->get("newsletter_subscribe") !== null && $request->get("newsletter_subscribe") == "on"){
+        if ($request->get("newsletter_subscribe") !== null && $request->get("newsletter_subscribe") == "on") {
             $user->newsletter = 1;
         }
 

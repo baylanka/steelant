@@ -4,14 +4,14 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-    <div class="p-3">
+    <div class="responsive-wrap">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/gallery-icon.png") ?>" height="100"/>
+                    <img src="<?= assets("themes/user/img/gallery-icon.png") ?>" height="80"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -53,7 +53,7 @@
         <h4 class="connector-heading my-3">Pipe pile steel walls</h4>
 
 
-        <div class="row w-100 mb-5 m-0 p-0" id="gallery-container">
+        <div class="row  mb-5" id="gallery-container">
 
 
             <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
@@ -98,7 +98,7 @@
 
         <div class="col-12 col-md-4 col-xxl-4 row gap-3  align-middle my-4">
             <div class="col-md-3">
-                <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="100"/>
+                <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80"/>
             </div>
             <div class="col-md-2 d-flex flex-column justify-content-evenly">
                 <dl class="color-blue m-0">

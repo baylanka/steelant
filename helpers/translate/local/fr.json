@@ -1,4 +1,39 @@
 {
+	"common": {
+		"logo_text" : "Connecteurs pour palplanches en acier",
+		"login": "Login"
+	},
+	"home_nav": {
+		"connectors": "Connecteurs",
+		"downloads": "Téléchargements",
+		"gallery": "Gelée",
+		"sealant": "mastic",
+		"contact": "Contact"
+	},
+	"home_footer": {
+		"disclaimer": "Disclaimer",
+		"disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. La base de soudage des serrures LPB et FD peut être en version droite ou oblique. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez avant le montage vérifier à l’aide de spécimens la compatibilité des connecteurs et serrures de palplanches."
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	"sideBar":
 	{
 		"dashboard": "Dashboardddddddd",

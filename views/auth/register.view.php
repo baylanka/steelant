@@ -24,7 +24,7 @@
                             <h3 class="mb-4">Register</h3>
                         </div>
 
-                        <ul class="text-center p-0" style=" list-style-type: none;">
+                        <ul class="text-center p-0 " style=" list-style-type: none;">
                             <li>
                                 <u><b> Advantages of a registration:</b></u>
                             </li>
@@ -39,26 +39,28 @@
                             </li>
                         </ul>
 
-                        <form action="/register" class="register-form mt-5">
 
 
-                            <div class="form-group mt-4 d-flex">
-                                <select class="form-select w-25" name="title" aria-label="Default select example">
-                                    <option selected value="Dr">Dr</option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                </select>
-                            </div>
+                        <form action="/register" class="register-form pt-5">
 
 
-                            <div class="form-group mt-5 d-flex">
+
+
+                            <div class="form-group d-flex">
+                                <div class="input-group-prepend w-25">
+                                    <select class="form-select" name="title" aria-label="Default select example">
+                                        <option selected value="Dr.">Dr.</option>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                    </select>                                </div>
                                 <input type="text" class="form-control" name="name" placeholder="YOUR NAME">
-                                <label class="form-control-placeholder w-75" for="name">Your Name</label>
+                                <label class="form-control-placeholder" for="name">Your Name</label>
 
                             </div>
 
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="job_position" placeholder="JOB / POSITION">
+                                <input type="text" class="form-control" name="job_position"
+                                       placeholder="JOB / POSITION">
                                 <label class="form-control-placeholder" for="position">JOB / POSITION</label>
                             </div>
                             <div class="form-group mt-5">
@@ -70,12 +72,9 @@
                                 <label class="form-control-placeholder" for="comp-name">COMPANY NAME</label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="country_or_state" placeholder="COUNTRY / STATE">
+                                <input type="text" class="form-control" name="country_or_state"
+                                       placeholder="COUNTRY / STATE">
                                 <label class="form-control-placeholder" for="country-state">COUNTRY / STATE</label>
-                            </div>
-                            <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="email" placeholder="E-MAIL">
-                                <label class="form-control-placeholder" for="email">E-MAIL</label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="website" placeholder="WEBSITE">
@@ -86,8 +85,8 @@
                                 <label class="form-control-placeholder" for="phone">PHONE</label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="user_name" placeholder="USER NAME/ALIAS">
-                                <label class="form-control-placeholder" for="phone">USER NAME/ALIAS</label>
+                                <input type="text" class="form-control" name="email" placeholder="E-MAIL">
+                                <label class="form-control-placeholder" for="email">E-MAIL</label>
                             </div>
                             <div class="form-group mt-5">
                                 <input id="password-field" type="password" name="password" class="form-control"
@@ -98,20 +97,25 @@
                             </div>
                             <p class="text-danger text-center error-msg"></p>
                             <p class="text-success text-center success-msg"></p>
-                            <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">
-                                    Register
-                                </button>
-                            </div>
-                            <div class="form-group d-flex justify-content-center mb-0 w-100 flex-wrap">
 
-                                <div><input type="checkbox" class="form-check-input" name="newsletter_subscribe"
-                                            checked></div>
-                                <div><span>Subscribe to newsletter </span></div>
+                            <div class="form-group d-flex gap-1 justify-content-center mb-0 w-100 flex-wrap">
+
+                                <div>
+                                    <input type="checkbox" class="form-check-input" name="newsletter_subscribe"
+                                           checked>
+                                </div>
+                                <div>
+                                    <span>Subscribe to newsletter </span>
+                                </div>
                                 <br>
                                 <small class="col-12 text-center">By subscribing, you will automatically receive our
                                     newsletter</small>
 
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">
+                                    Register
+                                </button>
                             </div>
                         </form>
                         <p class="text-center">Already a member? <a data-toggle="tab" href="<?= url("/login") ?>">sign
@@ -140,9 +144,9 @@
             let response = await makeAjaxCall(URL, formData);
             $(".success-msg").text(response.message);
 
-            setTimeout(function (){
-                window.location.href = "<?= url("/") ?>";
-            },1000)
+            setTimeout(function () {
+                window.location.href = "<?= url("/") ?>?alert=We have sent a verification email to your inbox. Please verify it to gain access to your account.";
+            }, 1000)
 
         } catch (err) {
             err = JSON.parse(err);

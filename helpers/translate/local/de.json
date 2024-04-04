@@ -1,28 +1,65 @@
 {
-	"sideBar": 
-	{
-		"dashboard": "Armaturenbrett",
-		"incidents":"Vorfälle",
-		"property":"Immobilien",
-		"properties":"Immobilien",
-		"flats":"Wohnungen",
+	"common": {
+		"logo_text" : "Schlossprofile für Stahlspundwände",
+		"login": "Anmeldung"
+	},
+	"home_nav": {
+		"connectors": "Connectors",
+		"downloads": "Downloads",
+		"gallery": "Galerie",
+		"sealant": "Dichtungsmittel",
+		"contact": "Kontakt"
+	},
+	"home_footer": {
+		"disclaimer": "Beschreibung",
+		"disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind Zirka-Werte und können abweichen. Stabverdrehungen sind bis zu 2 mm pro Meter möglich. Toleranz der Stahldicke ±1 mm. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Anschweißbasis der LPB und FD Schlösser kann gerade oder abgeschrägt ausgeführt sein. Technische Änderungen sind vorbehalten.\n\nWir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit."
+	},
 
-		"maintenance":"Wartung",
-		"maintenanceMans":"hausmeister",
-		"deputies":"Stellvertreterin",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	"sideBar":
+	{
+		"dashboard": "Dashboardddddddd",
+		"incidents":"Incidents",
+		"property":"Property",
+		"properties":"Properties",
+		"flats":"Flats",
+
+		"maintenance":"Maintenance",
+		"maintenanceMans":"Maintenance Mans",
+		"deputies":"Deputies",
 
 		"management":"Management",
 
-		"tenant_and_owner":"Mieter und Eigentümer",
-		"tenants":"Mieter",
-		"owners":"Eigentümer",
+		"tenant_and_owner":"Tenants & Owners",
+		"tenants":"Tenants",
+		"owners":"Owners",
 
 
-		"utility":"Dienstprogramm",
-		"calendar":"Kalender"
+		"utility":"Utility",
+		"calendar":"Calendar"
+
 	},
 	"dashboard":
 	{
-		"heading": "Armaturenbrett"
+		"heading": "Dashboarddddddddd"
 	}
+
 }

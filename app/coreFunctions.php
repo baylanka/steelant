@@ -94,3 +94,23 @@ function isRequestedRoute($route){
     return strtok($_SERVER['REQUEST_URI'],"?") === $route;
 }
 
+
+
+function get_url_by_lang($url)
+{
+    switch (\helpers\translate\Translate::getLang()){
+        case "en-gb":
+        case "en-us":
+            return url($url["en"]);
+        case "de":
+            return url($url["de"]);
+        case "fr":
+            return url($url["fr"]);
+    }
+
+
+
+
+
+
+}
