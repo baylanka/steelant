@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-<?php require_once basePath("views/user/layout/head.layout.php") ?>
+<?php
+require_once basePath("views/user/layout/head.layout.php");
+
+use helpers\translate\Translate;
+
+?>
 <link rel="stylesheet" href="<?= assets("themes/user/style-2.css") ?>"/>
 
 
@@ -21,29 +26,32 @@
                     <div class="login-wrap p-4 p-md-5">
 
                         <div class="w-100 text-center">
-                            <h3 class="mb-4">Register</h3>
+                            <h3 class="mb-4">
+                                <?= Translate::get("common", "register") ?>
+                            </h3>
                         </div>
 
                         <ul class="text-center p-0 " style=" list-style-type: none;">
                             <li>
-                                <u><b> Advantages of a registration:</b></u>
+                                <u>
+                                    <b>
+                                        <?= Translate::get("register_page", "advantages_of_a_registration") ?>
+                                    </b>
+                                </u>
                             </li>
                             <li>
-                                Request products easily!
+                                <?= Translate::get("register_page", "request_products_easily") ?>
                             </li>
                             <li>
-                                Save your requests and products (Favourites)!
+                                <?= Translate::get("register_page", "save_your_requests_and_products") ?>
                             </li>
                             <li>
-                                Receive latest connector information via newsletter!
+                                <?= Translate::get("register_page", "receive_latest_connector_information_via_newsletter") ?>
                             </li>
                         </ul>
 
 
-
                         <form action="/register" class="register-form pt-5">
-
-
 
 
                             <div class="form-group d-flex">
@@ -52,46 +60,70 @@
                                         <option selected value="Dr.">Dr.</option>
                                         <option value="Mr.">Mr.</option>
                                         <option value="Mrs.">Mrs.</option>
-                                    </select>                                </div>
-                                <input type="text" class="form-control" name="name" placeholder="YOUR NAME">
-                                <label class="form-control-placeholder" for="name">Your Name</label>
+                                    </select></div>
+                                <input type="text" class="form-control" name="name"
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "your_name")) ?>">
+                                <label class="form-control-placeholder" for="name">
+                                    <?= Translate::get("register_page", "your_name") ?>
+                                </label>
 
                             </div>
 
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="job_position"
-                                       placeholder="JOB / POSITION">
-                                <label class="form-control-placeholder" for="position">JOB / POSITION</label>
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "job_position")) ?>">
+                                <label class="form-control-placeholder" for="position">
+                                    <?= Translate::get("register_page", "job_position") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="division" placeholder="DIVISION">
-                                <label class="form-control-placeholder" for="division">DIVISION</label>
+                                <input type="text" class="form-control" name="division"
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "division")) ?>">
+                                <label class="form-control-placeholder" for="division">
+                                    <?= Translate::get("register_page", "division") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="company_name" placeholder="COMPANY NAME">
-                                <label class="form-control-placeholder" for="comp-name">COMPANY NAME</label>
+                                <input type="text" class="form-control" name="company_name"
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "company_name")) ?>">
+                                <label class="form-control-placeholder" for="comp-name">
+                                    <?= Translate::get("register_page", "company_name") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="country_or_state"
-                                       placeholder="COUNTRY / STATE">
-                                <label class="form-control-placeholder" for="country-state">COUNTRY / STATE</label>
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "country_state")) ?>">
+                                <label class="form-control-placeholder" for="country-state">
+                                    <?= Translate::get("register_page", "country_state") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="website" placeholder="WEBSITE">
-                                <label class="form-control-placeholder" for="email">WEBSITE</label>
+                                <input type="text" class="form-control" name="website"
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "website")) ?>">
+                                <label class="form-control-placeholder" for="email">
+                                    <?= Translate::get("register_page", "website") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="phone" placeholder="PHONE">
-                                <label class="form-control-placeholder" for="phone">PHONE</label>
+                                <input type="text" class="form-control" name="phone"
+                                       placeholder="<?= strtoupper(Translate::get("register_page", "phone")) ?>">
+                                <label class="form-control-placeholder" for="phone">
+                                    <?= Translate::get("register_page", "phone") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input type="text" class="form-control" name="email" placeholder="E-MAIL">
-                                <label class="form-control-placeholder" for="email">E-MAIL</label>
+                                <input type="text" class="form-control" name="email"
+                                       placeholder="<?= strtoupper(Translate::get("common", "email")) ?>">
+                                <label class="form-control-placeholder" for="email">
+                                    <?= Translate::get("common", "email") ?>
+                                </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input id="password-field" type="password" name="password" class="form-control"
-                                       placeholder="PASSWORD">
-                                <label class="form-control-placeholder" for="password">PASSWORD</label>
+                                       placeholder="<?= strtoupper(Translate::get("common", "password")) ?>">
+                                <label class="form-control-placeholder" for="password">
+                                    <?= Translate::get("common", "password") ?>
+                                </label>
                                 <span toggle="#password-field"
                                       class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
@@ -105,21 +137,27 @@
                                            checked>
                                 </div>
                                 <div>
-                                    <span>Subscribe to newsletter </span>
+                                    <span>
+                                        <?= Translate::get("register_page", "subscribe_to_newsletter") ?>
+                                    </span>
                                 </div>
                                 <br>
-                                <small class="col-12 text-center">By subscribing, you will automatically receive our
-                                    newsletter</small>
+                                <small class="col-12 text-center">
+                                    <?= Translate::get("register_page", "by_subscribing_you_will_automatically_receive_our_newsletter") ?>
+                                </small>
 
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary rounded submit px-3">
-                                    Register
+                                    <?= Translate::get("common", "register") ?>
                                 </button>
                             </div>
                         </form>
-                        <p class="text-center">Already a member? <a data-toggle="tab" href="<?= url("/login") ?>">sign
-                                in</a></p>
+                        <p class="text-center">
+                            <?= Translate::get("register_page", "already_a_member") ?>
+                            <a data-toggle="tab" href="<?= url("/login") ?>">
+                                <?= Translate::get("common", "login") ?>
+                            </a></p>
 
                         <div class="w-100 d-flex justify-content-center mt-1 pt-5 gap-3 align-middle">
                             <a href="?langStrict=de" title="" class="lang">

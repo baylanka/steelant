@@ -28,6 +28,26 @@
 		"disclaimer": "Beschreibung",
 		"disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind Zirka-Werte und können abweichen. Stabverdrehungen sind bis zu 2 mm pro Meter möglich. Toleranz der Stahldicke ±1 mm. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Anschweißbasis der LPB und FD Schlösser kann gerade oder abgeschrägt ausgeführt sein. Technische Änderungen sind vorbehalten.\n\nWir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit."
 	},
+	"login_page": {
+		"forgot_password": "Passwort vergessen",
+		"not_a_member": "Kein Mitglied?"
+	},
+	"register_page": {
+		"advantages_of_a_registration": "Vorteile einer Anmeldung",
+		"request_products_easily": "Produkte ganz einfach anfordern!",
+		"save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte (Favoriten)!",
+		"receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Connector-Informationen per Newsletter!",
+		"your_name": "Ihr Name",
+		"job_position": "Job / Position",
+		"division": "Division",
+		"company_name": "Name der Firma",
+		"country_state": "Land/Staat",
+		"website": "Webseite",
+		"phone": "Telefon",
+		"subscribe_to_newsletter": "Newsletter abonnieren",
+		"by_subscribing_you_will_automatically_receive_our_newsletter": "Mit Ihrer Anmeldung erhalten Sie automatisch unseren Newsletter",
+		"already_a_member": "Schon ein Mitglied?"
+	},
 
 
 

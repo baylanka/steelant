@@ -386,6 +386,20 @@
         return filters;
     }
 
+
+    $(document).on("click", ".connector-view", async function (e) {
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/connectors/view?tableLang=${language}&id=${connectorId}`;
+        try {
+            const modal = await loadModal(modalId, path);
+
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the view connector.. " + err);
+        }
+    });
+
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

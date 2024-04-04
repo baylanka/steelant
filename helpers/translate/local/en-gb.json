@@ -28,6 +28,28 @@
     "disclaimer": "Disclaimer",
     "disclaimer_text": "SteelWall connectors generally comply with the European standards and are manufactured by certified steel processing companies.\n\nAll figures are approximate and may vary. Bar twists are possible up to 0.025\"/ft (2 mm per meter). Tolerance of steel thickness ±0.04\" (±1 mm). Length tolerance up to ±7.9\" (±200 mm). Degree details refer to the connector bar axes. Welding base of LPB and FD clutches can be straight or beveled. We reserve the right to make technical changes. We refer to DIN EN 12063. Please check the sheet pile interlocks with a physical sample section of the desired connector for compatibility."
   },
+  "login_page": {
+    "forgot_password": "Forgot Password",
+    "not_a_member": "Not a member?"
+  },
+  "register_page": {
+    "advantages_of_a_registration": "Advantages of a registration",
+    "request_products_easily": "Request products easily!",
+    "save_your_requests_and_products": " Save your requests and products (Favourites)!",
+    "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter!",
+    "your_name": "Your name",
+    "job_position": "Job / Position",
+    "division": "Division",
+    "company_name": "Company name",
+    "country_state": "Country / State",
+    "website": "Website",
+    "phone": "Phone",
+    "subscribe_to_newsletter": "Subscribe to newsletter",
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "By subscribing, you will automatically receive our newsletter",
+    "already_a_member": "Already a member?"
+  },
+
+
 
 
 

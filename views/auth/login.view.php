@@ -58,10 +58,15 @@ use helpers\translate\Translate;
                             </div>
 
                             <div class="w-100 text-center">
-                                <a href="#">Forgot Password</a>
+                                <a href="#">
+                                    <?= Translate::get("login_page", "forgot_password") ?>
+                                </a>
                             </div>
                         </form>
-                        <p class="text-center">Not a member? <a data-toggle="tab" href="<?= url("/register") ?>">                        <?= Translate::get("common", "register") ?>
+                        <p class="text-center">
+                            <?= Translate::get("login_page", "not_a_member") ?>
+                            <a data-toggle="tab" href="<?= url("/register") ?>">
+                                <?= Translate::get("common", "register") ?>
                             </a>
                         </p>
 
