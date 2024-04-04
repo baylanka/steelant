@@ -36,6 +36,7 @@ class ConnectorDTO
     public string $maxTensile_i;
 
     public array $downloadableFiles;
+    public array $imageFiles;
 
     public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
@@ -55,6 +56,7 @@ class ConnectorDTO
         $this->setCategoryTree($lang, $separator);
         $this->setMaxTensileStrength($lang);
         $this->setDownloadableFiles();
+        $this->setImageFiles();
     }
 
     public function getLengthOfLang()
@@ -102,6 +104,42 @@ class ConnectorDTO
                 }
                 return $arr;
         }
+    }
+
+    public function getImageAttributes($placeholder)
+    {
+        $arr = [
+            'file_src' => null,
+            'src' => null,
+            'image_file_name' => '',
+            'languageName' => "",
+            'placeHolderName' => "",
+            'media_name' => '',
+            'title' => '',
+            'titleFieldName'=>''
+        ];
+
+        foreach ($this->imageFiles as $index => $each){
+            if($each['placeholder'] != $placeholder) continue;
+            foreach ($each['title'] as $lang => $value){
+                if ($lang === $this->language) {
+                    $arr = [
+                        'file_src' =>  "image_paths[{$index}]",
+                        'src' => $each['file_asset_path'],
+                        'image_file_name' => "images[{$index}]",
+                        'languageName' => "images[language][{$index}][]",
+                        'placeHolderName' => "images[placeholder][{$index}][]",
+                        'media_name' => $each['media_name'],
+                        'title' => $value ?? '',
+                        'titleFieldName' => "images[title][{$index}][]",
+                    ];
+
+                    return json_decode(json_encode($arr));
+                }
+            }
+        }
+
+        return json_decode(json_encode($arr));
     }
 
     public function getDownloadableFiles()
@@ -184,6 +222,39 @@ class ConnectorDTO
         $this->downloadableFiles =  array_values($files);
     }
 
+    private function setImageFiles(): void
+    {
+        $this->setConnectorProperties();
+        $properties = $this->connectorProperties;
+
+        if(     !in_array('relations', $properties)
+            ||  !isset($this->connector->relations['meta_collection'])
+        ){
+            $this->imageFiles = [];
+            return;
+        }
+
+        $files = [];
+        foreach ($this->connector->relations['meta_collection'] as $each){
+            if(!isset($each->media_id) || $each->media_type === Media::TYPE_FILE) continue;
+
+            $files[$each->media_id]['title'][$each->language] =  $each->media_title ?? null;
+
+            if(!isset($files[$each->media_id]['file_asset_path'])){
+                $files[$each->media_id]['file_asset_path'] = assets('storage/'. $each->media_path);
+
+                $pathArray = explode('/', $each->media_path);
+                $storedFileName = $pathArray[sizeof($pathArray)-1];
+                $arr = explode('.',$storedFileName);
+                $extension = $arr[sizeof($arr)-1];
+                $files[$each->media_id]['media_name'] =  $each->media_name . ".{$extension}";
+                $files[$each->media_id]['placeholder'] =  $each->placeholder_id;
+            }
+        }
+
+        $this->imageFiles =  array_values($files);
+    }
+
     private function setConnectorProperties(): void
     {
         if(     isset($this->connectorProperties)
@@ -199,10 +270,13 @@ class ConnectorDTO
     {
         $this->setConnectorProperties();
 
-        if (in_array('relations', $this->connectorProperties)
-            && isset($this->connector->relations['meta_collection'])
-            && !empty(sizeof($this->connector->relations['meta_collection']))) {
-            $this->categoryId = $this->connector->relations['meta_collection'][0]->leaf_category_id;
+        if (in_array('relations', $this->connectorProperties)){
+             if( isset($this->connector->relations['meta_collection'])
+                && !empty(sizeof($this->connector->relations['meta_collection']))) {
+                 $this->categoryId = $this->connector->relations['meta_collection'][0]->leaf_category_id;
+             }else if($this->connector->relations['leaf_category_id']){
+                 $this->categoryId = $this->connector->relations['leaf_category_id'];
+             }
         } else if (isset($this->connector->leaf_category_id)) {
             $this->categoryId = $this->connector->leaf_category_id;
         } else if (isset($this->connector->temp_content->leaf_category_id)) {

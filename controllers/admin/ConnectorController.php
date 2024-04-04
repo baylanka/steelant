@@ -84,11 +84,13 @@ class ConnectorController extends BaseController
         $connector = ConnectorService::getConnectorAssociatedData($connectorId);
         $connectorDTO = new ConnectorDTO($connector, $lang, '<');
         $templates = TemplateRepository::getAllConnectors();
+        $templatePreviews = TemplateService::getAllLangTemplates($connector);
         $data = [
             'leafCategories' => $leafCategoryDTO->getCollection(),
             'tableLang' => $lang,
             'connector' => $connectorDTO,
             'templates' => $templates,
+            'templatePreviews' => $templatePreviews
         ];
 
         return view("admin/connectors/edit.view.php", $data);
@@ -101,13 +103,15 @@ class ConnectorController extends BaseController
             $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
             $connector = UpdateConnectorRequestMapper::getModel($request);
             $connector->update();
-            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
             $connector = ConnectorService::getConnectorAssociatedData($connector->id);
+            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
             $templatePreviews = TemplateService::getAllLangTemplates($connector);
+            $downloadableContents = TemplateService::getDonwloadableFileTabTemplate($connectorDTO);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
                 "data" => $connectorDTO,
-                'templatePreviews' => $templatePreviews
+                'templatePreviews' => $templatePreviews,
+                'downloadableContents' => $downloadableContents
             ]);
         }catch(\Exception $ex){
             parent::response($ex->getMessage(),[],422);

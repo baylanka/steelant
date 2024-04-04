@@ -56,7 +56,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="update-btn" disabled>Update</button>
+            <button type="button" class="btn btn-primary" id="update-btn">Update</button>
         </div>
 
     </div>
@@ -64,29 +64,41 @@
 
 
 <script>
-
+    $(document).off('click', '.nav-item');
     $(document).on('click', '.nav-item', function(){
         const tabPosition = Number($(this).attr('data-position'));
         tabActiveEventHandler(tabPosition);
     });
 
 
-    function tabActiveEventHandler(tabPosition)
+    async function tabActiveEventHandler(tabPosition)
     {
         const templateSettingArea = $('div.template-setting-container');
-        const updateBtn = $('button#update-btn');
+        const spinnerContainer = $('.spinner-container');
         if(tabPosition <= 3){
-            updateBtn.prop("disabled", true);
             templateSettingArea.addClass('d-none');
-            $('.generate-btn').closest('div').removeClass('d-none');
+            spinnerContainer.removeClass('d-none');
+        }else{
+            const response = await update(spinnerContainer);
+            const templates = response.templatePreviews;
+            $('#nav-de').html(templates['de']);
+            $('#nav-uk').html(templates['en-gd']);
+            $('#nav-fr').html(templates['fr']);
+            $('#nav-us').html(templates['en-us']);
+
+            const downlodableContents = response.downloadableContents;
+            $('#profile').replaceWith(downlodableContents);
+            templateSettingArea.removeClass('d-none');
+            spinnerContainer.addClass('d-none');
+            populateTitleFields();
         }
     }
 
-    async function update(btn)
+    async function update(thisElement)
     {
         return new Promise(async (resolve, reject)=>{
 
-            const form = btn.closest('div.modal-dialog').find('form');
+            const form = thisElement.closest('div.modal-dialog').find('form');
             try{
                 let response = await makePostFileRequest(form);
                 resolve(response);
@@ -97,31 +109,6 @@
 
     }
 
-
-    $(document).off('click', '.generate-btn');
-    $(document).on('click', '.generate-btn', async function(e){
-        e.preventDefault();
-        const btn = $(this);
-        const btnLabel = btn.text();
-        loadButton(btn, "loading ...");
-        try{
-            const templateSettingArea = $('div.template-setting-container');
-            const response = await update(btn);
-            const templates = response.templatePreviews;
-            $('#nav-de').html(templates['de']);
-            $('#nav-uk').html(templates['en-gd']);
-            $('#nav-fr').html(templates['fr']);
-            $('#nav-us').html(templates['en-us']);
-            templateSettingArea.removeClass('d-none');
-            $('button#update-btn').prop("disabled", false);
-            btn.closest('div').addClass('d-none');
-        }catch (err){
-            toast.error(err);
-        }finally {
-            resetButton(btn, btnLabel);
-
-        }
-    });
 
     $('button#update-btn').off('click');
     $('button#update-btn').on('click', async function updateConnector(e){
@@ -179,8 +166,6 @@
 
 
     $(document).ready(function () {
-        loadPreviouslySelectedFiles();
-
         $("input.label").hide();
 
         $(".select2").select2({

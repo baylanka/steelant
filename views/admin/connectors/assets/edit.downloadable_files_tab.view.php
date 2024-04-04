@@ -2,6 +2,7 @@
     use helpers\pools\LanguagePool;
 ?>
 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="w-100 d-flex justify-content-end my-5 add-file-container d-none"><button class="btn btn-sm btn-primary add-new-download-container">Add File Selector</button></div>
 
     <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
         <?php if (sizeof($connector->downloadableFiles) === 0): ?>
@@ -15,6 +16,9 @@
                     <input type="file" class="form-control w-50 bg-light download-file" name="downloadable[0]">
 
 
+                    <button type="button" class="btn btn-danger remove-download-container">
+                        <i class="bi bi-dash"></i>
+                    </button>
                     <button type="button" class="btn btn-primary add-new-download-container">
                         <i class="bi bi-plus-lg"></i>
                     </button>
@@ -118,9 +122,10 @@
                         <i class="bi bi-folder2-open"></i>
                     </label>
 
-                    <input type="file" class="form-control w-50 bg-light download-file"
-                           value=""
-                           name="downloadable[<?=$index?>]">
+                    <input type="file" class="form-control w-50 bg-light download-file">
+                    <input type="hidden"
+                           value="<?= $content['file_asset_path'] ?>"
+                           name="downloadable_src[<?=$index?>]">
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
@@ -281,11 +286,12 @@
     });
 
     $(document).off("click", ".add-new-download-container");
-    $(document).on("click", ".add-new-download-container", function () {
+    $(document).on("click", ".add-new-download-container", function (e) {
+        e.preventDefault();
         const downloadableContent = getDownloadableFileContent();
-        $(this).closest("div.download-jumbotron").append(downloadableContent);
+        $("div.download-jumbotron").append(downloadableContent);
         setDownloadName();
-
+        $('.add-file-container').addClass('d-none');
     });
 
 
@@ -294,11 +300,10 @@
         $(this).closest("div.download-container").remove();
 
         const remainingContainers =  $('div.download-container').length;
-        if(remainingContainers > 1){
+        if(remainingContainers >= 1){
             setDownloadName();
-        }else){
-            const downloadableContent = getDownloadableFileContent();
-            $("div.download-jumbotron").append(downloadableContent);
+        }else{
+            $('.add-file-container').removeClass('d-none');
         }
 
     });
@@ -319,24 +324,6 @@
 
         previousFileContainer.remove();
     });
-
-    function loadPreviouslySelectedFiles()
-    {
-        $('a.previous-file-download').each(function(){
-            const inputField = $(this).closest('.download-container').find('input[type="file"]');
-            const fileSrc = $(this).attr('src');
-            const fileName = $(this).find('span.file-name').text();
-            const blob = new Blob([fileSrc]);
-            const file = new File([blob], fileName);
-
-            // Create a DataTransfer object
-            const dataTransfer = new DataTransfer();
-            // Add the file to the DataTransfer object
-            dataTransfer.items.add(file);
-            // Set the files property of the input element to the FileList retrieved from the DataTransfer object
-            inputField[0].files = dataTransfer.files;
-        });
-    }
 
     function getDownloadableFileContent()
     {

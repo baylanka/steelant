@@ -2,10 +2,32 @@
     use helpers\pools\LanguagePool;
 ?>
 <div class="tab-pane fade p-2" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
-
-
-    <div class="w-100 d-flex justify-content-center my-5"><button class="btn btn-sm btn-primary generate-btn">Update & Generate</button></div>
-
+    <div class="justify-content-center d-flex spinner-container">
+        <div class="spinner-grow text-primary ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark  ms-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <div class="template-setting-container d-none" >
         <nav>
             <div class="nav nav-tabs justify-content-center mt-5" id="nav-tab" role="tablist">
@@ -26,21 +48,23 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
+            <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
+                    <?=$templatePreviews[LanguagePool::GERMANY()->getLabel()]?>
+            </div>
+
+            <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
+                <?=$templatePreviews[LanguagePool::UK_ENGLISH()->getLabel()]?>
+            </div>
+
+            <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+                <?=$templatePreviews[LanguagePool::FRENCH()->getLabel()]?>
+            </div>
+
+            <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
+                <?=$templatePreviews[LanguagePool::US_ENGLISH()->getLabel()]?>
+            </div>
 
         </div>
-        <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
-
-        </div>
-        <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
-
-        </div>
-
-        <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
-
-        </div>
-
-    </div>
     </div>
 
 
