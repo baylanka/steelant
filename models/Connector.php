@@ -14,23 +14,23 @@ class Connector extends BaseModel
 
     public int $id;
     public string $name;
-    public string $grade;
-    public string $description;
+    public ?string $grade;
+    public ?string $description;
 
-    public array|string $weight_m;
-    public array|string $weight_i;
+    public null|array|string $weight_m;
+    public null|array|string $weight_i;
 
-    public string $thickness_m;
-    public string $thickness_i;
+    public ?string $thickness_m;
+    public ?string $thickness_i;
 
-    public string $standard_lengths_m;
-    public string $standard_lengths_i;
-    public int $visibility;
+    public ?string $standard_lengths_m;
+    public ?string $standard_lengths_i;
+    public ?int $visibility;
 
     public ?string $max_tensile_strength_m;
     public ?string $max_tensile_strength_i;
 
-    public CategoryContent $temp_content;
+    public ?CategoryContent $temp_content;
     public ?array $temp_content_templates;
 
     CONST UNPUBLISHED = 0;
@@ -58,6 +58,7 @@ class Connector extends BaseModel
             return;
         }
 
+        $this->relations['leaf_category_id'] = $content->leaf_category_id;
         $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->leaf_category_id);
     }
 
@@ -131,7 +132,7 @@ class Connector extends BaseModel
 
     private function updateContentTemplates()
     {
-        foreach ($this->temp_content_templates as $content_template)
+        foreach ($this->temp_content_templates ?? [] as $content_template)
         {
             $content_template->save();
             $this->updateContentTemplateMedia($content_template);

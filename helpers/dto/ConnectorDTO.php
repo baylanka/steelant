@@ -270,10 +270,13 @@ class ConnectorDTO
     {
         $this->setConnectorProperties();
 
-        if (in_array('relations', $this->connectorProperties)
-            && isset($this->connector->relations['meta_collection'])
-            && !empty(sizeof($this->connector->relations['meta_collection']))) {
-            $this->categoryId = $this->connector->relations['meta_collection'][0]->leaf_category_id;
+        if (in_array('relations', $this->connectorProperties)){
+             if( isset($this->connector->relations['meta_collection'])
+                && !empty(sizeof($this->connector->relations['meta_collection']))) {
+                 $this->categoryId = $this->connector->relations['meta_collection'][0]->leaf_category_id;
+             }else if($this->connector->relations['leaf_category_id']){
+                 $this->categoryId = $this->connector->relations['leaf_category_id'];
+             }
         } else if (isset($this->connector->leaf_category_id)) {
             $this->categoryId = $this->connector->leaf_category_id;
         } else if (isset($this->connector->temp_content->leaf_category_id)) {

@@ -282,9 +282,9 @@ class UpdateConnectorRequestMapper
     {
         $array = [];
         $weightLabelArray = $request->get('weight_label', []);
-        $weightMetricsArray = $request->get('weight_metrics');
+        $weightMetricsArray = $request->get('weight_metrics', []);
         foreach ($weightMetricsArray as $index => $weight){
-            $label = $weightLabelArray[$index];
+            $label = $weightLabelArray[$index] ?? "";
             if($index === 0 && empty(trim($label))){
                 $label = 'general';
             }
@@ -299,9 +299,9 @@ class UpdateConnectorRequestMapper
     {
         $array = [];
         $weightLabelArray = $request->get('weight_label', []);
-        $weightMetricsArray = $request->get('weight_imperial');
+        $weightMetricsArray = $request->get('weight_imperial', []);
         foreach ($weightMetricsArray as $index => $weight){
-            $label = $weightLabelArray[$index];
+            $label = $weightLabelArray[$index] ?? '';
             if($index === 0 && empty(trim($label))){
                 $label = 'general';
             }

@@ -82,15 +82,17 @@
                 $weightIArray = $connector->weights_i;
                 $weightMArray = $connector->weights_m;
                 ?>
-                <?php if(empty(sizeof($weightIArray))): ?>
+                <?php if(sizeof($weightIArray) <= 1): ?>
                     <div class="p-3 mt-3 weight-container">
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="49 kg/m"
+                                   name="weight_metrics[]" value="<?=array_values($weightMArray)[0] ?? ''?>">
                             <span class="input-group-text">metrics</span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="15 lbs/ft"
+                                   name="weight_imperial[]" value="<?=array_values($weightIArray)[0]?? ''?>">
                             <span class="input-group-text">imperial</span>
                         </div>
 
@@ -161,13 +163,13 @@
             <label class="align-items-center">Standard length</label>
             <div class="w-50 gap-1">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_metrics"
+                    <input type="text" class="form-control" name="standard_length_metrics" placeholder="12 m"
                            value="<?=$connector->standardLength_m ?>"
                     >
                     <span class="input-group-text">metrics</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_imperial"
+                    <input type="text" class="form-control" name="standard_length_imperial" placeholder="1.2 ft"
                            value="<?=$connector->standardLength_i?>"
                     >
                     <span class="input-group-text">imperial</span>
