@@ -12,6 +12,9 @@ class ContentController extends BaseController
 {
     public function getContentsByCategoryId(Request $request)
     {
+        if (!isset($_GET["id"])) {
+            header('Location: ' . url("/"));
+        }
         $categoryId = $request->get('id');
         $activatedLanguage = Translate::getLang();
         $templates = ContentService::getTemplatesByCategoryId($categoryId, $activatedLanguage);
