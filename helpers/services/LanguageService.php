@@ -15,6 +15,9 @@ class LanguageService
             if (isset($_GET['langStrict'])) {
                 Translate::setLang($_GET['langStrict']);
                 return;
+            }else{
+                Translate::setLang("de");
+                return;
             }
 
             if(isset($_SERVER['HTTP_HOST']) && isset($env["HOST_US"]) && $_SERVER['HTTP_HOST'] === $env["HOST_US"]){

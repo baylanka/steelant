@@ -6,7 +6,7 @@
 <?php require_once "nav.layout.php" ?>
 
 <?php if (isset($_GET["alert"])) { ?>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-<?= isset($_GET["alert_type"]) ? $_GET["alert_type"] : "info"  ?> alert-dismissible fade show" role="alert">
      <?= $_GET["alert"] ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

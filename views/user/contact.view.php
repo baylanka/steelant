@@ -85,54 +85,64 @@
 
         <p class="mt-5"> Please leave a message here: </p>
 
-        <form action="<?= url("/contact/sendMessage") ?>" method="POST"  class="send-mail mt-5 mb-5 responsive-width">
-            <input type="hidden" name="location" value="eu">
-            <div class="form-group mt-3">
-                <label for="inputName">Your Name</label>
-                <input type="text" class="form-control bg-light" id="inputName" name="name" aria-describedby="Name">
+        <div class="row justify-content-start mb-5">
+            <div class="col-12 col-md-6">
+                <form action="<?= url("/contact/sendMessage") ?>" method="POST" class="send-mail">
+                    <input type="hidden" name="location" value="eu">
+                    <div class="form-group">
+                        <label for="inputName required-field">Your Name</label>
+                        <input type="text" class="form-control bg-light" id="inputName" name="name"
+                               aria-describedby="Name" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputJob">JOB / POSITION</label>
+                        <input type="text" class="form-control bg-light" id="inputJob" name="job"
+                               aria-describedby="job">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputDivision">DIVISION</label>
+                        <input type="text" class="form-control bg-light" id="inputDivision" name="division"
+                               aria-describedby="division">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputCompany">COMPANY NAME</label>
+                        <input type="text" class="form-control bg-light" id="inputCompany" name="company"
+                               aria-describedby="company name">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputCountry required-field">COUNTRY / STATE</label>
+                        <input type="text" class="form-control bg-light" id="inputCountry" name="country"
+                               aria-describedby="country" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail required-field">E-MAIL</label>
+                        <input type="email" class="form-control bg-light" id="inputEmail" name="email"
+                               aria-describedby="email" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail">PHONE</label>
+                        <input type="text" class="form-control bg-light" id="inputEmail" name="phone"
+                               aria-describedby="email">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail">YOUR MESSAGE</label>
+                        <textarea type="text" class="form-control bg-light" id="inputEmail" name="message"
+                                  aria-describedby="email"></textarea>
+                    </div>
+                    <div id="recaptcha1"></div>
+                    <div class="form-group mt-4">
+                        <button type="submit"
+                                class="form-control btn btn-primary rounded submit px-3 w-25 background-blue"
+                                data-sitekey="6LfXA7ApAAAAAI23Z9Z_VL53akwmCJ3Ii1X3nhr8"
+                                data-callback='onSubmit'
+                                data-action='submit'>
+                            Send
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group mt-3">
-                <label for="inputJob">JOB / POSITION</label>
-                <input type="text" class="form-control bg-light" id="inputJob" name="job" aria-describedby="job">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputDivision">DIVISION</label>
-                <input type="text" class="form-control bg-light" id="inputDivision" name="division" aria-describedby="division">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputCompany">COMPANY NAME</label>
-                <input type="text" class="form-control bg-light" id="inputCompany" name="company" aria-describedby="company name">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputCountry">COUNTRY / STATE</label>
-                <input type="text" class="form-control bg-light" id="inputCountry" name="country" aria-describedby="country">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputEmail">E-MAIL</label>
-                <input type="email" class="form-control bg-light" id="inputEmail" name="email" aria-describedby="email">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputEmail">PHONE</label>
-                <input type="text" class="form-control bg-light" id="inputEmail" name="phone" aria-describedby="email">
-            </div>
+        </div>
 
-            <div class="form-group mt-3">
-                <label for="inputEmail">YOUR MESSAGE</label>
-                <textarea type="text" class="form-control bg-light" id="inputEmail" name="message" aria-describedby="email"></textarea>
-            </div>
-
-            <div class="form-group mt-3">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
-                    Send
-                </button>
-            </div>
-
-
-
-
-
-
-        </form>
 
         <div class="divider"></div>
 
@@ -157,48 +167,65 @@
 
         <p class="mt-5"> Please leave a message here: </p>
 
-        <form action="<?= url("/contact/sendMessage") ?>" method="POST"  class="send-mail mt-5 mb-5 responsive-width">
-            <input type="hidden" name="location" value="north-america">
-            <div class="form-group mt-3">
-                <label for="inputName">Your Name</label>
-                <input type="text" class="form-control bg-light" id="inputName" name="name" aria-describedby="Name">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputJob">JOB / POSITION</label>
-                <input type="text" class="form-control bg-light" id="inputJob" name="job" aria-describedby="job">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputDivision">DIVISION</label>
-                <input type="text" class="form-control bg-light" id="inputDivision" name="division" aria-describedby="division">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputCompany">COMPANY NAME</label>
-                <input type="text" class="form-control bg-light" id="inputCompany" name="company" aria-describedby="company name">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputCountry">COUNTRY / STATE</label>
-                <input type="text" class="form-control bg-light" id="inputCountry" name="country" aria-describedby="country">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputEmail">E-MAIL</label>
-                <input type="email" class="form-control bg-light" id="inputEmail" name="email" aria-describedby="email">
-            </div>
-            <div class="form-group mt-3">
-                <label for="inputEmail">PHONE</label>
-                <input type="text" class="form-control bg-light" id="inputEmail" name="phone" aria-describedby="email">
-            </div>
+        <div class="row justify-content-start mb-5">
+            <div class="col-12 col-md-6">
+                <form action="<?= url("/contact/sendMessage") ?>" method="POST"
+                      class="send-mail">
+                    <input type="hidden" name="location" value="north-america">
+                    <div class="form-group">
+                        <label for="inputName">Your Name</label>
+                        <input type="text" class="form-control bg-light" id="inputName" name="name"
+                               aria-describedby="Name" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputJob">JOB / POSITION</label>
+                        <input type="text" class="form-control bg-light" id="inputJob" name="job"
+                               aria-describedby="job">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputDivision">DIVISION</label>
+                        <input type="text" class="form-control bg-light" id="inputDivision" name="division"
+                               aria-describedby="division">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputCompany">COMPANY NAME</label>
+                        <input type="text" class="form-control bg-light" id="inputCompany" name="company"
+                               aria-describedby="company name">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputCountry">COUNTRY / STATE</label>
+                        <input type="text" class="form-control bg-light" id="inputCountry" name="country"
+                               aria-describedby="country" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail">E-MAIL</label>
+                        <input type="email" class="form-control bg-light" id="inputEmail" name="email"
+                               aria-describedby="email" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail">PHONE</label>
+                        <input type="text" class="form-control bg-light" id="inputEmail" name="phone"
+                               aria-describedby="email">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputEmail">YOUR MESSAGE</label>
+                        <textarea type="text" class="form-control bg-light" id="inputEmail" name="message"
+                                  aria-describedby="email"></textarea>
+                    </div>
+                    <div id="recaptcha2"></div>
+                    <div class="form-group mt-4">
+                        <button type="submit"
+                                class="form-control btn btn-primary rounded submit px-3 w-25 background-blue"
+                                data-sitekey="6LfXA7ApAAAAAI23Z9Z_VL53akwmCJ3Ii1X3nhr8"
+                                data-callback='onSubmit'
+                                data-action='submit'>
+                            Send
+                        </button>
 
-            <div class="form-group mt-3">
-                <label for="inputEmail">YOUR MESSAGE</label>
-                <textarea type="text" class="form-control bg-light" id="inputEmail" name="message" aria-describedby="email"></textarea>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group mt-3">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3 w-25">
-                    Send
-                </button>
-            </div>
-        </form>
+        </div>
 
 
         <div class="divider mb-5"></div>
@@ -209,3 +236,10 @@
 <!--body section-->
 
 <?php require_once "layout/end.layout.php" ?>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>

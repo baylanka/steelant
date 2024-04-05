@@ -6,7 +6,8 @@
     "menu": "Menu",
     "email": "Email",
     "password": "Password",
-    "register": "Register"
+    "register": "Register",
+    "related_section": "Related section"
   },
   "home_nav": {
     "connectors": "Connectors",
@@ -22,7 +23,8 @@
     "imprint": "Imprint",
     "privacy_policy": "Privacy policy",
     "general_terms_and_conditions": "General terms and conditions",
-    "favourites": "Favorites"
+    "favourites": "Favorites",
+    "profile": "Profile"
   },
   "home_footer": {
     "disclaimer": "Disclaimer",
@@ -47,6 +49,17 @@
     "subscribe_to_newsletter": "Subscribe to newsletter",
     "by_subscribing_you_will_automatically_receive_our_newsletter": "By subscribing, you will automatically receive our newsletter",
     "already_a_member": "Already a member?"
+  },
+  "download_page": {
+    "downloads": "Downloads",
+    "please_register_before_download": "Please register before download!",
+    "test_reports": "Test Reports",
+    "test_report": "Test Report",
+    "brochures": "Brochures",
+    "data_sheets": "Data Sheet",
+    "brochures_and_data_sheets": "Brochures and Data Sheets",
+    "steelwall_connectors_overview": "Steelwall connectors overview"
+
   },
 
 

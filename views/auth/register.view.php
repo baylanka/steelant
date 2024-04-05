@@ -63,7 +63,7 @@ use helpers\translate\Translate;
                                     </select></div>
                                 <input type="text" class="form-control" name="name"
                                        placeholder="<?= strtoupper(Translate::get("register_page", "your_name")) ?>">
-                                <label class="form-control-placeholder" for="name">
+                                <label class="form-control-placeholder required-field" for="name">
                                     <?= Translate::get("register_page", "your_name") ?>
                                 </label>
 
@@ -72,7 +72,7 @@ use helpers\translate\Translate;
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="job_position"
                                        placeholder="<?= strtoupper(Translate::get("register_page", "job_position")) ?>">
-                                <label class="form-control-placeholder" for="position">
+                                <label class="form-control-placeholder required-field" for="position">
                                     <?= Translate::get("register_page", "job_position") ?>
                                 </label>
                             </div>
@@ -93,7 +93,7 @@ use helpers\translate\Translate;
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="country_or_state"
                                        placeholder="<?= strtoupper(Translate::get("register_page", "country_state")) ?>">
-                                <label class="form-control-placeholder" for="country-state">
+                                <label class="form-control-placeholder required-field" for="country-state">
                                     <?= Translate::get("register_page", "country_state") ?>
                                 </label>
                             </div>
@@ -114,14 +114,14 @@ use helpers\translate\Translate;
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="email"
                                        placeholder="<?= strtoupper(Translate::get("common", "email")) ?>">
-                                <label class="form-control-placeholder" for="email">
+                                <label class="form-control-placeholder required-field" for="email">
                                     <?= Translate::get("common", "email") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input id="password-field" type="password" name="password" class="form-control"
                                        placeholder="<?= strtoupper(Translate::get("common", "password")) ?>">
-                                <label class="form-control-placeholder" for="password">
+                                <label class="form-control-placeholder required-field" for="password">
                                     <?= Translate::get("common", "password") ?>
                                 </label>
                                 <span toggle="#password-field"
@@ -212,9 +212,7 @@ use helpers\translate\Translate;
             $("input[type=password]").val("");
             $("input").removeClass("is-invalid");
             $("input[name=" + err.errors.key + "]").addClass("is-invalid");
-
             resetButton(btn, btnLabel);
-
         }
     });
 </script>

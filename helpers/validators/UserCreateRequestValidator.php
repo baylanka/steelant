@@ -47,20 +47,11 @@ class UserCreateRequestValidator
         if (!ValidatorUtility::required($request->all(),"job_position")) {
             ResponseUtility::response("Please provide your job / position.",423,["key"=>"job_position"]);
         }
-        if (!ValidatorUtility::required($request->all(),"division")) {
-            ResponseUtility::response("Please provide your division.",423,["key"=>"division"]);
-        }
-        if (!ValidatorUtility::required($request->all(),"company_name")) {
-            ResponseUtility::response("Please provide your company name.",423,["key"=>"company_name"]);
-        }
         if (!ValidatorUtility::required($request->all(),"country_or_state")) {
             ResponseUtility::response("Please provide your country / state.",423,["key"=>"country_or_state"]);
         }
         if (!ValidatorUtility::required($request->all(),"email")) {
             ResponseUtility::response("Please provide your email.",423,["key"=>"email"]);
-        }
-        if (!ValidatorUtility::required($request->all(),"phone")) {
-            ResponseUtility::response("Please provide your phone.",423,["key"=>"phone"]);
         }
         if (!ValidatorUtility::required($request->all(),"password")) {
             ResponseUtility::response("Please provide your password.",423,["key"=>"password"]);

@@ -277,6 +277,11 @@ body {
     width:50%;
 }
 
+.required-field::after {
+    content: "*";
+    color: red;
+}
+
 @media (max-width: 575.98px) {
 
 

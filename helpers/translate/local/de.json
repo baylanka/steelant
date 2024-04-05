@@ -6,7 +6,8 @@
 		"menu": "Speisekarte",
 		"email": "Email",
 		"password": "Passwort",
-		"register": "Neu registrieren"
+		"register": "Neu registrieren",
+		"related_section": "Verwandter Abschnitt"
 	},
 	"home_nav": {
 		"connectors": "Connectors",
@@ -22,7 +23,8 @@
 		"imprint": "Impressum",
 		"privacy_policy": "Datenschutzrichtlinie",
 		"general_terms_and_conditions": "Allgemeine Bedingungen",
-		"favourites": "Lieblings"
+		"favourites": "Lieblings",
+		"profile": "Profil"
 	},
 	"home_footer": {
 		"disclaimer": "Beschreibung",
@@ -47,6 +49,17 @@
 		"subscribe_to_newsletter": "Newsletter abonnieren",
 		"by_subscribing_you_will_automatically_receive_our_newsletter": "Mit Ihrer Anmeldung erhalten Sie automatisch unseren Newsletter",
 		"already_a_member": "Schon ein Mitglied?"
+	},
+	"download_page": {
+		"downloads": "Downloads",
+		"please_register_before_download": "Bitte registrieren Sie sich vor dem Download!",
+		"test_reports": "Testberichte",
+		"test_report": "Testberichte",
+		"brochures": "Broschüren",
+		"data_sheets": "Datenblatt",
+		"brochures_and_data_sheets": "Broschüren und Datenblätter",
+		"steelwall_connectors_overview": "Steelwall Übersicht über die Steckverbinder"
+
 	},
 
 
