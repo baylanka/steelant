@@ -1,13 +1,17 @@
 {
   "common": {
-    "logo_text" : "Connectors for sheet pile wall structures",
+    "logo_text": "Connectors for sheet pile wall structures",
     "login": "Login",
     "logout": "Logout",
     "menu": "Menu",
     "email": "Email",
     "password": "Password",
     "register": "Register",
-    "related_section": "Related section"
+    "related_section": "Related section",
+    "copyright": "Copyright",
+    "home": "Home",
+    "fax": "Fax",
+    "phone": "Phone"
   },
   "home_nav": {
     "connectors": "Connectors",
@@ -34,11 +38,7 @@
     "forgot_password": "Forgot Password",
     "not_a_member": "Not a member?"
   },
-  "register_page": {
-    "advantages_of_a_registration": "Advantages of a registration",
-    "request_products_easily": "Request products easily!",
-    "save_your_requests_and_products": " Save your requests and products (Favourites)!",
-    "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter!",
+  "user_info": {
     "your_name": "Your name",
     "job_position": "Job / Position",
     "division": "Division",
@@ -46,6 +46,13 @@
     "country_state": "Country / State",
     "website": "Website",
     "phone": "Phone",
+    "email": "Email"
+  },
+  "register_page": {
+    "advantages_of_a_registration": "Advantages of a registration",
+    "request_products_easily": "Request products easily!",
+    "save_your_requests_and_products": " Save your requests and products (Favourites)!",
+    "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter!",
     "subscribe_to_newsletter": "Subscribe to newsletter",
     "by_subscribing_you_will_automatically_receive_our_newsletter": "By subscribing, you will automatically receive our newsletter",
     "already_a_member": "Already a member?"
@@ -53,13 +60,36 @@
   "download_page": {
     "downloads": "Downloads",
     "please_register_before_download": "Please register before download!",
-    "test_reports": "Test Reports",
+    "test_reports": "TEST REPORTS",
     "test_report": "Test Report",
     "brochures": "Brochures",
     "data_sheets": "Data Sheet",
     "brochures_and_data_sheets": "Brochures and Data Sheets",
     "steelwall_connectors_overview": "Steelwall connectors overview"
+  },
+  "gallery_page": {
+    "gallery": "Gallery"
+  },
+  "contact_page": {
+    "contact": "Contact",
+    "headquarters_germany": "HEADQUARTERS GERMANY",
+    "sales_line_north_america": "SALES LINE NORTH AMERICA",
+    "headquarters": "Headquarters",
+    "please_leave_a_message_here": "Please leave a message here",
+    "send": "Send",
+    "your_message": "YOUR MESSAGE"
+  },
 
+
+  "profile_page": {
+    "update": "Update",
+    "profile": "Profile"
+  },
+
+
+
+  "favourites_page": {
+    "favourites": "Favorites"
   },
 
 
@@ -80,32 +110,30 @@
 
 
 
-  "sideBar":
-  {
+
+
+
+
+
+
+
+  "sideBar": {
     "dashboard": "Dashboardddddddd",
-    "incidents":"Incidents",
-    "property":"Property",
-    "properties":"Properties",
-    "flats":"Flats",
-
-    "maintenance":"Maintenance",
-    "maintenanceMans":"Maintenance Mans",
-    "deputies":"Deputies",
-
-    "management":"Management",
-
-    "tenant_and_owner":"Tenants & Owners",
-    "tenants":"Tenants",
-    "owners":"Owners",
-
-
-    "utility":"Utility",
-    "calendar":"Calendar"
-
+    "incidents": "Incidents",
+    "property": "Property",
+    "properties": "Properties",
+    "flats": "Flats",
+    "maintenance": "Maintenance",
+    "maintenanceMans": "Maintenance Mans",
+    "deputies": "Deputies",
+    "management": "Management",
+    "tenant_and_owner": "Tenants & Owners",
+    "tenants": "Tenants",
+    "owners": "Owners",
+    "utility": "Utility",
+    "calendar": "Calendar"
   },
-  "dashboard":
-  {
+  "dashboard": {
     "heading": "Dashboarddddddddd"
   }
-
 }

@@ -18,7 +18,8 @@ class UserUpdateRequestValidator
         }
 
         $user =  User::query("SELECT COUNT(*) AS mail FROM users WHERE email=:email",["email"=>$request->get("email")])->first();
-        if($user->mail != 0){
+        $currentUser =  User::query("SELECT email FROM users WHERE id=:id",["id"=>$_SESSION["user"]->id])->first();
+        if($request->get("email") !== $currentUser->email && $user->mail != 0){
             ResponseUtility::response("Mail already in use.",423,["key"=>"email"]);
         }
 

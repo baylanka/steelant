@@ -20,7 +20,9 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected">Profile</h4>
+                        <h4 class="color-blue selected">
+                            <?= Translate::get("profile_page", "profile") ?>
+                        </h4>
                     </dl>
 
                 </div>
@@ -49,7 +51,7 @@ use helpers\translate\Translate;
 
                     <div class="form-group">
                         <label class="form-control-placeholder required-field" for="name">
-                            <?= Translate::get("register_page", "your_name") ?>
+                            <?= Translate::get("user_info", "your_name") ?>
                         </label>
                         <div class="d-flex">
                             <div class="input-group-prepend w-25">
@@ -59,7 +61,7 @@ use helpers\translate\Translate;
                                     <option <?= $user->title == "Mrs." ? "selected" : "" ?> value="Mrs.">Mrs.</option>
                                 </select></div>
                             <input type="text" class="form-control" name="name" value="<?= $user->name ?>"
-                                   placeholder="<?= strtoupper(Translate::get("register_page", "your_name")) ?>">
+                                   placeholder="<?= strtoupper(Translate::get("user_info", "your_name")) ?>">
 
                         </div>
 
@@ -67,28 +69,28 @@ use helpers\translate\Translate;
 
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder required-field" for="position">
-                            <?= Translate::get("register_page", "job_position") ?>
+                            <?= Translate::get("user_info", "job_position") ?>
                         </label>
                         <input type="text" class="form-control" name="job_position" value="<?= $user->job_position ?>"
                                placeholder="<?= strtoupper(Translate::get("register_page", "job_position")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="division">
-                            <?= Translate::get("register_page", "division") ?>
+                            <?= Translate::get("user_info", "division") ?>
                         </label>
                         <input type="text" class="form-control" name="division" value="<?= $user->division ?>"
                                placeholder="<?= strtoupper(Translate::get("register_page", "division")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="comp-name">
-                            <?= Translate::get("register_page", "company_name") ?>
+                            <?= Translate::get("user_info", "company_name") ?>
                         </label>
                         <input type="text" class="form-control" name="company_name" value="<?= $user->company_name ?>"
                                placeholder="<?= strtoupper(Translate::get("register_page", "company_name")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder required-field" for="country-state">
-                            <?= Translate::get("register_page", "country_state") ?>
+                            <?= Translate::get("user_info", "country_state") ?>
                         </label>
                         <input type="text" class="form-control" name="country_or_state"
                                value="<?= $user->country_or_state ?>"
@@ -96,14 +98,14 @@ use helpers\translate\Translate;
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="email">
-                            <?= Translate::get("register_page", "website") ?>
+                            <?= Translate::get("user_info", "website") ?>
                         </label>
                         <input type="text" class="form-control" name="website" value="<?= $user->website ?>"
                                placeholder="<?= strtoupper(Translate::get("register_page", "website")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="phone">
-                            <?= Translate::get("register_page", "phone") ?>
+                            <?= Translate::get("user_info", "phone") ?>
                         </label>
                         <input type="text" class="form-control" name="phone" value="<?= $user->phone ?>"
                                placeholder="<?= strtoupper(Translate::get("register_page", "phone")) ?>">
@@ -121,7 +123,7 @@ use helpers\translate\Translate;
 
                     <div class="w-100 d-flex mt-5">
                         <button type="submit" class="form-control btn btn-primary background-blue px-3 w-25">
-                            Update
+                            <?= Translate::get("profile_page", "update") ?>
                         </button>
                     </div>
                 </form>
@@ -163,7 +165,7 @@ use helpers\translate\Translate;
 
                     <div class="w-100 d-flex mt-5">
                         <button type="submit" class="form-control btn btn-primary background-blue px-3 w-25">
-                            Update
+                            <?= Translate::get("profile_page", "update") ?>
                         </button>
                     </div>
                 </form>
@@ -200,6 +202,7 @@ use helpers\translate\Translate;
             resetButton(btn, btnLabel);
         } catch (err) {
             err = JSON.parse(err);
+            $(this).find(".success-msg").text("");
             $(this).find(".error-msg").text(err.message);
             $("input").removeClass("is-invalid");
             $("input[name=" + err.errors.key + "]").addClass("is-invalid");
