@@ -9,7 +9,7 @@ class LanguagePool
     private const FRENCH = 'fr';
 
     private const ENGLISH_US    = 'en-us';
-    private const ENGLISH_UK     = 'en-gd';
+    private const ENGLISH_UK     = 'en-gb';
 
     private string $label;
 
