@@ -391,7 +391,7 @@
         e.preventDefault();
         const connectorId = $(this).attr('data-id');
         const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/connectors/view?tableLang=${language}&id=${connectorId}`;
+        let path = `admin/connectors/templates?id=${connectorId}`;
         try {
             const modal = await loadModal(modalId, path);
 

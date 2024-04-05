@@ -125,9 +125,9 @@ $(document).on("change", ".img-heading", function () {
     const imageContainer = $(this).closest('.template-img-container');
     $(this).attr('name', getTitleFieldName(imageContainer));
 
-    if ($(this).closest("div.template-img-container").find("input[type=checkbox]")) {
-        const eachImageContainer = $(this);
+    if ($(this).closest("div.template-img-container")) {
         $(".img-heading").each(function () {
+            const eachImageContainer = $(this).closest('.template-img-container');
             if ($(this).attr("data-heading") === heading_key && isEmpty($(this).val())) {
                 $(this).val(value);
                 $(this).attr('name', getTitleFieldName(eachImageContainer));
