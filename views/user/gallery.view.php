@@ -1,4 +1,7 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+require_once "layout/start.layout.php";
+use helpers\translate\Translate;
+?>
 
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
@@ -15,7 +18,7 @@
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected">Gallery</h4>
+                        <h4 class="color-blue selected"><?= Translate::get("gallery_page","gallery") ?></h4>
                     </dl>
 
                 </div>
@@ -91,7 +94,7 @@
 
         </div>
 
-        <h4 class="connector-heading my-3">Related sections</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
 
 
         <div class="divider"></div>
@@ -102,7 +105,7 @@
             </div>
             <div class="col-md-2 d-flex flex-column justify-content-evenly">
                 <dl class="color-blue m-0">
-                    Copyright
+                    <?= Translate::get("common","copyright") ?>
                 </dl>
 
             </div>

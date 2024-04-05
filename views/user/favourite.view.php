@@ -1,4 +1,9 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+
+require_once "layout/start.layout.php";
+
+use helpers\translate\Translate;
+?>
 
 <!--body section-->
 <div class="jumbotron w-100 m-0">
@@ -15,7 +20,7 @@
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected">Favourites</h4>
+                        <h4 class="color-blue selected"><?= Translate::get("favourites_page","favourites") ?></h4>
                     </dl>
 
                 </div>

@@ -62,64 +62,64 @@ use helpers\translate\Translate;
                                         <option value="Mrs.">Mrs.</option>
                                     </select></div>
                                 <input type="text" class="form-control" name="name"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "your_name")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "your_name")) ?>">
                                 <label class="form-control-placeholder required-field" for="name">
-                                    <?= Translate::get("register_page", "your_name") ?>
+                                    <?= Translate::get("user_info", "your_name") ?>
                                 </label>
 
                             </div>
 
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="job_position"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "job_position")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "job_position")) ?>">
                                 <label class="form-control-placeholder required-field" for="position">
-                                    <?= Translate::get("register_page", "job_position") ?>
+                                    <?= Translate::get("user_info", "job_position") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="division"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "division")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "division")) ?>">
                                 <label class="form-control-placeholder" for="division">
-                                    <?= Translate::get("register_page", "division") ?>
+                                    <?= Translate::get("user_info", "division") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="company_name"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "company_name")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "company_name")) ?>">
                                 <label class="form-control-placeholder" for="comp-name">
-                                    <?= Translate::get("register_page", "company_name") ?>
+                                    <?= Translate::get("user_info", "company_name") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="country_or_state"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "country_state")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "country_state")) ?>">
                                 <label class="form-control-placeholder required-field" for="country-state">
-                                    <?= Translate::get("register_page", "country_state") ?>
+                                    <?= Translate::get("user_info", "country_state") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="website"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "website")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "website")) ?>">
                                 <label class="form-control-placeholder" for="email">
-                                    <?= Translate::get("register_page", "website") ?>
+                                    <?= Translate::get("user_info", "website") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="phone"
-                                       placeholder="<?= strtoupper(Translate::get("register_page", "phone")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "phone")) ?>">
                                 <label class="form-control-placeholder" for="phone">
-                                    <?= Translate::get("register_page", "phone") ?>
+                                    <?= Translate::get("user_info", "phone") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="email"
-                                       placeholder="<?= strtoupper(Translate::get("common", "email")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "email")) ?>">
                                 <label class="form-control-placeholder required-field" for="email">
-                                    <?= Translate::get("common", "email") ?>
+                                    <?= Translate::get("user_info", "email") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
-                                <input id="password-field" type="password" name="password" class="form-control"
+                                <input id="password" type="password" name="password" class="form-control"
                                        placeholder="<?= strtoupper(Translate::get("common", "password")) ?>">
                                 <label class="form-control-placeholder required-field" for="password">
                                     <?= Translate::get("common", "password") ?>
@@ -214,6 +214,18 @@ use helpers\translate\Translate;
             $("input[name=" + err.errors.key + "]").addClass("is-invalid");
             resetButton(btn, btnLabel);
         }
+    });
+
+
+    $(document).on("keyup", "#password", function () {
+        if ($(this).val().length < 8) {
+            $(this).removeClass("is-valid");
+            $(this).addClass("is-invalid");
+            return;
+        }
+        $(this).removeClass("is-invalid");
+        $(this).addClass("is-valid");
+
     });
 </script>
 </body>

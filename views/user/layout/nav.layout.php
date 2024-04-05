@@ -206,7 +206,7 @@ global $env;
                 ?>
                 <div class="col-3 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>" data-toggle="tooltip"
-                       title="Profile">
+                       title="<?= Translate::get("home_nav", "profile") ?>">
                         <img src="<?= assets("themes/user/img/" . $user_icon . ".png") ?>" class="align-self-center"
                              height="23"/>
                     </a>

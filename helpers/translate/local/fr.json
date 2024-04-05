@@ -1,69 +1,112 @@
 {
-	"common": {
-		"logo_text" : "Connecteurs pour palplanches en acier",
-		"login": "Login",
-		"logout": "Se déconnecter",
-		"menu": "Menu",
-		"email": "E-mail",
-		"password": "Mot de passe",
-		"register": "Registre",
-		"related_section": "Section connexe"
-	},
-	"home_nav": {
-		"connectors": "Connecteurs",
-		"downloads": "Téléchargements",
-		"gallery": "Gelée",
-		"sealant": "mastic",
-		"contact": "Contact",
-		"user_information": "Informations de l'utilisateur",
-		"about_steelwall": "À propos de Steelwall",
-		"newsletter": "Bulletin",
-		"languages_and_measures": "Langues et mesures",
-		"legal_advice": "Conseils juridiques",
-		"imprint": "Imprint",
-		"privacy_policy": "Politique de confidentialité",
-		"general_terms_and_conditions": "Termes et conditions généraux",
-		"favourites": "Favoris",
-		"profile": "Profil"
-	},
-	"home_footer": {
-		"disclaimer": "Disclaimer",
-		"disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. La base de soudage des serrures LPB et FD peut être en version droite ou oblique. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez avant le montage vérifier à l’aide de spécimens la compatibilité des connecteurs et serrures de palplanches."
-
-	},
-	"login_page": {
-		"forgot_password": "Mot de passe oublié",
-		"not_a_member": "Pas un membre?"
-	},
-	"register_page": {
-		"advantages_of_a_registration": "Avantages d'une inscription",
-		"request_products_easily": "Demandez des produits facilement !",
-		"save_your_requests_and_products": "Sauvegardez vos demandes et produits (Favoris) !",
-		"receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
-		"your_name": "Votre nom",
-		"job_position": "Emploi / Poste",
-		"division": "Division",
-		"company_name": "Nom de l'entreprise",
-		"country_state": "Pays / État",
-		"website": "Site web",
-		"phone": "Téléphone",
-		"subscribe_to_newsletter": "S'inscrire à la Newsletter",
-		"by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter",
-		"already_a_member": "Déjà membre?"
-	},
-	"download_page": {
-		"downloads": "Téléchargements",
-		"please_register_before_download": "Veuillez vous inscrire avant de télécharger!",
-		"test_reports": "Rapports d'essai",
-		"test_report": "Rapport d'essai",
-		"brochures": "Brochures",
-		"data_sheets": "Fiche de données",
-		"brochures_and_data_sheets": "Brochures et fiches techniques",
-		"steelwall_connectors_overview": "Steelwall aperçu des connecteurs"
-
-	},
+  "common": {
+    "logo_text": "Connecteurs pour palplanches en acier",
+    "login": "Login",
+    "logout": "Se déconnecter",
+    "menu": "Menu",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "register": "Registre",
+    "related_section": "Section connexe",
+    "copyright": "droits d'auteur",
+    "home": "Maison",
+    "fax": "Fax",
+    "phone": "Téléphone"
+  },
 
 
+  "home_nav": {
+    "connectors": "Connecteurs",
+    "downloads": "Téléchargements",
+    "gallery": "Gelée",
+    "sealant": "mastic",
+    "contact": "Contact",
+    "user_information": "Informations de l'utilisateur",
+    "about_steelwall": "À propos de Steelwall",
+    "newsletter": "Bulletin",
+    "languages_and_measures": "Langues et mesures",
+    "legal_advice": "Conseils juridiques",
+    "imprint": "Imprint",
+    "privacy_policy": "Politique de confidentialité",
+    "general_terms_and_conditions": "Termes et conditions généraux",
+    "favourites": "Favoris",
+    "profile": "Profil"
+  },
+
+
+  "home_footer": {
+    "disclaimer": "Disclaimer",
+    "disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. La base de soudage des serrures LPB et FD peut être en version droite ou oblique. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez avant le montage vérifier à l’aide de spécimens la compatibilité des connecteurs et serrures de palplanches."
+  },
+
+
+  "login_page": {
+    "forgot_password": "Mot de passe oublié",
+    "not_a_member": "Pas un membre?"
+  },
+
+
+  "user_info": {
+    "your_name": "Votre nom",
+    "job_position": "Emploi / Poste",
+    "division": "Division",
+    "company_name": "Nom de l'entreprise",
+    "country_state": "Pays / État",
+    "website": "Site web",
+    "phone": "Téléphone",
+    "email": "E-mail"
+  },
+
+
+  "register_page": {
+    "advantages_of_a_registration": "Avantages d'une inscription",
+    "request_products_easily": "Demandez des produits facilement !",
+    "save_your_requests_and_products": "Sauvegardez vos demandes et produits (Favoris) !",
+    "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
+    "subscribe_to_newsletter": "S'inscrire à la Newsletter",
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter",
+    "already_a_member": "Déjà membre?"
+  },
+
+
+  "download_page": {
+    "downloads": "Téléchargements",
+    "please_register_before_download": "Veuillez vous inscrire avant de télécharger!",
+    "test_reports": "Rapports d'essai",
+    "test_report": "Rapport d'essai",
+    "brochures": "Brochures",
+    "data_sheets": "Fiche de données",
+    "brochures_and_data_sheets": "Brochures et fiches techniques",
+    "steelwall_connectors_overview": "Steelwall aperçu des connecteurs"
+  },
+
+
+  "gallery_page": {
+    "gallery": "Gelée"
+  },
+
+
+  "contact_page": {
+    "contact": "Contact",
+    "headquarters_germany": "SIEGE ALLEMAGNE",
+    "sales_line_north_america": "LIGNE DE VENTE AMÉRIQUE DU NORD",
+    "headquarters": "Quartier général",
+    "please_leave_a_message_here": "Veuillez laisser un message ici",
+    "send": "Envoyer",
+    "your_message": "VOTRE MESSAGE"
+  },
+
+
+  "profile_page": {
+    "update": "Mise à jour"
+  },
+
+
+
+
+  "favourites_page": {
+    "favourites": "Favoris"
+  },
 
 
 
@@ -81,32 +124,29 @@
 
 
 
-	"sideBar":
-	{
-		"dashboard": "Dashboardddddddd",
-		"incidents":"Incidents",
-		"property":"Property",
-		"properties":"Properties",
-		"flats":"Flats",
-
-		"maintenance":"Maintenance",
-		"maintenanceMans":"Maintenance Mans",
-		"deputies":"Deputies",
-		
-		"management":"Management",
-
-		"tenant_and_owner":"Tenants & Owners",
-		"tenants":"Tenants",
-		"owners":"Owners",
 
 
-		"utility":"Utility",
-		"calendar":"Calendar"
 
-	},
-	"dashboard":
-	{
-		"heading": "Dashboarddddddddd"
-	}
 
+
+
+  "sideBar": {
+    "dashboard": "Dashboardddddddd",
+    "incidents": "Incidents",
+    "property": "Property",
+    "properties": "Properties",
+    "flats": "Flats",
+    "maintenance": "Maintenance",
+    "maintenanceMans": "Maintenance Mans",
+    "deputies": "Deputies",
+    "management": "Management",
+    "tenant_and_owner": "Tenants & Owners",
+    "tenants": "Tenants",
+    "owners": "Owners",
+    "utility": "Utility",
+    "calendar": "Calendar"
+  },
+  "dashboard": {
+    "heading": "Dashboarddddddddd"
+  }
 }
