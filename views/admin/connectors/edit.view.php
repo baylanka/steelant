@@ -82,7 +82,7 @@
             const response = await update(spinnerContainer);
             const templates = response.templatePreviews;
             $('#nav-de').html(templates['de']);
-            $('#nav-uk').html(templates['en-gd']);
+            $('#nav-uk').html(templates['en-gb']);
             $('#nav-fr').html(templates['fr']);
             $('#nav-us').html(templates['en-us']);
 
