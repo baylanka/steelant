@@ -1,7 +1,7 @@
 <aside class="app-sidebar shadow background-primary" data-bs-theme="dark">
 
     <div class="sidebar-brand">
-        <a href="<?= url("admin/dashboard") ?>" class="brand-link">
+        <a href="<?= url("/") ?>" class="brand-link">
             <img src="<?= assets("themes/admin/img/logo.jpg") ?>" alt="Steel wall Logo"
                  class="brand-image shadow">
         </a>

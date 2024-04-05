@@ -9,7 +9,7 @@ require_once basePath("routes/assets/admin.web.php");
 require_once basePath("routes/assets/seo.web.php");
 
 
-$app->get('/',  ["user\HomeController", "connectors"]);
+$app->get('/',  ["user\HomeController", "home"]);
 $app->get('/downloads',  ["user\HomeController", "downloads"]);
 $app->get('/gallery',  ["user\HomeController", "gallery"]);
 $app->get('/contact',  ["user\HomeController", "contact"]);
@@ -24,6 +24,13 @@ $app->get('/favourite',  ["user\HomeController", "favourite"]);
 
 $app->get('/login',  ["UserController", "login_view"]);
 $app->post('/login',  ["UserController", "login"]);
+$app->get('/profile',  ["UserController", "profile"]);
+$app->post('/user/update',  ["UserController", "update"]);
+$app->post('/user/update/password',  ["UserController", "update_password"]);
+
+
+
+
 
 $app->get('/register',  ["UserController", "register_view"]);
 $app->post('/register',  ["UserController", "register"]);

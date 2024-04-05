@@ -50,7 +50,8 @@ global $env;
         <div class="text-center row position-relative p-2">
 
             <div class="col-md-4 mt-5 text-center login-btn" style="display: none;">
-                <a class="nav-link" href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"] === true ? url("/profile") : url("/login") ?>">
+                <a class="nav-link"
+                   href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"] === true ? url("/profile") : url("/login") ?>">
                     <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
                 </a>
             </div>
@@ -90,11 +91,10 @@ global $env;
                 <div class="col-5 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>">
                         <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/>
-                        <?= Translate::get("common","login") ?>
+                        <?= Translate::get("common", "login") ?>
                     </a>
                 </div>
             <?php } ?>
-
 
 
             <div class="col-3 text-center d-flex gap-1 <?= isset($_SESSION["auth"]) && $_SESSION["auth"] === true ? "" : "d-none" ?>">
@@ -108,7 +108,8 @@ global $env;
                 ?>
 
                 <a href="<?= url("/favourite") ?>"
-                   class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>" data-toggle="tooltip" title="Favourite">
+                   class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
+                   data-toggle="tooltip" title="Favourite">
                     <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center"
                          height="23"/></a>
 
@@ -117,13 +118,17 @@ global $env;
 
             <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
                 <div class="col-3 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>"  data-toggle="tooltip" title="Profile"><img
-                                src="<?= assets("themes/user/img/user-white.png") ?>"  class="align-self-center" height="23"/></a>
+                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>" data-toggle="tooltip"
+                       title="Profile"><img
+                                src="<?= assets("themes/user/img/user-white.png") ?>" class="align-self-center"
+                                height="23"/></a>
 
                 </div>
                 <div class="col-2 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip" title="Logout"><img
-                                src="<?= assets("themes/user/img/logout-white.png") ?>"  class="align-self-center" height="23"/></a>
+                    <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip"
+                       title="Logout"><img
+                                src="<?= assets("themes/user/img/logout-white.png") ?>" class="align-self-center"
+                                height="23"/></a>
 
                 </div>
 
@@ -134,24 +139,24 @@ global $env;
         <div class="nav">
             <a class="nav-link <?= RequestService::isRequestedRoute("/") ? "selected" : "" ?>" aria-current="page"
                href="<?= url("/") ?>">
-                <?= Translate::get("home_nav","connectors") ?>
+                <?= Translate::get("home_nav", "connectors") ?>
             </a>
 
             <a class="nav-link <?= RequestService::isRequestedRoute("/downloads") ? "selected" : "" ?>"
                aria-current="page" href="<?= url("/downloads") ?>">
-                <?= Translate::get("home_nav","downloads") ?>
+                <?= Translate::get("home_nav", "downloads") ?>
             </a>
 
             <a class="nav-link <?= RequestService::isRequestedRoute("/gallery") ? "selected" : "" ?>"
                aria-current="page" href="<?= url("/gallery") ?>">
-                <?= Translate::get("home_nav","gallery") ?>
+                <?= Translate::get("home_nav", "gallery") ?>
             </a>
             <a class="nav-link" target="_blank" aria-current="page" href="https://steelant.eu/">
-                <?= Translate::get("home_nav","sealant") ?>
+                <?= Translate::get("home_nav", "sealant") ?>
             </a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>"
                aria-current="page" href="<?= url("/contact") ?>">
-                <?= Translate::get("home_nav","contact") ?>
+                <?= Translate::get("home_nav", "contact") ?>
             </a>
         </div>
 
@@ -163,12 +168,10 @@ global $env;
                 <div class="col-5 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>">
                         <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/>
-                        <?= Translate::get("common","login") ?>
+                        <?= Translate::get("common", "login") ?>
                     </a>
                 </div>
             <?php } ?>
-
-
 
 
             <div class="col-3 text-center d-flex gap-1 <?= isset($_SESSION["auth"]) && $_SESSION["auth"] === true ? "" : "d-none" ?>">
@@ -182,22 +185,36 @@ global $env;
                 ?>
 
                 <a href="<?= url("/favourite") ?>"
-                   class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>" data-toggle="tooltip" title="Favourite">
-                    <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center" height="23"/>
+                   class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
+                   data-toggle="tooltip" title="<?= Translate::get("home_nav", "favourites") ?>">
+                    <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center"
+                         height="23"/>
                 </a>
 
 
             </div>
 
             <?php if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) { ?>
+
+                <?php
+                $user_icon = "";
+                if (RequestService::isRequestedRoute("/profile")) {
+                    $user_icon = "user-cyan";
+                } else {
+                    $user_icon = "user-white";
+                }
+                ?>
                 <div class="col-3 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>"  data-toggle="tooltip" title="Profile">
-                        <img src="<?= assets("themes/user/img/user-white.png") ?>"  class="align-self-center" height="23"/>
+                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>" data-toggle="tooltip"
+                       title="Profile">
+                        <img src="<?= assets("themes/user/img/" . $user_icon . ".png") ?>" class="align-self-center"
+                             height="23"/>
                     </a>
                 </div>
                 <div class="col-2 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip" title="Logout">
-                        <img src="<?= assets("themes/user/img/logout-white.png") ?>"  class="align-self-center" height="23"/>
+                    <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip" title="<?= Translate::get("common", "logout") ?>">
+                        <img src="<?= assets("themes/user/img/logout-white.png") ?>" class="align-self-center"
+                             height="23"/>
                     </a>
                 </div>
 

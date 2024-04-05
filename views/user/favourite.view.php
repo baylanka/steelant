@@ -47,7 +47,7 @@
                     <th scope="col" class="color-blue font-weight-700">Amount (running m)</th>
                     <th scope="col" class="color-blue font-weight-700">Location</th>
                     <th scope="col" class="color-blue font-weight-700">Country / State</th>
-                    <th scope="col" class="color-blue font-weight-700 text-center">Delete</th>
+                    <th scope="col" class="color-blue font-weight-700 text-center"> </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@
                     <td>500 running m</td>
                     <td>Hamburg</td>
                     <td>Germany</td>
-                    <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+                    <td class="text-center d-flex gap-4"><i class="bi bi-trash3-fill text-danger"  data-toggle="tooltip" title="Delete"></i> <i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
                 </tr>
                 <tr>
                     <td>Berlin harbour</td>
@@ -67,7 +67,7 @@
                     <td>300 running m</td>
                     <td>Hamburg</td>
                     <td>Germany</td>
-                    <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+                    <td class="text-center d-flex gap-4"><i class="bi bi-trash3-fill text-danger"  data-toggle="tooltip" title="Delete"></i> <i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
                 </tr>
 
                 </tbody>
@@ -92,7 +92,7 @@
                     <th scope="col" class="color-blue font-weight-700">Amount (running m)</th>
                     <th scope="col" class="color-blue font-weight-700">Location</th>
                     <th scope="col" class="color-blue font-weight-700">Country / State</th>
-                    <th scope="col" class="color-blue font-weight-700 text-center">Delete</th>
+                    <th scope="col" class="color-blue font-weight-700 text-center"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@
                     <td>500 running m</td>
                     <td>Hamburg</td>
                     <td>Germany</td>
-                    <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+                    <td class="text-center d-flex gap-4"><i class="bi bi-trash3-fill text-danger"  data-toggle="tooltip" title="Delete"></i> <i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
                 </tr>
                 <tr>
                     <td>Berlin harbour</td>
@@ -112,7 +112,7 @@
                     <td>300 running m</td>
                     <td>Hamburg</td>
                     <td>Germany</td>
-                    <td class="text-center"><i class="bi  bi-trash3-fill text-danger"></i></td>
+                    <td class="text-center d-flex gap-4"><i class="bi bi-trash3-fill text-danger"  data-toggle="tooltip" title="Delete"></i> <i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
                 </tr>
 
                 </tbody>

@@ -10,15 +10,10 @@ use model\Category;
 class HomeController
 {
 
-    public function connectors(Request $request)
+    public function home(Request $request)
     {
-        $categories = Category::getAll();
-        $arrangedCategories = CategoryService::organizingCategoriesTreeView($categories);
-        $data = [
-            'heading' => "Category",
-            'categories' => $arrangedCategories,
-        ];
-        return view("user/connectors.view.php", $data);
+        $data = [];
+        return view("user/home.view.php", $data);
     }
 
 

@@ -1,4 +1,7 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+require_once "layout/start.layout.php";
+use helpers\translate\Translate;
+?>
 
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
@@ -19,8 +22,8 @@
                 </div>
                 <div class="col-md-7">
                     <dl class="pl-3">
-                        <h4 class="color-blue">Downloads</h4>
-                        <p class="color-blue">Please register before download!</p>
+                        <h4 class="color-blue"><?= Translate::get("download_page","downloads") ?></h4>
+                        <p class="color-blue"><?= Translate::get("download_page","please_register_before_download") ?></p>
                     </dl>
 
                 </div>
@@ -30,17 +33,17 @@
             <div class="col-12 col-md-7 col-xxl-7 row gap-3 justify-content-end">
                 <div class="col-12 col-md-3 col-xxl-3">
                     <dl>
-                        <dt><a href="#" class="link color-blue">TEST REPORTS</a></dt>
+                        <dt><a href="#" class="link color-blue"><?= strtoupper(Translate::get("download_page","test_reports")) ?></a></dt>
                     </dl>
                 </div>
                 <div class="col-12 col-md-3 col-xxl-3">
                     <dl>
-                        <dt><a href="#" class="link color-blue">BROCHURES</a></dt>
+                        <dt><a href="#" class="link color-blue"><?= strtoupper(Translate::get("download_page","brochures")) ?></a></dt>
                     </dl>
                 </div>
                 <div class="col-12 col-md-3 col-xxl-3">
                     <dl>
-                        <dt><a href="#" class="link color-blue">DATA SHEETS</a></dt>
+                        <dt><a href="#" class="link color-blue"><?= strtoupper(Translate::get("download_page","data_sheets")) ?></a></dt>
                     </dl>
                 </div>
 
@@ -55,26 +58,26 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Test Reports</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get("download_page","test_reports") ?></h4>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-50 justify-content-between">
-            <h6 class="connector-heading my-4">Test Report I</h6>
+            <h6 class="connector-heading my-4"><?= Translate::get("download_page","test_report") ?> I</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-50 justify-content-between">
-            <h6 class="connector-heading my-4">Test Report II</h6>
+            <h6 class="connector-heading my-4"><?= Translate::get("download_page","test_report") ?> II</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-50 justify-content-between">
-            <h6 class="connector-heading my-4">Test Report III</h6>
+            <h6 class="connector-heading my-4"><?= Translate::get("download_page","test_report") ?> III</h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
@@ -82,13 +85,13 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Brochures and Data Sheets</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get("download_page","brochures_and_data_sheets") ?></h4>
 
         <div class="divider"></div>
 
 
         <div class="d-flex align-middle gap-5 my-5 w-100">
-            <h6 class="connector-heading">Steelwall connectors overview 2024</h6>
+            <h6 class="connector-heading"><?= Translate::get("download_page","steelwall_connectors_overview") ?> 2024</h6>
 
             <span class="d-flex gap-2">
                 <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
@@ -104,7 +107,7 @@
 
 
         <div class="d-flex align-middle gap-5 my-5 w-100">
-            <h6 class="connector-heading">Steelwall connectors overview 2024</h6>
+            <h6 class="connector-heading"><?= Translate::get("download_page","steelwall_connectors_overview") ?> 2024</h6>
 
             <span class="d-flex gap-2">
                 <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
@@ -120,7 +123,7 @@
 
 
         <div class="d-flex align-middle gap-5 my-5 w-100">
-            <h6 class="connector-heading">Steelwall connectors overview 2024</h6>
+            <h6 class="connector-heading"><?= Translate::get("download_page","steelwall_connectors_overview") ?> 2024</h6>
 
             <span class="d-flex gap-2">
                 <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-fr.jpg") ?>" height="250"
@@ -136,7 +139,7 @@
 
 
         <div class="d-flex align-middle gap-5 my-5 w-100">
-            <h6 class="connector-heading">Steelwall connectors overview 2024</h6>
+            <h6 class="connector-heading"><?= Translate::get("download_page","steelwall_connectors_overview") ?> 2024</h6>
 
             <span class="d-flex gap-2">
                 <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-de.jpg") ?>" height="250"
@@ -150,7 +153,7 @@
         <div class="divider"></div>
 
 
-        <h4 class="connector-heading my-3">Related sections</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
 
 
         <div class="divider"></div>
