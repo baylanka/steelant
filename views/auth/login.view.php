@@ -31,7 +31,7 @@ use helpers\translate\Translate;
                         </div>
 
 
-                        <form action="/login" class="signin-form">
+                        <form action="<?=url('login')?>" class="signin-form">
                             <div class="form-group mt-5 email-group">
                                 <input type="email" class="form-control" name="email" placeholder="Email" value="<?= isset($_GET['mail']) ? $_GET['mail'] : "" ?>">
                                 <label class="form-control-placeholder" for="email">
