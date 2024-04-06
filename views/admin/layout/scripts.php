@@ -30,5 +30,10 @@
             });
         }
     });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: 'bottom',
+        })
+    })
 </script> <!--end::OverlayScrollbars Configure--> <!-- OPTIONAL SCRIPTS --> <!-- sortablejs -->
 <script  src="<?= assets("themes/admin/js/Sortable.min.js") ?>"></script>

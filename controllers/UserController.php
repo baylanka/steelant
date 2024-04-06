@@ -14,6 +14,7 @@ use helpers\repositories\UserRepository;
 use helpers\services\UserService;
 use helpers\utilities\ResponseUtility;
 use Exception;
+use helpers\validators\SendVerificationRequestValidator;
 use helpers\validators\UserCreateRequestValidator;
 use helpers\validators\UserEmailVerifyRequestValidator;
 use helpers\validators\UserLoginRequestValidator;
@@ -86,6 +87,7 @@ class UserController extends BaseController
             parent::response($ex->getMessage(), [], 422);
         }
     }
+
 
     public function logout()
     {
