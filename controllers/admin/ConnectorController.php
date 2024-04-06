@@ -18,6 +18,8 @@ use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\ConnectorStoreRequestValidator;
 use model\Category;
+use model\Connector;
+use model\Template;
 
 class ConnectorController extends BaseController
 {
@@ -124,9 +126,15 @@ class ConnectorController extends BaseController
     }
 
 
-    public function view(Request $request)
+    public function showAllTemplates(Request $request)
     {
-        return view("admin/connectors/single_view.view.php", []);
+        $connectorId = $request->get('id');
+        $connector = ConnectorService::getConnectorAssociatedData($connectorId);
+        $templatePreviews = TemplateService::getAllLangTemplates($connector, Template::MODE_VIEW);
+        $data = [
+            'templates' => $templatePreviews
+        ];
+        return view("admin/connectors/connector_templates.view.php", $data);
     }
 
 }

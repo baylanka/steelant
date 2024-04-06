@@ -15,7 +15,7 @@
 
                 </div>
                 <img
-                    src="<?= assets("/themes/user/img/template/template-02.png") ?>"
+                    src="<?= $template->getThumbnailUrl() ?>"
                     alt="<?= $template->getThumbnailImageName() ?>"
                     title="<?= $template->getThumbnailImageName() ?>"
                     class="w-100"/>

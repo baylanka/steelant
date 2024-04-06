@@ -128,6 +128,30 @@ class Connector extends BaseModel
         $this->updateContentTemplates();
     }
 
+    public function getDescriptionByLang(string $language)
+    {
+        $descriptionArray = json_decode($this->description, true);
+        if(!isset($descriptionArray[$language])){
+            return "";
+        }
+
+        return $descriptionArray[$language];
+    }
+
+    public function getDescriptionEn()
+    {
+        return $this->getDescriptionByLang(LanguagePool::ENGLISH()->getLabel());
+    }
+
+    public function getDescriptionDe()
+    {
+        return $this->getDescriptionByLang(LanguagePool::GERMANY()->getLabel());
+    }
+
+    public function getDescriptionFr()
+    {
+        return $this->getDescriptionByLang(LanguagePool::FRENCH()->getLabel());
+    }
 
 
     private function updateContentTemplates()

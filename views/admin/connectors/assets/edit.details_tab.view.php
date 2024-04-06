@@ -1,3 +1,6 @@
+<?php
+    use model\Connector;
+?>
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="row w-100 p-5">
         <div class="col-12 mt-3">
@@ -22,6 +25,28 @@
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="basic-url" class="form-label align-middle">Visibility</label>
+
+            <div class="d-flex w-50 justify-content-start gap-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visibility" value="<?= Connector::PUBLISHED ?>"
+                           id="published-radio-btn" <?= $connector->isPublished ? 'checked' : ''?>>
+                    <label class="form-check-label" for="published-radio-btn">
+                        Public
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visibility" value="<?= Connector::UNPUBLISHED ?>"
+                           id="unpublished-radio-btn"  <?= !$connector->isPublished ? 'checked' : ''?>>
+                    <label class="form-check-label" for="unpublished-radio-btn">
+                        Private
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
             <label for="steel_grade" class="align-items-center">
                 Steel Grade
             </label>
@@ -32,11 +57,29 @@
 
         <div class="col-12 d-flex justify-content-between mt-3">
             <label for="description" class="align-items-center">
-                Description
+                Description (in Germany)
             </label>
-            <textarea name="description" type="text"
+            <textarea name="description_de" type="text"
                       class="form-control w-50" rows="3"
-                      placeholder="Description" id="description"><?=$connector->description?></textarea>
+                      placeholder="Description (in Germany)" id="description"><?=$connector->description_de?></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in English)
+            </label>
+            <textarea name="description_en" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in English)" id="description"><?=$connector->description_en?></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in French)
+            </label>
+            <textarea name="description_fr" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in French)" id="description"><?=$connector->description_fr?></textarea>
         </div>
 
         <hr class="mt-3">

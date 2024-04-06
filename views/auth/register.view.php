@@ -51,7 +51,7 @@ use helpers\translate\Translate;
                         </ul>
 
 
-                        <form action="/register" class="register-form pt-5">
+                        <form action="<?=url('/register')?>" class="register-form pt-5">
 
 
                             <div class="form-group d-flex">
