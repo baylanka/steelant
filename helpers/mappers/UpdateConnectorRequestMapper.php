@@ -20,7 +20,7 @@ class UpdateConnectorRequestMapper
         $connector->name = $request->get('name');
         $connector->visibility = $request->get('visibility', Connector::UNPUBLISHED);
         $connector->grade = $request->get('grade');
-        $connector->description = trim($request->get('description', ''));
+        $connector->description = self::getDescriptionJson($request);
         $connector->weight_m = self::getWeightMetrics($request);
         $connector->weight_i = self::getWeightImperial($request);
         $connector->thickness_m = $request->get('thickness_metrics');
@@ -35,6 +35,15 @@ class UpdateConnectorRequestMapper
         $connector->temp_content_templates = self::getContentTemplates($request,
                                                                     $connector->temp_content->id);
         return $connector;
+    }
+
+    private static function getDescriptionJson(Request $request)
+    {
+        return json_encode([
+            LanguagePool::GERMANY()->getLabel() => $request->get('description_de', ''),
+            LanguagePool::ENGLISH()->getLabel() => $request->get('description_en', ''),
+            LanguagePool::FRENCH()->getLabel() => $request->get('description_fr', ''),
+        ]);
     }
 
     private static function getContentTemplates(Request $request, $contentId)

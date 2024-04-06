@@ -20,7 +20,9 @@ class ConnectorDTO
     public string $thickness;
     public string $thickness_i;
     public string $thickness_m;
-    public string $description;
+    public string $description_de;
+    public string $description_en;
+    public string $description_fr;
     public string $standardLength;
     public string $standardLength_m;
     public string $standardLength_i;
@@ -46,7 +48,7 @@ class ConnectorDTO
         $this->id = $this->connector->id;
         $this->name = $this->connector->name;
         $this->grade = $this->connector->grade ?? '';
-        $this->description = $this->connector->description ?? '';
+        $this->setDescriptions();
         $this->isPublished = $this->connector->visibility;
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -57,6 +59,13 @@ class ConnectorDTO
         $this->setMaxTensileStrength($lang);
         $this->setDownloadableFiles();
         $this->setImageFiles();
+    }
+
+    private function setDescriptions()
+    {
+        $this->description_en = $this->connector->getDescriptionEn();
+        $this->description_de = $this->connector->getDescriptionDe();
+        $this->description_fr = $this->connector->getDescriptionFr();
     }
 
     public function getLengthOfLang()
