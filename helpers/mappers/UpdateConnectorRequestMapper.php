@@ -147,7 +147,8 @@ class UpdateConnectorRequestMapper
         $imageFilesArray = $request->get('images', []);
         $imageUrlArray = $request->get('image_paths', []);
 
-        if((empty($imageFilesArray) || empty($imageFilesArray['name'])) &&  empty($imageUrlArray))
+
+        if((empty($imageFilesArray) || empty(array_filter(array_values($imageFilesArray['name'])))) &&  empty($imageUrlArray))
         {
             return $contentTemplates;
         }
@@ -162,7 +163,8 @@ class UpdateConnectorRequestMapper
         $downloadableArray = $request->get('downloadable', []);
         $downloadableFileURLArray = $request->get('downloadable_src', []);
 
-        if((empty($downloadableArray) || empty($downloadableArray['name'])) &&  empty($downloadableFileURLArray))
+        if((empty($downloadableArray) || empty(array_filter(array_values($downloadableArray['name']))))
+            &&  empty($downloadableFileURLArray))
         {
             return $contentTemplates;
         }

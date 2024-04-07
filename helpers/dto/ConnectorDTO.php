@@ -48,7 +48,7 @@ class ConnectorDTO
         $this->id = $this->connector->id;
         $this->name = $this->connector->name;
         $this->grade = $this->connector->grade ?? '';
-        $this->setDescriptions();
+        $this->setLanguageDescriptions();
         $this->isPublished = $this->connector->visibility;
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -61,11 +61,24 @@ class ConnectorDTO
         $this->setImageFiles();
     }
 
-    private function setDescriptions()
+    private function setLanguageDescriptions()
     {
         $this->description_en = $this->connector->getDescriptionEn();
         $this->description_de = $this->connector->getDescriptionDe();
         $this->description_fr = $this->connector->getDescriptionFr();
+    }
+
+    public function getDescriptionOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+                return $this->description_fr;
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->description_de;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->description_en;
+        }
     }
 
     public function getLengthOfLang()

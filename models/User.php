@@ -26,6 +26,7 @@ class User extends BaseModel
 
     const USER ="user";
     const ADMIN = "admin";
+    const DEVELOPER = "developer";
 
     const KEY_PREFIX = "steel";
     const KEY_SUFFIX = "Wallhgsuyuioiokjduh889=09856u29";

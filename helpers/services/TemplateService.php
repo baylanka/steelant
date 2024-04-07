@@ -21,12 +21,12 @@ class TemplateService
 
     public static function getConnectorTemplateBy(int $id, string $language, $mode)
     {
-        $connector = ConnectorService::getConnectorAssociatedData($id);
         $language = LanguagePool::getByLabel($language)->getLabel();
-        $connectorDTO = new ConnectorDTO($connector, $language, ' | ');
+        $connectorDTO = ConnectorService::getDTOById($id, $language, ' | ');
         if(empty($connectorDTO->templateId)){
             return null;
         }
+
         $data = [
             'connector' => $connectorDTO,
         ];
@@ -34,73 +34,35 @@ class TemplateService
         return self::getTemplateByFillingDataById($connectorDTO->templateId, $data, $mode);
     }
 
-    public static function getAllLangTemplates(\stdClass|Connector $connector, $mode=Template::MODE_EDIT)
+    public static function getAllLangTemplates(int $connectorId, $mode=Template::MODE_EDIT)
     {
         $templates = [];
-
         //germany template
         $languageDe = LanguagePool::GERMANY()->getLabel();
-        $connectorDTODe = new ConnectorDTO($connector, $languageDe, '>');
-        if(!is_null($connectorDTODe->templateId)){
-            $dataDe = [
-                'connector' => $connectorDTODe,
-            ];
-            $templateDe = self::getTemplateByFillingDataById($connectorDTODe->templateId, $dataDe, $mode);
-        }else{
-            $templateDe = '';
-        }
-        $templates[$languageDe] = $templateDe;
-
+        $templateDe = self::getConnectorTemplateBy($connectorId, $languageDe, $mode);
+        $templates[$languageDe] = is_null($templateDe) ? '' : $templateDe;
 
         //english US template
         $languageEnUs = LanguagePool::US_ENGLISH()->getLabel();
-        $connectorDTOEnUs = new ConnectorDTO($connector, $languageEnUs, '>');
-        if(!is_null($connectorDTOEnUs->templateId)){
-            $dataEnUs = [
-                'connector' => $connectorDTOEnUs,
-            ];
-            $templateEnUs = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUs, $mode);
-        }else{
-            $templateEnUs = '';
-        }
-        $templates[$languageEnUs] =  $templateEnUs;
-
-
+        $templateEnUs = self::getConnectorTemplateBy($connectorId, $languageEnUs, $mode);
+        $templates[$languageEnUs] = is_null($templateEnUs) ? '' : $templateEnUs;
 
         //french template
         $languageFr = LanguagePool::FRENCH()->getLabel();
-        $connectorDTOFr = new ConnectorDTO($connector, $languageFr, '>');
-        if(!is_null($connectorDTOFr->templateId)){
-            $dataFr = [
-                'connector' => $connectorDTOFr,
-            ];
-            $templateFr =  self::getTemplateByFillingDataById($connectorDTOFr->templateId, $dataFr, $mode);
-        }else{
-            $templateFr = '';
-        }
-
-        $templates[$languageFr] = $templateFr;
-
+        $templateFr = self::getConnectorTemplateBy($connectorId, $languageFr, $mode);
+        $templates[$languageFr] = is_null($templateFr) ? '' : $templateFr;
 
         //english UK template
         $languageEnUK = LanguagePool::UK_ENGLISH()->getLabel();
-        $connectorDTOEnUK = new ConnectorDTO($connector, $languageEnUK, '>');
-        if(!is_null($connectorDTOEnUs->templateId)) {
-            $dataEnUk = [
-                'connector' => $connectorDTOEnUK,
-            ];
-            $templateEnUk = self::getTemplateByFillingDataById($connectorDTOEnUs->templateId, $dataEnUk, $mode);
-        }else{
-            $templateEnUk = '';
-        }
-        $templates[$languageEnUK] = $templateEnUk;
-
+        $templateEnUk = self::getConnectorTemplateBy($connectorId, $languageEnUK, $mode);
+        $templates[$languageEnUK] = is_null($templateEnUk) ? '' : $templateEnUk;
 
         return $templates;
     }
 
-    public static function getDonwloadableFileTabTemplate(ConnectorDTO $connector)
+    public static function getDonwloadableFileTabTemplateByConnectorId(int $connectorId, $lang)
     {
+        $connector = ConnectorService::getDTOById($connectorId, $lang);
         $templatePath =  basePath("views/admin/connectors/assets/edit.downloadable_files_tab.view.php");
         ob_start();
         require $templatePath;

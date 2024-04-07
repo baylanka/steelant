@@ -130,7 +130,8 @@ class Connector extends BaseModel
 
     public function getDescriptionByLang(string $language)
     {
-        $descriptionArray = json_decode($this->description, true);
+        $description = empty($this->description) ? '{}': $this->description;
+        $descriptionArray = json_decode($description, true);
         if(!isset($descriptionArray[$language])){
             return "";
         }

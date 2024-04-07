@@ -8,6 +8,43 @@ use model\Connector;
 
 class ConnectorRepository extends Connector
 {
+    public static function isNameUnique($leafCategoryId, $name, $exceptId = null)
+    {
+        global $container;
+
+        $params = [
+            'content_type' => CategoryContent::TYPE_CONNECTOR,
+            'connector_name' => $name,
+            'leaf_category_id' => $leafCategoryId
+        ];
+
+        $preparedStatement = "
+            SELECT COUNT(connectors.id) > 0 AS 'exists'
+                FROM connectors 
+                INNER JOIN category_contents ON category_contents.element_id = connectors.id
+                WHERE
+                    category_contents.type = :content_type AND
+                    category_contents.leaf_category_id = :leaf_category_id AND 
+                    connectors.name = :connector_name
+            ";
+
+        if (!is_null($exceptId)) {
+            $preparedStatement .= " AND connectors.id <> :connector_id";
+            $params['connector_id'] = $exceptId;
+        }
+
+        $preparedStatement .= "
+                        GROUP BY category_contents.leaf_category_id;
+        ";
+
+        $db = $container->resolve('DB');
+        $result = $db->queryAsArray($preparedStatement, $params)->first();
+
+        if(!$result){
+            return true;
+        }
+        return (int)$result['exists'] === 0;
+    }
     public static function getNextDisplayOrderOfCategoryId($categoryId)
     {
         $sql = "

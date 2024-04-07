@@ -2,33 +2,7 @@
     use helpers\pools\LanguagePool;
 ?>
 <div class="tab-pane fade p-2" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
-    <div class="justify-content-center d-flex spinner-container">
-        <div class="spinner-grow text-primary ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-secondary  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-danger  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-warning  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-info  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-light  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-dark  ms-2" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-    <div class="template-setting-container d-none" >
+    <div class="template-setting-container" >
         <nav>
             <div class="nav nav-tabs justify-content-center mt-5" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-de-tab" data-bs-toggle="tab" data-bs-target="#nav-de" type="button" role="tab" aria-controls="nav-de" aria-selected="true">

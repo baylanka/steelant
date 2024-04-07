@@ -28,6 +28,7 @@ $(document).on("click", "img.template-img", function () {
 $(document).off("change", "input.template-img-input");
 $(document).on("change", "input.template-img-input", async  function (e) {
     e.preventDefault();
+    spinnerEnabled();
     const inputField = $(this);
     let imageValue = inputField.val();
     const inputFieldContainer = inputField.closest('.template-img-container');
@@ -36,6 +37,7 @@ $(document).on("change", "input.template-img-input", async  function (e) {
     const imagePlaceholderValue= Number(inputFieldContainer.find('.image-placeholder').val());
 
     if(isEmpty(imageValue)){
+        spinnerDisable();
         return;
     }
     const pathField = inputFieldContainer.find('.file_src');
@@ -89,8 +91,11 @@ $(document).on("change", "input.template-img-input", async  function (e) {
     }
 
 
+    const totalImgContainer = $('.template-img-container').length;
+    let iCount = 0;
     //treating all existing media containers
     $('.template-img-container').each(function(){
+        iCount++;
         const otherContainer = $(this);
         const otherInputField = otherContainer.find('.template-img-input');
         const otherImageTag = otherContainer.find('.template-img');
@@ -108,6 +113,10 @@ $(document).on("change", "input.template-img-input", async  function (e) {
             otherContainer.find('.template-img').attr('src', imageContent);
             otherImageTag.attr('data-default', false);
         }
+
+        if(totalImgContainer === iCount){
+            spinnerDisable();
+        }
     });
 });
 
@@ -120,19 +129,29 @@ function getTitleFieldName(imageContainer)
 
 $(document).off("change", ".img-heading");
 $(document).on("change", ".img-heading", function () {
+    spinnerEnabled();
     let heading_key = $(this).attr("data-heading");
     let value = $(this).val();
     const imageContainer = $(this).closest('.template-img-container');
     $(this).attr('name', getTitleFieldName(imageContainer));
 
     if ($(this).closest("div.template-img-container")) {
+        const totalHeadingFields = $(".img-heading").length;
+        let iCount = 0;
         $(".img-heading").each(function () {
+            iCount++;
             const eachImageContainer = $(this).closest('.template-img-container');
             if ($(this).attr("data-heading") === heading_key && isEmpty($(this).val())) {
                 $(this).val(value);
                 $(this).attr('name', getTitleFieldName(eachImageContainer));
             }
+
+            if(totalHeadingFields === iCount){
+                spinnerDisable();
+            }
         });
+    }else{
+        spinnerDisable();
     }
 });
 

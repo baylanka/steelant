@@ -39,7 +39,7 @@
                     </li>
                 </ul>
 
-                <form action="<?= url('/admin/connectors/update') ?>">
+                <form action="<?= url('/admin/connectors/update') ?>" id="connector-update">
                     <input type="hidden" name="id" value="<?=$connector->id?>"/>
                     <div class="tab-content" id="myTabContent">
                         <?php include_once basePath('/views/admin/connectors/assets/edit.details_tab.view.php') ?>
@@ -73,37 +73,51 @@
 
     async function tabActiveEventHandler(tabPosition)
     {
-        const templateSettingArea = $('div.template-setting-container');
-        const spinnerContainer = $('.spinner-container');
-        if(tabPosition <= 3){
-            templateSettingArea.addClass('d-none');
-            spinnerContainer.removeClass('d-none');
-        }else{
-            const response = await update(spinnerContainer);
-            const templates = response.templatePreviews;
-            $('#nav-de').html(templates['de']);
-            $('#nav-uk').html(templates['en-gb']);
-            $('#nav-fr').html(templates['fr']);
-            $('#nav-us').html(templates['en-us']);
+        if(tabPosition > 2){
+            const templateId = $('input[name="template"]:checked').val();
+            if(isEmpty(templateId)){
+                toast.error("It is required to select a template to continue.");
+                const secondTab = $('.nav-item[data-position="2"]').find('a').trigger('click');
+                const tab = new bootstrap.Tab(secondTab[0]);
+                tab.show();
+                return;
+            }
+        }
 
-            const downlodableContents = response.downloadableContents;
-            $('#profile').replaceWith(downlodableContents);
-            templateSettingArea.removeClass('d-none');
-            spinnerContainer.addClass('d-none');
-            populateTitleFields();
+
+        if(tabPosition === 4){
+            try {
+                const response = await update();
+                const templates = response.templatePreviews;
+                $('#nav-de').html(templates['de']);
+                $('#nav-uk').html(templates['en-gb']);
+                $('#nav-fr').html(templates['fr']);
+                $('#nav-us').html(templates['en-us']);
+
+                const downlodableContents = response.downloadableContents;
+                $('#profile').replaceWith(downlodableContents);
+                populateTitleFields();
+            }catch(err){
+                toast.error(err);
+                const secondTab = $('.nav-item[data-position="1"]').find('a').trigger('click');
+                const tab = new bootstrap.Tab(secondTab[0]);
+                tab.show();
+            }
         }
     }
 
-    async function update(thisElement)
+    async function update()
     {
         return new Promise(async (resolve, reject)=>{
-
-            const form = thisElement.closest('div.modal-dialog').find('form');
+            const form = $("form#connector-update");
             try{
+                spinnerEnabled();
                 let response = await makePostFileRequest(form);
                 resolve(response);
             }catch (err){
                 reject(err);
+            }finally {
+                spinnerDisable();
             }
         });
 
@@ -117,7 +131,7 @@
         const btnLabel = btn.text();
         loadButton(btn, "updating ...");
         try{
-            const response = await update(btn);
+            const response = await update();
             toast.success(response.message);
             // raise an event to close the modal
             const event = new CustomEvent('updateCategorySuccessEvent', {
@@ -174,5 +188,5 @@
         });
     });
 </script>
-<script src="<?= assets("js/template-render.js") ?>"></script>
+<script src="<?= assets("js/template-render.js?v=1.0") ?>"></script>
 <!--<script src="--><?php //= assets("js/template-render.min.js") ?><!--"></script>-->
