@@ -163,7 +163,11 @@ class UpdateConnectorRequestMapper
         $downloadableArray = $request->get('downloadable', []);
         $downloadableFileURLArray = $request->get('downloadable_src', []);
 
-        if((empty($downloadableArray) || empty(array_filter(array_values($downloadableArray['name']))))
+        if(
+            (empty($downloadableArray)
+                || !isset($downloadableArray['name'])
+                || empty(array_filter(array_values($downloadableArray['name'])))
+            )
             &&  empty($downloadableFileURLArray))
         {
             return $contentTemplates;
