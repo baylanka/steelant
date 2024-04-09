@@ -156,7 +156,7 @@ toastr.options = {
     positionClass: "toast-top-right",
     preventDuplicates: false,
     onclick: null,
-    showDuration: "300",
+    showDuration: "450",
     hideDuration: "1000",
     timeOut: "5000",
     extendedTimeOut: "1000",
@@ -232,14 +232,17 @@ let validateFile = (identifier, extentions = null) => {
 
 // spinner Enable
 let spinnerEnabled = ()=>{
-    $('#overlay').removeClass('hide-element');
+    $('#overlay').removeClass('d-none');
     $('.spinner-area').html(`
-                 <p style="color:white;position: fixed;top:45vh;left:50%; font-size: 50px;opacity: 0.5;z-index: 1001;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
-                `)
+            <div class="spinner-border text-primary" role="status"
+                 style="position: fixed; top: 50%; right: 50%; z-index: 2000; width: 4rem; height: 4rem; border-width: 0.5em;">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+                `);
 }
 // spinner disble
 let spinnerDisable = ()=>{
-    $('#overlay').addClass('hide-element');
+    $('#overlay').addClass('d-none');
     $('.spinner-area').html("");
 }
 

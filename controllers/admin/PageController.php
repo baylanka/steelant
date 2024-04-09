@@ -20,11 +20,11 @@ class PageController extends BaseController
     public function index(Request $request)
     {
         $categories = Category::getAll();
-        $leafCategoryDTO = new LeafCategoryDTOCollection($categories,'de',
+        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,'de',
             ' <i class="bi bi-arrow-right text-success"></i> ');
         $data = [
             'heading' => "Pages",
-            'leaf_categories' => $leafCategoryDTO->getCollection()
+            'leaf_categories' => $leafCategoryDTOCollection
         ];
         return view("admin/pages/index.view.php", $data);
 

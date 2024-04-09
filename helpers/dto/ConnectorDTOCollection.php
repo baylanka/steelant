@@ -2,6 +2,8 @@
 
 namespace helpers\dto;
 
+use helpers\services\ConnectorService;
+
 class ConnectorDTOCollection
 {
     public static function getCollection($connectors, $lang, $separator): array
@@ -9,7 +11,7 @@ class ConnectorDTOCollection
         $collection = [];
         foreach ($connectors as $connector){
             $connector = json_decode(json_encode($connector));
-            $collection[] = new ConnectorDTO($connector, $lang, $separator);
+            $collection[] = ConnectorService::getDTOById($connector->id, $lang, $separator);
         }
         return $collection;
     }

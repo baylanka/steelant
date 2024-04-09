@@ -17,11 +17,10 @@ class AddOnController extends BaseController
     }
     public function index(Request $request)
     {
-        global $env;
         $categories = Category::getAll();
-        $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
+        $leafCategories = LeafCategoryDTOCollection::getCollection($categories);
         $data = [
-            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'leafCategories' => $leafCategories,
             'heading' => "Add-on"
         ];
         return view("admin/add-on-content/index.view.php", $data);

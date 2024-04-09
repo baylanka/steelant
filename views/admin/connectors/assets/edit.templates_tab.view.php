@@ -1,7 +1,6 @@
 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
     <div class="row w-100 p-5 flex-row justify-content-around">
-
         <?php foreach ($templates as $index=> $template): ?>
             <div class="form-check col-5 shadow m-2 p-2 set-checked">
                 <div class="d-flex justify-content-between p-3">
@@ -10,7 +9,7 @@
                     </label>
                     <input class="form-check-input" type="radio" name="template"
                            value="<?=$template->id?>"
-                           id="template"
+
                         <?= $connector->templateId === $template->id ? 'checked' : ''?>>
 
                 </div>

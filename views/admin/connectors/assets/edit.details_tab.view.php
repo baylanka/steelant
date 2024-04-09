@@ -145,7 +145,7 @@
                                 <i class="bi bi-arrow-bar-left"></i>
                             </button>
 
-                            <input type="text" class="form-control ml-1  label" placeholder="label">
+                            <input type="text" class="form-control ml-1  label"  placeholder="label" name="weight_label[]">
                             <span class="input-group-text">label</span>
                         </div>
 

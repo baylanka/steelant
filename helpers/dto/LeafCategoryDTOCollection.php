@@ -6,22 +6,13 @@ use helpers\services\CategoryService;
 
 class LeafCategoryDTOCollection
 {
-    private array $collection;
-    public function __construct($categories, $lang='de', $treeSeparator = ' > ')
+    public static function getCollection($categories, $lang='de', $treeSeparator = ' > ')
     {
-        $this->setCollection($categories, $lang, $treeSeparator);
-    }
-
-    public function setCollection($categories, $lang, $treeSeparator)
-    {
+        $collection = [];
         $categoriesContainer = CategoryService::groupLeafCategoriesAssociateWithParents($categories);
         foreach ($categoriesContainer as $categoryGroup){
-            $this->collection[] = new LeafCategoryDTO($categoryGroup, $lang, $treeSeparator);
+            $collection[] = new LeafCategoryDTO($categoryGroup, $lang, $treeSeparator);
         }
-    }
-
-    public function getCollection()
-    {
-        return $this->collection;
+        return $collection;
     }
 }

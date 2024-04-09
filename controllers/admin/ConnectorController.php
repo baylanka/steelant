@@ -18,6 +18,7 @@ use helpers\services\TemplateService;
 use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\ConnectorStoreRequestValidator;
+use helpers\validators\ConnectorUpdateRequestValidator;
 use model\Category;
 use model\Connector;
 use model\Template;
@@ -36,7 +37,6 @@ class ConnectorController extends BaseController
         $filters = $request->get('filters', []);
         $publishedStatus = $request->get('published', 'none');
         $connectorsFilter = new ConnectorFilter($lang,$search, $filters,$publishedStatus);
-
         $connectors = $connectorsFilter->getResult();
         $connectorDTOCollection = ConnectorDTOCollection::getCollection($connectors, $lang,
             '  <i class="bi bi-arrow-right text-success"></i>  ');
@@ -52,9 +52,9 @@ class ConnectorController extends BaseController
     {
         $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
         $categories = Category::getAll();
-        $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
+        $leafCategoryDTOCollection = LeafCategoryDTOCollection::getCollection($categories);
         $data = [
-            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'leafCategories' => $leafCategoryDTOCollection,
             'tableLang' => $lang
         ];
         return view("admin/connectors/short_create.view.php", $data);
@@ -72,7 +72,7 @@ class ConnectorController extends BaseController
             $connector = ConnectorStoreRequestMapper::getModel($request);
             $connector->save();
             $db->commit();
-            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
+            $connectorDTO = ConnectorService::getDTOById($connector->id, $lang, $separator);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
                 "data" => $connectorDTO
@@ -87,18 +87,13 @@ class ConnectorController extends BaseController
     {
         $lang = Translate::getLang();
         $categories = Category::getAll();
-        $leafCategoryDTO = new LeafCategoryDTOCollection($categories);
         $connectorId = $request->get('id');
-        $connector = ConnectorService::getConnectorAssociatedData($connectorId);
-        $connectorDTO = new ConnectorDTO($connector, $lang, '<');
-        $templates = TemplateRepository::getAllConnectors();
-        $templatePreviews = TemplateService::getAllLangTemplates($connector);
         $data = [
-            'leafCategories' => $leafCategoryDTO->getCollection(),
+            'leafCategories' => LeafCategoryDTOCollection::getCollection($categories),
             'tableLang' => $lang,
-            'connector' => $connectorDTO,
-            'templates' => $templates,
-            'templatePreviews' => $templatePreviews
+            'connector' => ConnectorService::getDTOById($connectorId, $lang),
+            'templates' => TemplateRepository::getAllConnectors(),
+            'templatePreviews' => TemplateService::getAllLangTemplates($connectorId)
         ];
 
         return view("admin/connectors/edit.view.php", $data);
@@ -109,17 +104,14 @@ class ConnectorController extends BaseController
         try{
             $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
             $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+            ConnectorUpdateRequestValidator::validate($request);
             $connector = UpdateConnectorRequestMapper::getModel($request);
             $connector->update();
-            $connector = ConnectorService::getConnectorAssociatedData($connector->id);
-            $connectorDTO = new ConnectorDTO($connector, $lang, $separator);
-            $templatePreviews = TemplateService::getAllLangTemplates($connector);
-            $downloadableContents = TemplateService::getDonwloadableFileTabTemplate($connectorDTO);
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
-                "data" => $connectorDTO,
-                'templatePreviews' => $templatePreviews,
-                'downloadableContents' => $downloadableContents
+                "data" => ConnectorService::getDTOById($connector->id, $lang, $separator),
+                'templatePreviews' => TemplateService::getAllLangTemplates($connector->id),
+                'downloadableContents' => TemplateService::getDonwloadableFileTabTemplateByConnectorId($connector->id, $lang)
             ]);
         }catch(\Exception $ex){
             parent::response($ex->getMessage(),[],422);
@@ -135,8 +127,7 @@ class ConnectorController extends BaseController
     public function showAllTemplates(Request $request)
     {
         $connectorId = $request->get('id');
-        $connector = ConnectorService::getConnectorAssociatedData($connectorId);
-        $templatePreviews = TemplateService::getAllLangTemplates($connector, Template::MODE_VIEW);
+        $templatePreviews = TemplateService::getAllLangTemplates($connectorId, Template::MODE_VIEW);
         $data = [
             'templates' => $templatePreviews
         ];

@@ -2,6 +2,7 @@
 
 namespace helpers\services;
 
+use helpers\dto\ConnectorDTO;
 use helpers\repositories\ConnectorRepository;
 use model\Connector;
 use model\Media;
@@ -17,5 +18,11 @@ class ConnectorService
         }
 
         return $connector;
+    }
+
+    public static function getDTOById(int $id, string $lang, $separator = '<')
+    {
+        $connector = self::getConnectorAssociatedData($id);
+        return new ConnectorDTO($connector, $lang, '<');
     }
 }

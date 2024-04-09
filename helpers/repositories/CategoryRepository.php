@@ -47,6 +47,9 @@ class CategoryRepository extends Category
 
         $db = $container->resolve('DB');
         $result = $db->queryAsArray($preparedStatement, $params)->first();
+        if(!$result){
+            return true;
+        }
         return (int)$result['exists'] === 0;
     }
 
@@ -85,6 +88,9 @@ class CategoryRepository extends Category
 
         $db = $container->resolve('DB');
         $result = $db->queryAsArray($preparedStatement, $params)->first();
+        if(!$result){
+            return true;
+        }
         return (int)$result['exists'] === 0;
     }
 
