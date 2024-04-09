@@ -41,3 +41,5 @@ $app->get('/admin/pages/view',  ["admin\PageController", "show"]);
 //Add-on routes
 $app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
 
+$app->get('/admin/users',  ["admin\UserController", "index"]);
+

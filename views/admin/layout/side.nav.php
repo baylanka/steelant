@@ -49,6 +49,14 @@
                     </a>
                 </li>
 
+                <li class="nav-item menu-open">
+                    <a href="<?= url("admin/users") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/users") ? 'active' :'' ?>">
+                        <i class="bi bi-people"></i>
+                        <p> Users </p>
+                    </a>
+                </li>
+
 
 
                 <!--                <li class="nav-header">TEMPLATES</li>-->

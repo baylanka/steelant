@@ -105,7 +105,16 @@
 
 
   "favourites_page": {
-    "favourites": "Favoris"
+    "favourites": "Favoris",
+    "your_request": "Votre demande",
+    "favourite_connectors": "Connecteurs favoris",
+    "project_name": "Titre du projet",
+    "connector_name": "Nom du connecteur",
+    "date_time_of_request": "Date/Heure de la demande",
+    "amount": "Montant (running m)",
+    "location": "Emplacement",
+    "country_state": "Pays / État",
+    "seen_on_date_or_time": "Vu le date/heure"
   },
 
 
