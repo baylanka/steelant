@@ -37,6 +37,9 @@ $app->delete('/admin/templates/destroy', ["admin\TemplateController", "destroy"]
 $app->get('/admin/pages',  ["admin\PageController", "index"]);
 $app->get('/admin/pages/view',  ["admin\PageController", "show"]);
 
+//contents routes
+$app->post('/admin/contents/display_order_update',  ["admin\ContentController", "updateDisplayOrderList"]);
+
 
 //Add-on routes
 $app->get('/admin/add-on',  ["admin\AddOnController", "index"]);

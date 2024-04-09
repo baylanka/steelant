@@ -36,8 +36,8 @@ use model\CategoryContent;
                 <table class="table table-striped">
                     <thead>
                     <tr class="text-center">
-                        <th></th>
-                        <th># display order</th>
+                        <th style="width: 5%"></th>
+                        <th style="width: 15%"># display order</th>
                         <th>type</th>
                         <th>name</th>
                         <th>status</th>
@@ -46,13 +46,19 @@ use model\CategoryContent;
                     </thead>
                     <tbody id="contents">
                         <?php foreach ($contents as $index => $content): ?>
-                            <tr class="text-center">
+                            <tr class="text-center" data-id="<?=$content['content_id']?>">
                                     <td>
                                         <i class="bi bi-list"></i>
                                     </td>
+
                                     <td class="order">
-                                        <?=($index+1)?>
+                                        <?=str_pad(($index+1),3,"0", STR_PAD_LEFT)?>
                                     </td>
+
+                                    <td>
+                                        <?=$content['element_name']?>
+                                    </td>
+
                                     <td>
                                         <?php
                                             $isConnector = $content['type'] == CategoryContent::TYPE_CONNECTOR
@@ -62,9 +68,7 @@ use model\CategoryContent;
                                         </span>
                                     </td>
 
-                                    <td>
-                                        <?=$content['element_name']?>
-                                    </td>
+
 
                                     <td>
                                         <?php
@@ -131,10 +135,10 @@ use model\CategoryContent;
             <table class="table table-striped">
                     <thead>
                         <tr class="text-center">
-                            <th></th>
-                            <th># display order</th>
-                            <th>type</th>
+                            <th style="width: 5%"></th>
+                            <th style="width: 15%"># display order</th>
                             <th>name</th>
+                            <th>type</th>
                             <th>status</th>
                             <th></th>
                         </tr>
@@ -155,10 +159,9 @@ use model\CategoryContent;
 
                     for (let i = 0; i < childrens.length; i++) {
                         let count = i + 1;
-                        childrens[i].getElementsByClassName("order")[0].textContent = count > 9 ? "" + count : "0" + count;
-
-                        document.getElementById("save-changes").removeAttribute("disabled");
+                        childrens[i].getElementsByClassName("order")[0].textContent = count.toString().padStart(3,"0");
                     }
+                    document.getElementById("save-changes").removeAttribute("disabled");
                 }
 
             });
@@ -168,14 +171,20 @@ use model\CategoryContent;
     function getConnectorRow(connector, rowNumber = null)
     {
         rowNumber = rowNumber === null ? $('#contents').find('tr').length + 1 : rowNumber;
+        rowNumber = rowNumber.toString().padStart(3,"0");
         return `
-                        <tr class="text-center">
+                        <tr class="text-center" data-id="${connector.contentId}">
                                 <td>
                                     <i class="bi bi-list"></i>
                                 </td>
                                 <td class="order">
                                     ${rowNumber}
                                 </td>
+
+                                <td>
+                                     ${connector.name}
+                                </td>
+
                                 <td>
 
                                     <span class="badge text-bg-secondary">
@@ -183,9 +192,7 @@ use model\CategoryContent;
                                     </span>
                                 </td>
 
-                                <td>
-                                     ${connector.name}
-                                </td>
+
 
                                 <td>
                                     <span class="badge ${connector.isPublished ? 'text-bg-success': 'text-bg-warning'}">
@@ -316,6 +323,61 @@ use model\CategoryContent;
             toast.error("An error occurred while attempting to open the view connector.. " + err);
         }
     });
+
+    $(document).on('click', '#save-changes', async function(e){
+        e.preventDefault();
+        spinnerEnabled();
+        const btn = $(this);
+        const btnText = btn.text();
+        loadButton(btn, 'loading ...');
+        const tbody = $('tbody#contents');
+        const trTags = tbody.find('tr');
+        if(tbody.length === 0 || trTags.length === 0){
+            return;
+        }
+
+        const contentList = await getContentList();
+        const data = {
+            'content_order' : contentList
+        }
+        const URL = `${getBaseUrl()}/admin/contents/display_order_update`;
+        try{
+            const response = await makeAjaxCall(URL, data);
+            toast.success(response.message);
+            resetButton(btn, btnText);
+            btn.attr("disabled", true);
+        }catch(err){
+            toast.error(err);
+        }finally {
+            spinnerDisable();
+        }
+
+
+    });
+
+    function getContentList()
+    {
+        return new Promise((resolve, reject)=>{
+            const lst = [];
+            const tbody = $('tbody#contents');
+            const trTags = tbody.find('tr');
+            if(tbody.length === 0 || trTags.length === 0){
+                resolve(lst);
+                return;
+            }
+
+            const totalTags = trTags.length;
+            let iCount = 0;
+            trTags.each(function(){
+                iCount++;
+                lst.push($(this).attr('data-id'));
+                if(iCount === totalTags){
+                    resolve(lst);
+                    return false;
+                }
+            });
+        });
+    }
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

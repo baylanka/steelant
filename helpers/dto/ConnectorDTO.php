@@ -32,6 +32,7 @@ class ConnectorDTO
 
     public ?int $templateId;
     public ?int $categoryId;
+    public ?int $contentId;
 
     public string $maxTensile;
     public string $maxTensile_m;
@@ -210,6 +211,26 @@ class ConnectorDTO
         }
 
         $this->templateId = null;
+    }
+
+    private function setContentId()
+    {
+        $this->setConnectorProperties();
+        $properties = $this->connectorProperties;
+
+        if(     !in_array('relations', $properties)
+            ||  !isset($this->connector->relations['meta_collection'])
+        ){
+            $this->downloadableFiles = [];
+            return;
+        }
+
+        foreach ($this->connector->relations['meta_collection'] as $each){
+            $this->contentId = $each->content_id;
+            return;
+        }
+
+        $this->contentId = null;
     }
 
     private function setDownloadableFiles(): void

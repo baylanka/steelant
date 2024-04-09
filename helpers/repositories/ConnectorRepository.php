@@ -83,6 +83,7 @@ class ConnectorRepository extends Connector
     {
         $sql = "
             SELECT
+                category_contents.id AS content_id,
                 content_templates.template_id AS template_id,
                 media.id AS media_id,
                 media.type AS media_type,

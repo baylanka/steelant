@@ -14,6 +14,7 @@ class CategoryContentRepository extends CategoryContent
                SELECT *
                         FROM (
                             SELECT
+                                   cc.id AS content_id,
                                    con.id AS element_id,
                                    con.name AS element_name,
                                    con.visibility AS status,
@@ -28,6 +29,7 @@ class CategoryContentRepository extends CategoryContent
                             UNION ALL
                         
                             SELECT
+                                   cc.id AS content_id,
                                    addc.id AS element_id,
                                    addc.title AS element_name,
                                    addc.visibility AS status,
@@ -49,6 +51,15 @@ class CategoryContentRepository extends CategoryContent
         ];
 
         return CategoryContent::queryAsArray($sql, $params)->get();
+    }
+
+    public static function updateContentsDisplayOrder(array $contentIdList)
+    {
+        foreach ($contentIdList as $index => $each){
+            self::updateById($each, [
+                'display_order_no' => ($index+1)
+            ]);
+        }
     }
 
     public static function deleteByCategoryId($categoryId)
