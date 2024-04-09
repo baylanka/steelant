@@ -5,8 +5,9 @@ namespace controllers\admin;
 use app\Request;
 use controllers\BaseController;
 use helpers\dto\LeafCategoryDTOCollection;
-use helpers\pools\LanguagePool;
+use helpers\repositories\CategoryContentRepository;
 use helpers\services\CategoryService;
+use helpers\translate\Translate;
 use model\Category;
 
 class PageController extends BaseController
@@ -27,13 +28,15 @@ class PageController extends BaseController
 
     public function show(Request $request)
     {
-        $lang = LanguagePool::GERMANY()->getLabel();
+        $lang = Translate::getLang();
         $categoryId = $request->get('id');
         $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
         $headingArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
         $heading  = implode($separator, $headingArray[$lang]);
+        $contents = CategoryContentRepository::getContentsInDisplayOrderByCategoryId($categoryId);
         $data = [
-            'heading' => $heading
+            'heading' => $heading,
+            'contents' => $contents
         ];
         return view("admin/pages/page.view.php", $data);
 

@@ -16,6 +16,7 @@ class CategoryContentRepository extends CategoryContent
                             SELECT
                                    con.id AS element_id,
                                    con.name AS element_name,
+                                   con.visibility AS status,
                                    cc.id AS category_content_id,
                                    cc.type,
                                    cc.display_order_no
@@ -29,6 +30,7 @@ class CategoryContentRepository extends CategoryContent
                             SELECT
                                    addc.id AS element_id,
                                    addc.title AS element_name,
+                                   addc.visibility AS status,
                                    cc.id AS category_content_id,
                                    cc.type,
                                    cc.display_order_no
