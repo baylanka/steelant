@@ -176,10 +176,77 @@ $(document).on("mouseleave","a.remove-image-btn",function (){
 
 
 $(document).off("click", "a.remove-image-btn");
-$(document).on("click","a.remove-image-btn",function (){
-    $(this).addClass("d-none");
+$(document).on("click","a.remove-image-btn",async function (){
+    const notice = `
+                <p class="text-danger"><b>If you reset the media:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                    <li>Previously set media file will be deleted permanently.</li>
+                </ol>
+            `;
 
-    // implement this to reset image
+    const mediaContainer = $(this).closest('.template-img-container');
+    const prevMediaPathHolder = mediaContainer.find('.file_src');
+    if(prevMediaPathHolder.length === 1){
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+    }
+
+    spinnerEnabled();
+    const removeBtn = $(this);
+    removeBtn.addClass("d-none");
+    const defaultImageURL = `${getBaseUrl()}/public/themes/user/img/img-size-180-180.png`;
+    let prevMediaPathHolderClonedValue = null;
+    if(prevMediaPathHolder.length === 1){
+        prevMediaPathHolderClonedValue = prevMediaPathHolder.clone();
+        prevMediaPathHolder.remove();
+    }
+
+    const mediaFileSelector = mediaContainer.find('.template-img-input');
+    const mediaFileSelectorNameAttr = mediaFileSelector.attr('name');
+    mediaFileSelector.removeAttr('name');
+
+    const mediaPlaceholderField = mediaContainer.find('.image-placeholder');
+    const mediaPlaceholderFieldNameAttr = mediaPlaceholderField.attr('name');
+    mediaPlaceholderField.removeAttr('name');
+
+    const mediaLanguageField = mediaContainer.find('.image-language');
+    const mediaLanguageFieldNameAttr = mediaLanguageField.attr('name');
+    mediaLanguageField.removeAttr('name');
+
+    const mediaShowCase = mediaContainer.find('.template-img');
+    const mediaShowCaseURL = mediaShowCase.attr('src');
+    mediaShowCase.attr('src', defaultImageURL);
+
+    try {
+        if(prevMediaPathHolder.length === 1){
+            const response = await update();
+            const templates = response.templatePreviews;
+            $('#nav-de').html(templates['de']);
+            $('#nav-uk').html(templates['en-gb']);
+            $('#nav-fr').html(templates['fr']);
+            $('#nav-us').html(templates['en-us']);
+
+            const downlodableContents = response.downloadableContents;
+            $('#profile').replaceWith(downlodableContents);
+        }
+
+    }catch(err){
+        toast.error(err);
+        removeBtn.removeClass("d-none");
+        if(!isEmpty(prevMediaPathHolderClonedValue)){
+            mediaContainer.append()
+        }
+
+        mediaFileSelector.attr('name', mediaFileSelectorNameAttr);
+        mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
+        mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);
+        mediaShowCase.attr('src', mediaShowCaseURL);
+    }finally {
+        spinnerDisable();
+    }
+
 });
 
 
