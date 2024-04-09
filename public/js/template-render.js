@@ -1,8 +1,7 @@
-function populateTitleFields()
-{
+function populateTitleFields() {
 
     $("span.template-img-heading").each(function () {
-        if($(this).find('input').length === 0){
+        if ($(this).find('input').length === 0) {
             let head_key = $(this).attr("data-heading");
             $(this).after(`
             <div class=" d-flex align-middle gap-2">
@@ -12,7 +11,7 @@ function populateTitleFields()
             </div>
         `);
             $(this).remove();
-        }else{
+        } else {
             $(this).remove();
         }
     });
@@ -26,7 +25,7 @@ $(document).on("click", "img.template-img", function () {
 
 
 $(document).off("change", "input.template-img-input");
-$(document).on("change", "input.template-img-input", async  function (e) {
+$(document).on("change", "input.template-img-input", async function (e) {
     e.preventDefault();
     spinnerEnabled();
     const inputField = $(this);
@@ -34,9 +33,9 @@ $(document).on("change", "input.template-img-input", async  function (e) {
     const inputFieldContainer = inputField.closest('.template-img-container');
     const imageLanguageField = inputFieldContainer.find('.image-language');
     const imagePlaceholderField = inputFieldContainer.find('.image-placeholder');
-    const imagePlaceholderValue= Number(inputFieldContainer.find('.image-placeholder').val());
+    const imagePlaceholderValue = Number(inputFieldContainer.find('.image-placeholder').val());
 
-    if(isEmpty(imageValue)){
+    if (isEmpty(imageValue)) {
         spinnerDisable();
         return;
     }
@@ -53,15 +52,15 @@ $(document).on("change", "input.template-img-input", async  function (e) {
     //once a field set name attributes, no need to assign again and again with incremented index value
     //for the reason keeps data-index attribute
     //if there is such an attribute then, it must be file added field
-    if(!inputField.attr('data-index')){
+    if (!inputField.attr('data-index')) {
         //getting image file set count
         let existingImageElementsCount = Number($('.template-img-input[data-file-set="true"]').length);
 
         //counting unique Image URL counts
         let srcArr = [];
-        $('.file_src').each(function(){
+        $('.file_src').each(function () {
             const src = $(this).val();
-            if(!srcArr.includes(src)){
+            if (!srcArr.includes(src)) {
                 srcArr.push(src)
             }
         });
@@ -85,16 +84,16 @@ $(document).on("change", "input.template-img-input", async  function (e) {
         inputField.attr('name', inputName);
         imageLanguageField.attr('name', LanguageFieldName);
         imagePlaceholderField.attr('name', placeholderFieldName);
-    }else{
+    } else {
         LanguageFieldName = imageLanguageField.attr('name');
-        placeholderFieldName =  imagePlaceholderField.attr('name');
+        placeholderFieldName = imagePlaceholderField.attr('name');
     }
 
 
     const totalImgContainer = $('.template-img-container').length;
     let iCount = 0;
     //treating all existing media containers
-    $('.template-img-container').each(function(){
+    $('.template-img-container').each(function () {
         iCount++;
         const otherContainer = $(this);
         const otherInputField = otherContainer.find('.template-img-input');
@@ -105,23 +104,29 @@ $(document).on("change", "input.template-img-input", async  function (e) {
         const otherElementPlaceHolderValue = Number(otherImagePlaceholderField.val());
 
 
-        if(imagePlaceholderValue === otherElementPlaceHolderValue
+        if (imagePlaceholderValue === otherElementPlaceHolderValue
             && otherImageTag.attr('data-default') == 'true'
-        ){
+        ) {
             otherImageLanguageField.attr('name', LanguageFieldName);
             otherImagePlaceholderField.attr('name', placeholderFieldName);
             otherContainer.find('.template-img').attr('src', imageContent);
             otherImageTag.attr('data-default', false);
         }
 
-        if(totalImgContainer === iCount){
+        if (totalImgContainer === iCount) {
             spinnerDisable();
         }
     });
+
+
+    $(this).closest("div.template-img-container").find("a.remove-image-btn").removeClass("d-none");
+    $('[data-toggle="tooltip"]').tooltip({
+        placement: 'bottom',
+    })
+
 });
 
-function getTitleFieldName(imageContainer)
-{
+function getTitleFieldName(imageContainer) {
     const imagePlaceHolder = imageContainer.find('.image-placeholder');
     const imagePlaceHolderName = imagePlaceHolder.length ? imagePlaceHolder.attr('name') : '';
     return imagePlaceHolderName.replace('placeholder', 'title');
@@ -146,14 +151,35 @@ $(document).on("change", ".img-heading", function () {
                 $(this).attr('name', getTitleFieldName(eachImageContainer));
             }
 
-            if(totalHeadingFields === iCount){
+            if (totalHeadingFields === iCount) {
                 spinnerDisable();
             }
         });
-    }else{
+    } else {
         spinnerDisable();
     }
 });
 
+
+$(document).off("mouseenter", "a.remove-image-btn");
+$(document).on("mouseenter","a.remove-image-btn",function (){
+    $(this).closest("div.template-img-container").find("img.template-img").css("filter","grayscale(1)")
+});
+
+
+$(document).off("mouseleave", "a.remove-image-btn");
+$(document).on("mouseleave","a.remove-image-btn",function (){
+    $(this).closest("div.template-img-container").find("img.template-img").css("filter","grayscale(0)")
+});
+
+
+
+
+$(document).off("click", "a.remove-image-btn");
+$(document).on("click","a.remove-image-btn",function (){
+    $(this).addClass("d-none");
+
+    // implement this to reset image
+});
 
 

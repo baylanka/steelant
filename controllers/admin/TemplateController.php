@@ -13,6 +13,7 @@ use helpers\validators\TemplateStoreRequestValidator;
 use helpers\validators\TemplateTypeUpdateRequestValidator;
 use model\Template;
 
+
 class TemplateController extends BaseController
 {
     public function __construct()
@@ -95,12 +96,12 @@ class TemplateController extends BaseController
         $db = $container->resolve('DB');
         try{
             TemplateDeleteRequestValidator::validate($request);
-            $db->beginTransaction();
+//            $db->beginTransaction();
             Template::deleteById($request->get('id'));
-            $db->commit();
+//            $db->commit();
             parent::response("Successfully deleted",);
         }catch(\Exception $ex){
-            $db->rollBack();
+//            $db->rollBack();
             parent::response($ex->getMessage(),[
                 $ex->getTraceAsString()
             ],422);
