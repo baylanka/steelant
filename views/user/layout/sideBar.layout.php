@@ -136,7 +136,7 @@ use helpers\translate\Translate;
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/register") ? "selected" : "" ?>"
                            href="<?= url("/register") ?>">
-                            <?= Translate::get("home_nav", "register") ?>
+                            <?= Translate::get("common", "register") ?>
                         </a>
                     </li>
                     <li class="nav-item" href="#">

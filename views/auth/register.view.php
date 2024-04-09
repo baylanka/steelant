@@ -124,8 +124,6 @@ use helpers\translate\Translate;
                                 <label class="form-control-placeholder required-field" for="password">
                                     <?= Translate::get("common", "password") ?>
                                 </label>
-                                <span toggle="#password-field"
-                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <p class="text-danger text-center error-msg"></p>
                             <p class="text-success text-center success-msg"></p>

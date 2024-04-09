@@ -50,8 +50,7 @@ use helpers\translate\Translate;
                         <p> <?= $_SESSION["user"]->name ?></p>
                     </li>
 
-                    <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <li class="user-footer d-flex justify-content-center">
                         <a href="<?= url("/logout") ?>" class="btn btn-default btn-flat float-end">Sign out</a>
                     </li>
                 </ul>

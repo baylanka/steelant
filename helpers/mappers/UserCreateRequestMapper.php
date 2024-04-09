@@ -14,7 +14,7 @@ class UserCreateRequestMapper
         $user = new User();
         $user->name = $request->get('name');
         $user->title = $request->get('title');
-        $user->type = User::USER;
+        $user->type = $request->get('type');
         $user->job_position = $request->get('job_position');
         $user->division = $request->get('division');
         $user->company_name = $request->get('company_name');
@@ -22,9 +22,9 @@ class UserCreateRequestMapper
         $user->email = $request->get('email');
         $user->website = $request->get('website');
         $user->phone = $request->get('phone');
-        $user->email_verified = 0;
+        $user->email_verified = 1;
         $user->password = password_hash(md5($request->get('password')), PASSWORD_BCRYPT);
-        $user->verification_key =bin2hex(openssl_random_pseudo_bytes(50));
+        $user->verification_key = bin2hex(openssl_random_pseudo_bytes(50));
 
         $user->newsletter = 0;
         if ($request->get("newsletter_subscribe") !== null && $request->get("newsletter_subscribe") == "on") {

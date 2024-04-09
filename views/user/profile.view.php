@@ -46,7 +46,7 @@ use helpers\translate\Translate;
         <div class="row justify-content-start my-5">
             <div class="col-12 col-md-6">
 
-                <form action="<?= url("/user/update") ?>" method="POST" class="update-form">
+                <form action="<?= url("/admin/user/update") ?>" method="POST" class="update-form">
 
 
                     <div class="form-group">
@@ -72,21 +72,21 @@ use helpers\translate\Translate;
                             <?= Translate::get("user_info", "job_position") ?>
                         </label>
                         <input type="text" class="form-control" name="job_position" value="<?= $user->job_position ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "job_position")) ?>">
+                               placeholder="<?= strtoupper(Translate::get("user_info", "job_position")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="division">
                             <?= Translate::get("user_info", "division") ?>
                         </label>
-                        <input type="text" class="form-control" name="division" value="<?= $user->division ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "division")) ?>">
+                        <input type="text" class="form-control" name="division" value="<?=  $user->division ?>"
+                               placeholder="<?= strtoupper(Translate::get("user_info", "division")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="comp-name">
                             <?= Translate::get("user_info", "company_name") ?>
                         </label>
                         <input type="text" class="form-control" name="company_name" value="<?= $user->company_name ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "company_name")) ?>">
+                               placeholder="<?= strtoupper(Translate::get("user_info", "company_name")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder required-field" for="country-state">
@@ -94,21 +94,21 @@ use helpers\translate\Translate;
                         </label>
                         <input type="text" class="form-control" name="country_or_state"
                                value="<?= $user->country_or_state ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "country_state")) ?>">
+                               placeholder="<?= strtoupper(Translate::get("user_info", "country_state")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="email">
                             <?= Translate::get("user_info", "website") ?>
                         </label>
                         <input type="text" class="form-control" name="website" value="<?= $user->website ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "website")) ?>">
+                               placeholder="<?= strtoupper(Translate::get("user_info", "website")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder" for="phone">
                             <?= Translate::get("user_info", "phone") ?>
                         </label>
                         <input type="text" class="form-control" name="phone" value="<?= $user->phone ?>"
-                               placeholder="<?= strtoupper(Translate::get("register_page", "phone")) ?>">
+                               placeholder="<?= strtoupper(Translate::get("user_info", "phone")) ?>">
                     </div>
                     <div class="form-group mt-4">
                         <label class="form-control-placeholder required-field" for="email">

@@ -7,9 +7,8 @@ use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\User;
 
-class UserUpdateRequestValidator
+class AdminUserCreateValidator
 {
-
     public static function validate(Request $request)
     {
 
@@ -19,19 +18,23 @@ class UserUpdateRequestValidator
             ResponseUtility::response("Please provide valid email.",423,["key"=>"email"]);
         }
 
-        $user =  User::query("SELECT COUNT(*) AS mail FROM users WHERE email=:email",["email"=>$request->get("email")])->first();
-        $currentUser =  User::query("SELECT email FROM users WHERE id=:id",["id"=>$_SESSION["user"]->id])->first();
-        if($request->get("email") !== $currentUser->email && $user->mail != 0){
-            ResponseUtility::response("Mail already in use.",423,["key"=>"email"]);
+        if(strlen($request->get("password")) < 8){
+            ResponseUtility::response("Password must contain 8 characters.",423,["key"=>"password"]);
         }
 
+        $user =  User::query("SELECT COUNT(*) AS mail FROM users WHERE email=:email",["email"=>$request->get("email")])->first();
+        if($user->mail != 0){
+            ResponseUtility::response("Mail already in use.",423,["key"=>"email"]);
+        }
 
     }
 
 
     private static function requireds(Request $request)
     {
-
+        if (!ValidatorUtility::required($request->all(),"type")) {
+            ResponseUtility::response("Please provide user type.",423,["key"=>"type"]);
+        }
         if (!ValidatorUtility::required($request->all(),"name")) {
             ResponseUtility::response("Please provide your name.",423,["key"=>"name"]);
         }
@@ -47,10 +50,10 @@ class UserUpdateRequestValidator
         if (!ValidatorUtility::required($request->all(),"email")) {
             ResponseUtility::response("Please provide your email.",423,["key"=>"email"]);
         }
-
+        if (!ValidatorUtility::required($request->all(),"password")) {
+            ResponseUtility::response("Please provide your password.",423,["key"=>"password"]);
+        }
 
     }
-
-
 
 }

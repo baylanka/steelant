@@ -36,12 +36,16 @@
         <div class="divider"></div>
 
 
-        <p class="mt-5 w-50">
-            Advantages of a registration:<br/>
-            - Request products easily!<br/>
-            - Save your requests and products (Favourites)!<br/>
-            - Receive latest connector information via newsletter (approx. 4 times / year)<br/>
-        </p>
+        <div class="row justify-content-start mt-5">
+            <div class="col-12 col-md-6">
+                <p>
+                    Advantages of a registration:<br/>
+                    - Request products easily!<br/>
+                    - Save your requests and products (Favourites)!<br/>
+                    - Receive latest connector information via newsletter (approx. 4 times / year)<br/>
+                </p>
+            </div>
+        </div>
 
 
         <?php
@@ -49,7 +53,7 @@
         if (isset($_SESSION["auth"]) && $_SESSION["auth"] == true) { ?>
 
 
-            <?php  if (intval($_SESSION["user"]->newsletter) === 1) { ?>
+            <?php if (intval($_SESSION["user"]->newsletter) === 1) { ?>
                 <a href="<?= url("/newsletter/unsubscribe") ?>" class="btn btn-primary background-blue my-5">
                     <i class="bi bi-x-lg m-2"></i> Unsubscribe
                 </a>

@@ -10,6 +10,7 @@ use helpers\dto\LeafCategoryDTOCollection;
 use helpers\filters\ConnectorFilter;
 use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\mappers\UpdateConnectorRequestMapper;
+use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
 use helpers\services\ConnectorService;
@@ -24,6 +25,11 @@ use model\Template;
 
 class ConnectorController extends BaseController
 {
+    public function __construct()
+    {
+        UserMiddleware::isLoggedIn();
+        UserMiddleware::isAdmin();
+    }
     public function index(Request $request)
     {
         $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();

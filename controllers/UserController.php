@@ -8,7 +8,7 @@ use helpers\dto\ConnectorDTO;
 use helpers\dto\UserDTO;
 use helpers\mappers\ConnectorStoreRequestMapper;
 use helpers\mappers\UserCreateRequestMapper;
-use helpers\middlewears\UserMiddlewear;
+use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\UserRepository;
 use helpers\services\UserService;
@@ -147,7 +147,7 @@ class UserController extends BaseController
 
     public function profile(Request $request)
     {
-        UserMiddlewear::isLoggedIn();
+        UserMiddleware::isLoggedIn();
         $data = [];
         return view("user/profile.view.php", $data);
     }
