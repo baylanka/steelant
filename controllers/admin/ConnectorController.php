@@ -55,7 +55,8 @@ class ConnectorController extends BaseController
         $leafCategoryDTOCollection = LeafCategoryDTOCollection::getCollection($categories);
         $data = [
             'leafCategories' => $leafCategoryDTOCollection,
-            'tableLang' => $lang
+            'tableLang' => $lang,
+            'categoryId' => $request->get('categoryId'),
         ];
         return view("admin/connectors/short_create.view.php", $data);
     }
@@ -93,7 +94,8 @@ class ConnectorController extends BaseController
             'tableLang' => $lang,
             'connector' => ConnectorService::getDTOById($connectorId, $lang),
             'templates' => TemplateRepository::getAllConnectors(),
-            'templatePreviews' => TemplateService::getAllLangTemplates($connectorId)
+            'templatePreviews' => TemplateService::getAllLangTemplates($connectorId),
+            'fixed_category' => $request->get('fixed_category', 0),
         ];
 
         return view("admin/connectors/edit.view.php", $data);

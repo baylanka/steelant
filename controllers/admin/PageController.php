@@ -43,7 +43,8 @@ class PageController extends BaseController
         $contents = CategoryContentRepository::getContentsInDisplayOrderByCategoryId($categoryId);
         $data = [
             'heading' => $heading,
-            'contents' => $contents
+            'contents' => $contents,
+            'categoryId' => $categoryId,
         ];
         return view("admin/pages/page.view.php", $data);
 

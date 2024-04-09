@@ -4,7 +4,13 @@
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="row w-100 p-5">
         <div class="col-12 mt-3">
-            <select class="form-select w-100 select2" name="category">
+            <select class="form-select w-100 select2"
+                    <?php if($fixed_category == 0): ?>
+                        name="category"
+                    <?php else: ?>
+                        disabled
+                    <?php endif; ?>
+            >
                 <option value="0" selected disabled>Select Category</option>
                 <?php foreach ($leafCategories as $leafCategory): ?>
                     <option value="<?= $leafCategory->id ?>"

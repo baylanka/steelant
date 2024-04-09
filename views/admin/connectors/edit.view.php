@@ -41,6 +41,9 @@
 
                 <form action="<?= url('/admin/connectors/update') ?>" id="connector-update">
                     <input type="hidden" name="id" value="<?=$connector->id?>"/>
+                    <?php if($fixed_category == 1): ?>
+                        <input type="hidden" name="category" value="<?=$connector->categoryId?>"/>
+                    <?php endif; ?>
                     <div class="tab-content" id="myTabContent">
                         <?php include_once basePath('/views/admin/connectors/assets/edit.details_tab.view.php') ?>
                         <?php include_once basePath('/views/admin/connectors/assets/edit.templates_tab.view.php') ?>

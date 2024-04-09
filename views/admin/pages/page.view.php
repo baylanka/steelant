@@ -28,7 +28,7 @@ use model\CategoryContent;
         </div>
         <div class="card-body p-3">
             <?php if(empty(sizeof($contents))): ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" role="alert" id="no-connector-alert">
                     <h4 class="alert-heading">No contents!</h4>
                     <p>No content has been created yet within the category to display.</p>
                 </div>
@@ -37,7 +37,7 @@ use model\CategoryContent;
                     <thead>
                     <tr class="text-center">
                         <th></th>
-                        <th># order</th>
+                        <th># display order</th>
                         <th>type</th>
                         <th>name</th>
                         <th>status</th>
@@ -123,38 +123,47 @@ use model\CategoryContent;
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
-    let contentBody = document.getElementById('contents');
-    new Sortable(contentBody, {
-        onEnd: function (evt) {
-            console.log(contentBody.children);
-
-
-            let childrens = contentBody.children;
-
-            for (let i = 0; i < childrens.length; i++) {
-
-                console.log(i);
-                let count = i + 1;
-                childrens[i].getElementsByClassName("order")[0].textContent = count > 9 ? "" + count : "0" + count;
-
-                document.getElementById("save-changes").removeAttribute("disabled");
-            }
-
-            // contentBody.children.forEach(function (){
-            //     console.log("dsfd");
-            // });
-        }
-
-    });
-
-    $("tbody.contents").click(function () {
-
-
-        alert("sf");
-    });
-</script>
-<script>
     const modalId = 'base-modal';
+
+    function getContentsTable()
+    {
+        return `
+            <table class="table table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th></th>
+                            <th># display order</th>
+                            <th>type</th>
+                            <th>name</th>
+                            <th>status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="contents">
+                    </tbody>
+            </table>
+        `;
+    }
+
+    function activateSortableRows()
+    {
+        let contentBody = document.getElementById('contents');
+        if(!isEmpty(contentBody)){
+            new Sortable(contentBody, {
+                onEnd: function (evt) {
+                    let childrens = contentBody.children;
+
+                    for (let i = 0; i < childrens.length; i++) {
+                        let count = i + 1;
+                        childrens[i].getElementsByClassName("order")[0].textContent = count > 9 ? "" + count : "0" + count;
+
+                        document.getElementById("save-changes").removeAttribute("disabled");
+                    }
+                }
+
+            });
+        }
+    }
 
     function getConnectorRow(connector, rowNumber = null)
     {
@@ -223,7 +232,7 @@ use model\CategoryContent;
     async function getConnectorEditModal(connectorId)
     {
         const language = "<?=Translate::getLang()?>";
-        let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}`;
+        let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}&fixed_category=1`;
         const trTag = $(`a.connector-edit[data-id="${connectorId}"]`).closest('tr');
         try {
             const modal = await loadModal(modalId, path);
@@ -250,10 +259,16 @@ use model\CategoryContent;
         }
     }
 
+    $(document).ready(function () {
+        if($('tbody#contents').length > 0){
+            activateSortableRows();
+        }
+    });
+
 
     $(document).on("click", "#create-connector", async function () {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/connectors/create?tableLang=${language}`;
+        let path = `admin/connectors/create?tableLang=${language}&categoryId=<?=$categoryId?>`;
         const btn = $(this);
         const loadingBtnText = btn.text();
         try {
@@ -266,7 +281,16 @@ use model\CategoryContent;
                 modal.hide();
                 const connector = event.originalEvent.detail.connector;
                 const row = getConnectorRow(connector);
+                const tbody = $('tbody#contents');
+                if(tbody.length === 0){
+                    $('.card-body').html(getContentsTable());
+                }
+
                 $('tbody#contents').append(row);
+
+                if(tbody.length === 0){
+                    activateSortableRows();
+                }
                 await getConnectorEditModal(connector.id);
             });
         } catch (err) {
