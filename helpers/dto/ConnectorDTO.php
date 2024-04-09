@@ -21,7 +21,8 @@ class ConnectorDTO
     public string $thickness_i;
     public string $thickness_m;
     public string $description_de;
-    public string $description_en;
+    public string $description_en_us;
+    public string $description_en_db;
     public string $description_fr;
     public string $standardLength;
     public string $standardLength_m;
@@ -64,7 +65,8 @@ class ConnectorDTO
 
     private function setLanguageDescriptions()
     {
-        $this->description_en = $this->connector->getDescriptionEn();
+        $this->description_en_us = $this->connector->getDescriptionEnUS();
+        $this->description_en_db = $this->connector->getDescriptionEnUK();
         $this->description_de = $this->connector->getDescriptionDe();
         $this->description_fr = $this->connector->getDescriptionFr();
     }
@@ -77,8 +79,9 @@ class ConnectorDTO
             case LanguagePool::GERMANY()->getLabel():
                 return  $this->description_de;
             case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->description_en_db;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->description_en;
+                return $this->description_en_us;
         }
     }
 

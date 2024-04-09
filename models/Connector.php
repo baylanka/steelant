@@ -139,9 +139,14 @@ class Connector extends BaseModel
         return $descriptionArray[$language];
     }
 
-    public function getDescriptionEn()
+    public function getDescriptionEnUS()
     {
-        return $this->getDescriptionByLang(LanguagePool::ENGLISH()->getLabel());
+        return $this->getDescriptionByLang(LanguagePool::US_ENGLISH()->getLabel());
+    }
+
+    public function getDescriptionEnUK()
+    {
+        return $this->getDescriptionByLang(LanguagePool::UK_ENGLISH()->getLabel());
     }
 
     public function getDescriptionDe()

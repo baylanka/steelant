@@ -66,17 +66,17 @@
                 Description (in Germany)
             </label>
             <textarea name="description_de" type="text"
-                      class="form-control w-50" rows="3"
-                      placeholder="Description (in Germany)" id="description"><?=$connector->description_de?></textarea>
+                      class="form-control w-50 description" rows="3"
+                      placeholder="Description (in Germany)"><?=$connector->description_de?></textarea>
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-3">
             <label for="description" class="align-items-center">
-                Description (in English)
+                Description (in English UK)
             </label>
-            <textarea name="description_en" type="text"
+            <textarea name="description_en_gb" type="text"
                       class="form-control w-50" rows="3"
-                      placeholder="Description (in English)" id="description"><?=$connector->description_en?></textarea>
+                      placeholder="Description (in English UK)"><?=$connector->description_en_db?></textarea>
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-3">
@@ -85,7 +85,16 @@
             </label>
             <textarea name="description_fr" type="text"
                       class="form-control w-50" rows="3"
-                      placeholder="Description (in French)" id="description"><?=$connector->description_fr?></textarea>
+                      placeholder="Description (in French)"><?=$connector->description_fr?></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in English US)
+            </label>
+            <textarea name="description_en_us" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in English US)"><?=$connector->description_en_us?></textarea>
         </div>
 
         <hr class="mt-3">

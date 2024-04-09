@@ -5,7 +5,8 @@ function populateTitleFields() {
             let head_key = $(this).attr("data-heading");
             $(this).after(`
             <div class=" d-flex align-middle gap-2">
-                <input class="img-heading form-control" type="text" data-heading="${head_key}" data-default="true" placeholder="Heading"
+                <input class="img-heading form-control" type="text" data-heading="${head_key}"
+                 data-default="true" placeholder="Heading"
              
                 > 
             </div>
@@ -104,6 +105,8 @@ $(document).on("change", "input.template-img-input", async function (e) {
         const otherElementPlaceHolderValue = Number(otherImagePlaceholderField.val());
 
 
+
+
         if (imagePlaceholderValue === otherElementPlaceHolderValue
             && otherImageTag.attr('data-default') == 'true'
         ) {
@@ -111,6 +114,7 @@ $(document).on("change", "input.template-img-input", async function (e) {
             otherImagePlaceholderField.attr('name', placeholderFieldName);
             otherContainer.find('.template-img').attr('src', imageContent);
             otherImageTag.attr('data-default', false);
+            otherImageTag.closest("div.template-img-container").find("a.remove-image-btn").removeClass("d-none");
         }
 
         if (totalImgContainer === iCount) {
@@ -186,8 +190,8 @@ $(document).on("click","a.remove-image-btn",async function (){
             `;
 
     const mediaContainer = $(this).closest('.template-img-container');
-    const prevMediaPathHolder = mediaContainer.find('.file_src');
-    if(prevMediaPathHolder.length === 1){
+    const prevMediaUrlHiddenField = mediaContainer.find('.file_src');
+    if(prevMediaUrlHiddenField.length === 1){
         if (!await isConfirmToProcess(notice, 'warning')) {
             return;
         }
@@ -197,10 +201,10 @@ $(document).on("click","a.remove-image-btn",async function (){
     const removeBtn = $(this);
     removeBtn.addClass("d-none");
     const defaultImageURL = `${getBaseUrl()}/public/themes/user/img/img-size-180-180.png`;
-    let prevMediaPathHolderClonedValue = null;
-    if(prevMediaPathHolder.length === 1){
-        prevMediaPathHolderClonedValue = prevMediaPathHolder.clone();
-        prevMediaPathHolder.remove();
+    let prevMediaPlaceHolderClonedValue = null;
+    if(prevMediaUrlHiddenField.length === 1){
+        prevMediaPlaceHolderClonedValue = prevMediaUrlHiddenField.clone();
+        prevMediaUrlHiddenField.remove();
     }
 
     const mediaFileSelector = mediaContainer.find('.template-img-input');
@@ -219,8 +223,16 @@ $(document).on("click","a.remove-image-btn",async function (){
     const mediaShowCaseURL = mediaShowCase.attr('src');
     mediaShowCase.attr('src', defaultImageURL);
 
+    const mediaHeadingField = mediaContainer.find('.img-heading');
+    let  mediaHeadingValue = mediaHeadingField.val();
+    let  mediaHeadingName = mediaHeadingField.attr('name');
+    if(mediaHeadingField.length > 0) {
+        mediaHeadingField.val('');
+        mediaHeadingField.attr('disabled', true);
+    }
+
     try {
-        if(prevMediaPathHolder.length === 1){
+        if(prevMediaUrlHiddenField.length === 1){
             const response = await update();
             const templates = response.templatePreviews;
             $('#nav-de').html(templates['de']);
@@ -230,19 +242,27 @@ $(document).on("click","a.remove-image-btn",async function (){
 
             const downlodableContents = response.downloadableContents;
             $('#profile').replaceWith(downlodableContents);
+
+
+            populateTitleFields();
         }
 
     }catch(err){
         toast.error(err);
         removeBtn.removeClass("d-none");
-        if(!isEmpty(prevMediaPathHolderClonedValue)){
-            mediaContainer.append()
+        if(!isEmpty(prevMediaPlaceHolderClonedValue)){
+            mediaContainer.append(prevMediaPlaceHolderClonedValue);
         }
 
         mediaFileSelector.attr('name', mediaFileSelectorNameAttr);
         mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
         mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);
         mediaShowCase.attr('src', mediaShowCaseURL);
+        if(mediaHeadingField.length > 0) {
+            mediaHeadingField.attr('name', mediaHeadingName);
+            mediaHeadingField.val(mediaHeadingValue);
+            mediaHeadingField.attr('disabled', false);
+        }
     }finally {
         spinnerDisable();
     }

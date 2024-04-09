@@ -41,7 +41,8 @@ class UpdateConnectorRequestMapper
     {
         return json_encode([
             LanguagePool::GERMANY()->getLabel() => $request->get('description_de', ''),
-            LanguagePool::ENGLISH()->getLabel() => $request->get('description_en', ''),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('description_en_us', ''),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('description_en_gb', ''),
             LanguagePool::FRENCH()->getLabel() => $request->get('description_fr', ''),
         ]);
     }
