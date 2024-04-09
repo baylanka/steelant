@@ -11,7 +11,7 @@ CREATE TABLE  IF NOT EXISTS   users
     email VARCHAR(255) NOT NULL UNIQUE,
     website VARCHAR(255) NULL,
     phone VARCHAR(100)  NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NULL,
     email_verified BOOLEAN,
     verification_key VARCHAR(255) UNIQUE,
     newsletter BOOLEAN,

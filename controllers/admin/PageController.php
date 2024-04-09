@@ -5,12 +5,18 @@ namespace controllers\admin;
 use app\Request;
 use controllers\BaseController;
 use helpers\dto\LeafCategoryDTOCollection;
+use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\services\CategoryService;
 use model\Category;
 
 class PageController extends BaseController
 {
+    public function __construct()
+    {
+        UserMiddleware::isLoggedIn();
+        UserMiddleware::isAdmin();
+    }
     public function index(Request $request)
     {
         $categories = Category::getAll();

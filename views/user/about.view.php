@@ -14,27 +14,31 @@
         </h5>
         <div class="divider"></div>
 
+        <div class="row justify-content-start mt-5">
+            <div class="col-12 col-md-6">
+                <p style="font-size: 0.9rem;">
+                    SteelWall ISH designs, develops, produces and sells interlocking systems (connector bars) to
+                    connect steel structures such as steel pipes (pipe-pilings), heavy steel profiles (H sheet-piles),
+                    and steel sheets with fi xed clutch bars (sheet piles) to build continuous, interconnected and
+                    extremely stable steel-support and steel-retention walls, commonly referred to as sheet-pile
+                    walls.<br/><br/><br/><br/>
 
-        <p class="responsive-width mt-5" style="font-size: 0.9rem;">
-            SteelWall ISH designs, develops, produces and sells interlocking systems (connector bars) to
-            connect steel structures such as steel pipes (pipe-pilings), heavy steel profiles (H sheet-piles),
-            and steel sheets with fi xed clutch bars (sheet piles) to build continuous, interconnected and
-            extremely stable steel-support and steel-retention walls, commonly referred to as sheet-pile
-            walls.<br/><br/><br/><br/>
+                    Over the last one hundred years, sheet-pile walls have seen their use skyrocket in applications
+                    such as excavation retention, bridge sites, quays, docks, water-lock walls, channels,
+                    fl ood protection, tunnels, underground parking garages, hazardous material leakage prevention,
+                    among many other applications.<br/><br/><br/><br/>
 
-            Over the last one hundred years, sheet-pile walls have seen their use skyrocket in applications
-            such as excavation retention, bridge sites, quays, docks, water-lock walls, channels,
-            fl ood protection, tunnels, underground parking garages, hazardous material leakage prevention,
-            among many other applications.<br/><br/><br/><br/>
+                    SteelWall connectors are third-generation technology that are manufactured at certified
+                    mills of the highest quality and precision. From an engineering, design, and ease-of-use
+                    standpoint they are a technologically superior product, extremely strong, easy to drive and
+                    are simply unbeatable from an economic efficiency point of view.<br/><br/><br/>
 
-            SteelWall connectors are third-generation technology that are manufactured at certified
-            mills of the highest quality and precision. From an engineering, design, and ease-of-use
-            standpoint they are a technologically superior product, extremely strong, easy to drive and
-            are simply unbeatable from an economic efficiency point of view.<br/><br/><br/>
-
-            Explore this website and contact a SteelWall representative to learn why SteelWall connectors are one of the
-            fastest growing construction industry products world-wide.
-        </p>
+                    Explore this website and contact a SteelWall representative to learn why SteelWall connectors are
+                    one of the
+                    fastest growing construction industry products world-wide.
+                </p>
+            </div>
+        </div>
     </div>
 
 

@@ -3,7 +3,7 @@
 namespace controllers\user;
 
 use app\Request;
-use helpers\middlewears\UserMiddlewear;
+use helpers\middlewares\UserMiddleware;
 use helpers\services\CategoryService;
 use model\Category;
 
@@ -52,7 +52,7 @@ class HomeController
     public function favourite(Request $request)
     {
 
-        UserMiddlewear::isLoggedIn();
+        UserMiddleware::isLoggedIn();
         $data = [];
         return view("user/favourite.view.php", $data);
 

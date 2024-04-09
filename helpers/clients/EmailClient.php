@@ -83,11 +83,64 @@ class EmailClient
         </html>
 
 ');
-
-
     }
 
 
+    public function sendCredentials($email,$password)
+    {
+        return $this->send($email, "New Account Credentials", '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Account Credentials</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <tr>
+                    <td align="center">
+                        <img src="https://www.steelwall.eu/de/images/sw%20logo%20rgb%20big-crop-u58751.jpg?crc=505838474" alt="Company Logo" style="max-width: 150px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h2 style="color: #333333;">Your Account Credentials</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 10px;">
+                        <p style="color: #666666;">Steelwall Admin has created an account for you. Please use these credentials to login.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 10px;">
+                        <p style="color: #666666;"><b>Mail :</b> '.$email.'</p><br/>
+                        <p style="color: #666666;"><b>Password :</b> '.$password.'</p><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 10px;">
+                        <small style="color: #333333;">This password is automatically generated. You can also update your password on the profile page. </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 20px;">
+                        <a href="'.url("/login").'" style="display: inline-block; background-color: #1d357c; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Login</a>
+                    </td>
+                </tr>
+                <tr style="padding-top: 50px;">
+                    <td align="center">
+                        <small style="color: #333333;">&copy; 2024 SteelWall. All rights reserved.</small>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
+
+');
+    }
 
     public function sendInquiryMail($request)
     {

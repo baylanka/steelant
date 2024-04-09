@@ -1,6 +1,5 @@
 <?php require_once "layout/start.layout.php" ?>
 
-
 <!--body section-->
 <div class="jumbotron">
 

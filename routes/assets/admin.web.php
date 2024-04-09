@@ -42,4 +42,5 @@ $app->get('/admin/pages/view',  ["admin\PageController", "show"]);
 $app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
 
 $app->get('/admin/users',  ["admin\UserController", "index"]);
-
+$app->get('/admin/users/create',  ["admin\UserController", "create"]);
+$app->post('/admin/users/create',  ["admin\UserController", "store"]);

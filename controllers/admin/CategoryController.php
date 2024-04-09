@@ -8,6 +8,7 @@ use helpers\dto\CategoryDTO;
 use helpers\mappers\MainCategoryStoreRequestMapper;
 use helpers\mappers\SubCategoryStoreRequestMapper;
 use helpers\mappers\UpdateCategoryRequestMapper;
+use helpers\middlewares\UserMiddleware;
 use helpers\repositories\CategoryRepository;
 use helpers\services\CategoryService;
 use helpers\utilities\ResponseUtility;
@@ -20,6 +21,11 @@ use model\Category;
 
 class CategoryController extends BaseController
 {
+    public function __construct()
+    {
+        UserMiddleware::isLoggedIn();
+        UserMiddleware::isAdmin();
+    }
     public function index(Request $request)
     {
         $categories = CategoryRepository::getAllByOrder();

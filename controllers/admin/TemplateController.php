@@ -6,6 +6,7 @@ use app\Request;
 use controllers\BaseController;
 use helpers\dto\TemplateDTO;
 use helpers\mappers\TemplateStoreRequestMapper;
+use helpers\middlewares\UserMiddleware;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\TemplateDeleteRequestValidator;
 use helpers\validators\TemplateStoreRequestValidator;
@@ -14,6 +15,11 @@ use model\Template;
 
 class TemplateController extends BaseController
 {
+    public function __construct()
+    {
+        UserMiddleware::isLoggedIn();
+        UserMiddleware::isAdmin();
+    }
     public function index(Request $request)
     {
         $templates = Template::getAll();

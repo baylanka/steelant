@@ -5,10 +5,16 @@ namespace controllers\admin;
 use app\Request;
 use controllers\BaseController;
 use helpers\dto\LeafCategoryDTOCollection;
+use helpers\middlewares\UserMiddleware;
 use model\Category;
 
 class AddOnController extends BaseController
 {
+    public function __construct()
+    {
+        UserMiddleware::isLoggedIn();
+        UserMiddleware::isAdmin();
+    }
     public function index(Request $request)
     {
         global $env;

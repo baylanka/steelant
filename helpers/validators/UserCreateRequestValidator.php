@@ -16,8 +16,6 @@ class UserCreateRequestValidator
 
         self::requireds($request);
 
-
-
         if (!ValidatorUtility::email($request->get("email"))) {
             ResponseUtility::response("Please provide valid email.",423,["key"=>"email"]);
         }

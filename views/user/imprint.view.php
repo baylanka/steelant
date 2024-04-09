@@ -36,39 +36,43 @@
 
         <div class="divider"></div>
 
+        <div class="row justify-content-start mt-5">
+            <div class="col-12 col-md-6">
+                <p>
+                    Publisher:<br/><br/>
+                    SteelWall ISH GmbH<br/>
+                    Tassilostr. 21<br/>
+                    82166 Gräfelfi ng<br/>
+                    Germany<br/><br/><br/><br/><br/>
 
-        <p class="mt-5 w-50">
-            Publisher:<br/><br/>
-            SteelWall ISH GmbH<br/>
-            Tassilostr. 21<br/>
-            82166 Gräfelfi ng<br/>
-            Germany<br/><br/><br/><br/><br/>
-
-            Managing Partner:<br/>
-            Richard Heindl<br/><br/><br/><br/>
-
-
-            Phone: +49-89-74 120 122<br/>
-            Fax: +49-89-74 120 128<br/>
-            Email: info@steelwall.eu<br/><br/><br/><br/><br/>
+                    Managing Partner:<br/>
+                    Richard Heindl<br/><br/><br/><br/>
 
 
-            Register Court:<br/><br/>
-            Company registration number Munich Register Court: HRB89130<br/>
-            VAT identification number: DE129389226<br/><br/><br/><br/><br/>
+                    Phone: +49-89-74 120 122<br/>
+                    Fax: +49-89-74 120 128<br/>
+                    Email: info@steelwall.eu<br/><br/><br/><br/><br/>
 
 
-            Legal Notice:<br/><br/>
-            All connectors are protected by design patents.
-            The content of these Internet pages is protected by copyright. A copy of the information
-            on the Internet pages may be saved to a single computer for non-commercial and personal
-            internal use. Graphics, texts, logos and pictures etc. may only be downloaded, duplicated,
-            copied, changed, published, sent, transferred or used in any other form with the written permission of
-            SteelWall ISH GmbH. Any product or company names quoted may be registered
-            trademarks or brand names, unauthorized use of which can lead to claims for compensation
-            and injunctive relief.
+                    Register Court:<br/><br/>
+                    Company registration number Munich Register Court: HRB89130<br/>
+                    VAT identification number: DE129389226<br/><br/><br/><br/><br/>
 
-        </p>
+
+                    Legal Notice:<br/><br/>
+                    All connectors are protected by design patents.
+                    The content of these Internet pages is protected by copyright. A copy of the information
+                    on the Internet pages may be saved to a single computer for non-commercial and personal
+                    internal use. Graphics, texts, logos and pictures etc. may only be downloaded, duplicated,
+                    copied, changed, published, sent, transferred or used in any other form with the written permission
+                    of
+                    SteelWall ISH GmbH. Any product or company names quoted may be registered
+                    trademarks or brand names, unauthorized use of which can lead to claims for compensation
+                    and injunctive relief.
+
+                </p>
+            </div>
+        </div>
 
     </div>
 
