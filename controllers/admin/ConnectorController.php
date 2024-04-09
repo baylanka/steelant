@@ -103,12 +103,16 @@ class ConnectorController extends BaseController
 
     public function update(Request $request)
     {
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        global $container;
+        $db = $container->resolve('DB');
         try{
-            $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
-            $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+            $db->beginTransaction();
             ConnectorUpdateRequestValidator::validate($request);
             $connector = UpdateConnectorRequestMapper::getModel($request);
             $connector->update();
+            $db->commit();
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
                 "data" => ConnectorService::getDTOById($connector->id, $lang, $separator),
@@ -116,6 +120,7 @@ class ConnectorController extends BaseController
                 'downloadableContents' => TemplateService::getDonwloadableFileTabTemplateByConnectorId($connector->id, $lang)
             ]);
         }catch(\Exception $ex){
+            $db->rollBack();
             parent::response($ex->getMessage(),[],422);
         }
     }
