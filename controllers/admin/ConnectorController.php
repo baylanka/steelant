@@ -28,7 +28,7 @@ class ConnectorController extends BaseController
     public function __construct()
     {
         UserMiddleware::isLoggedIn();
-        UserMiddleware::isAdmin();
+        UserMiddleware::isAdminOrDeveloper();
     }
     public function index(Request $request)
     {

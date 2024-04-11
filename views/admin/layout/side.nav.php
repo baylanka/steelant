@@ -59,15 +59,18 @@
 
 
 
-                <!--                <li class="nav-header">TEMPLATES</li>-->
-<!---->
-<!--                <li class="nav-item menu-open">-->
-<!--                    <a href="/" class="nav-link">-->
-<!--                        <i class="bi bi-link-45deg"></i>-->
-<!--                        <p> Connectors </p>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!---->
+                <?php if($_SESSION["user"]->type == "developer"): ?>
+                <li class="nav-header">For Developer</li>
+
+                <li class="nav-item menu-open">
+                    <a href="<?= url("admin/templates") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/templates") ? 'active' :'' ?>">
+                        <i class="bi bi-calendar4-range"></i>
+                        <p> Templates </p>
+                    </a>
+                </li>
+                <?php endif; ?>
+
 <!--                <li class="nav-item menu-open">-->
 <!--                    <a href="/" class="nav-link">-->
 <!--                        <i class="bi bi-speedometer"></i>-->

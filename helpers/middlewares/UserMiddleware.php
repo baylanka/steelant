@@ -18,4 +18,17 @@ class UserMiddleware
             header('Location: ' . url("/"));
     }
 
+
+    public static function isDeveloper()
+    {
+        if ($_SESSION["user"]->type != "developer")
+            header('Location: ' . url("admin/categories"));
+    }
+
+    public static function isAdminOrDeveloper()
+    {
+        if ($_SESSION["user"]->type != "admin" && $_SESSION["user"]->type != "developer")
+            header('Location: ' . url("/"));
+    }
+
 }
