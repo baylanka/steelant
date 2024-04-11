@@ -45,19 +45,6 @@ class ConnectorRepository extends Connector
         }
         return (int)$result['exists'] === 0;
     }
-    public static function getNextDisplayOrderOfCategoryId($categoryId)
-    {
-        $sql = "
-                SELECT display_order_no FROM category_contents
-                    WHERE leaf_category_id = :category_id
-                    ORDER BY display_order_no DESC;
-        ";
-        $params = ['category_id'=>$categoryId];
-        $content = CategoryContent::query($sql, $params)->first();
-        if(!$content)  return 1;
-
-        return $content->display_order_no + 1;
-    }
 
     public static function getConnectorById($id)
     {

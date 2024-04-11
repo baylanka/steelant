@@ -2,9 +2,7 @@
 
 namespace helpers\services;
 
-use helpers\dto\ConnectorDTO;
 use helpers\pools\LanguagePool;
-use model\Connector;
 use model\Template;
 
 class TemplateService

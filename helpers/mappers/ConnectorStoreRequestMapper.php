@@ -3,7 +3,7 @@
 namespace helpers\mappers;
 
 use app\Request;
-use helpers\repositories\ConnectorRepository;
+use helpers\repositories\CategoryRepository;
 use model\CategoryContent;
 use model\Connector;
 
@@ -22,7 +22,7 @@ class ConnectorStoreRequestMapper
     {
         $content = new CategoryContent();
         $content->leaf_category_id = $request->get('category');
-        $content->display_order_no =  ConnectorRepository::getNextDisplayOrderOfCategoryId($content->leaf_category_id);
+        $content->display_order_no = CategoryRepository::getNextDisplayOrderOfCategoryId($content->leaf_category_id);
         $content->type = CategoryContent::TYPE_CONNECTOR;
 
         return $content;

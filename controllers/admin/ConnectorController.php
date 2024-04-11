@@ -9,7 +9,7 @@ use helpers\dto\ConnectorDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\filters\ConnectorFilter;
 use helpers\mappers\ConnectorStoreRequestMapper;
-use helpers\mappers\UpdateConnectorRequestMapper;
+use helpers\mappers\ConnectorUpdateRequestMapper;
 use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
@@ -110,7 +110,7 @@ class ConnectorController extends BaseController
         try{
             $db->beginTransaction();
             ConnectorUpdateRequestValidator::validate($request);
-            $connector = UpdateConnectorRequestMapper::getModel($request);
+            $connector = ConnectorUpdateRequestMapper::getModel($request);
             $connector->update();
             $db->commit();
             ResponseUtility::sendResponseByArray([

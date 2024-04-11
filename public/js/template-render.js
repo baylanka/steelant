@@ -223,13 +223,6 @@ $(document).on("click","a.remove-image-btn",async function (){
     const mediaShowCaseURL = mediaShowCase.attr('src');
     mediaShowCase.attr('src', defaultImageURL);
 
-    const mediaHeadingField = mediaContainer.find('.img-heading');
-    let  mediaHeadingValue = mediaHeadingField.val();
-    let  mediaHeadingName = mediaHeadingField.attr('name');
-    if(mediaHeadingField.length > 0) {
-        mediaHeadingField.val('');
-        mediaHeadingField.attr('disabled', true);
-    }
 
     try {
         if(prevMediaUrlHiddenField.length === 1){
@@ -258,11 +251,6 @@ $(document).on("click","a.remove-image-btn",async function (){
         mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
         mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);
         mediaShowCase.attr('src', mediaShowCaseURL);
-        if(mediaHeadingField.length > 0) {
-            mediaHeadingField.attr('name', mediaHeadingName);
-            mediaHeadingField.val(mediaHeadingValue);
-            mediaHeadingField.attr('disabled', false);
-        }
     }finally {
         spinnerDisable();
     }

@@ -2,6 +2,7 @@
 
 namespace helpers\services;
 
+use model\ContentTemplateMedia;
 use model\Media;
 
 class MediaService
@@ -16,5 +17,16 @@ class MediaService
         $conditions = ['id'=>$excludeTemplateMediaId, 'media_id'=>$mediaIdToCheck];
         $contentTemplateMediaCount = Media::queryAsArray($sql, $conditions)->first();
         return (int)$contentTemplateMediaCount['result_count'] > 0;
+    }
+
+    public static function getMediaFromContentTemplateMedia(ContentTemplateMedia $contentTemplateMedia)
+    {
+        $existingMedia = Media::getFirstBy(['path' => $contentTemplateMedia->temp_media->path]);
+        if (!$existingMedia) {
+            $contentTemplateMedia->temp_media->save();
+            return $contentTemplateMedia->temp_media;
+        }
+
+        return $existingMedia;
     }
 }
