@@ -57,6 +57,14 @@
                     </a>
                 </li>
 
+                <li class="nav-item menu-open">
+                    <a href="<?= url("admin/orders") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/orders") ? 'active' :'' ?>">
+                        <i class="bi bi-cart"></i>
+                        <p> Orders <span class="badge text-bg-info">10</span></p>
+                    </a>
+                </li>
+
 
 
                 <?php if($_SESSION["user"]->type == "developer"): ?>
