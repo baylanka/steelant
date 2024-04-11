@@ -49,3 +49,6 @@ $app->get('/admin/add-on/create',  ["admin\AddOnController", "create"]);
 $app->get('/admin/users',  ["admin\UserController", "index"]);
 $app->get('/admin/users/create',  ["admin\UserController", "create"]);
 $app->post('/admin/users/create',  ["admin\UserController", "store"]);
+
+
+$app->get('/admin/orders',  ["admin\OrderController", "index"]);

@@ -231,4 +231,52 @@ class EmailClient
     }
 
 
+    public function sendOrderPlacedMail($request)
+    {
+        global $env;
+        $mail = $env["ORDER_RECEIVE_MAIL"];
+        return $this->send($mail, "New Order", '
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Order</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <tr>
+                    <td align="center">
+                        <img src="https://www.steelwall.eu/de/images/sw%20logo%20rgb%20big-crop-u58751.jpg?crc=505838474" alt="Company Logo" style="max-width: 150px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h2 style="color: #333333;">Contact Information</h2>
+                    </td>
+                </tr>
+                <tr>
+
+                        <table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                            <tr>
+                                <td style="padding-right: 10px;"><strong>Project:</strong></td>
+                                <td>' . $request->get("project") . '</td>
+                            </tr>
+                       
+                        </table>
+                </tr>
+            </table>
+        </body>
+        </html>
+
+');
+
+
+
+
+    }
+
+
 }
