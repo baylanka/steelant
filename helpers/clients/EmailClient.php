@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use helpers\translate\Translate;
 use PHPMailer\PHPMailer\Exception;
 
+
 require 'vendor/autoload.php';
 
 

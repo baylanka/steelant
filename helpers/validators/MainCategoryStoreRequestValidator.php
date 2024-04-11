@@ -115,11 +115,11 @@ class MainCategoryStoreRequestValidator
     {
         $nameArr = $request->get('name');
         return (
-            ValidatorUtility::max($nameArr[LanguagePool::GERMANY()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::GERMANY()->getLabel()],50)
             &&
-            ValidatorUtility::max($nameArr[LanguagePool::ENGLISH()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::ENGLISH()->getLabel()],50)
             &&
-            ValidatorUtility::max($nameArr[LanguagePool::FRENCH()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::FRENCH()->getLabel()],50)
         );
     }
 

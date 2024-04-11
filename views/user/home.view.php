@@ -24,21 +24,21 @@
                                         "fr" => "/cofferdam/larssen/Connecteurs-d-angle",
                                         "en" => "/cofferdam/larssen/corner-connectors"
                                 ]);
-                                 ?>?id=1" class="link color-black">Corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/omega-corner-connectors") ?>?id=2" class="link color-black">Omega corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/t-connectors") ?>?id=3" class="link color-black">T connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/cross-connectors") ?>?id=4" class="link color-black">Cross connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/weld-on-connectors") ?>?id=5" class="link color-black">Weld-on connectors</a></dd>
+                                 ?>?id=3" class="link color-black">Corner connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/larssen/omega-corner-connectors") ?>?id=4" class="link color-black">Omega corner connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/larssen/t-connectors") ?>?id=5" class="link color-black">T connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/larssen/cross-connectors") ?>?id=6" class="link color-black">Cross connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/larssen/weld-on-connectors") ?>?id=7" class="link color-black">Weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us-corner-connectors") ?>?id=6" class="link color-black">US Corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us-t-connectors") ?>?id=7" class="link color-black">US T connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us_-ross-connectors") ?>?id=8" class="link color-black">US Cross connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/mf-weld-on-connectors") ?>?id=9" class="link color-black">MF weld-on connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/ball+socket/us-corner-connectors") ?>?id=9" class="link color-black">US Corner connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/ball+socket/us-t-connectors") ?>?id=10" class="link color-black">US T connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/ball+socket/us_-ross-connectors") ?>?id=11" class="link color-black">US Cross connectors</a></dd>
+                            <dd><a href="<?= url("/cofferdam/ball+socket/mf-weld-on-connectors") ?>?id=12" class="link color-black">MF weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
-                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-corner-connector") ?>?id=10" class="link color-black">CF corner connector</a></dd>
-                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-weld-on-connector") ?>?id=11" class="link color-black">CF weld-on connector</a></dd>
+                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-corner-connector") ?>?id=14" class="link color-black">CF corner connector</a></dd>
+                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-weld-on-connector") ?>?id=15" class="link color-black">CF weld-on connector</a></dd>
                         </dl>
 
                     </div>
@@ -57,10 +57,10 @@
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile steel walls</p>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/mf") ?>?id=12" class="link color-black">MF</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/mdf") ?>?id=13" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/lpb") ?>?id=14" class="link color-black">LPB</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/fd") ?>?id=15" class="link color-black">FD</a></dd>
+                            <dd><a href="<?= url("/pipe-pile-steel-walls/mf") ?>?id=17" class="link color-black">MF</a></dd>
+                            <dd><a href="<?= url("/pipe-pile-steel-walls/mdf") ?>?id=18" class="link color-black">MDF</a></dd>
+                            <dd><a href="<?= url("/pipe-pile-steel-walls/lpb") ?>?id=19" class="link color-black">LPB</a></dd>
+                            <dd><a href="<?= url("/pipe-pile-steel-walls/fd") ?>?id=20" class="link color-black">FD</a></dd>
                         </dl>
 
                     </div>
@@ -76,9 +76,9 @@
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">H-pile walls</p>
-                            <dd><a href="<?= url("/h-pile-walls/mf") ?>?id=22" class="link color-black">MF</a></dd>
-                            <dd><a href="<?= url("/h-pile-walls/mdf") ?>?id=23" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= url("/h-pile-walls/fd") ?>?id=24" class="link color-black">FD</a></dd>
+                            <dd><a href="<?= url("/h-pile-walls/mf") ?>?id=30" class="link color-black">MF</a></dd>
+                            <dd><a href="<?= url("/h-pile-walls/mdf") ?>?id=31" class="link color-black">MDF</a></dd>
+                            <dd><a href="<?= url("/h-pile-walls/fd") ?>?id=32" class="link color-black">FD</a></dd>
                         </dl>
 
                     </div>
@@ -94,7 +94,7 @@
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">DTH driving method</p>
-                            <dd><a href="<?= url("/dth-driving-method/mf-dth") ?>?id=16" class="link color-black">MF DTH</a></dd>
+                            <dd><a href="<?= url("/dth-driving-method/mf-dth") ?>?id=22" class="link color-black">MF DTH</a></dd>
                         </dl>
                     </div>
                     <div class="col-2"></div>
@@ -111,9 +111,9 @@
                         <dl>
                             <p class="category-name">H-pile + sheet pile
                                 combined walls</p>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=25" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=26" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=27" class="link color-black">MDF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=34" class="link color-black">LPB (Larssen)</a></dd>
+                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=35" class="link color-black">MF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=36" class="link color-black">MDF (Ball + Socket)</a></dd>
                         </dl>
 
                     </div>
@@ -129,11 +129,11 @@
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile + sheet pile combined walls</p>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/l-(larssen)") ?>?id=17" class="link color-black">L (Larssen)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=18" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=19" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=20" class="link color-black">MDF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/cf-(cold-formed)") ?>?id=21" class="link color-black">CF (Cold Formed)</a></dd>
+                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/l-(larssen)") ?>?id=24" class="link color-black">L (Larssen)</a></dd>
+                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=25" class="link color-black">LPB (Larssen)</a></dd>
+                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=26" class="link color-black">MF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=27" class="link color-black">MDF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/cf-(cold-formed)") ?>?id=28" class="link color-black">CF (Cold Formed)</a></dd>
                         </dl>
 
                     </div>
@@ -149,7 +149,7 @@
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Cell structures</p>
-                            <dd><a href="<?= url("/cell-structures/fsc") ?>?id=28" class="link color-black">FSC</a></dd>
+                            <dd><a href="<?= url("/cell-structures/fsc") ?>?id=38" class="link color-black">FSC</a></dd>
                         </dl>
 
                     </div>

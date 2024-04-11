@@ -118,6 +118,17 @@
   },
 
 
+  "template_context": {
+    "steel_grade": "Steel grade",
+    "steel_thickness": "Steel thickness",
+    "standard_length": "Standard length",
+    "max_tensile_strength": "Max. tensile strength",
+    "weight": "Weight",
+    "description": "Description",
+    "request_this_connector": "Request this connector",
+    "remember_this_connector": "Remember this connector"
+  },
+
 
 
 

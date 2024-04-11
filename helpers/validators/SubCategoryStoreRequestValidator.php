@@ -168,13 +168,14 @@ class SubCategoryStoreRequestValidator
 
     private static function isUniqueNameSet($request)
     {
+        $parentId = $request->get('parent_id');
         $nameArr = $request->get('name');
         $nameEn = $nameArr[LanguagePool::ENGLISH()->getLabel()];
         $nameDe = $nameArr[LanguagePool::GERMANY()->getLabel()];
         $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
 
 
-        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr);
+        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr, $parentId);
     }
 
     private static function isUniqueTitleSet($request)

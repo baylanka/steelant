@@ -44,7 +44,7 @@ $app->get('/verify',  ["UserController", "verify_mail"]);
 
 
 
-$app->get('/connector',  ["user\ConnectorController", "index"]);
+$app->get('/connector',   ["user\ContentController", "getContentsByCategoryId"]);
 
 $app->get('/order/request',  ["user\OrderController", "create_view"]);
 $app->post('/order/request/create',  ["user\OrderController", "create"]);

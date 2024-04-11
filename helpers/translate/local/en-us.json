@@ -79,15 +79,10 @@
     "send": "Send",
     "your_message": "YOUR MESSAGE"
   },
-
-
   "profile_page": {
     "update": "Update",
     "profile": "Profile"
   },
-
-
-
   "favourites_page": {
     "favourites": "Favorites",
     "your_request": "Your requests",
@@ -100,8 +95,16 @@
     "country_state": "Country / State",
     "seen_on_date_or_time": "Seen on date / time"
   },
-
-
+  "template_context": {
+    "steel_grade": "Steel grade",
+    "steel_thickness": "Steel thickness",
+    "standard_length": "Standard length",
+    "max_tensile_strength": "Max. tensile strength",
+    "weight": "Weight",
+    "description": "Description",
+    "request_this_connector": "Request this connector",
+    "remember_this_connector": "Remember this connector"
+  },
 
 
 
