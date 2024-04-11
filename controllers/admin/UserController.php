@@ -19,7 +19,7 @@ class UserController extends BaseController
     public function __construct()
     {
         UserMiddleware::isLoggedIn();
-        UserMiddleware::isAdmin();
+        UserMiddleware::isAdminOrDeveloper();
     }
 
     public function index()
@@ -33,7 +33,6 @@ class UserController extends BaseController
 
     public function create()
     {
-
         $data = [];
         return view("admin/users/create.view.php", $data);
     }

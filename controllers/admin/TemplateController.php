@@ -19,7 +19,7 @@ class TemplateController extends BaseController
     public function __construct()
     {
         UserMiddleware::isLoggedIn();
-        UserMiddleware::isAdmin();
+        UserMiddleware::isDeveloper();
     }
     public function index(Request $request)
     {

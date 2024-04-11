@@ -53,13 +53,13 @@
                     <input type="search" class="form-control" placeholder="Search" aria-label="search"
                            aria-describedby="search" name="search"
                            value="<?= isset($_GET["search"]) ? $_GET["search"] : "" ?>" style="text-align: center;">
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    <button type="submit" class="btn btn-primary background-blue"><i class="bi bi-search"></i></button>
                 </div>
             </form>
 
 
             <div class="w-25 d-flex justify-content-end align-middle">
-                <button class="btn btn-sm btn-primary align-self-start" type="button" id="create-connector">Create
+                <button class="btn btn-sm btn-primary align-self-start background-blue" type="button" id="create-connector">Create
                     Connector
                 </button>
             </div>

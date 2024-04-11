@@ -11,7 +11,7 @@ use helpers\pools\LanguagePool;
         <div class="card-header">
             <h3 class="card-title"></h3>
             <div class="float-end">
-                <button id="add-main-category" class="btn btn-sm btn-primary">Add Main Category</button>
+                <button id="add-main-category" class="btn btn-sm btn-primary background-blue">Add Main Category</button>
             </div>
         </div> <!-- /.card-header -->
         <div class="card-body p-3">

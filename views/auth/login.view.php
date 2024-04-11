@@ -118,6 +118,7 @@ use helpers\translate\Translate;
                 if (response.auth) {
                     switch (response.data.type) {
                         case "admin":
+                        case "developer":
                             window.location.href = "<?php
 
                                 if (isset($_GET["redirect"])) {
@@ -128,7 +129,6 @@ use helpers\translate\Translate;
 
                                 ?>";
                             break
-
                         case "user":
                             window.location.href = "<?php
 

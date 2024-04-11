@@ -17,7 +17,7 @@ class AddOnController extends BaseController
     public function __construct()
     {
         UserMiddleware::isLoggedIn();
-        UserMiddleware::isAdmin();
+        UserMiddleware::isAdminOrDeveloper();
     }
     public function index(Request $request)
     {
@@ -31,13 +31,10 @@ class AddOnController extends BaseController
 
     }
 
-
-
-
-
     public function create(Request $request)
     {
-
+        $data = [];
+        return view("admin/add-on-content/create.view.php", $data);
     }
 
     public function store(Request $request)
