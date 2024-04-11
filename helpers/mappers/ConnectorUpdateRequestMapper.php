@@ -149,7 +149,13 @@ class ConnectorUpdateRequestMapper
         $imageUrlArray = $request->get('image_paths', []);
 
 
-        if((empty($imageFilesArray) || empty(array_filter(array_values($imageFilesArray['name'])))) &&  empty($imageUrlArray))
+        if(
+            (
+                    empty($imageFilesArray)
+                || !isset($downloadableArray['name'])
+                ||  empty(array_filter(array_values($imageFilesArray['name'])))
+            )
+            &&  empty($imageUrlArray))
         {
             return $contentTemplates;
         }
