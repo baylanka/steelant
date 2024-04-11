@@ -14,6 +14,7 @@ class OrderStoreRequestMapper
         $order->project = $request->get('project');
         $order->status = Order::STATUS_PENDING;
         $order->connector_id = $request->get('connectorId');
+        $order->user_id = $_SESSION["user"]->id;
         $order->number_of_piles = $request->get('connectorCount');
         $order->delivery_address = $request->get('delivery_address');
         $order->sheet_pile_name = $request->get('usedSheetPileName');
