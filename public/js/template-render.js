@@ -5,7 +5,8 @@ function populateTitleFields() {
             let head_key = $(this).attr("data-heading");
             $(this).after(`
             <div class=" d-flex align-middle gap-2">
-                <input class="img-heading form-control" type="text" data-heading="${head_key}" data-default="true" placeholder="Heading"
+                <input class="img-heading form-control" type="text" data-heading="${head_key}"
+                 data-default="true" placeholder="Heading"
              
                 > 
             </div>
@@ -104,6 +105,8 @@ $(document).on("change", "input.template-img-input", async function (e) {
         const otherElementPlaceHolderValue = Number(otherImagePlaceholderField.val());
 
 
+
+
         if (imagePlaceholderValue === otherElementPlaceHolderValue
             && otherImageTag.attr('data-default') == 'true'
         ) {
@@ -111,6 +114,7 @@ $(document).on("change", "input.template-img-input", async function (e) {
             otherImagePlaceholderField.attr('name', placeholderFieldName);
             otherContainer.find('.template-img').attr('src', imageContent);
             otherImageTag.attr('data-default', false);
+            otherImageTag.closest("div.template-img-container").find("a.remove-image-btn").removeClass("d-none");
         }
 
         if (totalImgContainer === iCount) {
@@ -176,10 +180,93 @@ $(document).on("mouseleave","a.remove-image-btn",function (){
 
 
 $(document).off("click", "a.remove-image-btn");
-$(document).on("click","a.remove-image-btn",function (){
-    $(this).addClass("d-none");
+$(document).on("click","a.remove-image-btn",async function (){
+    const notice = `
+                <p class="text-danger"><b>If you reset the media:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                    <li>Previously set media file will be deleted permanently.</li>
+                </ol>
+            `;
 
-    // implement this to reset image
+    const mediaContainer = $(this).closest('.template-img-container');
+    const prevMediaUrlHiddenField = mediaContainer.find('.file_src');
+    if(prevMediaUrlHiddenField.length === 1){
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+    }
+
+    spinnerEnabled();
+    const removeBtn = $(this);
+    removeBtn.addClass("d-none");
+    const defaultImageURL = `${getBaseUrl()}/public/themes/user/img/img-size-180-180.png`;
+    let prevMediaPlaceHolderClonedValue = null;
+    if(prevMediaUrlHiddenField.length === 1){
+        prevMediaPlaceHolderClonedValue = prevMediaUrlHiddenField.clone();
+        prevMediaUrlHiddenField.remove();
+    }
+
+    const mediaFileSelector = mediaContainer.find('.template-img-input');
+    const mediaFileSelectorNameAttr = mediaFileSelector.attr('name');
+    mediaFileSelector.removeAttr('name');
+
+    const mediaPlaceholderField = mediaContainer.find('.image-placeholder');
+    const mediaPlaceholderFieldNameAttr = mediaPlaceholderField.attr('name');
+    mediaPlaceholderField.removeAttr('name');
+
+    const mediaLanguageField = mediaContainer.find('.image-language');
+    const mediaLanguageFieldNameAttr = mediaLanguageField.attr('name');
+    mediaLanguageField.removeAttr('name');
+
+    const mediaShowCase = mediaContainer.find('.template-img');
+    const mediaShowCaseURL = mediaShowCase.attr('src');
+    mediaShowCase.attr('src', defaultImageURL);
+
+    const mediaHeadingField = mediaContainer.find('.img-heading');
+    let  mediaHeadingValue = mediaHeadingField.val();
+    let  mediaHeadingName = mediaHeadingField.attr('name');
+    if(mediaHeadingField.length > 0) {
+        mediaHeadingField.val('');
+        mediaHeadingField.attr('disabled', true);
+    }
+
+    try {
+        if(prevMediaUrlHiddenField.length === 1){
+            const response = await update();
+            const templates = response.templatePreviews;
+            $('#nav-de').html(templates['de']);
+            $('#nav-uk').html(templates['en-gb']);
+            $('#nav-fr').html(templates['fr']);
+            $('#nav-us').html(templates['en-us']);
+
+            const downlodableContents = response.downloadableContents;
+            $('#profile').replaceWith(downlodableContents);
+
+
+            populateTitleFields();
+        }
+
+    }catch(err){
+        toast.error(err);
+        removeBtn.removeClass("d-none");
+        if(!isEmpty(prevMediaPlaceHolderClonedValue)){
+            mediaContainer.append(prevMediaPlaceHolderClonedValue);
+        }
+
+        mediaFileSelector.attr('name', mediaFileSelectorNameAttr);
+        mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
+        mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);
+        mediaShowCase.attr('src', mediaShowCaseURL);
+        if(mediaHeadingField.length > 0) {
+            mediaHeadingField.attr('name', mediaHeadingName);
+            mediaHeadingField.val(mediaHeadingValue);
+            mediaHeadingField.attr('disabled', false);
+        }
+    }finally {
+        spinnerDisable();
+    }
+
 });
 
 

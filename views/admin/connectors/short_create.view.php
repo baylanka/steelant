@@ -8,12 +8,25 @@
         <div class="modal-body p-2">
             <form action="<?=url('/admin/connectors')?>">
                 <input type="hidden" name="tableLang" value="<?=$tableLang?>">
+                <?php if(!is_null($categoryId)): ?>
+                    <input type="hidden" name="category" value="<?=$categoryId?>">
+                    <input type="hidden" name="fixed_category" value="true">
+                <?php endif; ?>
                 <div class="row w-100 p-2">
                         <div class="col-12 mt-3">
-                            <select class="form-select w-100 select2" name="category">
+                            <select class="form-select w-100 select2"
+                                <?php if(is_null($categoryId)): ?>
+                                    name="category"
+                                <?php else:?>
+                                    disabled
+                                <?php endif ?>
+                            >
                                 <option value="0" selected disabled>Select Category</option>
                                 <?php foreach ($leafCategories as $leafCategory): ?>
-                                    <option value="<?= $leafCategory->id ?>">
+                                    <option
+                                        value="<?= $leafCategory->id ?>"
+                                        <?= (!is_null($categoryId) && $categoryId == $leafCategory->id) ? 'selected' : ''?>
+                                    >
                                         <?= $leafCategory->treePathStr ?>
                                     </option>
                                 <?php endforeach; ?>

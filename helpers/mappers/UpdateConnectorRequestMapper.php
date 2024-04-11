@@ -41,7 +41,8 @@ class UpdateConnectorRequestMapper
     {
         return json_encode([
             LanguagePool::GERMANY()->getLabel() => $request->get('description_de', ''),
-            LanguagePool::ENGLISH()->getLabel() => $request->get('description_en', ''),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('description_en_us', ''),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('description_en_gb', ''),
             LanguagePool::FRENCH()->getLabel() => $request->get('description_fr', ''),
         ]);
     }
@@ -163,7 +164,11 @@ class UpdateConnectorRequestMapper
         $downloadableArray = $request->get('downloadable', []);
         $downloadableFileURLArray = $request->get('downloadable_src', []);
 
-        if((empty($downloadableArray) || empty(array_filter(array_values($downloadableArray['name']))))
+        if(
+            (empty($downloadableArray)
+                || !isset($downloadableArray['name'])
+                || empty(array_filter(array_values($downloadableArray['name'])))
+            )
             &&  empty($downloadableFileURLArray))
         {
             return $contentTemplates;

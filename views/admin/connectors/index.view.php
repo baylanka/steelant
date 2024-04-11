@@ -390,7 +390,6 @@
     $(document).on("click", ".connector-view", async function (e) {
         e.preventDefault();
         const connectorId = $(this).attr('data-id');
-        const language = $('img.selected-flag').closest('a').attr('data-lang');
         let path = `admin/connectors/templates?id=${connectorId}`;
         try {
             const modal = await loadModal(modalId, path);

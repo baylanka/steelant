@@ -49,7 +49,7 @@ class ConnectorRepository extends Connector
     {
         $sql = "
                 SELECT display_order_no FROM category_contents
-                    WHERE display_order_no = :category_id
+                    WHERE leaf_category_id = :category_id
                     ORDER BY display_order_no DESC;
         ";
         $params = ['category_id'=>$categoryId];
@@ -83,6 +83,7 @@ class ConnectorRepository extends Connector
     {
         $sql = "
             SELECT
+                category_contents.id AS content_id,
                 content_templates.template_id AS template_id,
                 media.id AS media_id,
                 media.type AS media_type,
