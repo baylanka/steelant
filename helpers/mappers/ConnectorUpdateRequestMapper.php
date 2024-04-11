@@ -12,7 +12,7 @@ use model\ContentTemplate;
 use model\ContentTemplateMedia;
 use model\Media;
 
-class UpdateConnectorRequestMapper
+class ConnectorUpdateRequestMapper
 {
     public static function getModel(Request $request): Connector
     {

@@ -4,8 +4,12 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\dto\AddOnDTO;
 use helpers\dto\LeafCategoryDTOCollection;
+use helpers\mappers\AddOnContentStoreRequestMapper;
 use helpers\middlewares\UserMiddleware;
+use helpers\utilities\ResponseUtility;
+use helpers\validators\AddOnContentStoreRequestValidator;
 use model\Category;
 
 class AddOnController extends BaseController
@@ -38,7 +42,22 @@ class AddOnController extends BaseController
 
     public function store(Request $request)
     {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            AddOnContentStoreRequestValidator::validate($request);
+            $addOnContent = AddOnContentStoreRequestMapper::getModel($request);
+            $addOnContent->save();
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully stored",
+                "data" => new AddOnDTO($addOnContent),
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function edit(Request $request)

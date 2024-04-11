@@ -6,6 +6,7 @@ use helpers\pools\LanguagePool;
 use helpers\repositories\ConnectorRepository;
 use helpers\repositories\ContentTemplateMediaRepository;
 use helpers\services\CategoryService;
+use helpers\services\ContentTemplateService;
 use model\BaseModel;
 
 class Connector extends BaseModel
@@ -125,7 +126,8 @@ class Connector extends BaseModel
         //delete previous content templates media, with its associated `media`
         ContentTemplateMediaRepository::deleteContentTemplateMediaByContentId($content->id);
         //update new content-templates, its template media
-        $this->updateContentTemplates();
+        $contentTemplatesArray =  $this->temp_content_templates ?? [];
+        ContentTemplateService::updateContentTemplates($contentTemplatesArray);
     }
 
     public function getDescriptionByLang(string $language)
@@ -157,38 +159,5 @@ class Connector extends BaseModel
     public function getDescriptionFr()
     {
         return $this->getDescriptionByLang(LanguagePool::FRENCH()->getLabel());
-    }
-
-
-    private function updateContentTemplates()
-    {
-        foreach ($this->temp_content_templates ?? [] as $content_template)
-        {
-            $content_template->save();
-            $this->updateContentTemplateMedia($content_template);
-        }
-    }
-
-    private function updateContentTemplateMedia(ContentTemplate $content_template)
-    {
-        $contentTemplateMediaArray = $content_template->temp_content_template_media ?? [];
-        foreach ($contentTemplateMediaArray as $each)
-        {
-            $each->content_template_id = $content_template->id;
-            $media = $this->getUpdatedMedia($each);
-            $each->media_id = $media->id;
-            $each->save();
-        }
-    }
-
-    private function getUpdatedMedia(ContentTemplateMedia $contentTemplateMedia)
-    {
-        $existingMedia = Media::getFirstBy(['path' => $contentTemplateMedia->temp_media->path]);
-        if(!$existingMedia){
-            $contentTemplateMedia->temp_media->save();
-            return $contentTemplateMedia->temp_media;
-        }
-
-        return $existingMedia;
     }
 }
