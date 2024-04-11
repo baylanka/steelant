@@ -18,19 +18,17 @@ class CategoryRepository extends Category
         ];
 
         $preparedStatement = "
-            SELECT COUNT(*) > 0 AS 'exists'
+            SELECT *
             FROM categories WHERE ";
 
         if (!is_null($parentId) && !is_null($exceptId)) {
             $params['parentId'] = $parentId;
-            $params['exceptId '] = $exceptId;
-            $preparedStatement .= " parent_category_id <> :parentId AND id <> :exceptId AND (";
+            $preparedStatement .= " parent_category_id = :parentId AND id <> $exceptId AND (";
         }elseif (!is_null($exceptId)) {
-            $params['exceptId '] = $exceptId;
-            $preparedStatement .= " id <> :exceptId AND (";
+            $preparedStatement .= " id <> $exceptId AND (";
         }elseif(!is_null($parentId)){
             $params['parentId'] = $parentId;
-            $preparedStatement .= " parent_category_id <> :parentId AND (";
+            $preparedStatement .= " parent_category_id = $parentId AND (";
         }
 
         $preparedStatement .= "

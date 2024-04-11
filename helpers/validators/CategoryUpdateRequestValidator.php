@@ -179,7 +179,6 @@ class CategoryUpdateRequestValidator
         $nameDe = $nameArr[LanguagePool::GERMANY()->getLabel()];
         $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
 
-
         return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr, $parentId,
             $updatingCategoryId);
     }
