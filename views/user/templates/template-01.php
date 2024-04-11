@@ -1,6 +1,7 @@
 <?php
 
 use model\Template;
+use helpers\translate\Translate;
 
 ?>
 <div class="row my-5 w-100">
@@ -9,23 +10,19 @@ use model\Template;
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
 
-            <dd class="custom-dd custom-font">Steel
-                grade: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-            <dd class="custom-dd custom-font">Steel
-                thickness: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
-            <dd class="custom-dd custom-font">Standard
-                length: <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
-            <dd class="custom-dd custom-font">Max. tensile
-                strength: <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context","steel_grade") ?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context","steel_thickness") ?>: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context","standard_length") ?>: <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context","max_tensile_strength") ?>: <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
 
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
-                <dd class="custom-dd custom-font">Weight: ---</dd>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context","weight") ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font">Weight <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
+                    <dd class="custom-dd custom-font"><?= Translate::get("template_context","weight") ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <dd class="my-4 custom-font">Description: <?= empty($connector->getDescriptionOfLang())
+            <dd class="my-4 custom-font"><?= Translate::get("template_context","description") ?>: <?= empty($connector->getDescriptionOfLang())
                     ? '---' : $connector->getDescriptionOfLang() ?></dd>
 
             <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
@@ -35,10 +32,10 @@ use model\Template;
             <?php endforeach; ?>
 
             <dd class="custom-dd custom-font request-connector-btn" data-id="<?= $connector->id ?>"
-                style="cursor: pointer;"><a class="link color-black">Request this connector</a>
+                style="cursor: pointer;"><a class="link color-black"><?= Translate::get("template_context","request_this_connector") ?></a>
             </dd>
             <dd class="custom-dd custom-font d-flex align-middle gap-3" data-id="<?= $connector->id ?>">
-                <a href="#" class="link color-black">Remember this connector</a>
+                <a href="#" class="link color-black"><?= Translate::get("template_context","remember_this_connector") ?></a>
                 <img class="align-self-center" src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
             </dd>
 
