@@ -122,11 +122,11 @@ class SubCategoryStoreRequestValidator
     {
         $nameArr = $request->get('name');
         return (
-            ValidatorUtility::min($nameArr[LanguagePool::GERMANY()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::GERMANY()->getLabel()],2)
             &&
-            ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],2)
             &&
-            ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],2)
         );
     }
 

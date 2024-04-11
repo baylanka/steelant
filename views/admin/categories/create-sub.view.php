@@ -14,7 +14,7 @@
                         (of
                         <?php $i=0; ?>
                         <?php foreach ($categoryTree as $category): ?>
-                            <span class="text-danger"><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></span>
+                            <span class="text-info"><?= $category->getNameByLang(LanguagePool::ENGLISH()->getLabel()) ?></span>
                             <?= $i != (sizeof($categoryTree)-1) ? "  >>  " : '' ?>
                             <?php $i++; ?>
                         <?php endforeach;?>
