@@ -93,7 +93,7 @@ class Template extends BaseModel
 
     public function isDeletable()
     {
-        return !CategoryContent::existsBy(['template_id'=>$this->id]);
+        return !ContentTemplate::existsBy(['template_id'=>$this->id]);
     }
 
     public static function deleteById(int $id)
