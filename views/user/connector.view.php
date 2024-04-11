@@ -9,16 +9,16 @@
 
 
         <!--categories section-->
-        <div class="row w-100 p-5">
+        <div class="row w-100 py-5">
 
 
-            <div class="col-12 row gap-3 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
-                <div class="col-md-2 col-12">
-                    <p class="category-name">Cofferdam</p>
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
+                    <p class="category-name">Cofferdam</p>
                 </div>
 
-                <div class="col-md-8 col-12 d-flex flex-wrap justify-content-between">
+                <div class="col-md-7 col-12 d-flex flex-wrap justify-content-between">
                     <dl>
                         <dt class="color-blue">LARSSEN</dt>
                         <dd><a href="<?= url("/connector") ?>?id=3"
@@ -66,11 +66,11 @@
 
             </div>
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] < 16 || $_GET["id"] > 20  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 16 || $_GET["id"] > 20  ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 p-0">
-                    <p class="category-name">Pipe pile steel walls</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
+                    <p class="category-name">Pipe pile steel walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
@@ -89,11 +89,11 @@
 
             </div>
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] != 22  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] != 22  ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 p-0">
-                    <p class="category-name">DTH driving method</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
+                    <p class="category-name">DTH driving method</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
@@ -107,11 +107,11 @@
             </div>
 
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] < 23 || $_GET["id"] > 28  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 23 || $_GET["id"] > 28  ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 p-0">
-                    <p class="category-name">Pipe pile + sheet pile combined walls</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
+                    <p class="category-name">Pipe pile + sheet pile combined walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
@@ -138,11 +138,11 @@
             </div>
 
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] < 29 || $_GET["id"] > 32  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 29 || $_GET["id"] > 32  ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 p-0">
-                    <p class="category-name">H-pile walls</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
+                    <p class="category-name">H-pile walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
@@ -159,11 +159,11 @@
 
             </div>
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] < 33 || $_GET["id"] > 36  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 33 || $_GET["id"] > 36  ? "d-none" : "" ?> ">
 
-                <div class="col-md-5 col-12 p-0">
-                    <p class="category-name">H-pile + sheet pile combined walls</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
+                    <p class="category-name">H-pile + sheet pile combined walls</p>
                 </div>
                 <div class="col-md-5 col-12 p-0">
                     <dl>
@@ -183,11 +183,11 @@
 
             </div>
 
-            <div class="col-12  row gap-3 <?= $_GET["id"] != 38  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] != 38  ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 p-0">
-                    <p class="category-name">Cell structures</p>
+                <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Cell-structures.png") ?>" height="60"/>
+                    <p class="category-name">Cell structures</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
