@@ -22,12 +22,4 @@ class ContentTemplateMediaRepository extends ContentTemplateMedia
         }
     }
 
-    public static function deleteContentTemplateMediaByContentId(int $contentId)
-    {
-        $contentTemplates = ContentTemplate::getAllBy(['content_id' => $contentId]);
-        foreach ($contentTemplates as $each) {
-            //NOTE: DON'T DELETE ContentTemplate.
-            ContentTemplateMediaRepository::deleteTemplateMediaByContentTemplateId($each->id);
-        }
-    }
 }
