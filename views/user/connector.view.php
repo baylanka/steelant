@@ -5,7 +5,8 @@
 
     <img src="<?= assets("themes/user/img/hero-image2.png") ?>" class="w-100"/>
 
-    <div class="">
+    <div class="responsive-wrap">
+
 
         <!--categories section-->
         <div class="row w-100 p-5">

@@ -119,16 +119,14 @@
 
 
   "template_context": {
-    "steel_grade": "Steel grade",
-    "steel_thickness": "Steel thickness",
-    "standard_length": "Standard length",
-    "max_tensile_strength": "Max. tensile strength",
-    "weight": "Weight",
-    "description": "Description",
-    "request_this_connector": "Request this connector",
-    "remember_this_connector": "Remember this connector"
+    "steel_grade": "Nuance d‘acier",
+    "steel_thickness": "Épaisseur d’acier",
+    "standard_length": "Longueur standard",
+    "max_tensile_strength": "Max. résistance à la traction",
+    "weight": "Poids",
+    "request_this_connector": "Demander ce connecteur",
+    "remember_this_connector": "Rappelez-vous ce connecteur"
   },
-
 
 
 

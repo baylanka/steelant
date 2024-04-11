@@ -22,7 +22,7 @@ use helpers\translate\Translate;
                     <dd class="custom-dd custom-font"><?= Translate::get("template_context","weight") ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <dd class="my-4 custom-font"><?= Translate::get("template_context","description") ?>: <?= empty($connector->getDescriptionOfLang())
+            <dd class="my-4 custom-font"><?= empty($connector->getDescriptionOfLang())
                     ? '---' : $connector->getDescriptionOfLang() ?></dd>
 
             <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
@@ -100,7 +100,7 @@ use helpers\translate\Translate;
 
                 <!--Duplicate element - for image End-->
 
-                <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
                      src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
@@ -176,7 +176,7 @@ use helpers\translate\Translate;
 
 
                 <!--Duplicate element - for image End-->
-                <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
                      src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
@@ -250,7 +250,7 @@ use helpers\translate\Translate;
 
 
                 <!--Duplicate element - for image End-->
-                <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
                      src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
@@ -287,7 +287,7 @@ use helpers\translate\Translate;
 
         </div>
 
-        <div class="row mt-2 justify-content-end">
+        <div class="row mt-4 justify-content-end">
 
 
 

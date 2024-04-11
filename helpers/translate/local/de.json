@@ -120,13 +120,12 @@
 
   "template_context": {
     "steel_grade": "Stahlgüte",
-    "steel_thickness": "Steel thickness",
-    "standard_length": "Standard length",
-    "max_tensile_strength": "Max. tensile strength",
-    "weight": "Weight",
-    "description": "Description",
-    "request_this_connector": "Request this connector",
-    "remember_this_connector": "Remember this connector"
+    "steel_thickness": "Stahldicke",
+    "standard_length": "Standardlänge",
+    "max_tensile_strength": "Max. Zugfestigkeit",
+    "weight": "Gewicht",
+    "request_this_connector": "Fordern Sie diesen Connector an",
+    "remember_this_connector": "Merken Sie sich diesen Anschluss"
   },
 
 
