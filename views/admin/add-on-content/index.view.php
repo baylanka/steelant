@@ -163,13 +163,14 @@
 </div>
 
 
-
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
-<script src="https://cdn.tiny.cloud/1/39y77bbnodzcw45bboz4dzbi7c07mh4pr5nvitr1hhfj3tm8/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/39y77bbnodzcw45bboz4dzbi7c07mh4pr5nvitr1hhfj3tm8/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
 <script>
     modalId = "addOn";
+
     $(document).on("click", "#create-add-on", async function () {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         let path = `admin/add-on/create?tableLang=${language}`;
@@ -179,18 +180,37 @@
             loadButton(btn, "loading ...");
             await loadModal(modalId, path);
             resetButton(btn, loadingBtnText);
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'textcolor link lists', // Additional plugins for text color, links, and lists
-                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist', // Toolbar configuration
-                content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }' // Optional content styles
-            });
-
         } catch (err) {
             toast.error("An error occurred while attempting to open the create add on.. " + err);
             resetButton(btn, loadingBtnText);
         }
+
+
     });
+
+
+    $(document).on("click", ".switch-advance-editor", function () {
+
+        let textarea = $(this).closest("div.description-container").find("textarea");
+        let name = textarea.attr("name");
+        textarea = textarea.clone();
+
+
+        $(this).closest("div.description-container").after(textarea);
+
+
+        $(this).closest("div.description-container").find(".removable-container").remove();
+
+
+        tinymce.init({
+            selector: 'textarea[name=' + name + ']',
+            plugins: 'textcolor link lists',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+            content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
+        });
+
+
+    })
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 
