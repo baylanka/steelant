@@ -7,16 +7,30 @@ use model\Category;
 class CategoryRepository extends Category
 {
 
-    public static function isNameUnique($nameEn, $nameDe, $nameFr, $exceptId = null)
+    public static function isNameUnique($nameEn, $nameDe, $nameFr, $parentId = null,
+                                        $exceptId = null)
     {
         global $container;
+        $params = [
+            'name_en' => strtolower($nameEn),
+            'name_de' => strtolower($nameDe),
+            'name_fr' => strtolower($nameFr),
+        ];
 
         $preparedStatement = "
             SELECT COUNT(*) > 0 AS 'exists'
             FROM categories WHERE ";
 
-        if (!is_null($exceptId)) {
-            $preparedStatement .= " id <> $exceptId AND (";
+        if (!is_null($parentId) && !is_null($exceptId)) {
+            $params['parentId'] = $parentId;
+            $params['exceptId '] = $exceptId;
+            $preparedStatement .= " parent_category_id <> :parentId AND id <> :exceptId AND (";
+        }elseif (!is_null($exceptId)) {
+            $params['exceptId '] = $exceptId;
+            $preparedStatement .= " id <> :exceptId AND (";
+        }elseif(!is_null($parentId)){
+            $params['parentId'] = $parentId;
+            $preparedStatement .= " parent_category_id <> :parentId AND (";
         }
 
         $preparedStatement .= "
@@ -34,16 +48,12 @@ class CategoryRepository extends Category
           
         ";
 
-        if (!is_null($exceptId)) {
+        if (!is_null($exceptId) || !is_null($parentId)) {
             $preparedStatement .= " ); ";
         } else {
             $preparedStatement .= " ; ";
         }
-        $params = [
-            'name_en' => strtolower($nameEn),
-            'name_de' => strtolower($nameDe),
-            'name_fr' => strtolower($nameFr),
-        ];
+
 
         $db = $container->resolve('DB');
         $result = $db->queryAsArray($preparedStatement, $params)->first();

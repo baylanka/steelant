@@ -148,11 +148,11 @@ class CategoryUpdateRequestValidator
     {
         $nameArr = $request->get('name');
         return (
-            ValidatorUtility::min($nameArr[LanguagePool::GERMANY()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::GERMANY()->getLabel()],2)
             &&
-            ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::ENGLISH()->getLabel()],2)
             &&
-            ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],5)
+            ValidatorUtility::min($nameArr[LanguagePool::FRENCH()->getLabel()],2)
         );
     }
 
@@ -160,24 +160,28 @@ class CategoryUpdateRequestValidator
     {
         $nameArr = $request->get('name');
         return (
-            ValidatorUtility::max($nameArr[LanguagePool::GERMANY()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::GERMANY()->getLabel()],50)
             &&
-            ValidatorUtility::max($nameArr[LanguagePool::ENGLISH()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::ENGLISH()->getLabel()],50)
             &&
-            ValidatorUtility::max($nameArr[LanguagePool::FRENCH()->getLabel()],30)
+            ValidatorUtility::max($nameArr[LanguagePool::FRENCH()->getLabel()],50)
         );
     }
 
     private static function isUniqueNameSet($request)
     {
         $updatingCategoryId = $request->get('id');
+        $category = Category::getById($updatingCategoryId);
+        $parentId = $category->parent_category_id ?? null;
+
         $nameArr = $request->get('name');
         $nameEn = $nameArr[LanguagePool::ENGLISH()->getLabel()];
         $nameDe = $nameArr[LanguagePool::GERMANY()->getLabel()];
         $nameFr = $nameArr[LanguagePool::FRENCH()->getLabel()];
 
 
-        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr, $updatingCategoryId);
+        return CategoryRepository::isNameUnique($nameEn, $nameDe, $nameFr, $parentId,
+            $updatingCategoryId);
     }
 
     private static function titleValidation(Request $request)
