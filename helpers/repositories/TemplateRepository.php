@@ -13,7 +13,7 @@ class TemplateRepository extends Template
         $sql = "
             SELECT * FROM templates
                 WHERE type = :type
-                ORDER BY created_at DESC;
+                ORDER BY created_at ASC;
             ";
         $params = ['type'=> Template::TYPE_CONNECTOR];
         return Template::query($sql,$params)->get();
