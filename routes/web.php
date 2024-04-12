@@ -1,12 +1,14 @@
 <?php
+use \helpers\services\RouterService;
 global $app;
 
 //App routes
 require_once basePath("routes/assets/app.web.php");
 //Admin routes
 require_once basePath("routes/assets/admin.web.php");
-//SEO routes
-require_once basePath("routes/assets/seo.web.php");
+
+//Leaf Category routes (each pages)
+RouterService::setAllLeafCategoryRoutes();
 
 
 $app->get('/',  ["user\HomeController", "home"]);

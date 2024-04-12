@@ -18,6 +18,11 @@ class Router
         $this->routes[$uri][$method] = $dest;
     }
 
+    public function isRouteRegistered($uri, $method)
+    {
+        return array_key_exists($uri, $this->routes) && array_key_exists($method, $this->routes[$uri]);
+    }
+
     public function get(string $uri, array $dest)
     {
         $this->add($uri, 'GET', $dest);
