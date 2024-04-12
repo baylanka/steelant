@@ -9,9 +9,11 @@ class Translate
         $_SESSION["lang"] = $lang;
 
     }
-    public static function get($page, $key)
+    public static function get($page, $key,$lang = null)
     {
-        $lang = $_SESSION["lang"];
+        if(is_null($lang)) {
+            $lang = $_SESSION["lang"];
+        }
 
         $translateJson = file_get_contents(basePath("helpers/translate/local/" . $lang . ".json"));
 

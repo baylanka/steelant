@@ -45,7 +45,8 @@
                                class="link <?= $_GET["id"] == 10 ? "selected" : "color-black" ?>">US T connectors</a>
                         </dd>
                         <dd><a href="<?= url("/connector") ?>?id=11"
-                               class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?>">US Cross connectors</a>
+                               class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?>">US Cross
+                                connectors</a>
                         </dd>
                         <dd><a href="<?= url("/connector") ?>?id=12"
                                class="link <?= $_GET["id"] == 12 ? "selected" : "color-black" ?>">MF connectors,
@@ -66,7 +67,7 @@
 
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 16 || $_GET["id"] > 20  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 16 || $_GET["id"] > 20 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
@@ -89,7 +90,7 @@
 
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] != 22  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] != 22 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
@@ -107,7 +108,7 @@
             </div>
 
 
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 23 || $_GET["id"] > 28  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 23 || $_GET["id"] > 28 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
@@ -138,7 +139,7 @@
             </div>
 
 
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 29 || $_GET["id"] > 32  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 29 || $_GET["id"] > 32 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
@@ -159,7 +160,7 @@
 
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 33 || $_GET["id"] > 36  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 33 || $_GET["id"] > 36 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
@@ -183,7 +184,7 @@
 
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] != 38  ? "d-none" : "" ?> ">
+            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] != 38 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
                     <img src="<?= assets("themes/user/img/category/Cell-structures.png") ?>" height="60"/>
@@ -215,8 +216,8 @@
         <div class="divider"></div>
 
 
-        <?php foreach ($templates as $template):?>
-            <?=$template?>
+        <?php foreach ($templates as $template): ?>
+            <?= $template ?>
             <div class="divider"></div>
         <?php endforeach; ?>
 
@@ -248,7 +249,7 @@
 
                 let today = new Date();
                 let yyyy = today.getFullYear();
-                let mm = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns 0-based index
+                let mm = String(today.getMonth() + 1).padStart(2, '0');
                 let dd = String(today.getDate()).padStart(2, '0');
                 let formattedDate = yyyy + '-' + mm + '-' + dd;
 
@@ -270,6 +271,28 @@
         $(".request-connector-btn").addClass("request-connector");
 
     });
+    $(document).on("submit", ".orderRequestForm", async function (e) {
+        e.preventDefault();
 
+        const btn = $(this).find("button[type=submit]");
+        const btnLabel = btn.text();
+        loadButton(btn, "submitting");
+        const form = $(this);
+        const URL = form.attr('action');
+        const formData = form.serialize();
+        try {
+            let response = await makeAjaxCall(URL, formData);
+            toast.success(response.message);
+            location.reload();
+        } catch (err) {
+            err = JSON.parse(err);
+            toast.error(err.message);
+            $(".error-msg").text(err.message);
+            $("input").removeClass("is-invalid");
+            $("input[name=" + err.errors.key + "]").addClass("is-invalid");
+        } finally {
+            resetButton(btn, btnLabel);
+        }
+    });
 </script>
 

@@ -114,7 +114,8 @@
     "amount": "Montant (running m)",
     "location": "Emplacement",
     "country_state": "Pays / État",
-    "seen_on_date_or_time": "Vu le date/heure"
+    "seen_on_date_or_time": "Vu le date/heure",
+    "status": "Statut"
   },
 
 
