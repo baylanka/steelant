@@ -4,7 +4,7 @@ require_once "layout/start.layout.php";
 
 use helpers\translate\Translate;
 
-
+global $env;
 ?>
 <!--body section-->
 <div class="jumbotron w-100 m-0">
@@ -48,7 +48,10 @@ use helpers\translate\Translate;
                 <thead>
                 <tr>
                     <th scope="col"
-                        class="color-blue font-weight-700"><?= Translate::get("favourites_page", "project_name") ?></th>
+                        class="color-blue font-weight-700"></th>
+
+                    <th scope="col"
+                        class="color-blue font-weight-700 text-center"><?= Translate::get("favourites_page", "project_name") ?></th>
 
                     <th scope="col"
                         class="color-blue font-weight-700 text-center"><?= Translate::get("favourites_page", "status") ?></th>
@@ -84,7 +87,8 @@ use helpers\translate\Translate;
 
                 foreach ($orders as $order): ?>
                     <tr>
-                        <td><?= $order->project ?></td>
+                        <td><?= $env["ORDER_ID_PREFIX"].$order->id ?></td>
+                        <td class="text-center"><?= $order->project ?></td>
                         <td class="text-center"><span
                                     class="badge bg-<?= getStatusColorCode($order->status) ?>"> <?= $order->status ?></span>
                         </td>
@@ -159,6 +163,14 @@ use helpers\translate\Translate;
 
 <script>
     $(document).on("click", ".delete_request", async function (e) {
+
+        const notice = `
+                <p class="text-danger"><b><?= Translate::get("favourites_page","delete_message") ?><b><p>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning',"<?= Translate::get("alert","are_you_sure") ?>","<?= Translate::get("common","confirm") ?>","<?= Translate::get("common","cancel") ?>")) {
+            return;
+        }
+
         let id = $(this).attr("data-id");
         try {
             let response = await makeAjaxCall(`<?= url('/order/request/delete') . "?id=" ?>${id}`, {},"GET");

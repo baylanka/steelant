@@ -4,22 +4,37 @@ namespace controllers\user;
 
 use app\Request;
 use controllers\BaseController;
+use helpers\clients\EmailClient;
+use helpers\mappers\OrderStoreRequestMapper;
 use helpers\services\CategoryService;
+use helpers\utilities\ResponseUtility;
+use helpers\validators\OrderStoreRequestValidator;
 use model\Category;
+use model\UserConnectorFavourite;
 
 class ConnectorController extends BaseController
 {
-    public function index(Request $request)
+    public function addToFavourite(Request $request)
     {
-        if (!isset($_GET["id"])) {
-            header('Location: ' . url("/"));
-        }
-        if($_GET["id"] < 1 || $_GET["id"] > 28 ){
-            header('Location: ' . url("/"));
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            $order = UserConnectorFavourite::getModel($request);
+            $order->save();
+
+            $mail = new EmailClient();
+            $mail->sendOrderPlacedMail($order);
+
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Order placed successfully.",
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
         }
 
-        $data = [
-        ];
-        return view("user/connector.view.php", $data);
+
     }
 }

@@ -246,7 +246,7 @@ let spinnerDisable = ()=>{
     $('.spinner-area').html("");
 }
 
-let isConfirmToProcess = (description, alert_type='warning', title = 'Are you sure!')=>{
+let isConfirmToProcess = (description, alert_type='warning', title = 'Are you sure!',confirm_btn = 'Confirm',cancel_btn = 'Cancel')=>{
     return new Promise((resolve, reject)=>{
         Swal.fire({
             title: title,
@@ -256,7 +256,8 @@ let isConfirmToProcess = (description, alert_type='warning', title = 'Are you su
             showLoaderOnConfirm: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirm',
+            confirmButtonText: confirm_btn,
+            cancelButtonText: cancel_btn,
             confirmButtonClass: 'btn btn-primary',
             cancelButtonClass: 'btn btn-danger ml-1',
             buttonsStyling: true,

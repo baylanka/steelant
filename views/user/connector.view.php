@@ -1,4 +1,8 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+
+require_once "layout/start.layout.php";
+use helpers\translate\Translate;
+?>
 
 <!--body section-->
 <div class="jumbotron p-0 m-0">
@@ -293,6 +297,27 @@
         } finally {
             resetButton(btn, btnLabel);
         }
+    });
+
+    $(document).on("click", ".add_to_favourite", async function (e) {
+
+        const notice = `
+                <p class="text-danger"><b><?= Translate::get("favourites_page","delete_message") ?><b><p>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning',"<?= Translate::get("alert","are_you_sure") ?>","<?= Translate::get("common","confirm") ?>","<?= Translate::get("common","cancel") ?>")) {
+            return;
+        }
+
+        //let id = $(this).attr("data-id");
+        //try {
+        //    let response = await makeAjaxCall(`<?php //= url('/order/request/delete') . "?id=" ?>//${id}`, {},"GET");
+        //    toast.success(response.message);
+        //    $(this).closest("tr").remove();
+        //} catch (err) {
+        //    err = JSON.parse(err);
+        //    toast.error(err.message);
+        //
+        //}
     });
 </script>
 
