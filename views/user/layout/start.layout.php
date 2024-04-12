@@ -1,5 +1,8 @@
+<?php
+    use helpers\translate\Translate;
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=Translate::getLang()?>">
 <?php require_once "head.layout.php" ?>
 <body id="user-page-body">
 

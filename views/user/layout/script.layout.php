@@ -14,5 +14,29 @@
         $('[data-toggle="tooltip"]').tooltip({
             placement: 'bottom',
         })
-    })
+    });
+
+    $(document).on('click', '.lang', function(e){
+        e.preventDefault();
+        debugger
+        const selectedLanguage = $(this).attr('data-lang');
+        const queryStringObject = getQueryStringParams();
+        queryStringObject['lang'] = selectedLanguage;
+        window.location.href  = window.location.origin + window.location.pathname + '?' + $.param(queryStringObject);
+    });
+
+    function getQueryStringParams() {
+        const sPageURL = window.location.search.substring(1);
+        if(isEmpty(sPageURL)){
+            return {};
+        }
+        const sURLVariables = sPageURL.split('&');
+        const queryParams = {};
+        for (let i = 0; i < sURLVariables.length; i++) {
+            const sParameterName = sURLVariables[i].split('=');
+            queryParams[sParameterName[0]] = sParameterName[1];
+        }
+
+        return queryParams;
+    }
 </script>

@@ -10,10 +10,8 @@ class LanguageService
     public static function setLanguage()
     {
         try{
-
-            global $env;
-            if (isset($_GET['langStrict'])) {
-                Translate::setLang($_GET['langStrict']);
+            if (isset($_GET['lang'])) {
+                Translate::setLang($_GET['lang']);
                 return;
             }else{
                 Translate::setLang("de");
