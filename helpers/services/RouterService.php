@@ -6,6 +6,7 @@ use helpers\dto\CategoryDTO;
 use helpers\dto\LeafCategoryDTO;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\pools\LanguagePool;
+use helpers\translate\Translate;
 use model\Category;
 
 class RouterService
@@ -50,5 +51,16 @@ class RouterService
         if (!$app->isRouteRegistered($categoryURI, 'GET')) {
             $app->get($categoryURI, ["user\ContentController", "getContentsByCategoryId"]);
         }
+    }
+
+    public static function getCategoryPageRoute($categoryId)
+    {
+        $lang = Translate::getLang();
+        $categoryArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
+        $categoryURI  = implode('/', $categoryArray[$lang]);
+        $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
+        $params = ['id'=>$categoryId, 'lang'=>$lang];
+        $categoryURI .=  '?' . http_build_query($params);
+        return url($categoryURI);
     }
 }
