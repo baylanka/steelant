@@ -5,6 +5,7 @@ namespace controllers\admin;
 use app\Request;
 use controllers\BaseController;
 use helpers\middlewares\UserMiddleware;
+use helpers\services\OrderService;
 use model\Order;
 
 class OrderController extends BaseController
@@ -16,12 +17,15 @@ class OrderController extends BaseController
         UserMiddleware::isAdminOrDeveloper();
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-        $orders = Order::getAll();
+        $orderCounts = OrderService::counts();
+        $orders = OrderService::getAll($request);
         $data = [
             'heading' => "Orders",
             'orders' => $orders,
+            'counts' => $orderCounts
         ];
         return view("admin/orders/index.view.php", $data);
     }

@@ -129,29 +129,4 @@ use helpers\pools\LanguagePool;
     });
 
 
-
-    $(document).off("submit", ".orderRequestForm");
-    $(document).on("submit", ".orderRequestForm", async function (e) {
-        e.preventDefault();
-
-        const btn = $(this).find("button[type=submit]");
-        const btnLabel = btn.text();
-        loadButton(btn, "submitting");
-        const form = $(this);
-        const URL = form.attr('action');
-        const formData = form.serialize();
-        try {
-            let response = await makeAjaxCall(URL, formData);
-            toast.success(response.message);
-        } catch (err) {
-            err = JSON.parse(err);
-            toast.error(err.message);
-            $(".error-msg").text(err.message);
-            $("input").removeClass("is-invalid");
-            $("input[name=" + err.errors.key + "]").addClass("is-invalid");
-        } finally {
-            resetButton(btn, btnLabel);
-        }
-    });
-
 </script>

@@ -1,5 +1,4 @@
 <aside class="app-sidebar shadow background-primary" data-bs-theme="dark">
-
     <div class="sidebar-brand">
         <a href="<?= url("/") ?>" class="brand-link">
             <img src="<?= assets("themes/admin/img/logo.jpg") ?>" alt="Steel wall Logo"
@@ -61,7 +60,7 @@
                     <a href="<?= url("admin/orders") ?>"
                        class="nav-link <?= isRequestedRoute("admin/orders") ? 'active' :'' ?>">
                         <i class="bi bi-cart"></i>
-                        <p> Orders <span class="badge text-bg-info">10</span></p>
+                        <p> Orders <span class="badge text-bg-light mx-3"><?= \helpers\services\OrderService::counts()["total_pending"] ?></span></p>
                     </a>
                 </li>
 
@@ -79,12 +78,6 @@
                 </li>
                 <?php endif; ?>
 
-<!--                <li class="nav-item menu-open">-->
-<!--                    <a href="/" class="nav-link">-->
-<!--                        <i class="bi bi-speedometer"></i>-->
-<!--                        <p> Addons </p>-->
-<!--                    </a>-->
-<!--                </li>-->
 
 
             </ul>

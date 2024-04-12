@@ -13,7 +13,9 @@ use helpers\translate\Translate;
             </span>
             <div class="info-box-content">
                 <span class="info-box-text">Total Orders</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number">
+                    <?= $counts["total_count"] ?>
+                </span>
             </div>
 
         </div>
@@ -27,7 +29,9 @@ use helpers\translate\Translate;
             </span>
             <div class="info-box-content">
                 <span class="info-box-text">Completed</span>
-                <span class="info-box-number">410</span>
+                <span class="info-box-number">
+                    <?= $counts["total_completed"] ?>
+                </span>
             </div>
 
         </div>
@@ -41,7 +45,9 @@ use helpers\translate\Translate;
             </span>
             <div class="info-box-content">
                 <span class="info-box-text">Pending</span>
-                <span class="info-box-number">13,648</span>
+                <span class="info-box-number">
+                      <?= $counts["total_pending"] ?>
+                </span>
             </div>
 
         </div>
@@ -55,7 +61,9 @@ use helpers\translate\Translate;
             </span>
             <div class="info-box-content">
                 <span class="info-box-text">Rejected</span>
-                <span class="info-box-number">93,139</span>
+                <span class="info-box-number">
+                   <?= $counts["total_rejected"] ?>
+                </span>
             </div>
 
         </div>
@@ -71,7 +79,8 @@ use helpers\translate\Translate;
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th class="text-left">Project name</th>
+                    <th class="text-left">Status</th>
+                    <th class="text-center">Project name</th>
                     <th class="text-center">Requested connector</th>
                     <th class="text-center">Number of piles</th>
                     <th class="text-center">Name of used sheet piles</th>
@@ -80,9 +89,26 @@ use helpers\translate\Translate;
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($orders as $order): ?>
+                <?php
+
+                function getStatusColorCode($status)
+                {
+                    switch ($status) {
+                        case "completed":
+                            return "success";
+                        case "pending":
+                            return "warning";
+                        case "rejected":
+                            return "danger";
+                    }
+                }
+
+                foreach ($orders as $order): ?>
                     <tr class="align-middle">
                         <td class="text-left">
+                            <span class="badge bg-<?= getStatusColorCode($order->status) ?>"> <?= $order->status ?></span>
+                        </td>
+                        <td class="text-center">
                             <?= $order->project ?>
                         </td>
                         <td class="text-center">
@@ -95,7 +121,10 @@ use helpers\translate\Translate;
                             tewst
                         </td>
                         <td class="text-center">
-                            <?= $order->delivery_date ?>
+                            <?php
+                            $date = date_create($order->delivery_date);
+                            echo date_format($date, "Y/m/d");
+                            ?>
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
@@ -105,8 +134,18 @@ use helpers\translate\Translate;
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#?id=<?= $order->id ?>" class="dropdown-item" type="button">
-                                            test <i class="bi bi-eye float-end"></i>
+                                        <a href="#" class="dropdown-item" type="button">
+                                            View <i class="bi bi-eye float-end"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item" type="button">
+                                            Change status <i class="bi bi-toggle-off float-end"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item" type="button">
+                                            Delete <i class="bi bi-trash3 text-danger float-end"></i>
                                         </a>
                                     </li>
                                 </ul>
