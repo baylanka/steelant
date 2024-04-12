@@ -46,7 +46,7 @@ class RouterService
 
         global $app;
         $categoryURI = $category->treePathStr;
-        $categoryURI = '/' . implode('-', explode(' ', $categoryURI));
+        $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
         if (!$app->isRouteRegistered($categoryURI, 'GET')) {
             $app->get($categoryURI, ["user\ContentController", "getContentsByCategoryId"]);
         }
