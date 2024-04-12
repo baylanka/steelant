@@ -7,6 +7,7 @@ use controllers\BaseController;
 use helpers\clients\EmailClient;
 use helpers\mappers\OrderStoreRequestMapper;
 use helpers\services\CategoryService;
+use helpers\services\ConnectorService;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\OrderStoreRequestValidator;
 use model\Category;
@@ -18,23 +19,20 @@ class ConnectorController extends BaseController
     {
         global $container;
         $db = $container->resolve('DB');
-        try{
+        try {
             $db->beginTransaction();
-            $order = UserConnectorFavourite::getModel($request);
-            $order->save();
-
-            $mail = new EmailClient();
-            $mail->sendOrderPlacedMail($order);
-
+            ConnectorService::addToFavourite($request);
             $db->commit();
             ResponseUtility::sendResponseByArray([
-                "message" => "Order placed successfully.",
+                "message" => "Success fully added as favourite..",
             ]);
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             $db->rollBack();
-            parent::response($ex->getMessage(),[],422);
+            parent::response($ex->getMessage(), [], 422);
         }
 
 
     }
+
+
 }

@@ -44,7 +44,7 @@ $app->get('/verify',  ["UserController", "verify_mail"]);
 
 
 
-$app->get('/connector',   ["user\ContentController", "getContentsByCategoryId"]);
+
 
 $app->get('/order/request',  ["user\OrderController", "create_view"]);
 $app->post('/order/request/create',  ["user\OrderController", "create"]);
@@ -54,7 +54,7 @@ $app->get('/order/request/delete',  ["user\OrderController", "destroy"]);
 $app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);
 
 $app->get('/contents',  ["user\ContentController", "getContentsByCategoryId"]);
-
+$app->get('/connector/add_to_favourite',   ["user\ConnectorController", "addToFavourite"]);
 
 
 

@@ -135,6 +135,9 @@
     "remember_this_connector": "Remember this connector"
   },
 
+  "connector_page": {
+    "add_to_favourite_message": "You want to add this connector as favourite"
+  },
 
 
 

@@ -302,22 +302,26 @@ use helpers\translate\Translate;
     $(document).on("click", ".add_to_favourite", async function (e) {
 
         const notice = `
-                <p class="text-danger"><b><?= Translate::get("favourites_page","delete_message") ?><b><p>
+                <p><b><?= Translate::get("connector_page","add_to_favourite_message") ?><b><p>
             `;
-        if (!await isConfirmToProcess(notice, 'warning',"<?= Translate::get("alert","are_you_sure") ?>","<?= Translate::get("common","confirm") ?>","<?= Translate::get("common","cancel") ?>")) {
+        if (!await isConfirmToProcess(notice, 'info',
+            "<?= Translate::get("alert","are_you_sure") ?>",
+            "<?= Translate::get("common","confirm") ?>",
+            "<?= Translate::get("common","cancel") ?>")) {
             return;
         }
 
-        //let id = $(this).attr("data-id");
-        //try {
-        //    let response = await makeAjaxCall(`<?php //= url('/order/request/delete') . "?id=" ?>//${id}`, {},"GET");
-        //    toast.success(response.message);
-        //    $(this).closest("tr").remove();
-        //} catch (err) {
-        //    err = JSON.parse(err);
-        //    toast.error(err.message);
-        //
-        //}
+        let id = $(this).attr("data-id");
+        try {
+            let response = await makeAjaxCall(`<?= url('/connector/add_to_favourite') . "?id=" ?>${id}`, {},"GET");
+            $(this).find("img").attr("src","<?= assets("themes/user/img/star.png") ?>");
+
+            toast.success(response.message);
+        } catch (err) {
+            err = JSON.parse(err);
+            toast.error(err.message);
+
+        }
     });
 </script>
 
