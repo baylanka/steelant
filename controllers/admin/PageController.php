@@ -21,8 +21,9 @@ class PageController extends BaseController
     }
     public function index(Request $request)
     {
+        $lang = Translate::getLang();
         $categories = Category::getAll();
-        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,'de',
+        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,$lang,
             ' <i class="bi bi-arrow-right text-success"></i> ');
         $data = [
             'heading' => "Pages",
