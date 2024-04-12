@@ -1,9 +1,12 @@
+<?php
+    use helpers\translate\Translate;
+?>
 <!DOCTYPE html>
-<html lang="en"> <!--begin::Head-->
+<html lang="<?=Translate::getLang()?>"> <!--begin::Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>STEEL WALL</title>
+    <title>SteelWall</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="base-url" content="<?= url("/"); ?>">
     <meta name="title" content="Steelwall">
