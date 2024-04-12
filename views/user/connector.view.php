@@ -1,4 +1,8 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+
+require_once "layout/start.layout.php";
+use helpers\translate\Translate;
+?>
 
 <!--body section-->
 <div class="jumbotron p-0 m-0">
@@ -292,6 +296,31 @@
             $("input[name=" + err.errors.key + "]").addClass("is-invalid");
         } finally {
             resetButton(btn, btnLabel);
+        }
+    });
+
+    $(document).on("click", ".add_to_favourite", async function (e) {
+
+        const notice = `
+                <p><b><?= Translate::get("connector_page","add_to_favourite_message") ?><b><p>
+            `;
+        if (!await isConfirmToProcess(notice, 'info',
+            "<?= Translate::get("alert","are_you_sure") ?>",
+            "<?= Translate::get("common","confirm") ?>",
+            "<?= Translate::get("common","cancel") ?>")) {
+            return;
+        }
+
+        let id = $(this).attr("data-id");
+        try {
+            let response = await makeAjaxCall(`<?= url('/connector/add_to_favourite') . "?id=" ?>${id}`, {},"GET");
+            $(this).find("img").attr("src","<?= assets("themes/user/img/star.png") ?>");
+
+            toast.success(response.message);
+        } catch (err) {
+            err = JSON.parse(err);
+            toast.error(err.message);
+
         }
     });
 </script>

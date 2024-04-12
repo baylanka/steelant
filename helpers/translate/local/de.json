@@ -11,9 +11,14 @@
     "copyright": "Urheberrecht",
     "home": "Heim",
     "fax": "Fax",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "confirm": "Bestätigen",
+    "cancel": "stornieren"
   },
 
+  "alert": {
+    "are_you_sure": "Bist du dir sicher"
+  },
 
   "home_nav": {
     "connectors": "Connectors",
@@ -115,7 +120,8 @@
     "location": "Standort",
     "country_state": "Land/Staat",
     "seen_on_date_or_time": "Gesehen am Datum/Uhrzeit",
-    "status": "Status"
+    "status": "Status",
+    "delete_message": "Wenn Sie mit dem Löschen Ihrer Anfrage fortfahren"
   },
 
 
@@ -129,6 +135,9 @@
     "remember_this_connector": "Merken Sie sich diesen Anschluss"
   },
 
+  "connector_page": {
+    "add_to_favourite_message": "Sie möchten diesen Connector als Favorit hinzufügen"
+  },
 
 
 

@@ -2,6 +2,7 @@
 
 use model\Template;
 use helpers\translate\Translate;
+use helpers\services\ConnectorService;
 
 ?>
 <div class="row my-5 w-100">
@@ -10,16 +11,21 @@ use helpers\translate\Translate;
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
 
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context","steel_grade") ?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context","steel_thickness") ?>: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context","standard_length") ?>: <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context","max_tensile_strength") ?>: <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade") ?>
+                : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness") ?>
+                : <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "standard_length") ?>
+                : <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength") ?>
+                : <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
 
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
-                <dd class="custom-dd custom-font"><?= Translate::get("template_context","weight") ?>: ---</dd>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight") ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font"><?= Translate::get("template_context","weight") ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
+                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight") ?> <?= $key === 'general' ? '' : $key ?>
+                        : <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
             <dd class="my-4 custom-font"><?= empty($connector->getDescriptionOfLang())
@@ -32,11 +38,21 @@ use helpers\translate\Translate;
             <?php endforeach; ?>
 
             <dd class="custom-dd custom-font request-connector-btn" data-id="<?= $connector->id ?>"
-                style="cursor: pointer;"><a class="link color-black"><?= Translate::get("template_context","request_this_connector") ?></a>
+                style="cursor: pointer;">
+                <a class="link color-black"><?= Translate::get("template_context", "request_this_connector") ?></a>
             </dd>
-            <dd class="custom-dd custom-font d-flex align-middle gap-3" data-id="<?= $connector->id ?>">
-                <a href="#" class="link color-black"><?= Translate::get("template_context","remember_this_connector") ?></a>
-                <img class="align-self-center" src="<?= assets("themes/user/img/star.png") ?>" height="15"/>
+            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif; ?>"
+                data-id="<?= $connector->id ?>">
+                <a class="link color-black"><?= Translate::get("template_context", "remember_this_connector") ?></a>
+                <?php
+                $imageUrl = "";
+                if (ConnectorService::isFavourite($connector->id)){
+                    $imageUrl = assets("themes/user/img/star.png");
+                }else{
+                    $imageUrl = assets("themes/user/img/star-ash.png");
+                }
+                ?>
+                <img class="align-self-center" src="<?= $imageUrl ?>" height="15"/>
             </dd>
 
         </dl>
@@ -85,14 +101,16 @@ use helpers\translate\Translate;
                 <?php else: ?>
                     <?php if ($imageTitleExists): ?>
                         <div class=" d-flex align-middle gap-2">
-                            <input class="img-heading form-control" type="text" data-heading="<?=$headingPlaceHolder?>"
+                            <input class="img-heading form-control" type="text"
+                                   data-heading="<?= $headingPlaceHolder ?>"
                                    data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                                    placeholder="Heading"
                                    name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
                         </div>
                         <br>
                     <?php else: ?>
-                        <span class="color-blue template-img-heading" data-heading="<?=$headingPlaceHolder?>">Heading</span><br>
+                        <span class="color-blue template-img-heading"
+                              data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
                     <?php endif ?>
                 <?php endif; ?>
                 <!--Duplicate element - for title End-->
@@ -138,11 +156,6 @@ use helpers\translate\Translate;
             <!-- ///////  Image 01  /////// -->
 
 
-
-
-
-
-
             <!-- ///////  Image 02  /////// -->
 
             <?php
@@ -162,14 +175,16 @@ use helpers\translate\Translate;
                 <?php else: ?>
                     <?php if ($imageTitleExists): ?>
                         <div class=" d-flex align-middle gap-2">
-                            <input class="img-heading form-control" type="text" data-heading="<?=$headingPlaceHolder?>"
+                            <input class="img-heading form-control" type="text"
+                                   data-heading="<?= $headingPlaceHolder ?>"
                                    data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                                    placeholder="Heading"
                                    name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
                         </div>
                         <br>
                     <?php else: ?>
-                        <span class="color-blue template-img-heading" data-heading="<?=$headingPlaceHolder?>">Heading</span><br>
+                        <span class="color-blue template-img-heading"
+                              data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
                     <?php endif ?>
                 <?php endif; ?>
                 <!--Duplicate element - for title End-->
@@ -213,11 +228,6 @@ use helpers\translate\Translate;
             <!-- ///////  Image 02  /////// -->
 
 
-
-
-
-
-
             <!-- ///////  Image 03  /////// -->
 
             <?php
@@ -236,14 +246,16 @@ use helpers\translate\Translate;
                 <?php else: ?>
                     <?php if ($imageTitleExists): ?>
                         <div class=" d-flex align-middle gap-2">
-                            <input class="img-heading form-control" type="text" data-heading="<?=$headingPlaceHolder?>"
+                            <input class="img-heading form-control" type="text"
+                                   data-heading="<?= $headingPlaceHolder ?>"
                                    data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                                    placeholder="Heading"
                                    name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
                         </div>
                         <br>
                     <?php else: ?>
-                        <span class="color-blue template-img-heading" data-heading="<?=$headingPlaceHolder?>">Heading</span><br>
+                        <span class="color-blue template-img-heading"
+                              data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
                     <?php endif ?>
                 <?php endif; ?>
                 <!--Duplicate element - for title End-->
@@ -288,9 +300,6 @@ use helpers\translate\Translate;
         </div>
 
         <div class="row mt-4 justify-content-end">
-
-
-
 
 
             <!-- ///////  Image 04  /////// -->
@@ -339,12 +348,6 @@ use helpers\translate\Translate;
             <!-- ///////  Image 04  /////// -->
 
 
-
-
-
-
-
-
             <!-- ///////  Image 05  /////// -->
             <?php
             $placeHolder = 5;
@@ -386,14 +389,6 @@ use helpers\translate\Translate;
             </div>
 
             <!-- ///////  Image 05  /////// -->
-
-
-
-
-
-
-
-
 
 
             <!-- ///////  Image 06  /////// -->

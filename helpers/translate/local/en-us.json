@@ -11,7 +11,12 @@
     "copyright": "Copyright",
     "home": "Home",
     "fax": "Fax",
-    "phone": "Phone"
+    "phone": "Phone",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "alert": {
+    "are_you_sure": "Are you sure"
   },
   "home_nav": {
     "connectors": "Connectors",
@@ -94,7 +99,8 @@
     "location": "Location",
     "country_state": "Country / State",
     "seen_on_date_or_time": "Seen on date / time",
-    "status": "Status"
+    "status": "Status",
+    "delete_message": "If you proceed with deleting your request"
   },
   "template_context": {
     "steel_grade": "Steel grade",
@@ -104,6 +110,9 @@
     "weight": "Weight",
     "request_this_connector": "Request this connector",
     "remember_this_connector": "Remember this connector"
+  },
+  "connector_page": {
+    "add_to_favourite_message": "You want to add this connector as favourite"
   },
 
 

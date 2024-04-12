@@ -1,0 +1,8 @@
+CREATE TABLE  IF NOT EXISTS  userconnectorfavourites
+(
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    connector_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
+);
