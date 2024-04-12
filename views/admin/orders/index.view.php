@@ -1,7 +1,7 @@
 <?php
 
 use helpers\translate\Translate;
-
+global $env;
 ?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
 
@@ -79,7 +79,9 @@ use helpers\translate\Translate;
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th class="text-left">Status</th>
+
+                    <th class="text-left">Id</th>
+                    <th class="text-center">Status</th>
                     <th class="text-center">Project name</th>
                     <th class="text-center">Requested connector</th>
                     <th class="text-center">Number of piles</th>
@@ -106,6 +108,9 @@ use helpers\translate\Translate;
                 foreach ($orders as $order): ?>
                     <tr class="align-middle">
                         <td class="text-left">
+                        <?= $env["ORDER_ID_PREFIX"] . $order->id ?>
+                        </td>
+                        <td class="text-center">
                             <span class="badge bg-<?= getStatusColorCode($order->status) ?>"> <?= $order->status ?></span>
                         </td>
                         <td class="text-center">

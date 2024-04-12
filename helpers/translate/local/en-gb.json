@@ -115,7 +115,8 @@
     "amount": "Amount (running m)",
     "location": "Location",
     "country_state": "Country / State",
-    "seen_on_date_or_time": "Seen on date / time"
+    "seen_on_date_or_time": "Seen on date / time",
+    "status": "Status"
   },
 
 

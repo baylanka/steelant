@@ -86,7 +86,6 @@ class EmailClient
 ');
     }
 
-
     public function sendCredentials($email,$password)
     {
         return $this->send($email, "New Account Credentials", '
@@ -97,6 +96,16 @@ class EmailClient
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>New Account Credentials</title>
+            <style>
+            table.cred, th.cred, td.cred {
+              border: 1px solid black;
+              border-collapse: collapse;
+              text-align: center;
+            }
+            td{
+            padding:1rem;
+            }
+            </style>
         </head>
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -112,23 +121,36 @@ class EmailClient
                 </tr>
                 <tr>
                     <td align="center" style="padding-top: 10px;">
-                        <p style="color: #666666;">Steelwall Admin has created an account for you. Please use these credentials to login.</p>
+                        <p style="color: #666666;">Steelwall Admin has created an account for you. <br> Please use these credentials to login.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 10px;">
-                        <p style="color: #666666;"><b>Mail :</b> '.$email.'</p><br/>
-                        <p style="color: #666666;"><b>Password :</b> '.$password.'</p><br/>
+                    <td align="center">
+                    <table class="cred">
+                    <thead>
+                        <tr class="cred">
+                            <td class="cred">Email</td>
+                            <td class="cred">Password</td>
+                        </tr>
+                    </thead>
+             
+                    <tbody class="cred">
+                        <tr class="cred">
+                            <td class="cred">' . $email . '</td>
+                            <td class="cred">' . $password . '</td>
+                        </tr>
+                    </tbody>
+                    </table>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" style="padding-top: 10px;">
-                        <small style="color: #333333;">This password is automatically generated. You can also update your password on the profile page. </small>
+                        <small style="color: #333333;">This password is automatically generated. <br> You can also update your password on the profile page. </small>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" style="padding-top: 20px;">
-                        <a href="'.url("/login").'" style="display: inline-block; background-color: #1d357c; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Login</a>
+                        <a href="' . url("/login") . '" style="display: inline-block; background-color: #1d357c; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Login</a>
                     </td>
                 </tr>
                 <tr style="padding-top: 50px;">
@@ -231,11 +253,11 @@ class EmailClient
     }
 
 
-    public function sendOrderPlacedMail($request)
+    public function sendOrderPlacedMail($order,$mail = null)
     {
         global $env;
         $mail = $env["ORDER_RECEIVE_MAIL"];
-        return $this->send($mail, "New Order", '
+        return $this->send($mail, "New Connector Request - ".$env["ORDER_ID_PREFIX"] . $order->id , '
 
         <!DOCTYPE html>
         <html lang="en">
@@ -243,7 +265,7 @@ class EmailClient
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>New Order</title>
+            <title>New Connector Request</title>
         </head>
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -254,15 +276,23 @@ class EmailClient
                 </tr>
                 <tr>
                     <td align="center">
-                        <h2 style="color: #333333;">Contact Information</h2>
+                        <h2 style="color: #333333;">Order deatils</h2>
                     </td>
                 </tr>
                 <tr>
 
                         <table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
                             <tr>
+                                <td style="padding-right: 10px;"><strong>ID:</strong></td>
+                                <td>' . $env["ORDER_ID_PREFIX"] . $order->id . '</td>
+                            </tr>
+                             <tr>
                                 <td style="padding-right: 10px;"><strong>Project:</strong></td>
-                                <td>' . $request->get("project") . '</td>
+                                <td>' . $order->project . '</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 10px;"><strong>Delivery date:</strong></td>
+                                <td>' . $order->delivery_date . '</td>
                             </tr>
                        
                         </table>

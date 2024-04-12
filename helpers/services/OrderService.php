@@ -30,4 +30,17 @@ class OrderService
     }
 
 
+    public static function getByUser($userId)
+    {
+        return Order::query("
+        SELECT orders.*, connectors.name AS connector_name FROM orders 
+         LEFT JOIN connectors ON orders.connector_id = connectors.id
+         WHERE user_id =:user_id",["user_id"=>$userId])->get();
+    }
+
+    public static function deleteById($id)
+    {
+        Order::deleteById($id);
+    }
+
 }

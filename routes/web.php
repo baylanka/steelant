@@ -48,6 +48,7 @@ $app->get('/connector',   ["user\ContentController", "getContentsByCategoryId"])
 
 $app->get('/order/request',  ["user\OrderController", "create_view"]);
 $app->post('/order/request/create',  ["user\OrderController", "create"]);
+$app->get('/order/request/delete',  ["user\OrderController", "destroy"]);
 
 
 $app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);

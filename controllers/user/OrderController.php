@@ -5,7 +5,9 @@ namespace controllers\user;
 use controllers\BaseController;
 use helpers\clients\EmailClient;
 use helpers\mappers\OrderStoreRequestMapper;
+use helpers\services\OrderService;
 use helpers\utilities\ResponseUtility;
+use helpers\utilities\ValidatorUtility;
 use helpers\validators\OrderStoreRequestValidator;
 use app\Request;
 use model\Connector;
@@ -38,7 +40,7 @@ class OrderController extends BaseController
             $order->save();
 
             $mail = new EmailClient();
-            $mail->sendOrderPlacedMail($request);
+            $mail->sendOrderPlacedMail($order);
 
             $db->commit();
             ResponseUtility::sendResponseByArray([
@@ -49,8 +51,23 @@ class OrderController extends BaseController
             parent::response($ex->getMessage(),[],422);
         }
 
+    }
 
-
+    public function destroy(Request $request)
+    {
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            OrderService::deleteById($request->get("id"));
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Deleted successfully.",
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
 
