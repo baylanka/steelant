@@ -247,9 +247,9 @@ class ConnectorUpdateRequestValidator
     }
     private static function categoryValidation(Request $request): void
     {
-//        if(!$request->has('category') || empty($request->get('category'))){
-//            throw new \Exception("category is required to update.");
-//        }
+        if(!$request->has('category') || empty($request->get('category'))){
+            throw new \Exception("category is required to update.");
+        }
     }
     private static function nameValidation(Request $request): void
     {
