@@ -29,7 +29,7 @@ use helpers\services\ConnectorService;
                 <?php endforeach; ?>
             <?php endif; ?>
             <dd class="my-4 custom-font"><?= empty($connector->getDescriptionOfLang())
-                    ? '---' : $connector->getDescriptionOfLang() ?></dd>
+                    ? '' : $connector->getDescriptionOfLang() ?></dd>
 
             <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
                 <dd class="custom-dd custom-font"><a href="<?= $fileArray['file_asset_path'] ?>"

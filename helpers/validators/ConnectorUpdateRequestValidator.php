@@ -82,7 +82,7 @@ class ConnectorUpdateRequestValidator
         $weightLabelArr = $request->get('weight_label');
 
         foreach ($weightMetricArr as $index => $value){
-            if($index > 0 && (!isset($weightLabelArr[$index]) && empty($weightLabelArr[$index]))) {
+            if($index > 0 && (!isset($weightLabelArr[$index]) || empty($weightLabelArr[$index]))) {
                 throw new \Exception("Can not leave weight labels empty unless first one");
             }
 
