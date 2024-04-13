@@ -10,6 +10,10 @@ $app->get('/admin/connectors/edit',  ["admin\ConnectorController", "edit"]);
 $app->post('/admin/connectors/update',  ["admin\ConnectorController", "update"]);
 $app->get('/admin/connectors/templates',  ["admin\ConnectorController", "showAllTemplates"]);
 
+//Add-on routes
+$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
+$app->get('/admin/add-on/create',  ["admin\AddOnController", "create"]);
+$app->post('/admin/add-on-content/store',  ["admin\AddOnController", "store"]);
 
 
 //Category routes
@@ -40,17 +44,12 @@ $app->get('/admin/pages/view',  ["admin\PageController", "show"]);
 //contents routes
 $app->post('/admin/contents/display_order_update',  ["admin\ContentController", "updateDisplayOrderList"]);
 
-
-//Add-on routes
-$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
-$app->get('/admin/add-on/create',  ["admin\AddOnController", "create"]);
-
-
+//users
 $app->get('/admin/users',  ["admin\UserController", "index"]);
 $app->get('/admin/users/create',  ["admin\UserController", "create"]);
 $app->post('/admin/users/create',  ["admin\UserController", "store"]);
 
-
+//orders
 $app->get('/admin/orders',  ["admin\OrderController", "index"]);
 $app->get('/admin/orders/change/status',  ["admin\OrderController", "changeStatus"]);
 $app->get('/admin/orders/delete',  ["admin\OrderController", "destroy"]);

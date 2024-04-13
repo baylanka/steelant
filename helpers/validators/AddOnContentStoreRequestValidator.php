@@ -15,6 +15,16 @@ class AddOnContentStoreRequestValidator
         self::categoryValidation($request);
         self::titleValidation($request);
         self::descriptionValidation($request);
+        self::templateValidation($request);
+    }
+
+    private static function templateValidation(Request $request)
+    {
+        if(!$request->has('template') || empty($request->get('template'))){
+            ResponseUtility::response('template missing',422, [
+                'Please select a template on the 2nd tab to continue'
+            ]);
+        }
     }
 
     private static function descriptionValidation(Request $request)

@@ -5,23 +5,24 @@ namespace helpers\mappers;
 use app\Request;
 use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryRepository;
-use helpers\repositories\ConnectorRepository;
 use model\AddOnContent;
 use model\CategoryContent;
 use model\ContentTemplate;
 
-class AddOnContentStoreRequestMapper
+class AddOnStoreRequestMapper
 {
-    public static function getModel(Request $request): AddOnContent
+    public static function getModel(Request $request)
     {
         $addOnContent = new AddOnContent();
-        $addOnContent->visibility = AddOnContent::UNPUBLISHED;
+        $addOnContent->visibility = $request->get('visibility', AddOnContent::UNPUBLISHED);
         $addOnContent->title = self::getTitleJson($request);
         $addOnContent->description = self::getDescriptionJson($request);
 
         $addOnContent->temp_content = self::getContent($request);
         $addOnContent->temp_content_templates = self::getContentTemplates($request);
+
         return $addOnContent;
+
     }
 
     private static function getTitleJson(Request $request): string
@@ -58,10 +59,10 @@ class AddOnContentStoreRequestMapper
         return $content;
     }
 
-    private static function getContentTemplates(Request $request): array
+    private static function getContentTemplates(Request $request)
     {
         if(empty($request->get('template'))){
-            return;
+            return [];
         }
 
         $templateId = $request->get('template');
@@ -83,7 +84,6 @@ class AddOnContentStoreRequestMapper
 
     private static function getContentTemplate($templateId, $language)
     {
-
         $contentTemplate = new ContentTemplate();
         $contentTemplate->template_id = $templateId;
         $contentTemplate->language = $language;
