@@ -13,22 +13,16 @@ class RouterService
 {
     public static function setAllLeafCategoryRoutes(): void
     {
+        $activeLang = Translate::getLang();
+        if(in_array($activeLang,
+            [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])){
+            $activeLang = LanguagePool::ENGLISH()->getLabel();
+        }
+
         $categories = Category::getAll();
-        $germanyLang = LanguagePool::GERMANY()->getLabel();
-        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories, $germanyLang,
+        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories, $activeLang,
             '/');
         self::setCategoryCollectionRoute($leafCategoryDTOCollection);
-
-        $frenchLang = LanguagePool::FRENCH()->getLabel();
-        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories, $frenchLang,
-            '/');
-        self::setCategoryCollectionRoute($leafCategoryDTOCollection);
-
-        $englishLang = LanguagePool::ENGLISH()->getLabel();
-        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories, $englishLang,
-            '/');
-        self::setCategoryCollectionRoute($leafCategoryDTOCollection);
-
     }
 
     private static function setCategoryCollectionRoute($categoryCollection): void
