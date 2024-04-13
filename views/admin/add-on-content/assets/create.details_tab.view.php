@@ -4,19 +4,31 @@
 
         <div class="col-12 d-flex justify-content-between mt-5">
 
-            <select class="form-control" name="category">
-                <option selected disabled>Category</option>
-                <option>cate 01</option>
-                <option>cate 02</option>
-                <option>cate 02</option>
+            <select class="form-select w-100 select2"
+                <?php if(is_null($categoryId)): ?>
+                    name="category"
+                <?php else:?>
+                    disabled
+                <?php endif ?>
+            >
+                <option value="0" selected disabled>Select Category</option>
+                <?php foreach ($leafCategories as $leafCategory): ?>
+                    <option
+                            value="<?= $leafCategory->id ?>"
+                        <?= (!is_null($categoryId) && $categoryId == $leafCategory->id) ? 'selected' : ''?>
+                    >
+                        <?= $leafCategory->treePathStr ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
+
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-5">
             <label for="title" class="align-items-center">
                 Title (in Germany)
             </label>
-            <input name="title-de" type="text"
+            <input name="title_de" type="text"
                    class="form-control w-50 align-items-center"
                    placeholder="Title (in Germany)"/>
         </div>
@@ -24,7 +36,7 @@
             <label for="title" class="align-items-center">
                 Title (in French)
             </label>
-            <input name="title-fr" type="text"
+            <input name="title_fr" type="text"
                    class="form-control w-50 align-items-center"
                    placeholder="Title (in French)"/>
         </div>
@@ -32,7 +44,7 @@
             <label for="title" class="align-items-center">
                 Title (in English UK)
             </label>
-            <input name="title-fr" type="text"
+            <input name="title_en_gb" type="text"
                    class="form-control w-50 align-items-center"
                    placeholder="Title (in English UK)"/>
         </div>
@@ -40,7 +52,7 @@
             <label for="title" class="align-items-center">
                 Title (in English US)
             </label>
-            <input name="title-fr" type="text"
+            <input name="title_en_us" type="text"
                    class="form-control w-50 align-items-center"
                    placeholder="Title (in English US)"/>
         </div>
@@ -51,7 +63,7 @@
                 Description (in Germany)
             </label>
             <div class="w-50 removable-container">
-                <textarea name="description-de" class="form-control description"></textarea>
+                <textarea name="description_de" class="form-control description"></textarea>
                 <div class="w-100 d-flex justify-content-end">
 
                     <a class="btn btn-primary btn-sm background-blue m-1 align-self-end switch-advance-editor" data-toggle="tooltip" title=" Switch to advanced editor">
@@ -66,7 +78,7 @@
                 Description (in French)
             </label>
             <div class="w-50 removable-container">
-                <textarea name="description-fr" class="form-control description"></textarea>
+                <textarea name="description_fr" class="form-control description"></textarea>
                 <div class="w-100 d-flex justify-content-end">
 
                     <a class="btn btn-primary btn-sm background-blue m-1 align-self-end switch-advance-editor" data-toggle="tooltip" title=" Switch to advanced editor">
@@ -81,7 +93,7 @@
                 Description (in English UK)
             </label>
             <div class="w-50 removable-container">
-                <textarea name="description-uk" class="form-control description"></textarea>
+                <textarea name="description_en_gb" class="form-control description"></textarea>
                 <div class="w-100 d-flex justify-content-end">
 
                     <a class="btn btn-primary btn-sm background-blue m-1 align-self-end switch-advance-editor" data-toggle="tooltip" title=" Switch to advanced editor">
@@ -96,7 +108,7 @@
                 Description (in English US)
             </label>
             <div class="w-50 removable-container">
-                <textarea name="description-us" class="form-control description"></textarea>
+                <textarea name="description_en_us" class="form-control description"></textarea>
                 <div class="w-100 d-flex justify-content-end">
 
                     <a class="btn btn-primary btn-sm background-blue m-1 align-self-end switch-advance-editor" data-toggle="tooltip" title=" Switch to advanced editor">

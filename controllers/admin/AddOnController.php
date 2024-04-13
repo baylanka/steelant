@@ -6,8 +6,14 @@ use app\Request;
 use controllers\BaseController;
 use helpers\dto\AddOnDTO;
 use helpers\dto\LeafCategoryDTOCollection;
-use helpers\mappers\AddOnContentStoreRequestMapper;
+use helpers\mappers\AddOnStoreRequestMapper;
+use helpers\mappers\AnotherMapper;
+use helpers\mappers\ConnectorStoreRequestMapper;
+use helpers\mappers\StoreAddOnRequestMapper;
+use helpers\mappers\TestMapper;
 use helpers\middlewares\UserMiddleware;
+use helpers\pools\LanguagePool;
+use helpers\repositories\TemplateRepository;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\AddOnContentStoreRequestValidator;
 use model\Category;
@@ -33,7 +39,15 @@ class AddOnController extends BaseController
 
     public function create(Request $request)
     {
-        $data = [];
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $categories = Category::getAll();
+        $leafCategoryDTOCollection = LeafCategoryDTOCollection::getCollection($categories);
+        $data = [
+            'leafCategories' => $leafCategoryDTOCollection,
+            'tableLang' => $lang,
+            'categoryId' => $request->get('categoryId'),
+            'templates' => TemplateRepository::getAllAddOn(),
+        ];
         return view("admin/add-on-content/create.view.php", $data);
     }
 
@@ -44,7 +58,7 @@ class AddOnController extends BaseController
         try{
             $db->beginTransaction();
             AddOnContentStoreRequestValidator::validate($request);
-            $addOnContent = AddOnContentStoreRequestMapper::getModel($request);
+            $addOnContent = AddOnStoreRequestMapper::getModel($request);
             $addOnContent->save();
             $db->commit();
             ResponseUtility::sendResponseByArray([

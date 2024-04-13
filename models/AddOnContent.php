@@ -12,7 +12,7 @@ class AddOnContent extends BaseModel
     protected string $table = "add_on_contents";
     public string $title;
     public string $description;
-    public bool $visibility;
+    public ?int $visibility;
 
     public ?CategoryContent $temp_content;
     public ?array $temp_content_templates;
@@ -35,6 +35,12 @@ class AddOnContent extends BaseModel
 
         //update new content-templates, its template media
         $contentTemplatesArray =  $this->temp_content_templates ?? [];
+        foreach ($contentTemplatesArray as $index => $value){
+            $contentTemplate = $value;
+            if($contentTemplate instanceof ContentTemplate){
+                $contentTemplatesArray[$index]->content_id = $content->id;
+            }
+        }
         ContentTemplateService::updateContentTemplates($contentTemplatesArray);
     }
 

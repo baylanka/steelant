@@ -26,7 +26,7 @@
 
                 </ul>
 
-                <form action="<?= url('/admin/connectors/update') ?>" id="connector-update">
+                <form action="<?= url('/admin/add-on-content/store') ?>">
                     <div class="tab-content" id="myTabContent">
                         <?php include_once basePath('/views/admin/add-on-content/assets/create.details_tab.view.php') ?>
                         <?php include_once basePath('/views/admin/add-on-content/assets/create.templates_tab.view.php') ?>
@@ -40,7 +40,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary background-blue">Create</button>
+            <button type="button" class="btn btn-primary background-blue" id="add-on-create">Create</button>
         </div>
 
     </div>
@@ -52,6 +52,31 @@
         $("input[name=template]").attr("checked", false);
         $(this).find("input[type=radio]").attr("checked", true);
 
+    });
+
+    $('button#add-on-create').off('click');
+    $('button#add-on-create').on('click', async function storeAddOn(e){
+        e.preventDefault();
+        tinymce.triggerSave();
+        const btn = $(this);
+        const btnLabel = btn.text();
+        loadButton(btn, "saving");
+        const form = btn.closest('div.modal-dialog').find('form');
+        const URL = form.attr('action');
+        const formData = form.serialize();
+        try{
+            let response = await makeAjaxCall(URL,formData);
+            toast.success(response.message);
+            //raise an event to close the modal
+            const event = new CustomEvent('storeAddOnSuccessEvent',  {
+                detail: { addon: response.data }
+            });
+            document.dispatchEvent(event);
+        }catch (err){
+            toast.error(err);
+        }finally {
+            resetButton(btn, btnLabel);
+        }
     });
 
 

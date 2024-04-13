@@ -18,4 +18,15 @@ class TemplateRepository extends Template
         $params = ['type'=> Template::TYPE_CONNECTOR];
         return Template::query($sql,$params)->get();
     }
+
+    public static function getAllAddOn()
+    {
+        $sql = "
+            SELECT * FROM templates
+                WHERE type = :type
+                ORDER BY created_at DESC;
+            ";
+        $params = ['type'=> Template::TYPE_ADD_ON];
+        return Template::query($sql,$params)->get();
+    }
 }
