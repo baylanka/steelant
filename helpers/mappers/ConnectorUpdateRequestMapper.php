@@ -316,17 +316,10 @@ class ConnectorUpdateRequestMapper
 
     private static function getContentTemplate($templateId, $language, $contentId)
     {
-        $contentTemplate = ContentTemplate::getFirstBy([
-                                                        'template_id' => $templateId,
-                                                        'content_id'=> $contentId,
-                                                        'language' => $language
-                                                        ]);
-        if(!$contentTemplate){
-            $contentTemplate = new ContentTemplate();
-            $contentTemplate->template_id = $templateId;
-            $contentTemplate->content_id = $contentId;
-            $contentTemplate->language = $language;
-        }
+        $contentTemplate = new ContentTemplate();
+        $contentTemplate->template_id = $templateId;
+        $contentTemplate->content_id = $contentId;
+        $contentTemplate->language = $language;
 
         return $contentTemplate;
     }

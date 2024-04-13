@@ -7,7 +7,7 @@ use model\Template;
 
 class TemplateService
 {
-    public static function getTemplateByFillingDataById($templateId, $data, $mode)
+    public static function getTemplateByFillingDataById($templateId, $data,$language, $mode)
     {
         $template = Template::getById($templateId);
         $templatePath = $template->getTemplateFilePath();
@@ -29,7 +29,7 @@ class TemplateService
             'connector' => $connectorDTO,
         ];
 
-        return self::getTemplateByFillingDataById($connectorDTO->templateId, $data, $mode);
+        return self::getTemplateByFillingDataById($connectorDTO->templateId, $data,$language, $mode);
     }
 
     public static function getAllLangTemplates(int $connectorId, $mode=Template::MODE_EDIT)

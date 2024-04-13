@@ -11,25 +11,25 @@ use helpers\services\ConnectorService;
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
 
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade") ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?>
                 : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness") ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>
                 : <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "standard_length") ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "standard_length", $language) ?>
                 : <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength") ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
                 : <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
 
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
-                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight") ?>: ---</dd>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight") ?> <?= $key === 'general' ? '' : $key ?>
+                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>
                         : <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
             <dd class="my-4 custom-font"><?= empty($connector->getDescriptionOfLang())
-                    ? '---' : $connector->getDescriptionOfLang() ?></dd>
+                    ? '' : $connector->getDescriptionOfLang() ?></dd>
 
             <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
                 <dd class="custom-dd custom-font"><a href="<?= $fileArray['file_asset_path'] ?>"
@@ -39,11 +39,12 @@ use helpers\services\ConnectorService;
 
             <dd class="custom-dd custom-font request-connector-btn" data-id="<?= $connector->id ?>"
                 style="cursor: pointer;">
-                <a class="link color-black"><?= Translate::get("template_context", "request_this_connector") ?></a>
+                <a class="link color-black"><?= Translate::get("template_context", "request_this_connector", $language) ?></a>
             </dd>
             <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if(isset($_SESSION["auth"])){ if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif; } ?>"
                 data-id="<?= $connector->id ?>">
-                <a <?php if(!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif;?> class="link color-black"><?= Translate::get("template_context", "remember_this_connector") ?></a>
+                <a <?php if(!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif;?> class="link color-black">
+                    <?= Translate::get("template_context", "remember_this_connector", $language) ?></a>
                 <?php
                 $imageUrl = "";
                 if(isset($_SESSION["auth"])) {

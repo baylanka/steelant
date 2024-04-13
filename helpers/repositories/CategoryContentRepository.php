@@ -25,6 +25,7 @@ class CategoryContentRepository extends CategoryContent
                             INNER JOIN categories c ON cc.leaf_category_id = c.id
                             INNER JOIN connectors con ON cc.element_id = con.id AND cc.type = :connector_type
                             WHERE c.id = :category_id
+                              AND con.visibility = :connector_visibility
                         
                             UNION ALL
                         
@@ -40,6 +41,7 @@ class CategoryContentRepository extends CategoryContent
                             INNER JOIN categories c ON cc.leaf_category_id = c.id
                             INNER JOIN add_on_contents addc ON cc.element_id = addc.id AND cc.type = :add_on_content_type
                             WHERE c.id = :category_id
+                              AND addc.visibility = :add_on_visibility
                         ) AS merged_results
                         ORDER BY display_order_no;
                ";
@@ -47,7 +49,9 @@ class CategoryContentRepository extends CategoryContent
         $params = [
             'connector_type' => CategoryContent::TYPE_CONNECTOR,
             'category_id' => $categoryId,
-            'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT
+            'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT,
+            'connector_visibility' => Connector::PUBLISHED,
+            'add_on_visibility' => AddOnContent::PUBLISHED
         ];
 
         return CategoryContent::queryAsArray($sql, $params)->get();
