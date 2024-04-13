@@ -122,11 +122,11 @@ class Connector extends BaseModel
         //update category-content
         $content = $this->temp_content;
         $content->save();
+        $contentTemplatesArray =  $this->temp_content_templates ?? [];
 
         //delete previous content templates media, with its associated `media`
-        ContentTemplateRepository::deleteContentTemplatesByContentId($content->id);
+        ContentTemplateRepository::deleteContentTemplatesByContentId($contentTemplatesArray, $content->id);
         //update new content-templates, its template media
-        $contentTemplatesArray =  $this->temp_content_templates ?? [];
         ContentTemplateService::updateContentTemplates($contentTemplatesArray);
     }
 
