@@ -55,13 +55,13 @@ class RouterService
 
     public static function getCategoryPageRoute($categoryId)
     {
-        $lang = Translate::getLang();
-        $lang = in_array($lang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
-                    ? LanguagePool::ENGLISH()->getLabel() : $lang;
+        $sessionLang = Translate::getLang();
+        $lang = in_array($sessionLang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
+                    ? LanguagePool::ENGLISH()->getLabel() : $sessionLang;
         $categoryArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
         $categoryURI  = implode('/', $categoryArray[$lang]);
         $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
-        $params = ['id'=>$categoryId, 'lang'=>$lang];
+        $params = ['id'=>$categoryId, 'lang'=>$sessionLang];
         $categoryURI .=  '?' . http_build_query($params);
         return url($categoryURI);
     }
