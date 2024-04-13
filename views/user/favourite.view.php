@@ -3,8 +3,9 @@
 require_once "layout/start.layout.php";
 
 use helpers\translate\Translate;
-
+use helpers\services\RouterService;
 global $env;
+
 ?>
 <!--body section-->
 <div class="jumbotron w-100 m-0">
@@ -95,16 +96,17 @@ global $env;
                         <td class="text-center"><?= $order->connector_name ?></td>
                         <td class="text-center">
                             <?php
-                            $date = date_create($order->created_at);
-                            echo date_format($date, "Y-m-d / h:m");
+                                $date = date_create($order->created_at);
+                                echo date_format($date, "Y-m-d / h:m");
                             ?>
                         </td>
                         <td class="text-center">500 running m</td>
                         <td class="text-center">Hamburg</td>
                         <td class="text-center"><?= $order->country ?></td>
                         <td class="text-center d-flex justify-content-end gap-4">
-                            <i class="bi bi-trash3-fill text-danger delete_request" data-id="<?= $order->id ?>" data-toggle="tooltip" title="Delete"></i> <i
-                                    class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
+                            <i class="bi bi-trash3-fill text-danger delete_request" data-id="<?= $order->id ?>" data-toggle="tooltip" title="Delete"></i>
+                            <a href="<?= RouterService::getCategoryPageRoute( $order->leaf_category_id) ?>#<?= $order->connector_id ?>"><i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -133,22 +135,22 @@ global $env;
                 </tr>
                 </thead>
                 <tbody>
+                <?php foreach ($favourites as $favourite): ?>
                 <tr>
-                    <td>MF64</td>
-                    <td>2024-02-29 / 12:34 h</td>
-                    <td class="text-center d-flex justify-content-end gap-4"><i class="bi bi-trash3-fill text-danger"
-                                                                                data-toggle="tooltip"
-                                                                                title="Delete"></i> <i
-                                class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
+                    <td><?= $favourite->connector_name ?></td>
+                    <td>
+                        <?php
+                            $date = date_create($favourite->created_at);
+                            echo date_format($date, "Y-m-d / h:m");
+                        ?>
+                    </td>
+                    <td class="text-center d-flex justify-content-end gap-4">
+                        <i class="bi bi-trash3-fill text-danger delete_favourite" data-toggle="tooltip" title="Delete" data-id="<?= $favourite->id ?>"></i>
+                        <a href="<?= RouterService::getCategoryPageRoute( $favourite->leaf_category_id) ?>#<?= $favourite->connector_id ?>"><i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></a>
+                    </td>
                 </tr>
-                <tr>
-                    <td>LV200</td>
-                    <td>2024-02-29 / 12:34 h</td>
-                    <td class="text-center d-flex justify-content-end gap-4"><i class="bi bi-trash3-fill text-danger"
-                                                                                data-toggle="tooltip"
-                                                                                title="Delete"></i> <i
-                                class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></td>
-                </tr>
+
+                <?php endforeach; ?>
 
                 </tbody>
             </table>
@@ -176,6 +178,29 @@ global $env;
             let response = await makeAjaxCall(`<?= url('/order/request/delete') . "?id=" ?>${id}`, {},"GET");
             toast.success(response.message);
            $(this).closest("tr").remove();
+        } catch (err) {
+            err = JSON.parse(err);
+            toast.error(err.message);
+
+        }
+    });
+
+
+
+    $(document).on("click", ".delete_favourite", async function (e) {
+
+        const notice = `
+                <p class="text-danger"><b><?= Translate::get("favourites_page","delete_message") ?><b><p>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning',"<?= Translate::get("alert","are_you_sure") ?>","<?= Translate::get("common","confirm") ?>","<?= Translate::get("common","cancel") ?>")) {
+            return;
+        }
+
+        let id = $(this).attr("data-id");
+        try {
+            let response = await makeAjaxCall(`<?= url('/connector/favourite/delete') . "?id=" ?>${id}`, {},"GET");
+            toast.success(response.message);
+            $(this).closest("tr").remove();
         } catch (err) {
             err = JSON.parse(err);
             toast.error(err.message);

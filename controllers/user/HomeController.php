@@ -5,6 +5,7 @@ namespace controllers\user;
 use app\Request;
 use helpers\middlewares\UserMiddleware;
 use helpers\services\CategoryService;
+use helpers\services\FavouriteService;
 use helpers\services\OrderService;
 use model\Category;
 
@@ -57,8 +58,10 @@ class HomeController
 
         UserMiddleware::isLoggedIn();
         $orders = OrderService::getByUser($userId);
+        $favourites = FavouriteService::getByUser($userId);
         $data = [
-            "orders"=>$orders
+            "orders"=>$orders,
+            "favourites"=>$favourites
         ];
         return view("user/favourite.view.php", $data);
 

@@ -1,4 +1,7 @@
-<?php require_once "layout/start.layout.php" ?>
+<?php
+require_once "layout/start.layout.php";
+use helpers\services\RouterService;
+?>
 
 <!--body section-->
 <div class="jumbotron">
@@ -15,16 +18,9 @@
                         <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
                     </div>
                     <div class="col-7">
-                        <dl>
-                            <p class="category-name">Cofferdam</p>
+                        <dl><p class="category-name">Cofferdam</p>
                             <dt class="color-blue mb-2">LARSSEN</dt>
-                            <dd><a href="<?=
-                                get_url_by_lang([
-                                        "de"=> "/cofferdam/larssen/corner-connectors",
-                                        "fr" => "/cofferdam/larssen/Connecteurs-d-angle",
-                                        "en" => "/cofferdam/larssen/corner-connectors"
-                                ]);
-                                 ?>?id=3" class="link color-black">Corner connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(2) ?>" class="link color-black">Corner connectors</a></dd>
                             <dd><a href="<?= url("/cofferdam/larssen/omega-corner-connectors") ?>?id=4" class="link color-black">Omega corner connectors</a></dd>
                             <dd><a href="<?= url("/cofferdam/larssen/t-connectors") ?>?id=5" class="link color-black">T connectors</a></dd>
                             <dd><a href="<?= url("/cofferdam/larssen/cross-connectors") ?>?id=6" class="link color-black">Cross connectors</a></dd>

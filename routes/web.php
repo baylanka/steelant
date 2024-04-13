@@ -21,7 +21,6 @@ $app->get('/privacy&policy',  ["user\HomeController", "privacy"]);
 $app->get('/newsletter',  ["user\HomeController", "newsLetter"]);
 $app->get('/general/terms&condition',  ["user\HomeController", "generalCondition"]);
 
-
 $app->get('/favourite',  ["user\HomeController", "favourite"]);
 
 $app->get('/login',  ["UserController", "login_view"]);
@@ -29,9 +28,6 @@ $app->post('/login',  ["UserController", "login"]);
 $app->get('/profile',  ["UserController", "profile"]);
 $app->post('/user/update',  ["UserController", "update"]);
 $app->post('/user/update/password',  ["UserController", "update_password"]);
-
-
-
 
 
 $app->get('/register',  ["UserController", "register_view"]);
@@ -45,9 +41,6 @@ $app->get('/newsletter/subscribe',  ["UserController", "subscribe"]);
 $app->get('/verify',  ["UserController", "verify_mail"]);
 
 
-
-
-
 $app->get('/order/request',  ["user\OrderController", "create_view"]);
 $app->post('/order/request/create',  ["user\OrderController", "create"]);
 $app->get('/order/request/delete',  ["user\OrderController", "destroy"]);
@@ -57,7 +50,7 @@ $app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);
 
 $app->get('/contents',  ["user\ContentController", "getContentsByCategoryId"]);
 $app->get('/connector/add_to_favourite',   ["user\ConnectorController", "addToFavourite"]);
-
+$app->get('/connector/favourite/delete',   ["user\ConnectorController", "destroyFavourite"]);
 
 
 

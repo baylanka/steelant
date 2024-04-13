@@ -100,7 +100,7 @@
     "country_state": "Country / State",
     "seen_on_date_or_time": "Seen on date / time",
     "status": "Status",
-    "delete_message": "If you proceed with deleting your request"
+    "delete_message": "If you proceed with deleting"
   },
   "template_context": {
     "steel_grade": "Steel grade",

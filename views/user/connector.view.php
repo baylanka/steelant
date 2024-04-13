@@ -268,9 +268,7 @@ use helpers\translate\Translate;
     });
 
     $(document).ready(function () {
-        $('html, body').animate({
-            scrollTop: $('#heading').offset().top
-        }, 'slow');
+
 
         $(".request-connector-btn").addClass("request-connector");
 

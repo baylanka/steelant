@@ -48,4 +48,8 @@ class ConnectorService
         }
         return false;
     }
+
+    public static function deleteFavouriteById($id){
+        UserConnectorFavourite::deleteById($id);
+    }
 }
