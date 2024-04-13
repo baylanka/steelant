@@ -165,23 +165,34 @@ class CategoryService
         return $children;
     }
 
-    private static function collectLeafCategories($category, &$collector=[], $collectorIndex=0)
+    private static function collectLeafCategories($category, &$collector=[], &$collectorIndex=0)
     {
         $collector[$collectorIndex][] = $category;
 
-        $children = $category->getChildren();
-        $noOfChildren = sizeof($children);
+        foreach ($category->getChildren() as $childIndex => $child){
 
-        foreach ($children as $childIndex => $child){
+            $children = $child->getChildren();
+            $noOfChildren = sizeof($children);
 
             if(!empty($noOfChildren)){
-                self::collectLeafCategories($child, $collector, $collectorIndex);
+                $collector = self::collectLeafCategories($child, $collector, $collectorIndex);
+            }else{
+                $collector[$collectorIndex][] = $child;
             }
 
-            if($childIndex < ($noOfChildren-1)){
-                $collectorIndex++;
-                $collector[$collectorIndex][] = $category;
+            $prevCollectorIndex = $collectorIndex;
+
+            if($childIndex == sizeof($category->getChildren())-1 || !isset($collector[$prevCollectorIndex])){
+                $t = 1;
+//                $collector[$collectorIndex][] = $category;
+                continue;
             }
+
+            $collectorIndex++;
+            for($i=0; $i < ($child->level-1) ; $i++){
+                $collector[$collectorIndex][] = $collector[$prevCollectorIndex][$i];
+            }
+
         }
 
         return $collector;
