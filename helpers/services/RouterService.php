@@ -22,26 +22,27 @@ class RouterService
         $categories = Category::getAll();
         $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories, $activeLang,
             '/');
-        self::setCategoryCollectionRoute($leafCategoryDTOCollection);
+        self::setCategoryCollectionRoute($leafCategoryDTOCollection, $activeLang);
     }
 
-    private static function setCategoryCollectionRoute($categoryCollection): void
+    private static function setCategoryCollectionRoute($categoryCollection,$lang): void
     {
         foreach ($categoryCollection as $each)
         {
-            self::setCategoryRoute($each);
+            self::setCategoryRoute($each, $lang);
         }
     }
 
-    private static function setCategoryRoute(LeafCategoryDTO $category): void
+    private static function setCategoryRoute(LeafCategoryDTO $category, $lang): void
     {
         if(!$category->isPublished){
             return;
         }
 
-        global $app;
+        global $app, $pageRoutes;
         $categoryURI = $category->treePathStr;
         $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
+        $pageRoutes[$category->id][$lang] = url($categoryURI);
         if (!$app->isRouteRegistered($categoryURI, 'GET')) {
             $app->get($categoryURI, ["user\ContentController", "getContentsByCategoryId"]);
         }
@@ -49,22 +50,21 @@ class RouterService
 
     public static function getCategoryPageRoute($categoryId)
     {
+        global $pageRoutes;
         $sessionLang = Translate::getLang();
         $lang = in_array($sessionLang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
                     ? LanguagePool::ENGLISH()->getLabel() : $sessionLang;
-        $categoryArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
-        if(empty($categoryArray)){
-            return "";
-        }
-        $categoryURI  = implode('/', $categoryArray[$lang]);
-        $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
-        $params = ['id'=>$categoryId, 'lang'=>$sessionLang];
-        $categoryURI .=  '?' . http_build_query($params);
-        $headers = get_headers(url($categoryURI));
-        if ($headers && is_array($headers) && isset($headers[0]) && strpos($headers[0], '404') !== false) {
-            return url("/contents");
+        $paramArray = [
+            'id' => $categoryId,
+            'lang' => $sessionLang,
+        ];
+        $params = "?" . http_build_query($paramArray);
+
+        if(isset($pageRoutes[$categoryId]) && isset($pageRoutes[$categoryId][$lang])){
+            return $pageRoutes[$categoryId][$lang] . $params;
         }
 
-        return url($categoryURI);
+        $uri = "contents" . $params;
+        return url($uri);
     }
 }
