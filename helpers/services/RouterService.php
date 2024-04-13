@@ -59,10 +59,18 @@ class RouterService
         $lang = in_array($sessionLang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
                     ? LanguagePool::ENGLISH()->getLabel() : $sessionLang;
         $categoryArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
+        if(empty($categoryArray)){
+            return "";
+        }
         $categoryURI  = implode('/', $categoryArray[$lang]);
         $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
         $params = ['id'=>$categoryId, 'lang'=>$sessionLang];
         $categoryURI .=  '?' . http_build_query($params);
+        $headers = get_headers(url($categoryURI));
+        if ($headers && is_array($headers) && isset($headers[0]) && strpos($headers[0], '404') !== false) {
+            return url("/contents");
+        }
+
         return url($categoryURI);
     }
 }

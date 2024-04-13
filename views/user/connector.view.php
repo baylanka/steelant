@@ -2,6 +2,7 @@
 
 require_once "layout/start.layout.php";
 use helpers\translate\Translate;
+use helpers\services\RouterService;
 ?>
 
 <!--body section-->
@@ -25,43 +26,43 @@ use helpers\translate\Translate;
                 <div class="col-md-7 col-12 d-flex flex-wrap justify-content-between">
                     <dl>
                         <dt class="color-blue">LARSSEN</dt>
-                        <dd><a href="<?= url("/connector") ?>?id=3"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(3) ?>"
                                class="link <?= $_GET["id"] == 3 ? "selected" : "color-black" ?>">Corner connectors</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=4"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(4) ?>"
                                class="link <?= $_GET["id"] == 4 ? "selected" : "color-black" ?>">Omega corner
                                 connectors</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=5"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(5) ?>"
                                class="link <?= $_GET["id"] == 5 ? "selected" : "color-black" ?>">T connectors</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=6"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(6) ?>"
                                class="link <?= $_GET["id"] == 6 ? "selected" : "color-black" ?>">Cross connectors</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=7"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(7) ?>"
                                class="link <?= $_GET["id"] == 7 ? "selected" : "color-black" ?>">Weld-on connectors</a>
                         </dd>
                     </dl>
                     <dl>
                         <dt class="color-blue">BALL + SOCKET</dt>
-                        <dd><a href="<?= url("/connector") ?>?id=9"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(9) ?>"
                                class="link <?= $_GET["id"] == 9 ? "selected" : "color-black" ?>">US Corner
                                 connectors</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=10"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(10) ?>"
                                class="link <?= $_GET["id"] == 10 ? "selected" : "color-black" ?>">US T connectors</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=11"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(11) ?>"
                                class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?>">US Cross
                                 connectors</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=12"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(12) ?>"
                                class="link <?= $_GET["id"] == 12 ? "selected" : "color-black" ?>">MF connectors,
                                 weld-ons?</a></dd>
                     </dl>
                     <dl>
                         <dt class="color-blue">COLD FORMED</dt>
-                        <dd><a href="<?= url("/connector") ?>?id=14"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(14) ?>"
                                class="link <?= $_GET["id"] == 14 ? "selected" : "color-black" ?>">CF corner
                                 connector</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=15"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(15) ?>"
                                class="link <?= $_GET["id"] == 15 ? "selected" : "color-black" ?>">CF weld-on
                                 connector</a></dd>
                     </dl>
@@ -79,13 +80,13 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=17"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(17) ?>"
                                class="link <?= $_GET["id"] == 17 ? "selected" : "color-black" ?>">MF</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=18"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(18) ?>"
                                class="link <?= $_GET["id"] == 18 ? "selected" : "color-black" ?>">MDF</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=19"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(19) ?>"
                                class="link <?= $_GET["id"] == 19 ? "selected" : "color-black" ?>">LPB</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=20"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(20) ?>"
                                class="link <?= $_GET["id"] == 20 ? "selected" : "color-black" ?>">FD</a></dd>
                     </dl>
 
@@ -102,7 +103,7 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=22"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(22) ?>"
                                class="link <?= $_GET["id"] == 22 ? "selected" : "color-black" ?>">MF DTH</a></dd>
                     </dl>
 
@@ -120,19 +121,19 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=24"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(24) ?>"
                                class="link <?= $_GET["id"] == 24 ? "selected" : "color-black" ?>">L (Larssen)</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=25"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(25) ?>"
                                class="link <?= $_GET["id"] == 25 ? "selected" : "color-black" ?>">LPB (Larssen)</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=26"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(26) ?>"
                                class="link <?= $_GET["id"] == 26 ? "selected" : "color-black" ?>">MF (Ball +
                                 Socket)</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=27"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(27) ?>"
                                class="link <?= $_GET["id"] == 27 ? "selected" : "color-black" ?>">MDF (Ball +
                                 Socket)</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=28"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(28) ?>"
                                class="link <?= $_GET["id"] == 28 ? "selected" : "color-black" ?>">CF (Cold
                                 Formed)</a></dd>
                     </dl>
@@ -151,11 +152,11 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=30"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(30) ?>"
                                class="link <?= $_GET["id"] == 30 ? "selected" : "color-black" ?>">MF</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=31"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(31) ?>"
                                class="link <?= $_GET["id"] == 31 ? "selected" : "color-black" ?>">MDF</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=32"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(32) ?>"
                                class="link <?= $_GET["id"] == 32 ? "selected" : "color-black" ?>">FD</a></dd>
                     </dl>
 
@@ -172,13 +173,13 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-5 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=34"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(34) ?>"
                                class="link <?= $_GET["id"] == 34 ? "selected" : "color-black" ?>">LPB (Larssen)</a>
                         </dd>
-                        <dd><a href="<?= url("/connector") ?>?id=35"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(35) ?>"
                                class="link <?= $_GET["id"] == 35 ? "selected" : "color-black" ?>">MF (Ball +
                                 Socket)</a></dd>
-                        <dd><a href="<?= url("/connector") ?>?id=36"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(36) ?>"
                                class="link <?= $_GET["id"] == 36 ? "selected" : "color-black" ?>">MDF (Ball +
                                 Socket)</a></dd>
                     </dl>
@@ -196,7 +197,7 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7 col-12 p-0">
                     <dl>
-                        <dd><a href="<?= url("/connector") ?>?id=38"
+                        <dd><a href="<?= RouterService::getCategoryPageRoute(38) ?>"
                                class="link <?= $_GET["id"] == 38 ? "selected" : "color-black" ?>">FSC</a></dd>
                     </dl>
 

@@ -6,7 +6,7 @@ use helpers\services\ResponseService;
 
 class Router
 {
-    private array $routes;
+    public array $routes;
 
     public function __construct()
     {

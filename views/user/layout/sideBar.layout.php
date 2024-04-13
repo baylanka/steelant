@@ -2,6 +2,7 @@
     use helpers\services\RequestService;
     use helpers\translate\Translate;
     use helpers\pools\LanguagePool;
+    use helpers\services\RouterService;
 ?>
 <div class="offcanvas offcanvas-start"
      tabindex="-1"
@@ -31,37 +32,37 @@
 
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=1") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(3) ?>">
                             Cofferdam
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=12") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(17) ?>">
                             Pipe pile steel walls
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=16") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(22) ?>">
                             DTH driving method
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=17") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(24) ?>">
                             Pipe pile + sheet pile combined walls
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=22") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(30) ?>">
                             H-pile walls
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=25") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(34) ?>">
                             H-pile + sheet pile combined walls
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= url("/connector?id=28") ?>">
+                        <a class="nav-link" href="<?= RouterService::getCategoryPageRoute(36) ?>">
                             Cell structures
                         </a>
                     </li>

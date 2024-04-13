@@ -1,6 +1,9 @@
 <?php
-require_once "layout/start.layout.php";
 use helpers\services\RouterService;
+require_once "layout/start.layout.php";
+
+
+
 ?>
 
 <!--body section-->
@@ -20,21 +23,21 @@ use helpers\services\RouterService;
                     <div class="col-7">
                         <dl><p class="category-name">Cofferdam</p>
                             <dt class="color-blue mb-2">LARSSEN</dt>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(2) ?>" class="link color-black">Corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/omega-corner-connectors") ?>?id=4" class="link color-black">Omega corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/t-connectors") ?>?id=5" class="link color-black">T connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/cross-connectors") ?>?id=6" class="link color-black">Cross connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/larssen/weld-on-connectors") ?>?id=7" class="link color-black">Weld-on connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(3) ?>#heading" class="link color-black">Corner connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(4) ?>#heading" class="link color-black">Omega corner connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(5) ?>#heading" class="link color-black">T connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(6) ?>#heading" class="link color-black">Cross connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(7) ?>#heading" class="link color-black">Weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us-corner-connectors") ?>?id=9" class="link color-black">US Corner connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us-t-connectors") ?>?id=10" class="link color-black">US T connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/us_-ross-connectors") ?>?id=11" class="link color-black">US Cross connectors</a></dd>
-                            <dd><a href="<?= url("/cofferdam/ball+socket/mf-weld-on-connectors") ?>?id=12" class="link color-black">MF weld-on connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(9) ?>#heading" class="link color-black">US Corner connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(10) ?>#heading" class="link color-black">US T connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(11) ?>#heading" class="link color-black">US Cross connectors</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(12) ?>#heading" class="link color-black">MF weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
-                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-corner-connector") ?>?id=14" class="link color-black">CF corner connector</a></dd>
-                            <dd><a href="<?= url("/cofferdam/cold-formed/cf-weld-on-connector") ?>?id=15" class="link color-black">CF weld-on connector</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(14) ?>#heading" class="link color-black">CF corner connector</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(15) ?>#heading" class="link color-black">CF weld-on connector</a></dd>
                         </dl>
 
                     </div>
@@ -53,10 +56,10 @@ use helpers\services\RouterService;
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile steel walls</p>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/mf") ?>?id=17" class="link color-black">MF</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/mdf") ?>?id=18" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/lpb") ?>?id=19" class="link color-black">LPB</a></dd>
-                            <dd><a href="<?= url("/pipe-pile-steel-walls/fd") ?>?id=20" class="link color-black">FD</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(17) ?>#heading" class="link color-black">MF</a></dd>
+                            <dd><a href="<<?= RouterService::getCategoryPageRoute(18) ?>#heading" class="link color-black">MDF</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(19) ?>#heading" class="link color-black">LPB</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(20) ?>#heading" class="link color-black">FD</a></dd>
                         </dl>
 
                     </div>
@@ -72,9 +75,9 @@ use helpers\services\RouterService;
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">H-pile walls</p>
-                            <dd><a href="<?= url("/h-pile-walls/mf") ?>?id=30" class="link color-black">MF</a></dd>
-                            <dd><a href="<?= url("/h-pile-walls/mdf") ?>?id=31" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= url("/h-pile-walls/fd") ?>?id=32" class="link color-black">FD</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(30) ?>#heading" class="link color-black">MF</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(31) ?>#heading" class="link color-black">MDF</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(32) ?>#heading" class="link color-black">FD</a></dd>
                         </dl>
 
                     </div>
@@ -90,7 +93,7 @@ use helpers\services\RouterService;
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">DTH driving method</p>
-                            <dd><a href="<?= url("/dth-driving-method/mf-dth") ?>?id=22" class="link color-black">MF DTH</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(22) ?>#heading" class="link color-black">MF DTH</a></dd>
                         </dl>
                     </div>
                     <div class="col-2"></div>
@@ -107,9 +110,9 @@ use helpers\services\RouterService;
                         <dl>
                             <p class="category-name">H-pile + sheet pile
                                 combined walls</p>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=34" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=35" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/h-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=36" class="link color-black">MDF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(34) ?>#heading" class="link color-black">LPB (Larssen)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(35) ?>#heading" class="link color-black">MF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(36) ?>#heading" class="link color-black">MDF (Ball + Socket)</a></dd>
                         </dl>
 
                     </div>
@@ -125,11 +128,11 @@ use helpers\services\RouterService;
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile + sheet pile combined walls</p>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/l-(larssen)") ?>?id=24" class="link color-black">L (Larssen)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/lpb-(larssen)") ?>?id=25" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mf-(ball+socket)") ?>?id=26" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/mdf-(ball+socket)") ?>?id=27" class="link color-black">MDF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= url("/pipe-pile+sheet-pile-combined-walls/cf-(cold-formed)") ?>?id=28" class="link color-black">CF (Cold Formed)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(24) ?>#heading" class="link color-black">L (Larssen)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(25) ?>#heading" class="link color-black">LPB (Larssen)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(26) ?>#heading" class="link color-black">MF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(27) ?>#heading" class="link color-black">MDF (Ball + Socket)</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(28) ?>#heading" class="link color-black">CF (Cold Formed)</a></dd>
                         </dl>
 
                     </div>
@@ -145,7 +148,7 @@ use helpers\services\RouterService;
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Cell structures</p>
-                            <dd><a href="<?= url("/cell-structures/fsc") ?>?id=38" class="link color-black">FSC</a></dd>
+                            <dd><a href="<?= RouterService::getCategoryPageRoute(38) ?>#heading" class="link color-black">FSC</a></dd>
                         </dl>
 
                     </div>

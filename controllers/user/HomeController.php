@@ -7,6 +7,7 @@ use helpers\middlewares\UserMiddleware;
 use helpers\services\CategoryService;
 use helpers\services\FavouriteService;
 use helpers\services\OrderService;
+use helpers\services\RouterService;
 use model\Category;
 
 class HomeController
@@ -14,6 +15,7 @@ class HomeController
 
     public function home(Request $request)
     {
+//        dd(RouterService::getCategoryPageRoute(2));
         $data = [];
         return view("user/home.view.php", $data);
     }
