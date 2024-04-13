@@ -1,34 +1,36 @@
 <?php
 
-use model\Template;
-use helpers\translate\Translate;
 use helpers\services\ConnectorService;
+use helpers\translate\Translate;
+use model\Template;
 
 ?>
-<div class="row my-5 w-100" id="<?= $connector->id ?>">
+<div class="row my-5 w-100 justify-content-between" id="<?= $connector->id ?>">
 
     <div class="col-12 col-md-4 col-xxl-4">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
 
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?>
-                : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>
-                : <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "standard_length", $language) ?>
-                : <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
-                : <?= empty($connector->getMaxTensileStrengthByLang()) ? '---' : $connector->getMaxTensileStrengthByLang() ?></dd>
-
+            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "steel_grade", $language) ?>
+                : <p class="m-0"><?= empty($connector->grade) ? '---' : $connector->grade ?></p></dd>
+            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "steel_thickness", $language) ?>
+                : <p class="m-0"><?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></p></dd>
+            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "standard_length", $language) ?>
+                : <p class="m-0"><?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></p></dd>
+            <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
+                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
+                    : <p class="m-0"><?= $connector->getMaxTensileStrengthByLang() ?></p></dd>
+            <?php endif; ?>
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
-                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
+                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?>: ---
+                </dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>
-                        : <?= $value ?></dd>
+                    <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>
+                        : <p class="m-0"><?= $value ?></p></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <dd class="my-4 custom-font"><?= empty($connector->getDescriptionOfLang())
+            <dd class="my-5 custom-font d-flex gap-1"><?= empty($connector->getDescriptionOfLang())
                     ? '' : $connector->getDescriptionOfLang() ?></dd>
 
             <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
@@ -41,19 +43,22 @@ use helpers\services\ConnectorService;
                 style="cursor: pointer;">
                 <a class="link color-black"><?= Translate::get("template_context", "request_this_connector", $language) ?></a>
             </dd>
-            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if(isset($_SESSION["auth"])){ if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif; } ?>"
+            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (isset($_SESSION["auth"])) {
+                if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif;
+            } ?>"
                 data-id="<?= $connector->id ?>">
-                <a <?php if(!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif;?> class="link color-black">
+                <a <?php if (!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif; ?>
+                        class="link color-black">
                     <?= Translate::get("template_context", "remember_this_connector", $language) ?></a>
                 <?php
                 $imageUrl = "";
-                if(isset($_SESSION["auth"])) {
+                if (isset($_SESSION["auth"])) {
                     if (ConnectorService::isFavourite($connector->id)) {
                         $imageUrl = assets("themes/user/img/star.png");
                     } else {
                         $imageUrl = assets("themes/user/img/star-ash.png");
                     }
-                }else{
+                } else {
                     $imageUrl = assets("themes/user/img/star-ash.png");
                 }
                 ?>
@@ -63,9 +68,8 @@ use helpers\services\ConnectorService;
         </dl>
     </div>
 
-    <div class="col-12 col-md-1 col-xl-1 col-xxl-1 "></div>
 
-    <div class="col-12 col-md-7 col-xl-7 col-xxl-6 d-flex flex-column margin-top-sm">
+    <div class="col-12 col-md-7 col-xl-7 col-xxl-7 d-flex flex-column margin-top-sm">
         <div class="row justify-content-start">
 
             <?php
@@ -95,7 +99,7 @@ use helpers\services\ConnectorService;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
             <!--Duplicate element Start-->
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
                 <!--Duplicate element - for title Start-->
                 <?php
@@ -126,12 +130,14 @@ use helpers\services\ConnectorService;
                 <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                     style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light 
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
 
@@ -168,7 +174,7 @@ use helpers\services\ConnectorService;
             $placeHolder = 2;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
 
                 <!--Duplicate element - for title Start-->
@@ -199,12 +205,14 @@ use helpers\services\ConnectorService;
                 <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                     style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
 
@@ -240,7 +248,7 @@ use helpers\services\ConnectorService;
             $placeHolder = 3;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
                 <!--Duplicate element - for title Start-->
                 <?php
@@ -270,12 +278,14 @@ use helpers\services\ConnectorService;
                 <img class="img-fluid template-img mt-3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                     style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
 
@@ -313,19 +323,21 @@ use helpers\services\ConnectorService;
             $placeHolder = 4;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?>">
+            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
                 <!--Duplicate element - for image End-->
                 <img
                         class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                         data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                         alt="<?= $imageAttr->media_name ?>"
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
 
@@ -358,18 +370,20 @@ use helpers\services\ConnectorService;
             $placeHolder = 5;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?>">
+            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
                 <!--Duplicate element - for image End-->
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                     style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                   <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                   <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
 
@@ -402,18 +416,20 @@ use helpers\services\ConnectorService;
             $placeHolder = 6;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container  mt-4 <?= $imageContainerSize01 ?>">
+            <div class="template-img-container  mt-4 <?= $imageContainerSize01 ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
                 <!--Duplicate element - for image End-->
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"/>
+                     src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                     style="aspect-ratio : 1 / 1;object-fit: cover;"
+                />
 
-                <a class="remove-image-btn btn btn-sm btn-danger
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute mx-1"
-                   data-toggle="tooltip" title="reset image">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+                   data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                    <i class="bi bi-trash3-fill"></i>
                 </a>
 
                 <?php if ($mode === Template::MODE_EDIT): ?>

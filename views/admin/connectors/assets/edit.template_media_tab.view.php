@@ -22,19 +22,19 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
-                    <?=$templatePreviews[LanguagePool::GERMANY()->getLabel()]?>
+            <div class="tab-pane fade show active template_preview_tab" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
+                <?=$templatePreviews[LanguagePool::GERMANY()->getLabel()]?>
             </div>
 
-            <div class="tab-pane fade " id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
+            <div class="tab-pane fade template_preview_tab" id="nav-uk" role="tabpanel" aria-labelledby="nav-uk-tab">
                 <?=$templatePreviews[LanguagePool::UK_ENGLISH()->getLabel()]?>
             </div>
 
-            <div class="tab-pane fade " id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+            <div class="tab-pane fade template_preview_tab" id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
                 <?=$templatePreviews[LanguagePool::FRENCH()->getLabel()]?>
             </div>
 
-            <div class="tab-pane fade " id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
+            <div class="tab-pane fade template_preview_tab" id="nav-us" role="tabpanel" aria-labelledby="nav-us-tab">
                 <?=$templatePreviews[LanguagePool::US_ENGLISH()->getLabel()]?>
             </div>
 

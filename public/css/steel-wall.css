@@ -294,6 +294,18 @@ body {
 }
 
 
+.template_preview_tab{
+    max-width: 1300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.template-img{
+    background-color:#eef2f7;
+    width: 100% !important;
+}
+
 
 
 @media (max-width: 575.98px) {

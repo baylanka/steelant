@@ -67,6 +67,16 @@
                               <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::GERMANY()->getLabel()
                                     ? "selected-flag" : "" ?>"/>
                 </a>
+                <a href="?lang=<?=LanguagePool::FRENCH()->getLabel()?>"
+                   title="<?=LanguagePool::FRENCH()->getLabel()?>"
+                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                   class="lang"
+                >
+                    <img src="<?= assets("img/flags/fr.png") ?>" height="25"
+                         class="flag
+                                <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
+                             ? "selected-flag" : "" ?>"/>
+                </a>
                 <a href="?lang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                    title="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
@@ -87,17 +97,6 @@
                                 <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::US_ENGLISH()->getLabel()
                                     ? "selected-flag" : "" ?>"/>
                 </a>
-                <a href="?lang=<?=LanguagePool::FRENCH()->getLabel()?>"
-                   title="<?=LanguagePool::FRENCH()->getLabel()?>"
-                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
-                   class="lang"
-                >
-                    <img src="<?= assets("img/flags/fr.png") ?>" height="25"
-                         class="flag
-                                <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
-                                    ? "selected-flag" : "" ?>"/>
-                </a>
-
             </div>
         </div>
 
