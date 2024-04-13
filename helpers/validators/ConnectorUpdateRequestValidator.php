@@ -34,11 +34,15 @@ class ConnectorUpdateRequestValidator
         $downloadableFileURLArray = $request->get('downloadable_src', []);
 
         if(
-            (empty($downloadableArray)
-                || !isset($downloadableArray['name'])
-                || empty(array_filter(array_values($downloadableArray['name'])))
+            (
+                empty($downloadableArray)
+                ||
+                !isset($downloadableArray['name'])
+                ||
+                empty(array_filter(array_values($downloadableArray['name'])))
             )
-            &&  empty($downloadableFileURLArray))
+            &&
+            empty($downloadableFileURLArray))
         {
             return;
         }

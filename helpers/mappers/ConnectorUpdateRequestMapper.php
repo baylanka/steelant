@@ -155,8 +155,12 @@ class ConnectorUpdateRequestMapper
         if(
             (
                     empty($imageFilesArray)
-                || !isset($downloadableArray['name'])
-                ||  empty(array_filter(array_values($imageFilesArray['name'])))
+                    &&
+                    (
+                        !isset($downloadableArray['name'])
+                        ||
+                        empty(array_filter(array_values($imageFilesArray['name'])))
+                    )
             )
             &&  empty($imageUrlArray))
         {
@@ -174,9 +178,14 @@ class ConnectorUpdateRequestMapper
         $downloadableFileURLArray = $request->get('downloadable_src', []);
 
         if(
-            (empty($downloadableArray)
-                || !isset($downloadableArray['name'])
-                || empty(array_filter(array_values($downloadableArray['name'])))
+            (
+                empty($downloadableArray)
+                &&
+                (
+                    !isset($downloadableArray['name'])
+                    ||
+                    empty(array_filter(array_values($downloadableArray['name'])))
+                )
             )
             &&  empty($downloadableFileURLArray))
         {
