@@ -56,6 +56,8 @@ class RouterService
     public static function getCategoryPageRoute($categoryId)
     {
         $lang = Translate::getLang();
+        $lang = in_array($lang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
+                    ? LanguagePool::ENGLISH()->getLabel() : $lang;
         $categoryArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
         $categoryURI  = implode('/', $categoryArray[$lang]);
         $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
