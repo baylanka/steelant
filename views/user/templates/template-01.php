@@ -41,13 +41,17 @@ use helpers\services\ConnectorService;
                 style="cursor: pointer;">
                 <a class="link color-black"><?= Translate::get("template_context", "request_this_connector") ?></a>
             </dd>
-            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif; ?>"
+            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if(isset($_SESSION["auth"])){ if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif; } ?>"
                 data-id="<?= $connector->id ?>">
-                <a class="link color-black"><?= Translate::get("template_context", "remember_this_connector") ?></a>
+                <a <?php if(!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif;?> class="link color-black"><?= Translate::get("template_context", "remember_this_connector") ?></a>
                 <?php
                 $imageUrl = "";
-                if (ConnectorService::isFavourite($connector->id)){
-                    $imageUrl = assets("themes/user/img/star.png");
+                if(isset($_SESSION["auth"])) {
+                    if (ConnectorService::isFavourite($connector->id)) {
+                        $imageUrl = assets("themes/user/img/star.png");
+                    } else {
+                        $imageUrl = assets("themes/user/img/star-ash.png");
+                    }
                 }else{
                     $imageUrl = assets("themes/user/img/star-ash.png");
                 }
@@ -299,7 +303,7 @@ use helpers\services\ConnectorService;
 
         </div>
 
-        <div class="row mt-4 justify-content-end">
+        <div class="row justify-content-start">
 
 
             <!-- ///////  Image 04  /////// -->
@@ -308,7 +312,7 @@ use helpers\services\ConnectorService;
             $placeHolder = 4;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?>">
 
                 <!--Duplicate element - for image End-->
                 <img
@@ -353,7 +357,7 @@ use helpers\services\ConnectorService;
             $placeHolder = 5;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container mt-4 <?= $imageContainerSize01 ?>">
 
                 <!--Duplicate element - for image End-->
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
@@ -397,7 +401,7 @@ use helpers\services\ConnectorService;
             $placeHolder = 6;
             $imageAttr = $connector->getImageAttributes($placeHolder);
             ?>
-            <div class="template-img-container <?= $imageContainerSize01 ?>">
+            <div class="template-img-container  mt-4 <?= $imageContainerSize01 ?>">
 
                 <!--Duplicate element - for image End-->
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"

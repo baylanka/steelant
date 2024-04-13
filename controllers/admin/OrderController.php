@@ -6,6 +6,7 @@ use app\Request;
 use controllers\BaseController;
 use helpers\middlewares\UserMiddleware;
 use helpers\services\OrderService;
+use helpers\utilities\ResponseUtility;
 use model\Order;
 
 class OrderController extends BaseController
@@ -32,7 +33,34 @@ class OrderController extends BaseController
 
 
     public function changeStatus(Request $request){
-        OrderService::changeStatus($request);
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            OrderService::changeStatus($request);
+            $db->commit();
+            header('Location: ' . url("/admin/orders"));
+        }catch(\Exception $ex){
+            $db->rollBack();
+            header('Location: ' . url("/admin/orders"));
+        }
     }
+
+    public function destroy(Request $request)
+    {
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            OrderService::deleteById($request->get("id"));
+            $db->commit();
+            header('Location: ' . url("/admin/orders"));
+        }catch(\Exception $ex){
+            $db->rollBack();
+            header('Location: ' . url("/admin/orders"));
+        }
+    }
+
+
 
 }

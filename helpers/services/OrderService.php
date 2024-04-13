@@ -4,6 +4,7 @@ namespace helpers\services;
 
 use app\Request;
 use model\Order;
+use model\User;
 
 class OrderService
 {
@@ -46,6 +47,10 @@ class OrderService
 
     public static function changeStatus(Request $request)
     {
+        if($request->get("status") == null || $request->get("status") !== Order::STATUS_PENDING || $request->get("status") !== Order::STATUS_COMPLETED || $request->get("status") !== Order::STATUS_REJECTED){
+            header('Location: ' . url("/admin/orders"));
+        }
+
         Order::updateById($request->get("id"), ["status" => $request->get("status")]);
     }
 
