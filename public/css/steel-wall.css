@@ -304,7 +304,7 @@ body {
     }
 
     .reveal-on-sm {
-        visibility: visible !important;
+        display: block !important;
     }
 
 
@@ -369,7 +369,7 @@ body {
 
 
     .reveal-on-sm {
-        visibility: visible !important;
+        display: block !important;
     }
 
     .remove-on-sm {

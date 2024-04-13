@@ -11,10 +11,22 @@ class UserCreateRequestMapper
 
     public static function getModel(Request $request): User
     {
+
+        $email_verified = 0;
+        if ($request->get('type') != null){
+            $type =  $request->get('type');
+            $email_verified = 1;
+        }else{
+            $type =  User::USER;
+        }
+
+
+
+
         $user = new User();
         $user->name = $request->get('name');
         $user->title = $request->get('title');
-        $user->type = $request->get('type');
+        $user->type =  $type;
         $user->job_position = $request->get('job_position');
         $user->division = $request->get('division');
         $user->company_name = $request->get('company_name');
@@ -22,7 +34,7 @@ class UserCreateRequestMapper
         $user->email = $request->get('email');
         $user->website = $request->get('website');
         $user->phone = $request->get('phone');
-        $user->email_verified = 1;
+        $user->email_verified = $email_verified;
         $user->password = password_hash(md5($request->get('password')), PASSWORD_BCRYPT);
         $user->verification_key = bin2hex(openssl_random_pseudo_bytes(50));
 

@@ -8,6 +8,7 @@ use helpers\clients\EmailClient;
 use helpers\mappers\OrderStoreRequestMapper;
 use helpers\services\CategoryService;
 use helpers\services\ConnectorService;
+use helpers\services\OrderService;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\OrderStoreRequestValidator;
 use model\Category;
@@ -30,9 +31,25 @@ class ConnectorController extends BaseController
             $db->rollBack();
             parent::response($ex->getMessage(), [], 422);
         }
-
-
     }
+
+    public function destroyFavourite(Request $request){
+        global $container;
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            ConnectorService::deleteFavouriteById($request->get("id"));
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Deleted successfully.",
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
+    }
+
+
 
 
 }

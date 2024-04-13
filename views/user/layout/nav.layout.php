@@ -12,7 +12,7 @@
 
     <div class="container-fluid">
         <div class="text-center row position-relative p-2">
-            <div class="col-4 mt-5 text-center reveal-on-sm invisible">
+            <div class="col-4 mt-5 text-center reveal-on-sm" style="display: none;">
                 <img src="<?= assets("themes/user/img/menu.png") ?>"
                      type="button"
                      data-bs-toggle="offcanvas"

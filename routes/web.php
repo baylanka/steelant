@@ -57,7 +57,7 @@ $app->post('/contact/sendMessage',  ["UserController", "sendMessage"]);
 
 $app->get('/contents',  ["user\ContentController", "getContentsByCategoryId"]);
 $app->get('/connector/add_to_favourite',   ["user\ConnectorController", "addToFavourite"]);
-
+$app->get('/connector/favourite/delete',   ["user\ConnectorController", "destroyFavourite"]);
 
 
 
