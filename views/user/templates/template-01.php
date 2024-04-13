@@ -5,7 +5,7 @@ use helpers\translate\Translate;
 use helpers\services\ConnectorService;
 
 ?>
-<div class="row my-5 w-100">
+<div class="row my-5 w-100" id="<?= $connector->id ?>">
 
     <div class="col-12 col-md-4 col-xxl-4">
         <dl>

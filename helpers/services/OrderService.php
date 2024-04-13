@@ -24,8 +24,8 @@ class OrderService
         return [
             "total_count" => $total_count->count,
             "total_completed" => $total_completed->count,
-            "total_pending"=> $total_pending->count,
-            "total_rejected"=> $total_rejected->count
+            "total_pending" => $total_pending->count,
+            "total_rejected" => $total_rejected->count
         ];
     }
 
@@ -33,14 +33,20 @@ class OrderService
     public static function getByUser($userId)
     {
         return Order::query("
-        SELECT orders.*, connectors.name AS connector_name FROM orders 
+        SELECT orders.*, connectors.name AS connector_name,connectors.id AS connector_id, category_contents.leaf_category_id FROM orders 
          LEFT JOIN connectors ON orders.connector_id = connectors.id
-         WHERE user_id =:user_id",["user_id"=>$userId])->get();
+         INNER JOIN category_contents ON connectors.id = category_contents.element_id 
+         WHERE user_id =:user_id AND category_contents.type = 'connector'", ["user_id" => $userId])->get();
     }
 
     public static function deleteById($id)
     {
         Order::deleteById($id);
+    }
+
+    public static function changeStatus(Request $request)
+    {
+        Order::updateById($request->get("id"), ["status" => $request->get("status")]);
     }
 
 }

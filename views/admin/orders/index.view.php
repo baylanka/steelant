@@ -1,6 +1,5 @@
 <?php
 
-use helpers\translate\Translate;
 global $env;
 ?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
@@ -108,7 +107,7 @@ global $env;
                 foreach ($orders as $order): ?>
                     <tr class="align-middle">
                         <td class="text-left">
-                        <?= $env["ORDER_ID_PREFIX"] . $order->id ?>
+                            <?= $env["ORDER_ID_PREFIX"] . $order->id ?>
                         </td>
                         <td class="text-center">
                             <span class="badge bg-<?= getStatusColorCode($order->status) ?>"> <?= $order->status ?></span>
@@ -137,7 +136,7 @@ global $env;
                                         aria-expanded="false">
                                     Actions
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="width: 300px;">
                                     <li>
                                         <a href="#" class="dropdown-item" type="button">
                                             View <i class="bi bi-eye float-end"></i>
@@ -147,12 +146,33 @@ global $env;
                                         <a href="#" class="dropdown-item" type="button">
                                             Change status <i class="bi bi-toggle-off float-end"></i>
                                         </a>
+                                        <ul class="list-group m-3">
+                                            <li class="list-group-item <?= $order->status == "pending" ? "active" : "" ?>" aria-current="true">
+                                                <a href="#">
+                                                    <span class="badge bg-warning">pending</span>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item <?= $order->status == "completed" ? "active" : "" ?>">
+                                                <a href="#">
+                                                    <span class="badge bg-success">complete</span>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item <?= $order->status == "rejected" ? "active" : "" ?>">
+                                                <a href="#">
+                                                    <span class="badge bg-danger">reject</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown-item" type="button">
                                             Delete <i class="bi bi-trash3 text-danger float-end"></i>
                                         </a>
                                     </li>
+
                                 </ul>
                             </div>
                         </td>

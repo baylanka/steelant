@@ -30,4 +30,9 @@ class OrderController extends BaseController
         return view("admin/orders/index.view.php", $data);
     }
 
+
+    public function changeStatus(Request $request){
+        OrderService::changeStatus($request);
+    }
+
 }
