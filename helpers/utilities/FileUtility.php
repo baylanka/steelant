@@ -70,4 +70,9 @@ class FileUtility
         array_pop($fileNameSplits);
         return implode(' ', $fileNameSplits);
     }
+
+    public static function fileExists($path)
+    {
+        return file_exists($path);
+    }
 }

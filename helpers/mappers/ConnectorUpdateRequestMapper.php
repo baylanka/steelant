@@ -127,6 +127,9 @@ class ConnectorUpdateRequestMapper
 
             $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
             $imageMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_IMAGE, $directoryPath);
+            if(!$imageMedia){
+                continue;
+            }
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
                 $contentTemplateMedia = new ContentTemplateMedia();
@@ -200,6 +203,10 @@ class ConnectorUpdateRequestMapper
             $fileName = "downloadable_file_{$fileName}({$index})_" . time() . "." . $fileExtension;
             $downloadableMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_FILE, $directoryPath);
 
+            if(!$downloadableMedia){
+                continue;
+            }
+
             foreach ($downloadableArray['title'][$index] as $lang => $title){
                 //downloadable files no need placeholder hint. so, it is ignored here
                 $contentTemplateMedia = new ContentTemplateMedia();
@@ -263,7 +270,16 @@ class ConnectorUpdateRequestMapper
         $fileRepo = implode('/', $fileURLParts);
         $filePath = storage_path("public/" . $fileRepo);
 
-        file_put_contents($target, file_get_contents($filePath));
+        if(!FileUtility::fileExists($filePath)){
+            return false;
+        }
+
+        $content = file_get_contents($filePath);
+        if(empty($content)){
+            return false;
+        }
+
+        file_put_contents($target, $content);
 
 
         $fileOriginalName = FileUtility::getFileNamePhraseFromURL($fileURL);
