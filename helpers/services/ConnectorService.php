@@ -22,10 +22,10 @@ class ConnectorService
         return $connector;
     }
 
-    public static function getDTOById(int $id, string $lang, $separator = '<')
+    public static function getDTOById(int $id, string $lang, $separator = ' > ')
     {
         $connector = self::getConnectorAssociatedData($id);
-        return new ConnectorDTO($connector, $lang, '<');
+        return new ConnectorDTO($connector, $lang, $separator);
     }
 
 

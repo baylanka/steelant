@@ -192,8 +192,8 @@
     function getRow(connector)
     {
         let weight = '';
-        if(connector.weights.length ===1){
-            weight = connector.weights[0];
+        if(Object.values(connector.weights).length ===1){
+            weight = Object.values(connector.weights)[0];
         }else{
 
             weight = `<table class="table table-striped table-bordered">
