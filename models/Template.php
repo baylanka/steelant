@@ -73,7 +73,7 @@ class Template extends BaseModel
             case self::TYPE_CONNECTOR:
                 return "connector template";
             case self::TYPE_ADD_ON:
-                return "add-on template";
+                return "ad-on template";
             default:
                 return "unknown";
         }

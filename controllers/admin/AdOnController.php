@@ -4,21 +4,20 @@ namespace controllers\admin;
 
 use app\Request;
 use controllers\BaseController;
-use helpers\dto\AddOnDTO;
+use helpers\dto\AdOnDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
-use helpers\mappers\AddOnStoreRequestMapper;
-use helpers\mappers\AnotherMapper;
-use helpers\mappers\ConnectorStoreRequestMapper;
-use helpers\mappers\StoreAddOnRequestMapper;
-use helpers\mappers\TestMapper;
+use helpers\mappers\AdOnStoreRequestMapper;
 use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
+use helpers\services\AdOnService;
+use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\AddOnContentStoreRequestValidator;
+use model\AdOnContent;
 use model\Category;
 
-class AddOnController extends BaseController
+class AdOnController extends BaseController
 {
     public function __construct()
     {
@@ -27,13 +26,15 @@ class AddOnController extends BaseController
     }
     public function index(Request $request)
     {
-        $categories = Category::getAll();
-        $leafCategories = LeafCategoryDTOCollection::getCollection($categories);
+        $lang = Translate::getLang();
+        $separate = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        $adOnContents = AdOnContent::getAll();
+        $adOnDTOCollection = AdOnDTOCollection::getCollection($adOnContents, $lang, $separate);
         $data = [
-            'leafCategories' => $leafCategories,
-            'heading' => "Add-on"
+            'heading' => "Ad-on",
+            'adOnContents' => $adOnDTOCollection
         ];
-        return view("admin/add-on-content/index.view.php", $data);
+        return view("admin/ad-on-content/index.view.php", $data);
 
     }
 
@@ -48,22 +49,24 @@ class AddOnController extends BaseController
             'categoryId' => $request->get('categoryId'),
             'templates' => TemplateRepository::getAllAddOn(),
         ];
-        return view("admin/add-on-content/create.view.php", $data);
+        return view("admin/ad-on-content/create.view.php", $data);
     }
 
     public function store(Request $request)
     {
         global $container;
+        $lang = Translate::getLang();
+        $separate = '  <i class="bi bi-arrow-right text-success"></i>  ';
         $db = $container->resolve('DB');
         try{
             $db->beginTransaction();
             AddOnContentStoreRequestValidator::validate($request);
-            $addOnContent = AddOnStoreRequestMapper::getModel($request);
+            $addOnContent = AdOnStoreRequestMapper::getModel($request);
             $addOnContent->save();
             $db->commit();
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
-                "data" => new AddOnDTO($addOnContent),
+                "data" => AdOnService::getDTOById($addOnContent->id, $lang, $separate),
             ]);
         }catch(\Exception $ex){
             $db->rollBack();

@@ -2,7 +2,7 @@
 
 namespace helpers\repositories;
 
-use model\AddOnContent;
+use model\AdOnContent;
 use model\CategoryContent;
 use model\Connector;
 
@@ -51,7 +51,7 @@ class CategoryContentRepository extends CategoryContent
             'category_id' => $categoryId,
             'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT,
             'connector_visibility' => Connector::PUBLISHED,
-            'add_on_visibility' => AddOnContent::PUBLISHED
+            'add_on_visibility' => AdOnContent::PUBLISHED
         ];
 
         return CategoryContent::queryAsArray($sql, $params)->get();
@@ -113,7 +113,7 @@ class CategoryContentRepository extends CategoryContent
     {
         foreach ($addOnContents as $content)
         {
-            AddOnContent::deleteById($content->element_id);
+            AdOnContent::deleteById($content->element_id);
             static::deleteContent($content);
         }
     }

@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Add-On</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Create Ad-On</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -26,10 +26,10 @@
 
                 </ul>
 
-                <form action="<?= url('/admin/add-on-content/store') ?>">
+                <form action="<?= url('/admin/ad-on-content/store') ?>">
                     <div class="tab-content" id="myTabContent">
-                        <?php include_once basePath('/views/admin/add-on-content/assets/create.details_tab.view.php') ?>
-                        <?php include_once basePath('/views/admin/add-on-content/assets/create.templates_tab.view.php') ?>
+                        <?php include_once basePath('/views/admin/ad-on-content/assets/create.details_tab.view.php') ?>
+                        <?php include_once basePath('/views/admin/ad-on-content/assets/create.templates_tab.view.php') ?>
                     </div>
                 </form>
             </div>
@@ -40,7 +40,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary background-blue" id="add-on-create">Create</button>
+            <button type="button" class="btn btn-primary background-blue" id="ad-on-create">Create</button>
         </div>
 
     </div>
@@ -54,8 +54,8 @@
 
     });
 
-    $('button#add-on-create').off('click');
-    $('button#add-on-create').on('click', async function storeAddOn(e){
+    $('button#ad-on-create').off('click');
+    $('button#ad-on-create').on('click', async function storeAddOn(e){
         e.preventDefault();
         tinymce.triggerSave();
         const btn = $(this);

@@ -3,11 +3,12 @@
 namespace model;
 
 use helpers\pools\LanguagePool;
-use helpers\repositories\ContentTemplateMediaRepository;
+use helpers\repositories\AdOnRepository;
 use helpers\services\ContentTemplateService;
 use model\BaseModel;
+use model\Element;
 
-class AddOnContent extends BaseModel
+class AdOnContent extends Element
 {
     protected string $table = "add_on_contents";
     public string $title;
@@ -20,9 +21,18 @@ class AddOnContent extends BaseModel
     const UNPUBLISHED = 0;
     const PUBLISHED = 1;
 
+    protected function getContentTemplates()
+    {
+        return AdOnRepository::getAddOnContentTemplatesByConnectorId($this->id);
+    }
+
+    protected function getContentType()
+    {
+        return CategoryContent::TYPE_ADD_ON_CONTENT;
+    }
     public function save()
     {
-        //store add-on-content
+        //store ad-on-content
         parent::save();
         $addOnContentId = $this->id;
 

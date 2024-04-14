@@ -41,10 +41,10 @@
                 </li>
 
                 <li class="nav-item menu-open">
-                    <a href="<?= url("admin/add-on") ?>"
-                       class="nav-link <?= isRequestedRoute("admin/add-on") ? 'active' :'' ?>">
+                    <a href="<?= url("admin/ad-on") ?>"
+                       class="nav-link <?= isRequestedRoute("admin/ad-on") ? 'active' :'' ?>">
                         <i class="bi bi-newspaper"></i>
-                        <p> Add-On </p>
+                        <p> Ad-On </p>
                     </a>
                 </li>
 

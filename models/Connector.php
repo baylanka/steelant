@@ -8,8 +8,9 @@ use helpers\repositories\ContentTemplateRepository;
 use helpers\services\CategoryService;
 use helpers\services\ContentTemplateService;
 use model\BaseModel;
+use model\Element;
 
-class Connector extends BaseModel
+class Connector extends Element
 {
     protected string $table = "connectors";
 
@@ -37,67 +38,14 @@ class Connector extends BaseModel
     CONST UNPUBLISHED = 0;
     const PUBLISHED = 1;
 
-    public function setMetaCollection($force = false): void
+    protected function getContentTemplates()
     {
-        if($force || !isset($this->relations['meta_collection']) || empty($this->relations['meta_collection'])){
-            $this->relations['meta_collection'] = ConnectorRepository::getConnectorTemplatesByConnectorId($this->id);
-        }
+        return ConnectorRepository::getConnectorContentTemplatesByConnectorId($this->id);
     }
 
-    public function setCategory()
+    protected function getContentType()
     {
-        if (isset($this->relations['category_name_array']) && !empty($this->relations['category_name_array'])) {
-            return;
-        }
-
-        $content = CategoryContent::getFirstBy([
-            'type' => CategoryContent::TYPE_CONNECTOR,
-            'element_id' => $this->id
-        ]);
-
-        if (!$content) {
-            return;
-        }
-
-        $this->relations['leaf_category_id'] = $content->leaf_category_id;
-        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->leaf_category_id);
-    }
-
-    public function getCategoryHierarchyEn()
-    {
-        $this->setCategory();
-        if (!isset($this->relations['category_name_array'])) {
-            return '';
-        }
-        return implode(' > ', $this->relations['category_name_array'][LanguagePool::ENGLISH()->getLabel()]);
-    }
-
-    public function getCategoryHierarchyFr()
-    {
-        $this->setCategory();
-        if (!isset($this->relations['category_name_array'])) {
-            return '';
-        }
-        return implode(' > ', $this->relations['category_name_array'][LanguagePool::FRENCH()->getLabel()]);
-    }
-
-    public function getCategoryHierarchyDe()
-    {
-        $this->setCategory();
-        if (!isset($this->relations['category_name_array'])) {
-            return '';
-        }
-        return implode(' > ', $this->relations['category_name_array'][LanguagePool::GERMANY()->getLabel()]);
-    }
-
-    public function getCategoryHierarchyByLanguage($lang)
-    {
-        return match ($lang) {
-            LanguagePool::ENGLISH()->getLabel() => $this->getCategoryHierarchyEn(),
-            LanguagePool::GERMANY()->getLabel() => $this->getCategoryHierarchyDe(),
-            LanguagePool::FRENCH()->getLabel() => $this->getCategoryHierarchyFr(),
-            default => $this->getCategoryHierarchyDe(),
-        };
+        return CategoryContent::TYPE_CONNECTOR;
     }
 
     public function save()

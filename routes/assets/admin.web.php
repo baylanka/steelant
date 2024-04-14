@@ -10,10 +10,10 @@ $app->get('/admin/connectors/edit',  ["admin\ConnectorController", "edit"]);
 $app->post('/admin/connectors/update',  ["admin\ConnectorController", "update"]);
 $app->get('/admin/connectors/templates',  ["admin\ConnectorController", "showAllTemplates"]);
 
-//Add-on routes
-$app->get('/admin/add-on',  ["admin\AddOnController", "index"]);
-$app->get('/admin/add-on/create',  ["admin\AddOnController", "create"]);
-$app->post('/admin/add-on-content/store',  ["admin\AddOnController", "store"]);
+//Ad-on routes
+$app->get('/admin/ad-on',  ["admin\AdOnController", "index"]);
+$app->get('/admin/ad-on/create',  ["admin\AdOnController", "create"]);
+$app->post('/admin/ad-on-content/store',  ["admin\AdOnController", "store"]);
 
 
 //Category routes

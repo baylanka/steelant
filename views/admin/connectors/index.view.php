@@ -277,7 +277,7 @@
                 modal.hide();
                 const connector = event.originalEvent.detail.connector;
                 const row = getRow(connector);
-                $('#connector-body').prepend(row);
+                $('#connector-body').append(row);
                 await getConnectorEditModal(connector.id);
             });
         } catch (err) {

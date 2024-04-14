@@ -5,16 +5,16 @@ namespace helpers\mappers;
 use app\Request;
 use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryRepository;
-use model\AddOnContent;
+use model\AdOnContent;
 use model\CategoryContent;
 use model\ContentTemplate;
 
-class AddOnStoreRequestMapper
+class AdOnStoreRequestMapper
 {
     public static function getModel(Request $request)
     {
-        $addOnContent = new AddOnContent();
-        $addOnContent->visibility = $request->get('visibility', AddOnContent::UNPUBLISHED);
+        $addOnContent = new AdOnContent();
+        $addOnContent->visibility = $request->get('visibility', AdOnContent::UNPUBLISHED);
         $addOnContent->title = self::getTitleJson($request);
         $addOnContent->description = self::getDescriptionJson($request);
 

@@ -66,7 +66,7 @@ class ConnectorRepository extends Connector
         return json_decode(json_encode($connector));
     }
 
-    public static function getConnectorTemplatesByConnectorId($id)
+    public static function getConnectorContentTemplatesByConnectorId($id)
     {
         $sql = "
             SELECT

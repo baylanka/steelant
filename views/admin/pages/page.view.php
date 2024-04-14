@@ -10,7 +10,7 @@ use model\CategoryContent;
 
 <div class="w-100 d-flex justify-content-end gap-2 mb-3">
     <button class="btn btn-sm btn-secondary align-self-start" type="button" id="create-addon">Create
-        Add-on
+        Ad-on
     </button>
     <button class="btn btn-sm btn-primary align-self-start" type="button" id="create-connector">Create
         Connector

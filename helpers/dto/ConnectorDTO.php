@@ -7,14 +7,12 @@ use helpers\services\CategoryService;
 use model\Connector;
 use model\Media;
 
-class ConnectorDTO
+class ConnectorDTO extends ElementDTO
 {
-    private \stdClass|Connector $connector;
-    private ?array $connectorProperties;
-    public string $language;
+    public \stdClass|Connector $element;
+
     public int $id;
-    public string $categoryTree;
-    public bool $isPublished;
+
     public string $name;
     public string $grade;
     public string $thickness;
@@ -30,11 +28,6 @@ class ConnectorDTO
     public array $weights;
     public array $weights_i;
     public array $weights_m;
-
-    public ?int $templateId;
-    public ?int $categoryId;
-    public ?int $contentId;
-
     public string $maxTensile;
     public string $maxTensile_m;
     public string $maxTensile_i;
@@ -45,13 +38,13 @@ class ConnectorDTO
     public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
         $this->language = $lang;
-        $this->connector = $connector;
+        $this->element = $connector;
 
-        $this->id = $this->connector->id;
-        $this->name = $this->connector->name;
-        $this->grade = $this->connector->grade ?? '';
+        $this->id = $this->element->id;
+        $this->name = $this->element->name;
+        $this->grade = $this->element->grade ?? '';
         $this->setLanguageDescriptions();
-        $this->isPublished = $this->connector->visibility;
+        $this->isPublished = $this->element->visibility;
         $this->setThickness($lang);
         $this->setLength($lang);
         $this->setWeight($lang);
@@ -65,10 +58,10 @@ class ConnectorDTO
 
     private function setLanguageDescriptions()
     {
-        $this->description_en_us = $this->connector->getDescriptionEnUS();
-        $this->description_en_db = $this->connector->getDescriptionEnUK();
-        $this->description_de = $this->connector->getDescriptionDe();
-        $this->description_fr = $this->connector->getDescriptionFr();
+        $this->description_en_us = $this->element->getDescriptionEnUS();
+        $this->description_en_db = $this->element->getDescriptionEnUK();
+        $this->description_de = $this->element->getDescriptionDe();
+        $this->description_fr = $this->element->getDescriptionFr();
     }
 
     public function getDescriptionOfLang()
@@ -94,7 +87,7 @@ class ConnectorDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->standardLength_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->standardLength_m . " <br/>" . $this->connector->standard_lengths_i;
+                return $this->standardLength_m . " <br/>" . $this->element->standard_lengths_i;
         }
     }
 
@@ -203,34 +196,21 @@ class ConnectorDTO
         }
     }
 
-    private function setTemplateId(): void
-    {
-        $this->setConnectorProperties();
-        $properties = $this->connectorProperties;
-        if(in_array('relations', $properties)
-            && isset($this->connector->relations['meta_collection'])
-            && !empty(sizeof($this->connector->relations['meta_collection']))
-        ){
-            $this->templateId = $this->connector->relations['meta_collection'][0]->template_id ?? null;
-            return;
-        }
 
-        $this->templateId = null;
-    }
 
     private function setContentId()
     {
-        $this->setConnectorProperties();
-        $properties = $this->connectorProperties;
+        $this->setElementProperties();
+        $properties = $this->elementProperties;
 
         if(     !in_array('relations', $properties)
-            ||  !isset($this->connector->relations['meta_collection'])
+            ||  !isset($this->element->relations['meta_collection'])
         ){
             $this->downloadableFiles = [];
             return;
         }
 
-        foreach ($this->connector->relations['meta_collection'] as $each){
+        foreach ($this->element->relations['meta_collection'] as $each){
             $this->contentId = $each->content_id;
             return;
         }
@@ -240,18 +220,18 @@ class ConnectorDTO
 
     private function setDownloadableFiles(): void
     {
-        $this->setConnectorProperties();
-        $properties = $this->connectorProperties;
+        $this->setElementProperties();
+        $properties = $this->elementProperties;
 
         if(     !in_array('relations', $properties)
-            ||  !isset($this->connector->relations['meta_collection'])
+            ||  !isset($this->element->relations['meta_collection'])
         ){
             $this->downloadableFiles = [];
             return;
         }
 
         $files = [];
-        foreach ($this->connector->relations['meta_collection'] as $each){
+        foreach ($this->element->relations['meta_collection'] as $each){
             if(!isset($each->media_id) || $each->media_type !== Media::TYPE_FILE) continue;
 
             $files[$each->media_id]['title'][$each->language] =  $each->media_title ?? null;
@@ -272,18 +252,18 @@ class ConnectorDTO
 
     private function setImageFiles(): void
     {
-        $this->setConnectorProperties();
-        $properties = $this->connectorProperties;
+        $this->setElementProperties();
+        $properties = $this->elementProperties;
 
         if(     !in_array('relations', $properties)
-            ||  !isset($this->connector->relations['meta_collection'])
+            ||  !isset($this->element->relations['meta_collection'])
         ){
             $this->imageFiles = [];
             return;
         }
 
         $files = [];
-        foreach ($this->connector->relations['meta_collection'] as $each){
+        foreach ($this->element->relations['meta_collection'] as $each){
             if(!isset($each->media_id) || $each->media_type === Media::TYPE_FILE) continue;
 
             $files[$each->media_id]['title'][$each->language] =  $each->media_title ?? null;
@@ -302,60 +282,10 @@ class ConnectorDTO
 
         $this->imageFiles =  array_values($files);
     }
-
-    private function setConnectorProperties(): void
-    {
-        if(     isset($this->connectorProperties)
-            && !is_null($this->connectorProperties)
-            && sizeof($this->connectorProperties) > 0){
-            return ;
-        }
-
-        $this->connectorProperties = array_keys(json_decode(json_encode($this->connector), true));
-    }
-
-    private function setCategoryId(): void
-    {
-        $this->setConnectorProperties();
-
-        if (in_array('relations', $this->connectorProperties)){
-             if( isset($this->connector->relations['meta_collection'])
-                && !empty(sizeof($this->connector->relations['meta_collection']))) {
-                 $this->categoryId = $this->connector->relations['meta_collection'][0]->leaf_category_id;
-             }else if($this->connector->relations['leaf_category_id']){
-                 $this->categoryId = $this->connector->relations['leaf_category_id'];
-             }
-        } else if (isset($this->connector->leaf_category_id)) {
-            $this->categoryId = $this->connector->leaf_category_id;
-        } else if (isset($this->connector->temp_content->leaf_category_id)) {
-            $this->categoryId = $this->connector->temp_content->leaf_category_id;
-        }
-    }
-
-    private function setCategoryTree($lang, $separator)
-    {
-        $this->setConnectorProperties();
-        $lang = in_array($lang, [LanguagePool::US_ENGLISH()->getLabel(), LanguagePool::UK_ENGLISH()->getLabel()])
-                ? LanguagePool::ENGLISH()->getLabel() : $lang;
-
-        if (in_array('relations', $this->connectorProperties)
-            && isset($this->connector->relations['category_name_array'])
-            && !empty(sizeof($this->connector->relations['category_name_array']))) {
-
-             $categoryArray = $this->connector->relations['category_name_array'][$lang];
-             $this->categoryTree = implode($separator, $categoryArray);
-        }else{
-            $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($this->categoryId);
-            $this->categoryTree = implode($separator, $tree[$lang]);
-        }
-
-        return $this;
-    }
-
     private function setThickness($lang): void
     {
-        $this->thickness_i = $this->connector->thickness_i ?? '';
-        $this->thickness_m = $this->connector->thickness_m ?? '';
+        $this->thickness_i = $this->element->thickness_i ?? '';
+        $this->thickness_m = $this->element->thickness_m ?? '';
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
@@ -372,8 +302,8 @@ class ConnectorDTO
 
     private function setLength($lang): void
     {
-        $this->standardLength_m = $this->connector->standard_lengths_m ?? '';
-        $this->standardLength_i = $this->connector->standard_lengths_i ?? '';
+        $this->standardLength_m = $this->element->standard_lengths_m ?? '';
+        $this->standardLength_i = $this->element->standard_lengths_i ?? '';
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -389,8 +319,8 @@ class ConnectorDTO
 
     private function setWeight($lang)
     {
-        $this->weights_m  = json_decode($this->connector->weight_m ?? '{}', true);
-        $this->weights_i =  json_decode($this->connector->weight_i ?? '{}', true);
+        $this->weights_m  = json_decode($this->element->weight_m ?? '{}', true);
+        $this->weights_i =  json_decode($this->element->weight_i ?? '{}', true);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -406,8 +336,8 @@ class ConnectorDTO
 
     private function setMaxTensileStrength($lang)
     {
-        $this->maxTensile_m  = $this->connector->max_tensile_strength_m ?? '';
-        $this->maxTensile_i =  $this->connector->max_tensile_strength_i ?? '';
+        $this->maxTensile_m  = $this->element->max_tensile_strength_m ?? '';
+        $this->maxTensile_i =  $this->element->max_tensile_strength_i ?? '';
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():

@@ -1,3 +1,6 @@
+<?php
+ use \model\AdOnContent;
+?>
 <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="home-tab">
     <div class="row w-100 p-5">
 
@@ -21,6 +24,28 @@
                     </option>
                 <?php endforeach; ?>
             </select>
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="basic-url" class="form-label align-middle">Visibility</label>
+
+            <div class="d-flex w-50 justify-content-start gap-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visibility" value="<?= AdOnContent::PUBLISHED ?>"
+                           id="published-radio-btn">
+                    <label class="form-check-label" for="published-radio-btn">
+                        Public
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visibility" value="<?= AdOnContent::UNPUBLISHED ?>"
+                           id="unpublished-radio-btn" checked>
+                    <label class="form-check-label" for="unpublished-radio-btn">
+                        Private
+                    </label>
+                </div>
+            </div>
 
         </div>
 

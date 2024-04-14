@@ -210,7 +210,7 @@ use helpers\pools\LanguagePool;
                 <ol class="text-start text-primary">
                     <li>It cannot be undone.</li>
                     <li>Subcategories will be deleted if they exist.</li>
-                    <li>All connectors and add-on contents of this category or its subcategories will also be deleted if they exist.</li>
+                    <li>All connectors and ad-on contents of this category or its subcategories will also be deleted if they exist.</li>
                 </ol>
             `;
         if (!await isConfirmToProcess(notice, 'warning')) {
