@@ -15,7 +15,8 @@ $app->get('/admin/ad-on',  ["admin\AdOnController", "index"]);
 $app->get('/admin/ad-on/create',  ["admin\AdOnController", "create"]);
 $app->post('/admin/ad-on-content/store',  ["admin\AdOnController", "store"]);
 $app->get('/admin/ad-on-content/templates',  ["admin\AdOnController", "showAllTemplates"]);
-
+$app->get('/admin/ad-on-content/edit',  ["admin\AdOnController", "edit"]);
+$app->post('/admin/ad-on-content/update',  ["admin\AdOnController", "update"]);
 
 //Category routes
 $app->get('/admin/categories', ["admin\CategoryController", "index"]);

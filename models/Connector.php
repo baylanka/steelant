@@ -62,22 +62,6 @@ class Connector extends Element
         $content->save();
     }
 
-    public function update()
-    {
-        //update connector
-        parent::save();
-
-        //update category-content
-        $content = $this->temp_content;
-        $content->save();
-        $contentTemplatesArray =  $this->temp_content_templates ?? [];
-
-        //delete previous content templates media, with its associated `media`
-        ContentTemplateRepository::deleteContentTemplatesByContentId($contentTemplatesArray, $content->id);
-        //update new content-templates, its template media
-        ContentTemplateService::updateContentTemplates($contentTemplatesArray);
-    }
-
     public function getDescriptionByLang(string $language)
     {
         $description = empty($this->description) ? '{}': $this->description;

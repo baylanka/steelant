@@ -7,6 +7,7 @@ use controllers\BaseController;
 use helpers\dto\AdOnDTOCollection;
 use helpers\dto\LeafCategoryDTOCollection;
 use helpers\mappers\AdOnStoreRequestMapper;
+use helpers\mappers\AdOnUpdateRequestMapper;
 use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
@@ -15,6 +16,7 @@ use helpers\services\TemplateService;
 use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\AddOnContentStoreRequestValidator;
+use helpers\validators\AdOnContentUpdateRequestValidator;
 use model\AdOnContent;
 use model\Category;
 use model\Template;
@@ -48,7 +50,7 @@ class AdOnController extends BaseController
         $data = [
             'leafCategories' => $leafCategoryDTOCollection,
             'tableLang' => $lang,
-            'categoryId' => $request->get('categoryId'),
+            'fixed_category' => $request->get('categoryId'),
             'templates' => TemplateRepository::getAllAddOn(),
         ];
         return view("admin/ad-on-content/create.view.php", $data);
@@ -78,12 +80,40 @@ class AdOnController extends BaseController
 
     public function edit(Request $request)
     {
+        $lang = Translate::getLang();
+        $categories = Category::getAll();
+        $adOnContentId = $request->get('id');
+        $data = [
+            'leafCategories' => LeafCategoryDTOCollection::getCollection($categories),
+            'tableLang' => $lang,
+            'ad_on_content' => AdOnService::getDTOById($adOnContentId, $lang),
+            'templates' => TemplateRepository::getAllAddOn(),
+            'fixed_category' => $request->get('categoryId'),
+        ];
 
+        return view("admin/ad-on-content/edit.view.php", $data);
     }
 
     public function update(Request $request)
     {
-
+        global $container;
+        $lang = Translate::getLang();
+        $separate = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        $db = $container->resolve('DB');
+        try{
+            $db->beginTransaction();
+            AdOnContentUpdateRequestValidator::validate($request);
+            $addOnContent = AdOnUpdateRequestMapper::getModel($request);
+            $addOnContent->update();
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully updated",
+                "data" => AdOnService::getDTOById($addOnContent->id, $lang, $separate),
+            ]);
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function destroy(Request $request)

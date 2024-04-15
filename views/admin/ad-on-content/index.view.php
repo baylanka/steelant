@@ -107,7 +107,6 @@
 
             $(document).off('storeAddOnSuccessEvent');
             $(document).on('storeAddOnSuccessEvent', async function (event) {
-                debugger
                 modal.hide();
                 const addOnContent = event.originalEvent.detail.addon;
                 const row = getRow(addOnContent);
@@ -154,6 +153,41 @@
 
         } catch (err) {
             toast.error("An error occurred while attempting to open the view ad-on content.. " + err);
+        }
+    });
+
+    $(document).on("click", ".edit-adOnContent", async function (e) {
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/edit?id=${adOnContentId}`;
+        const trTag = $(`a[data-id="${adOnContentId}"]`).closest('tr');
+        try {
+            const modal = await loadModal(modalId, path);
+            tinymce.init({
+                selector: '.description',
+                plugins: 'textcolor link lists',
+                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+                content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
+            });
+
+            $(document).off('updateAddOnSuccessEvent');
+            $(document).on('updateAddOnSuccessEvent', function (event) {
+                modal.hide();
+                const addOnContent = event.originalEvent.detail.addon;
+                const row = getRow(addOnContent);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.append(row);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(row);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
         }
     });
 

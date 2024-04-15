@@ -3,11 +3,29 @@
 namespace model;
 
 use helpers\pools\LanguagePool;
+use helpers\repositories\ContentTemplateRepository;
 use helpers\services\CategoryService;
+use helpers\services\ContentTemplateService;
 use model\BaseModel;
 
 abstract class Element  extends BaseModel
 {
+    public function update()
+    {
+        //update element
+        parent::save();
+
+        //update category-content
+        $content = $this->temp_content;
+        $content->save();
+        $contentTemplatesArray =  $this->temp_content_templates ?? [];
+
+        //delete previous content templates media, with its associated `media`
+        ContentTemplateRepository::deleteContentTemplatesByContentId($contentTemplatesArray, $content->id);
+        //update new content-templates, its template media
+        ContentTemplateService::updateContentTemplates($contentTemplatesArray);
+    }
+
     public function setMetaCollection($force = false): void
     {
         if($force || !isset($this->relations['meta_collection']) || empty($this->relations['meta_collection'])){
