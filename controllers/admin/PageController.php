@@ -39,11 +39,10 @@ class PageController extends BaseController
         $lang = Translate::getLang();
         $categoryId = $request->get('id');
         $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
-        $headingArray  = CategoryService::getCategoryNameTreeByLeafCategoryId($categoryId);
-        $heading  = implode($separator, $headingArray[$lang]);
-        $contents = CategoryContentRepository::getContentsInDisplayOrderByCategoryId($categoryId);
+        $categoryNameAsHeading = CategoryService::getCategoryNameTreeStrByLeafCategoryId($categoryId, $lang, $separator);
+        $contents = CategoryContentRepository::getAllContentsInDisplayOrder($categoryId, $lang);
         $data = [
-            'heading' => $heading,
+            'heading' => $categoryNameAsHeading,
             'contents' => $contents,
             'categoryId' => $categoryId,
         ];

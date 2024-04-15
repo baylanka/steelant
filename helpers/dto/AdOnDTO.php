@@ -4,6 +4,7 @@ namespace helpers\dto;
 
 use helpers\pools\LanguagePool;
 use model\AdOnContent;
+use model\CategoryContent;
 
 class AdOnDTO extends ElementDTO
 {
@@ -22,6 +23,7 @@ class AdOnDTO extends ElementDTO
 
     public function __construct(\stdClass|AdOnContent $addOn, $lang, $separator)
     {
+        $this->type = CategoryContent::TYPE_ADD_ON_CONTENT;
         $this->language = $lang;
         $this->element = $addOn;
         $this->id = $this->element->id;
@@ -43,6 +45,7 @@ class AdOnDTO extends ElementDTO
         $this->setTemplateId();
         $this->setCategoryId();
         $this->setCategoryTree($lang, $separator);
+        $this->setContentId();
     }
 
     public function setTitleByLang($lang)
@@ -81,4 +84,8 @@ class AdOnDTO extends ElementDTO
         }
     }
 
+    public function getContentLabel()
+    {
+        return $this->title;
+    }
 }

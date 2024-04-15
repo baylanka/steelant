@@ -49,7 +49,7 @@ abstract class Element  extends BaseModel
         }
 
         $this->relations['leaf_category_id'] = $content->leaf_category_id;
-        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeByLeafCategoryId($content->leaf_category_id);
+        $this->relations['category_name_array'] = CategoryService::getCategoryNameTreeArrayByLeafCategoryId($content->leaf_category_id);
     }
 
     public function getCategoryHierarchyEn()

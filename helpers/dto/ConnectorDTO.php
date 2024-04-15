@@ -4,6 +4,7 @@ namespace helpers\dto;
 
 use helpers\pools\LanguagePool;
 use helpers\services\CategoryService;
+use model\CategoryContent;
 use model\Connector;
 use model\Media;
 
@@ -35,6 +36,7 @@ class ConnectorDTO extends ElementDTO
 
     public function __construct(\stdClass|Connector $connector, $lang, $separator)
     {
+        $this->type = CategoryContent::TYPE_CONNECTOR;
         $this->language = $lang;
         $this->element = $connector;
 
@@ -52,6 +54,7 @@ class ConnectorDTO extends ElementDTO
         $this->setMaxTensileStrength($lang);
         $this->setDownloadableFiles();
         $this->setImageFiles();
+        $this->setContentId();
     }
 
     private function setLanguageDescriptions()
@@ -60,6 +63,11 @@ class ConnectorDTO extends ElementDTO
         $this->description_en_db = $this->element->getDescriptionEnUK();
         $this->description_de = $this->element->getDescriptionDe();
         $this->description_fr = $this->element->getDescriptionFr();
+    }
+
+    public function getContentLabel()
+    {
+        return $this->name;
     }
 
     public function getDescriptionOfLang()
@@ -194,27 +202,6 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
-
-
-    private function setContentId()
-    {
-        $this->setElementProperties();
-        $properties = $this->elementProperties;
-
-        if(     !in_array('relations', $properties)
-            ||  !isset($this->element->relations['meta_collection'])
-        ){
-            $this->downloadableFiles = [];
-            return;
-        }
-
-        foreach ($this->element->relations['meta_collection'] as $each){
-            $this->contentId = $each->content_id;
-            return;
-        }
-
-        $this->contentId = null;
-    }
 
     private function setDownloadableFiles(): void
     {

@@ -2,23 +2,36 @@
 
 namespace helpers\repositories;
 
+use helpers\services\AdOnService;
+use helpers\services\ConnectorService;
 use model\AdOnContent;
 use model\CategoryContent;
 use model\Connector;
 
 class CategoryContentRepository extends CategoryContent
 {
-    public static function getContentsInDisplayOrderByCategoryId($categoryId)
+    public static function getContentByConnectorId($connectorId)
+    {
+        return self::getFirstBy([
+            'type' => CategoryContent::TYPE_CONNECTOR,
+            'element_id' => $connectorId
+        ]);
+    }
+
+    public static function getContentByAdOnContentId($adOnContentId)
+    {
+        return self::getFirstBy([
+            'type' => CategoryContent::TYPE_ADD_ON_CONTENT,
+            'element_id' => $adOnContentId
+        ]);
+    }
+    public static function getPublishedContentsInDisplayOrder($categoryId, $lang)
     {
         $sql = "
                SELECT *
                         FROM (
                             SELECT
-                                   cc.id AS content_id,
                                    con.id AS element_id,
-                                   con.name AS element_name,
-                                   con.visibility AS status,
-                                   cc.id AS category_content_id,
                                    cc.type,
                                    cc.display_order_no
                             FROM category_contents cc
@@ -30,11 +43,7 @@ class CategoryContentRepository extends CategoryContent
                             UNION ALL
                         
                             SELECT
-                                   cc.id AS content_id,
                                    addc.id AS element_id,
-                                   addc.title AS element_name,
-                                   addc.visibility AS status,
-                                   cc.id AS category_content_id,
                                    cc.type,
                                    cc.display_order_no
                             FROM category_contents cc
@@ -47,14 +56,70 @@ class CategoryContentRepository extends CategoryContent
                ";
 
         $params = [
-            'connector_type' => CategoryContent::TYPE_CONNECTOR,
             'category_id' => $categoryId,
+            'connector_type' => CategoryContent::TYPE_CONNECTOR,
             'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT,
             'connector_visibility' => Connector::PUBLISHED,
             'add_on_visibility' => AdOnContent::PUBLISHED
         ];
 
-        return CategoryContent::queryAsArray($sql, $params)->get();
+        $contents =  CategoryContent::queryAsArray($sql, $params)->get();
+
+        $arr = [];
+        foreach ($contents as $content){
+            $elementId = $content['element_id'];
+            $arr[] = $content['type'] == CategoryContent::TYPE_CONNECTOR
+                        ?  ConnectorService::getDTOById($elementId, $lang)
+                        :  AdOnService::getDTOById($elementId, $lang);
+        }
+
+        return $arr;
+    }
+    public static function getAllContentsInDisplayOrder($categoryId, $lang)
+    {
+        $sql = "
+               SELECT *
+                        FROM (
+                            SELECT
+                                   con.id AS element_id,
+                                   cc.type,
+                                   cc.display_order_no
+                            FROM category_contents cc
+                            INNER JOIN categories c ON cc.leaf_category_id = c.id
+                            INNER JOIN connectors con ON cc.element_id = con.id AND cc.type = :connector_type
+                            WHERE c.id = :category_id
+                        
+                            UNION ALL
+                        
+                            SELECT
+                                   addc.id AS element_id,
+                                   cc.type,
+                                   cc.display_order_no
+                            FROM category_contents cc
+                            INNER JOIN categories c ON cc.leaf_category_id = c.id
+                            INNER JOIN add_on_contents addc ON cc.element_id = addc.id AND cc.type = :add_on_content_type
+                            WHERE c.id = :category_id
+                        ) AS merged_results
+                        ORDER BY display_order_no;
+               ";
+
+        $params = [
+            'category_id' => $categoryId,
+            'connector_type' => CategoryContent::TYPE_CONNECTOR,
+            'add_on_content_type' => CategoryContent::TYPE_ADD_ON_CONTENT,
+        ];
+
+        $contents =  CategoryContent::queryAsArray($sql, $params)->get();
+
+        $arr = [];
+        foreach ($contents as $content){
+            $elementId = $content['element_id'];
+            $arr[] = $content['type'] == CategoryContent::TYPE_CONNECTOR
+                        ?  ConnectorService::getDTOById($elementId, $lang)
+                        :  AdOnService::getDTOById($elementId, $lang);
+        }
+
+        return $arr;
     }
 
     public static function updateContentsDisplayOrder(array $contentIdList)

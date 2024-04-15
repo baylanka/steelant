@@ -5,9 +5,11 @@ namespace helpers\dto;
 use helpers\pools\LanguagePool;
 use helpers\services\CategoryService;
 
-class ElementDTO
+abstract class ElementDTO
 {
     public int $id;
+    public string $type;
+
     public string $language;
     public string $categoryTree;
     public bool $isPublished;
@@ -15,6 +17,27 @@ class ElementDTO
     public ?int $templateId;
     public ?int $categoryId;
     public ?int $contentId;
+
+    abstract public function getContentLabel();
+    protected function setContentId()
+    {
+        $this->setElementProperties();
+        $properties = $this->elementProperties;
+
+        if(     !in_array('relations', $properties)
+            ||  !isset($this->element->relations['meta_collection'])
+        ){
+            return;
+        }
+
+        foreach ($this->element->relations['meta_collection'] as $each){
+            $this->contentId = $each->content_id;
+            return;
+        }
+
+        $this->contentId = null;
+    }
+
     protected function setCategoryId(): void
     {
         $this->setElementProperties();
@@ -46,8 +69,7 @@ class ElementDTO
             $categoryArray = $this->element->relations['category_name_array'][$lang];
             $this->categoryTree = implode($separator, $categoryArray);
         }else{
-            $tree = CategoryService::getCategoryNameTreeByLeafCategoryId($this->categoryId);
-            $this->categoryTree = implode($separator, $tree[$lang]);
+            $this->categoryTree = CategoryService::getCategoryNameTreeStrByLeafCategoryId($this->categoryId, $lang, $separator);
         }
 
         return $this;

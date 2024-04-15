@@ -87,7 +87,13 @@ class CategoryService
         return $array;
     }
 
-    public static function getCategoryNameTreeByLeafCategoryId($id)
+    public static function getCategoryNameTreeStrByLeafCategoryId($id, $lang, $separate)
+    {
+        $categoryArray = self::getCategoryNameTreeArrayByLeafCategoryId($id);
+        return implode($separate, $categoryArray[$lang]);
+    }
+
+    public static function getCategoryNameTreeArrayByLeafCategoryId($id)
     {
         $categoryHierarchy = self::getCategoryTreeFromLeafCategoryId($id);
         $categoryNameArray = [];

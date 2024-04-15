@@ -46,25 +46,25 @@ use model\CategoryContent;
                     </thead>
                     <tbody id="contents">
                         <?php foreach ($contents as $index => $content): ?>
-                            <tr class="text-center" data-id="<?=$content['content_id']?>">
+                            <tr class="text-center" data-id="<?=$content->id?>">
                                     <td>
                                         <i class="bi bi-list"></i>
                                     </td>
 
                                     <td class="order">
-                                        <?=str_pad(($index+1),3,"0", STR_PAD_LEFT)?>
+                                        <?=($index+1)?>
                                     </td>
 
                                     <td>
-                                        <?=$content['element_name']?>
+                                        <?=$content->getContentLabel()?>
                                     </td>
 
                                     <td>
                                         <?php
-                                            $isConnector = $content['type'] == CategoryContent::TYPE_CONNECTOR
+                                            $isConnector = $content->type == CategoryContent::TYPE_CONNECTOR
                                         ?>
                                         <span class="badge <?=$isConnector ?'text-bg-secondary': 'text-bg-primary'?>">
-                                            <?=$content['type']?>
+                                            <?=$content->type?>
                                         </span>
                                     </td>
 
@@ -72,7 +72,7 @@ use model\CategoryContent;
 
                                     <td>
                                         <?php
-                                            $isPublished = $content['status'];
+                                            $isPublished = $content->isPublished;
                                         ?>
                                         <span class="badge <?=$isPublished ? 'text-bg-success': 'text-bg-warning' ?> ">
                                              <?=$isPublished ? 'published': 'non-published' ?>
@@ -86,8 +86,8 @@ use model\CategoryContent;
                                                 Actions
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item <?=$isConnector?'connector-view' : ''?> " href="#"
-                                                        data-id="<?=$content['element_id']?>">
+                                                <li><a class="dropdown-item <?=$isConnector?'connector-view' : 'ad-on-view'?> " href="#"
+                                                        data-id="<?=$content->id?>">
                                                         View <i class="bi bi-exclamation-circle float-end"></i></a>
                                                 </li>
 
@@ -95,8 +95,8 @@ use model\CategoryContent;
                                                     <hr class="dropdown-divider">
                                                 </li>
 
-                                                <li><a class="dropdown-item <?=$isConnector?'connector-edit' : ''?> " href="#"
-                                                       data-id="<?=$content['element_id']?>">
+                                                <li><a class="dropdown-item <?=$isConnector?'connector-edit' : 'ad-on-edit'?> " href="#"
+                                                       data-id="<?=$content->id?>">
                                                         Edit <i class="bi bi-pencil float-end"></i></a>
                                                 </li>
 
@@ -104,8 +104,8 @@ use model\CategoryContent;
                                                     <hr class="dropdown-divider">
                                                 </li>
 
-                                                <li><a class="dropdown-item <?=$isConnector?'connector-delete' : ''?> " href="#"
-                                                       data-id="<?=$content['element_id']?>">
+                                                <li><a class="dropdown-item <?=$isConnector?'connector-delete' : 'ad-on-delete'?> " href="#"
+                                                       data-id="<?=$content->id?>">
                                                         Delete <i class="bi bi-trash3 float-end"></i></a>
                                                 </li>
                                             </ul>
