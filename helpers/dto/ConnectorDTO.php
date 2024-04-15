@@ -11,8 +11,6 @@ class ConnectorDTO extends ElementDTO
 {
     public \stdClass|Connector $element;
 
-    public int $id;
-
     public string $name;
     public string $grade;
     public string $thickness;

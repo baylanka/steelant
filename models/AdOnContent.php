@@ -98,21 +98,21 @@ class AdOnContent extends Element
 
     public function getDescriptionEnUS()
     {
-        return $this->getDescriptionByLang(LanguagePool::US_ENGLISH()->getLabel());
+        return html_entity_decode($this->getDescriptionByLang(LanguagePool::US_ENGLISH()->getLabel()));
     }
 
     public function getDescriptionEnUK()
     {
-        return $this->getDescriptionByLang(LanguagePool::UK_ENGLISH()->getLabel());
+        return html_entity_decode($this->getDescriptionByLang(LanguagePool::UK_ENGLISH()->getLabel()));
     }
 
     public function getDescriptionDe()
     {
-        return $this->getDescriptionByLang(LanguagePool::GERMANY()->getLabel());
+        return html_entity_decode($this->getDescriptionByLang(LanguagePool::GERMANY()->getLabel()));
     }
 
     public function getDescriptionFr()
     {
-        return $this->getDescriptionByLang(LanguagePool::FRENCH()->getLabel());
+        return html_entity_decode($this->getDescriptionByLang(LanguagePool::FRENCH()->getLabel()));
     }
 }

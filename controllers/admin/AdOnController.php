@@ -11,11 +11,13 @@ use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
 use helpers\repositories\TemplateRepository;
 use helpers\services\AdOnService;
+use helpers\services\TemplateService;
 use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\validators\AddOnContentStoreRequestValidator;
 use model\AdOnContent;
 use model\Category;
+use model\Template;
 
 class AdOnController extends BaseController
 {
@@ -87,5 +89,15 @@ class AdOnController extends BaseController
     public function destroy(Request $request)
     {
 
+    }
+
+    public function showAllTemplates(Request $request)
+    {
+        $adOnContentId = $request->get('id');
+        $templatePreviews = TemplateService::getAllLangAdOnTemplates($adOnContentId, Template::MODE_VIEW);
+        $data = [
+            'templates' => $templatePreviews
+        ];
+        return view("admin/connectors/connector_templates.view.php", $data);
     }
 }

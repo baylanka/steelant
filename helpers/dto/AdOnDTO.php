@@ -24,6 +24,7 @@ class AdOnDTO extends ElementDTO
     {
         $this->language = $lang;
         $this->element = $addOn;
+        $this->id = $this->element->id;
 
         $this->title_de = $addOn->getTitleDe();
         $this->title_fr = $addOn->getTitleFr();

@@ -7,6 +7,7 @@ use helpers\services\CategoryService;
 
 class ElementDTO
 {
+    public int $id;
     public string $language;
     public string $categoryTree;
     public bool $isPublished;

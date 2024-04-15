@@ -392,7 +392,7 @@
         const connectorId = $(this).attr('data-id');
         let path = `admin/connectors/templates?id=${connectorId}`;
         try {
-            const modal = await loadModal(modalId, path);
+            await loadModal(modalId, path);
 
         } catch (err) {
             toast.error("An error occurred while attempting to open the view connector.. " + err);

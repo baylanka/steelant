@@ -94,7 +94,7 @@ class ConnectorController extends BaseController
             'tableLang' => $lang,
             'connector' => ConnectorService::getDTOById($connectorId, $lang),
             'templates' => TemplateRepository::getAllConnectors(),
-            'templatePreviews' => TemplateService::getAllLangTemplates($connectorId),
+            'templatePreviews' => TemplateService::getAllLangConnectorTemplates($connectorId),
             'fixed_category' => $request->get('fixed_category', 0),
         ];
 
@@ -116,7 +116,7 @@ class ConnectorController extends BaseController
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully stored",
                 "data" => ConnectorService::getDTOById($connector->id, $lang, $separator),
-                'templatePreviews' => TemplateService::getAllLangTemplates($connector->id),
+                'templatePreviews' => TemplateService::getAllLangConnectorTemplates($connector->id),
                 'downloadableContents' => TemplateService::getDonwloadableFileTabTemplateByConnectorId($connector->id, $lang)
             ]);
         }catch(\Exception $ex){
@@ -134,7 +134,7 @@ class ConnectorController extends BaseController
     public function showAllTemplates(Request $request)
     {
         $connectorId = $request->get('id');
-        $templatePreviews = TemplateService::getAllLangTemplates($connectorId, Template::MODE_VIEW);
+        $templatePreviews = TemplateService::getAllLangConnectorTemplates($connectorId, Template::MODE_VIEW);
         $data = [
             'templates' => $templatePreviews
         ];

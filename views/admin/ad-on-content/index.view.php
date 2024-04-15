@@ -145,6 +145,18 @@
 
     });
 
+    $(document).on("click", ".view-adOnContent", async function (e) {
+        e.preventDefault();
+        const adOnId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/templates?id=${adOnId}`;
+        try {
+            await loadModal(modalId, path);
+
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the view ad-on content.. " + err);
+        }
+    });
+
     function getRow(adOnContent){
 
         return `

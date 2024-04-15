@@ -14,6 +14,7 @@ $app->get('/admin/connectors/templates',  ["admin\ConnectorController", "showAll
 $app->get('/admin/ad-on',  ["admin\AdOnController", "index"]);
 $app->get('/admin/ad-on/create',  ["admin\AdOnController", "create"]);
 $app->post('/admin/ad-on-content/store',  ["admin\AdOnController", "store"]);
+$app->get('/admin/ad-on-content/templates',  ["admin\AdOnController", "showAllTemplates"]);
 
 
 //Category routes
