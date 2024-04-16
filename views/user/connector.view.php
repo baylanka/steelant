@@ -1,211 +1,168 @@
 <?php
 
 require_once "layout/start.layout.php";
-use helpers\translate\Translate;
-use helpers\services\RouterService;
+
 use helpers\services\CategoryService;
+use helpers\services\RouterService;
+use helpers\translate\Translate;
+
 ?>
 
 <!--body section-->
 <div class="jumbotron p-0 m-0">
 
-    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getBannerUrl(); ?>" class="w-100"/>
+    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getBannerUrl(); ?>" class="w-100 banner-image"/>
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap px-4">
 
 
         <!--categories section-->
-        <div class="row w-100 py-5">
+        <div class="row pt-5 gap-0">
 
 
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">Cofferdam</p>
-                </div>
-
-                <div class="col-md-7 col-12 d-flex flex-wrap justify-content-between">
-                    <dl>
-                        <dt class="color-blue">LARSSEN</dt>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(3) ?>"
-                               class="link <?= $_GET["id"] == 3 ? "selected" : "color-black" ?>">Corner connectors</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(4) ?>"
-                               class="link <?= $_GET["id"] == 4 ? "selected" : "color-black" ?>">Omega corner
-                                connectors</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(5) ?>"
-                               class="link <?= $_GET["id"] == 5 ? "selected" : "color-black" ?>">T connectors</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(6) ?>"
-                               class="link <?= $_GET["id"] == 6 ? "selected" : "color-black" ?>">Cross connectors</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(7) ?>"
-                               class="link <?= $_GET["id"] == 7 ? "selected" : "color-black" ?>">Weld-on connectors</a>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt class="color-blue">BALL + SOCKET</dt>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(9) ?>"
-                               class="link <?= $_GET["id"] == 9 ? "selected" : "color-black" ?>">US Corner
-                                connectors</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(10) ?>"
-                               class="link <?= $_GET["id"] == 10 ? "selected" : "color-black" ?>">US T connectors</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(11) ?>"
-                               class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?>">US Cross
-                                connectors</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(12) ?>"
-                               class="link <?= $_GET["id"] == 12 ? "selected" : "color-black" ?>">MF connectors,
-                                weld-ons?</a></dd>
-                    </dl>
-                    <dl>
-                        <dt class="color-blue">COLD FORMED</dt>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(14) ?>"
-                               class="link <?= $_GET["id"] == 14 ? "selected" : "color-black" ?>">CF corner
-                                connector</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(15) ?>"
-                               class="link <?= $_GET["id"] == 15 ? "selected" : "color-black" ?>">CF weld-on
-                                connector</a></dd>
-                    </dl>
-
-                </div>
-
-
+            <div class="col-md-4 col-12 d-flex gap-3 margin-bottom-sm">
+                <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="80"/>
+                <p class="category-name selected"><?= CategoryService::getParentCategory($_GET["id"])->getNameByLang(Translate::getLang()); ?></p>
             </div>
-
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 16 || $_GET["id"] > 20 ? "d-none" : "" ?> ">
-
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">Pipe pile steel walls</p>
-                </div>
-                <div class="col-md-7 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(17) ?>"
-                               class="link <?= $_GET["id"] == 17 ? "selected" : "color-black" ?>">MF</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(18) ?>"
-                               class="link <?= $_GET["id"] == 18 ? "selected" : "color-black" ?>">MDF</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(19) ?>"
-                               class="link <?= $_GET["id"] == 19 ? "selected" : "color-black" ?>">LPB</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(20) ?>"
-                               class="link <?= $_GET["id"] == 20 ? "selected" : "color-black" ?>">FD</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
+                <dl>
+                    <dt class="color-blue mb-2">LARSSEN</dt>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(3) ?>"
+                           class="link <?= $_GET["id"] == 3 ? "selected" : "color-black" ?> category-item-text">Corner connectors</a>
+                    </dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(4) ?>"
+                           class="link <?= $_GET["id"] == 4 ? "selected" : "color-black" ?> category-item-text">Omega corner
+                            connectors</a></dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(5) ?>"
+                           class="link <?= $_GET["id"] == 5 ? "selected" : "color-black" ?> category-item-text">T connectors</a></dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(6) ?>"
+                           class="link <?= $_GET["id"] == 6 ? "selected" : "color-black" ?> category-item-text">Cross connectors</a>
+                    </dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(7) ?>"
+                           class="link <?= $_GET["id"] == 7 ? "selected" : "color-black" ?> category-item-text">Weld-on connectors</a>
+                    </dd>
+                </dl>
             </div>
-
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] != 22 ? "d-none" : "" ?> ">
-
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">DTH driving method</p>
-                </div>
-                <div class="col-md-7 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(22) ?>"
-                               class="link <?= $_GET["id"] == 22 ? "selected" : "color-black" ?>">MF DTH</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
+                <dl>
+                    <dt class="color-blue mb-2">BALL + SOCKET</dt>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(9) ?>"
+                           class="link <?= $_GET["id"] == 9 ? "selected" : "color-black" ?> category-item-text">US Corner
+                            connectors</a></dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(10) ?>"
+                           class="link <?= $_GET["id"] == 10 ? "selected" : "color-black" ?> category-item-text">US T connectors</a>
+                    </dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(11) ?>"
+                           class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?> category-item-text">US Cross
+                            connectors</a>
+                    </dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(12) ?>"
+                           class="link <?= $_GET["id"] == 12 ? "selected" : "color-black" ?> category-item-text">MF connectors,
+                            weld-ons</a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
+                <dl>
+                    <dt class="color-blue mb-2">COLD FORMED</dt>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(14) ?>"
+                           class="link <?= $_GET["id"] == 14 ? "selected" : "color-black" ?> category-item-text">CF corner
+                            connector</a>
+                    </dd>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(15) ?>"
+                           class="link <?= $_GET["id"] == 15 ? "selected" : "color-black" ?> category-item-text">CF weld-on
+                            connector</a>
+                    </dd>
+                </dl>
             </div>
 
 
-            <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 23 || $_GET["id"] > 28 ? "d-none" : "" ?> ">
 
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">Pipe pile + sheet pile combined walls</p>
-                </div>
-                <div class="col-md-7 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(24) ?>"
-                               class="link <?= $_GET["id"] == 24 ? "selected" : "color-black" ?>">L (Larssen)</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(25) ?>"
-                               class="link <?= $_GET["id"] == 25 ? "selected" : "color-black" ?>">LPB (Larssen)</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(26) ?>"
-                               class="link <?= $_GET["id"] == 26 ? "selected" : "color-black" ?>">MF (Ball +
-                                Socket)</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(27) ?>"
-                               class="link <?= $_GET["id"] == 27 ? "selected" : "color-black" ?>">MDF (Ball +
-                                Socket)</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(28) ?>"
-                               class="link <?= $_GET["id"] == 28 ? "selected" : "color-black" ?>">CF (Cold
-                                Formed)</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] < 16 || $_GET["id"] > 20 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(17) ?>"
+                           class="link <?= $_GET["id"] == 17 ? "selected" : "color-black" ?> category-item-text">MF</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(18) ?>"
+                           class="link <?= $_GET["id"] == 18 ? "selected" : "color-black" ?> category-item-text">MDF</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(19) ?>"
+                           class="link <?= $_GET["id"] == 19 ? "selected" : "color-black" ?> category-item-text">LPB</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(20) ?>"
+                           class="link <?= $_GET["id"] == 20 ? "selected" : "color-black" ?> category-item-text">FD</a></dd>
+                </dl>
             </div>
 
-
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 29 || $_GET["id"] > 32 ? "d-none" : "" ?> ">
-
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">H-pile walls</p>
-                </div>
-                <div class="col-md-7 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(30) ?>"
-                               class="link <?= $_GET["id"] == 30 ? "selected" : "color-black" ?>">MF</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(31) ?>"
-                               class="link <?= $_GET["id"] == 31 ? "selected" : "color-black" ?>">MDF</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(32) ?>"
-                               class="link <?= $_GET["id"] == 32 ? "selected" : "color-black" ?>">FD</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] != 22 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(22) ?>"
+                           class="link <?= $_GET["id"] == 22 ? "selected" : "color-black" ?> category-item-text">MF DTH</a></dd>
+                </dl>
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 33 || $_GET["id"] > 36 ? "d-none" : "" ?> ">
-
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">H-pile + sheet pile combined walls</p>
-                </div>
-                <div class="col-md-5 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(34) ?>"
-                               class="link <?= $_GET["id"] == 34 ? "selected" : "color-black" ?>">LPB (Larssen)</a>
-                        </dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(35) ?>"
-                               class="link <?= $_GET["id"] == 35 ? "selected" : "color-black" ?>">MF (Ball +
-                                Socket)</a></dd>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(36) ?>"
-                               class="link <?= $_GET["id"] == 36 ? "selected" : "color-black" ?>">MDF (Ball +
-                                Socket)</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] < 23 || $_GET["id"] > 28 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(24) ?>"
+                           class="link <?= $_GET["id"] == 24 ? "selected" : "color-black" ?> category-item-text">L (Larssen)</a>
+                    </dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(25) ?>"
+                           class="link <?= $_GET["id"] == 25 ? "selected" : "color-black" ?> category-item-text">LPB (Larssen)</a>
+                    </dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(26) ?>"
+                           class="link <?= $_GET["id"] == 26 ? "selected" : "color-black" ?> category-item-text">MF (Ball +
+                            Socket)</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(27) ?>"
+                           class="link <?= $_GET["id"] == 27 ? "selected" : "color-black" ?> category-item-text">MDF (Ball +
+                            Socket)</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(28) ?>"
+                           class="link <?= $_GET["id"] == 28 ? "selected" : "color-black" ?> category-item-text">CF (Cold
+                            Formed)</a></dd>
+                </dl>
             </div>
 
-            <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] != 38 ? "d-none" : "" ?> ">
-
-                <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
-                    <p class="category-name">Cell structures</p>
-                </div>
-                <div class="col-md-7 col-12 p-0">
-                    <dl>
-                        <dd><a href="<?= RouterService::getCategoryPageRoute(38) ?>"
-                               class="link <?= $_GET["id"] == 38 ? "selected" : "color-black" ?>">FSC</a></dd>
-                    </dl>
-
-                </div>
-                <div class="col-2"></div>
-
+            <div class="col-md-2 col-12 <?= $_GET["id"] < 29 || $_GET["id"] > 32 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(30) ?>"
+                           class="link <?= $_GET["id"] == 30 ? "selected" : "color-black" ?> category-item-text">MF</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(31) ?>"
+                           class="link <?= $_GET["id"] == 31 ? "selected" : "color-black" ?> category-item-text">MDF</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(32) ?>"
+                           class="link <?= $_GET["id"] == 32 ? "selected" : "color-black" ?> category-item-text">FD</a></dd>
+                </dl>
             </div>
+
+            <div class="col-md-2 col-12 <?= $_GET["id"] < 33 || $_GET["id"] > 36 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(34) ?>"
+                           class="link <?= $_GET["id"] == 34 ? "selected" : "color-black" ?> category-item-text">LPB (Larssen)</a>
+                    </dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(35) ?>"
+                           class="link <?= $_GET["id"] == 35 ? "selected" : "color-black" ?> category-item-text">MF (Ball +
+                            Socket)</a></dd>
+                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(36) ?>"
+                           class="link <?= $_GET["id"] == 36 ? "selected" : "color-black" ?> category-item-text">MDF (Ball +
+                            Socket)</a></dd>
+                </dl>
+            </div>
+
+            <div class="col-md-2 col-12 <?= $_GET["id"] != 38 ? "d-none" : "" ?>">
+                <dl>
+                    <dd class="category-item custom-font">
+                        <a href="<?= RouterService::getCategoryPageRoute(38) ?>"
+                           class="link <?= $_GET["id"] == 38 ? "selected" : "color-black" ?> category-item-text">FSC</a>
+                    </dd>
+                </dl>
+            </div>
+
 
 
         </div>
@@ -214,10 +171,9 @@ use helpers\services\CategoryService;
 
         <?php require_once "layout/sub_nav.layout.php" ?>
 
-
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-5" id="heading"><?= $title ?></h4>
+        <h4 class="connector-heading my-4" id="heading"><?= $title ?></h4>
 
         <div class="divider"></div>
 
@@ -226,7 +182,6 @@ use helpers\services\CategoryService;
             <?= $template ?>
             <div class="divider"></div>
         <?php endforeach; ?>
-
 
 
     </div>
@@ -301,19 +256,19 @@ use helpers\services\CategoryService;
     $(document).on("click", ".add_to_favourite", async function (e) {
 
         const notice = `
-                <p><b><?= Translate::get("connector_page","add_to_favourite_message") ?><b><p>
+                <p><b><?= Translate::get("connector_page", "add_to_favourite_message") ?><b><p>
             `;
         if (!await isConfirmToProcess(notice, 'info',
-            "<?= Translate::get("alert","are_you_sure") ?>",
-            "<?= Translate::get("common","confirm") ?>",
-            "<?= Translate::get("common","cancel") ?>")) {
+            "<?= Translate::get("alert", "are_you_sure") ?>",
+            "<?= Translate::get("common", "confirm") ?>",
+            "<?= Translate::get("common", "cancel") ?>")) {
             return;
         }
 
         let id = $(this).attr("data-id");
         try {
-            let response = await makeAjaxCall(`<?= url('/connector/add_to_favourite') . "?id=" ?>${id}`, {},"GET");
-            $(this).find("img").attr("src","<?= assets("themes/user/img/star.png") ?>");
+            let response = await makeAjaxCall(`<?= url('/connector/add_to_favourite') . "?id=" ?>${id}`, {}, "GET");
+            $(this).find("img").attr("src", "<?= assets("themes/user/img/star.png") ?>");
 
             toast.success(response.message);
         } catch (err) {

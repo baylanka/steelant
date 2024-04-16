@@ -1,2 +1,2 @@
-<a href="<?= url("/") ?>"><img src="<?= assets("themes/user/img/logo.jpg") ?>" class="img-fluid" alt="SteelWall-logo"/></a>
-<p class="color-blue" style="font-size: 0.85rem;"><?= \helpers\translate\Translate::get("common","logo_text") ?></p>
+<a href="<?= url("/") ?>"><img src="<?= assets("themes/user/img/logo.png") ?>" class="img-fluid" width="250" alt="SteelWall-logo"  srcset="<?= assets("themes/user/img/logo.png") ?> 1x" /></a>
+<p class="color-blue" style="font-size: 1.2rem;"><?= \helpers\translate\Translate::get("common","logo_text") ?></p>

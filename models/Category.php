@@ -109,7 +109,7 @@ class Category extends BaseModel
     {
         $nameArray = json_decode($this->name, true);
         if(!isset($nameArray[$language])){
-            return "";
+            return $nameArray["en"];
         }
 
         return $nameArray[$language];
