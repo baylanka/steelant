@@ -50,7 +50,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(17)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -69,7 +69,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(30)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>

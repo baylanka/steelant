@@ -142,7 +142,9 @@ class ConnectorDTO extends ElementDTO
             'placeHolderName' => "",
             'media_name' => '',
             'title' => '',
-            'titleFieldName'=>''
+            'titleFieldName'=>'',
+            "type"=>''
+
         ];
 
         foreach ($this->imageFiles as $index => $each){
@@ -158,6 +160,7 @@ class ConnectorDTO extends ElementDTO
                         'media_name' => $each['media_name'],
                         'title' => $value ?? '',
                         'titleFieldName' => "images[title][{$index}][]",
+                        'type'=>$each['type'],
                     ];
 
                     return json_decode(json_encode($arr));
@@ -263,6 +266,7 @@ class ConnectorDTO extends ElementDTO
                 $extension = $arr[sizeof($arr)-1];
                 $files[$each->media_id]['media_name'] =  $each->media_name . ".{$extension}";
                 $files[$each->media_id]['placeholder'] =  $each->placeholder_id;
+                $files[$each->media_id]['type'] =  $each->media_type;
             }
         }
 
