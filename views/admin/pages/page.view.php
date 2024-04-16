@@ -172,6 +172,10 @@ use model\CategoryContent;
 
     function getContentRow(content,rowNumber, type)
     {
+        const editClass = type === "connector" ? "connector-edit" : "ad-on-edit";
+        const viewClass = type === "connector" ? "connector-view" : "ad-on-view";
+        const deleteClass = type === "connector" ? "connector-delete" : "ad-on-delete";
+
         return `
                         <tr class="text-center" data-id="${content.id}">
                                 <td>
@@ -206,7 +210,7 @@ use model\CategoryContent;
                                             Actions
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item connector-view" href="#"
+                                            <li><a class="dropdown-item ${viewClass}" href="#"
                                                     data-id="${content.id}">
                                                     View <i class="bi bi-exclamation-circle float-end"></i></a>
                                             </li>
@@ -215,7 +219,7 @@ use model\CategoryContent;
                                                 <hr class="dropdown-divider">
                                             </li>
 
-                                            <li><a class="dropdown-item connector-edit" href="#"
+                                            <li><a class="dropdown-item ${editClass}" href="#"
                                                    data-id="${content.id}">
                                                     Edit <i class="bi bi-pencil float-end"></i></a>
                                             </li>
@@ -224,7 +228,7 @@ use model\CategoryContent;
                                                 <hr class="dropdown-divider">
                                             </li>
 
-                                            <li><a class="dropdown-item connector-delete" href="#"
+                                            <li><a class="dropdown-item ${deleteClass}" href="#"
                                                    data-id="${content.id}">
                                                     Delete <i class="bi bi-trash3 float-end"></i></a>
                                             </li>
@@ -367,6 +371,18 @@ use model\CategoryContent;
 
         } catch (err) {
             toast.error("An error occurred while attempting to open the view connector.. " + err);
+        }
+    });
+
+    $(document).on("click", ".ad-on-view", async function (e) {
+        e.preventDefault();
+        const adOnId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/templates?id=${adOnId}`;
+        try {
+            await loadModal(modalId, path);
+
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the view ad-on content.. " + err);
         }
     });
 
