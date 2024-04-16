@@ -257,7 +257,7 @@ class ConnectorUpdateRequestValidator
             throw new \Exception("name is required to update.");
         }
 
-        if(!ValidatorUtility::min($request->get('name'), 3)){
+        if(!ValidatorUtility::min($request->get('name'), 2)){
             throw new \Exception("name must be at least 3 characters");
         }
 
