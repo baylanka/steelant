@@ -46,6 +46,7 @@ class AdOnDTO extends ElementDTO
         $this->setCategoryId();
         $this->setCategoryTree($lang, $separator);
         $this->setContentId();
+        $this->setContentLabel();
     }
 
     public function setTitleByLang($lang)
@@ -84,8 +85,8 @@ class AdOnDTO extends ElementDTO
         }
     }
 
-    public function getContentLabel()
+    private function setContentLabel()
     {
-        return $this->title;
+        $this->label = $this->title;
     }
 }

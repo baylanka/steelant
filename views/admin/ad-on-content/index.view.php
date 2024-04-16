@@ -120,30 +120,6 @@
         }
     });
 
-
-    $(document).on("click", ".switch-advance-editor", function () {
-
-        let textarea = $(this).closest("div.description-container").find("textarea");
-        let name = textarea.attr("name");
-        textarea = textarea.clone();
-
-
-        $(this).closest("div.description-container").after(textarea);
-
-
-        $(this).closest("div.description-container").find(".removable-container").remove();
-
-
-        tinymce.init({
-            selector: 'textarea[name=' + name + ']',
-            plugins: 'textcolor link lists',
-            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
-            content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
-        });
-
-
-    });
-
     $(document).on("click", ".view-adOnContent", async function (e) {
         e.preventDefault();
         const adOnId = $(this).attr('data-id');

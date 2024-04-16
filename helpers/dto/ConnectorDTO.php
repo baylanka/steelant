@@ -55,6 +55,7 @@ class ConnectorDTO extends ElementDTO
         $this->setDownloadableFiles();
         $this->setImageFiles();
         $this->setContentId();
+        $this->setContentLabel();
     }
 
     private function setLanguageDescriptions()
@@ -65,9 +66,9 @@ class ConnectorDTO extends ElementDTO
         $this->description_fr = $this->element->getDescriptionFr();
     }
 
-    public function getContentLabel()
+    private function setContentLabel()
     {
-        return $this->name;
+        $this->label = $this->name;
     }
 
     public function getDescriptionOfLang()
