@@ -38,8 +38,8 @@ use model\CategoryContent;
                     <tr class="text-center">
                         <th style="width: 5%"></th>
                         <th style="width: 15%"># display order</th>
-                        <th>type</th>
                         <th>name</th>
+                        <th>type</th>
                         <th>status</th>
                         <th></th>
                     </tr>
@@ -56,7 +56,7 @@ use model\CategoryContent;
                                     </td>
 
                                     <td>
-                                        <?=$content->getContentLabel()?>
+                                        <?=$content->label?>
                                     </td>
 
                                     <td>
@@ -126,6 +126,8 @@ use model\CategoryContent;
 
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
+<script src="https://cdn.tiny.cloud/1/39y77bbnodzcw45bboz4dzbi7c07mh4pr5nvitr1hhfj3tm8/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
 <script>
     const modalId = 'base-modal';
 
@@ -168,12 +170,14 @@ use model\CategoryContent;
         }
     }
 
-    function getConnectorRow(connector, rowNumber = null)
+    function getContentRow(content,rowNumber, type)
     {
-        rowNumber = rowNumber === null ? $('#contents').find('tr').length + 1 : rowNumber;
-        rowNumber = rowNumber.toString().padStart(3,"0");
+        const editClass = type === "connector" ? "connector-edit" : "ad-on-edit";
+        const viewClass = type === "connector" ? "connector-view" : "ad-on-view";
+        const deleteClass = type === "connector" ? "connector-delete" : "ad-on-delete";
+
         return `
-                        <tr class="text-center" data-id="${connector.contentId}">
+                        <tr class="text-center" data-id="${content.id}">
                                 <td>
                                     <i class="bi bi-list"></i>
                                 </td>
@@ -182,21 +186,21 @@ use model\CategoryContent;
                                 </td>
 
                                 <td>
-                                     ${connector.name}
+                                     ${content.label}
                                 </td>
 
                                 <td>
 
-                                    <span class="badge text-bg-secondary">
-                                        connector
+                                    <span class="badge text-bg-primary">
+                                        ${type}
                                     </span>
                                 </td>
 
 
 
                                 <td>
-                                    <span class="badge ${connector.isPublished ? 'text-bg-success': 'text-bg-warning'}">
-                                         ${connector.isPublished ? 'published': 'non-published'}
+                                    <span class="badge ${content.isPublished ? 'text-bg-success': 'text-bg-warning'}">
+                                         ${content.isPublished ? 'published': 'non-published'}
                                     </span>
                                 </td>
                                 <td>
@@ -206,8 +210,8 @@ use model\CategoryContent;
                                             Actions
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item connector-view" href="#"
-                                                    data-id="${connector.id}">
+                                            <li><a class="dropdown-item ${viewClass}" href="#"
+                                                    data-id="${content.id}">
                                                     View <i class="bi bi-exclamation-circle float-end"></i></a>
                                             </li>
 
@@ -215,8 +219,8 @@ use model\CategoryContent;
                                                 <hr class="dropdown-divider">
                                             </li>
 
-                                            <li><a class="dropdown-item connector-edit" href="#"
-                                                   data-id="${connector.id}">
+                                            <li><a class="dropdown-item ${editClass}" href="#"
+                                                   data-id="${content.id}">
                                                     Edit <i class="bi bi-pencil float-end"></i></a>
                                             </li>
 
@@ -224,8 +228,8 @@ use model\CategoryContent;
                                                 <hr class="dropdown-divider">
                                             </li>
 
-                                            <li><a class="dropdown-item connector-delete" href="#"
-                                                   data-id="${connector.id}">
+                                            <li><a class="dropdown-item ${deleteClass}" href="#"
+                                                   data-id="${content.id}">
                                                     Delete <i class="bi bi-trash3 float-end"></i></a>
                                             </li>
                                         </ul>
@@ -234,6 +238,18 @@ use model\CategoryContent;
                         </tr>
 
         `;
+    }
+
+    function getConnectorRow(connector, rowNumber = null)
+    {
+        rowNumber = rowNumber === null ? $('#contents').find('tr').length + 1 : rowNumber;
+        return getContentRow(connector, rowNumber, 'connector');
+    }
+
+    function getAdOnConnectorRow(adOnConnector, rowNumber = null)
+    {
+        rowNumber = rowNumber === null ? $('#contents').find('tr').length + 1 : rowNumber;
+        return getContentRow(adOnConnector, rowNumber, 'add_on_content');
     }
 
     async function getConnectorEditModal(connectorId)
@@ -272,7 +288,6 @@ use model\CategoryContent;
         }
     });
 
-
     $(document).on("click", "#create-connector", async function () {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         let path = `admin/connectors/create?tableLang=${language}&categoryId=<?=$categoryId?>`;
@@ -306,22 +321,119 @@ use model\CategoryContent;
         }
     });
 
+    $(document).on("click", "#create-addon", async function (e) {
+        e.preventDefault();
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/ad-on/create?tableLang=${language}&categoryId=<?=$categoryId?>`;
+        const btn = $(this);
+        const loadingBtnText = btn.text();
+        try {
+            spinnerEnabled();
+            loadButton(btn, "loading ...");
+            const modal = await loadModal(modalId, path);
+
+            $(document).off('storeAddOnSuccessEvent');
+            $(document).on('storeAddOnSuccessEvent', async function (event) {
+                modal.hide();
+                const addOnContent = event.originalEvent.detail.addon;
+                const row = getAdOnConnectorRow(addOnContent);
+                const tbody = $('tbody#contents');
+                if(tbody.length === 0){
+                    $('.card-body').html(getContentsTable());
+                }
+
+                $('tbody#contents').append(row);
+
+                if(tbody.length === 0){
+                    activateSortableRows();
+                }
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create add on.. " + err);
+        }finally {
+            spinnerDisable();
+            resetButton(btn, loadingBtnText);
+        }
+    });
+
     $(document).on("click", ".connector-edit", async function (e) {
         e.preventDefault();
         const connectorId = $(this).attr('data-id');
         await getConnectorEditModal(connectorId);
     });
 
+    $(document).on("click", ".ad-on-edit", async function (e) {
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/edit?id=${adOnContentId}&categoryId=<?=$categoryId?>`;
+        const trTag = $(`a[data-id="${adOnContentId}"]`).closest('tr');
+        try {
+            const modal = await loadModal(modalId, path);
+            tinymce.init({
+                selector: '.description',
+                plugins: 'textcolor link lists',
+                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+                content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
+            });
+
+            $(document).off('updateAddOnSuccessEvent');
+            $(document).on('updateAddOnSuccessEvent', function (event) {
+                modal.hide();
+                const addOnContent = event.originalEvent.detail.addon;
+                const row = getAdOnConnectorRow(addOnContent);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.prepend(row);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(row);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+        }
+    });
+
+
     $(document).on("click", ".connector-view", async function (e) {
         e.preventDefault();
         const connectorId = $(this).attr('data-id');
         let path = `admin/connectors/templates?id=${connectorId}`;
         try {
-            const modal = await loadModal(modalId, path);
+            await loadModal(modalId, path);
 
         } catch (err) {
             toast.error("An error occurred while attempting to open the view connector.. " + err);
         }
+    });
+
+    $(document).on("click", ".ad-on-view", async function (e) {
+        e.preventDefault();
+        const adOnId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/templates?id=${adOnId}`;
+        try {
+            await loadModal(modalId, path);
+
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the view ad-on content.. " + err);
+        }
+    });
+
+    $(document).on('click',".ad-on-delete", async function(e){
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
+        await deleteElement(URL, $(this));
+    });
+
+    $(document).on('click',".connector-delete", async function(e){
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
+        await deleteElement(URL, $(this));
     });
 
     $(document).on('click', '#save-changes', async function(e){
@@ -354,6 +466,21 @@ use model\CategoryContent;
 
 
     });
+
+    async function deleteElement(URL, element)
+    {
+        const trTag = element.closest('tr');
+        try {
+            spinnerEnabled();
+            const response = await makeAjaxCall(URL,{}, 'DELETE');
+            toast.success(response.message);
+            trTag.remove();
+        }catch (err) {
+            toast.error("An error occurred while attempting to delete the connector.. ");
+        }finally {
+            spinnerDisable();
+        }
+    }
 
     function getContentList()
     {

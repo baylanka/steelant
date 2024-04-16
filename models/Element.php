@@ -10,6 +10,21 @@ use model\BaseModel;
 
 abstract class Element  extends BaseModel
 {
+    public function delete()
+    {
+        $content = CategoryContent::getFirstBy([
+            'type' => $this->getContentType(),
+            'element_id' => $this->id
+        ]);
+
+        if (!$content) {
+            return;
+        }
+
+
+        $content->delete();
+    }
+
     public function update()
     {
         //update element
@@ -21,7 +36,7 @@ abstract class Element  extends BaseModel
         $contentTemplatesArray =  $this->temp_content_templates ?? [];
 
         //delete previous content templates media, with its associated `media`
-        ContentTemplateRepository::deleteContentTemplatesByContentId($contentTemplatesArray, $content->id);
+        ContentTemplateRepository::deleteContentTemplatesByContentId($content->id);
         //update new content-templates, its template media
         ContentTemplateService::updateContentTemplates($contentTemplatesArray);
     }

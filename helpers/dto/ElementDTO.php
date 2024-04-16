@@ -10,6 +10,8 @@ abstract class ElementDTO
     public int $id;
     public string $type;
 
+    public string $label;
+
     public string $language;
     public string $categoryTree;
     public bool $isPublished;
@@ -18,7 +20,6 @@ abstract class ElementDTO
     public ?int $categoryId;
     public ?int $contentId;
 
-    abstract public function getContentLabel();
     protected function setContentId()
     {
         $this->setElementProperties();

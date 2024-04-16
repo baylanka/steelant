@@ -6,7 +6,7 @@ use model\ContentTemplate;
 
 class ContentTemplateRepository extends ContentTemplate
 {
-    public static function deleteContentTemplatesByContentId(array $contentTemplatesArray, int $contentId)
+    public static function deleteContentTemplatesByContentId(int $contentId)
     {
         $prevContentTemplates = self::getAllBy(['content_id' => $contentId]);
         foreach ($prevContentTemplates as $eachPrev) {

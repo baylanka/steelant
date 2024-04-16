@@ -6,6 +6,9 @@
 
 
         <div class="col-12 d-flex justify-content-between mt-5">
+            <?php if(!empty($fixed_category)): ?>
+                <input type="hidden" name="category" value="<?=$fixed_category?>"/>
+            <?php endif; ?>
 
             <select class="form-select w-100 select2"
                 <?php if(empty($fixed_category)): ?>

@@ -9,6 +9,7 @@ $app->post('/admin/connectors',  ["admin\ConnectorController", "store"]);
 $app->get('/admin/connectors/edit',  ["admin\ConnectorController", "edit"]);
 $app->post('/admin/connectors/update',  ["admin\ConnectorController", "update"]);
 $app->get('/admin/connectors/templates',  ["admin\ConnectorController", "showAllTemplates"]);
+$app->delete('/admin/connectors/delete',  ["admin\ConnectorController", "destroy"]);
 
 //Ad-on routes
 $app->get('/admin/ad-on',  ["admin\AdOnController", "index"]);
@@ -17,6 +18,7 @@ $app->post('/admin/ad-on-content/store',  ["admin\AdOnController", "store"]);
 $app->get('/admin/ad-on-content/templates',  ["admin\AdOnController", "showAllTemplates"]);
 $app->get('/admin/ad-on-content/edit',  ["admin\AdOnController", "edit"]);
 $app->post('/admin/ad-on-content/update',  ["admin\AdOnController", "update"]);
+$app->delete('/admin/ad-on-content/delete',  ["admin\AdOnController", "destroy"]);
 
 //Category routes
 $app->get('/admin/categories', ["admin\CategoryController", "index"]);
