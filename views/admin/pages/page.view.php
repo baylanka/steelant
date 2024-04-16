@@ -46,7 +46,7 @@ use model\CategoryContent;
                     </thead>
                     <tbody id="contents">
                         <?php foreach ($contents as $index => $content): ?>
-                            <tr class="text-center" data-id="<?=$content->id?>">
+                            <tr class="text-center" data-content-id="<?=$content->contentId?>">
                                     <td>
                                         <i class="bi bi-list"></i>
                                     </td>
@@ -177,7 +177,7 @@ use model\CategoryContent;
         const deleteClass = type === "connector" ? "connector-delete" : "ad-on-delete";
 
         return `
-                        <tr class="text-center" data-id="${content.id}">
+                        <tr class="text-center" data-content-id="${content.contentId}">
                                 <td>
                                     <i class="bi bi-list"></i>
                                 </td>
@@ -497,7 +497,7 @@ use model\CategoryContent;
             let iCount = 0;
             trTags.each(function(){
                 iCount++;
-                lst.push($(this).attr('data-id'));
+                lst.push($(this).attr('data-content-id'));
                 if(iCount === totalTags){
                     resolve(lst);
                     return false;
