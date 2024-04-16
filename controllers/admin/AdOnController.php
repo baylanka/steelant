@@ -118,7 +118,19 @@ class AdOnController extends BaseController
 
     public function destroy(Request $request)
     {
-
+        global $container;
+        $db = $container->resolve('DB');
+        try {
+            $adOnContentId = $request->get('id');
+            $db->beginTransaction();
+            $adOnContent = AdOnContent::getById($adOnContentId);
+            $adOnContent->delete();
+            $db->commit();
+            parent::response("successfully deleted");
+        }catch(\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
     public function showAllTemplates(Request $request)

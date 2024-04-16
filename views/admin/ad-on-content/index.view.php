@@ -132,6 +132,23 @@
         }
     });
 
+    $(document).on('click',".delete-addOnContent", async function(e){
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
+        const trTag = $(this).closest('tr');
+        try {
+            spinnerEnabled();
+            const response = await makeAjaxCall(URL,{}, 'DELETE');
+            toast.success(response.message);
+            trTag.remove();
+        }catch (err) {
+            toast.error("An error occurred while attempting to delete the ad-on content.. ");
+        }finally {
+            spinnerDisable();
+        }
+    });
+
     $(document).on("click", ".edit-adOnContent", async function (e) {
         e.preventDefault();
         const adOnContentId = $(this).attr('data-id');

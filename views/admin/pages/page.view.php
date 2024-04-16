@@ -422,6 +422,20 @@ use model\CategoryContent;
         }
     });
 
+    $(document).on('click',".ad-on-delete", async function(e){
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
+        await deleteElement(URL, $(this));
+    });
+
+    $(document).on('click',".connector-delete", async function(e){
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
+        await deleteElement(URL, $(this));
+    });
+
     $(document).on('click', '#save-changes', async function(e){
         e.preventDefault();
         spinnerEnabled();
@@ -452,6 +466,21 @@ use model\CategoryContent;
 
 
     });
+
+    async function deleteElement(URL, element)
+    {
+        const trTag = element.closest('tr');
+        try {
+            spinnerEnabled();
+            const response = await makeAjaxCall(URL,{}, 'DELETE');
+            toast.success(response.message);
+            trTag.remove();
+        }catch (err) {
+            toast.error("An error occurred while attempting to delete the connector.. ");
+        }finally {
+            spinnerDisable();
+        }
+    }
 
     function getContentList()
     {

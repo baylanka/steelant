@@ -399,6 +399,22 @@
         }
     });
 
+    $(document).on("click", ".connector-delete", async function (e) {
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
+        const trTag = $(this).closest('tr');
+        try {
+            spinnerEnabled();
+            const response = await makeAjaxCall(URL,{}, 'DELETE');
+            toast.success(response.message);
+            trTag.remove();
+        }catch (err) {
+            toast.error("An error occurred while attempting to delete the connector.. ");
+        }finally {
+            spinnerDisable();
+        }
+    });
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 
