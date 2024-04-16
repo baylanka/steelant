@@ -21,6 +21,9 @@ class ContentController extends BaseController
         $activatedLanguage = Translate::getLang();
         $templates = ContentService::getTemplatesByCategoryId($categoryId, $activatedLanguage);
         $category = Category::getById($categoryId);
+        if(!$category){
+            header('Location: ' . url("/"));
+        }
         $categoryDTO = new CategoryDTO($category);
         $data = [
             'templates' => $templates,

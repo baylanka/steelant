@@ -1,5 +1,6 @@
 <?php
     use helpers\services\RouterService;
+    use helpers\services\CategoryService;
 ?>
 
 <?php require_once "layout/start.layout.php"; ?>
@@ -16,7 +17,7 @@
                 <div class="col-12 col-md-12 row" style="gap:1.8%;">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(3)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7">
                         <dl><p class="category-name">Cofferdam</p>
@@ -49,7 +50,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(17)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -68,7 +69,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(30)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -86,7 +87,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(22)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -102,7 +103,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(34)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -121,7 +122,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(24)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
@@ -141,7 +142,7 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= assets("themes/user/img/category/Cell-structures.png") ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(38)->getThumbnailUrl(); ?>" height="60"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>

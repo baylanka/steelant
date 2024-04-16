@@ -9,16 +9,23 @@ class CategoryService
 {
     public static array $categoryArray = [];
 
-    public static function getCategoryTreeFromLeafCategoryId($id, &$tree=[])
+
+    public static function getParentCategory($id)
+    {
+        $categoryHierarchy = self::getCategoryTreeFromLeafCategoryId($id);
+        return $categoryHierarchy[0];
+    }
+
+    public static function getCategoryTreeFromLeafCategoryId($id, &$tree = [])
     {
         $category = Category::getById($id);
-        if(!$category){
+        if (!$category) {
             return $tree;
         }
 
-        array_unshift($tree,$category);
+        array_unshift($tree, $category);
         $parentCategoryId = $category->parent_category_id;
-        if(empty($parentCategoryId)){
+        if (empty($parentCategoryId)) {
             return $tree;
         }
 
@@ -27,8 +34,8 @@ class CategoryService
 
     public static function isLeafCategoryPublishable($categoryTree)
     {
-        foreach ($categoryTree as $category){
-            if(!$category->isPublished()){
+        foreach ($categoryTree as $category) {
+            if (!$category->isPublished()) {
                 return false;
             }
         }
@@ -40,7 +47,7 @@ class CategoryService
     {
         $children = $category->getChildren();
         $childrenCount = sizeof($children);
-        foreach ($children as $child){
+        foreach ($children as $child) {
             $childrenCount += self::getMembersCount($child);
         }
 
@@ -50,8 +57,8 @@ class CategoryService
     public static function organizingCategoriesTreeView(array $categories)
     {
         $array = [];
-        foreach($categories as $category) {
-            if($category->level != 1){
+        foreach ($categories as $category) {
+            if ($category->level != 1) {
                 continue;
             }
             $category->setChildren(self::getChildrenTree($categories, $category));
@@ -75,8 +82,8 @@ class CategoryService
     public static function organizeCategoriesByParentCategories(array $categories): array
     {
         $array = [];
-        foreach($categories as $category) {
-            if($category->level != 1){
+        foreach ($categories as $category) {
+            if ($category->level != 1) {
                 continue;
             }
             $array[] = $category;
@@ -131,7 +138,7 @@ class CategoryService
     {
         $categories = self::organizingCategoriesTreeView($categories);
         $categoryArr = [];
-        foreach ($categories as $category){
+        foreach ($categories as $category) {
             $collectedArray = self::collectLeafCategories($category);
             $categoryArr = array_merge($categoryArr, $collectedArray);
         }
@@ -142,8 +149,8 @@ class CategoryService
     private static function getChildren(array $categories, $parentCategory)
     {
         $children = [];
-        foreach ($categories as $category){
-            if($category->parent_category_id !== $parentCategory->id){
+        foreach ($categories as $category) {
+            if ($category->parent_category_id !== $parentCategory->id) {
                 continue;
             }
 
@@ -158,8 +165,8 @@ class CategoryService
     private static function getChildrenTree(array $categories, $parentCategory)
     {
         $children = [];
-        foreach ($categories as $category){
-            if($category->parent_category_id !== $parentCategory->id){
+        foreach ($categories as $category) {
+            if ($category->parent_category_id !== $parentCategory->id) {
                 continue;
             }
 
@@ -171,31 +178,31 @@ class CategoryService
         return $children;
     }
 
-    private static function collectLeafCategories($category, &$collector=[], &$collectorIndex=0)
+    private static function collectLeafCategories($category, &$collector = [], &$collectorIndex = 0)
     {
         $collector[$collectorIndex][] = $category;
 
-        foreach ($category->getChildren() as $childIndex => $child){
+        foreach ($category->getChildren() as $childIndex => $child) {
 
             $children = $child->getChildren();
             $noOfChildren = sizeof($children);
 
-            if(!empty($noOfChildren)){
+            if (!empty($noOfChildren)) {
                 $collector = self::collectLeafCategories($child, $collector, $collectorIndex);
-            }else{
+            } else {
                 $collector[$collectorIndex][] = $child;
             }
 
             $prevCollectorIndex = $collectorIndex;
 
-            if($childIndex == sizeof($category->getChildren())-1 || !isset($collector[$prevCollectorIndex])){
+            if ($childIndex == sizeof($category->getChildren()) - 1 || !isset($collector[$prevCollectorIndex])) {
                 $t = 1;
 //                $collector[$collectorIndex][] = $category;
                 continue;
             }
 
             $collectorIndex++;
-            for($i=0; $i < ($child->level-1) ; $i++){
+            for ($i = 0; $i < ($child->level - 1); $i++) {
                 $collector[$collectorIndex][] = $collector[$prevCollectorIndex][$i];
             }
 
