@@ -362,12 +362,48 @@ use model\CategoryContent;
         await getConnectorEditModal(connectorId);
     });
 
+    $(document).on("click", ".ad-on-edit", async function (e) {
+        e.preventDefault();
+        const adOnContentId = $(this).attr('data-id');
+        let path = `admin/ad-on-content/edit?id=${adOnContentId}&categoryId=<?=$categoryId?>`;
+        const trTag = $(`a[data-id="${adOnContentId}"]`).closest('tr');
+        try {
+            const modal = await loadModal(modalId, path);
+            tinymce.init({
+                selector: '.description',
+                plugins: 'textcolor link lists',
+                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+                content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
+            });
+
+            $(document).off('updateAddOnSuccessEvent');
+            $(document).on('updateAddOnSuccessEvent', function (event) {
+                modal.hide();
+                const addOnContent = event.originalEvent.detail.addon;
+                const row = getAdOnConnectorRow(addOnContent);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.prepend(row);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(row);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+        }
+    });
+
+
     $(document).on("click", ".connector-view", async function (e) {
         e.preventDefault();
         const connectorId = $(this).attr('data-id');
         let path = `admin/connectors/templates?id=${connectorId}`;
         try {
-            const modal = await loadModal(modalId, path);
+            await loadModal(modalId, path);
 
         } catch (err) {
             toast.error("An error occurred while attempting to open the view connector.. " + err);
