@@ -3,12 +3,13 @@
 require_once "layout/start.layout.php";
 use helpers\translate\Translate;
 use helpers\services\RouterService;
+use helpers\services\CategoryService;
 ?>
 
 <!--body section-->
 <div class="jumbotron p-0 m-0">
 
-    <img src="<?= assets("themes/user/img/hero-image2.png") ?>" class="w-100"/>
+    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getBannerUrl(); ?>" class="w-100"/>
 
     <div class="responsive-wrap">
 
@@ -19,7 +20,7 @@ use helpers\services\RouterService;
 
             <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/Earth-work.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">Cofferdam</p>
                 </div>
 
@@ -75,7 +76,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 16 || $_GET["id"] > 20 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/Pipe-pile-steel-walls.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">Pipe pile steel walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
@@ -98,7 +99,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] != 22 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/For-DTH-driving-method.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">DTH driving method</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
@@ -116,7 +117,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between <?= $_GET["id"] < 23 || $_GET["id"] > 28 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/Pipe-pile-combined-walls.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">Pipe pile + sheet pile combined walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
@@ -147,7 +148,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 29 || $_GET["id"] > 32 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/H-pile-steel-walls.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">H-pile walls</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
@@ -168,7 +169,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] < 33 || $_GET["id"] > 36 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/H-pile-combined-walls.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">H-pile + sheet pile combined walls</p>
                 </div>
                 <div class="col-md-5 col-12 p-0">
@@ -192,7 +193,7 @@ use helpers\services\RouterService;
             <div class="col-12 row gap-3 justify-content-between  <?= $_GET["id"] != 38 ? "d-none" : "" ?> ">
 
                 <div class="col-md-3 col-12 d-flex gap-4">
-                    <img src="<?= assets("themes/user/img/category/Cell-structures.png") ?>" height="60"/>
+                    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="60"/>
                     <p class="category-name">Cell structures</p>
                 </div>
                 <div class="col-md-7 col-12 p-0">
@@ -228,7 +229,6 @@ use helpers\services\RouterService;
 
 
 
-        <?php require_once basePath("views/user/templates/template-02.php") ?>
     </div>
 
 
