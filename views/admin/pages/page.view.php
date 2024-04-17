@@ -424,6 +424,16 @@ use model\CategoryContent;
 
     $(document).on('click',".ad-on-delete", async function(e){
         e.preventDefault();
+        const notice = `
+                <p class="text-danger"><b>If you proceed with deleting the Ad-on content:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                </ol>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+
         const adOnContentId = $(this).attr('data-id');
         let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
         await deleteElement(URL, $(this));
@@ -431,6 +441,16 @@ use model\CategoryContent;
 
     $(document).on('click',".connector-delete", async function(e){
         e.preventDefault();
+        const notice = `
+                <p class="text-danger"><b>If you proceed with deleting the connector content:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                </ol>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+
         const connectorId = $(this).attr('data-id');
         let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
         await deleteElement(URL, $(this));

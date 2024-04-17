@@ -134,6 +134,16 @@
 
     $(document).on('click',".delete-addOnContent", async function(e){
         e.preventDefault();
+        const notice = `
+                <p class="text-danger"><b>If you proceed with deleting the Ad-on content:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                </ol>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+
         const adOnContentId = $(this).attr('data-id');
         let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
         const trTag = $(this).closest('tr');
