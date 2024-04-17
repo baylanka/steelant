@@ -88,6 +88,7 @@ class ConnectorRepository extends Connector
             LEFT JOIN media ON content_template_media.media_id = media.id
             WHERE category_contents.`type` = :type
             AND connectors.id = :id
+            ORDER BY COALESCE(content_template_media.placeholder_id, 9999999) ASC
         ";
 
         $params = ['type' => CategoryContent::TYPE_CONNECTOR, 'id'=>$id];

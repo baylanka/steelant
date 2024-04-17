@@ -29,6 +29,7 @@ class AdOnRepository extends AdOnContent
             LEFT JOIN media ON content_template_media.media_id = media.id
             WHERE category_contents.`type` = :type
             AND add_on_contents.id = :id
+            ORDER BY COALESCE(content_template_media.placeholder_id, 9999999) ASC
         ";
 
         $params = ['type' => CategoryContent::TYPE_ADD_ON_CONTENT, 'id'=>$id];

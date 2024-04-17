@@ -212,6 +212,7 @@ class ConnectorUpdateRequestMapper
     {
         $downloadableURLArray = $request->get('downloadable_src', []);
         $downloadableArray = $request->get('downloadable', []);
+        $downloadablePlaceholderArray = $request->get('downloadable_placeholder',[]);
 
         foreach ($downloadableURLArray as $index => $fileURL){
             if(empty($fileURL)){
@@ -229,8 +230,8 @@ class ConnectorUpdateRequestMapper
             }
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
-                //downloadable files no need placeholder hint. so, it is ignored here
                 $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->title = $title;
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
@@ -244,6 +245,7 @@ class ConnectorUpdateRequestMapper
     private static function getContentTemplateWithDownloadableFileFromFile(array $contentTemplates, $request, $directoryPath)
     {
         $downloadableArray = $request->get('downloadable', []);
+        $downloadablePlaceholderArray = $request->get('downloadable_placeholder',[]);
 
         if(empty($downloadableArray) || !isset($downloadableArray['name'])){
             return $contentTemplates;
@@ -267,9 +269,9 @@ class ConnectorUpdateRequestMapper
             $downloadableMedia = self::uploadFile($file, Media::TYPE_FILE, $directoryPath, $fileName);
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
-                //downloadable files no need placeholder hint. so, it is ignored here
                 $contentTemplateMedia = new ContentTemplateMedia();
                 $contentTemplateMedia->title = $title;
+                $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
                 $contentTemplates[$lang]->temp_content_template_media[] = $contentTemplateMedia;
