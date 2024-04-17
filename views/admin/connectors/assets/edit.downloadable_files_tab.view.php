@@ -149,6 +149,7 @@
                             <?php
                             $germany = LanguagePool::GERMANY()->getLabel();
                             $germanyTitleExists = array_key_exists($germany, $content['title'])
+                                                    && !empty($content['title'][$germany]);
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/de.png") ?>"
@@ -178,6 +179,7 @@
                             <?php
                             $englishUk = LanguagePool::UK_ENGLISH()->getLabel();
                             $englishUkTitleExists = array_key_exists($englishUk, $content['title'])
+                                                        && !empty($content['title'][$englishUk]);
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/en-gb.png") ?>"
@@ -206,6 +208,7 @@
                             <?php
                             $french = LanguagePool::FRENCH()->getLabel();
                             $frenchTitleExists = array_key_exists($french, $content['title'])
+                                         && !empty($content['title'][$french]);
                             ?>
 
                             <label class="btn btn-light">
@@ -234,6 +237,7 @@
                             <?php
                             $englishUs = LanguagePool::US_ENGLISH()->getLabel();
                             $englishUsTitleExists = array_key_exists($englishUs, $content['title'])
+                                                     && !empty($content['title'][$englishUs]);
                             ?>
 
                             <label class="btn btn-light">
@@ -243,12 +247,12 @@
 
                             <label class="btn btn-light">
                                 <input class="form-check-input download-label-visible" type="checkbox"
-                                    <?= $frenchTitleExists ? 'checked' :'' ?>
+                                    <?= $englishUsTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
                             <input class="form-control download-label" type="text"
                                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
-                                   name="downloadable[title][0][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
+                                   name="downloadable[title][<?=$index?>][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
                                    placeholder="Label ( in English )"
                                 <?= $englishUsTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>

@@ -204,8 +204,8 @@ class ConnectorUpdateRequestMapper
             return $contentTemplates;
         }
 
-        $contentTemplates = self::getContentTemplateWithDownloadableFileFromFile($contentTemplates, $request, $directoryPath);
-        return  self::getContentTemplateWithDownloadableFileFromURL($contentTemplates, $request, $directoryPath);
+        $contentTemplates = self::getContentTemplateWithDownloadableFileFromURL($contentTemplates, $request, $directoryPath);
+        return  self::getContentTemplateWithDownloadableFileFromFile($contentTemplates, $request, $directoryPath);
     }
 
     private static function getContentTemplateWithDownloadableFileFromURL(array $contentTemplates, $request, $directoryPath)
