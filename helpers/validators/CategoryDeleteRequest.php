@@ -5,7 +5,7 @@ namespace helpers\validators;
 use app\Request;
 use helpers\utilities\ResponseUtility;
 
-class SubCategoryDeleteRequest
+class CategoryDeleteRequest
 {
     public static function validate(Request $request)
     {

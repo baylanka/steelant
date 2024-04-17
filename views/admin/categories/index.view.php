@@ -219,7 +219,7 @@ use helpers\pools\LanguagePool;
 
         const categoryId = $(this).attr('data-id');
         const data = {};
-        const path = `${getBaseUrl()}/admin/categories/sub/destroy?id=${categoryId}`;
+        const path = `${getBaseUrl()}/admin/categories/destroy?id=${categoryId}`;
         try {
             const response = await makeAjaxCall(path, data, 'DELETE');
             removeCategories(categoryId);

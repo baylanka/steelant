@@ -4,6 +4,7 @@ namespace model;
 
 use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryMediaRepository;
+use helpers\repositories\CategoryRepository;
 use helpers\services\FileService;
 
 class Category extends BaseModel
@@ -225,6 +226,11 @@ class Category extends BaseModel
     public function isParent(): bool
     {
         return self::existsBy(['parent_category_id'=>$this->id]);
+    }
+
+    public function delete()
+    {
+        CategoryRepository::deleteWithDependencies($this->id);
     }
 
     private function getBanner($force=false)

@@ -22,12 +22,13 @@ $app->delete('/admin/ad-on-content/delete',  ["admin\AdOnController", "destroy"]
 
 //Category routes
 $app->get('/admin/categories', ["admin\CategoryController", "index"]);
+$app->delete('/admin/categories/destroy', ["admin\CategoryController", "destroy"]);
+
 $app->get('/admin/categories/main/store', ["admin\CategoryController", "createMainCategory"]);
 $app->post('/admin/categories/main/store', ["admin\CategoryController", "storeMainCategory"]);
 
 $app->get('/admin/categories/sub/store', ["admin\CategoryController", "createSubCategory"]);
 $app->post('/admin/categories/sub/store', ["admin\CategoryController", "storeSubCategory"]);
-$app->delete('/admin/categories/sub/destroy', ["admin\CategoryController", "destroySubCategory"]);
 
 $app->get('/admin/categories/edit', ["admin\CategoryController", "edit"]);
 $app->post('/admin/categories/update', ["admin\CategoryController", "update"]);

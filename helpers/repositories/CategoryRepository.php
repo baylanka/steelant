@@ -7,7 +7,6 @@ use model\CategoryContent;
 
 class CategoryRepository extends Category
 {
-
     public static function isNameUnique($nameEn, $nameDe, $nameFr, $parentId = null,
                                         $exceptId = null)
     {
@@ -109,25 +108,19 @@ class CategoryRepository extends Category
         return self::query($sql)->get();
     }
 
-    public static function deleteWithRelevantObjects($id)
+    public static function deleteWithDependencies($id)
     {
-        // delete 'category_media', 'media' table rows and media file
-        CategoryMediaRepository::deleteByCategoryId($id);
-        //delete 'category_content', 'connectors', 'add_on_contents', 'category_content_media', 'media' table rows and media file
-        CategoryContentRepository::deleteByCategoryId($id);
-        //delete category
-        Category::deleteById($id);
         //delete children categories
         self::deleteChildrenByParentCategoryId($id);
-    }
 
-    private static function deleteChildrenByParentCategoryId($id)
-    {
-        $children = Category::getAllBy(['parent_category_id'=>$id]);
-        foreach ($children as $child)
-        {
-            self::deleteWithRelevantObjects($child->id);
-        }
+        // delete 'category_media', 'media' table rows and media file
+        CategoryMediaRepository::deleteByCategoryId($id);
+
+        //delete 'category_content' with its relevant items
+        CategoryContentRepository::deleteByCategoryId($id);
+
+        //delete category
+        Category::deleteById($id);
     }
 
     public static function getNextDisplayOrderOfCategoryId($categoryId)
@@ -142,5 +135,14 @@ class CategoryRepository extends Category
         if (!$content) return 1;
 
         return $content['existence'] + 1;
+    }
+
+    private static function deleteChildrenByParentCategoryId($id)
+    {
+        $children = Category::getAllBy(['parent_category_id'=>$id]);
+        foreach ($children as $child)
+        {
+            self::deleteWithDependencies($child->id);
+        }
     }
 }
