@@ -1,3 +1,6 @@
+<?php
+    use \model\Template;
+?>
 <?php require_once basePath("views/admin/layout/upper_template.php") ?>
 <!--Place Your Content Here-->
 <div class="row">
@@ -44,7 +47,15 @@
                                      width="250"/>
                             </td>
                             <td>
-                                <span class="badge text-bg-info"><?=$template->getTypeDescription()?></span>
+                                <span class="badge
+                                                <?=$template->isConnectorTemplate()
+                                                                ?'text-bg-secondary'
+                                                                : 'text-bg-primary'
+                                                                ?>
+                                            "
+                                >
+                                    <?=$template->getTypeStr()?>
+                                </span>
                             </td>
                             <td>
                                 <div class="btn-group">
@@ -73,6 +84,8 @@
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
     function getTemplateRow(template, rowNo) {
+        const typeClass = template.type === Number("<?=Template::TYPE_CONNECTOR?>") ?
+                                'text-bg-secondary': 'text-bg-primary';
         return `
                 <tr
                     class="align-middle text-center template-row"
@@ -87,7 +100,7 @@
                                  width="250"/>
                         </td>
                         <td>
-                            <span class="badge text-bg-info">${template.type}</span>
+                            <span class="badge ${typeClass}">${template.typeStr}</span>
                         </td>
                         <td>
                             <div class="btn-group">
