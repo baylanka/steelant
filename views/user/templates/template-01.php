@@ -1,11 +1,12 @@
 <?php
-
 use helpers\services\ConnectorService;
 use helpers\translate\Translate;
 use model\Template;
+use \model\Media;
+?>
 
+<?php
 $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm";
-
 ?>
 
 
@@ -144,12 +145,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
             <!--Duplicate element - for title End-->
 
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
@@ -211,12 +212,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
         ?>
         <div class="template-img-container mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
@@ -308,12 +309,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
             <!--Duplicate element - for title End-->
 
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
@@ -372,12 +373,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
         ?>
         <div class="template-img-container mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
@@ -465,12 +466,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
             <!--Duplicate element - for title End-->
 
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
@@ -530,12 +531,12 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
         ?>
         <div class="template-img-container  mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
-            <?php if (($imageAttr->type && $imageAttr->type == \model\Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
                 <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type !== \model\Media::TYPE_IMAGE): ?>
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
