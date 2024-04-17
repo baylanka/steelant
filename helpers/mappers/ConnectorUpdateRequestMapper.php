@@ -92,9 +92,15 @@ class ConnectorUpdateRequestMapper
                 'size' => $imageFilesArray['size'][$index],
             ];
             $fileOriginalName = FileUtility::getName($file);
-            $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+            if(FileUtility::isVideo($file)){
+                $fileName = "video_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $type = Media::TYPE_VIDEO;
+            }else{
+                $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $type = Media::TYPE_IMAGE;
+            }
 
-            $imageMedia = self::uploadFile($file, Media::TYPE_IMAGE, $directoryPath, $fileName);
+            $imageMedia = self::uploadFile($file, $type, $directoryPath, $fileName);
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
                 $contentTemplateMedia = new ContentTemplateMedia();
@@ -124,9 +130,15 @@ class ConnectorUpdateRequestMapper
             $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),6,5);
 
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
+            if(FileUtility::isImageExtension($fileExtension)){
+                $fileName = "video_{$fileName}({$index})_" . time() . "." . $fileExtension;
+                $type = Media::TYPE_VIDEO;
+            }else{
+                $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
+                $type = Media::TYPE_IMAGE;
+            }
 
-            $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
-            $imageMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_IMAGE, $directoryPath);
+            $imageMedia = self::uploadFileFromURL($fileURL, $fileName, $type, $directoryPath);
             if(!$imageMedia){
                 continue;
             }
