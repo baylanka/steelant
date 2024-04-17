@@ -2,9 +2,9 @@
 use helpers\translate\Translate;
 ?>
 
-<div class="d-flex w-100 justify-content-end mb-2 my-3">
+<div class="row mb-2 justify-content-end">
 
-    <div class="text-center end-0">
+    <div class="col-3 col-md-1 col-xl-1 col-xxl-1 text-center end-0">
         <a href="<?= url("/") ?>">
             <img src="<?= assets("themes/user/img/home.png") ?>" height="30">
             <br/>

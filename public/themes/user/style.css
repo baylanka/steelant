@@ -40,9 +40,7 @@ body {
 }
 
 /* NAV */
-.navbar {
-    background-color: var(--white);
-}
+
 
 .nav-text {
     color: var(--blue);
@@ -81,7 +79,6 @@ body {
     /*display: none;*/
     color: white;
     background-color: var(--blue);
-    padding: 5%;
 }
 
 .footer .disclaimer-text {

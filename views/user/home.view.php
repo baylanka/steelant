@@ -8,7 +8,7 @@
 <!--body section-->
 <div class="jumbotron">
 
-    <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
+    <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100 banner-image"/>
 
         <!--categories section-->
         <div class="row w-100 p-5">
@@ -17,26 +17,26 @@
                 <div class="col-12 col-md-12 row" style="gap:1.8%;">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(3)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(3)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7">
                         <dl><p class="category-name">Cofferdam</p>
                             <dt class="color-blue mb-2">LARSSEN</dt>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(3) ?>#heading" class="link color-black">Corner connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(4) ?>#heading" class="link color-black">Omega corner connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(5) ?>#heading" class="link color-black">T connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(6) ?>#heading" class="link color-black">Cross connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(7) ?>#heading" class="link color-black">Weld-on connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(3) ?>#heading" class="link color-black category-item-text">Corner connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(4) ?>#heading" class="link color-black category-item-text">Omega corner connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(5) ?>#heading" class="link color-black category-item-text">T connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(6) ?>#heading" class="link color-black category-item-text">Cross connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(7) ?>#heading" class="link color-black category-item-text">Weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">BALL + SOCKET</dt>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(9) ?>#heading" class="link color-black">US Corner connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(10) ?>#heading" class="link color-black">US T connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(11) ?>#heading" class="link color-black">US Cross connectors</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(12) ?>#heading" class="link color-black">MF weld-on connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(9) ?>#heading" class="link color-black category-item-text">US Corner connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(10) ?>#heading" class="link color-black category-item-text">US T connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(11) ?>#heading" class="link color-black category-item-text">US Cross connectors</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(12) ?>#heading" class="link color-black category-item-text">MF weld-on connectors</a></dd>
 
                             <dt class="color-blue mt-4 mb-2">COLD FORMED</dt>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(14) ?>#heading" class="link color-black">CF corner connector</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(15) ?>#heading" class="link color-black">CF weld-on connector</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(14) ?>#heading" class="link color-black category-item-text">CF corner connector</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(15) ?>#heading" class="link color-black category-item-text">CF weld-on connector</a></dd>
                         </dl>
 
                     </div>
@@ -50,15 +50,15 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(17)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile steel walls</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(17) ?>#heading" class="link color-black">MF</a></dd>
-                            <dd><a href="<<?= RouterService::getCategoryPageRoute(18) ?>#heading" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(19) ?>#heading" class="link color-black">LPB</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(20) ?>#heading" class="link color-black">FD</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(17) ?>#heading" class="link color-black category-item-text">MF</a></dd>
+                            <dd class="category-item"><a href="<<?= RouterService::getCategoryPageRoute(18) ?>#heading" class="link color-black category-item-text">MDF</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(19) ?>#heading" class="link color-black category-item-text">LPB</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(20) ?>#heading" class="link color-black category-item-text">FD</a></dd>
                         </dl>
 
                     </div>
@@ -69,14 +69,14 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(30)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">H-pile walls</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(30) ?>#heading" class="link color-black">MF</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(31) ?>#heading" class="link color-black">MDF</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(32) ?>#heading" class="link color-black">FD</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(30) ?>#heading" class="link color-black category-item-text">MF</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(31) ?>#heading" class="link color-black category-item-text">MDF</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(32) ?>#heading" class="link color-black category-item-text">FD</a></dd>
                         </dl>
 
                     </div>
@@ -87,12 +87,12 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(22)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(22)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">DTH driving method</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(22) ?>#heading" class="link color-black">MF DTH</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(22) ?>#heading" class="link color-black category-item-text">MF DTH</a></dd>
                         </dl>
                     </div>
                     <div class="col-2"></div>
@@ -103,15 +103,15 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(34)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(34)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">H-pile + sheet pile
                                 combined walls</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(34) ?>#heading" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(35) ?>#heading" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(36) ?>#heading" class="link color-black">MDF (Ball + Socket)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(34) ?>#heading" class="link color-black category-item-text">LPB (Larssen)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(35) ?>#heading" class="link color-black category-item-text">MF (Ball + Socket)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(36) ?>#heading" class="link color-black category-item-text">MDF (Ball + Socket)</a></dd>
                         </dl>
 
                     </div>
@@ -122,16 +122,16 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(24)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(24)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Pipe pile + sheet pile combined walls</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(24) ?>#heading" class="link color-black">L (Larssen)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(25) ?>#heading" class="link color-black">LPB (Larssen)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(26) ?>#heading" class="link color-black">MF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(27) ?>#heading" class="link color-black">MDF (Ball + Socket)</a></dd>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(28) ?>#heading" class="link color-black">CF (Cold Formed)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(24) ?>#heading" class="link color-black category-item-text">L (Larssen)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(25) ?>#heading" class="link color-black category-item-text">LPB (Larssen)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(26) ?>#heading" class="link color-black category-item-text">MF (Ball + Socket)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(27) ?>#heading" class="link color-black category-item-text">MDF (Ball + Socket)</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(28) ?>#heading" class="link color-black category-item-text">CF (Cold Formed)</a></dd>
                         </dl>
 
                     </div>
@@ -142,12 +142,12 @@
                 <div class="col-12 col-md-6 col-xxl-6 row gap-3">
 
                     <div class="col-3">
-                        <img src="<?= CategoryService::getParentCategory(38)->getThumbnailUrl(); ?>" height="60"/>
+                        <img src="<?= CategoryService::getParentCategory(38)->getThumbnailUrl(); ?>" height="80"/>
                     </div>
                     <div class="col-7 p-0">
                         <dl>
                             <p class="category-name">Cell structures</p>
-                            <dd><a href="<?= RouterService::getCategoryPageRoute(38) ?>#heading" class="link color-black">FSC</a></dd>
+                            <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(38) ?>#heading" class="link color-black">FSC</a></dd>
                         </dl>
 
                     </div>

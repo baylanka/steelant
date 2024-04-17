@@ -4,19 +4,26 @@ use helpers\services\RequestService;
 use helpers\translate\Translate;
 
 ?>
+<div class="footer fixed-bottom position-relative mt-5 w-100 p-4">
 
-<!--footer section-->
-<div class="nav footer fixed-bottom position-relative mt-5">
-    <h4 class="color-custom-light"><?= Translate::get("home_footer", "disclaimer") ?></h4>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <h4 class="color-custom-light"><?= Translate::get("home_footer", "disclaimer") ?></h4>
 
-    <p class="disclaimer-text color-custom-light">
-        <?= Translate::get("home_footer", "disclaimer_text") ?>
-    </p>
+            <p class="color-custom-light mb-4">
+                <?= Translate::get("home_footer", "disclaimer_text") ?>
+            </p>
+        </div>
 
-    <span class="divider-white mt-5 mb-5"></span>
 
-    <div class="row w-100">
-        <div class="col-6 col-md-3">
+    </div>
+
+
+    <div class="divider-white mt-5 mb-3"></div>
+
+
+    <div class="row">
+        <div class="col-6 col-md-4">
             <h4 class="color-custom-light">SteelWall</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -69,9 +76,15 @@ use helpers\translate\Translate;
                     </a>
                 </li>
             </ul>
+
+            <p class="color-custom-light">
+                Last website update: 01. Mar. 2024<br/>
+                Copyright by SteelWall ISH GmbH<br/>
+                Connectors designed by Richard Heindl
+            </p>
         </div>
 
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">steelwall.eu</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -93,7 +106,8 @@ use helpers\translate\Translate;
             </ul>
         </div>
 
-        <div class="col-6 col-md-2">
+
+        <div class="col-6 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">steelwallus.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -103,7 +117,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="col-6 col-md-5">
+        <div class="col-6 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">MF-pipe.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -113,21 +127,5 @@ use helpers\translate\Translate;
         </div>
 
     </div>
-
-
-    <div class="row w-100">
-        <div class="col-12 col-md-6">
-
-            <p class="color-custom-light">
-                Last website update: 01. Mar. 2024<br/>
-                Copyright by SteelWall ISH GmbH<br/>
-                Connectors designed by Richard Heindl
-            </p>
-        </div>
-
-
-    </div>
-
-
 </div>
-<!--footer section-->
+
