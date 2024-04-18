@@ -92,9 +92,15 @@ class ConnectorUpdateRequestMapper
                 'size' => $imageFilesArray['size'][$index],
             ];
             $fileOriginalName = FileUtility::getName($file);
-            $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+            if(FileUtility::isVideo($file)){
+                $fileName = "video_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $type = Media::TYPE_VIDEO;
+            }else{
+                $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $type = Media::TYPE_IMAGE;
+            }
 
-            $imageMedia = self::uploadFile($file, Media::TYPE_IMAGE, $directoryPath, $fileName);
+            $imageMedia = self::uploadFile($file, $type, $directoryPath, $fileName);
 
             foreach ($imageFilesArray['language'][$index] as $langIndex => $language){
                 $contentTemplateMedia = new ContentTemplateMedia();
@@ -124,9 +130,15 @@ class ConnectorUpdateRequestMapper
             $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),6,5);
 
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
+            if(FileUtility::isImageExtension($fileExtension)){
+                $fileName = "video_{$fileName}({$index})_" . time() . "." . $fileExtension;
+                $type = Media::TYPE_VIDEO;
+            }else{
+                $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
+                $type = Media::TYPE_IMAGE;
+            }
 
-            $fileName = "image_{$fileName}({$index})_" . time() . "." . $fileExtension;
-            $imageMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_IMAGE, $directoryPath);
+            $imageMedia = self::uploadFileFromURL($fileURL, $fileName, $type, $directoryPath);
             if(!$imageMedia){
                 continue;
             }
@@ -192,14 +204,15 @@ class ConnectorUpdateRequestMapper
             return $contentTemplates;
         }
 
-        $contentTemplates = self::getContentTemplateWithDownloadableFileFromFile($contentTemplates, $request, $directoryPath);
-        return  self::getContentTemplateWithDownloadableFileFromURL($contentTemplates, $request, $directoryPath);
+        $contentTemplates = self::getContentTemplateWithDownloadableFileFromURL($contentTemplates, $request, $directoryPath);
+        return  self::getContentTemplateWithDownloadableFileFromFile($contentTemplates, $request, $directoryPath);
     }
 
     private static function getContentTemplateWithDownloadableFileFromURL(array $contentTemplates, $request, $directoryPath)
     {
         $downloadableURLArray = $request->get('downloadable_src', []);
         $downloadableArray = $request->get('downloadable', []);
+        $downloadablePlaceholderArray = $request->get('downloadable_placeholder',[]);
 
         foreach ($downloadableURLArray as $index => $fileURL){
             if(empty($fileURL)){
@@ -217,8 +230,8 @@ class ConnectorUpdateRequestMapper
             }
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
-                //downloadable files no need placeholder hint. so, it is ignored here
                 $contentTemplateMedia = new ContentTemplateMedia();
+                $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->title = $title;
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
@@ -232,6 +245,7 @@ class ConnectorUpdateRequestMapper
     private static function getContentTemplateWithDownloadableFileFromFile(array $contentTemplates, $request, $directoryPath)
     {
         $downloadableArray = $request->get('downloadable', []);
+        $downloadablePlaceholderArray = $request->get('downloadable_placeholder',[]);
 
         if(empty($downloadableArray) || !isset($downloadableArray['name'])){
             return $contentTemplates;
@@ -255,9 +269,9 @@ class ConnectorUpdateRequestMapper
             $downloadableMedia = self::uploadFile($file, Media::TYPE_FILE, $directoryPath, $fileName);
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
-                //downloadable files no need placeholder hint. so, it is ignored here
                 $contentTemplateMedia = new ContentTemplateMedia();
                 $contentTemplateMedia->title = $title;
+                $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
                 $contentTemplates[$lang]->temp_content_template_media[] = $contentTemplateMedia;

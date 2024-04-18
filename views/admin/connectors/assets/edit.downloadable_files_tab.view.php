@@ -14,6 +14,9 @@
                     </label>
 
                     <input type="file" class="form-control w-50 bg-light download-file" name="downloadable[0]">
+                    <input type="hidden" class="form-control w-50 bg-light download-placeholder"
+                           name="downloadable_placeholder[0]" value="1">
+
 
 
                     <button type="button" class="btn btn-danger remove-download-container">
@@ -123,9 +126,11 @@
                     </label>
 
                     <input type="file" class="form-control w-50 bg-light download-file">
-                    <input type="hidden"
+                    <input type="hidden" class="downloadable_src"
                            value="<?= $content['file_asset_path'] ?>"
                            name="downloadable_src[<?=$index?>]">
+                    <input type="hidden" class="form-control w-50 bg-light download-placeholder"
+                           name="downloadable_placeholder[<?=$index?>]" value="<?=($index+1)?>">
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
@@ -149,6 +154,8 @@
                             <?php
                             $germany = LanguagePool::GERMANY()->getLabel();
                             $germanyTitleExists = array_key_exists($germany, $content['title'])
+                                                    && !empty($content['title'][$germany]);
+                            $titleFieldName = "downloadable[title][{$index}][{$germany}]";
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/de.png") ?>"
@@ -161,8 +168,8 @@
                                        value="" id="flexCheckDefault">
                             </label>
                             <input class="form-control download-label" type="text"
-                                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
-                                   name="downloadable[title][<?=$index?>][<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                   data-lang="<?=$germany?>"
+                                   name="<?=$titleFieldName?>"
                                    placeholder="Label ( in Germany )"
                                 <?= $germanyTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $germanyTitleExists ? '' :'style="display: none;"' ?>
@@ -178,6 +185,8 @@
                             <?php
                             $englishUk = LanguagePool::UK_ENGLISH()->getLabel();
                             $englishUkTitleExists = array_key_exists($englishUk, $content['title'])
+                                                        && !empty($content['title'][$englishUk]);
+                            $titleFieldName = "downloadable[title][{$index}][{$englishUk}]";
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/en-gb.png") ?>"
@@ -190,8 +199,8 @@
                                        value="" id="flexCheckDefault">
                             </label>
                             <input class="form-control download-label" type="text"
-                                   data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
-                                   name="downloadable[title][<?=$index?>][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
+                                   data-lang="<?=$englishUk?>"
+                                   name="<?=$titleFieldName?>"
                                    placeholder="Label ( in English )"
                                 <?= $englishUkTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
@@ -206,6 +215,8 @@
                             <?php
                             $french = LanguagePool::FRENCH()->getLabel();
                             $frenchTitleExists = array_key_exists($french, $content['title'])
+                                         && !empty($content['title'][$french]);
+                            $titleFieldName = "downloadable[title][{$index}][{$french}]";
                             ?>
 
                             <label class="btn btn-light">
@@ -219,8 +230,8 @@
                                        value="" id="flexCheckDefault">
                             </label>
                             <input class="form-control download-label" type="text"
-                                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
-                                   name="downloadable[title][<?=$index?>][<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                   data-lang="<?=$french?>"
+                                   name="<?=$titleFieldName?>"
                                    placeholder="Label ( in French )"
                                 <?= $frenchTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
@@ -234,6 +245,8 @@
                             <?php
                             $englishUs = LanguagePool::US_ENGLISH()->getLabel();
                             $englishUsTitleExists = array_key_exists($englishUs, $content['title'])
+                                                     && !empty($content['title'][$englishUs]);
+                            $titleFieldName = "downloadable[title][{$index}][{$englishUs}]";
                             ?>
 
                             <label class="btn btn-light">
@@ -243,12 +256,12 @@
 
                             <label class="btn btn-light">
                                 <input class="form-check-input download-label-visible" type="checkbox"
-                                    <?= $frenchTitleExists ? 'checked' :'' ?>
+                                    <?= $englishUsTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
                             <input class="form-control download-label" type="text"
-                                   data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
-                                   name="downloadable[title][0][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
+                                   data-lang="<?=$englishUs?>"
+                                   name="<?=$titleFieldName?>"
                                    placeholder="Label ( in English )"
                                 <?= $englishUsTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
@@ -286,25 +299,29 @@
     });
 
     $(document).off("click", ".add-new-download-container");
-    $(document).on("click", ".add-new-download-container", function (e) {
+    $(document).on("click", ".add-new-download-container", async function (e) {
         e.preventDefault();
+        spinnerEnabled();
         const downloadableContent = getDownloadableFileContent();
         $("div.download-jumbotron").append(downloadableContent);
-        setDownloadName();
+        await setDownloadName();
         $('.add-file-container').addClass('d-none');
+        spinnerDisable();
     });
 
 
     $(document).off("click", "button.remove-download-container")
-    $(document).on("click", "button.remove-download-container", function () {
+    $(document).on("click", "button.remove-download-container", async function () {
+        spinnerEnabled();
         $(this).closest("div.download-container").remove();
 
         const remainingContainers =  $('div.download-container').length;
         if(remainingContainers >= 1){
-            setDownloadName();
+            await setDownloadName();
         }else{
             $('.add-file-container').removeClass('d-none');
         }
+        spinnerDisable();
 
     });
 
@@ -334,6 +351,7 @@
                                         <i class="bi bi-folder2-open"></i>
                                     </label>
                                     <input type="file" class="form-control w-50 bg-light download-file">
+                                    <input type="hidden" class="form-control w-50 bg-light download-placeholder">
                                     <button type="button" class="btn btn-danger remove-download-container">
                                       <i class="bi bi-dash"></i>
                                    </button>
@@ -416,14 +434,36 @@
 
     function setDownloadName()
     {
-        $('div.download-container').each(function(index, element){
-            const downloadFileName= `downloadable[${index}]`;
-            $(this).find('input.download-file').attr('name',downloadFileName)
-            $(this).find('.download-label').each(function(){
-                const lang = $(this).attr('data-lang');
-                const downloadLabelName = `downloadable[title][${index}][${lang}]`;
-                $(this).attr('name', downloadLabelName);
-            })
+        return new Promise((resolve, reject)=>{
+
+            const totalIterations = $('div.download-container').find('.download-label').length;
+            let iterationCount = 0;
+
+            $('div.download-container').each(function(index, element){
+
+                const downloadFileName= `downloadable[${index}]`;
+                const downloadFilePlaceholderName = `downloadable_placeholder[${index}]`;
+                const downloadFilePlaceholderValue = index+1;
+                $(this).find('input.download-file').attr('name',downloadFileName);
+                const downloadSrcFieldName = `downloadable_src[${index}]`;
+                $(this).find('.downloadable_src').attr('name', downloadSrcFieldName);
+
+                const downloadPlaceholderField = $(this).find('input.download-placeholder');
+                downloadPlaceholderField.attr('name',downloadFilePlaceholderName);
+                downloadPlaceholderField.val(downloadFilePlaceholderValue);
+                $(this).find('.download-label').each(function(){
+                    iterationCount++
+                    const lang = $(this).attr('data-lang');
+                    const downloadLabelName = `downloadable[title][${index}][${lang}]`;
+                    $(this).attr('name', downloadLabelName);
+                    if(iterationCount === totalIterations){
+                        resolve(true);
+                    }
+                })
+            });
+
+
         });
+
     }
 </script>

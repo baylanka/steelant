@@ -15,7 +15,7 @@ use helpers\utilities\ResponseUtility;
 use helpers\validators\CategoryEditRequestValidator;
 use helpers\validators\CategoryUpdateRequestValidator;
 use helpers\validators\MainCategoryStoreRequestValidator;
-use helpers\validators\SubCategoryDeleteRequest;
+use helpers\validators\CategoryDeleteRequest;
 use helpers\validators\SubCategoryStoreRequestValidator;
 use model\Category;
 
@@ -100,14 +100,15 @@ class CategoryController extends BaseController
         }
     }
 
-    public function destroySubCategory(Request $request)
+    public function destroy(Request $request)
     {
         global $container;
         $db = $container->resolve('DB');
         try{
             $db->beginTransaction();
-            SubCategoryDeleteRequest::validate($request);
-            CategoryRepository::deleteWithRelevantObjects($request->get('id'));
+            CategoryDeleteRequest::validate($request);
+            $category = Category::getById($request->get('id'));
+            $category->delete();
             $db->commit();
             parent::response("Successfully deleted",);
         }catch(\Exception $ex){

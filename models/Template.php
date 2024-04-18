@@ -67,15 +67,25 @@ class Template extends BaseModel
         return file_get_contents(storage_path($storagePath));
     }
 
-    public function getTypeDescription()
+    public function isConnectorTemplate()
     {
-        switch($this->type){
-            case self::TYPE_CONNECTOR:
-                return "connector template";
-            case self::TYPE_ADD_ON:
-                return "ad-on template";
-            default:
-                return "unknown";
+        return $this->type == self::TYPE_CONNECTOR;
+    }
+
+    public function isAddOnContentTemplate()
+    {
+        return $this->type == self::TYPE_ADD_ON;
+    }
+
+    public function getTypeStr()
+    {
+
+        if($this->isConnectorTemplate()){
+            return "connector_template";
+        }else if($this->isAddOnContentTemplate()){
+            return "add_on_content_template";
+        }else{
+            return "unknown";
         }
     }
 
