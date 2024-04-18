@@ -31,6 +31,26 @@ class ConnectorUpdateRequestValidator
 
     private static function otherAttrValidation(Request $request)
     {
+        if (
+            (
+                !$request->has('subtitle_de')
+                && !$request->has('subtitle_en_gb')
+                && !$request->has('subtitle_fr')
+                && !$request->has('subtitle_en_us')
+            )
+            ||
+            (
+                empty($request->get('subtitle_de'))
+                && empty($request->get('subtitle_en_gb'))
+                && empty($request->get('subtitle_fr'))
+                && empty($request->get('subtitle_en_us'))
+            )
+        )
+        {
+            return json_encode([]);
+        }
+
+
         $arr = [];
 
         if (!$request->has('subtitle_de') || empty($request->get('subtitle_de'))) {

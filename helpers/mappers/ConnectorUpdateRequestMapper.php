@@ -60,11 +60,18 @@ class ConnectorUpdateRequestMapper
         }
 
         return json_encode([
+            'subtitle' => self::getSubtitleArray($request)
+        ]);
+    }
+
+    private static function getSubtitleArray(Request $request)
+    {
+        return [
             LanguagePool::GERMANY()->getLabel() => $request->get('subtitle_de'),
             LanguagePool::FRENCH()->getLabel() => $request->get('subtitle_fr'),
             LanguagePool::UK_ENGLISH()->getLabel() => $request->get('subtitle_en_gb'),
             LanguagePool::US_ENGLISH()->getLabel() => $request->get('subtitle_en_us'),
-        ]);
+        ];
     }
 
     private static function getDescriptionJson(Request $request)

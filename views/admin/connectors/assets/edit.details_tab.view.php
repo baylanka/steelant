@@ -272,7 +272,7 @@
                     </label>
                     <input name="subtitle_de" type="text" value="<?=$connector->subtitle_de?>"
                            class="form-control w-50 align-items-center"
-                           placeholder="Subtitle" id="subtitle_de"/>
+                           placeholder="i.e: Für Larssen-Spundbohlen (U-, Z-, Hut-Typ)" id="subtitle_de"/>
                 </div>
 
                 <div class="col-12 d-flex justify-content-between mt-3">
@@ -281,25 +281,25 @@
                     </label>
                     <input name="subtitle_en_gb" type="text" value="<?=$connector->subtitle_en_gb?>"
                            class="form-control w-50 align-items-center"
-                           placeholder="Subtitle" id="subtitle_en_gb"/>
+                           placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_gb"/>
                 </div>
 
                 <div class="col-12 d-flex justify-content-between mt-3">
                     <label for="subtitle_fr" class="align-items-center">
-                        Subtitle (in English UK)
+                        Subtitle (in English Fr)
                     </label>
                     <input name="subtitle_fr" type="text" value="<?=$connector->subtitle_fr?>"
                            class="form-control w-50 align-items-center"
-                           placeholder="Subtitle" id="subtitle_fr"/>
+                           placeholder="i.e: Pour palplanches Larssen (type U, Z, chapeau)" id="subtitle_fr"/>
                 </div>
 
                 <div class="col-12 d-flex justify-content-between mt-3">
                     <label for="subtitle_en_us" class="align-items-center">
-                        Subtitle (in English UK)
+                        Subtitle (in English US)
                     </label>
                     <input name="subtitle_en_us" type="text" value="<?=$connector->subtitle_en_us?>"
                            class="form-control w-50 align-items-center"
-                           placeholder="Subtitle" id="subtitle_en_us"/>
+                           placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_us"/>
                 </div>
 
         <?php endif; ?>

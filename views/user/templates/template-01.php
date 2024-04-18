@@ -1,12 +1,12 @@
 <?php
-use helpers\services\ConnectorService;
-use helpers\translate\Translate;
-use model\Template;
-use \model\Media;
+    use helpers\services\ConnectorService;
+    use helpers\translate\Translate;
+    use model\Template;
+    use \model\Media;
 ?>
 
 <?php
-$imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm";
+    $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm";
 ?>
 
 
@@ -15,9 +15,11 @@ $imageContainerSize01 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
     <div class="col-12 col-md-4 col-xxl-4">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
-            <dd class="custom-dd custom-font">
-                For Larssen sheet piles (U, Z, Hat-type)
-            </dd>
+            <?php if(!empty($connector->getSubtitleOfLang())): ?>
+                <dd class="custom-dd custom-font">
+                    <?=$connector->getSubtitleOfLang()?>
+                </dd>
+            <?php endif; ?>
             <dd class="custom-dd custom-font mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
             <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?>
             </dd>

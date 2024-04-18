@@ -15,9 +15,11 @@
     <div class="col-12 col-md-3 col-xxl-3">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
-            <dd class="custom-dd custom-font">
-                For Larssen sheet piles (U, Z, Hat-type)
-            </dd>
+            <?php if(!empty($connector->getSubtitleOfLang())): ?>
+                <dd class="custom-dd custom-font">
+                    <?=$connector->getSubtitleOfLang()?>
+                </dd>
+            <?php endif; ?>
             <dd class="custom-dd custom-font d-flex gap-1 mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>: <p class="m-0"><?= empty($connector->grade) ? '---' : $connector->grade ?></p></dd>
             <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "steel_thickness", $language) ?>: <p class="m-0"><?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></p>
             </dd>
