@@ -23,7 +23,7 @@ use helpers\translate\Translate;
 
 
     <div class="row">
-        <div class="col-6 col-md-4">
+        <div class="col-12 col-md-4">
             <h4 class="color-custom-light">SteelWall</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -76,15 +76,9 @@ use helpers\translate\Translate;
                     </a>
                 </li>
             </ul>
-
-            <p class="color-custom-light">
-                Last website update: 01. Mar. 2024<br/>
-                Copyright by SteelWall ISH GmbH<br/>
-                Connectors designed by Richard Heindl
-            </p>
         </div>
 
-        <div class="col-6 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">steelwall.eu</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -107,7 +101,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="col-6 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">steelwallus.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -117,7 +111,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="col-6 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2">
             <h4 class="mb-4 color-custom-light">MF-pipe.com</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
@@ -127,5 +121,18 @@ use helpers\translate\Translate;
         </div>
 
     </div>
+
+    <div class="row">
+        <div class="col-6 col-md-4">
+
+            <p class="color-custom-light">
+                Last website update: 01. Mar. 2024<br/>
+                Copyright by SteelWall ISH GmbH<br/>
+                Connectors designed by Richard Heindl
+            </p>
+        </div>
+
+    </div>
+
 </div>
 

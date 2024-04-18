@@ -320,9 +320,25 @@ body {
     object-fit: cover;
 }
 
+.logo-sub-heading{
+    font-size: 1.2rem;
+}
+
+.item-height-200{
+    height: 170px;
+}
+
 @media (max-width: 575.98px) {
 
 
+    .item-height-200{
+        height: auto;
+    }
+
+
+    .logo-sub-heading{
+        font-size: 0.7rem;
+    }
     .menu-btn {
         display: block;
     }
@@ -391,6 +407,13 @@ body {
 
 @media (max-width: 768px) {
 
+
+    .item-height-200{
+        height: auto;
+    }
+    .logo-sub-heading{
+        font-size: 0.7rem;
+    }
     .menu-btn {
         display: block;
     }
