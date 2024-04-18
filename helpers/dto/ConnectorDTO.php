@@ -94,7 +94,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->standardLength_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->standardLength_m . " <br/>" . $this->element->standard_lengths_i;
+                return $this->standardLength_m . " (" . $this->element->standard_lengths_i.")";
         }
     }
 
@@ -107,7 +107,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->thickness_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->thickness_m .  " <br/>" . $this->thickness_i;
+                return $this->thickness_m .  " (" . $this->thickness_i.")";
         }
     }
 
@@ -123,7 +123,7 @@ class ConnectorDTO extends ElementDTO
                 $arr = [];
                 foreach ($this->weights_m as $key => $value){
                     if(isset($this->weights_i[$key])){
-                        $value = $value .  " <br/>" . $this->weights_i[$key];
+                        $value = $value .  " (" . $this->weights_i[$key].")";
                     }
 
                     $arr[$key] = $value;
@@ -202,7 +202,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 return (empty($this->maxTensile_m) && empty($this->maxTensile_i))
                     ? ''
-                    : implode( " <br/>", [$this->maxTensile_m , $this->maxTensile_i]) ;
+                    : $this->maxTensile_m ." (".$this->maxTensile_i.")" ;
         }
     }
 

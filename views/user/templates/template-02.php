@@ -18,27 +18,19 @@
             <dd class="custom-dd custom-font">
                 For Larssen sheet piles (U, Z, Hat-type)
             </dd>
-            <dd class="custom-dd custom-font d-flex gap-1 mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>
-                : <p class="m-0"><?= empty($connector->grade) ? '---' : $connector->grade ?></p></dd>
-            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "steel_thickness", $language) ?>
-                :
-                <p class="m-0"><?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></p>
+            <dd class="custom-dd custom-font d-flex gap-1 mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>: <p class="m-0"><?= empty($connector->grade) ? '---' : $connector->grade ?></p></dd>
+            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "steel_thickness", $language) ?>: <p class="m-0"><?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?></p>
             </dd>
-            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "standard_length", $language) ?>
-                : <p class="m-0"><?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></p>
+            <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "standard_length", $language) ?>: <p class="m-0"><?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?></p>
             </dd>
             <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
-                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
-                    : <p class="m-0"><?= $connector->getMaxTensileStrengthByLang() ?></p></dd>
+                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: <p class="m-0"><?= $connector->getMaxTensileStrengthByLang() ?></p></dd>
             <?php endif; ?>
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
-                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?>
-                    : ---
-                </dd>
+                <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>
-                        : <p class="m-0"><?= $value ?></p></dd>
+                    <dd class="custom-dd custom-font d-flex gap-1"><?= Translate::get("template_context", "weight", $language) ?><?= $key === 'general' ? '' : $key ?>: <p class="m-0"><?= $value ?></p></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
             <dd class="my-3 custom-font d-flex gap-1"><?= empty($connector->getDescriptionOfLang())
