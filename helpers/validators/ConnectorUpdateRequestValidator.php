@@ -26,7 +26,38 @@ class ConnectorUpdateRequestValidator
         self::maxTensileStrengthValidation($request);
         self::templateValidation($request);
         self::downloadableFilesValidation($request);
+        self::otherAttrValidation($request);
     }
+
+    private static function otherAttrValidation(Request $request)
+    {
+        $arr = [];
+
+        if (!$request->has('subtitle_de') || empty($request->get('subtitle_de'))) {
+            $arr['subtitle_de'] = "Subtitle (in German) is required.";
+        }
+
+        if (!$request->has('subtitle_en_gb') || empty($request->get('subtitle_en_gb'))) {
+            $arr['subtitle_en_gb'] = "Subtitle (in English UK) is required.";
+        }
+
+        if (!$request->has('subtitle_fr') || empty($request->get('subtitle_fr'))) {
+            $arr['subtitle_fr'] = "Subtitle (in French) is required.";
+        }
+
+        if (!$request->has('subtitle_en_us') || empty($request->get('subtitle_en_us'))) {
+            $arr['subtitle_en_us'] = "Subtitle (in English US) is required.";
+        }
+
+        if (empty($arr)) {
+            return;
+        }
+
+        $message = 'Subtitle validation error: Fill all or leave empty.';
+
+        ResponseUtility::response($message, 422, $arr);
+    }
+
 
     private static function downloadableFilesValidation(Request $request)
     {

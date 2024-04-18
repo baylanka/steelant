@@ -31,6 +31,11 @@ class ConnectorDTO extends ElementDTO
     public string $maxTensile_m;
     public string $maxTensile_i;
 
+    public string $subtitle_de;
+    public string $subtitle_fr;
+    public string $subtitle_en_us;
+    public string $subtitle_en_gb;
+
     public array $downloadableFiles;
     public array $imageFiles;
 
@@ -45,6 +50,12 @@ class ConnectorDTO extends ElementDTO
         $this->grade = $this->element->grade ?? '';
         $this->setLanguageDescriptions();
         $this->isPublished = $this->element->visibility;
+
+        $this->subtitle_de = $this->element->getSubtitleOtherAttr(LanguagePool::GERMANY()->getLabel());
+        $this->subtitle_fr = $this->element->getSubtitleOtherAttr(LanguagePool::FRENCH()->getLabel());
+        $this->subtitle_en_gb = $this->element->getSubtitleOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
+        $this->subtitle_en_us = $this->element->getSubtitleOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
+
         $this->setThickness($lang);
         $this->setLength($lang);
         $this->setWeight($lang);
@@ -203,6 +214,20 @@ class ConnectorDTO extends ElementDTO
                 return (empty($this->maxTensile_m) && empty($this->maxTensile_i))
                     ? ''
                     : implode( " <br/>", [$this->maxTensile_m , $this->maxTensile_i]) ;
+        }
+    }
+
+    public function getSubtitleOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+                return $this->subtitle_fr;
+            case LanguagePool::GERMANY()->getLabel():
+                return $this->subtitle_de;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return  $this->subtitle_en_gb;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return  $this->subtitle_en_us;
         }
     }
 

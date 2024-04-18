@@ -258,6 +258,52 @@
             </div>
         </div>
 
+        <?php if(
+                empty($connector->subtitle_de) &&
+                empty($connector->subtitle_en_gb) &&
+                empty($connector->subtitle_fr) &&
+                empty($connector->subtitle_en_us)
+                ):
+            ?>
+
+                <div class="col-12 d-flex justify-content-between mt-3">
+                    <label for="subtitle_de" class="align-items-center">
+                        Subtitle (in Germany)
+                    </label>
+                    <input name="subtitle_de" type="text" value="<?=$connector->subtitle_de?>"
+                           class="form-control w-50 align-items-center"
+                           placeholder="Subtitle" id="subtitle_de"/>
+                </div>
+
+                <div class="col-12 d-flex justify-content-between mt-3">
+                    <label for="subtitle_en_gb" class="align-items-center">
+                        Subtitle (in English UK)
+                    </label>
+                    <input name="subtitle_en_gb" type="text" value="<?=$connector->subtitle_en_gb?>"
+                           class="form-control w-50 align-items-center"
+                           placeholder="Subtitle" id="subtitle_en_gb"/>
+                </div>
+
+                <div class="col-12 d-flex justify-content-between mt-3">
+                    <label for="subtitle_fr" class="align-items-center">
+                        Subtitle (in English UK)
+                    </label>
+                    <input name="subtitle_fr" type="text" value="<?=$connector->subtitle_fr?>"
+                           class="form-control w-50 align-items-center"
+                           placeholder="Subtitle" id="subtitle_fr"/>
+                </div>
+
+                <div class="col-12 d-flex justify-content-between mt-3">
+                    <label for="subtitle_en_us" class="align-items-center">
+                        Subtitle (in English UK)
+                    </label>
+                    <input name="subtitle_en_us" type="text" value="<?=$connector->subtitle_en_us?>"
+                           class="form-control w-50 align-items-center"
+                           placeholder="Subtitle" id="subtitle_en_us"/>
+                </div>
+
+        <?php endif; ?>
+
     </div>
 
     <div class="d-flex justify-content-end gap-2 px-5">

@@ -31,7 +31,7 @@ class Connector extends Element
 
     public ?string $max_tensile_strength_m;
     public ?string $max_tensile_strength_i;
-
+    public ?string $other_attrs;
     public ?CategoryContent $temp_content;
     public ?array $temp_content_templates;
 
@@ -92,4 +92,19 @@ class Connector extends Element
     {
         return $this->getDescriptionByLang(LanguagePool::FRENCH()->getLabel());
     }
+    public function getSubtitleOtherAttr($lang)
+    {
+        $subtitleArr =  $this->getOtherAttrBy('subtitle');
+        return $subtitleArr[$lang] ?? '';
+    }
+    private function getOtherAttrBy($key)
+    {
+        if(empty($this->other_attrs) || empty(json_decode($this->other_attrs))){
+            return [];
+        }
+
+        $attr = json_decode($this->other_attrs, true);
+        return $attr[$key] ?? [];
+    }
+
 }

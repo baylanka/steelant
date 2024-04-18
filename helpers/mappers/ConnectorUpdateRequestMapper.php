@@ -29,12 +29,42 @@ class ConnectorUpdateRequestMapper
         $connector->standard_lengths_i = $request->get('standard_length_imperial');
         $connector->max_tensile_strength_m = $request->get('max_tensile_strength_m');
         $connector->max_tensile_strength_i = $request->get('max_tensile_strength_i');
+        $connector->other_attrs = self::getOtherAttrJson($request);
 
 
         $connector->temp_content = self::getContent($connector->id, $request);
         $connector->temp_content_templates = self::getContentTemplates($request,
                                                                     $connector->temp_content->id);
         return $connector;
+    }
+
+    private static function getOtherAttrJson(Request $request)
+    {
+        if (
+            (
+                !$request->has('subtitle_de')
+            && !$request->has('subtitle_en_gb')
+            && !$request->has('subtitle_fr')
+            && !$request->has('subtitle_en_us')
+            )
+            ||
+            (
+                  empty($request->get('subtitle_de'))
+                && empty($request->get('subtitle_en_gb'))
+                && empty($request->get('subtitle_fr'))
+                && empty($request->get('subtitle_en_us'))
+            )
+        )
+        {
+            return json_encode([]);
+        }
+
+        return json_encode([
+            LanguagePool::GERMANY()->getLabel() => $request->get('subtitle_de'),
+            LanguagePool::FRENCH()->getLabel() => $request->get('subtitle_fr'),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('subtitle_en_gb'),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('subtitle_en_us'),
+        ]);
     }
 
     private static function getDescriptionJson(Request $request)
