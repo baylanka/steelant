@@ -59,7 +59,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="update-btn">Update</button>
+            <button type="button" class="btn btn-primary background-blue" id="update-btn">Update</button>
         </div>
 
     </div>

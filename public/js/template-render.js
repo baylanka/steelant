@@ -6,8 +6,7 @@ function populateTitleFields() {
             $(this).after(`
             <div class=" d-flex align-middle gap-2">
                 <input class="img-heading form-control" type="text" data-heading="${head_key}"
-                 data-default="true" placeholder="Heading"
-             
+                 data-default="true" placeholder="Heading" disabled       
                 > 
             </div>
         `);
@@ -35,16 +34,23 @@ $(document).on("change", "input.template-img-input", async function (e) {
     const imageLanguageField = inputFieldContainer.find('.image-language');
     const imagePlaceholderField = inputFieldContainer.find('.image-placeholder');
     const imagePlaceholderValue = Number(inputFieldContainer.find('.image-placeholder').val());
-
-    if (isEmpty(imageValue)) {
+    const fileType = await getFileType($(this));
+    const acceptableFiles = ['image', 'video'];
+    if (!acceptableFiles.includes(fileType) || isEmpty(imageValue)) {
+        toast.error("error on uploading file. please make sure you can only able to upload image or video file only");
         spinnerDisable();
         return;
     }
     const pathField = inputFieldContainer.find('.file_src');
     pathField.remove();
-
-    const imageContent = await imageToBase64($(this));
+    let imageContent;
+    if(fileType === "image"){
+        imageContent = await imageToBase64($(this));
+    }else{
+        imageContent = `${getBaseUrl()}/public/themes/user/img/selected_video.png`;
+    }
     inputFieldContainer.find('.template-img').attr('src', imageContent);
+
 
     let thisElementIndex;
     let LanguageFieldName;
@@ -56,6 +62,9 @@ $(document).on("change", "input.template-img-input", async function (e) {
     if (!inputField.attr('data-index')) {
         //getting image file set count
         let existingImageElementsCount = Number($('.template-img-input[data-file-set="true"]').length);
+
+        //image title field title disabled behaviour removing
+        inputFieldContainer.find('.img-heading').attr('disabled', false);
 
         //counting unique Image URL counts
         let srcArr = [];
@@ -113,6 +122,7 @@ $(document).on("change", "input.template-img-input", async function (e) {
             otherImageLanguageField.attr('name', LanguageFieldName);
             otherImagePlaceholderField.attr('name', placeholderFieldName);
             otherContainer.find('.template-img').attr('src', imageContent);
+            otherContainer.find('.img-heading').attr('disabled', false);
             otherImageTag.attr('data-default', false);
             otherImageTag.closest("div.template-img-container").find("a.remove-image-btn").removeClass("d-none");
         }
@@ -207,6 +217,8 @@ $(document).on("click","a.remove-image-btn",async function (){
         prevMediaUrlHiddenField.remove();
     }
 
+    mediaContainer.find('.img-heading').attr('disabled', true);
+
     const mediaFileSelector = mediaContainer.find('.template-img-input');
     const mediaFileSelectorNameAttr = mediaFileSelector.attr('name');
     mediaFileSelector.removeAttr('name');
@@ -247,6 +259,7 @@ $(document).on("click","a.remove-image-btn",async function (){
             mediaContainer.append(prevMediaPlaceHolderClonedValue);
         }
 
+        mediaContainer.find('.img-heading').attr('disabled', false);
         mediaFileSelector.attr('name', mediaFileSelectorNameAttr);
         mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
         mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);

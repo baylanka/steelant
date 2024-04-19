@@ -147,7 +147,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -158,7 +158,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -214,7 +214,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -225,7 +225,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -311,7 +311,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -322,7 +322,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -375,7 +375,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -386,7 +386,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -468,7 +468,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -479,7 +479,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -533,7 +533,7 @@
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
                         src="<?= assets("themes/user/img/selected_video.png") ?>"
                     <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
                      style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;"
                 />
@@ -544,7 +544,7 @@
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
                        style="aspect-ratio : 3 / 2;object-fit: cover; margin-top:0.8rem; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

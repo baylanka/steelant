@@ -272,18 +272,30 @@ let isConfirmToProcess = (description, alert_type='warning', title = 'Are you su
     });
 }
 async function imageToBase64(element) {
-    let image = element[0]['files']
+    return new Promise(resolve => {
+        let image = element[0]['files']
 
-    if (image && image[0]) {
-        const reader = new FileReader();
-
-        return new Promise(resolve => {
+        if (image && image[0]) {
+            const reader = new FileReader();
             reader.onload = ev => {
                 resolve(ev.target.result)
             }
             reader.readAsDataURL(image[0])
-        })
-    }
+        }
+
+    });
+}
+
+async function getFileType(element){
+    return new Promise((resolve, reject)=>{
+        let file = element.prop('files')[0];
+        // Check if file is selected
+        if (file) {
+            resolve(file.type.split('/')[0]);
+        }else{
+            resolve('');
+        }
+    });
 }
 
 const toSnakeCase = (str = '') => {

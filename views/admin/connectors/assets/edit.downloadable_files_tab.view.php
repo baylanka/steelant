@@ -2,7 +2,7 @@
     use helpers\pools\LanguagePool;
 ?>
 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <div class="w-100 d-flex justify-content-end my-5 add-file-container d-none"><button class="btn btn-sm btn-primary add-new-download-container">Add File Selector</button></div>
+    <div class="w-100 d-flex justify-content-around my-5 add-file-container d-none"><button class="btn btn-sm btn-primary background-blue add-new-download-container">Add File Selector</button></div>
 
     <div class="download-jumbotron w-100 d-flex flex-wrap justify-content-center gap-3 my-5">
         <?php if (sizeof($connector->downloadableFiles) === 0): ?>
@@ -22,7 +22,7 @@
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
-                    <button type="button" class="btn btn-primary add-new-download-container">
+                    <button type="button" class="btn btn-primary background-blue add-new-download-container">
                         <i class="bi bi-plus-lg"></i>
                     </button>
                 </div>
@@ -119,7 +119,7 @@
             </div>
         <?php endif; ?>
         <?php foreach ($connector->downloadableFiles as  $index => $content): ?>
-            <div class="download-container w-75 p-4">
+            <div class="download-container w-75 p-4" style="background-color: #c1ffc1">
                 <div class="input-group w-100 mb-0 justify-content-center">
                     <label class="btn btn-light">
                         <i class="bi bi-folder2-open"></i>
@@ -134,7 +134,7 @@
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
-                    <button type="button" class="btn btn-primary add-new-download-container">
+                    <button type="button" class="btn btn-primary background-blue add-new-download-container">
                         <i class="bi bi-plus-lg"></i>
                     </button>
 
@@ -283,6 +283,24 @@
 </div>
 
 <script>
+
+    $(document).off("change", ".download-file");
+    $(document).on("change", ".download-file", async function (e) {
+        console.log("sadsa");
+        e.preventDefault();
+        spinnerEnabled();
+        const acceptableFiles = ['image', 'application', 'text'];
+        const fileType = await getFileType($(this));
+        if (!acceptableFiles.includes(fileType)) {
+            toast.error("error on uploading file. please make sure you can only able to upload image or document only");
+            spinnerDisable();
+            return;
+        }
+
+        $(this).closest('.download-container').css('backgroundColor', '#c1ffc1');
+        spinnerDisable();
+    });
+
     $(document).off("change", ".download-label-visible");
     $(document).on("change", ".download-label-visible", function () {
 
@@ -355,7 +373,7 @@
                                     <button type="button" class="btn btn-danger remove-download-container">
                                       <i class="bi bi-dash"></i>
                                    </button>
-                                    <button type="button" class="btn btn-primary add-new-download-container">
+                                    <button type="button" class="btn btn-primary background-blue add-new-download-container">
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>

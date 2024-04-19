@@ -16,7 +16,10 @@ class ContentTemplateMediaRepository extends ContentTemplateMedia
         {
             $associatedMediaId = $each->media_id;
             $each->delete();
-            if(Media::existsBy(['id'=>$associatedMediaId]) && !MediaService::isMediaAssociated($each->id, $associatedMediaId)){
+            if(
+                    Media::existsBy(['id'=>$associatedMediaId])
+                && !MediaService::isMediaAssociated($each->id, $associatedMediaId)
+            ){
                 Media::deleteById($associatedMediaId);
             }
         }
