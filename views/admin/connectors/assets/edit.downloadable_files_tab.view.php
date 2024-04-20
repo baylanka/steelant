@@ -289,14 +289,7 @@
         console.log("sadsa");
         e.preventDefault();
         spinnerEnabled();
-        const acceptableFiles = ['image', 'application', 'text'];
-        const fileType = await getFileType($(this));
-        if (!acceptableFiles.includes(fileType)) {
-            toast.error("error on uploading file. please make sure you can only able to upload image or document only");
-            spinnerDisable();
-            return;
-        }
-
+        
         $(this).closest('.download-container').css('backgroundColor', '#c1ffc1');
         spinnerDisable();
     });

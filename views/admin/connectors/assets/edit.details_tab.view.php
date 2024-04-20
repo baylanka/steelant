@@ -258,13 +258,7 @@
             </div>
         </div>
 
-        <?php if(
-                empty($connector->subtitle_de) &&
-                empty($connector->subtitle_en_gb) &&
-                empty($connector->subtitle_fr) &&
-                empty($connector->subtitle_en_us)
-                ):
-            ?>
+        <hr class="mt-3">
 
                 <div class="col-12 d-flex justify-content-between mt-3">
                     <label for="subtitle_de" class="align-items-center">
@@ -302,7 +296,7 @@
                            placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_us"/>
                 </div>
 
-        <?php endif; ?>
+
 
     </div>
 
