@@ -204,7 +204,7 @@
         $placeHolder = 4;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container mt-2 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
@@ -365,7 +365,7 @@
         $placeHolder = 5;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container mt-2 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
@@ -523,7 +523,7 @@
         $placeHolder = 6;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container  mt-4 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container  mt-2 <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 

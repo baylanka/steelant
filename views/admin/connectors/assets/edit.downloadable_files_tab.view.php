@@ -369,7 +369,6 @@
                                         <i class="bi bi-folder2-open"></i>
                                     </label>
                                     <input type="file" class="form-control w-50 bg-light download-file">
-                                    <input type="hidden" class="downloadable_src">
                                     <input type="hidden" class="form-control w-50 bg-light download-placeholder">
                                     <button type="button" class="btn btn-danger remove-download-container">
                                       <i class="bi bi-dash"></i>
@@ -459,6 +458,7 @@
             let iterationCount = 0;
 
             $('div.download-container').each(function(index, element){
+
                 const downloadFileName= `downloadable[${index}]`;
                 const downloadFilePlaceholderName = `downloadable_placeholder[${index}]`;
                 const downloadFilePlaceholderValue = index+1;
