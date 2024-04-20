@@ -289,15 +289,15 @@
         console.log("sadsa");
         e.preventDefault();
         spinnerEnabled();
-        const acceptableFiles = ['image', 'application', 'text'];
-        const fileType = await getFileType($(this));
-        if (!acceptableFiles.includes(fileType)) {
-            toast.error("error on uploading file. please make sure you can only able to upload image or document only");
-            spinnerDisable();
-            return;
+        const fileValue = $(this).val();
+        if(isEmpty(fileValue)){
+           return;
         }
-
-        $(this).closest('.download-container').css('backgroundColor', '#c1ffc1');
+        const container = $(this).closest('.download-container');
+        container.css('backgroundColor', '#c1ffc1');
+        container.find('.downloadable_src').val('');
+        container.find('.previous-file-container').remove();
+        await setDownloadName();
         spinnerDisable();
     });
 
@@ -369,6 +369,7 @@
                                         <i class="bi bi-folder2-open"></i>
                                     </label>
                                     <input type="file" class="form-control w-50 bg-light download-file">
+                                    <input type="hidden" class="downloadable_src">
                                     <input type="hidden" class="form-control w-50 bg-light download-placeholder">
                                     <button type="button" class="btn btn-danger remove-download-container">
                                       <i class="bi bi-dash"></i>
@@ -458,7 +459,6 @@
             let iterationCount = 0;
 
             $('div.download-container').each(function(index, element){
-
                 const downloadFileName= `downloadable[${index}]`;
                 const downloadFilePlaceholderName = `downloadable_placeholder[${index}]`;
                 const downloadFilePlaceholderValue = index+1;
