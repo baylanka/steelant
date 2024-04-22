@@ -29,6 +29,7 @@ class ConnectorUpdateRequestMapper
         $connector->standard_lengths_i = $request->get('standard_length_imperial');
         $connector->max_tensile_strength_m = $request->get('max_tensile_strength_m');
         $connector->max_tensile_strength_i = $request->get('max_tensile_strength_i');
+        $connector->standard_length_type = $request->get('standard_length_type');
         $connector->other_attrs = self::getOtherAttrJson($request);
 
 

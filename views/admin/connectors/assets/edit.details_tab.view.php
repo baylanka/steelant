@@ -1,5 +1,6 @@
 <?php
     use model\Connector;
+    use helpers\pools\StandardLengthTypePool;
 ?>
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="row w-100 p-5">
@@ -220,6 +221,30 @@
         <div class="col-12 d-flex justify-content-between mt-3">
             <label class="align-items-center">Standard length</label>
             <div class="w-50 gap-1">
+                <div class="w-100 justify-content-start mb-3">
+                    <select class="form-select w-100 select2"  name="standard_length_type">
+                        <option
+                                value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
+                                <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
+                            >
+                            Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
+                        </option>
+                        <option
+                                value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
+                                <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
+                        >
+                            Fixed multi value. i.e: 12m, 14m, 16m
+                        </option>
+                        <option
+                                value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
+                                <?=$connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
+                        >
+                            Variable lengths. i.e: 7.6 m - 10.6 m
+                        </option>
+                    </select>
+                </div>
+
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="standard_length_metrics" placeholder="12 m"
                            value="<?=$connector->standardLength_m ?>"

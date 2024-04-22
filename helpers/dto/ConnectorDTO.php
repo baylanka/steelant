@@ -3,6 +3,7 @@
 namespace helpers\dto;
 
 use helpers\pools\LanguagePool;
+use helpers\pools\StandardLengthTypePool;
 use helpers\services\CategoryService;
 use model\CategoryContent;
 use model\Connector;
@@ -24,6 +25,7 @@ class ConnectorDTO extends ElementDTO
     public string $standardLength;
     public string $standardLength_m;
     public string $standardLength_i;
+    public int $standardLengthType;
     public array $weights;
     public array $weights_i;
     public array $weights_m;
@@ -48,6 +50,7 @@ class ConnectorDTO extends ElementDTO
         $this->id = $this->element->id;
         $this->name = $this->element->name;
         $this->grade = $this->element->grade ?? '';
+        $this->standardLengthType = $this->element->standard_length_type ?? StandardLengthTypePool::FIXED_SINGLE_VALUE;
         $this->setLanguageDescriptions();
         $this->isPublished = $this->element->visibility;
 
