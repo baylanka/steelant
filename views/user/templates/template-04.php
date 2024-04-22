@@ -8,7 +8,7 @@ use \model\Media;
 
 <div class="row my-5" id="<?= $connector->id ?>">
 
-    <div class="col-12 col-md-4 col-xxl-4">
+    <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if(!empty($connector->getSubtitleOfLang())): ?>
@@ -69,7 +69,6 @@ use \model\Media;
         </dl>
     </div>
 
-
     <?php
     $view_3rd_row = "";
 
@@ -81,7 +80,7 @@ use \model\Media;
     ?>
 
 
-    <div class="col-6 col-md-6 col-xxl-6 row margin-bottom-sm justify-content-end">
+    <div class="col-12 col-md-6 col-xxl-6 row margin-bottom-sm justify-content-end">
 
         <?php
 
@@ -109,7 +108,7 @@ use \model\Media;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
         <!--Duplicate element Start-->
-        <div class="template-img-container col-8 first-image <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-12 col-md-8 col-xl-8 col-xxl-8  margin-bottom-sm <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <!--Duplicate element - for title Start-->
             <?php
@@ -135,9 +134,10 @@ use \model\Media;
             <!--Duplicate element - for title End-->
 
 
+
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
-                <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                <img class="img-fluid template-img convertable_image <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
@@ -145,7 +145,7 @@ use \model\Media;
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
-                     style="max-height:188px;object-fit: cover; margin-top:0.8rem;"
+                     style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;"
                 />
 
             <?php else: ?>
@@ -153,8 +153,8 @@ use \model\Media;
                 <video class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                        data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                        alt="<?= $imageAttr->media_name ?>"
-                       style="max-height:188px;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-180-180.png") ?>"
+                       style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                             type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -200,7 +200,7 @@ use \model\Media;
         $placeHolder = 2;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container col-4 second-image  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-6 col-md-4 col-xl-4 col-xxl-4 margin-bottom-sm <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
 
             <!--Duplicate element - for title Start-->
@@ -229,7 +229,7 @@ use \model\Media;
 
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
-                <img class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                <img class="img-fluid template-img convert_by_image <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
                      data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                      alt="<?= $imageAttr->media_name ?>"
                     <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
@@ -287,19 +287,9 @@ use \model\Media;
 
 
 
-
-
     </div>
 
 
 
 
 </div>
-
-<script>
-console.log(window.getComputedStyle(document.querySelector(".second-image")).height);
-
-      document.querySelector(".first-image").style.height = window.getComputedStyle(document.querySelector(".second-image")).height;
-
-
-</script>

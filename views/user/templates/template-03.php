@@ -8,7 +8,7 @@ use \model\Media;
 
 <div class="row my-5" id="<?= $connector->id ?>">
 
-    <div class="col-12 col-md-4 col-xxl-4">
+    <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if(!empty($connector->getSubtitleOfLang())): ?>
@@ -80,7 +80,7 @@ use \model\Media;
     ?>
 
 
-    <div class="col-6 col-md-6 col-xxl-6 row margin-bottom-sm justify-content-end">
+    <div class="col-12 col-md-6 col-xxl-6 row margin-bottom-sm justify-content-end">
 
         <?php
 
@@ -108,7 +108,7 @@ use \model\Media;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
         <!--Duplicate element Start-->
-        <div class="template-img-container col-4  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-6 col-md-4 col-xl-4 col-xxl-4 margin-bottom-sm <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <!--Duplicate element - for title Start-->
             <?php
@@ -199,7 +199,7 @@ use \model\Media;
         $placeHolder = 2;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container col-4  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-6 col-md-4 col-xl-4 col-xxl-4 margin-bottom-sm <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
 
             <!--Duplicate element - for title Start-->
@@ -292,7 +292,7 @@ use \model\Media;
         $placeHolder = 3;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container col-4  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-6 col-md-4 col-xl-4 col-xxl-4  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <!--Duplicate element - for title Start-->
             <?php
@@ -382,7 +382,7 @@ use \model\Media;
         $placeHolder = 4;
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container col-8 mt-2  <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container col-12 col-md-8 col-xl-8 col-xxl-8  mt-2  <?= $view_3rd_row ?> <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
 
             <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
 
