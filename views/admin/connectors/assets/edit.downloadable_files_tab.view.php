@@ -286,7 +286,6 @@
 
     $(document).off("change", ".download-file");
     $(document).on("change", ".download-file", async function (e) {
-        console.log("sadsa");
         e.preventDefault();
         spinnerEnabled();
         const fileValue = $(this).val();
@@ -320,8 +319,14 @@
     $(document).on("click", ".add-new-download-container", async function (e) {
         e.preventDefault();
         spinnerEnabled();
+        debugger
         const downloadableContent = getDownloadableFileContent();
-        $("div.download-jumbotron").append(downloadableContent);
+        if($(this).closest('div.download-jumbotron').length > 0){
+            $(this).closest('.download-container').after(downloadableContent);
+        }else{
+            $("div.download-jumbotron").append(downloadableContent);
+        }
+
         await setDownloadName();
         $('.add-file-container').addClass('d-none');
         spinnerDisable();
