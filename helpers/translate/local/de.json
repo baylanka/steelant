@@ -133,6 +133,8 @@
     "steel_grade": "Stahlgüte",
     "steel_thickness": "Stahldicke",
     "standard_length": "Standardlänge",
+    "standard_lengths": "Standardlängen",
+    "standard_length_variable": "Standardlängen auf Anfrage, variabel ab",
     "max_tensile_strength": "Max. Zugkraft",
     "weight": "Gewicht",
     "request_this_connector": "Schlossprofil anfragen",

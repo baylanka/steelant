@@ -132,6 +132,8 @@
     "steel_grade": "Steel grade",
     "steel_thickness": "Steel thickness",
     "standard_length": "Standard length",
+    "standard_lengths": "Standard lengths",
+    "standard_length_variable": "Standard lengths on request, variable from",
     "max_tensile_strength": "Max. tensile strength",
     "weight": "Weight",
     "request_this_connector": "Request this connector",

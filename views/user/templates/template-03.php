@@ -19,7 +19,20 @@ use \model\Media;
             <dd class="custom-dd custom-font mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
             <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?>
             </dd>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "standard_length", $language) ?>: <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+            <dd class="custom-dd custom-font">
+                <?php if ($connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
+                    <?= Translate::get("template_context", "standard_length", $language) ?>:
+                    <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+
+                <?php elseif($connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES):?>
+                    <?= Translate::get("template_context", "standard_lengths", $language) ?>:
+                    <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+
+                <?php elseif ($connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES): ?>
+                    <?= Translate::get("template_context", "standard_length_variable", $language) ?> &nbsp;
+                    <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+
+                <?php endif  ?>
             </dd>
             <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: <?= $connector->getMaxTensileStrengthByLang() ?></dd>
@@ -68,6 +81,8 @@ use \model\Media;
 
         </dl>
     </div>
+
+
 
     <?php
     $view_3rd_row = "";

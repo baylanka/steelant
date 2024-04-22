@@ -222,7 +222,7 @@
             <label class="align-items-center">Standard length</label>
             <div class="w-50 gap-1">
                 <div class="w-100 justify-content-start mb-3">
-                    <select class="form-select w-100 select2"  name="standard_length_type">
+                    <select class="form-select w-100"  name="standard_length_type">
                         <option
                                 value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
                                 <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
