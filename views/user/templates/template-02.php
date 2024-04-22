@@ -9,10 +9,9 @@
     $imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bottom-sm";
 ?>
 
-
 <div class="row my-5" id="<?= $connector->id ?>">
 
-    <div class="col-12 col-md-4 col-xxl-4">
+    <div class="col-12 col-md-3 col-xxl-3 margin-bottom-sm">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if(!empty($connector->getSubtitleOfLang())): ?>
@@ -119,8 +118,7 @@
             <?php
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
-                <br>
+                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>" style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
@@ -283,12 +281,11 @@
             <?php
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
-                <br>
+                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"  style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
-                        <input class="img-heading form-control" type="text"
+                        <input class="img-heading form-control text-center" type="text"
                                data-heading="<?= $headingPlaceHolder ?>"
                                data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
                                placeholder="Heading"
@@ -440,8 +437,7 @@
             <?php
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
-                <br>
+                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"  style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">

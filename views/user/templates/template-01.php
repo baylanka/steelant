@@ -12,7 +12,7 @@
 
 <div class="row my-5" id="<?= $connector->id ?>">
 
-    <div class="col-12 col-md-4 col-xxl-4">
+    <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if(!empty($connector->getSubtitleOfLang())): ?>

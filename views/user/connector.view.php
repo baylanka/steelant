@@ -228,6 +228,14 @@ use helpers\translate\Translate;
 
         $(".request-connector-btn").addClass("request-connector");
 
+
+        if($(".convert_by_image")){
+
+            let height  = $(".convert_by_image").css("height");
+            $(".convertable_image").css("height",height)
+
+        }
+
     });
     $(document).on("submit", ".orderRequestForm", async function (e) {
         e.preventDefault();
