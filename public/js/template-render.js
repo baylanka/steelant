@@ -1,18 +1,27 @@
 function populateTitleFields() {
 
     $("span.template-img-heading").each(function () {
-        if ($(this).find('input').length === 0) {
+        const headingField = $(this);
+        if (headingField.find('input').length === 0) {
             let head_key = $(this).attr("data-heading");
-            $(this).after(`
+            const mediaSrc = headingField.closest('.template-img-container').find('.file_src');
+            let titleFieldState;
+            if(mediaSrc.length === 0 || isEmpty(mediaSrc.val())){
+                titleFieldState = 'disabled';
+            }else{
+                titleFieldState = '';
+            }
+
+            headingField.after(`
             <div class=" d-flex align-middle gap-2">
                 <input class="img-heading form-control" type="text" data-heading="${head_key}"
-                 data-default="true" placeholder="Heading" disabled       
+                 data-default="true" placeholder="Heading" ${titleFieldState}       
                 > 
             </div>
         `);
-            $(this).remove();
+            headingField.remove();
         } else {
-            $(this).remove();
+            headingField.remove();
         }
     });
 }
@@ -55,6 +64,7 @@ $(document).on("change", "input.template-img-input", async function (e) {
     let thisElementIndex;
     let LanguageFieldName;
     let placeholderFieldName;
+    let titleFieldName;
 
     //once a field set name attributes, no need to assign again and again with incremented index value
     //for the reason keeps data-index attribute
@@ -63,8 +73,6 @@ $(document).on("change", "input.template-img-input", async function (e) {
         //getting image file set count
         let existingImageElementsCount = Number($('.template-img-input[data-file-set="true"]').length);
 
-        //image title field title disabled behaviour removing
-        inputFieldContainer.find('.img-heading').attr('disabled', false);
 
         //counting unique Image URL counts
         let srcArr = [];
@@ -94,6 +102,13 @@ $(document).on("change", "input.template-img-input", async function (e) {
         inputField.attr('name', inputName);
         imageLanguageField.attr('name', LanguageFieldName);
         imagePlaceholderField.attr('name', placeholderFieldName);
+
+        //image title field title disabled behaviour removing
+        const title = inputFieldContainer.find('.img-heading');
+        title.attr('disabled', false);
+        titleFieldName = `images[title][${thisElementIndex}][]`;
+        title.attr('name', titleFieldName);
+
     } else {
         LanguageFieldName = imageLanguageField.attr('name');
         placeholderFieldName = imagePlaceholderField.attr('name');
@@ -113,8 +128,7 @@ $(document).on("change", "input.template-img-input", async function (e) {
         const otherImagePlaceholderField = otherContainer.find('.image-placeholder');
         const otherElementPlaceHolderValue = Number(otherImagePlaceholderField.val());
 
-
-
+        const otherTitleField = otherContainer.find('.img-heading');
 
         if (imagePlaceholderValue === otherElementPlaceHolderValue
             && otherImageTag.attr('data-default') == 'true'
@@ -125,6 +139,9 @@ $(document).on("change", "input.template-img-input", async function (e) {
             otherContainer.find('.img-heading').attr('disabled', false);
             otherImageTag.attr('data-default', false);
             otherImageTag.closest("div.template-img-container").find("a.remove-image-btn").removeClass("d-none");
+
+            otherTitleField.attr('disabled', false);
+            otherTitleField.attr('name', titleFieldName);
         }
 
         if (totalImgContainer === iCount) {
@@ -154,13 +171,20 @@ $(document).on("change", ".img-heading", function () {
     const imageContainer = $(this).closest('.template-img-container');
     $(this).attr('name', getTitleFieldName(imageContainer));
 
-    if ($(this).closest("div.template-img-container")) {
+    if ($(this).closest("div.template-img-container").length > 0) {
         const totalHeadingFields = $(".img-heading").length;
         let iCount = 0;
         $(".img-heading").each(function () {
             iCount++;
             const eachImageContainer = $(this).closest('.template-img-container');
-            if ($(this).attr("data-heading") === heading_key && isEmpty($(this).val())) {
+            const isImageSet = !isEmpty(eachImageContainer.find('.template-img-input').val())
+                                ||
+                               !isEmpty(eachImageContainer.find('.file_src').val());
+            if (
+                    $(this).attr("data-heading") === heading_key
+                &&  isEmpty($(this).val())
+                &&  isImageSet
+            ) {
                 $(this).val(value);
                 $(this).attr('name', getTitleFieldName(eachImageContainer));
             }
@@ -217,11 +241,19 @@ $(document).on("click","a.remove-image-btn",async function (){
         prevMediaUrlHiddenField.remove();
     }
 
-    mediaContainer.find('.img-heading').attr('disabled', true);
+
+
+    const titleField = mediaContainer.find('.img-heading');
+    const titleFieldValue = titleField.val();
+    titleField.val('');
+    titleField.attr('disabled', true);
 
     const mediaFileSelector = mediaContainer.find('.template-img-input');
     const mediaFileSelectorNameAttr = mediaFileSelector.attr('name');
+    const mediaFieldSelectorDataIndexValue = mediaFileSelector.attr('data-index')
     mediaFileSelector.removeAttr('name');
+    mediaFileSelector.removeAttr('data-index');
+    mediaFileSelector.attr('data-file-set', false);
 
     const mediaPlaceholderField = mediaContainer.find('.image-placeholder');
     const mediaPlaceholderFieldNameAttr = mediaPlaceholderField.attr('name');
@@ -259,8 +291,13 @@ $(document).on("click","a.remove-image-btn",async function (){
             mediaContainer.append(prevMediaPlaceHolderClonedValue);
         }
 
-        mediaContainer.find('.img-heading').attr('disabled', false);
+        titleField.attr('disabled', false);
+        titleField.val(titleFieldValue);
+
         mediaFileSelector.attr('name', mediaFileSelectorNameAttr);
+        mediaFileSelector.attr('data-index', mediaFieldSelectorDataIndexValue);
+        mediaFileSelector.attr('data-file-set', true);
+
         mediaPlaceholderField.attr('name', mediaPlaceholderFieldNameAttr);
         mediaLanguageField.attr('name', mediaLanguageFieldNameAttr);
         mediaShowCase.attr('src', mediaShowCaseURL);
