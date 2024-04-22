@@ -161,7 +161,7 @@ use model\CategoryContent;
 
                     for (let i = 0; i < childrens.length; i++) {
                         let count = i + 1;
-                        childrens[i].getElementsByClassName("order")[0].textContent = count.toString().padStart(3,"0");
+                        childrens[i].getElementsByClassName("order")[0].textContent = count.toString();
                     }
                     document.getElementById("save-changes").removeAttribute("disabled");
                 }
@@ -191,7 +191,7 @@ use model\CategoryContent;
 
                                 <td>
 
-                                    <span class="badge text-bg-primary">
+                                    <span class="badge text-bg-secondary">
                                         ${type}
                                     </span>
                                 </td>
