@@ -105,7 +105,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->standardLength_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->standardLength_m . " (" . $this->element->standard_lengths_i.")";
+                return $this->standardLength_i . " <p class='m-0'>(" . $this->standardLength_m.")</p>";
         }
     }
 
@@ -118,7 +118,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->thickness_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->thickness_m .  " (" . $this->thickness_i.")";
+                return $this->thickness_i .  " <p class='m-0'>(" . $this->thickness_m.")</p>";
         }
     }
 
@@ -132,9 +132,9 @@ class ConnectorDTO extends ElementDTO
                 return  $this->weights_i;
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
-                foreach ($this->weights_m as $key => $value){
-                    if(isset($this->weights_i[$key])){
-                        $value = $value .  " (" . $this->weights_i[$key].")";
+                foreach ($this->weights_i as $key => $value){
+                    if(isset($this->weights_m[$key])){
+                        $value = $value .  " <p class='m-0'>(" . $this->weights_m[$key].")<p class='m-0'>";
                     }
 
                     $arr[$key] = $value;
@@ -213,7 +213,7 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 return (empty($this->maxTensile_m) && empty($this->maxTensile_i))
                     ? ''
-                    : $this->maxTensile_m ." (".$this->maxTensile_i.")" ;
+                    : $this->maxTensile_i ." <p class='m-0'>(".$this->maxTensile_m.")</p>" ;
         }
     }
 
