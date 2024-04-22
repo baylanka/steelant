@@ -1,89 +1,90 @@
 {
   "common": {
     "logo_text": "Schlossprofile für Stahlspundwände",
-    "login": "Anmeldung",
-    "logout": "Ausloggen",
-    "menu": "Speisekarte",
-    "email": "Email",
-    "password": "Passwort",
-    "register": "Neu registrieren",
-    "related_section": "Verwandter Abschnitt",
-    "copyright": "Urheberrecht",
-    "home": "Heim",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "menu": "Menü",
+    "email": "E-Mail",
+    "password": "Kennwort",
+    "register": "Registrieren",
+    "related_section": "Siehe auch",
+    "copyright": "Copyright",
+    "home": "Home",
     "fax": "Fax",
     "phone": "Telefon",
     "confirm": "Bestätigen",
-    "cancel": "stornieren"
+    "cancel": "Abbrechen"
   },
 
+
   "alert": {
-    "are_you_sure": "Bist du dir sicher"
+    "are_you_sure": "Sind Sie sicher?"
   },
 
   "home_nav": {
-    "connectors": "Connectors",
+    "connectors": "Schlossprofile",
     "downloads": "Downloads",
     "gallery": "Galerie",
     "sealant": "Dichtungsmittel",
     "contact": "Kontakt",
-    "user_information": "Benutzerinformation",
+    "user_information": "Nutzerinformation",
     "about_steelwall": "Über SteelWall",
     "newsletter": "Newsletter",
-    "languages_and_measures": "Sprachen und Maße",
-    "legal_advice": "Rechtliche Beratung",
+    "languages_and_measures": "Sprachen und Maßeinheiten",
+    "legal_advice": "Rechtliche Hinweise",
     "imprint": "Impressum",
-    "privacy_policy": "Datenschutzrichtlinie",
-    "general_terms_and_conditions": "Allgemeine Bedingungen",
-    "favourites": "Lieblings",
+    "privacy_policy": "Privatsphäre",
+    "general_terms_and_conditions": "AGB",
+    "favourites": "Favoriten",
     "profile": "Profil"
   },
 
 
 
   "home_footer": {
-    "disclaimer": "Beschreibung",
-    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind Zirka-Werte und können abweichen. Stabverdrehungen sind bis zu 2 mm pro Meter möglich. Toleranz der Stahldicke ±1 mm. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Anschweißbasis der LPB und FD Schlösser kann gerade oder abgeschrägt ausgeführt sein. Technische Änderungen sind vorbehalten.\n\nWir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit."
+    "disclaimer": "Technische Hinweise / Disclaimer",
+    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt.  Alle Zahlenangaben sind Zirka-Werte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit."
   },
 
 
   "login_page": {
-    "forgot_password": "Passwort vergessen",
-    "not_a_member": "Kein Mitglied?"
+    "forgot_password": "Kennwort vergessen",
+    "not_a_member": "Nicht registriert"
   },
 
 
   "user_info": {
     "your_name": "Ihr Name",
     "job_position": "Job / Position",
-    "division": "Aufteilung",
-    "company_name": "Name der Firma",
-    "country_state": "Land/Staat",
+    "division": "Abteilung",
+    "company_name": "Name des Unternehmens",
+    "country_state": "Land / Staat",
     "website": "Webseite",
     "phone": "Telefon",
-    "email": "Email"
+    "email": "E-Mail"
   },
 
 
   "register_page": {
-    "advantages_of_a_registration": "Vorteile einer Anmeldung",
-    "request_products_easily": "Produkte ganz einfach anfordern!",
-    "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte (Favoriten)!",
-    "receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Connector-Informationen per Newsletter!",
+ "advantages_of_a_registration": "Vorteile einer Registrierung",
+    "request_products_easily": "Produktanfragen leicht gemacht!",
+    "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte!",
+    "receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Informationen per Newsletter!",
     "subscribe_to_newsletter": "Newsletter abonnieren",
-    "by_subscribing_you_will_automatically_receive_our_newsletter": "Mit Ihrer Anmeldung erhalten Sie automatisch unseren Newsletter",
-    "already_a_member": "Schon ein Mitglied?"
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "Mit der Registrierung erhalten Sie automatisch unseren Newsletter",
+    "already_a_member": "Schon registriert?"
   },
 
 
   "download_page": {
     "downloads": "Downloads",
-    "please_register_before_download": "Bitte registrieren Sie sich vor dem Download!",
-    "test_reports": "Testberichte",
-    "test_report": "Testberichte",
+    "please_register_before_download": "Bitte registrieren Sie sich, bevor Sie Daten herunterladen! ",
+    "test_reports": "Prüfberichte",
+    "test_report": "Prüfbericht",
     "brochures": "Broschüren",
-    "data_sheets": "Datenblatt",
+    "data_sheets": "Datenblätter",
     "brochures_and_data_sheets": "Broschüren und Datenblätter",
-    "steelwall_connectors_overview": "Steelwall Übersicht über die Steckverbinder"
+    "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile"
   },
 
 
@@ -94,34 +95,37 @@
 
   "contact_page": {
     "contact": "Kontakt",
-    "headquarters_germany": "HAUPTSITZ DEUTSCHLAND",
-    "sales_line_north_america": "VERTRIEBSLINIE NORDAMERIKA",
-    "headquarters": "Hauptquartier",
-    "please_leave_a_message_here": "Bitte hinterlassen Sie hier eine Nachricht",
+    "headquarters_germany": "Hauptsitz Deutschland",
+    "sales_line_north_america": "Vertriebslinie Nordamerika",
+    "headquarters": "Hauptsitz",
+    "please_leave_a_message_here": "Bitte schreiben Sie uns hier",
     "send": "Schicken",
-    "your_message": "IHRE NACHRICHT"
+    "your_message": "Ihre Nachricht"
   },
 
 
   "profile_page": {
-    "update": "Update",
-    "profile": "Profil"
+    "update": "Stand",
+    "profile": "Profil",
+    "old_password": "Altes Passwort",
+    "new_password": "Neues Kennwort",
+    "verify_password": "Passwort bestätigen"
   },
 
 
   "favourites_page": {
-    "favourites": "Lieblings",
-    "your_request": "Ihre Anfrage",
-    "favourite_connectors": "Favourite connectors",
+    "favourites": "Favoriten",
+    "your_requests": "Ihre Anfragen",
+    "favourite_connectors": "Gemerkte Schlossprofile",
     "project_name": "Projektname",
-    "connector_name": "Connector-Name",
-    "date_time_of_request": "Datum/Uhrzeit der Anfrage",
-    "amount": "Betrag (running m)",
+    "connector_name": "Schlossprofil",
+    "date_time_of_request": "Datum der Anfrage",
+    "amount": "Menge (laufende m)",
     "location": "Standort",
-    "country_state": "Land/Staat",
-    "seen_on_date_or_time": "Gesehen am Datum/Uhrzeit",
+    "country_state": "Land / Staat",
+    "seen_on_date_or_time": "Gemerkt am",
     "status": "Status",
-    "delete_message": "Wenn Sie mit dem Löschen fortfahren"
+    "delete_message": "Löschen"
   },
 
 
@@ -129,14 +133,14 @@
     "steel_grade": "Stahlgüte",
     "steel_thickness": "Stahldicke",
     "standard_length": "Standardlänge",
-    "max_tensile_strength": "Max. Zugfestigkeit",
+    "max_tensile_strength": "Max. Zugkraft",
     "weight": "Gewicht",
-    "request_this_connector": "Fordern Sie diesen Connector an",
-    "remember_this_connector": "Merken Sie sich diesen Anschluss"
+    "request_this_connector": "Schlossprofil anfragen",
+    "remember_this_connector": "Schlossprofil merken"
   },
 
   "connector_page": {
-    "add_to_favourite_message": "Sie möchten diesen Connector als Favorit hinzufügen"
+    "add_to_favourite_message": "Vous souhaitez ajouter ce connecteur en favori"
   },
   "about_page": {
     "about_steel_wall": "Über SteelWall",

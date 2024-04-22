@@ -105,7 +105,10 @@
 
   "profile_page": {
     "update": "Update",
-    "profile": "Profile"
+    "profile": "Profile",
+    "old_password": "Old Password",
+    "new_password": "New Password",
+    "verify_password": "Verify Password"
   },
 
 

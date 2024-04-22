@@ -53,9 +53,7 @@
                             <p class="text-danger text-center error-msg"></p>
                             <p class="text-success text-center success-msg"></p>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">
-                                    <?= Translate::get("common","login") ?>
-                                </button>
+                                <button type="submit" class="btn btn-primary submit w-100"><?= Translate::get("common","login") ?></button>
                             </div>
 
                             <div class="w-100 text-center">

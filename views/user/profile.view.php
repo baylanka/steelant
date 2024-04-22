@@ -46,7 +46,7 @@ use helpers\translate\Translate;
         <div class="row justify-content-start my-5">
             <div class="col-12 col-md-6">
 
-                <form action="<?= url("/admin/user/update") ?>" method="POST" class="update-form">
+                <form action="<?= url("/user/update") ?>" method="POST" class="update-form">
 
 
                     <div class="form-group">
@@ -67,64 +67,70 @@ use helpers\translate\Translate;
 
                     </div>
 
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder required-field" for="position">
-                            <?= Translate::get("user_info", "job_position") ?>
-                        </label>
+                    <div class="form-group margin-t-50px">
+
                         <input type="text" class="form-control" name="job_position" value="<?= $user->job_position ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "job_position")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder" for="division">
-                            <?= Translate::get("user_info", "division") ?>
+                               placeholder="<?= Translate::get("user_info", "job_position") ?>">
+                        <label class="form-control-placeholder required-field" for="position">
+                            <?= Translate::get("user_info", "job_position",null,true) ?>
                         </label>
+                    </div>
+
+                    <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="division" value="<?=  $user->division ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "division")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder" for="comp-name">
-                            <?= Translate::get("user_info", "company_name") ?>
+                               placeholder="<?= Translate::get("user_info", "division") ?>">
+                        <label class="form-control-placeholder" for="division">
+                            <?= Translate::get("user_info", "division",null,true) ?>
                         </label>
+                    </div>
+
+                    <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="company_name" value="<?= $user->company_name ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "company_name")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder required-field" for="country-state">
-                            <?= Translate::get("user_info", "country_state") ?>
+                               placeholder="<?= Translate::get("user_info", "company_name") ?>">
+                        <label class="form-control-placeholder" for="comp-name">
+                            <?= Translate::get("user_info", "company_name",null,true) ?>
                         </label>
+                    </div>
+
+                    <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="country_or_state"
                                value="<?= $user->country_or_state ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "country_state")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder" for="email">
-                            <?= Translate::get("user_info", "website") ?>
+                               placeholder="<?= Translate::get("user_info", "country_state") ?>">
+                        <label class="form-control-placeholder required-field" for="country-state">
+                            <?= Translate::get("user_info", "country_state",null,true) ?>
                         </label>
+                    </div>
+
+                    <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="website" value="<?= $user->website ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "website")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder" for="phone">
-                            <?= Translate::get("user_info", "phone") ?>
+                               placeholder="<?= Translate::get("user_info", "website") ?>">
+                        <label class="form-control-placeholder" for="email">
+                            <?= Translate::get("user_info", "website",null,true) ?>
                         </label>
+                    </div>
+
+                    <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="phone" value="<?= $user->phone ?>"
-                               placeholder="<?= strtoupper(Translate::get("user_info", "phone")) ?>">
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-control-placeholder required-field" for="email">
-                            <?= Translate::get("common", "email") ?>
+                               placeholder="<?= Translate::get("user_info", "phone") ?>">
+                        <label class="form-control-placeholder" for="phone">
+                            <?= Translate::get("user_info", "phone",null,true) ?>
                         </label>
-                        <input type="text" class="form-control" name="email" value="<?= $user->email ?>"
-                               placeholder="<?= strtoupper(Translate::get("common", "email")) ?>">
                     </div>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" name="email" value="<?= $user->email ?>"
+                               placeholder="<?= Translate::get("common", "email") ?>">
+                        <label class="form-control-placeholder required-field" for="email">
+                            <?= Translate::get("common", "email",null,true) ?>
+                        </label>
+                    </div>
+
 
                     <p class="text-danger error-msg"></p>
                     <p class="text-success success-msg"></p>
 
                     <div class="w-100 d-flex mt-5">
-                        <button type="submit" class="form-control btn btn-primary background-blue px-3 w-25">
-                            <?= Translate::get("profile_page", "update") ?>
-                        </button>
+                        <button type="submit" class="btn btn-primary submit"> <?= Translate::get("profile_page", "update") ?></button>
                     </div>
                 </form>
 
@@ -141,32 +147,33 @@ use helpers\translate\Translate;
                 <form action="<?= url("/user/update/password") ?>" class="update-password-form">
 
 
-                    <div class="form-group mt-4">
+                    <div class="form-group margin-t-50px">
+                        <input type="password" class="form-control" name="old_password" id="old_password" placeholder="<?= Translate::get("profile_page", "old_password") ?>">
                         <label class="form-control-placeholder required-field" for="old_password">
-                            Old password
+                            <?= Translate::get("profile_page", "old_password",null,true) ?>
                         </label>
-                        <input type="password" class="form-control" name="old_password" id="old_password">
                     </div>
-                    <div class="form-group mt-4">
+
+                    <div class="form-group margin-t-50px">
+                        <input type="password" class="form-control" name="new_password" id="new_password" placeholder="<?= Translate::get("profile_page", "new_password") ?>">
                         <label class="form-control-placeholder required-field" for="new_password">
-                            New password
+                            <?= Translate::get("profile_page", "new_password",null,true) ?>
                         </label>
-                        <input type="password" class="form-control" name="new_password" id="new_password">
                     </div>
-                    <div class="form-group mt-4">
+
+                    <div class="form-group margin-t-50px">
+                        <input type="password" class="form-control" name="verify_password" id="verify_password" placeholder="<?= Translate::get("profile_page", "verify_password") ?>">
                         <label class="form-control-placeholder required-field" for="verify_password">
-                            Verify password
+                            <?= Translate::get("profile_page", "verify_password",null,true) ?>
                         </label>
-                        <input type="password" class="form-control" name="verify_password" id="verify_password">
                     </div>
+
 
                     <p class="text-danger error-msg"></p>
                     <p class="text-success success-msg"></p>
 
                     <div class="w-100 d-flex mt-5">
-                        <button type="submit" class="form-control btn btn-primary background-blue px-3 w-25">
-                            <?= Translate::get("profile_page", "update") ?>
-                        </button>
+                        <button type="submit" class="btn btn-primary  submit"> <?= Translate::get("profile_page", "update") ?></button>
                     </div>
                 </form>
 

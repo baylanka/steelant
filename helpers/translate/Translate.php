@@ -9,9 +9,10 @@ class Translate
         $_SESSION["lang"] = $lang;
 
     }
-    public static function get($page, $key,$lang = null)
+
+    public static function get($page, $key, $lang = null, $capitalize = null)
     {
-        if(is_null($lang)) {
+        if (is_null($lang)) {
             $lang = $_SESSION["lang"];
         }
 
@@ -20,6 +21,18 @@ class Translate
         $translateData = json_decode($translateJson);
 
         try {
+
+            if ($capitalize) {
+                switch ($lang) {
+                    case "en-us":
+                    case "en-gb":
+                        return strtoupper($translateData->$page->$key);
+                    case "fr":
+                    case "de":
+                        return ucwords($translateData->$page->$key);
+                }
+            }
+
             return $translateData->$page->$key;
         } catch (\Exception $e) {
             print($e);
@@ -31,7 +44,8 @@ class Translate
         return $_SESSION["lang"];
     }
 
-    public static function hasLanguageSet(){
+    public static function hasLanguageSet()
+    {
         return isset($_SESSION["lang"]);
     }
 }

@@ -8,8 +8,8 @@ class LanguagePool
     private const ENGLISH = 'en';
     private const FRENCH = 'fr';
 
-    private const ENGLISH_US    = 'en-us';
-    private const ENGLISH_UK     = 'en-gb';
+    private const ENGLISH_US = 'en-us';
+    private const ENGLISH_UK = 'en-gb';
 
     private string $label;
 

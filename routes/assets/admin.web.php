@@ -54,6 +54,7 @@ $app->get('/admin/users',  ["admin\UserController", "index"]);
 $app->get('/admin/users/create',  ["admin\UserController", "create"]);
 $app->post('/admin/users/create',  ["admin\UserController", "store"]);
 
+
 //orders
 $app->get('/admin/orders',  ["admin\OrderController", "index"]);
 $app->get('/admin/orders/change/status',  ["admin\OrderController", "changeStatus"]);

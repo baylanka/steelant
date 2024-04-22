@@ -8,7 +8,7 @@
     "password": "Mot de passe",
     "register": "Registre",
     "related_section": "Section connexe",
-    "copyright": "droits d'auteur",
+    "copyright": "Copyright",
     "home": "Maison",
     "fax": "Fax",
     "phone": "Téléphone",
@@ -23,17 +23,17 @@
   "home_nav": {
     "connectors": "Connecteurs",
     "downloads": "Téléchargements",
-    "gallery": "Gelée",
-    "sealant": "mastic",
+    "gallery": "Galerie",
+    "sealant": "Produit d’étanchéité",
     "contact": "Contact",
     "user_information": "Informations de l'utilisateur",
     "about_steelwall": "À propos de Steelwall",
     "newsletter": "Bulletin",
     "languages_and_measures": "Langues et mesures",
-    "legal_advice": "Conseils juridiques",
-    "imprint": "Imprint",
-    "privacy_policy": "Politique de confidentialité",
-    "general_terms_and_conditions": "Termes et conditions généraux",
+    "legal_advice": "L'avertissement légal",
+    "imprint": "Mentions légales",
+    "privacy_policy": "Déclaration de protection des données",
+    "general_terms_and_conditions": "Les conditions générales",
     "favourites": "Favoris",
     "profile": "Profil"
   },
@@ -41,15 +41,14 @@
 
   "home_footer": {
     "disclaimer": "Disclaimer",
-    "disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. La base de soudage des serrures LPB et FD peut être en version droite ou oblique. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez avant le montage vérifier à l’aide de spécimens la compatibilité des connecteurs et serrures de palplanches."
-  },
+    "disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes europé-ennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. L'épaisseur d’acier peut être réduite jusqu'à 2 mm aux extrémités des connecteurs. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des raccords. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez vérifi er la compatibilité des lisières de serrures de palplanches à l’aide de sections de spécimens des raccords souhaités."
+ },
 
 
   "login_page": {
     "forgot_password": "Mot de passe oublié",
     "not_a_member": "Pas un membre?"
   },
-
 
   "user_info": {
     "your_name": "Votre nom",
@@ -67,7 +66,7 @@
     "advantages_of_a_registration": "Avantages d'une inscription",
     "request_products_easily": "Demandez des produits facilement !",
     "save_your_requests_and_products": "Sauvegardez vos demandes et produits (Favoris) !",
-    "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
+    "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
     "subscribe_to_newsletter": "S'inscrire à la Newsletter",
     "by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter",
     "already_a_member": "Déjà membre?"
@@ -80,16 +79,15 @@
     "test_reports": "Rapports d'essai",
     "test_report": "Rapport d'essai",
     "brochures": "Brochures",
-    "data_sheets": "Fiche de données",
+    "data_sheets": "Fiche technique",
     "brochures_and_data_sheets": "Brochures et fiches techniques",
     "steelwall_connectors_overview": "Steelwall aperçu des connecteurs"
   },
 
 
   "gallery_page": {
-    "gallery": "Gelée"
+    "gallery": "Galerie"
   },
-
 
   "contact_page": {
     "contact": "Contact",
@@ -101,12 +99,13 @@
     "your_message": "VOTRE MESSAGE"
   },
 
-
   "profile_page": {
-    "update": "Mise à jour"
+    "update": "Mise à jour",
+    "profile": "Profil",
+    "old_password": "ancien mot de passe",
+    "new_password": "nouveau mot de passe",
+    "verify_password": "vérifier le mot de passe"
   },
-
-
 
 
   "favourites_page": {
@@ -129,7 +128,7 @@
     "steel_grade": "Nuance d‘acier ",
     "steel_thickness": "Épaisseur d’acier ",
     "standard_length": "Longueur standard ",
-    "max_tensile_strength": "Max. résistance à la traction ",
+    "max_tensile_strength": "Force de traction max. ",
     "weight": "Poids ",
     "request_this_connector": "Demander ce connecteur",
     "remember_this_connector": "Rappelez-vous ce connecteur"

@@ -290,8 +290,8 @@ class ConnectorUpdateRequestValidator
             throw new \Exception("grade must be at least 3 characters");
         }
 
-        if(!ValidatorUtility::max($request->get('grade'), 15)){
-            throw new \Exception("name can not be exceed 15 characters");
+        if(!ValidatorUtility::max($request->get('grade'), 100)){
+            throw new \Exception("grade can not be exceed 100 characters");
         }
 
 
@@ -312,8 +312,8 @@ class ConnectorUpdateRequestValidator
             throw new \Exception("name must be at least 3 characters");
         }
 
-        if(!ValidatorUtility::max($request->get('name'), 20)){
-            throw new \Exception("name can not be exceed 20 characters");
+        if(!ValidatorUtility::max($request->get('name'), 100)){
+            throw new \Exception("name can not be exceed 100 characters");
         }
 
         $name = $request->get('name');

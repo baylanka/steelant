@@ -98,69 +98,75 @@ use helpers\translate\Translate;
             <div class="col-12 col-md-6">
                 <form action="<?= url("/contact/sendMessage") ?>" method="POST" class="send-mail">
                     <input type="hidden" name="location" value="eu">
-                    <div class="form-group">
-                        <label for="inputName required-field">
-                            <?= Translate::get("user_info", "your_name") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputName" name="name"
+                               aria-describedby="Name"  placeholder="<?= Translate::get("user_info", "your_name") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputName">
+                            <?= Translate::get("user_info", "your_name",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputName" name="name"
-                               aria-describedby="Name" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputJob">
-                            <?= Translate::get("user_info", "job_position") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputJob" name="job"
+                               aria-describedby="job" placeholder="<?= Translate::get("user_info", "job_position") ?>" >
+                        <label class="form-control-placeholder" for="inputJob">
+                            <?= Translate::get("user_info", "job_position",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputJob" name="job"
-                               aria-describedby="job">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputDivision">
-                            <?= Translate::get("user_info", "division") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputDivision" name="division"
+                               aria-describedby="division" placeholder="<?= Translate::get("user_info", "division") ?>" >
+                        <label class="form-control-placeholder" for="inputDivision">
+                            <?= Translate::get("user_info", "division",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputDivision" name="division"
-                               aria-describedby="division">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputCompany">
-                            <?= Translate::get("user_info", "company_name") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputCompany" name="company"
+                               aria-describedby="company name" placeholder="<?= Translate::get("user_info", "company_name") ?>" >
+                        <label class="form-control-placeholder" for="inputCompany">
+                            <?= Translate::get("user_info", "company_name",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputCompany" name="company"
-                               aria-describedby="company name">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputCountry required-field">
-                            <?= Translate::get("user_info", "country_state") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputCountry" name="country"
+                               aria-describedby="country" placeholder="<?= Translate::get("user_info", "country_state") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputCountry">
+                            <?= Translate::get("user_info", "country_state",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputCountry" name="country"
-                               aria-describedby="country" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail required-field">
-                            <?= Translate::get("user_info", "email") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="email" class="form-control" id="inputEmail" name="email"
+                               aria-describedby="email" placeholder="<?= Translate::get("user_info", "email") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputEmail">
+                            <?= Translate::get("user_info", "email",null,true) ?>
                         </label>
-                        <input type="email" class="form-control bg-light" id="inputEmail" name="email"
-                               aria-describedby="email" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail">
-                            <?= Translate::get("user_info", "phone") ?>
+                    
+                    <div class="form-group margin-t-50px">
+
+                        <input type="text" class="form-control" id="inputPhone" name="phone"
+                               aria-describedby="phone"  placeholder="<?= Translate::get("user_info", "phone") ?>" >
+                        <label class="form-control-placeholder" for="inputPhone">
+                            <?= Translate::get("user_info", "phone",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputEmail" name="phone"
-                               aria-describedby="email">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail">
-                            <?= Translate::get("contact_page", "your_message") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <textarea type="text" class="form-control" id="message" name="message"
+                                  aria-describedby="message"  placeholder="<?= Translate::get("contact_page", "your_message") ?>"></textarea>
+                        <label class="form-control-placeholder" for="message">
+                            <?= Translate::get("contact_page", "your_message",null,true) ?>
                         </label>
-                        <textarea type="text" class="form-control bg-light" id="inputEmail" name="message"
-                                  aria-describedby="email"></textarea>
                     </div>
-                    <div id="recaptcha1"></div>
+
                     <div class="form-group mt-4">
                         <button type="submit"
-                                class="form-control btn btn-primary rounded submit px-3 w-25 background-blue"
-                                data-sitekey="6LfXA7ApAAAAAI23Z9Z_VL53akwmCJ3Ii1X3nhr8"
-                                data-callback='onSubmit'
-                                data-action='submit'>
+                                class="form-control btn btn-primary text-white submit px-3 w-25 background-blue">
                             <?= Translate::get("contact_page", "send") ?>
                         </button>
                     </div>
@@ -202,72 +208,77 @@ use helpers\translate\Translate;
                 <form action="<?= url("/contact/sendMessage") ?>" method="POST"
                       class="send-mail">
                     <input type="hidden" name="location" value="north-america">
-                    <div class="form-group">
-                        <label for="inputName">
-                            <?= Translate::get("user_info", "your_name") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputName" name="name"
+                               aria-describedby="Name"  placeholder="<?= Translate::get("user_info", "your_name") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputName">
+                            <?= Translate::get("user_info", "your_name",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputName" name="name"
-                               aria-describedby="Name" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputJob">
-                            <?= Translate::get("user_info", "job_position") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputJob" name="job"
+                               aria-describedby="job" placeholder="<?= Translate::get("user_info", "job_position") ?>" >
+                        <label class="form-control-placeholder" for="inputJob">
+                            <?= Translate::get("user_info", "job_position",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputJob" name="job"
-                               aria-describedby="job">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputDivision">
-                            <?= Translate::get("user_info", "division") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputDivision" name="division"
+                               aria-describedby="division" placeholder="<?= Translate::get("user_info", "division") ?>" >
+                        <label class="form-control-placeholder" for="inputDivision">
+                            <?= Translate::get("user_info", "division",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputDivision" name="division"
-                               aria-describedby="division">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputCompany">
-                            <?= Translate::get("user_info", "company_name") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputCompany" name="company"
+                               aria-describedby="company name" placeholder="<?= Translate::get("user_info", "company_name") ?>" >
+                        <label class="form-control-placeholder" for="inputCompany">
+                            <?= Translate::get("user_info", "company_name",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputCompany" name="company"
-                               aria-describedby="company name">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputCountry">
-                            <?= Translate::get("user_info", "country_state") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="text" class="form-control" id="inputCountry" name="country"
+                               aria-describedby="country" placeholder="<?= Translate::get("user_info", "country_state") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputCountry">
+                            <?= Translate::get("user_info", "country_state",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputCountry" name="country"
-                               aria-describedby="country" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail">
-                            <?= Translate::get("user_info", "email") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <input type="email" class="form-control" id="inputEmail" name="email"
+                               aria-describedby="email" placeholder="<?= Translate::get("user_info", "email") ?>"  required>
+                        <label class="form-control-placeholder required-field" for="inputEmail">
+                            <?= Translate::get("user_info", "email",null,true) ?>
                         </label>
-                        <input type="email" class="form-control bg-light" id="inputEmail" name="email"
-                               aria-describedby="email" required>
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail">
-                            <?= Translate::get("user_info", "phone") ?>
+
+                    <div class="form-group margin-t-50px">
+
+                        <input type="text" class="form-control" id="inputPhone" name="phone"
+                               aria-describedby="phone"  placeholder="<?= Translate::get("user_info", "phone") ?>" >
+                        <label class="form-control-placeholder" for="inputPhone">
+                            <?= Translate::get("user_info", "phone",null,true) ?>
                         </label>
-                        <input type="text" class="form-control bg-light" id="inputEmail" name="phone"
-                               aria-describedby="email">
                     </div>
-                    <div class="form-group mt-4">
-                        <label for="inputEmail">
-                            <?= Translate::get("contact_page", "your_message") ?>
+
+                    <div class="form-group margin-t-50px">
+                        <textarea type="text" class="form-control" id="message" name="message"
+                                  aria-describedby="message"  placeholder="<?= Translate::get("contact_page", "your_message") ?>"></textarea>
+                        <label class="form-control-placeholder" for="message">
+                            <?= Translate::get("contact_page", "your_message",null,true) ?>
                         </label>
-                        <textarea type="text" class="form-control bg-light" id="inputEmail" name="message"
-                                  aria-describedby="email"></textarea>
                     </div>
-                    <div id="recaptcha2"></div>
+
                     <div class="form-group mt-4">
                         <button type="submit"
-                                class="form-control btn btn-primary rounded submit px-3 w-25 background-blue"
-                                data-sitekey="6LfXA7ApAAAAAI23Z9Z_VL53akwmCJ3Ii1X3nhr8"
-                                data-callback='onSubmit'
-                                data-action='submit'>
+                                class="form-control btn btn-primary text-white submit px-3 w-25 background-blue">
                             <?= Translate::get("contact_page", "send") ?>
                         </button>
-
                     </div>
                 </form>
             </div>

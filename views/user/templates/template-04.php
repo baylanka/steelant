@@ -28,7 +28,7 @@ use \model\Media;
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
+                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
             <dd class="my-3 custom-font"><?= empty($connector->getDescriptionOfLang())

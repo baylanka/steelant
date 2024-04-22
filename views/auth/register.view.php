@@ -146,9 +146,7 @@
 
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">
-                                    <?= Translate::get("common", "register") ?>
-                                </button>
+                                <button type="submit" class="btn btn-primary submit w-100"> <?= Translate::get("common", "register") ?></button>
                             </div>
                         </form>
                         <p class="text-center">
