@@ -289,8 +289,15 @@
         console.log("sadsa");
         e.preventDefault();
         spinnerEnabled();
-        
-        $(this).closest('.download-container').css('backgroundColor', '#c1ffc1');
+        const fileValue = $(this).val();
+        if(isEmpty(fileValue)){
+           return;
+        }
+        const container = $(this).closest('.download-container');
+        container.css('backgroundColor', '#c1ffc1');
+        container.find('.downloadable_src').val('');
+        container.find('.previous-file-container').remove();
+        await setDownloadName();
         spinnerDisable();
     });
 
