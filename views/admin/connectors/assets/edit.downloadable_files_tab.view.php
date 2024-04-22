@@ -284,6 +284,25 @@
 
 <script>
 
+    $(document).ready(function () {
+        if($('.download-jumbotron .download-container').length > 0){
+            activateSortableRows();
+        }
+    });
+
+    function activateSortableRows()
+    {
+        let contentBody = document.querySelector('.download-jumbotron');
+        if(!isEmpty(contentBody)){
+            new Sortable(contentBody, {
+                onEnd: async function (evt) {
+                    await setDownloadName();
+                }
+
+            });
+        }
+    }
+
     $(document).off("change", ".download-file");
     $(document).on("change", ".download-file", async function (e) {
         e.preventDefault();
@@ -319,7 +338,6 @@
     $(document).on("click", ".add-new-download-container", async function (e) {
         e.preventDefault();
         spinnerEnabled();
-        debugger
         const downloadableContent = getDownloadableFileContent();
         if($(this).closest('div.download-jumbotron').length > 0){
             $(this).closest('.download-container').after(downloadableContent);
