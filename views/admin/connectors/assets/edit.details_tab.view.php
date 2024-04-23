@@ -62,42 +62,6 @@
                    placeholder="Steel Grade" id="steel_grade"/>
         </div>
 
-        <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="description" class="align-items-center">
-                Description (in Germany)
-            </label>
-            <textarea name="description_de" type="text"
-                      class="form-control w-50 description" rows="3"
-                      placeholder="Description (in Germany)"><?=$connector->description_de?></textarea>
-        </div>
-
-        <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="description" class="align-items-center">
-                Description (in English UK)
-            </label>
-            <textarea name="description_en_gb" type="text"
-                      class="form-control w-50" rows="3"
-                      placeholder="Description (in English UK)"><?=$connector->description_en_db?></textarea>
-        </div>
-
-        <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="description" class="align-items-center">
-                Description (in French)
-            </label>
-            <textarea name="description_fr" type="text"
-                      class="form-control w-50" rows="3"
-                      placeholder="Description (in French)"><?=$connector->description_fr?></textarea>
-        </div>
-
-        <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="description" class="align-items-center">
-                Description (in English US)
-            </label>
-            <textarea name="description_en_us" type="text"
-                      class="form-control w-50" rows="3"
-                      placeholder="Description (in English US)"><?=$connector->description_en_us?></textarea>
-        </div>
-
         <hr class="mt-3">
 
         <div class="col-12 d-flex justify-content-between mt-3">
@@ -126,6 +90,51 @@
 
             </div>
 
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label class="align-items-center">Standard length</label>
+            <div class="w-50 gap-1">
+                <div class="w-100 justify-content-start mb-3">
+                    <select class="form-select w-100"  name="standard_length_type">
+                        <option
+                                value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
+                            <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
+                        >
+                            Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
+                        </option>
+                        <option
+                                value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
+                            <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
+                        >
+                            Fixed multi value. i.e: 12m, 14m, 16m
+                        </option>
+                        <option
+                                value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
+                            <?=$connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
+                        >
+                            Variable lengths. i.e: 7.6 m - 10.6 m
+                        </option>
+                    </select>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="standard_length_metrics" placeholder="12 m"
+                           value="<?=$connector->standardLength_m ?>"
+                    >
+                    <span class="input-group-text">metrics</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="standard_length_imperial" placeholder="1.2 ft"
+                           value="<?=$connector->standardLength_i?>"
+                    >
+                    <span class="input-group-text">imperial</span>
+                </div>
+
+            </div>
         </div>
 
         <hr class="mt-3">
@@ -219,52 +228,6 @@
         <hr class="mt-3">
 
         <div class="col-12 d-flex justify-content-between mt-3">
-            <label class="align-items-center">Standard length</label>
-            <div class="w-50 gap-1">
-                <div class="w-100 justify-content-start mb-3">
-                    <select class="form-select w-100"  name="standard_length_type">
-                        <option
-                                value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
-                                <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
-                            >
-                            Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
-                        </option>
-                        <option
-                                value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
-                                <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
-                        >
-                            Fixed multi value. i.e: 12m, 14m, 16m
-                        </option>
-                        <option
-                                value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
-                                <?=$connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
-                        >
-                            Variable lengths. i.e: 7.6 m - 10.6 m
-                        </option>
-                    </select>
-                </div>
-
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_metrics" placeholder="12 m"
-                           value="<?=$connector->standardLength_m ?>"
-                    >
-                    <span class="input-group-text">metrics</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_imperial" placeholder="1.2 ft"
-                           value="<?=$connector->standardLength_i?>"
-                    >
-                    <span class="input-group-text">imperial</span>
-                </div>
-
-            </div>
-        </div>
-
-        <hr class="mt-3">
-
-
-        <div class="col-12 d-flex justify-content-between mt-3">
             <label class="align-items-center">Max. tensile strength</label>
             <div class="w-50 gap-1">
                 <div class="input-group mb-3">
@@ -285,44 +248,81 @@
 
         <hr class="mt-3">
 
-                <div class="col-12 d-flex justify-content-between mt-3">
-                    <label for="subtitle_de" class="align-items-center">
-                        Subtitle (in Germany)
-                    </label>
-                    <input name="subtitle_de" type="text" value="<?=$connector->subtitle_de?>"
-                           class="form-control w-50 align-items-center"
-                           placeholder="i.e: Für Larssen-Spundbohlen (U-, Z-, Hut-Typ)" id="subtitle_de"/>
-                </div>
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="subtitle_de" class="align-items-center">
+                Subtitle (in Germany)
+            </label>
+            <input name="subtitle_de" type="text" value="<?=$connector->subtitle_de?>"
+                   class="form-control w-50 align-items-center"
+                   placeholder="i.e: Für Larssen-Spundbohlen (U-, Z-, Hut-Typ)" id="subtitle_de"/>
+        </div>
 
-                <div class="col-12 d-flex justify-content-between mt-3">
-                    <label for="subtitle_en_gb" class="align-items-center">
-                        Subtitle (in English UK)
-                    </label>
-                    <input name="subtitle_en_gb" type="text" value="<?=$connector->subtitle_en_gb?>"
-                           class="form-control w-50 align-items-center"
-                           placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_gb"/>
-                </div>
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="subtitle_en_gb" class="align-items-center">
+                Subtitle (in English UK)
+            </label>
+            <input name="subtitle_en_gb" type="text" value="<?=$connector->subtitle_en_gb?>"
+                   class="form-control w-50 align-items-center"
+                   placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_gb"/>
+        </div>
 
-                <div class="col-12 d-flex justify-content-between mt-3">
-                    <label for="subtitle_fr" class="align-items-center">
-                        Subtitle (in English Fr)
-                    </label>
-                    <input name="subtitle_fr" type="text" value="<?=$connector->subtitle_fr?>"
-                           class="form-control w-50 align-items-center"
-                           placeholder="i.e: Pour palplanches Larssen (type U, Z, chapeau)" id="subtitle_fr"/>
-                </div>
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="subtitle_fr" class="align-items-center">
+                Subtitle (in French)
+            </label>
+            <input name="subtitle_fr" type="text" value="<?=$connector->subtitle_fr?>"
+                   class="form-control w-50 align-items-center"
+                   placeholder="i.e: Pour palplanches Larssen (type U, Z, chapeau)" id="subtitle_fr"/>
+        </div>
 
-                <div class="col-12 d-flex justify-content-between mt-3">
-                    <label for="subtitle_en_us" class="align-items-center">
-                        Subtitle (in English US)
-                    </label>
-                    <input name="subtitle_en_us" type="text" value="<?=$connector->subtitle_en_us?>"
-                           class="form-control w-50 align-items-center"
-                           placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_us"/>
-                </div>
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="subtitle_en_us" class="align-items-center">
+                Subtitle (in English US)
+            </label>
+            <input name="subtitle_en_us" type="text" value="<?=$connector->subtitle_en_us?>"
+                   class="form-control w-50 align-items-center"
+                   placeholder="i.e: For Larssen sheet piles (U, Z, Hat-type)" id="subtitle_en_us"/>
+        </div>
 
+        <hr class="mt-3">
 
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in Germany)
+            </label>
+            <textarea name="description_de" type="text"
+                      class="form-control w-50 description" rows="3"
+                      placeholder="Description (in Germany)"><?=$connector->description_de?></textarea>
+        </div>
 
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in English UK)
+            </label>
+            <textarea name="description_en_gb" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in English UK)"><?=$connector->description_en_db?></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in French)
+            </label>
+            <textarea name="description_fr" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in French)"><?=$connector->description_fr?></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label for="description" class="align-items-center">
+                Description (in English US)
+            </label>
+            <textarea name="description_en_us" type="text"
+                      class="form-control w-50" rows="3"
+                      placeholder="Description (in English US)"><?=$connector->description_en_us?></textarea>
+        </div>
+
+        <hr class="mt-3">
     </div>
 
     <div class="d-flex justify-content-end gap-2 px-5">
