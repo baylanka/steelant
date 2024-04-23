@@ -68,20 +68,20 @@ class ConnectorUpdateRequestMapper
     private static function getSubtitleArray(Request $request)
     {
         return [
-            LanguagePool::GERMANY()->getLabel() => $request->get('subtitle_de'),
-            LanguagePool::FRENCH()->getLabel() => $request->get('subtitle_fr'),
-            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('subtitle_en_gb'),
-            LanguagePool::US_ENGLISH()->getLabel() => $request->get('subtitle_en_us'),
+            LanguagePool::GERMANY()->getLabel() => $request->get('subtitle_de','',false),
+            LanguagePool::FRENCH()->getLabel() => $request->get('subtitle_fr','',false),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('subtitle_en_gb','',false),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('subtitle_en_us','',false),
         ];
     }
 
     private static function getDescriptionJson(Request $request)
     {
         return json_encode([
-            LanguagePool::GERMANY()->getLabel() => $request->get('description_de', ''),
-            LanguagePool::US_ENGLISH()->getLabel() => $request->get('description_en_us', ''),
-            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('description_en_gb', ''),
-            LanguagePool::FRENCH()->getLabel() => $request->get('description_fr', ''),
+            LanguagePool::GERMANY()->getLabel() => $request->get('description_de', '', false),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('description_en_us', '', false),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('description_en_gb', '', false),
+            LanguagePool::FRENCH()->getLabel() => $request->get('description_fr', '', false),
         ]);
     }
 

@@ -71,7 +71,7 @@ class Connector extends Element
             return "";
         }
 
-        return $descriptionArray[$language];
+        return html_entity_decode($descriptionArray[$language]);
     }
 
     public function getDescriptionEnUS()
@@ -96,7 +96,7 @@ class Connector extends Element
     public function getSubtitleOtherAttr($lang)
     {
         $subtitleArr =  $this->getOtherAttrBy('subtitle');
-        return $subtitleArr[$lang] ?? '';
+        return html_entity_decode($subtitleArr[$lang]) ?? '';
     }
     private function getOtherAttrBy($key)
     {
