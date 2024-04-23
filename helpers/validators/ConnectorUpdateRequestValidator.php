@@ -31,6 +31,12 @@ class ConnectorUpdateRequestValidator
 
     private static function otherAttrValidation(Request $request)
     {
+       self::subtitleValidation($request);
+       self::footerValidation($request);
+    }
+
+    private static function subtitleValidation(Request $request): void
+    {
         if (
             (
                 !$request->has('subtitle_de')
@@ -47,7 +53,7 @@ class ConnectorUpdateRequestValidator
             )
         )
         {
-            return json_encode([]);
+            return;
         }
 
 
@@ -74,6 +80,54 @@ class ConnectorUpdateRequestValidator
         }
 
         $message = 'Subtitle validation error: Fill all or leave empty.';
+
+        ResponseUtility::response($message, 422, $arr);
+    }
+    private static function footerValidation(Request $request): void
+    {
+        if (
+            (
+                !$request->has('footer_de')
+                && !$request->has('footer_en_gb')
+                && !$request->has('footer_fr')
+                && !$request->has('footer_en_us')
+            )
+            ||
+            (
+                empty($request->get('footer_de'))
+                && empty($request->get('footer_en_gb'))
+                && empty($request->get('footer_fr'))
+                && empty($request->get('footer_en_us'))
+            )
+        )
+        {
+            return;
+        }
+
+
+        $arr = [];
+
+        if (!$request->has('footer_de') || empty($request->get('footer_de'))) {
+            $arr['footer_de'] = "Footer (in German) is required.";
+        }
+
+        if (!$request->has('footer_en_gb') || empty($request->get('footer_en_gb'))) {
+            $arr['footer_en_gb'] = "Footer (in English UK) is required.";
+        }
+
+        if (!$request->has('footer_fr') || empty($request->get('footer_fr'))) {
+            $arr['footer_fr'] = "Footer (in French) is required.";
+        }
+
+        if (!$request->has('footer_en_us') || empty($request->get('footer_en_us'))) {
+            $arr['footer_en_us'] = "Footer (in English US) is required.";
+        }
+
+        if (empty($arr)) {
+            return;
+        }
+
+        $message = 'Footer validation error: Fill all or leave empty.';
 
         ResponseUtility::response($message, 422, $arr);
     }

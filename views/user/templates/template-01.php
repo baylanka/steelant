@@ -83,6 +83,9 @@
                 <img class="align-self-center" src="<?= $imageUrl ?>" height="15"/>
             </dd>
 
+            <dd class="custom-dd custom-font mt-4">
+                <a class="link color-black"><?= $connector->getFooterOfLang() ?></a>
+            </dd>
         </dl>
     </div>
 

@@ -41,32 +41,63 @@ class ConnectorUpdateRequestMapper
 
     private static function getOtherAttrJson(Request $request)
     {
+        return json_encode([
+            'subtitle' => self::getSubtitleArray($request),
+            'footer' => self::getFooterArray($request),
+        ]);
+    }
+
+    private static function getFooterArray(Request $request)
+    {
         if (
             (
-                !$request->has('subtitle_de')
-            && !$request->has('subtitle_en_gb')
-            && !$request->has('subtitle_fr')
-            && !$request->has('subtitle_en_us')
+                !$request->has('footer_de')
+                && !$request->has('footer_en_gb')
+                && !$request->has('footer_fr')
+                && !$request->has('footer_en_us')
             )
             ||
             (
-                  empty($request->get('subtitle_de'))
+                empty($request->get('footer_de'))
+                && empty($request->get('footer_en_gb'))
+                && empty($request->get('footer_fr'))
+                && empty($request->get('footer_en_us'))
+            )
+        )
+        {
+            return [];
+        }
+
+
+        return [
+            LanguagePool::GERMANY()->getLabel() => $request->get('footer_de','',false),
+            LanguagePool::FRENCH()->getLabel() => $request->get('footer_fr','',false),
+            LanguagePool::UK_ENGLISH()->getLabel() => $request->get('footer_en_gb','',false),
+            LanguagePool::US_ENGLISH()->getLabel() => $request->get('footer_en_us','',false),
+        ];
+    }
+
+    private static function getSubtitleArray(Request $request)
+    {
+        if (
+            (
+                !$request->has('subtitle_de')
+                && !$request->has('subtitle_en_gb')
+                && !$request->has('subtitle_fr')
+                && !$request->has('subtitle_en_us')
+            )
+            ||
+            (
+                empty($request->get('subtitle_de'))
                 && empty($request->get('subtitle_en_gb'))
                 && empty($request->get('subtitle_fr'))
                 && empty($request->get('subtitle_en_us'))
             )
         )
         {
-            return json_encode([]);
+            return [];
         }
 
-        return json_encode([
-            'subtitle' => self::getSubtitleArray($request)
-        ]);
-    }
-
-    private static function getSubtitleArray(Request $request)
-    {
         return [
             LanguagePool::GERMANY()->getLabel() => $request->get('subtitle_de','',false),
             LanguagePool::FRENCH()->getLabel() => $request->get('subtitle_fr','',false),

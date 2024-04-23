@@ -37,6 +37,10 @@ class ConnectorDTO extends ElementDTO
     public string $subtitle_fr;
     public string $subtitle_en_us;
     public string $subtitle_en_gb;
+    public string $footer_de;
+    public string $footer_fr;
+    public string $footer_en_us;
+    public string $footer_en_gb;
 
     public array $downloadableFiles;
     public array $imageFiles;
@@ -58,6 +62,12 @@ class ConnectorDTO extends ElementDTO
         $this->subtitle_fr = $this->element->getSubtitleOtherAttr(LanguagePool::FRENCH()->getLabel());
         $this->subtitle_en_gb = $this->element->getSubtitleOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
         $this->subtitle_en_us = $this->element->getSubtitleOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
+
+        $this->footer_de = $this->element->getFooterOtherAttr(LanguagePool::GERMANY()->getLabel());
+        $this->footer_fr = $this->element->getFooterOtherAttr(LanguagePool::FRENCH()->getLabel());
+        $this->footer_en_gb = $this->element->getFooterOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
+        $this->footer_en_us = $this->element->getFooterOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
+
 
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -231,6 +241,20 @@ class ConnectorDTO extends ElementDTO
                 return  $this->subtitle_en_gb;
             case LanguagePool::US_ENGLISH()->getLabel():
                 return  $this->subtitle_en_us;
+        }
+    }
+
+    public function getFooterOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+                return $this->footer_fr;
+            case LanguagePool::GERMANY()->getLabel():
+                return $this->footer_de;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return  $this->footer_en_gb;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return  $this->footer_en_us;
         }
     }
 

@@ -96,7 +96,15 @@ class Connector extends Element
     public function getSubtitleOtherAttr($lang)
     {
         $subtitleArr =  $this->getOtherAttrBy('subtitle');
-        return html_entity_decode($subtitleArr[$lang]) ?? '';
+        $subtitle = $subtitleArr[$lang] ?? '';
+        return html_entity_decode($subtitle);
+    }
+
+    public function getFooterOtherAttr($lang)
+    {
+        $footerArr =  $this->getOtherAttrBy('footer');
+        $footer = $footerArr[$lang] ?? '';
+        return html_entity_decode($footer);
     }
     private function getOtherAttrBy($key)
     {
