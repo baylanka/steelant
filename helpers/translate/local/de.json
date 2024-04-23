@@ -138,7 +138,9 @@
     "max_tensile_strength": "Max. Zugkraft",
     "weight": "Gewicht",
     "request_this_connector": "Schlossprofil anfragen",
-    "remember_this_connector": "Schlossprofil merken"
+    "remember_this_connector": "Schlossprofil merken",
+    "pressure_load": "Druckbelastung",
+    "deformation_path": "Verformungsweg"
   },
 
   "connector_page": {

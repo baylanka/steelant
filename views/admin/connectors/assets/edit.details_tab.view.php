@@ -287,6 +287,48 @@
         <hr class="mt-3">
 
         <div class="col-12 d-flex justify-content-between mt-3">
+            <label class="align-items-center">Pressure load</label>
+            <div class="w-50 gap-1">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="pressure_load_m"
+                           value="<?=$connector->pressure_load_m?>"
+                           placeholder="ie: 800 kN/m">
+                    <span class="input-group-text">metrics</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="pressure_load_i"
+                           value="<?=$connector->pressure_load_i?>"
+                           placeholder="ie: 4.57 kips/in">
+                    <span class="input-group-text">imperial</span>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <label class="align-items-center">Deformation path</label>
+            <div class="w-50 gap-1">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="deformation_path_m"
+                           value="<?=$connector->deformation_path_m?>"
+                           placeholder="ie: -50 mm/+50mm">
+                    <span class="input-group-text">metrics</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="deformation_path_i"
+                           value="<?=$connector->deformation_path_i?>"
+                           placeholder='ie: -2"/+2"'>
+                    <span class="input-group-text">imperial</span>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="col-12 d-flex justify-content-between mt-3">
             <label for="description" class="align-items-center">
                 Description (in Germany)
             </label>

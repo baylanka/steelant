@@ -133,7 +133,9 @@
     "max_tensile_strength": "Force de traction max. ",
     "weight": "Poids ",
     "request_this_connector": "Demander ce connecteur",
-    "remember_this_connector": "Rappelez-vous ce connecteur"
+    "remember_this_connector": "Rappelez-vous ce connecteur",
+    "pressure_load": "Charge de pression",
+    "deformation_path": "Chemin de déformation"
   },
 
 

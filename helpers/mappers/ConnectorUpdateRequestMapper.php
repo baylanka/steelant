@@ -44,7 +44,53 @@ class ConnectorUpdateRequestMapper
         return json_encode([
             'subtitle' => self::getSubtitleArray($request),
             'footer' => self::getFooterArray($request),
+            'pressure_load' => self::getPressureLoadArray($request),
+            'deformation_path' => self::getDeformationPathArray($request),
         ]);
+    }
+
+    private static function getDeformationPathArray(Request $request): array
+    {
+        if (
+            (
+                !$request->has('deformation_path_m')
+                && !$request->has('deformation_path_i')
+            )
+            ||
+            (
+                empty($request->get('deformation_path_m'))
+                && empty($request->get('deformation_path_i'))
+            )
+        )
+        {
+            return [];
+        }
+        return [
+            'm' => $request->get('deformation_path_m',''),
+            'i' => $request->get('deformation_path_i',''),
+        ];
+    }
+
+    private static function getPressureLoadArray(Request $request): array
+    {
+        if (
+            (
+                !$request->has('pressure_load_m')
+                && !$request->has('pressure_load_i')
+            )
+            ||
+            (
+                empty($request->get('pressure_load_m'))
+                && empty($request->get('pressure_load_i'))
+            )
+        )
+        {
+            return [];
+        }
+        return [
+            'm' => $request->get('pressure_load_m',''),
+            'i' => $request->get('pressure_load_i',''),
+        ];
     }
 
     private static function getFooterArray(Request $request)

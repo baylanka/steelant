@@ -33,7 +33,10 @@ class ConnectorUpdateRequestValidator
     {
        self::subtitleValidation($request);
        self::footerValidation($request);
+       self::pressureLoadValidation($request);
+       self::deformationPathValidation($request);
     }
+
 
     private static function subtitleValidation(Request $request): void
     {
@@ -131,7 +134,80 @@ class ConnectorUpdateRequestValidator
 
         ResponseUtility::response($message, 422, $arr);
     }
+    private static function pressureLoadValidation(Request $request): void
+    {
+        if (
+            (
+                !$request->has('pressure_load_m')
+                && !$request->has('pressure_load_i')
+            )
+            ||
+            (
+                empty($request->get('pressure_load_m'))
+                && empty($request->get('pressure_load_i'))
+            )
+        )
+        {
+            return;
+        }
 
+
+        $arr = [];
+
+        if (!$request->has('pressure_load_m') || empty($request->get('pressure_load_m'))) {
+            $arr['pressure_load_m'] = "Pressure load  (metrics) is required.";
+        }
+
+        if (!$request->has('pressure_load_i') || empty($request->get('pressure_load_i'))) {
+            $arr['pressure_load_i'] = "Pressure load  (imperial) is required.";
+        }
+
+
+        if (empty($arr)) {
+            return;
+        }
+
+        $message = 'Pressure load validation error: Fill all or leave empty.';
+
+        ResponseUtility::response($message, 422, $arr);
+    }
+    private static function deformationPathValidation(Request $request): void
+    {
+        if (
+            (
+                !$request->has('deformation_path_m')
+                && !$request->has('deformation_path_i')
+            )
+            ||
+            (
+                empty($request->get('deformation_path_m'))
+                && empty($request->get('deformation_path_i'))
+            )
+        )
+        {
+            return;
+        }
+
+
+        $arr = [];
+
+        if (!$request->has('deformation_path_m') || empty($request->get('deformation_path_m'))) {
+            $arr['deformation_path_m'] = "Deformation path (metrics) is required.";
+        }
+
+        if (!$request->has('deformation_path_i') || empty($request->get('deformation_path_i'))) {
+            $arr['deformation_path_i'] = "Deformation path (imperial) is required.";
+        }
+
+
+        if (empty($arr)) {
+            return;
+        }
+
+        $message = 'Deformation path validation error: Fill all or leave empty.';
+
+        ResponseUtility::response($message, 422, $arr);
+    }
 
     private static function downloadableFilesValidation(Request $request)
     {

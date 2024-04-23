@@ -3,6 +3,7 @@
     use helpers\translate\Translate;
     use model\Template;
     use \model\Media;
+    use helpers\pools\StandardLengthTypePool;
 ?>
 
 <?php
@@ -48,6 +49,15 @@
             <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: <?= $connector->getMaxTensileStrengthByLang() ?></dd>
             <?php endif; ?>
+
+            <?php if (!empty($connector->getPressureLoadOfLang())): ?>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "pressure_load", $language) ?>: <?= $connector->getPressureLoadOfLang() ?></dd>
+            <?php endif; ?>
+
+            <?php if (!empty($connector->getDeformationPathOfLang())): ?>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "deformation_path", $language) ?>: <?= $connector->getDeformationPathOfLang() ?></dd>
+            <?php endif; ?>
+
             <dd class="my-3 custom-font"><?= empty($connector->getDescriptionOfLang())
                     ? '' : $connector->getDescriptionOfLang() ?></dd>
 

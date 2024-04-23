@@ -106,6 +106,41 @@ class Connector extends Element
         $footer = $footerArr[$lang] ?? '';
         return html_entity_decode($footer);
     }
+    private function getPressureLoadArray()
+    {
+        return  $this->getOtherAttrBy('pressure_load') ?? [];
+    }
+
+    public function getPressureLoadImperialValue()
+    {
+        $pressureLoadArray = $this->getPressureLoadArray();
+        return $pressureLoadArray['i'] ?? '';
+    }
+
+    public function getPressureLoadMetricsValue()
+    {
+        $pressureLoadArray = $this->getPressureLoadArray();
+        return $pressureLoadArray['m'] ?? '';
+    }
+
+    private function getDeformationPathArray()
+    {
+        return  $this->getOtherAttrBy('deformation_path') ?? [];
+    }
+
+    public function getDeformationPathImperialValue()
+    {
+        $pressureLoadArray = $this->getDeformationPathArray();
+        return $pressureLoadArray['i'] ?? '';
+    }
+
+    public function getDeformationPathMetricsValue()
+    {
+        $pressureLoadArray = $this->getDeformationPathArray();
+        return $pressureLoadArray['m'] ?? '';
+    }
+
+
     private function getOtherAttrBy($key)
     {
         if(empty($this->other_attrs) || empty(json_decode($this->other_attrs))){

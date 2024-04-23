@@ -42,6 +42,11 @@ class ConnectorDTO extends ElementDTO
     public string $footer_en_us;
     public string $footer_en_gb;
 
+    public string $pressure_load_i;
+    public string $pressure_load_m;
+    public string $deformation_path_i;
+    public string $deformation_path_m;
+
     public array $downloadableFiles;
     public array $imageFiles;
 
@@ -68,6 +73,11 @@ class ConnectorDTO extends ElementDTO
         $this->footer_en_gb = $this->element->getFooterOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
         $this->footer_en_us = $this->element->getFooterOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
 
+        $this->pressure_load_m = $this->element->getPressureLoadMetricsValue();
+        $this->pressure_load_i = $this->element->getPressureLoadImperialValue();
+
+        $this->deformation_path_m = $this->element->getDeformationPathMetricsValue();
+        $this->deformation_path_i = $this->element->getDeformationPathImperialValue();
 
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -255,6 +265,31 @@ class ConnectorDTO extends ElementDTO
                 return  $this->footer_en_gb;
             case LanguagePool::US_ENGLISH()->getLabel():
                 return  $this->footer_en_us;
+        }
+    }
+
+    public function getPressureLoadOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->pressure_load_m;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->pressure_load_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->pressure_load_i . " <span class='m-0 d-inline-block'>(" . $this->pressure_load_m.")</span>";
+        }
+    }
+    public function getDeformationPathOfLang()
+    {
+        switch($this->language){
+            case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
+                return  $this->deformation_path_m;
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                return $this->deformation_path_i;
+            case LanguagePool::US_ENGLISH()->getLabel():
+                return $this->deformation_path_i . " <span class='m-0 d-inline-block'>(" . $this->deformation_path_m.")</span>";
         }
     }
 
