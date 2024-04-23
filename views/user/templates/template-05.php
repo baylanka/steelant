@@ -34,9 +34,7 @@ use \model\Media;
 
                 <?php endif  ?>
             </dd>
-            <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
-                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: <?= $connector->getMaxTensileStrengthByLang() ?></dd>
-            <?php endif; ?>
+
             <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
             <?php else: ?>
@@ -44,6 +42,11 @@ use \model\Media;
                     <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
+
+            <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
+                <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: <?= $connector->getMaxTensileStrengthByLang() ?></dd>
+            <?php endif; ?>
+
             <dd class="my-3 custom-font"><?= empty($connector->getDescriptionOfLang())
                     ? '' : $connector->getDescriptionOfLang() ?></dd>
 
