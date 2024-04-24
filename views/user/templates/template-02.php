@@ -1,18 +1,18 @@
 <?php
-    use helpers\services\ConnectorService;
-    use helpers\translate\Translate;
-    use model\Template;
-    use \model\Media;
-    use helpers\pools\StandardLengthTypePool;
+use helpers\services\ConnectorService;
+use helpers\translate\Translate;
+use model\Template;
+use \model\Media;
+use helpers\pools\StandardLengthTypePool;
 ?>
 
 <?php
-    $imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bottom-sm";
+$imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bottom-sm";
 ?>
 
 <div class="row my-5" id="<?= $connector->id ?>">
 
-    <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
+    <div class="col-12 col-md-3 col-xxl-3">
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if(!empty($connector->getSubtitleOfLang())): ?>
@@ -23,6 +23,7 @@
             <dd class="custom-dd custom-font mt-4"><?= Translate::get("template_context", "steel_grade", $language) ?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
             <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>: <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?>
             </dd>
+
             <dd class="custom-dd custom-font">
                 <?php if ($connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
                     <?= Translate::get("template_context", "standard_length", $language) ?>:
@@ -43,7 +44,7 @@
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
             <?php else: ?>
                 <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?> <?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
+                    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?= $key === 'general' ? '' : $key ?>: <?= $value ?></dd>
                 <?php endforeach; ?>
             <?php endif; ?>
 
@@ -58,7 +59,6 @@
             <?php if (!empty($connector->getDeformationPathOfLang())): ?>
                 <dd class="custom-dd custom-font"><?= Translate::get("template_context", "deformation_path", $language) ?>: <?= $connector->getDeformationPathOfLang() ?></dd>
             <?php endif; ?>
-
 
             <dd class="my-3 custom-font"><?= empty($connector->getDescriptionOfLang())
                     ? '' : $connector->getDescriptionOfLang() ?></dd>
@@ -101,7 +101,6 @@
 
         </dl>
     </div>
-
 
 
 

@@ -195,6 +195,8 @@ use helpers\translate\Translate;
 
 <script>
 
+
+
     $(document).on("click", ".request-connector", async function () {
         const id = $(this).attr('data-id');
         let path = `order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
@@ -235,6 +237,16 @@ use helpers\translate\Translate;
             $(".convertable_image").css("height",height)
 
         }
+
+        $(document).on("fullscreenchange","video",function () {
+            console.log( $(this).css("object-fit"));
+
+            if($(this).css("object-fit") === "cover")
+                $(this).css("object-fit","contain");
+            else
+                $(this).css("object-fit","cover");
+
+        })
 
     });
     $(document).on("submit", ".orderRequestForm", async function (e) {

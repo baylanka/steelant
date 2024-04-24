@@ -51,7 +51,7 @@
                     <dl>
                         <p class="category-name">Pipe pile steel walls</p>
                         <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(17) ?>#heading" class="link color-black category-item-text">MF</a></dd>
-                        <dd class="category-item"><a href="<<?= RouterService::getCategoryPageRoute(18) ?>#heading" class="link color-black category-item-text">MDF</a></dd>
+                        <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(18) ?>#heading" class="link color-black category-item-text">MDF</a></dd>
                         <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(19) ?>#heading" class="link color-black category-item-text">LPB</a></dd>
                         <dd class="category-item"><a href="<?= RouterService::getCategoryPageRoute(20) ?>#heading" class="link color-black category-item-text">FD</a></dd>
                     </dl>
