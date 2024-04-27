@@ -283,6 +283,10 @@ class ConnectorUpdateRequestValidator
         $maxTensileStrengthLabelArr = $request->get('max_tensile_strength_label');
 
         foreach ($maxTensileStrengthMetricArr as $index => $value){
+            if(empty($maxTensileStrengthMetricArr[$index]) && empty($maxTensileStrengthImperialArr[$index])){
+                continue;
+            }
+
             if($index > 0 && (!isset($maxTensileStrengthLabelArr[$index]) || empty($maxTensileStrengthLabelArr[$index]))) {
                 throw new \Exception("Can not leave max. tensile strength labels empty unless first one");
             }

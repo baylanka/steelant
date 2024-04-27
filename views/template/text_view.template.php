@@ -19,7 +19,7 @@ use helpers\translate\Translate;
 
 
 
-    <?php if (empty(sizeof($connector->getThicknessArrayOfLang()))): ?>
+    <?php if (empty(sizeof(array_values($connector->getThicknessArrayOfLang())))): ?>
         <dd class="custom-dd custom-font">
             <?= Translate::get("template_context", "steel_thickness", $language) ?>: ---</dd>
     <?php else: ?>
@@ -32,7 +32,7 @@ use helpers\translate\Translate;
     <?php endif; ?>
 
 
-    <?php if (empty(sizeof($connector->getLengthOfLang()))): ?>
+    <?php if (empty(sizeof(array_values($connector->getLengthOfLang())))): ?>
         <dd class="custom-dd custom-font">
             <?= Translate::get("template_context", "standard_length", $language) ?>: ---</dd>
     <?php else: ?>
@@ -82,7 +82,7 @@ use helpers\translate\Translate;
     <?php endif; ?>
 
 
-    <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
+    <?php if (empty(sizeof(array_values($connector->getWeightArrayOfLang())))): ?>
         <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
     <?php else: ?>
         <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
@@ -91,9 +91,8 @@ use helpers\translate\Translate;
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <?php if (empty(sizeof($connector->getMaxTensileStrengthByLang()))): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: ---</dd>
-    <?php else: ?>
+
+    <?php if (!empty(sizeof(array_values($connector->getMaxTensileStrengthByLang())))): ?>
         <?php foreach ($connector->getMaxTensileStrengthByLang() as $key => $value): ?>
             <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?> <?= $key === 'general' ? '' : $key ?>
                 : <?= $value ?></dd>

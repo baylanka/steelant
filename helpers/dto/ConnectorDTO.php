@@ -136,11 +136,12 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->standardLength_i as $key => $value){
-                    if(isset($this->standardLength_m[$key])){
+                    if(isset($this->standardLength_m[$key]) && !empty($this->standardLength_m[$key])){
                         $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->standardLength_m[$key].")</span>";
+                        $arr[$key] = $value;
                     }
 
-                    $arr[$key] = $value;
+
                 }
                 return $arr;
         }
@@ -157,11 +158,12 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->thickness_i as $key => $value){
-                    if(isset($this->thickness_m[$key])){
+                    if(isset($this->thickness_m[$key]) && !empty($this->thickness_m[$key])){
                         $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->thickness_m[$key].")</span>";
+                        $arr[$key] = $value;
                     }
 
-                    $arr[$key] = $value;
+
                 }
                 return $arr;
         }
@@ -178,11 +180,12 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->weights_i as $key => $value){
-                    if(isset($this->weights_m[$key])){
+                    if(isset($this->weights_m[$key]) && !empty($this->weights_m[$key])){
                         $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->weights_m[$key].")</span>";
+                        $arr[$key] = $value;
                     }
 
-                    $arr[$key] = $value;
+
                 }
                 return $arr;
         }
@@ -257,11 +260,12 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->maxTensile_i as $key => $value){
-                    if(isset($this->maxTensile_m[$key])){
+                    if(isset($this->maxTensile_m[$key]) && !empty($this->maxTensile_m[$key])){
                         $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->maxTensile_m[$key].")</span>";
+                        $arr[$key] = $value;
                     }
 
-                    $arr[$key] = $value;
+
                 }
                 return $arr;
         }
