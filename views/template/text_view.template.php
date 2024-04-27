@@ -37,25 +37,43 @@ use helpers\translate\Translate;
             <?= Translate::get("template_context", "standard_length", $language) ?>: ---</dd>
     <?php else: ?>
         <?php
+            $totalLengths = sizeof($connector->getLengthOfLang());
             $i = -1;
         ?>
         <?php foreach ($connector->getLengthOfLang() as $key => $value): ?>
             <?php
                     $i++;
-                    $customizedLabelExists = !(empty($key) || $key == "general");
                     $type = $connector->standardLengthTypes[$i];
+                    $customizedLabelExists = !(empty($key) || $key == "general");
+                    $label = '';
+                    if($totalLengths > 1){
+                        $label = Translate::get("template_context", "length", $language);
+                        if($customizedLabelExists){
+                            $label .= " {$key}";
+                        }
+                    }else{
+                        if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE){
+                            $label = Translate::get("template_context", "standard_length", $language);
+                        }elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES){
+                            $label = Translate::get("template_context", "standard_lengths", $language);
+                        }elseif ($type == StandardLengthTypePool::VARIABLE_VALUES){
+                            $label = Translate::get("template_context", "standard_length_variable", $language);
+                        }
+                    }
+
+
             ?>
             <dd class="custom-dd custom-font">
                 <?php if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
-                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_length", $language) ?> :
+                    <?= $label ?> :
                     <?= empty($value) ? '---' : $value ?>
 
                 <?php elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?>
-                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_lengths", $language) ?> :
+                    <?= $label ?> :
                     <?= empty($value) ? '---' : $value ?>
 
                 <?php elseif ($type == StandardLengthTypePool::VARIABLE_VALUES): ?>
-                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_length_variable", $language) ?> &nbsp;
+                    <?= $label ?> &nbsp;
                     <?= empty($value) ? '---' : $value ?>
 
                 <?php endif ?>
