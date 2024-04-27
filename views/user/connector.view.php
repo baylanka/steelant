@@ -231,16 +231,26 @@ use helpers\translate\Translate;
         $(".request-connector-btn").addClass("request-connector");
 
 
-        if($(".convert_by_image")){
-
+        if($(".convert_by_image").length){
             let height  = $(".convert_by_image").css("height");
             $(".convertable_image").css("height",height)
+        }
 
+        if($(".convert_by_image_2").length){
+            console.log("1");
+            let height  = $(".convert_by_image_2").css("height");
+            height.replace("px", "");
+            height = (parseInt(height) - 20.8)/2;
+            $(".convertable_image_2").css("height",height+"px");
+        }
+
+        if($(".convert_by_image3").length){
+            console.log("2");
+            let height  = $(".convert_by_image3").css("height");
+            $(".convertable_image3").css("height",height)
         }
 
         $(document).on("fullscreenchange","video",function () {
-            console.log( $(this).css("object-fit"));
-
             if($(this).css("object-fit") === "cover")
                 $(this).css("object-fit","contain");
             else

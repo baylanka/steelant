@@ -277,6 +277,10 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->pressure_load_i;
             case LanguagePool::US_ENGLISH()->getLabel():
+
+                if(empty($this->pressure_load_i) && empty($this->pressure_load_m))
+                    return "";
+
                 return $this->pressure_load_i . " <span class='m-0 d-inline-block'>(" . $this->pressure_load_m.")</span>";
         }
     }
@@ -289,6 +293,10 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->deformation_path_i;
             case LanguagePool::US_ENGLISH()->getLabel():
+
+                if(empty($this->deformation_path_i) && empty($this->deformation_path_m))
+                    return "";
+
                 return $this->deformation_path_i . " <span class='m-0 d-inline-block'>(" . $this->deformation_path_m.")</span>";
         }
     }

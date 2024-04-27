@@ -200,14 +200,6 @@ class CategoryUpdateRequestValidator
             ]);
         }
 
-
-        if(!self::isUniqueTitleSet($request)){
-            ResponseUtility::response("title must be unique", 422,
-                [
-                    "There is/are one or more title(s) already existing.",
-                    "Please try with unique."
-                ]);
-        }
         if(!self::titleLengthMin($request)){
             ResponseUtility::response("name length is too short!",422,[
                 "name value length must be more than or equal to 5"
