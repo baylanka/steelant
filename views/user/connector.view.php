@@ -199,7 +199,7 @@ use helpers\translate\Translate;
 
     $(document).on("click", ".request-connector", async function () {
         const id = $(this).attr('data-id');
-        let path = `order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
+        let path = `${getBaseUrl()}/order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
         let authenticated = false;
         <?php if(isset($_SESSION["auth"]) && $_SESSION["auth"] == true){ ?>
         authenticated = true;
@@ -218,7 +218,7 @@ use helpers\translate\Translate;
                 $(".datepicker").attr("min", formattedDate)
 
             } else {
-                window.location.href = "<?= url("/login") ?>?redirect=connector?id=<?= $_GET["id"] ?>";
+                window.location.href = "<?= url("/login") ?>?redirect=contents?id=<?= $_GET["id"] ?>";
             }
         } catch (err) {
             toast.error("An error occurred while attempting to open the create connector.. " + err);
