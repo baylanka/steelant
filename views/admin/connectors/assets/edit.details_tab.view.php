@@ -108,7 +108,7 @@
                 Steel Thickness
             </label>
 
-            <div class="w-50 gap-1 weight-jumbo-container">
+            <div class="w-50 gap-1 thickness-jumbo-container">
                 <?php
                     $thicknessIArray = $connector->thickness_i;
                     $thicknessMArray = $connector->thickness_m;
@@ -194,45 +194,153 @@
         <hr class="mt-3">
 
         <div class="col-12 d-flex justify-content-between mt-3">
-            <label class="align-items-center">Standard length</label>
-            <div class="w-50 gap-1">
-                <div class="w-100 justify-content-start mb-3">
-                    <select class="form-select w-100"  name="standard_length_type">
-                        <option
-                                value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
-                            <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
-                        >
-                            Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
-                        </option>
-                        <option
-                                value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
-                            <?=$connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
-                        >
-                            Fixed multi value. i.e: 12m, 14m, 16m
-                        </option>
-                        <option
-                                value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
-                            <?=$connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
-                        >
-                            Variable lengths. i.e: 7.6 m - 10.6 m
-                        </option>
-                    </select>
-                </div>
+
+            <label class="align-items-center">
+                Standard length
+            </label>
+
+            <div class="w-50 gap-1 length-jumbo-container">
+                <?php
+                    $lengthIArray = $connector->standardLength_i;
+                    $lengthMArray = $connector->standardLength_m;
+                    $lengthTypeArray = $connector->standardLengthTypes;
+                ?>
+                <?php if(sizeof($lengthMArray) <= 1): ?>
+                    <div class="p-3 mt-3 container">
+
+                        <div class="w-100 justify-content-start mb-3">
+                            <?php
+                                $prevSelectedType = array_values($lengthTypeArray)[0] ?? -100;
+                            ?>
+                            <select class="form-select w-100"  name="standard_length_type[]">
+                                <option
+                                        value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
+                                    <?=$prevSelectedType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
+                                >
+                                    Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
+                                </option>
+                                <option
+                                        value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
+                                    <?=$prevSelectedType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
+                                >
+                                    Fixed multi value. i.e: 12m, 14m, 16m
+                                </option>
+                                <option
+                                        value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
+                                    <?=$prevSelectedType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
+                                >
+                                    Variable lengths. i.e: 7.6 m - 10.6 m
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="standard_length_metrics[]"
+                                   placeholder="12 m"
+                                   value="<?=array_values($lengthMArray)[0] ?? ''?>"
+                            >
+                            <span class="input-group-text">metrics</span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="standard_length_imperial[]"
+                                   placeholder="1.2 ft"
+                                   value="<?=array_values($lengthIArray)[0] ?? ''?>"
+                            >
+                            <span class="input-group-text">imperial</span>
+                        </div>
 
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_metrics" placeholder="12 m"
-                           value="<?=$connector->standardLength_m ?>"
-                    >
-                    <span class="input-group-text">metrics</span>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="standard_length_imperial" placeholder="1.2 ft"
-                           value="<?=$connector->standardLength_i?>"
-                    >
-                    <span class="input-group-text">imperial</span>
-                </div>
+                        <div class="input-group justify-content-end mb-3">
+                            <button type="button" class="btn btn-light show-label-btn">
+                                <i class="bi bi-arrow-bar-left"></i>
+                            </button>
 
+                            <?php
+                                $key = array_keys($lengthIArray)[0] ?? '';
+                            ?>
+                            <input type="text" class="form-control ml-1  label"
+                                   placeholder="label" name="standard_length_label[]"
+                                   value="<?=$key === 'general' ? '' : $key?>"
+                            >
+                            <span class="input-group-text">label</span>
+                        </div>
+
+
+                        <div class="input-group justify-content-end">
+                            <button type="button" class="btn btn-primary add-new-standard-length-btn">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                <?php else: ?>
+                    <?php $i = -1; ?>
+                    <?php foreach ($lengthMArray as $key => $value): ?>
+                        <?php $i++; ?>
+                        <div class="p-3 mt-3 container">
+                            <div class="w-100 justify-content-start mb-3">
+                                <?php
+                                $prevSelectedType = $lengthTypeArray[$i] ?? null;
+                                ?>
+                                <select class="form-select w-100"  name="standard_length_type[]">
+                                    <option
+                                            value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
+                                        <?=$prevSelectedType == StandardLengthTypePool::FIXED_SINGLE_VALUE ? 'selected':'' ?>
+                                    >
+                                        Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
+                                    </option>
+                                    <option
+                                            value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
+                                        <?=$prevSelectedType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES ? 'selected':'' ?>
+                                    >
+                                        Fixed multi value. i.e: 12m, 14m, 16m
+                                    </option>
+                                    <option
+                                            value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
+                                        <?=$prevSelectedType == StandardLengthTypePool::VARIABLE_VALUES ? 'selected':'' ?>
+                                    >
+                                        Variable lengths. i.e: 7.6 m - 10.6 m
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="standard_length_metrics[]"
+                                       placeholder="ie: 12m"
+                                       value="<?=$value?>"
+                                >
+                                <span class="input-group-text">metrics</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="standard_length_imperial[]"
+                                       placeholder="ie: 1.2ft"
+                                       value="<?=$lengthIArray[$key]?>"
+                                >
+                                <span class="input-group-text">imperial</span>
+                            </div>
+
+                            <div class="input-group justify-content-end mb-3">
+                                <input type="text" class="form-control ml-1" placeholder="label"
+                                       value="<?=$key === 'general' ? '' : $key?>"
+                                       name="standard_length_label[]"
+                                >
+                                <span class="input-group-text">label</span>
+                            </div>
+
+                            <div class="input-group justify-content-end">
+                                <button type="button"
+                                        class="btn btn-danger remove-standard-length-btn"><i
+                                            class="bi bi-dash-lg"></i></button>
+                                <button type="button"
+                                        class="btn btn-primary add-new-standard-length-btn"><i
+                                            class="bi bi-plus-lg"></i></button>
+                            </div>
+
+                        </div>
+                    <?php endforeach ?>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -476,9 +584,10 @@
 
 </div>
 <script>
-    $(document).off("click", ".add-new-weight-btn");
-    $(document).on("click", ".add-new-weight-btn", function () {
-        $(this).closest("div.weight-jumbo-container").append(`
+
+    function getWeightFields()
+    {
+        return `
 
                <div class="p-3 mt-3 container">
 
@@ -515,12 +624,18 @@
                </div>
 
 
-            `);
+            `.trim();
+    }
+
+
+    $(document).off("click", ".add-new-weight-btn");
+    $(document).on("click", ".add-new-weight-btn", function () {
+        $(this).closest("div.weight-jumbo-container").append(getWeightFields());
     });
 
-    $(document).off("click", ".add-new-thickness-btn");
-    $(document).on("click", ".add-new-thickness-btn", function () {
-        $(this).closest("div.weight-jumbo-container").append(`
+    function getThicknessFields()
+    {
+        return `
 
                <div class="p-3 mt-3 container">
 
@@ -557,13 +672,83 @@
                </div>
 
 
-            `);
+            `.trim();
+    }
+
+    $(document).off("click", ".add-new-thickness-btn");
+    $(document).on("click", ".add-new-thickness-btn", function () {
+        $(this).closest("div.thickness-jumbo-container").append(getThicknessFields());
     });
 
+    function getLengthFields()
+    {
+        return `
+                         <div class="p-3 mt-3 container">
+                            <div class="w-100 justify-content-start mb-3">
+
+                                <select class="form-select w-100"  name="standard_length_type[]">
+                                    <option
+                                            value="<?=StandardLengthTypePool::FIXED_SINGLE_VALUE?>"
+                                            selected
+                                    >
+                                        Fixed single value. i.e: 12m or 12m (-0.1mm/+0.2mm)
+                                    </option>
+                                    <option
+                                            value="<?=StandardLengthTypePool::FIXED_MULTIPLE_VALUES?>"
+                                    >
+                                        Fixed multi value. i.e: 12m, 14m, 16m
+                                    </option>
+                                    <option
+                                            value="<?=StandardLengthTypePool::VARIABLE_VALUES?>"
+                                    >
+                                        Variable lengths. i.e: 7.6 m - 10.6 m
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="standard_length_metrics[]"
+                                       placeholder="ie: 12m"
+                                >
+                                <span class="input-group-text">metrics</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="standard_length_imperial[]"
+                                       placeholder="ie: 1.2ft"
+                                >
+                                <span class="input-group-text">imperial</span>
+                            </div>
+
+                            <div class="input-group justify-content-end mb-3">
+                                <input type="text" class="form-control ml-1" placeholder="label"
+                                       name="standard_length_label[]"
+                                >
+                                <span class="input-group-text">label</span>
+                            </div>
+
+                            <div class="input-group justify-content-end">
+                                <button type="button"
+                                        class="btn btn-danger remove-standard-length-btn"><i
+                                            class="bi bi-dash-lg"></i></button>
+                                <button type="button"
+                                        class="btn btn-primary add-new-standard-length-btn"><i
+                                            class="bi bi-plus-lg"></i></button>
+                            </div>
+
+                        </div>
+        `;
+    }
+
+    $(document).off("click", ".add-new-standard-length-btn");
+    $(document).on("click", ".add-new-standard-length-btn", function () {
+        $(this).closest("div.length-jumbo-container").append(getLengthFields());
+    });
 
     $(document).off("click", ".remove-weight-btn");
     $(document).off("click", ".remove-thickness-btn");
-    $(document).on("click", ".remove-weight-btn, .remove-thickness-btn", function () {
+    $(document).off("click", ".remove-standard-length-btn");
+    $(document).on("click", ".remove-weight-btn, .remove-thickness-btn, .remove-standard-length-btn", function () {
         $(this).closest("div.container").remove();
     });
 

@@ -137,8 +137,26 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?=($connector->standardLength)?>
+                                <?php if(sizeof($connector->standardLength)===1):?>
+                                    <?=array_values($connector->standardLength)[0]?>
+                                <?php else: ?>
+                                    <table class="table table-striped table-bordered">
+                                        <tbody>
+                                        <?php foreach ($connector->standardLength as $label=> $each):?>
+                                            <tr>
+                                                <th role="row">
+                                                    <?= $label !== 'general' ? $label: ''?>
+                                                </th>
+                                                <td>
+                                                    <?=$each?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </td>
+
                             <td class="text-center">
                                 <?php if(sizeof($connector->weights)===1):?>
                                     <?=array_values($connector->weights)[0]?>
@@ -264,10 +282,40 @@
         return thickness;
     }
 
+    function getLength(connector)
+    {
+        let thickness = '';
+        if(Object.values(connector.standardLength).length ===1){
+            thickness = Object.values(connector.standardLength)[0];
+        }else{
+
+            thickness = `<table class="table table-striped table-bordered">
+                            <tbody>`
+            for(let label in connector.standardLength){
+                thickness += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.standardLength[label]}
+                        </td>
+                    </tr>
+                 `;
+            }
+
+            thickness += `    </tbody>
+                       </table>`;
+        }
+
+        return thickness;
+    }
+
     function getRow(connector)
     {
         let weight = getWeight(connector);
         let thickness = getThickness(connector);
+        let length = getLength(connector);
 
         return `
                 <tr class="align-middle">
@@ -281,7 +329,7 @@
                     <td class="text-center">${connector.name}</td>
                     <td class="text-center">${connector.grade}</td>
                     <td class="text-center">${thickness}</td>
-                    <td class="text-center">${connector.standardLength}</td>
+                    <td class="text-center">${length}</td>
                     <td class="text-center">${weight}</td>
                     <td class="text-center">
                         <div class="btn-group">

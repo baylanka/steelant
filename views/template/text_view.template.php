@@ -31,21 +31,39 @@ use helpers\translate\Translate;
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <dd class="custom-dd custom-font">
-        <?php if ($connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
-            <?= Translate::get("template_context", "standard_length", $language) ?>:
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
 
-        <?php elseif ($connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?>
-            <?= Translate::get("template_context", "standard_lengths", $language) ?>:
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+    <?php if (empty(sizeof($connector->getLengthOfLang()))): ?>
+        <dd class="custom-dd custom-font">
+            <?= Translate::get("template_context", "standard_length", $language) ?>: ---</dd>
+    <?php else: ?>
+        <?php
+            $i = -1;
+        ?>
+        <?php foreach ($connector->getLengthOfLang() as $key => $value): ?>
+            <?php
+                    $i++;
+                    $customizedLabelExists = !(empty($key) || $key == "general");
+                    $type = $connector->standardLengthTypes[$i];
+            ?>
+            <dd class="custom-dd custom-font">
+                <?php if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
+                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_length", $language) ?> :
+                    <?= empty($value) ? '---' : $value ?>
 
-        <?php elseif ($connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES): ?>
-            <?= Translate::get("template_context", "standard_length_variable", $language) ?> &nbsp;
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
+                <?php elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?>
+                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_lengths", $language) ?> :
+                    <?= empty($value) ? '---' : $value ?>
 
-        <?php endif ?>
-    </dd>
+                <?php elseif ($type == StandardLengthTypePool::VARIABLE_VALUES): ?>
+                    <?= $customizedLabelExists ? $key : Translate::get("template_context", "standard_length_variable", $language) ?> &nbsp;
+                    <?= empty($value) ? '---' : $value ?>
+
+                <?php endif ?>
+            </dd>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
     <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
         <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
     <?php else: ?>

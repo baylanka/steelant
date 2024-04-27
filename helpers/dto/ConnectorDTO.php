@@ -23,10 +23,10 @@ class ConnectorDTO extends ElementDTO
     public string $description_en_us;
     public string $description_en_db;
     public string $description_fr;
-    public string $standardLength;
-    public string $standardLength_m;
-    public string $standardLength_i;
-    public int $standardLengthType;
+    public array $standardLength;
+    public array $standardLength_m;
+    public array $standardLength_i;
+    public array $standardLengthTypes;
     public array $weights;
     public array $weights_i;
     public array $weights_m;
@@ -60,7 +60,7 @@ class ConnectorDTO extends ElementDTO
         $this->id = $this->element->id;
         $this->name = $this->element->name;
         $this->grade = $this->element->grade ?? '';
-        $this->standardLengthType = $this->element->standard_length_type ?? StandardLengthTypePool::FIXED_SINGLE_VALUE;
+        $this->setLengthTypeArray();
         $this->setLanguageDescriptions();
         $this->isPublished = $this->element->visibility;
 
@@ -91,6 +91,11 @@ class ConnectorDTO extends ElementDTO
         $this->setImageFiles();
         $this->setContentId();
         $this->setContentLabel();
+    }
+
+    private function setLengthTypeArray()
+    {
+        $this->standardLengthTypes = json_decode($this->element->standard_length_type ?? '{}', true);
     }
 
     private function setLanguageDescriptions()
@@ -129,7 +134,15 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->standardLength_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->standardLength_i . " <span class='m-0 d-inline-block'>(" . $this->standardLength_m.")</span>";
+                $arr = [];
+                foreach ($this->standardLength_i as $key => $value){
+                    if(isset($this->standardLength_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->standardLength_m[$key].")</span>";
+                    }
+
+                    $arr[$key] = $value;
+                }
+                return $arr;
         }
     }
 
@@ -397,8 +410,8 @@ class ConnectorDTO extends ElementDTO
 
     private function setLength($lang): void
     {
-        $this->standardLength_m = $this->element->standard_lengths_m ?? '';
-        $this->standardLength_i = $this->element->standard_lengths_i ?? '';
+        $this->standardLength_m = json_decode($this->element->standard_lengths_m ?? '{}', true);
+        $this->standardLength_i = json_decode($this->element->standard_lengths_i ?? '{}', true);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():

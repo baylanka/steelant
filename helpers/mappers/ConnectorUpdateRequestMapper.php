@@ -25,11 +25,11 @@ class ConnectorUpdateRequestMapper
         $connector->weight_i = self::getWeightImperial($request);
         $connector->thickness_m = self::getThicknessMetrics($request);
         $connector->thickness_i = self::getThicknessImperial($request);
-        $connector->standard_lengths_m = $request->get('standard_length_metrics');
-        $connector->standard_lengths_i = $request->get('standard_length_imperial');
+        $connector->standard_lengths_m = self::getLengthMetrics($request);
+        $connector->standard_lengths_i = self::getLengthImperial($request);
         $connector->max_tensile_strength_m = $request->get('max_tensile_strength_m');
         $connector->max_tensile_strength_i = $request->get('max_tensile_strength_i');
-        $connector->standard_length_type = $request->get('standard_length_type');
+        $connector->standard_length_type = json_encode($request->get('standard_length_type'));
         $connector->other_attrs = self::getOtherAttrJson($request);
 
 
@@ -452,6 +452,41 @@ class ConnectorUpdateRequestMapper
 
         return $contentTemplate;
     }
+
+    private static function getLengthMetrics(Request $request)
+    {
+        $array = [];
+        $lengthLabelArray = $request->get('standard_length_label', []);
+        $lengthMetricsArray = $request->get('standard_length_metrics', []);
+        foreach ($lengthMetricsArray as $index => $weight){
+            $label = $lengthLabelArray[$index] ?? "";
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = $weight;
+        }
+
+        return json_encode($array);
+    }
+
+    private static function getLengthImperial(Request $request)
+    {
+        $array = [];
+        $lengthLabelArray = $request->get('standard_length_label', []);
+        $lengthMetricsArray = $request->get('standard_length_imperial', []);
+        foreach ($lengthMetricsArray as $index => $weight){
+            $label = $lengthLabelArray[$index] ?? "";
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = $weight;
+        }
+
+        return json_encode($array);
+    }
+
     private static function getThicknessMetrics(Request $request)
     {
         $array = [];
@@ -473,8 +508,8 @@ class ConnectorUpdateRequestMapper
     {
         $array = [];
         $thicknessLabelArray = $request->get('thickness_label', []);
-        $thicknessMetricsArray = $request->get('thickness_imperial', []);
-        foreach ($thicknessMetricsArray as $index => $weight){
+        $thicknessImperialArray = $request->get('thickness_imperial', []);
+        foreach ($thicknessImperialArray as $index => $weight){
             $label = $thicknessLabelArray[$index] ?? '';
             if($index === 0 && empty(trim($label))){
                 $label = 'general';

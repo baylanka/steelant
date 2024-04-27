@@ -271,8 +271,6 @@ class ConnectorUpdateRequestValidator
                 throw new \Exception("Both metrics & imperial weight values should be filled");
             }
         }
-
-
     }
 
     /**
@@ -318,19 +316,19 @@ class ConnectorUpdateRequestValidator
 
     private static function standardLengthValidation(Request $request): void
     {
-        $arr = [];
-        if(!$request->has('standard_length_metrics') || empty($request->get('standard_length_metrics'))){
-            $arr['standard_length_metrics'] = "standard_length_metrics is required to update";
-        }
+        $lengthMetricArr = $request->get('standard_length_metrics');
+        $lengthImperialArr = $request->get('standard_length_imperial');
+        $lengthLabelArr = $request->get('standard_length_label');
 
-        if(!$request->has('standard_length_imperial') || empty($request->get('standard_length_imperial'))){
-            $arr['standard_length_imperial'] = "standard_length_imperial is required to update";
-        }
+        foreach ($lengthMetricArr as $index => $value){
+            if($index > 0 && (!isset($lengthLabelArr[$index]) || empty($lengthLabelArr[$index]))) {
+                throw new \Exception("Can not leave standard length labels empty unless first one");
+            }
 
-        if(empty($arr)){
-            return;
+            if(empty($lengthMetricArr[$index]) || empty($lengthImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial standard length values should be filled");
+            }
         }
-        ResponseUtility::response('standard length Field validation error',422, $arr);
     }
 
     /**
@@ -338,9 +336,9 @@ class ConnectorUpdateRequestValidator
      */
     private static function thicknessValidation(Request $request): void
     {
-        $thicknessMetricArr = $request->get('thickness_metrics');
-        $thicknessImperialArr = $request->get('thickness_imperial');
-        $thicknessLabelArr = $request->get('thickness_label');
+        $thicknessMetricArr = $request->get('thickness_metrics',[]);
+        $thicknessImperialArr = $request->get('thickness_imperial',[]);
+        $thicknessLabelArr = $request->get('thickness_label',[]);
 
         foreach ($thicknessMetricArr as $index => $value){
             if($index > 0 && (!isset($thicknessLabelArr[$index]) || empty($thicknessLabelArr[$index]))) {
