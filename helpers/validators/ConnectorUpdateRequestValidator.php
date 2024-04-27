@@ -278,39 +278,18 @@ class ConnectorUpdateRequestValidator
      */
     private static function maxTensileStrengthValidation(Request $request): void
     {
-        $minChar = 3;
-        $maxChar = 200;
-        self::maxTensileStrengthMetricsValidation($request, $minChar, $maxChar);
-        self::maxTensileStrengthImperialValidation($request, $minChar, $maxChar);
-    }
+        $maxTensileStrengthMetricArr = $request->get('max_tensile_strength_m');
+        $maxTensileStrengthImperialArr = $request->get('max_tensile_strength_i');
+        $maxTensileStrengthLabelArr = $request->get('max_tensile_strength_label');
 
-    private static function maxTensileStrengthMetricsValidation(Request $request, $minChar, $maxChar): void
-    {
-        if(!$request->has('max_tensile_strength_m') || empty($request->get('max_tensile_strength_m'))){
-            return;
-        }
+        foreach ($maxTensileStrengthMetricArr as $index => $value){
+            if($index > 0 && (!isset($maxTensileStrengthLabelArr[$index]) || empty($maxTensileStrengthLabelArr[$index]))) {
+                throw new \Exception("Can not leave max. tensile strength labels empty unless first one");
+            }
 
-        if(!ValidatorUtility::min($request->get('max_tensile_strength_m'), $minChar)){
-            throw new \Exception("max_tensile_strength (metrics) must be at least {$minChar} characters");
-        }
-
-        if(!ValidatorUtility::max($request->get('max_tensile_strength_m'), $maxChar)){
-            throw new \Exception("max_tensile_strength (metrics) can not be exceed {$maxChar} characters");
-        }
-    }
-
-    private static function maxTensileStrengthImperialValidation(Request $request, $minChar, $maxChar): void
-    {
-        if(!$request->has('max_tensile_strength_i') || empty($request->get('max_tensile_strength_i'))){
-            return;
-        }
-
-        if(!ValidatorUtility::min($request->get('max_tensile_strength_i'), $minChar)){
-            throw new \Exception("max_tensile_strength (imperial) must be at least {$minChar} characters");
-        }
-
-        if(!ValidatorUtility::max($request->get('max_tensile_strength_i'), $maxChar)){
-            throw new \Exception("max_tensile_strength_i (imperial) can not be exceed {$maxChar} characters");
+            if(empty($maxTensileStrengthMetricArr[$index]) || empty($maxTensileStrengthImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial max. tensile strength values should be filled");
+            }
         }
     }
 

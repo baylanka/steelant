@@ -90,9 +90,14 @@ use helpers\translate\Translate;
                 : <?= $value ?></dd>
         <?php endforeach; ?>
     <?php endif; ?>
-    <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
-            : <?= $connector->getMaxTensileStrengthByLang() ?></dd>
+
+    <?php if (empty(sizeof($connector->getMaxTensileStrengthByLang()))): ?>
+        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>: ---</dd>
+    <?php else: ?>
+        <?php foreach ($connector->getMaxTensileStrengthByLang() as $key => $value): ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?> <?= $key === 'general' ? '' : $key ?>
+                : <?= $value ?></dd>
+        <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($connector->getPressureLoadOfLang())): ?>
@@ -118,6 +123,7 @@ use helpers\translate\Translate;
         style="cursor: pointer;">
         <a class="link color-black"><?= Translate::get("template_context", "request_this_connector", $language) ?></a>
     </dd>
+
     <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (isset($_SESSION["auth"])) {
         if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif;
     } ?>"

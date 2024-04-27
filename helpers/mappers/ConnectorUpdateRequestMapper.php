@@ -27,8 +27,8 @@ class ConnectorUpdateRequestMapper
         $connector->thickness_i = self::getThicknessImperial($request);
         $connector->standard_lengths_m = self::getLengthMetrics($request);
         $connector->standard_lengths_i = self::getLengthImperial($request);
-        $connector->max_tensile_strength_m = $request->get('max_tensile_strength_m');
-        $connector->max_tensile_strength_i = $request->get('max_tensile_strength_i');
+        $connector->max_tensile_strength_m = self::getMaxTensileStrengthMMetrics($request);
+        $connector->max_tensile_strength_i = self::getMaxTensileStrengthIMetrics($request);
         $connector->standard_length_type = json_encode($request->get('standard_length_type'));
         $connector->other_attrs = self::getOtherAttrJson($request);
 
@@ -66,8 +66,8 @@ class ConnectorUpdateRequestMapper
             return [];
         }
         return [
-            'm' => $request->get('deformation_path_m',''),
-            'i' => $request->get('deformation_path_i',''),
+            'm' => addslashes($request->get('deformation_path_m','')),
+            'i' => addslashes($request->get('deformation_path_i','')),
         ];
     }
 
@@ -88,8 +88,8 @@ class ConnectorUpdateRequestMapper
             return [];
         }
         return [
-            'm' => $request->get('pressure_load_m',''),
-            'i' => $request->get('pressure_load_i',''),
+            'm' => addslashes($request->get('pressure_load_m','')),
+            'i' => addslashes($request->get('pressure_load_i','')),
         ];
     }
 
@@ -452,6 +452,38 @@ class ConnectorUpdateRequestMapper
 
         return $contentTemplate;
     }
+    private static function getMaxTensileStrengthIMetrics(Request $request)
+    {
+        $array = [];
+        $maxTensileStrengthLabelArray = $request->get('max_tensile_strength_label', []);
+        $maxTensileStrengthMetricsArray = $request->get('max_tensile_strength_i', []);
+        foreach ($maxTensileStrengthMetricsArray as $index => $strength){
+            $label = $maxTensileStrengthLabelArray[$index] ?? "";
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = addslashes($strength);
+        }
+
+        return json_encode($array);
+    }
+    private static function getMaxTensileStrengthMMetrics(Request $request)
+    {
+        $array = [];
+        $maxTensileStrengthLabelArray = $request->get('max_tensile_strength_label', []);
+        $maxTensileStrengthMetricsArray = $request->get('max_tensile_strength_m', []);
+        foreach ($maxTensileStrengthMetricsArray as $index => $strength){
+            $label = $maxTensileStrengthLabelArray[$index] ?? "";
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = addslashes($strength);
+        }
+
+        return json_encode($array);
+    }
 
     private static function getLengthMetrics(Request $request)
     {
@@ -464,7 +496,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);
@@ -481,7 +513,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);
@@ -498,7 +530,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);
@@ -515,7 +547,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);
@@ -532,7 +564,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);
@@ -549,7 +581,7 @@ class ConnectorUpdateRequestMapper
                 $label = 'general';
             }
 
-            $array[$label] = $weight;
+            $array[$label] = addslashes($weight);
         }
 
         return json_encode($array);

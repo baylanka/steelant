@@ -223,6 +223,103 @@
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
     const modalId = 'base-modal';
+    $(document).on("click", "#create-connector", async function () {
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/connectors/create?tableLang=${language}`;
+        const btn = $(this);
+        const loadingBtnText = btn.text();
+        try {
+            loadButton(btn, "loading ...");
+            const modal = await loadModal(modalId, path);
+            resetButton(btn, loadingBtnText);
+
+            $(document).off('storeConnectorSuccessEvent');
+            $(document).on('storeConnectorSuccessEvent', async function (event) {
+                modal.hide();
+                const connector = event.originalEvent.detail.connector;
+                const row = getRow(connector);
+                $('#connector-body').append(row);
+                await getConnectorEditModal(connector.id);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+            resetButton(btn, loadingBtnText);
+        }
+    });
+
+    $(document).on("click", ".connector-edit", async function (e) {
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        await getConnectorEditModal(connectorId);
+    });
+
+    $(document).on('submit', 'form#search-form', function(e){
+        e.preventDefault();
+        refreshConnectors();
+    })
+
+    $(document).on('click', 'a.lang', function(e){
+        e.preventDefault();
+        $('a.lang img').removeClass('selected-flag');
+        $(this).find('img').addClass('selected-flag');
+        refreshConnectors();
+    });
+
+    $(document).on('click','.filter-btn', function(e){
+        e.preventDefault();
+        const directions = ['asc', 'desc', 'none'];
+        const filterMode = $(this).attr('data-filter-mode');
+        let currentDirectionIndex = directions.indexOf(filterMode);
+        let nextIndex = (currentDirectionIndex+1)  < directions.length ? (currentDirectionIndex+1) : 0;
+        $(this).attr('data-filter-mode',  directions[nextIndex]);
+
+
+        refreshConnectors();
+    })
+
+    $(document).on('change','select.published-state-filter', function(){
+        refreshConnectors();
+    });
+
+    $(document).on("click", ".connector-view", async function (e) {
+        e.preventDefault();
+        const connectorId = $(this).attr('data-id');
+        let path = `admin/connectors/templates?id=${connectorId}`;
+        try {
+            await loadModal(modalId, path);
+
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the view connector.. " + err);
+        }
+    });
+
+    $(document).on("click", ".connector-delete", async function (e) {
+        e.preventDefault();
+        const notice = `
+                <p class="text-danger"><b>If you proceed with deleting the connector content:<b><p>
+                <ol class="text-start text-primary">
+                    <li>It cannot be undone.</li>
+                </ol>
+            `;
+        if (!await isConfirmToProcess(notice, 'warning')) {
+            return;
+        }
+
+        const connectorId = $(this).attr('data-id');
+        let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
+        const trTag = $(this).closest('tr');
+        try {
+            spinnerEnabled();
+            const response = await makeAjaxCall(URL,{}, 'DELETE');
+            toast.success(response.message);
+            trTag.remove();
+        }catch (err) {
+            toast.error("An error occurred while attempting to delete the connector.. ");
+        }finally {
+            spinnerDisable();
+        }
+    });
+
 
     function getWeight(connector)
     {
@@ -313,18 +410,18 @@
 
     function getRow(connector)
     {
-        let weight = getWeight(connector);
-        let thickness = getThickness(connector);
-        let length = getLength(connector);
+        const weight = getWeight(connector);
+        const thickness = getThickness(connector);
+        const length = getLength(connector);
 
         return `
                 <tr class="align-middle">
                     <td class="text-left"><small>${connector.categoryTree}</small></td>
                     <td class="text-left">
                         ${connector.isPublished
-                                ? '<span class="badge text-bg-success">published</span>'
-                                : '<span class="badge text-bg-warning">non-published</span>'
-                        }
+            ? '<span class="badge text-bg-success">published</span>'
+            : '<span class="badge text-bg-warning">non-published</span>'
+        }
                     </td>
                     <td class="text-center">${connector.name}</td>
                     <td class="text-center">${connector.grade}</td>
@@ -364,29 +461,42 @@
         `;
     }
 
-    $(document).on("click", "#create-connector", async function () {
-        const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/connectors/create?tableLang=${language}`;
-        const btn = $(this);
-        const loadingBtnText = btn.text();
-        try {
-            loadButton(btn, "loading ...");
-            const modal = await loadModal(modalId, path);
-            resetButton(btn, loadingBtnText);
+    function getFilterValues()
+    {
+        const filters = {};
+        $('.filter-btn').each(function(){
+            const mode = $(this).attr('data-filter-mode');
+            if(mode !== 'none'){
+                const key = $(this).attr('data-filter-name');
+                filters[key] = $(this).attr('data-filter-mode');
+            }
 
-            $(document).off('storeConnectorSuccessEvent');
-            $(document).on('storeConnectorSuccessEvent', async function (event) {
-                modal.hide();
-                const connector = event.originalEvent.detail.connector;
-                const row = getRow(connector);
-                $('#connector-body').append(row);
-                await getConnectorEditModal(connector.id);
-            });
-        } catch (err) {
-            toast.error("An error occurred while attempting to open the create connector.. " + err);
-            resetButton(btn, loadingBtnText);
+        });
+
+        return filters;
+    }
+
+    function refreshConnectors()
+    {
+        const publishedFilter = $('select.published-state-filter').val();
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        const params = {
+            'tableLang': language,
+        };
+
+        if(publishedFilter !== 'none'){
+            params['published'] =  publishedFilter;
         }
-    });
+
+        const searchKey = $('form#search-form [name="search"]').val();
+        if(!isEmpty(searchKey)){
+            params['search'] = searchKey
+        }
+
+        params['filters'] = getFilterValues();
+        const queryParams = $.param(params);
+        window.location.href = `${getBaseUrl()}/admin/connectors?${queryParams}`;
+    }
 
     async function getConnectorEditModal(connectorId)
     {
@@ -416,117 +526,6 @@
             toast.error("An error occurred while attempting to open the create connector.. " + err);
         }
     }
-
-    $(document).on("click", ".connector-edit", async function (e) {
-        e.preventDefault();
-        const connectorId = $(this).attr('data-id');
-        await getConnectorEditModal(connectorId);
-    });
-
-    $(document).on('submit', 'form#search-form', function(e){
-        e.preventDefault();
-        refreshConnectors();
-    })
-
-    $(document).on('click', 'a.lang', function(e){
-        e.preventDefault();
-        $('a.lang img').removeClass('selected-flag');
-        $(this).find('img').addClass('selected-flag');
-        refreshConnectors();
-    });
-
-    $(document).on('click','.filter-btn', function(e){
-        e.preventDefault();
-        const directions = ['asc', 'desc', 'none'];
-        const filterMode = $(this).attr('data-filter-mode');
-        let currentDirectionIndex = directions.indexOf(filterMode);
-        let nextIndex = (currentDirectionIndex+1)  < directions.length ? (currentDirectionIndex+1) : 0;
-        $(this).attr('data-filter-mode',  directions[nextIndex]);
-
-
-        refreshConnectors();
-    })
-
-    $(document).on('change','select.published-state-filter', function(){
-        refreshConnectors();
-    });
-
-    function refreshConnectors()
-    {
-        const publishedFilter = $('select.published-state-filter').val();
-        const language = $('img.selected-flag').closest('a').attr('data-lang');
-        const params = {
-            'tableLang': language,
-        };
-
-        if(publishedFilter !== 'none'){
-            params['published'] =  publishedFilter;
-        }
-
-        const searchKey = $('form#search-form [name="search"]').val();
-        if(!isEmpty(searchKey)){
-            params['search'] = searchKey
-        }
-
-        params['filters'] = getFilterValues();
-        const queryParams = $.param(params);
-        window.location.href = `${getBaseUrl()}/admin/connectors?${queryParams}`;
-    }
-
-    function getFilterValues()
-    {
-        const filters = {};
-        $('.filter-btn').each(function(){
-            const mode = $(this).attr('data-filter-mode');
-            if(mode !== 'none'){
-                const key = $(this).attr('data-filter-name');
-                filters[key] = $(this).attr('data-filter-mode');
-            }
-
-        });
-
-        return filters;
-    }
-
-
-    $(document).on("click", ".connector-view", async function (e) {
-        e.preventDefault();
-        const connectorId = $(this).attr('data-id');
-        let path = `admin/connectors/templates?id=${connectorId}`;
-        try {
-            await loadModal(modalId, path);
-
-        } catch (err) {
-            toast.error("An error occurred while attempting to open the view connector.. " + err);
-        }
-    });
-
-    $(document).on("click", ".connector-delete", async function (e) {
-        e.preventDefault();
-        const notice = `
-                <p class="text-danger"><b>If you proceed with deleting the connector content:<b><p>
-                <ol class="text-start text-primary">
-                    <li>It cannot be undone.</li>
-                </ol>
-            `;
-        if (!await isConfirmToProcess(notice, 'warning')) {
-            return;
-        }
-
-        const connectorId = $(this).attr('data-id');
-        let URL = `${getBaseUrl()}/admin/connectors/delete?id=${connectorId}`;
-        const trTag = $(this).closest('tr');
-        try {
-            spinnerEnabled();
-            const response = await makeAjaxCall(URL,{}, 'DELETE');
-            toast.success(response.message);
-            trTag.remove();
-        }catch (err) {
-            toast.error("An error occurred while attempting to delete the connector.. ");
-        }finally {
-            spinnerDisable();
-        }
-    });
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 
