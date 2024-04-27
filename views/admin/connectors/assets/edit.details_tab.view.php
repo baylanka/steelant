@@ -108,26 +108,87 @@
                 Steel Thickness
             </label>
 
-            <div class="w-50 gap-1">
+            <div class="w-50 gap-1 weight-jumbo-container">
+                <?php
+                    $thicknessIArray = $connector->thickness_i;
+                    $thicknessMArray = $connector->thickness_m;
+                ?>
+                <?php if(sizeof($thicknessMArray) <= 1): ?>
+                    <div class="p-3 mt-3 container">
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="thickness_metrics"
-                           placeholder="5mm (+0.1/-0.5 mm)" value="<?=$connector->thickness_m?>">
-                    <span class="input-group-text">
-                                                    metrics
-                                                </span>
-                </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="5 mm"
+                                   name="thickness_metrics[]"
+                                   value="<?=array_values($thicknessMArray)[0] ?? ''?>">
+                            <span class="input-group-text">metrics</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="5 inch"
+                                   name="thickness_imperial[]"
+                                   value="<?=array_values($thicknessIArray)[0]?? ''?>">
+                            <span class="input-group-text">imperial</span>
+                        </div>
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control"  name="thickness_imperial"
-                           placeholder=" 5 inch (+0/-5 inch)" value="<?=$connector->thickness_i?>">
-                    <span class="input-group-text">
-                                                    imperial
-                                                </span>
-                </div>
 
+                        <div class="input-group justify-content-end mb-3">
+                            <button type="button" class="btn btn-light show-label-btn">
+                                <i class="bi bi-arrow-bar-left"></i>
+                            </button>
+
+                            <input type="text" class="form-control ml-1  label"
+                                   placeholder="label" name="thickness_label[]">
+                            <span class="input-group-text">label</span>
+                        </div>
+
+
+                        <div class="input-group justify-content-end">
+
+                            <button type="button" class="btn btn-primary add-new-thickness-btn"><i
+                                        class="bi bi-plus-lg"></i></button>
+                        </div>
+
+                    </div>
+                <?php else: ?>
+                    <?php $i=-1; ?>
+                    <?php foreach ($thicknessMArray as $key => $value): ?>
+                        <?php $i++ ?>
+                        <div class="p-3 mt-3 container">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="thickness_metrics[]"
+                                       placeholder="ie: 49 kg/m"
+                                       value="<?=$value?>"
+                                >
+                                <span class="input-group-text">metrics</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="thickness_imperial[]"
+                                       placeholder="ie: 15lbs/ft"
+                                       value="<?=$thicknessIArray[$key]?>"
+                                >
+                                <span class="input-group-text">imperial</span>
+                            </div>
+
+                            <div class="input-group justify-content-end mb-3">
+                                <input type="text" class="form-control ml-1" placeholder="label"
+                                       value="<?=$key === 'general' ? '' : $key?>"
+                                       name="thickness_label[]"
+                                >
+                                <span class="input-group-text">label</span>
+                            </div>
+
+                            <div class="input-group justify-content-end">
+                                <button type="button"
+                                        class="btn btn-danger remove-thickness-btn"><i
+                                            class="bi bi-dash-lg"></i></button>
+                                <button type="button"
+                                        class="btn btn-primary add-new-thickness-btn"><i
+                                            class="bi bi-plus-lg"></i></button>
+                            </div>
+
+                        </div>
+                    <?php endforeach ?>
+                <?php endif; ?>
             </div>
-
         </div>
 
         <hr class="mt-3">
@@ -189,7 +250,7 @@
                 $weightMArray = $connector->weights_m;
                 ?>
                 <?php if(sizeof($weightIArray) <= 1): ?>
-                    <div class="p-3 mt-3 weight-container">
+                    <div class="p-3 mt-3 container">
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="49 kg/m"
@@ -224,7 +285,7 @@
                     <?php $i=-1; ?>
                     <?php foreach ($weightMArray as $key => $value): ?>
                         <?php $i++ ?>
-                        <div class="p-3 mt-3 weight-container">
+                        <div class="p-3 mt-3 container">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="weight_metrics[]"
                                        placeholder="ie: 49 kg/m"
@@ -419,7 +480,7 @@
     $(document).on("click", ".add-new-weight-btn", function () {
         $(this).closest("div.weight-jumbo-container").append(`
 
-               <div class="p-3 mt-3 weight-container">
+               <div class="p-3 mt-3 container">
 
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="weight_metrics[]"
@@ -451,7 +512,49 @@
                                                         class="bi bi-plus-lg"></i></button>
                                         </div>
 
-                                    </div>
+               </div>
+
+
+            `);
+    });
+
+    $(document).off("click", ".add-new-thickness-btn");
+    $(document).on("click", ".add-new-thickness-btn", function () {
+        $(this).closest("div.weight-jumbo-container").append(`
+
+               <div class="p-3 mt-3 container">
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="thickness_metrics[]"
+                                                                                     placeholder="ie: 5 mm"
+                                            >
+                                            <span class="input-group-text">metrics</span>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="thickness_imperial[]"
+                                                                                    placeholder="ie: 5 inch"
+                                            >
+                                            <span class="input-group-text">imperial</span>
+                                        </div>
+
+
+                                        <div class="input-group justify-content-end mb-3">
+
+                                           <input type="text" class="form-control ml-1" placeholder="label"
+                                                                                        name="thickness_label[]"
+                                           >
+                                            <span class="input-group-text">label</span>
+                                        </div>
+
+
+                                        <div class="input-group justify-content-end">
+                                            <button type="button" class="btn btn-danger remove-thickness-btn"><i
+                                                        class="bi bi-dash-lg"></i></button>
+                                            <button type="button" class="btn btn-primary add-new-thickness-btn"><i
+                                                        class="bi bi-plus-lg"></i></button>
+                                        </div>
+
+               </div>
 
 
             `);
@@ -459,14 +562,16 @@
 
 
     $(document).off("click", ".remove-weight-btn");
-    $(document).on("click", ".remove-weight-btn", function () {
-        $(this).closest("div.weight-container").remove();
+    $(document).off("click", ".remove-thickness-btn");
+    $(document).on("click", ".remove-weight-btn, .remove-thickness-btn", function () {
+        $(this).closest("div.container").remove();
     });
 
-    // weight label toggling
+
+    //label toggling
     $(document).off("click", ".show-label-btn");
     $(document).on("click", ".show-label-btn", function () {
-        let input = $(this).closest("div.weight-container").find("input.label");
+        let input = $(this).closest("div.container").find("input.label");
         if (input.hasClass("showed")) {
             input.hide();
             input.removeClass("showed");

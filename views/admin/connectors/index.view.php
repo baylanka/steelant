@@ -117,7 +117,24 @@
                             <td class="text-center"><?= $connector->name?></td>
                             <td class="text-center"><?= $connector->grade ?></td>
                             <td class="text-center">
-                                <?=$connector->thickness?>
+                                <?php if(sizeof($connector->thickness)===1):?>
+                                    <?=array_values($connector->thickness)[0]?>
+                                <?php else: ?>
+                                    <table class="table table-striped table-bordered">
+                                        <tbody>
+                                        <?php foreach ($connector->thickness as $label=> $each):?>
+                                            <tr>
+                                                <th role="row">
+                                                    <?= $label !== 'general' ? $label: ''?>
+                                                </th>
+                                                <td>
+                                                    <?=$each?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </td>
                             <td class="text-center">
                                 <?=($connector->standardLength)?>
@@ -189,7 +206,7 @@
 <script>
     const modalId = 'base-modal';
 
-    function getRow(connector)
+    function getWeight(connector)
     {
         let weight = '';
         if(Object.values(connector.weights).length ===1){
@@ -198,8 +215,8 @@
 
             weight = `<table class="table table-striped table-bordered">
                             <tbody>`
-             for(let label in connector.weights){
-                 weight += `
+            for(let label in connector.weights){
+                weight += `
                     <tr>
                         <th role="row">
                             ${label !== 'general' ? label: ''}
@@ -209,11 +226,48 @@
                         </td>
                     </tr>
                  `;
-             }
+            }
 
             weight += `    </tbody>
                        </table>`;
         }
+
+        return weight;
+    }
+
+    function getThickness(connector)
+    {
+        let thickness = '';
+        if(Object.values(connector.thickness).length ===1){
+            thickness = Object.values(connector.thickness)[0];
+        }else{
+
+            thickness = `<table class="table table-striped table-bordered">
+                            <tbody>`
+            for(let label in connector.thickness){
+                thickness += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.thickness[label]}
+                        </td>
+                    </tr>
+                 `;
+            }
+
+            thickness += `    </tbody>
+                       </table>`;
+        }
+
+        return thickness;
+    }
+
+    function getRow(connector)
+    {
+        let weight = getWeight(connector);
+        let thickness = getThickness(connector);
 
         return `
                 <tr class="align-middle">
@@ -226,7 +280,7 @@
                     </td>
                     <td class="text-center">${connector.name}</td>
                     <td class="text-center">${connector.grade}</td>
-                    <td class="text-center">${connector.thickness}</td>
+                    <td class="text-center">${thickness}</td>
                     <td class="text-center">${connector.standardLength}</td>
                     <td class="text-center">${weight}</td>
                     <td class="text-center">

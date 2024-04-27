@@ -23,8 +23,8 @@ class ConnectorUpdateRequestMapper
         $connector->description = self::getDescriptionJson($request);
         $connector->weight_m = self::getWeightMetrics($request);
         $connector->weight_i = self::getWeightImperial($request);
-        $connector->thickness_m = $request->get('thickness_metrics');
-        $connector->thickness_i = $request->get('thickness_imperial');
+        $connector->thickness_m = self::getThicknessMetrics($request);
+        $connector->thickness_i = self::getThicknessImperial($request);
         $connector->standard_lengths_m = $request->get('standard_length_metrics');
         $connector->standard_lengths_i = $request->get('standard_length_imperial');
         $connector->max_tensile_strength_m = $request->get('max_tensile_strength_m');
@@ -451,6 +451,39 @@ class ConnectorUpdateRequestMapper
         $contentTemplate->language = $language;
 
         return $contentTemplate;
+    }
+    private static function getThicknessMetrics(Request $request)
+    {
+        $array = [];
+        $thicknessLabelArray = $request->get('thickness_label', []);
+        $thicknessMetricsArray = $request->get('thickness_metrics', []);
+        foreach ($thicknessMetricsArray as $index => $weight){
+            $label = $thicknessLabelArray[$index] ?? "";
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = $weight;
+        }
+
+        return json_encode($array);
+    }
+
+    private static function getThicknessImperial(Request $request)
+    {
+        $array = [];
+        $thicknessLabelArray = $request->get('thickness_label', []);
+        $thicknessMetricsArray = $request->get('thickness_imperial', []);
+        foreach ($thicknessMetricsArray as $index => $weight){
+            $label = $thicknessLabelArray[$index] ?? '';
+            if($index === 0 && empty(trim($label))){
+                $label = 'general';
+            }
+
+            $array[$label] = $weight;
+        }
+
+        return json_encode($array);
     }
 
     private static function getWeightMetrics(Request $request)

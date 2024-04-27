@@ -333,22 +333,24 @@ class ConnectorUpdateRequestValidator
         ResponseUtility::response('standard length Field validation error',422, $arr);
     }
 
+    /**
+     * @throws \Exception
+     */
     private static function thicknessValidation(Request $request): void
     {
-        $arr = [];
-        if(!$request->has('thickness_metrics') || empty($request->get('thickness_metrics'))){
-            $arr['thickness_metrics'] = "thickness_metrics is required to update";
-        }
+        $thicknessMetricArr = $request->get('thickness_metrics');
+        $thicknessImperialArr = $request->get('thickness_imperial');
+        $thicknessLabelArr = $request->get('thickness_label');
 
-        if(!$request->has('thickness_imperial') || empty($request->get('thickness_imperial'))){
-            $arr['thickness_imperial'] = "thickness_imperial is required to update";
-        }
+        foreach ($thicknessMetricArr as $index => $value){
+            if($index > 0 && (!isset($thicknessLabelArr[$index]) || empty($thicknessLabelArr[$index]))) {
+                throw new \Exception("Can not leave thickness labels empty unless first one");
+            }
 
-        if(empty($arr)){
-            return;
+            if(empty($thicknessMetricArr[$index]) || empty($thicknessImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial thickness values should be filled");
+            }
         }
-
-        ResponseUtility::response('thickness Field validation error',422, $arr);
     }
 
     /**

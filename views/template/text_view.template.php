@@ -16,9 +16,21 @@ use helpers\translate\Translate;
     <?php endif; ?>
     <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?>
         : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>
-        : <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?>
-    </dd>
+
+
+
+    <?php if (empty(sizeof($connector->getThicknessArrayOfLang()))): ?>
+        <dd class="custom-dd custom-font">
+            <?= Translate::get("template_context", "steel_thickness", $language) ?>: ---</dd>
+    <?php else: ?>
+        <?php foreach ($connector->getThicknessArrayOfLang() as $key => $value): ?>
+            <dd class="custom-dd custom-font">
+                <?= Translate::get("template_context", "steel_thickness", $language) ?> <?= $key === 'general' ? '' : $key ?>
+                : <?= $value ?>
+            </dd>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
     <dd class="custom-dd custom-font">
         <?php if ($connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
             <?= Translate::get("template_context", "standard_length", $language) ?>:

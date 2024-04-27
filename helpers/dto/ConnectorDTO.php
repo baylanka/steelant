@@ -15,9 +15,10 @@ class ConnectorDTO extends ElementDTO
 
     public string $name;
     public string $grade;
-    public string $thickness;
-    public string $thickness_i;
-    public string $thickness_m;
+    public array $thickness;
+    public array $thickness_i;
+    public array $thickness_m;
+
     public string $description_de;
     public string $description_en_us;
     public string $description_en_db;
@@ -132,7 +133,7 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
-    public function getThicknessOfLang()
+    public function getThicknessArrayOfLang()
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
@@ -141,7 +142,15 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->thickness_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->thickness_i .  " <span class='m-0 d-inline-block'>(" . $this->thickness_m.")</span>";
+                $arr = [];
+                foreach ($this->thickness_i as $key => $value){
+                    if(isset($this->thickness_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->thickness_m[$key].")</span>";
+                    }
+
+                    $arr[$key] = $value;
+                }
+                return $arr;
         }
     }
 
@@ -369,8 +378,9 @@ class ConnectorDTO extends ElementDTO
     }
     private function setThickness($lang): void
     {
-        $this->thickness_i = $this->element->thickness_i ?? '';
-        $this->thickness_m = $this->element->thickness_m ?? '';
+        $this->thickness_m  = json_decode($this->element->thickness_m ?? '{}', true);
+        $this->thickness_i =  json_decode($this->element->thickness_i ?? '{}', true);
+
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
