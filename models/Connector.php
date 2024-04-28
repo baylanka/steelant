@@ -31,7 +31,7 @@ class Connector extends Element
 
     public ?string $max_tensile_strength_m;
     public ?string $max_tensile_strength_i;
-    public ?int $standard_length_type;
+    public ?string $standard_length_type;
     public ?string $other_attrs;
     public ?CategoryContent $temp_content;
     public ?array $temp_content_templates;

@@ -139,7 +139,8 @@
     "request_this_connector": "Request this connector",
     "remember_this_connector": "Remember this connector",
     "pressure_load": "Pressure load",
-    "deformation_path": "Deformation path"
+    "deformation_path": "Deformation path",
+    "length": "length"
   },
 
   "connector_page": {

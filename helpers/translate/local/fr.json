@@ -135,7 +135,8 @@
     "request_this_connector": "Demander ce connecteur",
     "remember_this_connector": "Rappelez-vous ce connecteur",
     "pressure_load": "Charge de pression",
-    "deformation_path": "Chemin de déformation"
+    "deformation_path": "Chemin de déformation",
+    "length": "longueur"
   },
 
 

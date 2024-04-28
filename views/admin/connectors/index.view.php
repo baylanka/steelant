@@ -117,11 +117,46 @@
                             <td class="text-center"><?= $connector->name?></td>
                             <td class="text-center"><?= $connector->grade ?></td>
                             <td class="text-center">
-                                <?=$connector->thickness?>
+                                <?php if(sizeof($connector->thickness)===1):?>
+                                    <?=array_values($connector->thickness)[0]?>
+                                <?php else: ?>
+                                    <table class="table table-striped table-bordered">
+                                        <tbody>
+                                        <?php foreach ($connector->thickness as $label=> $each):?>
+                                            <tr>
+                                                <th role="row">
+                                                    <?= $label !== 'general' ? $label: ''?>
+                                                </th>
+                                                <td>
+                                                    <?=$each?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?=($connector->standardLength)?>
+                                <?php if(sizeof($connector->standardLength)===1):?>
+                                    <?=array_values($connector->standardLength)[0]?>
+                                <?php else: ?>
+                                    <table class="table table-striped table-bordered">
+                                        <tbody>
+                                        <?php foreach ($connector->standardLength as $label=> $each):?>
+                                            <tr>
+                                                <th role="row">
+                                                    <?= $label !== 'general' ? $label: ''?>
+                                                </th>
+                                                <td>
+                                                    <?=$each?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </td>
+
                             <td class="text-center">
                                 <?php if(sizeof($connector->weights)===1):?>
                                     <?=array_values($connector->weights)[0]?>
@@ -188,80 +223,6 @@
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
     const modalId = 'base-modal';
-
-    function getRow(connector)
-    {
-        let weight = '';
-        if(Object.values(connector.weights).length ===1){
-            weight = Object.values(connector.weights)[0];
-        }else{
-
-            weight = `<table class="table table-striped table-bordered">
-                            <tbody>`
-             for(let label in connector.weights){
-                 weight += `
-                    <tr>
-                        <th role="row">
-                            ${label !== 'general' ? label: ''}
-                        </th>
-                        <td>
-                            ${connector.weights[label]}
-                        </td>
-                    </tr>
-                 `;
-             }
-
-            weight += `    </tbody>
-                       </table>`;
-        }
-
-        return `
-                <tr class="align-middle">
-                    <td class="text-left"><small>${connector.categoryTree}</small></td>
-                    <td class="text-left">
-                        ${connector.isPublished
-                                ? '<span class="badge text-bg-success">published</span>'
-                                : '<span class="badge text-bg-warning">non-published</span>'
-                        }
-                    </td>
-                    <td class="text-center">${connector.name}</td>
-                    <td class="text-center">${connector.grade}</td>
-                    <td class="text-center">${connector.thickness}</td>
-                    <td class="text-center">${connector.standardLength}</td>
-                    <td class="text-center">${weight}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item connector-view" href="#"  data-id="${connector.id}">
-                                                View <i class="bi bi-exclamation-circle float-end"></i></a>
-                                        </li>
-
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-
-                                        <li><a class="dropdown-item connector-edit" href="#"  data-id="${connector.id}">
-                                                Edit <i class="bi bi-pencil float-end"></i></a>
-                                        </li>
-
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-
-                                        <li><a class="dropdown-item connector-delete" href="#" data-id="${connector.id}">
-                                                Delete <i class="bi bi-trash3 float-end"></i></a>
-                                        </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-        `;
-    }
-
     $(document).on("click", "#create-connector", async function () {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
         let path = `admin/connectors/create?tableLang=${language}`;
@@ -285,35 +246,6 @@
             resetButton(btn, loadingBtnText);
         }
     });
-
-    async function getConnectorEditModal(connectorId)
-    {
-        const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}`;
-        const trTag = $(`a[data-id="${connectorId}"]`).closest('tr');
-        try {
-            const modal = await loadModal(modalId, path);
-
-            $(document).off('updateCategorySuccessEvent');
-            $(document).on('updateCategorySuccessEvent', function (event) {
-                modal.hide();
-                const connector = event.originalEvent.detail.connector;
-                const row = getRow(connector);
-                const trTagParent = trTag.prev();
-                if(trTagParent.length === 0){
-                    const tbody = trTag.closest('tbody');
-                    trTag.remove();
-                    tbody.prepend(row);
-                    return
-                }
-
-                trTag.remove();
-                trTagParent.after(row);
-            });
-        } catch (err) {
-            toast.error("An error occurred while attempting to open the create connector.. " + err);
-        }
-    }
 
     $(document).on("click", ".connector-edit", async function (e) {
         e.preventDefault();
@@ -348,44 +280,6 @@
     $(document).on('change','select.published-state-filter', function(){
         refreshConnectors();
     });
-
-    function refreshConnectors()
-    {
-        const publishedFilter = $('select.published-state-filter').val();
-        const language = $('img.selected-flag').closest('a').attr('data-lang');
-        const params = {
-            'tableLang': language,
-        };
-
-        if(publishedFilter !== 'none'){
-            params['published'] =  publishedFilter;
-        }
-
-        const searchKey = $('form#search-form [name="search"]').val();
-        if(!isEmpty(searchKey)){
-            params['search'] = searchKey
-        }
-
-        params['filters'] = getFilterValues();
-        const queryParams = $.param(params);
-        window.location.href = `${getBaseUrl()}/admin/connectors?${queryParams}`;
-    }
-
-    function getFilterValues()
-    {
-        const filters = {};
-        $('.filter-btn').each(function(){
-            const mode = $(this).attr('data-filter-mode');
-            if(mode !== 'none'){
-                const key = $(this).attr('data-filter-name');
-                filters[key] = $(this).attr('data-filter-mode');
-            }
-
-        });
-
-        return filters;
-    }
-
 
     $(document).on("click", ".connector-view", async function (e) {
         e.preventDefault();
@@ -425,6 +319,213 @@
             spinnerDisable();
         }
     });
+
+
+    function getWeight(connector)
+    {
+        let weight = '';
+        if(Object.values(connector.weights).length ===1){
+            weight = Object.values(connector.weights)[0];
+        }else{
+
+            weight = `<table class="table table-striped table-bordered">
+                            <tbody>`
+            for(let label in connector.weights){
+                weight += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.weights[label]}
+                        </td>
+                    </tr>
+                 `;
+            }
+
+            weight += `    </tbody>
+                       </table>`;
+        }
+
+        return weight;
+    }
+
+    function getThickness(connector)
+    {
+        let thickness = '';
+        if(Object.values(connector.thickness).length ===1){
+            thickness = Object.values(connector.thickness)[0];
+        }else{
+
+            thickness = `<table class="table table-striped table-bordered">
+                            <tbody>`
+            for(let label in connector.thickness){
+                thickness += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.thickness[label]}
+                        </td>
+                    </tr>
+                 `;
+            }
+
+            thickness += `    </tbody>
+                       </table>`;
+        }
+
+        return thickness;
+    }
+
+    function getLength(connector)
+    {
+        let thickness = '';
+        if(Object.values(connector.standardLength).length ===1){
+            thickness = Object.values(connector.standardLength)[0];
+        }else{
+
+            thickness = `<table class="table table-striped table-bordered">
+                            <tbody>`
+            for(let label in connector.standardLength){
+                thickness += `
+                    <tr>
+                        <th role="row">
+                            ${label !== 'general' ? label: ''}
+                        </th>
+                        <td>
+                            ${connector.standardLength[label]}
+                        </td>
+                    </tr>
+                 `;
+            }
+
+            thickness += `    </tbody>
+                       </table>`;
+        }
+
+        return thickness;
+    }
+
+    function getRow(connector)
+    {
+        const weight = getWeight(connector);
+        const thickness = getThickness(connector);
+        const length = getLength(connector);
+
+        return `
+                <tr class="align-middle">
+                    <td class="text-left"><small>${connector.categoryTree}</small></td>
+                    <td class="text-left">
+                        ${connector.isPublished
+            ? '<span class="badge text-bg-success">published</span>'
+            : '<span class="badge text-bg-warning">non-published</span>'
+        }
+                    </td>
+                    <td class="text-center">${connector.name}</td>
+                    <td class="text-center">${connector.grade}</td>
+                    <td class="text-center">${thickness}</td>
+                    <td class="text-center">${length}</td>
+                    <td class="text-center">${weight}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item connector-view" href="#"  data-id="${connector.id}">
+                                                View <i class="bi bi-exclamation-circle float-end"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item connector-edit" href="#"  data-id="${connector.id}">
+                                                Edit <i class="bi bi-pencil float-end"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item connector-delete" href="#" data-id="${connector.id}">
+                                                Delete <i class="bi bi-trash3 float-end"></i></a>
+                                        </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+        `;
+    }
+
+    function getFilterValues()
+    {
+        const filters = {};
+        $('.filter-btn').each(function(){
+            const mode = $(this).attr('data-filter-mode');
+            if(mode !== 'none'){
+                const key = $(this).attr('data-filter-name');
+                filters[key] = $(this).attr('data-filter-mode');
+            }
+
+        });
+
+        return filters;
+    }
+
+    function refreshConnectors()
+    {
+        const publishedFilter = $('select.published-state-filter').val();
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        const params = {
+            'tableLang': language,
+        };
+
+        if(publishedFilter !== 'none'){
+            params['published'] =  publishedFilter;
+        }
+
+        const searchKey = $('form#search-form [name="search"]').val();
+        if(!isEmpty(searchKey)){
+            params['search'] = searchKey
+        }
+
+        params['filters'] = getFilterValues();
+        const queryParams = $.param(params);
+        window.location.href = `${getBaseUrl()}/admin/connectors?${queryParams}`;
+    }
+
+    async function getConnectorEditModal(connectorId)
+    {
+        const language = $('img.selected-flag').closest('a').attr('data-lang');
+        let path = `admin/connectors/edit?tableLang=${language}&id=${connectorId}`;
+        const trTag = $(`a[data-id="${connectorId}"]`).closest('tr');
+        try {
+            const modal = await loadModal(modalId, path);
+
+            $(document).off('updateCategorySuccessEvent');
+            $(document).on('updateCategorySuccessEvent', function (event) {
+                modal.hide();
+                const connector = event.originalEvent.detail.connector;
+                const row = getRow(connector);
+                const trTagParent = trTag.prev();
+                if(trTagParent.length === 0){
+                    const tbody = trTag.closest('tbody');
+                    trTag.remove();
+                    tbody.prepend(row);
+                    return
+                }
+
+                trTag.remove();
+                trTagParent.after(row);
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+        }
+    }
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 

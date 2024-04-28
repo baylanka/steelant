@@ -271,8 +271,6 @@ class ConnectorUpdateRequestValidator
                 throw new \Exception("Both metrics & imperial weight values should be filled");
             }
         }
-
-
     }
 
     /**
@@ -280,75 +278,60 @@ class ConnectorUpdateRequestValidator
      */
     private static function maxTensileStrengthValidation(Request $request): void
     {
-        $minChar = 3;
-        $maxChar = 200;
-        self::maxTensileStrengthMetricsValidation($request, $minChar, $maxChar);
-        self::maxTensileStrengthImperialValidation($request, $minChar, $maxChar);
-    }
+        $maxTensileStrengthMetricArr = $request->get('max_tensile_strength_m');
+        $maxTensileStrengthImperialArr = $request->get('max_tensile_strength_i');
+        $maxTensileStrengthLabelArr = $request->get('max_tensile_strength_label');
 
-    private static function maxTensileStrengthMetricsValidation(Request $request, $minChar, $maxChar): void
-    {
-        if(!$request->has('max_tensile_strength_m') || empty($request->get('max_tensile_strength_m'))){
-            return;
-        }
+        foreach ($maxTensileStrengthMetricArr as $index => $value){
+            if(empty($maxTensileStrengthMetricArr[$index]) && empty($maxTensileStrengthImperialArr[$index])){
+                continue;
+            }
 
-        if(!ValidatorUtility::min($request->get('max_tensile_strength_m'), $minChar)){
-            throw new \Exception("max_tensile_strength (metrics) must be at least {$minChar} characters");
-        }
+            if($index > 0 && (!isset($maxTensileStrengthLabelArr[$index]) || empty($maxTensileStrengthLabelArr[$index]))) {
+                throw new \Exception("Can not leave max. tensile strength labels empty unless first one");
+            }
 
-        if(!ValidatorUtility::max($request->get('max_tensile_strength_m'), $maxChar)){
-            throw new \Exception("max_tensile_strength (metrics) can not be exceed {$maxChar} characters");
-        }
-    }
-
-    private static function maxTensileStrengthImperialValidation(Request $request, $minChar, $maxChar): void
-    {
-        if(!$request->has('max_tensile_strength_i') || empty($request->get('max_tensile_strength_i'))){
-            return;
-        }
-
-        if(!ValidatorUtility::min($request->get('max_tensile_strength_i'), $minChar)){
-            throw new \Exception("max_tensile_strength (imperial) must be at least {$minChar} characters");
-        }
-
-        if(!ValidatorUtility::max($request->get('max_tensile_strength_i'), $maxChar)){
-            throw new \Exception("max_tensile_strength_i (imperial) can not be exceed {$maxChar} characters");
+            if(empty($maxTensileStrengthMetricArr[$index]) || empty($maxTensileStrengthImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial max. tensile strength values should be filled");
+            }
         }
     }
 
     private static function standardLengthValidation(Request $request): void
     {
-        $arr = [];
-        if(!$request->has('standard_length_metrics') || empty($request->get('standard_length_metrics'))){
-            $arr['standard_length_metrics'] = "standard_length_metrics is required to update";
-        }
+        $lengthMetricArr = $request->get('standard_length_metrics');
+        $lengthImperialArr = $request->get('standard_length_imperial');
+        $lengthLabelArr = $request->get('standard_length_label');
 
-        if(!$request->has('standard_length_imperial') || empty($request->get('standard_length_imperial'))){
-            $arr['standard_length_imperial'] = "standard_length_imperial is required to update";
-        }
+        foreach ($lengthMetricArr as $index => $value){
+            if($index > 0 && (!isset($lengthLabelArr[$index]) || empty($lengthLabelArr[$index]))) {
+                throw new \Exception("Can not leave standard length labels empty unless first one");
+            }
 
-        if(empty($arr)){
-            return;
+            if(empty($lengthMetricArr[$index]) || empty($lengthImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial standard length values should be filled");
+            }
         }
-        ResponseUtility::response('standard length Field validation error',422, $arr);
     }
 
+    /**
+     * @throws \Exception
+     */
     private static function thicknessValidation(Request $request): void
     {
-        $arr = [];
-        if(!$request->has('thickness_metrics') || empty($request->get('thickness_metrics'))){
-            $arr['thickness_metrics'] = "thickness_metrics is required to update";
-        }
+        $thicknessMetricArr = $request->get('thickness_metrics',[]);
+        $thicknessImperialArr = $request->get('thickness_imperial',[]);
+        $thicknessLabelArr = $request->get('thickness_label',[]);
 
-        if(!$request->has('thickness_imperial') || empty($request->get('thickness_imperial'))){
-            $arr['thickness_imperial'] = "thickness_imperial is required to update";
-        }
+        foreach ($thicknessMetricArr as $index => $value){
+            if($index > 0 && (!isset($thicknessLabelArr[$index]) || empty($thicknessLabelArr[$index]))) {
+                throw new \Exception("Can not leave thickness labels empty unless first one");
+            }
 
-        if(empty($arr)){
-            return;
+            if(empty($thicknessMetricArr[$index]) || empty($thicknessImperialArr[$index])){
+                throw new \Exception("Both metrics & imperial thickness values should be filled");
+            }
         }
-
-        ResponseUtility::response('thickness Field validation error',422, $arr);
     }
 
     /**

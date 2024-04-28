@@ -15,23 +15,24 @@ class ConnectorDTO extends ElementDTO
 
     public string $name;
     public string $grade;
-    public string $thickness;
-    public string $thickness_i;
-    public string $thickness_m;
+    public array $thickness;
+    public array $thickness_i;
+    public array $thickness_m;
+
     public string $description_de;
     public string $description_en_us;
     public string $description_en_db;
     public string $description_fr;
-    public string $standardLength;
-    public string $standardLength_m;
-    public string $standardLength_i;
-    public int $standardLengthType;
+    public array $standardLength;
+    public array $standardLength_m;
+    public array $standardLength_i;
+    public array $standardLengthTypes;
     public array $weights;
     public array $weights_i;
     public array $weights_m;
-    public string $maxTensile;
-    public string $maxTensile_m;
-    public string $maxTensile_i;
+    public array $maxTensile;
+    public array $maxTensile_m;
+    public array $maxTensile_i;
 
     public string $subtitle_de;
     public string $subtitle_fr;
@@ -59,7 +60,7 @@ class ConnectorDTO extends ElementDTO
         $this->id = $this->element->id;
         $this->name = $this->element->name;
         $this->grade = $this->element->grade ?? '';
-        $this->standardLengthType = $this->element->standard_length_type ?? StandardLengthTypePool::FIXED_SINGLE_VALUE;
+        $this->setLengthTypeArray();
         $this->setLanguageDescriptions();
         $this->isPublished = $this->element->visibility;
 
@@ -73,11 +74,11 @@ class ConnectorDTO extends ElementDTO
         $this->footer_en_gb = $this->element->getFooterOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
         $this->footer_en_us = $this->element->getFooterOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
 
-        $this->pressure_load_m = $this->element->getPressureLoadMetricsValue();
-        $this->pressure_load_i = $this->element->getPressureLoadImperialValue();
+        $this->pressure_load_m = stripcslashes($this->element->getPressureLoadMetricsValue());
+        $this->pressure_load_i = stripcslashes($this->element->getPressureLoadImperialValue());
 
-        $this->deformation_path_m = $this->element->getDeformationPathMetricsValue();
-        $this->deformation_path_i = $this->element->getDeformationPathImperialValue();
+        $this->deformation_path_m = stripcslashes($this->element->getDeformationPathMetricsValue());
+        $this->deformation_path_i = stripcslashes($this->element->getDeformationPathImperialValue());
 
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -90,6 +91,11 @@ class ConnectorDTO extends ElementDTO
         $this->setImageFiles();
         $this->setContentId();
         $this->setContentLabel();
+    }
+
+    private function setLengthTypeArray()
+    {
+        $this->standardLengthTypes = json_decode($this->element->standard_length_type ?? '{}', true);
     }
 
     private function setLanguageDescriptions()
@@ -128,11 +134,20 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->standardLength_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->standardLength_i . " <span class='m-0 d-inline-block'>(" . $this->standardLength_m.")</span>";
+                $arr = [];
+                foreach ($this->standardLength_i as $key => $value){
+                    if(isset($this->standardLength_m[$key]) && !empty($this->standardLength_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->standardLength_m[$key].")</span>";
+                        $arr[$key] = $value;
+                    }
+
+
+                }
+                return $arr;
         }
     }
 
-    public function getThicknessOfLang()
+    public function getThicknessArrayOfLang()
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
@@ -141,7 +156,16 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->thickness_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return $this->thickness_i .  " <span class='m-0 d-inline-block'>(" . $this->thickness_m.")</span>";
+                $arr = [];
+                foreach ($this->thickness_i as $key => $value){
+                    if(isset($this->thickness_m[$key]) && !empty($this->thickness_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->thickness_m[$key].")</span>";
+                        $arr[$key] = $value;
+                    }
+
+
+                }
+                return $arr;
         }
     }
 
@@ -156,11 +180,12 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->weights_i as $key => $value){
-                    if(isset($this->weights_m[$key])){
+                    if(isset($this->weights_m[$key]) && !empty($this->weights_m[$key])){
                         $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->weights_m[$key].")</span>";
+                        $arr[$key] = $value;
                     }
 
-                    $arr[$key] = $value;
+
                 }
                 return $arr;
         }
@@ -224,7 +249,6 @@ class ConnectorDTO extends ElementDTO
 
         return $arr;
     }
-
     public function getMaxTensileStrengthByLang()
     {
         switch($this->language){
@@ -234,9 +258,16 @@ class ConnectorDTO extends ElementDTO
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->maxTensile_i;
             case LanguagePool::US_ENGLISH()->getLabel():
-                return (empty($this->maxTensile_m) && empty($this->maxTensile_i))
-                    ? ''
-                    : $this->maxTensile_i ." <span class='m-0 d-inline-block'>(".$this->maxTensile_m.")</span>" ;
+                $arr = [];
+                foreach ($this->maxTensile_i as $key => $value){
+                    if(isset($this->maxTensile_m[$key]) && !empty($this->maxTensile_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->maxTensile_m[$key].")</span>";
+                        $arr[$key] = $value;
+                    }
+
+
+                }
+                return $arr;
         }
     }
 
@@ -369,8 +400,11 @@ class ConnectorDTO extends ElementDTO
     }
     private function setThickness($lang): void
     {
-        $this->thickness_i = $this->element->thickness_i ?? '';
-        $this->thickness_m = $this->element->thickness_m ?? '';
+        $thicknessMetrics = json_decode($this->element->thickness_m ?? '{}', true);
+        $this->thickness_m  = array_map('stripcslashes', $thicknessMetrics);
+        $thicknessImperial =  json_decode($this->element->thickness_i ?? '{}', true);
+        $this->thickness_i =   array_map('stripcslashes', $thicknessImperial);
+
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
@@ -387,8 +421,10 @@ class ConnectorDTO extends ElementDTO
 
     private function setLength($lang): void
     {
-        $this->standardLength_m = $this->element->standard_lengths_m ?? '';
-        $this->standardLength_i = $this->element->standard_lengths_i ?? '';
+        $standardLengthM = json_decode($this->element->standard_lengths_m ?? '{}', true);
+        $this->standardLength_m  = array_map('stripcslashes', $standardLengthM);
+        $standardLengthI = json_decode($this->element->standard_lengths_i ?? '{}', true);
+        $this->standardLength_i = array_map('stripcslashes', $standardLengthI);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -404,8 +440,10 @@ class ConnectorDTO extends ElementDTO
 
     private function setWeight($lang)
     {
-        $this->weights_m  = json_decode($this->element->weight_m ?? '{}', true);
-        $this->weights_i =  json_decode($this->element->weight_i ?? '{}', true);
+        $weightsM  = json_decode($this->element->weight_m ?? '{}', true);
+        $this->weights_m  = array_map('stripcslashes', $weightsM);
+        $weightsI =  json_decode($this->element->weight_i ?? '{}', true);
+        $this->weights_i =  array_map('stripcslashes', $weightsI);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -421,8 +459,10 @@ class ConnectorDTO extends ElementDTO
 
     private function setMaxTensileStrength($lang)
     {
-        $this->maxTensile_m  = $this->element->max_tensile_strength_m ?? '';
-        $this->maxTensile_i =  $this->element->max_tensile_strength_i ?? '';
+        $maxTensileM = json_decode($this->element->max_tensile_strength_m ?? '{}', true);
+        $this->maxTensile_m = array_map('stripcslashes', $maxTensileM);
+        $maxTensileI = json_decode($this->element->max_tensile_strength_i ?? '{}', true);
+        $this->maxTensile_i = array_map('stripcslashes', $maxTensileI);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():

@@ -16,25 +16,73 @@ use helpers\translate\Translate;
     <?php endif; ?>
     <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?>
         : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
-    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_thickness", $language) ?>
-        : <?= empty($connector->getThicknessOfLang()) ? '---' : $connector->getThicknessOfLang() ?>
-    </dd>
-    <dd class="custom-dd custom-font">
-        <?php if ($connector->standardLengthType == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
-            <?= Translate::get("template_context", "standard_length", $language) ?>:
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
 
-        <?php elseif ($connector->standardLengthType == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?>
-            <?= Translate::get("template_context", "standard_lengths", $language) ?>:
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
 
-        <?php elseif ($connector->standardLengthType == StandardLengthTypePool::VARIABLE_VALUES): ?>
-            <?= Translate::get("template_context", "standard_length_variable", $language) ?> &nbsp;
-            <?= empty($connector->getLengthOfLang()) ? '---' : $connector->getLengthOfLang() ?>
 
-        <?php endif ?>
-    </dd>
-    <?php if (empty(sizeof($connector->getWeightArrayOfLang()))): ?>
+    <?php if (empty(sizeof(array_values($connector->getThicknessArrayOfLang())))): ?>
+        <dd class="custom-dd custom-font">
+            <?= Translate::get("template_context", "steel_thickness", $language) ?>: ---</dd>
+    <?php else: ?>
+        <?php foreach ($connector->getThicknessArrayOfLang() as $key => $value): ?>
+            <dd class="custom-dd custom-font">
+                <?= Translate::get("template_context", "steel_thickness", $language) ?> <?= $key === 'general' ? '' : $key ?>
+                : <?= $value ?>
+            </dd>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
+    <?php if (empty(sizeof(array_values($connector->getLengthOfLang())))): ?>
+        <dd class="custom-dd custom-font">
+            <?= Translate::get("template_context", "standard_length", $language) ?>: ---</dd>
+    <?php else: ?>
+        <?php
+            $totalLengths = sizeof($connector->getLengthOfLang());
+            $i = -1;
+        ?>
+        <?php foreach ($connector->getLengthOfLang() as $key => $value): ?>
+            <?php
+                    $i++;
+                    $type = $connector->standardLengthTypes[$i];
+                    $customizedLabelExists = !(empty($key) || $key == "general");
+                    $label = '';
+                    if($totalLengths > 1){
+                        $label = Translate::get("template_context", "length", $language);
+                        if($customizedLabelExists){
+                            $label .= " {$key}";
+                        }
+                    }else{
+                        if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE){
+                            $label = Translate::get("template_context", "standard_length", $language);
+                        }elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES){
+                            $label = Translate::get("template_context", "standard_lengths", $language);
+                        }elseif ($type == StandardLengthTypePool::VARIABLE_VALUES){
+                            $label = Translate::get("template_context", "standard_length_variable", $language);
+                        }
+                    }
+
+
+            ?>
+            <dd class="custom-dd custom-font">
+                <?php if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?>
+                    <?= $label ?> :
+                    <?= empty($value) ? '---' : $value ?>
+
+                <?php elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?>
+                    <?= $label ?> :
+                    <?= empty($value) ? '---' : $value ?>
+
+                <?php elseif ($type == StandardLengthTypePool::VARIABLE_VALUES): ?>
+                    <?= $label ?> &nbsp;
+                    <?= empty($value) ? '---' : $value ?>
+
+                <?php endif ?>
+            </dd>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
+    <?php if (empty(sizeof(array_values($connector->getWeightArrayOfLang())))): ?>
         <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?>: ---</dd>
     <?php else: ?>
         <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
@@ -42,9 +90,13 @@ use helpers\translate\Translate;
                 : <?= $value ?></dd>
         <?php endforeach; ?>
     <?php endif; ?>
-    <?php if (!empty($connector->getMaxTensileStrengthByLang())): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?>
-            : <?= $connector->getMaxTensileStrengthByLang() ?></dd>
+
+
+    <?php if (!empty(sizeof(array_values($connector->getMaxTensileStrengthByLang())))): ?>
+        <?php foreach ($connector->getMaxTensileStrengthByLang() as $key => $value): ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?> <?= $key === 'general' ? '' : $key ?>
+                : <?= $value ?></dd>
+        <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($connector->getPressureLoadOfLang())): ?>
@@ -70,6 +122,7 @@ use helpers\translate\Translate;
         style="cursor: pointer;">
         <a class="link color-black"><?= Translate::get("template_context", "request_this_connector", $language) ?></a>
     </dd>
+
     <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (isset($_SESSION["auth"])) {
         if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif;
     } ?>"
