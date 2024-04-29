@@ -7,6 +7,13 @@ use helpers\services\RouterService;
 use helpers\translate\Translate;
 
 ?>
+<style>
+    .template-img {
+        background-color: #eef2f7;
+        width: 100% !important;
+        display: block;
+    }
+</style>
 
 <!--body section-->
 <div class="jumbotron p-0 m-0">
