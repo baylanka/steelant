@@ -27,10 +27,10 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
                 : <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
 
 
-
             <?php if (empty(sizeof(array_values($connector->getThicknessArrayOfLang())))): ?>
                 <dd class="custom-dd custom-font">
-                    <?= Translate::get("template_context", "steel_thickness", $language) ?>: ---</dd>
+                    <?= Translate::get("template_context", "steel_thickness", $language) ?>: ---
+                </dd>
             <?php else: ?>
                 <?php foreach ($connector->getThicknessArrayOfLang() as $key => $value): ?>
                     <dd class="custom-dd custom-font">
@@ -43,7 +43,8 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
 
             <?php if (empty(sizeof(array_values($connector->getLengthOfLang())))): ?>
                 <dd class="custom-dd custom-font">
-                    <?= Translate::get("template_context", "standard_length", $language) ?>: ---</dd>
+                    <?= Translate::get("template_context", "standard_length", $language) ?>: ---
+                </dd>
             <?php else: ?>
                 <?php
                 $totalLengths = sizeof($connector->getLengthOfLang());
@@ -55,17 +56,17 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
                     $type = $connector->standardLengthTypes[$i];
                     $customizedLabelExists = !(empty($key) || $key == "general");
                     $label = '';
-                    if($totalLengths > 1){
+                    if ($totalLengths > 1) {
                         $label = Translate::get("template_context", "length", $language);
-                        if($customizedLabelExists){
+                        if ($customizedLabelExists) {
                             $label .= " {$key}";
                         }
-                    }else{
-                        if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE){
+                    } else {
+                        if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE) {
                             $label = Translate::get("template_context", "standard_length", $language);
-                        }elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES){
+                        } elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES) {
                             $label = Translate::get("template_context", "standard_lengths", $language);
-                        }elseif ($type == StandardLengthTypePool::VARIABLE_VALUES){
+                        } elseif ($type == StandardLengthTypePool::VARIABLE_VALUES) {
                             $label = Translate::get("template_context", "standard_length_variable", $language);
                         }
                     }
@@ -132,25 +133,32 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
                 <a class="link color-black"><?= Translate::get("template_context", "request_this_connector", $language) ?></a>
             </dd>
 
-            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?php if (isset($_SESSION["auth"])) {
-                if (!ConnectorService::isFavourite($connector->id)): ?>add_to_favourite<?php endif;
-            } ?>"
-                data-id="<?= $connector->id ?>">
-                <a <?php if (!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif; ?>
-                        class="link color-black">
-                    <?= Translate::get("template_context", "remember_this_connector", $language) ?></a>
-                <?php
-                $imageUrl = "";
-                if (isset($_SESSION["auth"])) {
-                    if (ConnectorService::isFavourite($connector->id)) {
-                        $imageUrl = assets("themes/user/img/star.png");
-                    } else {
-                        $imageUrl = assets("themes/user/img/star-ash.png");
-                    }
+
+            <?php
+            $imageUrl = "";
+            $classForFavourite = "";
+            $favouriteDirectUrl = "";
+            if (isset($_SESSION["auth"])) {
+                if (ConnectorService::isFavourite($connector->id)) {
+                    $imageUrl = assets("themes/user/img/star.png");
+                    $favouriteDirectUrl = url("/favourite");
                 } else {
                     $imageUrl = assets("themes/user/img/star-ash.png");
+                    $classForFavourite = "add_to_favourite";
                 }
-                ?>
+            } else {
+                $imageUrl = assets("themes/user/img/star-ash.png");
+                $favouriteDirectUrl = url("/login");
+            }
+            ?>
+
+
+            <dd class="custom-dd custom-font d-flex align-middle gap-3 <?= $classForFavourite ?>"
+                data-id="<?= $connector->id ?>">
+                <a href="<?= $favouriteDirectUrl ?>"
+                   class="link color-black">
+                    <?= Translate::get("template_context", "remember_this_connector", $language) ?></a>
+
                 <img class="align-self-center" src="<?= $imageUrl ?>" height="15"/>
             </dd>
 
