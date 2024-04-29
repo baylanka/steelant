@@ -125,31 +125,29 @@ use helpers\translate\Translate;
     </dd>
 
 
-
-
-
     <?php
     $imageUrl = "";
     $classForFavourite = "";
+    $favouriteDirectUrl = "";
     if (isset($_SESSION["auth"])) {
         if (ConnectorService::isFavourite($connector->id)) {
             $imageUrl = assets("themes/user/img/star.png");
+            $favouriteDirectUrl = url("/favourite");
         } else {
             $imageUrl = assets("themes/user/img/star-ash.png");
             $classForFavourite = "add_to_favourite";
         }
     } else {
         $imageUrl = assets("themes/user/img/star-ash.png");
+        $favouriteDirectUrl = url("/login");
     }
     ?>
 
 
-
-
     <dd class="custom-dd custom-font d-flex align-middle gap-3 <?= $classForFavourite ?>"
         data-id="<?= $connector->id ?>">
-        <a <?php if (!isset($_SESSION["auth"])): ?> href="<?= url("/login") ?>" <?php endif; ?>
-                class="link color-black">
+        <a href="<?= $favouriteDirectUrl ?>"
+           class="link color-black">
             <?= Translate::get("template_context", "remember_this_connector", $language) ?></a>
 
         <img class="align-self-center" src="<?= $imageUrl ?>" height="15"/>
