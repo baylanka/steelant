@@ -191,5 +191,5 @@
         });
     });
 </script>
-<script src="<?= assets("js/template-render.js?v=1.0") ?>"></script>
+<script src="<?= assets("js/template-render.js?v=1.1") ?>"></script>
 <!--<script src="--><?php //= assets("js/template-render.min.js") ?><!--"></script>-->

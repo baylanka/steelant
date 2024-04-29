@@ -166,10 +166,11 @@ function getTitleFieldName(imageContainer) {
 $(document).off("change", ".img-heading");
 $(document).on("change", ".img-heading", function () {
     spinnerEnabled();
+    debugger
     let heading_key = $(this).attr("data-heading");
     let value = $(this).val();
     const imageContainer = $(this).closest('.template-img-container');
-    $(this).attr('name', getTitleFieldName(imageContainer));
+    // $(this).attr('name', getTitleFieldName(imageContainer));
 
     if ($(this).closest("div.template-img-container").length > 0) {
         const totalHeadingFields = $(".img-heading").length;
@@ -180,13 +181,17 @@ $(document).on("change", ".img-heading", function () {
             const isImageSet = !isEmpty(eachImageContainer.find('.template-img-input').val())
                                 ||
                                !isEmpty(eachImageContainer.find('.file_src').val());
-            if (
-                    $(this).attr("data-heading") === heading_key
-                &&  isEmpty($(this).val())
-                &&  isImageSet
-            ) {
-                $(this).val(value);
-                $(this).attr('name', getTitleFieldName(eachImageContainer));
+            const currentHeadingKey = $(this).attr("data-heading");
+            if (currentHeadingKey === heading_key) {
+
+                if(isEmpty($(this).val())){
+                    $(this).val(value);
+                }
+
+
+                if(isImageSet){
+                    $(this).attr('name', getTitleFieldName(eachImageContainer));
+                }
             }
 
             if (totalHeadingFields === iCount) {
