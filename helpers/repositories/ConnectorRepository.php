@@ -77,6 +77,7 @@ class ConnectorRepository extends Connector
                 media.name AS media_name,
                 media.path AS media_path,
                 content_template_media.title AS media_title,
+                content_template_media.file_name AS file_name,
                 content_template_media.placeholder_id,
                 content_templates.language,
                 category_contents.leaf_category_id

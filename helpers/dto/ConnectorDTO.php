@@ -241,6 +241,7 @@ class ConnectorDTO extends ElementDTO
                         'media_name'  => $each['media_name'],
                         'file_asset_path' => $each['file_asset_path'],
                         'title' => $value,
+                        'name' => $each['file_name'][$lang]
                     ];
                     break;
                 }
@@ -350,6 +351,7 @@ class ConnectorDTO extends ElementDTO
             if(!isset($each->media_id) || $each->media_type !== Media::TYPE_FILE) continue;
 
             $files[$each->media_id]['title'][$each->language] =  $each->media_title ?? null;
+            $files[$each->media_id]['file_name'][$each->language] =  $each->file_name ?? null;
 
             if(!isset($files[$each->media_id]['file_asset_path'])){
                 $files[$each->media_id]['file_asset_path'] = assets('storage/'. $each->media_path);

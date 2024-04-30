@@ -114,8 +114,11 @@ use helpers\translate\Translate;
             ? '' : $connector->getDescriptionOfLang() ?></dd>
 
     <?php foreach ($connector->getDownloadableFiles() as $fileArray): ?>
-        <dd class="custom-dd custom-font"><a href="<?= $fileArray['file_asset_path'] ?>"
-                                             class="link color-black" download><?= $fileArray['title'] ?></a>
+        <dd class="custom-dd custom-font">
+            <a href="<?= $fileArray['file_asset_path'] ?>"
+                           class="link color-black" download="<?= $fileArray['name'] ?>">
+                <?= $fileArray['title'] ?>
+            </a>
         </dd>
     <?php endforeach; ?>
 

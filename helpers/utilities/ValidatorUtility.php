@@ -86,7 +86,7 @@ class ValidatorUtility
 
     public static function isAcceptedType(array $file, array $acceptedValues): bool
     {
-        $type = FileUtility::getType($file);
+        $type = FileUtility::getExtension($file);
         return in_array($type, $acceptedValues);
     }
 

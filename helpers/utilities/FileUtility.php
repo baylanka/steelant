@@ -34,13 +34,13 @@ class FileUtility
         }
     }
 
-    public static function getType(array $file): string
+    public static function getExtension(array $file): string
     {
         $filename = basename($file['name']);
         return strtolower(pathinfo($filename,PATHINFO_EXTENSION));
     }
 
-    public static function getName($file)
+    public static function getName(array $file)
     {
         return pathinfo($file['name'], PATHINFO_FILENAME);
     }
@@ -67,30 +67,23 @@ class FileUtility
 
     public static function getFileNamePhraseFromURL($fileUrl)
     {
-        $filePathArray = explode('/', $fileUrl);
-        return  $filePathArray[sizeof($filePathArray)-1];
+        $file = [];
+        $file['name'] = $fileUrl;
+        return self::getName($file);
     }
 
 
     public static function getFileExtensionFromURL($fileUrl)
     {
-        $fileName = self::getFileNamePhraseFromURL($fileUrl);
-        $fileNameSplits =  explode('.', $fileName);
-        return $fileNameSplits[sizeof($fileNameSplits)-1];
+        $file = [];
+        $file['name'] = $fileUrl;
+        return self::getExtension($file);
     }
 
     public static function isImageExtension($fileExtension): bool
     {
         return in_array($fileExtension, self::VideoExtension);
     }
-
-    public static function stripeFileName(string $fileNameWithExtension)
-    {
-        $fileNameSplits =  explode('.', $fileNameWithExtension);
-        array_pop($fileNameSplits);
-        return implode(' ', $fileNameSplits);
-    }
-
     public static function fileExists($path)
     {
         return file_exists($path);

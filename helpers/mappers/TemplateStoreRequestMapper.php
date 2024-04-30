@@ -25,7 +25,7 @@ class TemplateStoreRequestMapper
     {
         $file = $request->get('template');
         $fileOriginalName = FileUtility::getName($file);
-        $fileName = "template_file_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+        $fileName = "template_file_{$fileOriginalName}_" . time() . "." . FileUtility::getExtension($file);
         $path = "template_assets/" . $fileName;
         $target = storage_path("public/{$path}");
         FileUtility::upload($file, $target);
@@ -36,7 +36,7 @@ class TemplateStoreRequestMapper
     {
         $file = $request->get('thumbnail');
         $fileOriginalName = FileUtility::getName($file);
-        $fileName = "template_thumbnail_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+        $fileName = "template_thumbnail_{$fileOriginalName}_" . time() . "." . FileUtility::getExtension($file);
         $path = "template_assets/" . $fileName;
         $target = storage_path("public/{$path}");
         $type = Media::TYPE_IMAGE;

@@ -41,7 +41,7 @@ class TemplateStoreRequestValidator
         $file = $request->get('template');
         if(!ValidatorUtility::isAcceptedType($file,['php'])){
             ResponseUtility::response("unsupported template file.",422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "file_type"=>"current file type is " . FileUtility::getExtension($file),
                 "expected_type" => "template must be php file"
             ]);
         }
@@ -60,7 +60,7 @@ class TemplateStoreRequestValidator
         $file = $request->get('thumbnail');
         if(!ValidatorUtility::isImage($file)){
             ResponseUtility::response("unsupported thumbnail file.",422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "file_type"=>"current file type is " . FileUtility::getExtension($file),
                 "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
             ]);
         }

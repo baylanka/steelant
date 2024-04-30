@@ -15,7 +15,6 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
 <div class="row my-5 justify-content-end" id="<?= $connector->id ?>">
 
     <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
-
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if (!empty($connector->getSubtitleOfLang())): ?>
@@ -166,8 +165,6 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
                 <a class="link color-black"><?= $connector->getFooterOfLang() ?></a>
             </dd>
         </dl>
-
-
     </div>
 
 
