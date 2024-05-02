@@ -15,7 +15,6 @@ class HomeController
 
     public function home(Request $request)
     {
-//        dd(RouterService::getCategoryPageRoute(2));
         $data = [];
         return view("user/home.view.php", $data);
     }
