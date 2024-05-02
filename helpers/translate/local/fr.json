@@ -152,10 +152,17 @@
     "paragraph_03": "Les connecteurs SteelWall sont une technologie de troisième génération fabriquée dans des usines certifiées de la plus haute qualité et précision. Du point de vue de l'ingénierie, de la conception et de la facilité d'utilisation, il s'agit d'un produit technologiquement supérieur, extrêmement solide, facile à conduire et tout simplement imbattable du point de vue de l'efficacité économique.",
     "paragraph_04": "Explorez ce site Web et contactez un représentant SteelWall pour savoir pourquoi les connecteurs SteelWall sont l'un des produits de l'industrie de la construction à la croissance la plus rapide au monde."
   },
-
-
-
-
+  "news_letter_page": {
+    "newsletter": "Bulletin",
+    "subscribe_unsubscribe": "S'inscrire Se désinscrire",
+    "advantages_of_a_registration": "Avantages d'une inscription",
+    "request_products_easily": "Demandez des produits facilement",
+    "save_your_requests_and_products": "Sauvegardez vos demandes et produits",
+    "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter (environ 4 fois / an)",
+    "unsubscribe": "Se désabonner",
+    "Subscribe": "S'abonner",
+    "login_to_subscribe": "Connectez-vous pour vous abonner"
+  },
 
 
 

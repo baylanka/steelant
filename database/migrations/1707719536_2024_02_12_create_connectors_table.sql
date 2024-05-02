@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS  connectors
 
     visibility TINYINT(2) DEFAULT 0,
 
-    standard_length_type TINYINT(4) DEFAULT 0;
+    standard_length_type TINYINT(4) DEFAULT 0,
 
-    other_attrs TEXT NULL,
+    other_attrs TEXT,
 
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
