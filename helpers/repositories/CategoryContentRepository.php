@@ -138,4 +138,18 @@ class CategoryContentRepository extends CategoryContent
             $content->delete();
         }
     }
+
+    public static function getNextDisplayOrderOfCategoryId($categoryId)
+    {
+        $sql = "
+                SELECT count(id) AS 'existence'  FROM category_contents
+                    WHERE leaf_category_id = :category_id
+                    ORDER BY display_order_no DESC;
+        ";
+        $params = ['category_id' => $categoryId];
+        $content = BaseModel::queryAsArray($sql, $params)->first();
+        if (!$content) return 1;
+
+        return $content['existence'] + 1;
+    }
 }
