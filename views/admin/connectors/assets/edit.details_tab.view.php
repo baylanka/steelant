@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-5">
-            <label for="name" class="align-items-center">
+            <label for="name" class="align-items-center required-field">
                 Name
             </label>
             <input name="name" type="text"
@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="basic-url" class="form-label align-middle">Visibility</label>
+            <label for="basic-url" class="form-label align-middle required-field">Visibility</label>
 
             <div class="d-flex w-50 justify-content-start gap-5">
                 <div class="form-check">
@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-between mt-3">
-            <label for="steel_grade" class="align-items-center">
+            <label for="steel_grade" class="align-items-center required-field">
                 Steel Grade
             </label>
             <input name="grade" type="text" value="<?=$connector->grade?>"
@@ -104,7 +104,7 @@
 
         <div class="col-12 d-flex justify-content-between mt-3">
 
-            <label class="align-items-center">
+            <label class="align-items-center  required-field">
                 Steel Thickness
             </label>
 
@@ -195,7 +195,7 @@
 
         <div class="col-12 d-flex justify-content-between mt-3">
 
-            <label class="align-items-center">
+            <label class="align-items-center required-field">
                 Standard length
             </label>
 
@@ -348,7 +348,7 @@
 
         <div class="col-12 d-flex justify-content-between mt-3">
 
-            <label class="align-items-center">
+            <label class="align-items-center required-field">
                 Weight
             </label>
 
