@@ -123,18 +123,23 @@ class CategoryRepository extends Category
         Category::deleteById($id);
     }
 
-    public static function getNextDisplayOrderOfCategoryId($categoryId)
+    public static  function hasThirdLevelsOfChildren($categoryId)
     {
         $sql = "
-                SELECT count(id) AS 'existence'  FROM category_contents
-                    WHERE leaf_category_id = :category_id
-                    ORDER BY display_order_no DESC;
-        ";
-        $params = ['category_id' => $categoryId];
-        $content = self::queryAsArray($sql, $params)->first();
-        if (!$content) return 1;
+                    SELECT COUNT(*) AS 'category_count'
+                        FROM categories c1
+                        JOIN categories c2 ON c1.id = c2.parent_category_id
+                        JOIN categories c3 ON c2.id = c3.parent_category_id
+                        WHERE c1.id = :parent_id
+                        AND c2.level = 2
+                        AND c3.level = 3;
+               ";
 
-        return $content['existence'] + 1;
+        $params = ['parent_id' => $categoryId];
+        $content = self::queryAsArray($sql, $params)->first();
+        if (!$content) return false;
+
+        return $content['category_count'] > 0;
     }
 
     private static function deleteChildrenByParentCategoryId($id)

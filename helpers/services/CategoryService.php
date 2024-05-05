@@ -9,7 +9,6 @@ class CategoryService
 {
     public static array $categoryArray = [];
 
-
     public static function getParentCategory($id)
     {
         $categoryHierarchy = self::getCategoryTreeFromLeafCategoryId($id);
@@ -146,6 +145,29 @@ class CategoryService
         return $categoryArr;
     }
 
+    public static function getCategoryGroupsByPageCol()
+    {
+        $pageColLimit = 15;
+        $categories = Category::getAll();
+        $categories = self::organizingCategoriesTreeView($categories);
+
+        $array = [];
+        $arrayIndex = 0;
+        $arrayPositionCount = 0;
+        foreach ($categories as $category) {
+            $categoryLength = self::getChildrenCount($category) + 1;
+            if(($arrayPositionCount+$categoryLength) > $pageColLimit){
+                $arrayIndex++;
+                $arrayPositionCount = 0;
+            }
+
+            $array[$arrayIndex][] = $category;
+            $arrayPositionCount += $categoryLength;
+        }
+
+        return $array;
+    }
+
     private static function getChildren(array $categories, $parentCategory)
     {
         $children = [];
@@ -209,6 +231,18 @@ class CategoryService
         }
 
         return $collector;
+    }
+
+    private static function getChildrenCount(Category $category, $count = 0)
+    {
+        $children = $category->getChildren();
+        $count += sizeof($children);
+        foreach ($children as $child)
+        {
+            $count = self::getChildrenCount($child, $count);
+        }
+
+        return $count;
     }
 
 }

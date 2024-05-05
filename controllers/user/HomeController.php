@@ -15,7 +15,10 @@ class HomeController
 
     public function home(Request $request)
     {
-        $data = [];
+        $data = [
+            'categoryGroups' => CategoryService::getCategoryGroupsByPageCol()
+        ];
+
         return view("user/home.view.php", $data);
     }
 
