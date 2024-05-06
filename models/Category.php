@@ -128,7 +128,7 @@ class Category extends BaseModel
 
     public function getNameFr()
     {
-        return $this->getNameByLang(LanguagePool::GERMANY()->getLabel());
+        return $this->getNameByLang(LanguagePool::FRENCH()->getLabel());
     }
 
     public function getTitleByLang(string $language)
