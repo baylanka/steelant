@@ -244,7 +244,6 @@ use helpers\translate\Translate;
         }
 
         if($(".convert_by_image_2").length){
-            console.log("1");
             let height  = $(".convert_by_image_2").css("height");
             height.replace("px", "");
             height = (parseInt(height) - 20.8)/2;
@@ -252,7 +251,6 @@ use helpers\translate\Translate;
         }
 
         if($(".convert_by_image3").length){
-            console.log("2");
             let height  = $(".convert_by_image3").css("height");
             $(".convertable_image3").css("height",height)
         }
