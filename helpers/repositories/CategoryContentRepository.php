@@ -147,7 +147,7 @@ class CategoryContentRepository extends CategoryContent
                     ORDER BY display_order_no DESC;
         ";
         $params = ['category_id' => $categoryId];
-        $content = BaseModel::queryAsArray($sql, $params)->first();
+        $content = self::queryAsArray($sql, $params)->first();
         if (!$content) return 1;
 
         return $content['existence'] + 1;
