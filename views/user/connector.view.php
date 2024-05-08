@@ -206,7 +206,7 @@ use helpers\translate\Translate;
 
     $(document).on("click", ".request-connector", async function () {
         const id = $(this).attr('data-id');
-        let path = `${getBaseUrl()}/order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
+        let path = `order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
         let authenticated = false;
         <?php if(isset($_SESSION["auth"]) && $_SESSION["auth"] == true){ ?>
         authenticated = true;
@@ -289,7 +289,7 @@ use helpers\translate\Translate;
     });
 
     $(document).on("click", ".add_to_favourite", async function (e) {
-
+        e.preventDefault();
         const notice = `
                 <p><b><?= Translate::get("connector_page", "add_to_favourite_message") ?><b><p>
             `;

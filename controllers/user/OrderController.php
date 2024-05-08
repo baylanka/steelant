@@ -5,7 +5,9 @@ namespace controllers\user;
 use controllers\BaseController;
 use helpers\clients\EmailClient;
 use helpers\mappers\OrderStoreRequestMapper;
+use helpers\services\ConnectorService;
 use helpers\services\OrderService;
+use helpers\translate\Translate;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use helpers\validators\OrderStoreRequestValidator;
@@ -15,13 +17,14 @@ use model\Connector;
 class OrderController extends BaseController
 {
 
-    public function create_view(Request $request)
+    public function create(Request $request)
     {
-        $connector = Connector::getById($request->get("id"));
+        $connectorId = $request->get("id");
+        $lang = Translate::getLang();
         $user = [];
 
         $data = [
-            "connector" => $connector,
+            "connector" => ConnectorService::getDTOById($connectorId, $lang),
             "user" => $user,
             "lang" => $request->get("lang")
         ];
@@ -29,7 +32,7 @@ class OrderController extends BaseController
     }
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         global $container;
         $db = $container->resolve('DB');
