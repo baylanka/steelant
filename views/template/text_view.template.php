@@ -17,17 +17,17 @@ use \helpers\pools\LanguagePool;
             <?= $connector->getSubtitleOfLang() ?>
         </dd>
     <?php endif; ?>
-    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
+    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?><?=$spaceApplicable?" ":''?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
 
 
     <?php if (empty(sizeof(array_values($connector->getThicknessArrayOfLang())))): ?>
         <dd class="custom-dd custom-font">
-            <?= Translate::get("template_context", "steel_thickness", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: ---
+            <?= Translate::get("template_context", "steel_thickness", $language) ?><?=$spaceApplicable?" ":''?>: ---
         </dd>
     <?php else: ?>
         <?php foreach ($connector->getThicknessArrayOfLang() as $key => $value): ?>
             <dd class="custom-dd custom-font">
-                <?= Translate::get("template_context", "steel_thickness", $language) ?><?= $key === 'general' ? '' : "&nbsp;" .$key ?><?=$spaceApplicable?"&nbsp;":''?>: <?= $value ?>
+                <?= Translate::get("template_context", "steel_thickness", $language) ?><?= $key === 'general' ? '' : " " .$key ?><?=$spaceApplicable?" ":''?>: <?= $value ?>
             </dd>
         <?php endforeach; ?>
     <?php endif; ?>
@@ -35,7 +35,7 @@ use \helpers\pools\LanguagePool;
 
     <?php if (empty(sizeof(array_values($connector->getLengthOfLang())))): ?>
         <dd class="custom-dd custom-font">
-            <?= Translate::get("template_context", "standard_length", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: ---
+            <?= Translate::get("template_context", "standard_length", $language) ?><?=$spaceApplicable?" ":''?>: ---
         </dd>
     <?php else: ?>
         <?php
@@ -66,12 +66,12 @@ use \helpers\pools\LanguagePool;
 
             ?>
             <dd class="custom-dd custom-font">
-                <?php if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?><?=$label?><?=$spaceApplicable?"&nbsp;":''?>: <?= empty($value) ? '---' : $value ?>
+                <?php if ($type == StandardLengthTypePool::FIXED_SINGLE_VALUE): ?><?=$label?><?=$spaceApplicable?" ":''?>: <?= empty($value) ? '---' : $value ?>
 
-                <?php elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?><?=$label?><?=$spaceApplicable?"&nbsp;":''?>: <?= empty($value) ? '---' : $value ?>
+                <?php elseif ($type == StandardLengthTypePool::FIXED_MULTIPLE_VALUES): ?><?=$label?><?=$spaceApplicable?" ":''?>: <?= empty($value) ? '---' : $value ?>
 
                 <?php elseif ($type == StandardLengthTypePool::VARIABLE_VALUES): ?>
-                    <?=$label?> &nbsp;
+                    <?=$label?>
                     <?= empty($value) ? '---' : $value ?>
 
                 <?php endif ?>
@@ -81,26 +81,27 @@ use \helpers\pools\LanguagePool;
 
 
     <?php if (empty(sizeof(array_values($connector->getWeightArrayOfLang())))): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: ---</dd>
+        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?=$spaceApplicable?" ":''?>: ---</dd>
     <?php else: ?>
         <?php foreach ($connector->getWeightArrayOfLang() as $key => $value): ?>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?= $key === 'general' ? '' : "&nbsp;" . $key ?><?=$spaceApplicable?"&nbsp;":''?>: <?= $value ?></dd>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "weight", $language) ?><?= $key === 'general' ? '' : " " . $key ?><?=$spaceApplicable?" ":''?>: <?= $value ?></dd>
         <?php endforeach; ?>
     <?php endif; ?>
 
 
     <?php if (!empty(sizeof(array_values($connector->getMaxTensileStrengthByLang())))): ?>
         <?php foreach ($connector->getMaxTensileStrengthByLang() as $key => $value): ?>
-            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?><?= $key === 'general' ? '' : "&nbsp;" .$key ?><?=$spaceApplicable?"&nbsp;":''?>: <?= $value ?></dd>
+            <?php if(empty($value)) continue; ?>
+            <dd class="custom-dd custom-font"><?= Translate::get("template_context", "max_tensile_strength", $language) ?><?= $key === 'general' ? '' : " " .$key ?><?=$spaceApplicable?" ":''?>: <?= $value ?></dd>
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($connector->getPressureLoadOfLang())): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "pressure_load", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: <?= $connector->getPressureLoadOfLang() ?></dd>
+        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "pressure_load", $language) ?><?=$spaceApplicable?" ":''?>: <?= $connector->getPressureLoadOfLang() ?></dd>
     <?php endif; ?>
 
     <?php if (!empty($connector->getDeformationPathOfLang())): ?>
-        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "deformation_path", $language) ?><?=$spaceApplicable?"&nbsp;":''?>: <?= $connector->getDeformationPathOfLang() ?></dd>
+        <dd class="custom-dd custom-font"><?= Translate::get("template_context", "deformation_path", $language) ?><?=$spaceApplicable?" ":''?>: <?= $connector->getDeformationPathOfLang() ?></dd>
     <?php endif; ?>
 
     <dd class="my-3 custom-font"><?= empty($connector->getDescriptionOfLang())
