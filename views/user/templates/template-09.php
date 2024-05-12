@@ -167,7 +167,7 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
     </div>
 
 
-    <div class="<?= $imageContainerSize01 ?>">
+    <div class="col-12 col-md-4 col-xxl-4 d-flex flex-column margin-bottom-sm">
 
 
         <!-- ///////  Image 01  /////// -->
@@ -320,94 +320,8 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
         <!-- ///////  Image 02  /////// -->
 
 
-        <!-- ///////  Image 03  /////// -->
-        <?php
-        $placeHolder = 3;
-        $headingPlaceHolder = "head-3";
-        $imageAttr = $connector->getImageAttributes($placeHolder);
-        ?>
-        <div class="template-img-container mt-5 remove-on-sm <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
-
-            <!--Duplicate element - for title Start-->
-            <?php
-            $imageTitleExists = !empty($imageAttr->title);
-            if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue fw-bold <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
-                <br>
-            <?php else: ?>
-                <?php if ($imageTitleExists): ?>
-                    <div class=" d-flex align-middle gap-2">
-                        <input class="img-heading form-control" type="text"
-                               data-heading="<?= $headingPlaceHolder ?>"
-                               data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                               placeholder="Heading"
-                               name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
-                    </div>
-                    <br>
-                <?php else: ?>
-                    <span class="color-blue template-img-heading"
-                          data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
-                <?php endif ?>
-            <?php endif; ?>
-            <!--Duplicate element - for title End-->
-
-
-            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
-
-                <img class="img-fluid template-img convertable_image3  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                     alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
-                        src="<?= assets("themes/user/img/selected_video.png") ?>"
-                    <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                    <?php endif; ?>
-                     style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;"
-                />
-
-            <?php else: ?>
-
-                <video class="img-fluid template-img convertable_image3 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                       alt="<?= $imageAttr->media_name ?>"
-                       style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                            type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-            <?php endif; ?>
-
-            <a class="remove-image-btn btn btn-sm btn-danger border border-light
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
-               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
-                <i class="bi bi-trash3-fill"></i>
-            </a>
-
-
-            <?php if ($mode === Template::MODE_EDIT): ?>
-                <br/>
-                <input type="file"
-                       name="<?= $imageAttr->image_file_name ?>"
-                       class="template-img-input d-none" data-width="180" data-height="180">
-                <input type="hidden"
-                       name="<?= $imageAttr->languageName ?>"
-                       value="<?= $connector->language ?>" class="image-language">
-                <input type="hidden"
-                       name="<?= $imageAttr->placeHolderName ?>"
-                       value="<?= $placeHolder ?>" class="image-placeholder">
-                <?php if (!empty($imageAttr->file_src)): ?>
-                    <input type="hidden" class="file_src"
-                           name="<?= $imageAttr->file_src ?>"
-                           value="<?= $imageAttr->src ?? '' ?>">
-                <?php endif; ?>
-            <?php endif; ?>
-
-
-        </div>
-        <!-- ///////  Image 03  /////// -->
-
     </div>
+
 
     <div class="<?= $imageContainerSize02 ?>">
 
@@ -559,157 +473,6 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
 
         </div>
         <!-- ///////  Image 05  /////// -->
-
-
-        <!-- ///////  Image 06  /////// -->
-        <?php
-        $headingPlaceHolder = "head-6";
-        $placeHolder = 6;
-        $imageAttr = $connector->getImageAttributes($placeHolder);
-        ?>
-        <div class="template-img-container mt-5  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
-
-            <!--Duplicate element - for title Start-->
-            <?php
-            $imageTitleExists = !empty($imageAttr->title);
-            if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
-                <br>
-            <?php else: ?>
-                <?php if ($imageTitleExists): ?>
-                    <div class=" d-flex align-middle gap-2">
-                        <input class="img-heading form-control" type="text"
-                               data-heading="<?= $headingPlaceHolder ?>"
-                               data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                               placeholder="Heading"
-                               name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
-                    </div>
-                    <br>
-                <?php else: ?>
-                    <span class="color-blue template-img-heading"
-                          data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
-                <?php endif ?>
-            <?php endif; ?>
-            <!--Duplicate element - for title End-->
-
-            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
-
-                <img class="img-fluid template-img  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                     alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
-                        src="<?= assets("themes/user/img/selected_video.png") ?>"
-                    <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                    <?php endif; ?>
-                     style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;"
-                />
-
-            <?php else: ?>
-
-                <video class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                       alt="<?= $imageAttr->media_name ?>"
-                       style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                            type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-            <?php endif; ?>
-
-            <a class="remove-image-btn btn btn-sm btn-danger border border-light
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
-               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
-                <i class="bi bi-trash3-fill"></i>
-            </a>
-
-
-            <?php if ($mode === Template::MODE_EDIT): ?>
-                <br/>
-                <input type="file"
-                       name="<?= $imageAttr->image_file_name ?>"
-                       class="template-img-input d-none" data-width="180" data-height="180">
-                <input type="hidden"
-                       name="<?= $imageAttr->languageName ?>"
-                       value="<?= $connector->language ?>" class="image-language">
-                <input type="hidden"
-                       name="<?= $imageAttr->placeHolderName ?>"
-                       value="<?= $placeHolder ?>" class="image-placeholder">
-                <?php if (!empty($imageAttr->file_src)): ?>
-                    <input type="hidden" class="file_src"
-                           name="<?= $imageAttr->file_src ?>"
-                           value="<?= $imageAttr->src ?? '' ?>">
-                <?php endif; ?>
-            <?php endif; ?>
-
-
-        </div>
-        <!-- ///////  Image 06  /////// -->
-
-
-        <!-- ///////  Image 07  /////// -->
-        <?php
-        $placeHolder = 7;
-        $imageAttr = $connector->getImageAttributes($placeHolder);
-        ?>
-        <div class="template-img-container mt-2  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
-
-            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
-
-                <img class="img-fluid template-img  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                     alt="<?= $imageAttr->media_name ?>"
-                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
-                        src="<?= assets("themes/user/img/selected_video.png") ?>"
-                    <?php else: ?>
-                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                    <?php endif; ?>
-                     style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;"
-                />
-
-            <?php else: ?>
-
-                <video class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
-                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
-                       alt="<?= $imageAttr->media_name ?>"
-                       style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
-                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
-                            type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-            <?php endif; ?>
-
-            <a class="remove-image-btn btn btn-sm btn-danger border border-light
-                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
-               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
-                <i class="bi bi-trash3-fill"></i>
-            </a>
-
-
-            <?php if ($mode === Template::MODE_EDIT): ?>
-                <br/>
-                <input type="file"
-                       name="<?= $imageAttr->image_file_name ?>"
-                       class="template-img-input d-none" data-width="180" data-height="180">
-                <input type="hidden"
-                       name="<?= $imageAttr->languageName ?>"
-                       value="<?= $connector->language ?>" class="image-language">
-                <input type="hidden"
-                       name="<?= $imageAttr->placeHolderName ?>"
-                       value="<?= $placeHolder ?>" class="image-placeholder">
-                <?php if (!empty($imageAttr->file_src)): ?>
-                    <input type="hidden" class="file_src"
-                           name="<?= $imageAttr->file_src ?>"
-                           value="<?= $imageAttr->src ?? '' ?>">
-                <?php endif; ?>
-            <?php endif; ?>
-
-
-        </div>
-
-        <!-- ///////  Image 07  /////// -->
 
 
     </div>
@@ -866,20 +629,131 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
         <!-- ///////  Image 09  /////// -->
 
 
+    </div>
 
-        <!-- ///////  Image 10  /////// -->
+    <div class="col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm">
+    </div>
+    <div class="col-12 col-md-4 col-xxl-4 d-flex flex-column margin-bottom-sm">
+        <!-- ///////  Image 03  /////// -->
         <?php
-        $headingPlaceHolder = "head-10";
-        $placeHolder = 10;
+        $placeHolder = 3;
+        $headingPlaceHolder = "head-3";
         $imageAttr = $connector->getImageAttributes($placeHolder);
         ?>
-        <div class="template-img-container mt-5  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+        <div class="template-img-container mt-5 <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+
             <!--Duplicate element - for title Start-->
             <?php
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
-                <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
+                <span class="color-blue fw-bold d-block text-center <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
                 <br>
+            <?php else: ?>
+                <?php if ($imageTitleExists): ?>
+                    <div class=" d-flex align-middle gap-2">
+                        <input class="img-heading form-control" type="text"
+                               data-heading="<?= $headingPlaceHolder ?>"
+                               data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                               placeholder="Heading"
+                               name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
+                    </div>
+                    <br>
+                <?php else: ?>
+                    <span class="color-blue template-img-heading"
+                          data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
+                <?php endif ?>
+            <?php endif; ?>
+            <!--Duplicate element - for title End-->
+
+
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+
+                <img class="img-fluid template-img convertable_image3 d-none <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                     alt="<?= $imageAttr->media_name ?>"
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
+                        src="<?= assets("themes/user/img/selected_video.png") ?>"
+                    <?php else: ?>
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                    <?php endif; ?>
+                     style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;"
+                />
+
+            <?php else: ?>
+
+                <video class="img-fluid template-img convertable_image3 d-none <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                       alt="<?= $imageAttr->media_name ?>"
+                       style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                            type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            <?php endif; ?>
+
+            <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                <i class="bi bi-trash3-fill"></i>
+            </a>
+
+
+            <?php if ($mode === Template::MODE_EDIT): ?>
+                <br/>
+                <input type="file"
+                       name="<?= $imageAttr->image_file_name ?>"
+                       class="template-img-input d-none" data-width="180" data-height="180">
+                <input type="hidden"
+                       name="<?= $imageAttr->languageName ?>"
+                       value="<?= $connector->language ?>" class="image-language">
+                <input type="hidden"
+                       name="<?= $imageAttr->placeHolderName ?>"
+                       value="<?= $placeHolder ?>" class="image-placeholder">
+                <?php if (!empty($imageAttr->file_src)): ?>
+                    <input type="hidden" class="file_src"
+                           name="<?= $imageAttr->file_src ?>"
+                           value="<?= $imageAttr->src ?? '' ?>">
+                <?php endif; ?>
+            <?php endif; ?>
+
+
+        </div>
+        <!-- ///////  Image 03  /////// -->
+
+    </div>
+
+
+    <div class="col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm">
+    </div>
+    <div class="col-12 col-md-4 col-xxl-4 d-flex flex-column margin-bottom-sm">
+
+        <div class="template-img-container">
+            <span class="color-blue fw-bold d-block text-center"><?= Translate::get("connector_mf_64","test_setup") ?></span>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-6 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm remove-on-sm"></div>
+
+    <div class="col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm">
+
+
+        <!-- ///////  Image 06  /////// -->
+        <?php
+        $headingPlaceHolder = "head-6";
+        $placeHolder = 6;
+        $imageAttr = $connector->getImageAttributes($placeHolder);
+        ?>
+        <div class="template-img-container <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+
+            <!--Duplicate element - for title Start-->
+            <?php
+            $imageTitleExists = !empty($imageAttr->title);
+            if ($mode === Template::MODE_VIEW): ?>
+                <span class="color-blue d-block text-center <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
@@ -948,9 +822,189 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
                 <?php endif; ?>
             <?php endif; ?>
 
+        </div>
+        <!-- ///////  Image 06  /////// -->
+
+
+    </div>
+
+    <div class="col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm">
+
+        <!-- ///////  Image 10  /////// -->
+        <?php
+        $headingPlaceHolder = "head-10";
+        $placeHolder = 10;
+        $imageAttr = $connector->getImageAttributes($placeHolder);
+        ?>
+        <div class="template-img-container <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+            <!--Duplicate element - for title Start-->
+            <?php
+            $imageTitleExists = !empty($imageAttr->title);
+            if ($mode === Template::MODE_VIEW): ?>
+                <span class="color-blue d-block text-center <?= $imageTitleExists ? '' : 'invisible' ?>"><?= $imageAttr->title ?></span>
+
+            <?php else: ?>
+                <?php if ($imageTitleExists): ?>
+                    <div class=" d-flex align-middle gap-2">
+                        <input class="img-heading form-control" type="text"
+                               data-heading="<?= $headingPlaceHolder ?>"
+                               data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                               placeholder="Heading"
+                               name="<?= $imageAttr->titleFieldName ?>" value="<?= $imageAttr->title ?>">
+                    </div>
+                    <br>
+                <?php else: ?>
+                    <span class="color-blue template-img-heading"
+                          data-heading="<?= $headingPlaceHolder ?>">Heading</span><br>
+                <?php endif ?>
+            <?php endif; ?>
+            <!--Duplicate element - for title End-->
+
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+
+                <img class="img-fluid template-img  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                     alt="<?= $imageAttr->media_name ?>"
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
+                        src="<?= assets("themes/user/img/selected_video.png") ?>"
+                    <?php else: ?>
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                    <?php endif; ?>
+                     style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;"
+                />
+
+            <?php else: ?>
+
+                <video class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                       alt="<?= $imageAttr->media_name ?>"
+                       style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                            type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            <?php endif; ?>
+
+            <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                <i class="bi bi-trash3-fill"></i>
+            </a>
+
+
+            <?php if ($mode === Template::MODE_EDIT): ?>
+                <br/>
+                <input type="file"
+                       name="<?= $imageAttr->image_file_name ?>"
+                       class="template-img-input d-none" data-width="180" data-height="180">
+                <input type="hidden"
+                       name="<?= $imageAttr->languageName ?>"
+                       value="<?= $connector->language ?>" class="image-language">
+                <input type="hidden"
+                       name="<?= $imageAttr->placeHolderName ?>"
+                       value="<?= $placeHolder ?>" class="image-placeholder">
+                <?php if (!empty($imageAttr->file_src)): ?>
+                    <input type="hidden" class="file_src"
+                           name="<?= $imageAttr->file_src ?>"
+                           value="<?= $imageAttr->src ?? '' ?>">
+                <?php endif; ?>
+            <?php endif; ?>
 
         </div>
         <!-- ///////  Image 10  /////// -->
+
+
+    </div>
+
+
+
+
+
+
+    <div class="col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm">
+    </div>
+    <div class="col-12 col-md-4 col-xxl-4 d-flex flex-column margin-bottom-sm">
+
+        <div class="template-img-container mt-3">
+            <span class="color-blue fw-bold d-block text-center"><?= Translate::get("connector_mf_64","after_testing") ?></span>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-6 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm remove-on-sm"></div>
+
+    <div class="col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm">
+
+
+
+        <!-- ///////  Image 07  /////// -->
+        <?php
+        $placeHolder = 7;
+        $imageAttr = $connector->getImageAttributes($placeHolder);
+        ?>
+        <div class="template-img-container mt-2  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'remove-on-sm' : '' ?>">
+
+            <?php if (($imageAttr->type && $imageAttr->type == Media::TYPE_IMAGE) || $mode === Template::MODE_EDIT): ?>
+
+                <img class="img-fluid template-img  <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                     data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                     alt="<?= $imageAttr->media_name ?>"
+                    <?php if ($imageAttr->src && $imageAttr->type == Media::TYPE_VIDEO): ?>
+                        src="<?= assets("themes/user/img/selected_video.png") ?>"
+                    <?php else: ?>
+                        src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                    <?php endif; ?>
+                     style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;"
+                />
+
+            <?php else: ?>
+
+                <video class="img-fluid template-img <?= ($mode === Template::MODE_VIEW && empty($imageAttr->src)) ? 'invisible' : '' ?>"
+                       data-default="<?= is_null($imageAttr->src) ? 'true' : 'false' ?>"
+                       alt="<?= $imageAttr->media_name ?>"
+                       style="aspect-ratio : 1 / 1;object-fit: cover; margin-top:0.8rem;" controls autoplay muted>
+                    <source src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
+                            type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            <?php endif; ?>
+
+            <a class="remove-image-btn btn btn-sm btn-danger border border-light
+                    <?= (empty($imageAttr->src) || $mode === Template::MODE_VIEW) ? 'd-none' : ' ' ?> position-absolute "
+               data-toggle="tooltip" title="reset image" style="margin-left: -2rem;">
+                <i class="bi bi-trash3-fill"></i>
+            </a>
+
+
+            <?php if ($mode === Template::MODE_EDIT): ?>
+                <br/>
+                <input type="file"
+                       name="<?= $imageAttr->image_file_name ?>"
+                       class="template-img-input d-none" data-width="180" data-height="180">
+                <input type="hidden"
+                       name="<?= $imageAttr->languageName ?>"
+                       value="<?= $connector->language ?>" class="image-language">
+                <input type="hidden"
+                       name="<?= $imageAttr->placeHolderName ?>"
+                       value="<?= $placeHolder ?>" class="image-placeholder">
+                <?php if (!empty($imageAttr->file_src)): ?>
+                    <input type="hidden" class="file_src"
+                           name="<?= $imageAttr->file_src ?>"
+                           value="<?= $imageAttr->src ?? '' ?>">
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
+        <!-- ///////  Image 07  /////// -->
+
+
+    </div>
+
+    <div class="col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bottom-sm">
 
 
         <!-- ///////  Image 11  /////// -->
@@ -1017,6 +1071,12 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
 
     </div>
 
+
+
+
+
+
+
     <div class="<?= $imageContainerSize03 ?>">
 
 
@@ -1037,7 +1097,7 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
                     <?php else: ?>
                         src="<?= $imageAttr->src ?? assets("themes/user/img/img-size-280-180.png") ?>"
                     <?php endif; ?>
-                     style="aspect-ratio : 8 / 4;object-fit: cover; margin-top:0.8rem; background-color:white !important;"
+                     style="object-fit: cover; margin-top:0.8rem; background-color:white !important;"
                 />
 
             <?php else: ?>
@@ -1087,7 +1147,7 @@ $imageContainerSize03 = "col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bot
     <div class="col-12 col-md-8 col-xxl-8 d-flex flex-column margin-bottom-sm">
 
 
-        <span class="color-blue">Conclusion</span>
+        <span class="color-blue"><?= Translate::get("connector_mf_64","conclusion") ?></span>
         <br/>
         <p><?= $connector->getFooterOfLang() ?></p>
     </div>
