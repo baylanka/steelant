@@ -5,6 +5,7 @@ namespace helpers\validators;
 use app\Request;
 use helpers\repositories\ConnectorRepository;
 use helpers\services\ResponseService;
+use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\Connector;
@@ -228,23 +229,40 @@ class ConnectorUpdateRequestValidator
             return;
         }
 
+        self::downloadableLanguageSelectorValidation($downloadableArray);
+        self::downloadableFileNameValidation($downloadableArray);
+    }
+
+    private static function downloadableLanguageSelectorValidation($downloadableArray)
+    {
         if(!isset($downloadableArray['title']) || empty($downloadableArray['title']))
         {
-            ResponseUtility::response('Label missing',422, [
-                'Please assign a label to each level of the file hierarchy.'
+            ResponseUtility::response('Language selection is missing',422, [
+                'Please select at least one language for each files that you have uploaded.'
             ]);
         }
+    }
 
-        foreach($downloadableArray['title'] as $index => $each){
-            $position = $index + 1;
-            if(empty(array_filter(array_values($each)))){
-                ResponseUtility::response("Label is missing on the position number: {$position}" ,422, [
-                    'Please assign a label to each level of the file hierarchy.'
-                ]);
-            }
+    private static function downloadableFileNameValidation($downloadableArray)
+    {
+        if(!isset($downloadableArray['file_name']) || empty($downloadableArray['file_name']))
+        {
+            ResponseUtility::response('File name is missing',422);
         }
 
+        foreach($downloadableArray['file_name'] as $index => $each){
+            $position = $index + 1;
+            if(empty(array_filter(array_values($each)))){
+                ResponseUtility::response("File name is missing on the position number: {$position}" ,422);
+            }
 
+            foreach($each as $lang => $name){
+                $extension = pathinfo($name, PATHINFO_EXTENSION);
+                if (empty($extension)) {
+                    ResponseUtility::response("File extension is missing on the position number: {$position}, language: {$lang}" ,422);
+                }
+            }
+        }
     }
 
     private static function templateValidation(Request $request)

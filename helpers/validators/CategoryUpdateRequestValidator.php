@@ -68,7 +68,7 @@ class CategoryUpdateRequestValidator
         $file = $request->get('icon');
         if(!ValidatorUtility::isImage($file)){
             ResponseUtility::response("unsupported icon file.",422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "file_type"=>"current file type is " . FileUtility::getExtension($file),
                 "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
             ]);
         }
@@ -89,7 +89,7 @@ class CategoryUpdateRequestValidator
         $file = $request->get('banner');
         if(!ValidatorUtility::isImage($file)){
             ResponseUtility::response("unsupported banner file.", 422,[
-                "file_type"=>"current file type is " . FileUtility::getType($file),
+                "file_type"=>"current file type is " . FileUtility::getExtension($file),
                 "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
             ]);
         }

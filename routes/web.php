@@ -41,8 +41,8 @@ $app->get('/newsletter/subscribe',  ["UserController", "subscribe"]);
 $app->get('/verify',  ["UserController", "verify_mail"]);
 
 
-$app->get('/order/request',  ["user\OrderController", "create_view"]);
-$app->post('/order/request/create',  ["user\OrderController", "create"]);
+$app->get('/order/request',  ["user\OrderController", "create"]);
+$app->post('/order/request/create',  ["user\OrderController", "store"]);
 $app->get('/order/request/delete',  ["user\OrderController", "destroy"]);
 
 

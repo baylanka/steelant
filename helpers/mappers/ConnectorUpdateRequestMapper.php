@@ -208,10 +208,10 @@ class ConnectorUpdateRequestMapper
             ];
             $fileOriginalName = FileUtility::getName($file);
             if(FileUtility::isVideo($file)){
-                $fileName = "video_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $fileName = "video_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getExtension($file);
                 $type = Media::TYPE_VIDEO;
             }else{
-                $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getType($file);
+                $fileName = "image_{$fileOriginalName}($index)_" . time() . "." . FileUtility::getExtension($file);
                 $type = Media::TYPE_IMAGE;
             }
 
@@ -241,9 +241,8 @@ class ConnectorUpdateRequestMapper
                 continue;
             }
 
-            $fileNameWithExtension = FileUtility::getFileNamePhraseFromURL($fileURL);
-            $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),6,5);
-
+            $fileName = FileUtility::getFileNamePhraseFromURL($fileURL);
+            $fileName = substr($fileName,6,5);
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
             if(FileUtility::isImageExtension($fileExtension)){
                 $fileName = "video_{$fileName}({$index})_" . time() . "." . $fileExtension;
@@ -334,9 +333,10 @@ class ConnectorUpdateRequestMapper
                 continue;
             }
 
-            $fileNameWithExtension = FileUtility::getFileNamePhraseFromURL($fileURL);
-            $fileName = substr(FileUtility::stripeFileName($fileNameWithExtension),18,5);
+            $fileName = FileUtility::getFileNamePhraseFromURL($fileURL);
+            $fileName = substr($fileName,18,5);
             $fileExtension = FileUtility::getFileExtensionFromURL($fileURL);
+            $fileNameWithExtension = "{$fileName}.{$fileExtension}";
             $fileName = "downloadable_file_{$fileName}({$index})_" . time() . "." . $fileExtension;
             $downloadableMedia = self::uploadFileFromURL($fileURL, $fileName, Media::TYPE_FILE, $directoryPath);
 
@@ -348,6 +348,7 @@ class ConnectorUpdateRequestMapper
                 $contentTemplateMedia = new ContentTemplateMedia();
                 $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->title = $title;
+                $contentTemplateMedia->file_name = $downloadableArray['file_name'][$index][$lang] ?? $fileNameWithExtension;
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
                 $contentTemplates[$lang]->temp_content_template_media[] = $contentTemplateMedia;
@@ -379,13 +380,16 @@ class ConnectorUpdateRequestMapper
                 'size' => $downloadableArray['size'][$index],
             ];
             $fileOriginalName = FileUtility::getName($file);
-            $fileName = "downloadable_file_{$fileOriginalName}({$index})_" . time() . "." . FileUtility::getType($file);
+            $fileNameWithExtension = $fileOriginalName . "." . FileUtility::getExtension($file);
+            $fileName = "downloadable_file_{$fileOriginalName}({$index})_" . time() . "." . FileUtility::getExtension($file);
+
 
             $downloadableMedia = self::uploadFile($file, Media::TYPE_FILE, $directoryPath, $fileName);
 
             foreach ($downloadableArray['title'][$index] as $lang => $title){
                 $contentTemplateMedia = new ContentTemplateMedia();
                 $contentTemplateMedia->title = $title;
+                $contentTemplateMedia->file_name = $downloadableArray['file_name'][$index][$lang] ?? $fileNameWithExtension;
                 $contentTemplateMedia->placeholder_id = $downloadablePlaceholderArray[$index];
                 $contentTemplateMedia->temp_media = $downloadableMedia;
                 //content template mostly can contain multiple media. collection media as am array
@@ -419,9 +423,7 @@ class ConnectorUpdateRequestMapper
 
         file_put_contents($target, $content);
 
-
-        $fileOriginalName = FileUtility::getFileNamePhraseFromURL($fileURL);
-        $fileNamePhrase = FileUtility::stripeFileName($fileOriginalName);
+        $fileNamePhrase = FileUtility::getFileNamePhraseFromURL($fileURL);
 
         $media = new Media();
         $media->type = $type;

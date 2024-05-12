@@ -4,7 +4,7 @@ namespace helpers\mappers;
 
 use app\Request;
 use helpers\pools\LanguagePool;
-use helpers\repositories\CategoryRepository;
+use helpers\repositories\CategoryContentRepository;
 use model\AdOnContent;
 use model\CategoryContent;
 use model\ContentTemplate;
@@ -53,7 +53,7 @@ class AdOnStoreRequestMapper
     {
         $content = new CategoryContent();
         $content->leaf_category_id = $request->get('category');
-        $content->display_order_no = CategoryRepository::getNextDisplayOrderOfCategoryId($content->leaf_category_id);
+        $content->display_order_no = CategoryContentRepository::getNextDisplayOrderOfCategoryId($content->leaf_category_id);
         $content->type = CategoryContent::TYPE_ADD_ON_CONTENT;
 
         return $content;

@@ -216,7 +216,7 @@ class Request
     private function setUri()
     {
         $uri = $_SERVER['REQUEST_URI'];
-        $uriParts = explode('/',parse_url($uri)['path']);
+        $uriParts = explode('/',urldecode(parse_url($uri)['path']));
         $filteredUriParts = array_filter($uriParts, function($value) {
             return trim($value) !== '';
         });

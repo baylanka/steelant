@@ -206,7 +206,7 @@ use helpers\translate\Translate;
 
     $(document).on("click", ".request-connector", async function () {
         const id = $(this).attr('data-id');
-        let path = `${getBaseUrl()}/order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
+        let path = `order/request?id=` + id + "&lang=<?= $_SESSION["lang"] ?>";
         let authenticated = false;
         <?php if(isset($_SESSION["auth"]) && $_SESSION["auth"] == true){ ?>
         authenticated = true;
@@ -244,7 +244,6 @@ use helpers\translate\Translate;
         }
 
         if($(".convert_by_image_2").length){
-            console.log("1");
             let height  = $(".convert_by_image_2").css("height");
             height.replace("px", "");
             height = (parseInt(height) - 20.8)/2;
@@ -252,7 +251,6 @@ use helpers\translate\Translate;
         }
 
         if($(".convert_by_image3").length){
-            console.log("2");
             let height  = $(".convert_by_image3").css("height");
             $(".convertable_image3").css("height",height)
         }
@@ -291,7 +289,7 @@ use helpers\translate\Translate;
     });
 
     $(document).on("click", ".add_to_favourite", async function (e) {
-
+        e.preventDefault();
         const notice = `
                 <p><b><?= Translate::get("connector_page", "add_to_favourite_message") ?><b><p>
             `;

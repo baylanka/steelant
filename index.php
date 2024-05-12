@@ -14,11 +14,11 @@ if(!file_exists(".env")){
 }
 $env = parse_ini_file('.env');
 $config = ConfigService::getComposedConfigCollection();
-
 //registration point for resources
 require_once basePath("app/resources.php");
 // Initialize any logic that occurs when the application starts
 preloader();
+
 
 try{
     $app = new Router();

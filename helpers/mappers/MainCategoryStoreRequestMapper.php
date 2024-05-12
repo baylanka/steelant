@@ -49,7 +49,7 @@ class MainCategoryStoreRequestMapper
          }
          $file = $request->get('icon');
          $fileOriginalName = FileUtility::getName($file);
-         $fileName = "category_icon_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+         $fileName = "category_icon_{$fileOriginalName}_" . time() . "." . FileUtility::getExtension($file);
          $category->temp_icon_media = $category->temp_icon_media = self::uploadFile($file, $fileName);
      }
 
@@ -67,7 +67,7 @@ class MainCategoryStoreRequestMapper
         }
         $file = $request->get('banner');
         $fileOriginalName = FileUtility::getName($file);
-        $fileName = "category_banner_{$fileOriginalName}_" . time() . "." . FileUtility::getType($file);
+        $fileName = "category_banner_{$fileOriginalName}_" . time() . "." . FileUtility::getExtension($file);
         $category->temp_banner_media = self::uploadFile($file, $fileName);
     }
 

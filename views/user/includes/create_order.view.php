@@ -25,30 +25,10 @@ use helpers\pools\LanguagePool;
                 </div>
                 <div class="form-group mt-4">
                     <label for="inputLength">LENGTH OF CONNECTOR</label>
-
-                    <?php
-                    if ($lang == LanguagePool::UK_ENGLISH()->getLabel()) {
-                        ?>
+                    <?php foreach ($connector->getLengthOfLang() as $each): ?>
                         <input type="text" class="form-control" id="inputDivision" aria-describedby="length"
-                               value="<?= $connector->standard_lengths_i ?>" disabled>
-                        <?php
-                    } else if ($lang == LanguagePool::US_ENGLISH()->getLabel()) {
-
-                        ?>
-
-                        <input type="text" class="form-control" id="inputDivision" aria-describedby="length"
-                               value="<?= $connector->standard_lengths_i ?>" disabled>
-                        <input type="text" class="form-control mt-2" id="inputDivision" aria-describedby="length"
-                               value="<?= $connector->standard_lengths_m ?>" disabled>
-                        <?php
-                    } else {
-                        ?>
-                        <input type="text" class="form-control" id="inputDivision" aria-describedby="length"
-                               value="<?= $connector->standard_lengths_m ?>" disabled>
-
-                    <?php } ?>
-
-
+                               value="<?= $each ?>" disabled>
+                    <?php endforeach; ?>
                 </div>
                 <div class="form-group mt-4">
                     <label for="inputPiles">NUMBER OF PILES</label>

@@ -1,3 +1,6 @@
+<?php
+ use \helpers\translate\Translate;
+?>
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
@@ -14,7 +17,7 @@
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="selected">Newsletter</h4>
+                        <h4 class="selected"><?=Translate::get("news_letter_page" , "newsletter")  ?> </h4>
                     </dl>
 
                 </div>
@@ -31,7 +34,7 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Subscribe / unsubscribe</h4>
+        <h4 class="connector-heading my-3"> <?=Translate::get("news_letter_page" , "subscribe_unsubscribe")  ?></h4>
 
         <div class="divider"></div>
 
@@ -39,10 +42,10 @@
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-6">
                 <p>
-                    Advantages of a registration:<br/>
-                    - Request products easily!<br/>
-                    - Save your requests and products (Favourites)!<br/>
-                    - Receive latest connector information via newsletter (approx. 4 times / year)<br/>
+                   <?=Translate::get("news_letter_page" , "advantages_of_a_registration")  ?><br/>
+                    <?=Translate::get("news_letter_page" , "request_products_easily")  ?> <br/>
+                    <?=Translate::get("news_letter_page" , "save_your_requests_and_products")  ?> <br/>
+                    <?=Translate::get("news_letter_page" , "receive_latest_connector_information_via_newsletter")  ?> <br/>
                 </p>
             </div>
         </div>
@@ -55,18 +58,18 @@
 
             <?php if (intval($_SESSION["user"]->newsletter) === 1) { ?>
                 <a href="<?= url("/newsletter/unsubscribe") ?>" class="btn btn-primary background-blue my-5">
-                    <i class="bi bi-x-lg m-2"></i> Unsubscribe
+                    <i class="bi bi-x-lg m-2"></i> <?=Translate::get("news_letter_page" , "unsubscribe")  ?>
                 </a>
             <?php } else { ?>
                 <a href="<?= url("/newsletter/subscribe") ?>" class="btn btn-primary background-blue my-5">
-                    <i class="bi bi-check2 m-2"></i>Subscribe
+                    <i class="bi bi-check2 m-2"></i> <?=Translate::get("news_letter_page" , "Subscribe")  ?>
                 </a>
             <?php } ?>
 
         <?php } else { ?>
 
             <a href="<?= url("/login") ?>?redirect=newsletter" class="btn btn-primary background-blue my-5">
-                Login to Subscribe
+                <?=Translate::get("news_letter_page" , "login_to_subscribe")  ?>
             </a>
 
         <?php } ?>

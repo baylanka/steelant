@@ -10,6 +10,7 @@ class ContentTemplateMedia extends BaseModel
     public int $media_id;
     public ?string $placeholder_id;
     public ?string $title;
+    public ?string $file_name;
 
     public ?Media $temp_media;
 }

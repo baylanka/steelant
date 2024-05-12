@@ -18,7 +18,6 @@
                            name="downloadable_placeholder[0]" value="1">
 
 
-
                     <button type="button" class="btn btn-danger remove-download-container">
                         <i class="bi bi-dash"></i>
                     </button>
@@ -39,14 +38,25 @@
                                 <input class="form-check-input download-label-visible" type="checkbox"
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+
+                            <label class="btn btn-light download-element" style="display:none;" >
+                               Display name
+                            </label>
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
                                    name="downloadable[title][0][<?=LanguagePool::GERMANY()->getLabel()?>]"
                                    placeholder="Label ( in Germany )"
                                    style="display: none;"
-                                   disabled="disabled"
-                            >
-
+                                   disabled="disabled">
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                                   name="downloadable[file_name][0][<?=LanguagePool::GERMANY()->getLabel()?>]"
+                                   placeholder="File name ( in Germany )"
+                                   style="display: none;"
+                                   disabled="disabled">
 
                         </div>
                     </div>
@@ -61,14 +71,25 @@
                                 <input class="form-check-input download-label-visible" type="checkbox"
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                Display name
+                            </label>
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                                    name="downloadable[title][0][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
-                                   placeholder="Label ( in English )"
+                                   placeholder="Label ( in English (en-gb) )"
                                    style="display: none;"
                                    disabled="disabled"
                             >
-
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                   name="downloadable[file_name][0][<?=LanguagePool::UK_ENGLISH()->getLabel()?>]"
+                                   placeholder="File name ( in English (en-gb) )"
+                                   style="display: none;"
+                                   disabled="disabled">
 
                         </div>
                     </div>
@@ -83,20 +104,30 @@
                                 <input class="form-check-input download-label-visible" type="checkbox"
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                Display name
+                            </label>
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
                                    name="downloadable[title][0][<?=LanguagePool::FRENCH()->getLabel()?>]"
                                    placeholder="Label ( in French )"
                                    style="display: none;"
                                    disabled="disabled"
                             >
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                   name="downloadable[file_name][0][<?=LanguagePool::FRENCH()->getLabel()?>]"
+                                   placeholder="File name ( in French )"
+                                   style="display: none;"
+                                   disabled="disabled">
 
                         </div>
                     </div>
                     <div class="downloadable">
                         <div class="input-group w-100">
-
-
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/en-us.png") ?>"
                                      height="20" class="flag"/>
@@ -106,13 +137,26 @@
                                 <input class="form-check-input download-label-visible" type="checkbox"
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                Display name
+                            </label>
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                                    name="downloadable[title][0][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
                                    placeholder="Label ( in English )"
                                    style="display: none;"
                                    disabled="disabled"
                             >
+
+                            <label class="btn btn-light download-element" style="display:none;" >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                   name="downloadable[file_name][0][<?=LanguagePool::US_ENGLISH()->getLabel()?>]"
+                                   placeholder="File name ( in English (en-us) )"
+                                   style="display: none;"
+                                   disabled="disabled">
                         </div>
                     </div>
                 </div>
@@ -156,6 +200,7 @@
                             $germanyTitleExists = array_key_exists($germany, $content['title'])
                                                     && !empty($content['title'][$germany]);
                             $titleFieldName = "downloadable[title][{$index}][{$germany}]";
+                            $fileNameFieldName = "downloadable[file_name][{$index}][{$germany}]";
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/de.png") ?>"
@@ -167,7 +212,15 @@
                                     <?= $germanyTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+
+                            <label class="btn btn-light download-element"
+                                <?= $germanyTitleExists ? '' :'disabled="disabled"' ?>
+                                <?= $germanyTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                Display name
+                            </label>
+
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=$germany?>"
                                    name="<?=$titleFieldName?>"
                                    placeholder="Label ( in Germany )"
@@ -176,7 +229,19 @@
                                    value="<?=$germanyTitleExists? $content['title'][$germany] : '' ?>"
                             >
 
-
+                            <label class="btn btn-light download-element"
+                                <?= $germanyTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                                   name="<?=$fileNameFieldName?>"
+                                   placeholder="File name ( in Germany )"
+                                <?= $germanyTitleExists ? '' :'disabled="disabled"' ?>
+                                <?= $germanyTitleExists ? '' :'style="display: none;"' ?>
+                                   value="<?=$germanyTitleExists? $content['file_name'][$germany] : '' ?>"
+                            >
                         </div>
                     </div>
                     <div class="downloadable">
@@ -187,6 +252,7 @@
                             $englishUkTitleExists = array_key_exists($englishUk, $content['title'])
                                                         && !empty($content['title'][$englishUk]);
                             $titleFieldName = "downloadable[title][{$index}][{$englishUk}]";
+                            $fileNameFieldName = "downloadable[file_name][{$index}][{$englishUk}]";
                             ?>
                             <label class="btn btn-light">
                                 <img src="<?= assets("img/flags/en-gb.png") ?>"
@@ -198,13 +264,35 @@
                                     <?= $englishUkTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+
+                            <label class="btn btn-light download-element"
+                                <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                Display name
+                            </label>
+
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=$englishUk?>"
                                    name="<?=$titleFieldName?>"
-                                   placeholder="Label ( in English )"
+                                   placeholder="Label ( in English (en-gb) )"
                                 <?= $englishUkTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
                                    value="<?=$englishUkTitleExists? $content['title'][$englishUk] : '' ?>"
+                            >
+
+                            <label class="btn btn-light file-label download-element"
+                                <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
+
+                            >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=$englishUk?>"
+                                   name="<?=$fileNameFieldName?>"
+                                   placeholder="File name ( in English (en-gb) )"
+                                <?= $englishUkTitleExists ? '' :'disabled="disabled"' ?>
+                                <?= $englishUkTitleExists ? '' :'style="display: none;"' ?>
+                                   value="<?=$englishUkTitleExists? $content['file_name'][$englishUk] : '' ?>"
                             >
 
 
@@ -217,6 +305,8 @@
                             $frenchTitleExists = array_key_exists($french, $content['title'])
                                          && !empty($content['title'][$french]);
                             $titleFieldName = "downloadable[title][{$index}][{$french}]";
+                            $fileNameFieldName = "downloadable[file_name][{$index}][{$french}]";
+
                             ?>
 
                             <label class="btn btn-light">
@@ -229,13 +319,34 @@
                                     <?= $frenchTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+
+                            <label class="btn btn-light download-element"
+                                <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                Display name
+                            </label>
+
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=$french?>"
                                    name="<?=$titleFieldName?>"
                                    placeholder="Label ( in French )"
                                 <?= $frenchTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
                                    value="<?=$frenchTitleExists? $content['title'][$french] : '' ?>"
+                            >
+
+                            <label class="btn btn-light download-element"
+                                <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=$french?>"
+                                   name="<?=$fileNameFieldName?>"
+                                   placeholder="File name ( in French )"
+                                <?= $frenchTitleExists ? '' :'disabled="disabled"' ?>
+                                <?= $frenchTitleExists ? '' :'style="display: none;"' ?>
+                                   value="<?=$frenchTitleExists? $content['file_name'][$french] : '' ?>"
                             >
 
                         </div>
@@ -247,6 +358,7 @@
                             $englishUsTitleExists = array_key_exists($englishUs, $content['title'])
                                                      && !empty($content['title'][$englishUs]);
                             $titleFieldName = "downloadable[title][{$index}][{$englishUs}]";
+                            $fileNameFieldName = "downloadable[file_name][{$index}][{$englishUs}]";
                             ?>
 
                             <label class="btn btn-light">
@@ -259,13 +371,35 @@
                                     <?= $englishUsTitleExists ? 'checked' :'' ?>
                                        value="" id="flexCheckDefault">
                             </label>
-                            <input class="form-control download-label" type="text"
+
+                            <label class="btn btn-light download-element"
+                                <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
+                            >
+                                Display name
+                            </label>
+
+                            <input class="form-control download-label download-element" type="text"
                                    data-lang="<?=$englishUs?>"
                                    name="<?=$titleFieldName?>"
-                                   placeholder="Label ( in English )"
+                                   placeholder="Label ( in English (en-us) )"
                                 <?= $englishUsTitleExists ? '' :'disabled="disabled"' ?>
                                 <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
                                    value="<?=$englishUsTitleExists? $content['title'][$englishUs] : '' ?>"
+                            >
+
+                            <label class="btn btn-light download-element"
+                                <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
+
+                            >
+                                File name
+                            </label>
+                            <input class="form-control file-label download-element" type="text"
+                                   data-lang="<?=$englishUk?>"
+                                   name="<?=$fileNameFieldName?>"
+                                   placeholder="File name ( in English (en-us) )"
+                                <?= $englishUsTitleExists ? '' :'disabled="disabled"' ?>
+                                <?= $englishUsTitleExists ? '' :'style="display: none;"' ?>
+                                   value="<?=$englishUsTitleExists? $content['file_name'][$englishUs] : '' ?>"
                             >
                         </div>
                     </div>
@@ -311,7 +445,10 @@
         if(isEmpty(fileValue)){
            return;
         }
+        const fileName = $(this).val().split('\\').pop();
         const container = $(this).closest('.download-container');
+
+        container.find('.file-label').val(fileName);
         container.css('backgroundColor', '#c1ffc1');
         container.find('.downloadable_src').val('');
         container.find('.previous-file-container').remove();
@@ -322,7 +459,7 @@
     $(document).off("change", ".download-label-visible");
     $(document).on("change", ".download-label-visible", function () {
 
-        let label = $(this).closest("div.downloadable").find("input.download-label");
+        let label = $(this).closest("div.downloadable").find(".download-element");
 
         if ($(this).is(":checked")) {
             label.show("1000");
@@ -412,10 +549,22 @@
                                             <label class="btn btn-light">
                                                 <input class="form-check-input download-label-visible " type="checkbox" value="" id="flexCheckDefault">
                                             </label>
-                                            <input class="form-control download-label" placeholder="Label ( in Germany )"
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                Display name
+                                            </label>
+                                            <input class="form-control download-label download-element" placeholder="Label ( in Germany )"
                                                     data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
                                                     style="display: none;" disabled="disabled">
 
+                                             <label class="btn btn-light download-element" style="display:none;" >
+                                                File name
+                                             </label>
+                                            <input class="form-control file-label download-element" type="text"
+                                                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
+                                                   placeholder="File name ( in Germany )"
+                                                   style="display: none;"
+                                                   disabled="disabled">
 
                                         </div>
                                     </div>
@@ -430,9 +579,22 @@
                                             <label class="btn btn-light">
                                                 <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
                                             </label>
-                                            <input class="form-control download-label" placeholder="Label ( in English )"
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                Display name
+                                            </label>
+                                            <input class="form-control download-label download-element" placeholder="Label ( in English )"
                                                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                                                    style="display: none;" disabled="disabled">
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                File name
+                                             </label>
+                                            <input class="form-control file-label download-element" type="text"
+                                                   data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                                   placeholder="File name ( in English (en-gb) )"
+                                                   style="display: none;"
+                                                   disabled="disabled">
                                         </div>
                                     </div>
 
@@ -444,12 +606,27 @@
                                                      height="20" class="flag"/>
                                             </label>
 
+
                                             <label class="btn btn-light">
                                                 <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
                                             </label>
-                                            <input class="form-control download-label" placeholder="Label ( in French )"
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                Display name
+                                            </label>
+                                            <input class="form-control download-label download-element" placeholder="Label ( in French )"
                                                    data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
                                                    style="display: none;" disabled="disabled">
+
+                                             <label class="btn btn-light download-element" style="display:none;" >
+                                                File name
+                                             </label>
+
+                                            <input class="form-control file-label download-element" type="text"
+                                                   data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                                   placeholder="File name ( in French )"
+                                                   style="display: none;"
+                                                   disabled="disabled">
                                         </div>
                                     </div>
 
@@ -463,9 +640,22 @@
                                             <label class="btn btn-light">
                                                 <input class="form-check-input download-label-visible" type="checkbox" value="" id="flexCheckDefault">
                                             </label>
-                                            <input  class="form-control download-label" placeholder="Label ( in English )"
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                Display name
+                                            </label>
+                                            <input  class="form-control download-label download-element" placeholder="Label ( in English )"
                                                     data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                                                     style="display: none;" disabled="disabled">
+
+                                            <label class="btn btn-light download-element" style="display:none;" >
+                                                File name
+                                             </label>
+                                            <input class="form-control file-label download-element" type="text"
+                                                   data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                                   placeholder="File name ( in English (en-us) )"
+                                                   style="display: none;"
+                                                   disabled="disabled">
                                         </div>
                                     </div>
                                 </div>
@@ -497,6 +687,9 @@
                     const lang = $(this).attr('data-lang');
                     const downloadLabelName = `downloadable[title][${index}][${lang}]`;
                     $(this).attr('name', downloadLabelName);
+
+                    const downloadFileName = `downloadable[file_name][${index}][${lang}]`;
+                    $(this).closest('.downloadable').find('.file-label').attr('name', downloadFileName);
                     if(iterationCount === totalIterations){
                         resolve(true);
                     }
