@@ -115,7 +115,7 @@
 
   "favourites_page": {
     "favourites": "Favoriten",
-    "your_requests": "Ihre Anfragen",
+    "your_request": "Ihre Anfragen",
     "favourite_connectors": "Gemerkte Schlossprofile",
     "project_name": "Projektname",
     "connector_name": "Schlossprofil",
@@ -142,6 +142,12 @@
     "pressure_load": "Druckbelastung",
     "deformation_path": "Verformungsweg",
     "length": "länge"
+  },
+
+  "connector_mf_64": {
+    "test_setup": "Test-Setup",
+    "after_testing": "Nach der Prüfung Versagen durch Verformung",
+    "conclusion": "Fazit"
   },
 
   "connector_page": {

@@ -119,6 +119,13 @@
     "deformation_path": "Deformation path",
     "length": "length"
   },
+
+  "connector_mf_64": {
+    "test_setup": "Test setup",
+    "after_testing": "After testing, failure through deformation",
+    "conclusion": "Conclusion"
+  },
+
   "connector_page": {
     "add_to_favourite_message": "You want to add this connector as favourite"
   },
