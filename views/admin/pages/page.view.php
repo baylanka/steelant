@@ -131,6 +131,12 @@ use model\CategoryContent;
 <script>
     const modalId = 'base-modal';
 
+    document.addEventListener('focusin', (e) => {
+        if (e.target.closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+            e.stopImmediatePropagation();
+        }
+    });
+
     function getContentsTable()
     {
         return `
@@ -371,8 +377,8 @@ use model\CategoryContent;
             const modal = await loadModal(modalId, path);
             tinymce.init({
                 selector: '.description',
-                plugins: 'textcolor link lists',
-                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+                plugins: 'textcolor link lists code',
+                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist | code',
                 content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
             });
 

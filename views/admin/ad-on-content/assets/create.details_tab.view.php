@@ -177,8 +177,8 @@
 
         tinymce.init({
             selector: 'textarea[name=' + name + ']',
-            plugins: 'textcolor link lists',
-            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist',
+            plugins: 'textcolor link lists code',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | link unlink | numlist bullist | code',
             content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; }'
         });
 
