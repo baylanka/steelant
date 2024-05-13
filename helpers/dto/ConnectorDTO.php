@@ -130,9 +130,8 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return  $this->standardLength_m;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->standardLength_i;
+                return  $this->standardLength_m;
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->standardLength_i as $key => $value){
@@ -152,9 +151,8 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return  $this->thickness_m ;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->thickness_i;
+                return  $this->thickness_m ;
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->thickness_i as $key => $value){
@@ -174,9 +172,9 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return $this->weights_m;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return  $this->weights_i;
+                return $this->weights_m;
+
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->weights_i as $key => $value){
@@ -255,9 +253,8 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return  $this->maxTensile_m;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->maxTensile_i;
+                return  $this->maxTensile_m;
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
                 foreach ($this->maxTensile_i as $key => $value){
@@ -305,9 +302,8 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return  $this->pressure_load_m;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->pressure_load_i;
+                return  $this->pressure_load_m;
             case LanguagePool::US_ENGLISH()->getLabel():
 
                 if(empty($this->pressure_load_i) && empty($this->pressure_load_m))
@@ -321,9 +317,8 @@ class ConnectorDTO extends ElementDTO
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
             case LanguagePool::GERMANY()->getLabel():
-                return  $this->deformation_path_m;
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->deformation_path_i;
+                return  $this->deformation_path_m;
             case LanguagePool::US_ENGLISH()->getLabel():
 
                 if(empty($this->deformation_path_i) && empty($this->deformation_path_m))
