@@ -151,7 +151,7 @@
                         </form>
                         <p class="text-center">
                             <?= Translate::get("register_page", "already_a_member") ?>
-                            <a data-toggle="tab" href="<?= url("/login") ?>">
+                            <a data-toggle="tab" href="<?= url("/login") ?>?lang=<?=Translate::getLang()?>">
                                 <?= Translate::get("common", "login") ?>
                             </a></p>
 

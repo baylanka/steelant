@@ -161,24 +161,24 @@
 
         <div class="nav">
             <a class="nav-link <?= RequestService::isRequestedRoute("/") ? "selected" : "" ?>" aria-current="page"
-               href="<?= url("/") ?>">
+               href="<?= url("/") ?>?lang=<?=Translate::getLang()?>">
                 <?= Translate::get("home_nav", "connectors") ?>
             </a>
 
             <a class="nav-link <?= RequestService::isRequestedRoute("/downloads") ? "selected" : "" ?>"
-               aria-current="page" href="<?= url("/downloads") ?>">
+               aria-current="page" href="<?= url("/downloads") ?>?lang=<?=Translate::getLang()?>">
                 <?= Translate::get("home_nav", "downloads") ?>
             </a>
 
             <a class="nav-link <?= RequestService::isRequestedRoute("/gallery") ? "selected" : "" ?>"
-               aria-current="page" href="<?= url("/gallery") ?>">
+               aria-current="page" href="<?= url("/gallery") ?>?lang=<?=Translate::getLang()?>">
                 <?= Translate::get("home_nav", "gallery") ?>
             </a>
             <a class="nav-link" target="_blank" aria-current="page" href="https://steelant.eu/">
                 <?= Translate::get("home_nav", "sealant") ?>
             </a>
             <a class="nav-link <?= RequestService::isRequestedRoute("/contact") ? "selected" : "" ?>"
-               aria-current="page" href="<?= url("/contact") ?>">
+               aria-current="page" href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>">
                 <?= Translate::get("home_nav", "contact") ?>
             </a>
         </div>
@@ -189,7 +189,7 @@
 
             <?php if (!isset($_SESSION["auth"])) { ?>
                 <div class="col-5 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>">
+                    <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>?lang=<?=Translate::getLang()?>">
                         <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/>
                         <?= Translate::get("common", "login") ?>
                     </a>
@@ -207,7 +207,7 @@
                 }
                 ?>
 
-                <a href="<?= url("/favourite") ?>"
+                <a href="<?= url("/favourite") ?>?lang=<?=Translate::getLang()?>"
                    class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
                    data-toggle="tooltip" title="<?= Translate::get("home_nav", "favourites") ?>">
                     <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center"
@@ -228,7 +228,7 @@
                 }
                 ?>
                 <div class="col-3 text-center d-flex gap-1">
-                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>" data-toggle="tooltip"
+                    <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>?lang=<?=Translate::getLang()?>" data-toggle="tooltip"
                        title="<?= Translate::get("home_nav", "profile") ?>">
                         <img src="<?= assets("themes/user/img/" . $user_icon . ".png") ?>" class="align-self-center"
                              height="23"/>

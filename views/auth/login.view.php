@@ -56,15 +56,15 @@
                                 <button type="submit" class="btn btn-primary submit w-100"><?= Translate::get("common","login") ?></button>
                             </div>
 
-                            <div class="w-100 text-center">
-                                <a href="#">
-                                    <?= Translate::get("login_page", "forgot_password") ?>
-                                </a>
-                            </div>
+<!--                            <div class="w-100 text-center">-->
+<!--                                <a href="#">-->
+<!--                                    --><?php //= Translate::get("login_page", "forgot_password") ?>
+<!--                                </a>-->
+<!--                            </div>-->
                         </form>
                         <p class="text-center">
                             <?= Translate::get("login_page", "not_a_member") ?>
-                            <a data-toggle="tab" href="<?= url("/register") ?>">
+                            <a data-toggle="tab" href="<?= url("/register") ?>?lang=<?=Translate::getLang()?>">
                                 <?= Translate::get("common", "register") ?>
                             </a>
                         </p>
