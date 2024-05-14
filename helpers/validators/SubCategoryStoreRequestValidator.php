@@ -5,6 +5,7 @@ namespace helpers\validators;
 use app\Request;
 use helpers\pools\LanguagePool;
 use helpers\repositories\CategoryRepository;
+use helpers\utilities\FileUtility;
 use helpers\utilities\ResponseUtility;
 use helpers\utilities\ValidatorUtility;
 use model\Category;
@@ -14,9 +15,35 @@ class SubCategoryStoreRequestValidator
     public static function validate(Request $request)
     {
         self::parentIdValidation($request);
+        self::levelValidation($request);
         self::nameValidation($request);
         self::titleValidation($request);
         self::visibilityValidation($request);
+        self::bannerValidation($request);
+    }
+
+    private static function levelValidation($request)
+    {
+        $parentId = $request->get('parent_id');
+        $category = Category::getById($parentId);
+        if($category->level > 2){
+            ResponseUtility::response("can not create sub category more than 3 levels",422);
+        }
+    }
+
+    private static function bannerValidation($request)
+    {
+        if(!$request->has('banner') || empty($request->get('banner')['tmp_name'])){
+            return;
+        }
+
+        $file = $request->get('banner');
+        if(!ValidatorUtility::isImage($file)){
+            ResponseUtility::response("unsupported banner file.", 422,[
+                "file_type"=>"current file type is " . FileUtility::getExtension($file),
+                "expected_type" => "image files only allowed (.jpg, .jpeg, .png ... )"
+            ]);
+        }
     }
 
     private static function parentIdValidation(Request $request)

@@ -71,10 +71,12 @@ use helpers\pools\LanguagePool;
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item add-sub-category" data-id="<?=$category->id?>" href="#">Add sub category</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+                                    <?php if($category->level < 3): ?>
+                                        <li><a class="dropdown-item add-sub-category" data-id="<?=$category->id?>" href="#">Add sub category</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    <?php endif; ?>
                                     <li><a class="dropdown-item edit-category" data-id="<?=$category->id?>" href="#">Edit</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -115,6 +117,19 @@ use helpers\pools\LanguagePool;
                                  title="${category.icon_name}"
                                  width="60"/>
         `;
+
+        let createSubAccountField = '';
+        if(category.level < 3){
+            createSubAccountField = `
+                                    <li>
+                                        <a class="dropdown-item add-sub-category" data-id="${category.id}" href="#">Add sub category</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+            `;
+        }
+
         return `
                 <tr
                     class="align-middle text-center ${rowColorClass}"
@@ -140,10 +155,7 @@ use helpers\pools\LanguagePool;
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item add-sub-category" data-id="${category.id}" href="#">Add sub category</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+                                    ${createSubAccountField}
                                     <li><a class="dropdown-item edit-category" data-id="${category.id}" href="#">Edit</a></li>
                                     <li>
                                         <hr class="dropdown-divider">

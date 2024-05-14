@@ -137,7 +137,6 @@
                             </div>
                          <?php endif; ?>
                     <?php endif; ?>
-                    <?php if($category->level === 1): ?>
                         <hr class="mt-3">
                         <div class="d-flex justify-content-between mt-3 row">
                         <div class="col-8 img-block">
@@ -161,7 +160,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
                 </div>
             </form>
         </div>

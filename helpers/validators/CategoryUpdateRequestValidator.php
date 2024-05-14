@@ -190,6 +190,16 @@ class CategoryUpdateRequestValidator
         }
 
         if(!ValidatorUtility::required($request->get('title'), LanguagePool::GERMANY()->getLabel())
+            &&
+            !ValidatorUtility::required($request->get('title'), LanguagePool::ENGLISH()->getLabel())
+            &&
+            !ValidatorUtility::required($request->get('title'), LanguagePool::FRENCH()->getLabel())
+        ) {
+           return;
+        }
+
+
+        if(!ValidatorUtility::required($request->get('title'), LanguagePool::GERMANY()->getLabel())
             ||
             !ValidatorUtility::required($request->get('title'), LanguagePool::ENGLISH()->getLabel())
             ||

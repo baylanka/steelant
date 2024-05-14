@@ -100,8 +100,21 @@
 
                        </div>
                        <small class="text-danger sub-cat-title-desc" style="width: 50%; font-size:0.7rem;">Enable Title: If this is your final category. Otherwise, the front page of this category will be without a title.</small>
+                       <hr class="mt-3">
+                       <div class="d-flex justify-content-between mt-3 row">
+                           <div class="col-8 img-block">
+                               <div class="input-group mb-3">
+                                   <span class="input-group-text" id="basic-addon3">Banner image</span>
+                                   <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                          name="banner" class="form-control img-load"
+                                          id="banner-img" aria-describedby="basic-addon3">
 
-
+                               </div>
+                               <div>
+                                   <img src="#" class="load-image d-none" height="250" width="750">
+                               </div>
+                           </div>
+                       </div>
                    </div>
                </form>
             </div>
@@ -112,6 +125,24 @@
         </div>
     </div>
     <script>
+        $(".img-load").off('change');
+        $(".img-load").change(async function () {
+            const fileInputTag = $(this);
+            const image = await imageToBase64(fileInputTag);
+            fileInputTag.closest("div.img-block").find("img.load-image").removeClass('d-none');
+            fileInputTag.closest("div.img-block").find("img.load-image").attr('src', image);
+            fileInputTag.closest("div.input-group").append(`<button type="button" class="btn btn-danger clear-img"><i class="bi bi-x-lg"></i></button>`);
+            fileInputTag.addClass('d-none');
+        });
+
+        $(document).off("click",".clear-img");
+        $(document).on("click",".clear-img",function () {
+            $(this).closest("div.img-block").find("img.load-image").addClass('d-none');
+            $(this).closest("div.img-block").find("input.img-load").removeClass('d-none');
+            $(this).closest("div.img-block").find("input.img-load").val('');
+            $(this).remove();
+        })
+
         $('button#store-btn').off('click');
         $('button#store-btn').on('click', async function storeSubCategory(e){
             e.preventDefault();
