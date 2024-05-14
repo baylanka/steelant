@@ -44,9 +44,18 @@ class RouterService
 
         global $app, $pageRoutes;
         $categoryURI = $category->treePathStr;
-        $categoryURI = '/' . strtolower(implode('-', explode(' ', $categoryURI)));
-        $pageRoutes[$category->id][$lang] = url($categoryURI);
-        if (!$app->isRouteRegistered($categoryURI, 'GET')) {
+        $spaceRemovedURI = strtolower(implode('-', explode(' ', $categoryURI)));
+        $spaceRemovedURIArray = explode('/', $spaceRemovedURI);
+        foreach ($spaceRemovedURIArray as $index=>$value)
+        {
+            $spaceRemovedURIArray[$index] = urlencode($value);
+        }
+        $urlFriendlyURI = implode('/', $spaceRemovedURIArray);
+        $pageURI = '/' . $urlFriendlyURI;
+        $pageRoutes[$category->id][$lang] = url($pageURI);
+
+        $categoryURI = '/' .$spaceRemovedURI;
+        if (!$app->isRouteRegistered('/' . $spaceRemovedURI, 'GET')) {
             $app->get($categoryURI, ["user\ContentController", "getContentsByCategoryId"]);
         }
     }
