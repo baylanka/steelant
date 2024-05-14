@@ -18,7 +18,8 @@ use helpers\translate\Translate;
 <!--body section-->
 <div class="jumbotron p-0 m-0">
 
-    <img src="<?= CategoryService::getParentCategory($_GET["id"])->getBannerUrl(); ?>" class="w-100 banner-image"/>
+    <img src="<?= $categoryDTOCollection->bannerURL ?>"
+         alt="<?= $categoryDTOCollection->bannerName ?>" class="w-100 banner-image"/>
 
     <div class="responsive-wrap px-4">
 
@@ -28,149 +29,33 @@ use helpers\translate\Translate;
 
 
             <div class="col-md-4 col-12 d-flex gap-3 margin-bottom-sm">
-                <img src="<?= CategoryService::getParentCategory($_GET["id"])->getThumbnailUrl(); ?>" height="80"/>
-                <p class="category-name selected"><?= CategoryService::getParentCategory($_GET["id"])->getNameByLang(Translate::getLang()); ?></p>
-            </div>
-            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
-                <dl>
-                    <dt class="color-blue mb-2">LARSSEN</dt>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(3) ?>"
-                           class="link <?= $_GET["id"] == 3 ? "selected" : "color-black" ?> category-item-text">Corner connectors</a>
-                    </dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(4) ?>"
-                           class="link <?= $_GET["id"] == 4 ? "selected" : "color-black" ?> category-item-text">Omega corner
-                            connectors</a></dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(5) ?>"
-                           class="link <?= $_GET["id"] == 5 ? "selected" : "color-black" ?> category-item-text">T connectors</a></dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(6) ?>"
-                           class="link <?= $_GET["id"] == 6 ? "selected" : "color-black" ?> category-item-text">Cross connectors</a>
-                    </dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(7) ?>"
-                           class="link <?= $_GET["id"] == 7 ? "selected" : "color-black" ?> category-item-text">Weld-on connectors</a>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
-                <dl>
-                    <dt class="color-blue mb-2">BALL + SOCKET</dt>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(9) ?>"
-                           class="link <?= $_GET["id"] == 9 ? "selected" : "color-black" ?> category-item-text">US Corner
-                            connectors</a></dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(10) ?>"
-                           class="link <?= $_GET["id"] == 10 ? "selected" : "color-black" ?> category-item-text">US T connectors</a>
-                    </dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(11) ?>"
-                           class="link <?= $_GET["id"] == 11 ? "selected" : "color-black" ?> category-item-text">US Cross
-                            connectors</a>
-                    </dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(12) ?>"
-                           class="link <?= $_GET["id"] == 12 ? "selected" : "color-black" ?> category-item-text">MF connectors,
-                            weld-ons</a>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-md-2 col-12 <?= $_GET["id"] > 15 ? "d-none" : "" ?>">
-                <dl>
-                    <dt class="color-blue mb-2">COLD FORMED</dt>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(14) ?>"
-                           class="link <?= $_GET["id"] == 14 ? "selected" : "color-black" ?> category-item-text">CF corner
-                            connector</a>
-                    </dd>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(15) ?>"
-                           class="link <?= $_GET["id"] == 15 ? "selected" : "color-black" ?> category-item-text">CF weld-on
-                            connector</a>
-                    </dd>
-                </dl>
+                <img src="<?= $categoryDTOCollection->parentCategory->getThumbnailUrl() ?>" height="80"/>
+                <p class="category-name selected"><?= $categoryDTOCollection->parentCategory->getNameByLang(Translate::getLang()); ?></p>
             </div>
 
 
+            <?php foreach ($categoryDTOCollection->children as $group): ?>
+                <div class="col-12 <?=$categoryDTOCollection->multiLevelExists ? 'col-md-2': 'col-md-3'?>">
+                    <dl>
+                        <?php if(!$categoryDTOCollection->multiLevelExists): ?>
+                            <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector_series") ?></dd>
+                        <?php endif ?>
+                        <?php foreach ($group as $category): ?>
+                            <?php if($categoryDTOCollection->multiLevelExists && $category->level == 2):?>
+                                <dt class="color-blue mb-2"><?=$category->getNameByLang($language)?></dt>
+                            <?php else: ?>
+                                <dd class="category-item custom-font">
+                                    <a href="<?= RouterService::getCategoryPageRoute($category->id) ?>"
+                                       class="link <?= $_GET["id"] == $category->id ? "selected" : "color-black" ?> category-item-text">
+                                        <?=$category->getNameByLang($language)?>
+                                    </a>
+                                </dd>
+                            <?php endif; ?>
 
-            <div class="col-md-2 col-12 <?= $_GET["id"] < 16 || $_GET["id"] > 20 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(17) ?>"
-                           class="link <?= $_GET["id"] == 17 ? "selected" : "color-black" ?> category-item-text">MF</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(18) ?>"
-                           class="link <?= $_GET["id"] == 18 ? "selected" : "color-black" ?> category-item-text">MDF</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(19) ?>"
-                           class="link <?= $_GET["id"] == 19 ? "selected" : "color-black" ?> category-item-text">LPB</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(20) ?>"
-                           class="link <?= $_GET["id"] == 20 ? "selected" : "color-black" ?> category-item-text">FD</a></dd>
-                </dl>
-            </div>
-
-            <div class="col-md-2 col-12 <?= $_GET["id"] != 22 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(22) ?>"
-                           class="link <?= $_GET["id"] == 22 ? "selected" : "color-black" ?> category-item-text">MF DTH</a></dd>
-                </dl>
-            </div>
-
-            <div class="col-md-2 col-12 <?= $_GET["id"] < 23 || $_GET["id"] > 28 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(24) ?>"
-                           class="link <?= $_GET["id"] == 24 ? "selected" : "color-black" ?> category-item-text">L (Larssen)</a>
-                    </dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(25) ?>"
-                           class="link <?= $_GET["id"] == 25 ? "selected" : "color-black" ?> category-item-text">LPB (Larssen)</a>
-                    </dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(26) ?>"
-                           class="link <?= $_GET["id"] == 26 ? "selected" : "color-black" ?> category-item-text">MF (Ball +
-                            Socket)</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(27) ?>"
-                           class="link <?= $_GET["id"] == 27 ? "selected" : "color-black" ?> category-item-text">MDF (Ball +
-                            Socket)</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(28) ?>"
-                           class="link <?= $_GET["id"] == 28 ? "selected" : "color-black" ?> category-item-text">CF (Cold
-                            Formed)</a></dd>
-                </dl>
-            </div>
-
-            <div class="col-md-2 col-12 <?= $_GET["id"] < 29 || $_GET["id"] > 32 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(30) ?>"
-                           class="link <?= $_GET["id"] == 30 ? "selected" : "color-black" ?> category-item-text">MF</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(31) ?>"
-                           class="link <?= $_GET["id"] == 31 ? "selected" : "color-black" ?> category-item-text">MDF</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(32) ?>"
-                           class="link <?= $_GET["id"] == 32 ? "selected" : "color-black" ?> category-item-text">FD</a></dd>
-                </dl>
-            </div>
-
-            <div class="col-md-2 col-12 <?= $_GET["id"] < 33 || $_GET["id"] > 36 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(34) ?>"
-                           class="link <?= $_GET["id"] == 34 ? "selected" : "color-black" ?> category-item-text">LPB (Larssen)</a>
-                    </dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(35) ?>"
-                           class="link <?= $_GET["id"] == 35 ? "selected" : "color-black" ?> category-item-text">MF (Ball +
-                            Socket)</a></dd>
-                    <dd class="category-item custom-font"><a href="<?= RouterService::getCategoryPageRoute(36) ?>"
-                           class="link <?= $_GET["id"] == 36 ? "selected" : "color-black" ?> category-item-text">MDF (Ball +
-                            Socket)</a></dd>
-                </dl>
-            </div>
-
-            <div class="col-md-2 col-12 <?= $_GET["id"] != 38 ? "d-none" : "" ?>">
-                <dl>
-                    <dd class="category-item custom-font">
-                        <a href="<?= RouterService::getCategoryPageRoute(38) ?>"
-                           class="link <?= $_GET["id"] == 38 ? "selected" : "color-black" ?> category-item-text">FSC</a>
-                    </dd>
-                </dl>
-            </div>
-
-
+                        <?php endforeach; ?>
+                    </dl>
+                </div>
+            <?php endforeach; ?>
 
         </div>
         <!--categories section-->
@@ -179,10 +64,11 @@ use helpers\translate\Translate;
         <?php require_once "layout/sub_nav.layout.php" ?>
 
         <div class="divider"></div>
+        <?php if(!empty($title)): ?>
+            <h4 class="connector-heading my-4" id="heading"><?= $title ?></h4>
 
-        <h4 class="connector-heading my-4" id="heading"><?= $title ?></h4>
-
-        <div class="divider"></div>
+            <div class="divider"></div>
+        <?php endif ?>
 
 
         <?php foreach ($templates as $template): ?>

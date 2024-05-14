@@ -2,12 +2,22 @@
 
 namespace helpers\services;
 
+use helpers\dto\ConnectorPageCategoryCollection;
 use helpers\pools\LanguagePool;
 use model\Category;
 
 class CategoryService
 {
     public static array $categoryArray = [];
+
+    public static function getCategoryPageCollectionDTO($selectedCategoryId)
+    {
+        $parentCategory = self::getParentCategory($selectedCategoryId);
+        $category = Category::getById($parentCategory->id);
+        $categories = (array) Category::getAll();
+        $category->setChildren(self::getChildrenTree($categories, $category));
+        return new ConnectorPageCategoryCollection($category, $selectedCategoryId);
+    }
 
     public static function getParentCategory($id)
     {

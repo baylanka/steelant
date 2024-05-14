@@ -151,7 +151,8 @@
   },
 
   "connector_page": {
-    "add_to_favourite_message": "Vous souhaitez ajouter ce connecteur en favori"
+    "add_to_favourite_message": "Vous souhaitez ajouter ce connecteur en favori",
+    "connector_series": "SCHLOSSPROFIL-SERIEN"
   },
   "about_page": {
     "about_steel_wall": "Über SteelWall",

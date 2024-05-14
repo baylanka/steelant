@@ -5,7 +5,7 @@ namespace controllers\user;
 use app\Request;
 use controllers\BaseController;
 use helpers\dto\CategoryDTO;
-use helpers\repositories\CategoryContentRepository;
+use helpers\services\CategoryService;
 use helpers\services\ContentService;
 use helpers\translate\Translate;
 use model\Category;
@@ -26,6 +26,8 @@ class ContentController extends BaseController
         }
         $categoryDTO = new CategoryDTO($category);
         $data = [
+            'categoryDTOCollection'=> CategoryService::getCategoryPageCollectionDTO($categoryId),
+            'language' => $activatedLanguage,
             'templates' => $templates,
             "title" => $categoryDTO->getTitle()
         ];
