@@ -130,17 +130,17 @@
 
 
   "template_context": {
-    "steel_grade": "Stahlgüte",
+    "steel_grade": "Stahlgüten",
     "steel_thickness": "Stahldicke",
     "standard_length": "Standardlänge",
     "standard_lengths": "Standardlängen",
-    "standard_length_variable": "Standardlängen auf Anfrage, variabel ab",
+    "standard_length_variable": "Standardlängen auf Anfrage, variabel von",
     "max_tensile_strength": "Max. Zugkraft",
     "weight": "Gewicht",
-    "request_this_connector": "Schlossprofil anfragen",
-    "remember_this_connector": "Schlossprofil merken",
-    "pressure_load": "Druckbelastung",
-    "deformation_path": "Verformungsweg",
+    "request_this_connector": "Profil anfragen",
+    "remember_this_connector": "Profil merken",
+    "pressure_load": "Pressure load",
+    "deformation_path": "Deformation path",
     "length": "länge"
   },
 
