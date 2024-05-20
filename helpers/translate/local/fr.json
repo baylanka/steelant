@@ -125,15 +125,15 @@
 
 
   "template_context": {
-    "steel_grade": "Nuance d‘acier ",
-    "steel_thickness": "Épaisseur d’acier ",
-    "standard_length": "Longueur standard ",
-    "standard_lengths": "Longueurs standards",
-    "standard_length_variable": "Longueurs standards sur demande, variables de",
-    "max_tensile_strength": "Force de traction max. ",
-    "weight": "Poids ",
-    "request_this_connector": "Demander ce connecteur",
-    "remember_this_connector": "Rappelez-vous ce connecteur",
+    "steel_grade": "Nuance d‘acier",
+    "steel_thickness": "Épaisseur de l’acier",
+    "standard_length": "Longueur standard",
+    "standard_lengths": "longueurs standard",
+    "standard_length_variable": "Longueurs standard sur demande, variables de",
+    "max_tensile_strength": "Force de traction max",
+    "weight": "Poids",
+    "request_this_connector": "Faire une demande pour un profilé",
+    "remember_this_connector": "Mémoriser profilé",
     "pressure_load": "Charge de pression",
     "deformation_path": "Chemin de déformation",
     "length": "longueur"
