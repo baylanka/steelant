@@ -125,18 +125,47 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
+    private function getTranslatedValue($lengthArray, $replaceCollection)
+    {
+        foreach ($lengthArray as $key => $value)
+        {
+            foreach ($replaceCollection as $replaceArr){
+                $lengthArray[$key] = str_replace($replaceArr[0], $replaceArr[1], $value);
+            }
+        }
+
+        return $lengthArray;
+    }
+
     public function getLengthOfLang()
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
+                return $this->getTranslatedValue($this->standardLength_m, [
+                    ['to', ' à '],
+                    ['-', ' à '],
+                ]);
             case LanguagePool::GERMANY()->getLabel():
+                return $this->getTranslatedValue($this->standardLength_m, [
+                    ['to', ' bis '],
+                    ['-', ' bis '],
+                ]);
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return  $this->standardLength_m;
+                return $this->getTranslatedValue($this->standardLength_m, [
+                    ['-', ' to '],
+                ]);
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
-                foreach ($this->standardLength_i as $key => $value){
-                    if(isset($this->standardLength_m[$key]) && !empty($this->standardLength_m[$key])){
-                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->standardLength_m[$key].")</span>";
+                $standardLength_i = $this->getTranslatedValue($this->standardLength_i, [
+                                                                    ['-', ' to '],
+                                                                ]);
+                $standardLength_m = $this->getTranslatedValue($this->standardLength_m, [
+                                                                    ['-', ' to '],
+                                                                ]);
+
+                foreach ($standardLength_i as $key => $value){
+                    if(isset($standardLength_m[$key]) && !empty($standardLength_m[$key])){
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $standardLength_m[$key].")</span>";
                         $arr[$key] = $value;
                     }
 
