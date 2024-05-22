@@ -1,3 +1,6 @@
+<?php
+    use helpers\translate\Translate;
+?>
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
@@ -15,7 +18,7 @@
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected">Imprint</h4>
+                        <h4 class=" selected"><?= Translate::get('home_nav','imprint')?></h4>
                     </dl>
 
                 </div>
@@ -32,43 +35,38 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Legal advices</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get('imprint','legal_advices')?></h4>
 
         <div class="divider"></div>
 
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-6">
                 <p>
-                    Publisher:<br/><br/>
-                    SteelWall ISH GmbH<br/>
-                    Tassilostr. 21<br/>
-                    82166 Gräfelfi ng<br/>
-                    Germany<br/><br/><br/><br/><br/>
+                    <?= Translate::get('imprint','publisher')?>
+                    <?= Translate::get('imprint','publisher_detail')?>
+                    <br/><br/><br/><br/><br/>
 
-                    Managing Partner:<br/>
-                    Richard Heindl<br/><br/><br/><br/>
-
-
-                    Phone: +49-89-74 120 122<br/>
-                    Fax: +49-89-74 120 128<br/>
-                    Email: info@steelwall.eu<br/><br/><br/><br/><br/>
+                    <?= Translate::get('imprint','managing_partner')?><br/>
+                    <?= Translate::get('imprint','mp_name')?>
+                    <br/><br/><br/><br/>
 
 
-                    Register Court:<br/><br/>
-                    Company registration number Munich Register Court: HRB89130<br/>
-                    VAT identification number: DE129389226<br/><br/><br/><br/><br/>
+                    <?= Translate::get('imprint','mp_contact')?>
+                    <br/><br/><br/><br/><br/>
 
 
-                    Legal Notice:<br/><br/>
-                    All connectors are protected by design patents.
-                    The content of these Internet pages is protected by copyright. A copy of the information
-                    on the Internet pages may be saved to a single computer for non-commercial and personal
-                    internal use. Graphics, texts, logos and pictures etc. may only be downloaded, duplicated,
-                    copied, changed, published, sent, transferred or used in any other form with the written permission
-                    of
-                    SteelWall ISH GmbH. Any product or company names quoted may be registered
-                    trademarks or brand names, unauthorized use of which can lead to claims for compensation
-                    and injunctive relief.
+                    <?= Translate::get('imprint','register_court')?><br/><br/>
+                    <?= Translate::get('imprint','registration_detail')?>
+                    <br/><br/><br/><br/><br/>
+
+
+                    <?= Translate::get('imprint','legal_notice')?><br/><br/>
+                    <?= Translate::get('imprint','legal_detail')?>
+                    <br/><br/><br/>
+
+                    <?= Translate::get('imprint','design')?><br/><br/>
+
+                    <?= Translate::get('imprint','programming')?><br/><br/>
 
                 </p>
             </div>

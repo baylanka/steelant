@@ -187,6 +187,21 @@
     "login_to_subscribe": "Login to Subscribe"
   },
 
+  "imprint": {
+    "legal_advices": "Legal advices",
+    "publisher": "Publisher:<br/><br/>",
+    "publisher_detail": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Germany",
+    "managing_partner": "Managing Partner:",
+    "mp_name": "Richard Heindl",
+    "mp_contact": "Phone: +49-89-74 120 122<br/>Fax: +49-89-74 120 128<br/>Email: info@steelwall.eu",
+    "register_court": "Register Court:",
+    "registration_detail": "Company registration number Munich Register Court: HRB89130<br/>VAT identification number: DE129389226",
+    "legal_notice": "Legal Notice:",
+    "legal_detail": "All connectors are protected by design patents.<br/>\nThe content of these Internet pages is protected by copyright. A copy of the information\non the Internet pages may be saved to a single computer for non-commercial and personal\ninternal use. Graphics, texts, logos and pictures etc. may only be downloaded, duplicated,\ncopied, changed, published, sent, transferred or used in any other form with the writt en permission of SteelWall ISH GmbH. Any product or company names quoted may be registered trademarks or brand names, unauthorized use of which can lead to claims for compensation\nand injunctive relief.",
+    "design": "Conceptual design and technical realization:<br/>Armin Meier Advertising Agency<br/><a href='https://www.meier-design.com/' target='_blank' style='text-decoration: none;'>www.meier-design.com</a>",
+    "programming": "Programming:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (German)</a>"
+  },
+
 
 
 

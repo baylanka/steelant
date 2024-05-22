@@ -183,6 +183,21 @@
     "Subscribe": "S'abonner",
     "login_to_subscribe": "Connectez-vous pour vous abonner"
   },
+  "imprint": {
+    "legal_advices": "Mentions légales",
+    "publisher": "Éditeur :<br/><br/>",
+    "publisher_detail": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Allemagne<br/>",
+    "managing_partner": "Représentant habilité :",
+    "mp_name": "Richard Heindl",
+    "mp_contact": "Tél. : +49-89-74 120 122<br/>Fax : +49-89-74 120 128<br/>E-mail : info@steelwall.eu",
+    "register_court": "Tribunal chargé de la tenue du registre :",
+    "registration_detail": "Inscrit au registre du commerce<br/>Tribunal chargé de la tenue du registre : Tribunal administratif de Munich<br/>Numéro d’enregistrement : HRB89130<br/>N° de TVA : DE129389226",
+    "legal_notice": "Mentions légales :",
+    "legal_detail": "Le contenu de ce site Web est protégé par le droit d’auteur. Une copie des informations sur\nle site Web peut être stockée sur un seul ordinateur pour un usage interne, non commercial\net personnel. Les graphiques, textes, logos, images, etc. ne peuvent être téléchargés, reproduits, copiés, modifiés, publiés, envoyés, transmis ou utilisés sous quelque forme que ce\nsoit qu’avec l’accord écrit de SteelWall ISH GmbH. Les fichiers DWG mis à disposition pour\ntéléchargement ne peuvent pas être modifiés, redistribués ou mis à la disposition du public.\nLes noms de produits et de sociétés mentionnés peuvent être des marques déposées ou des\nmarques. L’utilisati on non autorisée peut donner lieu à des demandes de dommages et intérêts et à des demandes d’injonction.",
+    "design": "Conception et design :<br/>Werbeagentur Armin Meier, Passau, <a href='https://www.meier-design.com/'  target='_blank' style='text-decoration: none;'>www.meier-design.com</a>",
+    "programming": "Programmierung:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (Allemagne)</a>"
+
+  },
 
 
 
