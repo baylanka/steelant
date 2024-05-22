@@ -80,7 +80,7 @@
 
 
   "register_page": {
- "advantages_of_a_registration": "Vorteile einer Registrierung",
+    "advantages_of_a_registration": "Vorteile einer Registrierung",
     "request_products_easily": "Produktanfragen leicht gemacht!",
     "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte!",
     "receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Informationen per Newsletter!",
@@ -170,11 +170,11 @@
   },
   "about_page": {
     "about_steel_wall": "Über SteelWall",
-    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Mehr als 25 Jahre Erfahrung in der Herstellung von Anschlüssen für Stahlwände",
-    "paragraph_01": "SteelWall ISH entwirft, entwickelt, produziert und vertreibt ineinandergreifende Systeme (Verbindungsstangen) zur Verbindung von Stahlkonstruktionen wie Stahlrohren (Rohrpfähle), schweren Stahlprofilen (H-Spundbohlen) und Stahlblechen mit festen Kupplungsstangen (Spundbohlen). ) zum Bau durchgehender, miteinander verbundener und äußerst stabiler Stahlstütz- und Stahlstützwände, umgangssprachlich auch Spundwandwände genannt.",
-    "paragraph_02": "In den letzten einhundert Jahren hat der Einsatz von Spundwänden in Anwendungen wie Baugrubenrückhaltung, Brückenbaustellen, Kais, Docks, Schleusenwänden, Kanälen, Hochwasserschutz, Tunneln, Tiefgaragen und dem Austreten gefährlicher Stoffe sprunghaft zugenommen Prävention, neben vielen anderen Anwendungen.",
-    "paragraph_03": "Bei SteelWall-Anschlüssen handelt es sich um Technologien der dritten Generation, die in zertifizierten Werken mit höchster Qualität und Präzision hergestellt werden. Vom Standpunkt der Technik, des Designs und der Benutzerfreundlichkeit aus sind sie ein technologisch überlegenes Produkt, äußerst robust, einfach zu fahren und unter dem Gesichtspunkt der Wirtschaftlichkeit einfach unschlagbar.",
-    "paragraph_04": "Erkunden Sie diese Website und kontaktieren Sie einen SteelWall-Vertreter, um zu erfahren, warum SteelWall-Anschlüsse zu den am schnellsten wachsenden Produkten der Bauindustrie weltweit gehören."
+    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Viele Jahre Erfahung in der Entwicklung von Schlossprofilen für Stahlspundwände",
+    "paragraph_01": "SteelWall ISH befasst sich mit Entwicklung, Produktion und Vertrieb von Stahlschlosssystemen zum Verbinden von Stahlrohren (Rohrspundbohlen), Stahlträgern (H-Spundbohlen) und\nStahlblechen mit Schlossleisten (Spundbohlen) um durchgehende, miteinander verbundene,\nsehr stabile Stahlstütz- und Stahlrückhaltewände, sogenannte Stahlspundwände, zu erstellen.",
+    "paragraph_02": "Stahlspundwände werden seit über 100 Jahren in folgenden Bauwerken eingesetzt: Baugruben, Brücken, Geländesprüngen, Kaimauern, Hafenbecken, Schleusenwänden, Kanälen,\nMolen, zum Hochwasserschutz, Tunnelbau, Tiefgaragen und zum Einkapseln von Altlasten.",
+    "paragraph_03": "Die in zertifizierten Unternehmen der Stahlverarbeitung gefertigten SteelWall Stahlschlosssysteme der dritt en Generation sind technisch perfekt, extrem stabil, leichtgängig rammbar und dabei unschlagbar wirtschaftlich.",
+    "paragraph_04": ""
   },
   "news_letter_page": {
     "newsletter": "Newsletter",
