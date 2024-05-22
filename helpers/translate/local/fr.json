@@ -6,7 +6,7 @@
     "menu": "Menu",
     "email": "E-mail",
     "password": "Mot de passe",
-    "register": "Registre",
+    "register": "Enregistrement",
     "related_section": "Section connexe",
     "copyright": "Copyright",
     "home": "Maison",
@@ -26,23 +26,37 @@
     "gallery": "Galerie",
     "sealant": "Produit d’étanchéité",
     "contact": "Contact",
-    "user_information": "Informations de l'utilisateur",
+    "user_information": "Informations utilisateur",
     "about_steelwall": "À propos de Steelwall",
     "newsletter": "Bulletin",
-    "languages_and_measures": "Langues et mesures",
-    "legal_advice": "L'avertissement légal",
+    "languages_and_measures": "Langues et unités de mesure",
+    "legal_advice": "Mentions légales",
     "imprint": "Mentions légales",
-    "privacy_policy": "Déclaration de protection des données",
-    "general_terms_and_conditions": "Les conditions générales",
+    "privacy_policy": "Politique de confidentialité",
+    "general_terms_and_conditions": "Conditions générales",
     "favourites": "Favoris",
     "profile": "Profil"
   },
 
 
   "home_footer": {
-    "disclaimer": "Disclaimer",
-    "disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes europé-ennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiffrées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. L'épaisseur d’acier peut être réduite jusqu'à 2 mm aux extrémités des connecteurs. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des raccords. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez vérifi er la compatibilité des lisières de serrures de palplanches à l’aide de sections de spécimens des raccords souhaités."
- },
+    "disclaimer": "Notes techniques / clause de non-responsabilité",
+    "disclaimer_text": "Les profilés SteelWall répondent de manière générale aux normes européennes et sont fabriqués dans des entreprises certifiées de l’industrie sidérurgique. Toutes les indications chiff-rées sont des valeurs approximatives et sont susceptibles de varier. Des torsions de barre de jusqu’à 2 mm par mètre sont possibles. Tolérance de l’épaisseur d’acier : ±1 mm. L’épaisseur de\nl’acier peut être réduite de jusqu’à 2 mm aux extrémités des profilés. Tolérance de longueur : jusqu’à ±200 mm. Les indications de degrés se réfèrent aux axes des connecteurs. Sous réserve de modifications techniques. Nous nous référons à la norme DIN EN 12063. Veuillez vérifier la compatibilité des lisières de serrures de palplanches à l’aide de sections de spécimens des\nconnecteurs souhaités.",
+    "last_website_update": "Dernière mise à jour du site Web :",
+    "africa": "Afrique",
+    "asia": "Asie",
+    "australia": "Australie",
+    "caribbean": "Caraïbes",
+    "europe": "Europe",
+    "india": "Inde",
+    "new_zealand": "Nouvelle-Zélande",
+    "south_america": "Amérique du Sud",
+    "north_america": "Amérique du Nord",
+    "south_east_asia": "Asie du Sud-Est",
+    "japan": "Japan",
+    "oceania": "Océanie",
+    "about_mf_pipe": "MF-Pipe est une division\nde SteelWall-ISH GmbH"
+  },
 
 
   "login_page": {

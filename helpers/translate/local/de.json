@@ -6,7 +6,7 @@
     "menu": "Menü",
     "email": "E-Mail",
     "password": "Kennwort",
-    "register": "Registrieren",
+    "register": "Registrierung",
     "related_section": "Siehe auch",
     "copyright": "Copyright",
     "home": "Home",
@@ -27,13 +27,13 @@
     "gallery": "Galerie",
     "sealant": "Dichtungsmittel",
     "contact": "Kontakt",
-    "user_information": "Nutzerinformation",
+    "user_information": "Benutzerinformationen",
     "about_steelwall": "Über SteelWall",
     "newsletter": "Newsletter",
     "languages_and_measures": "Sprachen und Maßeinheiten",
     "legal_advice": "Rechtliche Hinweise",
     "imprint": "Impressum",
-    "privacy_policy": "Privatsphäre",
+    "privacy_policy": "Datenschutzerklärung",
     "general_terms_and_conditions": "AGB",
     "favourites": "Favoriten",
     "profile": "Profil"
@@ -43,7 +43,21 @@
 
   "home_footer": {
     "disclaimer": "Technische Hinweise / Disclaimer",
-    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt.  Alle Zahlenangaben sind Zirka-Werte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit."
+    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind ZirkaWerte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die\nSpundwandschlossleisten mit Musterabschnitt en der gewünschten Schlossprofile auf Gängigkeit.",
+    "last_website_update": "Letztes Update der Website:",
+    "africa": "Afrika",
+    "asia": "Asien",
+    "australia": "Australien",
+    "caribbean": "Karibik",
+    "europe": "Europa",
+    "india": "Indien",
+    "new_zealand": "Neuseeland",
+    "south_america": "Südamerika",
+    "north_america": "Nordamerika",
+    "south_east_asia": "Südostasien",
+    "japan": "Japan",
+    "oceania": "Ozeanien",
+    "about_mf_pipe": "MF-Pipe ist eine Division\nder SteelWall-ISH GmbH"
   },
 
 

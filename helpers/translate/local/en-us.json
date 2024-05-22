@@ -33,11 +33,29 @@
     "privacy_policy": "Privacy policy",
     "general_terms_and_conditions": "General terms and conditions",
     "favourites": "Favorites",
-    "profile": "Profile"
+    "profile": "Profile",
+    "disclaimer": "Disclaimer",
+    "disclaimer_para": "SteelWall connectors generally comply with the European standards and are manufactured by certified steel processing companies.\nAll figures are approximate and may vary. Bar twists are possible up to 2 mm per meter. Tolerance of steel thickness ±1 mm.\nLength tolerance up to ±200 mm. Degree details refer to the connector bar axes. Welding base of LPB, FD and MF connectors can be straight or bevelled.\nWe reserve the right to make technical changes. We refer to DIN EN 12063.\nPlease check the sheet pile interlocks with a physical sample section of the desired connector for compatibility."
+
+
   },
   "home_footer": {
     "disclaimer": "Disclaimer",
-    "disclaimer_text": "SteelWall connectors generally comply with the European standards and are manufactured by certified steel processing companies.\n\nAll figures are approximate and may vary. Bar twists are possible up to 0.025\"/ft (2 mm per meter). Tolerance of steel thickness ±0.04\" (±1 mm). Length tolerance up to ±7.9\" (±200 mm). Degree details refer to the connector bar axes. Welding base of LPB and FD clutches can be straight or beveled. We reserve the right to make technical changes. We refer to DIN EN 12063. Please check the sheet pile interlocks with a physical sample section of the desired connector for compatibility."
+    "disclaimer_text": "SteelWall connectors generally comply with the European standards and are manufactured by certified steel processing companies.\n\nAll figures are approximate and may vary. Bar twists are possible up to 0.025\"/ft (2 mm per meter). Tolerance of steel thickness ±0.04\" (±1 mm). Length tolerance up to ±7.9\" (±200 mm). Degree details refer to the connector bar axes. Welding base of LPB and FD clutches can be straight or beveled. We reserve the right to make technical changes. We refer to DIN EN 12063. Please check the sheet pile interlocks with a physical sample section of the desired connector for compatibility.",
+    "last_website_update": "Last website update:",
+    "africa": "Africa",
+    "asia": "Asia",
+    "australia": "Australia",
+    "caribbean": "Caribbean",
+    "europe": "Europe",
+    "india": "India",
+    "new_zealand": "New Zealand",
+    "south_america": "South America",
+    "north_america": "North America",
+    "south_east_asia": "South East Asia",
+    "japan": "Japan",
+    "oceania": "Oceania",
+    "about_mf_pipe": "MF-Pipe is a division\nof SteelWall"
   },
   "login_page": {
     "forgot_password": "Forgot Password",
