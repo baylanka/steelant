@@ -196,7 +196,18 @@
     "legal_detail": "Le contenu de ce site Web est protégé par le droit d’auteur. Une copie des informations sur\nle site Web peut être stockée sur un seul ordinateur pour un usage interne, non commercial\net personnel. Les graphiques, textes, logos, images, etc. ne peuvent être téléchargés, reproduits, copiés, modifiés, publiés, envoyés, transmis ou utilisés sous quelque forme que ce\nsoit qu’avec l’accord écrit de SteelWall ISH GmbH. Les fichiers DWG mis à disposition pour\ntéléchargement ne peuvent pas être modifiés, redistribués ou mis à la disposition du public.\nLes noms de produits et de sociétés mentionnés peuvent être des marques déposées ou des\nmarques. L’utilisati on non autorisée peut donner lieu à des demandes de dommages et intérêts et à des demandes d’injonction.",
     "design": "Conception et design :<br/>Werbeagentur Armin Meier, Passau, <a href='https://www.meier-design.com/'  target='_blank' style='text-decoration: none;'>www.meier-design.com</a>",
     "programming": "Programmierung:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (Allemagne)</a>"
-
+  },
+  "privacy": {
+    "privacy_policy": "Politique de confidentialité",
+    "legal_advices" : "Mentions légales",
+    "contact_details": "Contact details",
+    "controller:": "Controller:",
+    "controller_detail": "Richard Heindl, Email: info@steelwall.eu, Telephone: 49-89-74 120 122",
+    "purposes": "Purposes",
+    "purpose_detail": "Ensuring problem-free access to our website, analysing the stability of the system, security<br/> of the system, convenience of using our website, pre-orders, administrative purposes regarding<br/> the website. In no case will data be collected in order to trace individual persons.",
+    "legal_basis": "Legal basis:",
+    "newsletter": "Newsletter",
+    "cookies": "Cookies"
   },
 
 

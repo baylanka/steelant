@@ -181,6 +181,18 @@
     "design": "Conceptual design and technical realization:<br/>Armin Meier Advertising Agency<br/><a href='https://www.meier-design.com/' target='_blank' style='text-decoration: none;'>www.meier-design.com</a>",
     "programming": "Programming:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (German)</a>"
   },
+  "privacy": {
+    "privacy_policy": "Privacy policy",
+    "legal_advices" : "Legal advices",
+    "contact_details": "Contact details",
+    "controller:": "Controller:",
+    "controller_detail": "Richard Heindl, Email: info@steelwall.eu, Telephone: 49-89-74 120 122",
+    "purposes": "Purposes",
+    "purpose_detail": "Ensuring problem-free access to our website, analysing the stability of the system, security<br/> of the system, convenience of using our website, pre-orders, administrative purposes regarding<br/> the website. In no case will data be collected in order to trace individual persons.",
+    "legal_basis": "Legal basis:",
+    "newsletter": "Newsletter",
+    "cookies": "Cookies"
+  },
 
 
 
