@@ -1,3 +1,6 @@
+<?php
+    use helpers\translate\Translate;
+?>
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
@@ -15,7 +18,8 @@
                 </div>
                 <div class="col-md-8">
                     <dl>
-                        <h4 class="selected">General terms and conditions
+                        <h4 class="selected">
+                            <?=Translate::get('terms_and_conditions','general_terms_and_conditions')?>
                         </h4>
                     </dl>
 
@@ -34,18 +38,21 @@
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Legal advices</h4>
+        <h4 class="connector-heading my-3"><?=Translate::get('terms_and_conditions','legal_advices')?></h4>
 
         <div class="divider"></div>
 
-        <h5 class="connector-heading my-3">Please download / open PDF file
+        <h5 class="connector-heading my-3">
+            <?=Translate::get('terms_and_conditions','please_download_open_pdf_file')?>
         </h5>
 
         <div class="divider"></div>
 
 
         <div class="d-flex align-middle w-50 justify-content-between my-5">
-            <h6 class="connector-heading my-4">General terms and conditions</h6>
+            <h6 class="connector-heading my-4">
+                <?=Translate::get('terms_and_conditions','general_terms_and_conditions')?>
+            </h6>
             <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25" class="mt-auto mb-auto">
         </div>
 
