@@ -17,7 +17,7 @@ $app->get('/gallery',  ["user\HomeController", "gallery"]);
 $app->get('/contact',  ["user\HomeController", "contact"]);
 $app->get('/about',  ["user\HomeController", "about"]);
 $app->get('/imprint',  ["user\HomeController", "imprint"]);
-$app->get('/privacy&policy',  ["user\HomeController", "privacy"]);
+$app->get('/privacy',  ["user\HomeController", "privacy"]);
 $app->get('/newsletter',  ["user\HomeController", "newsLetter"]);
 $app->get('/general/terms&condition',  ["user\HomeController", "generalCondition"]);
 

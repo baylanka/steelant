@@ -64,8 +64,8 @@ use helpers\translate\Translate;
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/privacy&policy") ?>?lang=<?=Translate::getLang()?>"
-                       class="text-decoration-none <?= RequestService::isRequestedRoute("/privacy&policy") ? "selected" : "color-custom-light" ?>">
+                    <a href="<?= url("/privacy") ?>?lang=<?=Translate::getLang()?>"
+                       class="text-decoration-none <?= RequestService::isRequestedRoute("/privacy") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "privacy_policy") ?>
                     </a>
                 </li>

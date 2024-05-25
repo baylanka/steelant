@@ -160,8 +160,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= RequestService::isRequestedRoute("/privacy&policy") ? "selected" : "" ?>"
-                           href="<?= url("/privacy&policy") ?>">
+                        <a class="nav-link <?= RequestService::isRequestedRoute("/privacy") ? "selected" : "" ?>"
+                           href="<?= url("/privacy") ?>">
                             <?= Translate::get("home_nav", "privacy_policy") ?>
                         </a>
                     </li>
