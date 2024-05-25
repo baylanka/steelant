@@ -245,10 +245,12 @@ class ConnectorFilter
             case LanguagePool::FRENCH()->getLabel():
                 $this->setNameFrWhereClause();
                 break;
-            case LanguagePool::UK_ENGLISH():
-            case LanguagePool::US_ENGLISH():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
                 $this->setNameEnWhereClause();
                 break;
+            default:
+                $t = 12;
         }
 
     }
