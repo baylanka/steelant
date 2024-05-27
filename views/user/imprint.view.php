@@ -61,7 +61,10 @@
 
 
                     <?= Translate::get('imprint','legal_notice')?><br/><br/>
-                    <?= Translate::get('imprint','legal_detail')?>
+                    <span style="text-align: justify;">
+                        <?= Translate::get('imprint','legal_detail')?>
+                    </span>
+
                     <br/><br/><br/>
 
                     <?= Translate::get('imprint','design')?><br/><br/>

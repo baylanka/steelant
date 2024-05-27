@@ -198,14 +198,14 @@
     "programming": "Programmierung:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (Allemagne)</a>"
   },
   "privacy": {
-    "privacy_policy": "Politique de confidentialité",
-    "legal_advices" : "Mentions légales",
-    "contact_details": "Contact details",
-    "controller": "Controller:",
+    "privacy_policy": "Datenschutzerklärung",
+    "legal_advices" : "Rechtliche Hinweise",
+    "contact_details": "Kontaktdaten",
+    "controller": "Verantwortlicher",
     "controller_detail": "Richard Heindl, Email: info@steelwall.eu, Telephone: 49-89-74 120 122",
-    "purposes": "Purposes",
-    "purpose_detail": "Ensuring problem-free access to our website, analysing the stability of the system, security<br/> of the system, convenience of using our website, pre-orders, administrative purposes regarding<br/> the website. In no case will data be collected in order to trace individual persons.",
-    "legal_basis": "Legal basis:",
+    "purposes": "Zwecke",
+    "purpose_detail": "Sicherstellung eines problemlosen Zugriffs auf unsere Internetseite, Auswertung der Systemstabilität, Systemsicherheit, Nutzungskomfort der Internetseite, Vorbestellungen, administrative Zwecke bzgl. Interseite; Keinesfalls werden Daten erhoben, um Rückschlüsse auf Personen zu ziehen.",
+    "legal_basis": "Rechtsgrundlage:",
     "newsletter": "Newsletter",
     "cookies": "Cookies"
   },
