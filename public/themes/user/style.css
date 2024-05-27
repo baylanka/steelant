@@ -104,13 +104,6 @@ body {
 }
 
 
-.divider {
-    height: 1px;
-    background-color: var(--blue);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .connector-heading {
     color: var(--blue);

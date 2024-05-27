@@ -64,8 +64,8 @@ use helpers\translate\Translate;
         <?php require_once "layout/sub_nav.layout.php" ?>
 
         <div class="divider"></div>
-        <?php if(!empty($title)): ?>
-            <h4 class="connector-heading my-4" id="heading"><?= $title ?></h4>
+        <?php if(!empty($categoryDTO->getTitle())): ?>
+            <h4 class="connector-heading my-4" id="heading"><?= $categoryDTO->getTitle() ?></h4>
 
             <div class="divider"></div>
         <?php endif ?>
@@ -76,8 +76,44 @@ use helpers\translate\Translate;
             <div class="divider"></div>
         <?php endforeach; ?>
 
+        <?php if($categoryDTO->hasRelevantCategories()): ?>
+            <?php
+                $pages = $categoryDTO->getRelevantCategories();
+            ?>
+            <h4 class="my-3 text-gray"><?= $pages[0]->title ?></h4>
+            <div class="divider"></div>
 
+            <?php foreach ($pages as $page): ?>
+                <div class="col-12 col-md-12 col-xxl-4 row   align-middle" style="cursor: pointer"
+                     data-id="<?=$page->relevant_category_id?>"
+                     onclick="window.location.href='<?= RouterService::getCategoryPageRoute($page->relevant_category_id) ?>'">
+                    <div class="col-md-1 col-4">
+                        <img
+                                src="<?= $page->category->icon_url ?>"
+                                alt="<?= $page->category->icon_name ?>"
+                                height="80"/>
+                    </div>
+                    <div class="col-md-8 col-8 d-flex flex-column justify-content-evenly">
+                        <dl class="text-gray m-0">
+                            <?= $page->description ?>
+                        </dl>
+
+                    </div>
+
+                </div>
+                <?php if(sizeof($pages) > 1): ?>
+                    <div class="divider"></div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+
+
+            <div class="divider mb-5"></div>
+
+        <?php endif; ?>
     </div>
+
+
 
 
 </div>

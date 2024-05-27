@@ -40,10 +40,10 @@ class PageController extends BaseController
     {
         $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
         $categoryId = $request->get('id');
-        $lang = Translate::getLang();
+        $lang = LanguagePool::ENGLISH()->getLabel();
         $categories = Category::getAllAvoidById($categoryId);
         $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,$lang,$separator);
-        $pageIds = RelevantPage::getAllBy(['category_id'=>$categoryId]);
+        $pages = RelevantPage::getAllBy(['category_id'=>$categoryId]);
 
         $categoryNameAsHeading = CategoryService::getCategoryNameTreeStrByLeafCategoryId($categoryId, $lang, ' > ');
         $contents = CategoryContentRepository::getAllContentsInDisplayOrder($categoryId, $lang);
@@ -52,7 +52,7 @@ class PageController extends BaseController
             'contents' => $contents,
             'categoryId' => $categoryId,
             'leaf_categories' => $leafCategoryDTOCollection,
-            'pages_ids' => $pageIds
+            'pages' => $pages
         ];
         return view("admin/pages/relevant_pages.view.php", $data);
     }
@@ -65,8 +65,10 @@ class PageController extends BaseController
         try{
             $db->beginTransaction();
             $categoryId = $request->get('id');
-            $pages = $request->get('relevant_pages', []);
-            RelevantPageRepository::updateRelevantPages($categoryId, $pages);
+            $pageIds = $request->get('relevant_pages', []);
+            $titleJsons = $request->get('title_json', []);
+            $descriptionJsons = $request->get('description_json', []);
+            RelevantPageRepository::updateRelevantPages($categoryId, $pageIds,$titleJsons, $descriptionJsons);
             $db->commit();
             ResponseUtility::sendResponseByArray([
                 "message" => "Successfully updated",

@@ -3,8 +3,10 @@
 namespace helpers\dto;
 
 use helpers\pools\LanguagePool;
+use helpers\services\CategoryService;
 use helpers\translate\Translate;
 use model\Category;
+use model\RelevantPage;
 
 class CategoryDTO
 {
@@ -70,5 +72,33 @@ class CategoryDTO
             case LanguagePool::US_ENGLISH()->getLabel():
                 return $this->category->getTitleEn();
         }
+    }
+
+    public function hasRelevantCategories()
+    {
+        $pages = RelevantPage::getAllBy(['category_id'=> $this->category->id]);
+        return !empty($pages);
+    }
+
+    public function getRelevantCategories()
+    {
+        $lang = Translate::getLang();
+        $pages = RelevantPage::getAllBy(['category_id'=> $this->category->id]);
+        $arr = [];
+        foreach ($pages as $page)
+        {
+            $parentRelevantCategory = CategoryService::getParentCategory($page->relevant_category_id);
+            $parentRelevantCategoryDTO = new CategoryDTO($parentRelevantCategory);
+            $descriptionArr = json_decode($page->description ?? "{}",  true);
+            $titleArr = json_decode($page->title ?? "{}", true);
+            $arr[] = json_decode(json_encode([
+                                                'category' => $parentRelevantCategoryDTO,
+                                                'description'=> $descriptionArr[$lang] ?? "-",
+                                                'title' => $titleArr[$lang] ?? "-",
+                                                'relevant_category_id' => $page->relevant_category_id
+                                            ]));
+        }
+
+        return $arr;
     }
 }

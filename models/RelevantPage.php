@@ -10,4 +10,6 @@ class RelevantPage extends BaseModel
     public int $id;
     public int $category_id;
     public int $relevant_category_id;
+    public ?string $title;
+    public ?string $description;
 }

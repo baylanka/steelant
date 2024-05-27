@@ -3,6 +3,8 @@ CREATE TABLE  IF NOT EXISTS   relevant_pages
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     category_id BIGINT UNSIGNED,
     relevant_category_id BIGINT UNSIGNED,
+    title MEDIUMTEXT,
+    description MEDIUMTEXT,
     created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
 );

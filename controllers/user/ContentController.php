@@ -24,12 +24,12 @@ class ContentController extends BaseController
         if(!$category){
             header('Location: ' . url("/"));
         }
-        $categoryDTO = new CategoryDTO($category);
+
         $data = [
             'categoryDTOCollection'=> CategoryService::getCategoryPageCollectionDTO($categoryId),
             'language' => $activatedLanguage,
             'templates' => $templates,
-            "title" => $categoryDTO->getTitle()
+            'categoryDTO' => new CategoryDTO($category)
         ];
 
         return view("user/connector.view.php", $data);

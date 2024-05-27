@@ -96,7 +96,6 @@ use helpers\translate\Translate;
 
         <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
 
-
         <div class="divider"></div>
 
         <div class="col-12 col-md-4 col-xxl-4 row gap-3  align-middle my-4">

@@ -7,6 +7,17 @@ function hasCategoryId($value, $array) {
     }
     return false;
 }
+
+
+function getIndex($value, $array)
+{
+    foreach ($array as $index => $innerArray) {
+        if (isset($innerArray->relevant_category_id) && $innerArray->relevant_category_id == $value) {
+            return $index;
+        }
+    }
+    return false;
+}
 ?>
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -25,29 +36,45 @@ function hasCategoryId($value, $array) {
                             <input type="hidden" name="id" value="<?=$categoryId?>"/>
                             <table class="table table-striped">
                                 <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" class="form-check-input master-checker">
-                                    </th>
-                                    <th class="text-left">
-                                        Pages
-                                        <div class="float-end">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary background-blue ml-4 update-btn">Update</button>
+                                    <tr>
+                                        <th>
 
-                                        </div>
-                                    </th>
-                                </tr>
+                                        </th>
+                                        <th class="text-left">
+                                            Pages
+                                        </th>
+                                        <th>
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary background-blue ml-4 update-btn">Update</button>
+
+                                            </div>
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($leaf_categories as $leaf_category): ?>
+                                    <?php
+                                        $matchedCategoryId = hasCategoryId($leaf_category->id, $pages);
+                                        $index = getIndex($leaf_category->id, $pages);
+                                    ?>
                                     <tr class="align-middle">
                                         <td>
-                                            <input type="checkbox" class="form-check-input" name="relevant_pages[]"
-                                                   value="<?= $leaf_category->id ?>" <?= hasCategoryId($leaf_category->id, $pages_ids) ? 'checked': ''?>>
+                                            <input type="checkbox" class="form-check-input page-selector" name="relevant_pages[]"
+                                                   value="<?= $leaf_category->id ?>" <?= $matchedCategoryId ? 'checked': ''?>>
                                         </td>
                                         <td class="text-left">
                                             <?= $leaf_category->treePathStr ?>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                Title JSON:
+                                                <textarea class="form-control" name="title_json[]" <?=$matchedCategoryId ? '':'disabled' ?>><?=$matchedCategoryId ? $pages[$index]->title : '{}' ?></textarea>
+                                            </label>
+                                            <label>
+                                                Description JSON:
+                                                <textarea class="form-control" name="description_json[]"  <?=$matchedCategoryId ? '': 'disabled'?>><?=$matchedCategoryId ? $pages[$index]->description : '{}' ?></textarea>
+                                            </label>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -68,6 +95,18 @@ function hasCategoryId($value, $array) {
 </div>
 
 <script>
+    $(document).off('change', '.page-selector');
+    $(document).on('change', '.page-selector', function(){
+        debugger
+        const pageSelectorChkBox = $(this);
+        if(pageSelectorChkBox.is(':checked')){
+            pageSelectorChkBox.closest('tr').find('textarea').prop("disabled", false);
+        }else{
+            pageSelectorChkBox.closest('tr').find('textarea').val('{}');
+            pageSelectorChkBox.closest('tr').find('textarea').prop("disabled", true);
+        }
+    });
+
     $(document).off("click", ".update-btn");
     $(document).on("click", ".update-btn", async function (e) {
         e.preventDefault();
