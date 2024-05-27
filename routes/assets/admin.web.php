@@ -33,6 +33,9 @@ $app->post('/admin/categories/sub/store', ["admin\CategoryController", "storeSub
 $app->get('/admin/categories/edit', ["admin\CategoryController", "edit"]);
 $app->post('/admin/categories/update', ["admin\CategoryController", "update"]);
 
+$app->get('/admin/update/relevant_pages', ["admin\PageController", "showUpdateRelevantPages"]);
+$app->post('/admin/update/relevant_pages', ["admin\PageController", "updateRelevantPages"]);
+
 //Template routes
 $app->get('/admin/templates', ["admin\TemplateController", "index"]);
 $app->get('/admin/templates/create', ["admin\TemplateController", "create"]);

@@ -8,9 +8,12 @@ use helpers\dto\LeafCategoryDTOCollection;
 use helpers\repositories\CategoryContentRepository;
 use helpers\middlewares\UserMiddleware;
 use helpers\pools\LanguagePool;
+use helpers\repositories\RelevantPageRepository;
 use helpers\services\CategoryService;
 use helpers\translate\Translate;
+use helpers\utilities\ResponseUtility;
 use model\Category;
+use model\RelevantPage;
 
 class PageController extends BaseController
 {
@@ -31,6 +34,47 @@ class PageController extends BaseController
         ];
         return view("admin/pages/index.view.php", $data);
 
+    }
+
+    public function showUpdateRelevantPages(Request $request)
+    {
+        $separator = '  <i class="bi bi-arrow-right text-success"></i>  ';
+        $categoryId = $request->get('id');
+        $lang = Translate::getLang();
+        $categories = Category::getAllAvoidById($categoryId);
+        $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,$lang,$separator);
+        $pageIds = RelevantPage::getAllBy(['category_id'=>$categoryId]);
+
+        $categoryNameAsHeading = CategoryService::getCategoryNameTreeStrByLeafCategoryId($categoryId, $lang, ' > ');
+        $contents = CategoryContentRepository::getAllContentsInDisplayOrder($categoryId, $lang);
+        $data = [
+            'heading' => $categoryNameAsHeading,
+            'contents' => $contents,
+            'categoryId' => $categoryId,
+            'leaf_categories' => $leafCategoryDTOCollection,
+            'pages_ids' => $pageIds
+        ];
+        return view("admin/pages/relevant_pages.view.php", $data);
+    }
+
+    public function updateRelevantPages(Request $request)
+    {
+        global $container;
+        $db = $container->resolve('DB');
+
+        try{
+            $db->beginTransaction();
+            $categoryId = $request->get('id');
+            $pages = $request->get('relevant_pages', []);
+            RelevantPageRepository::updateRelevantPages($categoryId, $pages);
+            $db->commit();
+            ResponseUtility::sendResponseByArray([
+                "message" => "Successfully updated",
+            ]);
+        }catch (\Exception $ex){
+            $db->rollBack();
+            parent::response($ex->getMessage(),[],422);
+        }
     }
 
 

@@ -86,6 +86,15 @@ class BaseModel
         return self::query($sql, $queryValues)->first();
     }
 
+    public static function getAllAvoidById(int $id, array $columns = [])
+    {
+        $tableName = self::getTableName();
+        $columns = empty($columns) ? "*" : " ( " .  implode(",", $columns) . " ) ";
+        $sql = "SELECT {$columns} FROM {$tableName} WHERE id <> :id ; ";
+        $queryValues = ['id'=>$id];
+        return self::query($sql, $queryValues)->get();
+    }
+
     public static function getAll(array $columns = [])
     {
         $tableName = self::getTableName();

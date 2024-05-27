@@ -43,6 +43,14 @@ use helpers\translate\Translate;
                                             View <i class="bi bi-eye float-end"></i>
                                         </a>
                                     </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item update-relevant-page" type="button" data-id="<?= $leaf_category->id?>">
+                                            Meta Pages <i class="bi bi-pen float-end"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -56,7 +64,9 @@ use helpers\translate\Translate;
     </div>
 </div>
 
-
+<div class="modal fade" id="base-modal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+</div>
 
 
 
@@ -64,7 +74,22 @@ use helpers\translate\Translate;
 <?php require_once basePath("views/admin/layout/middle_template.php") ?>
 <?php require_once basePath("views/admin/layout/scripts.php"); ?>
 <script>
+    const modalId = 'base-modal';
+    $(document).on("click", ".update-relevant-page", async function () {
+        const language = "<?=\helpers\translate\Translate::getLang()?>";
+        const id = $(this).attr('data-id');
+        let path = `admin/update/relevant_pages?tableLang=${language}&id=${id}`;
+        try {
+            const modal = await loadModal(modalId, path);
 
+            $(document).off('updateRelevantPagesEvent');
+            $(document).on('updateRelevantPagesEvent', async function (event) {
+                modal.hide();
+            });
+        } catch (err) {
+            toast.error("An error occurred while attempting to open the create connector.. " + err);
+        }
+    });
 </script>
 <?php require_once basePath("views/admin/layout/lower_template.php"); ?>
 
