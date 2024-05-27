@@ -110,6 +110,9 @@ class CategoryRepository extends Category
 
     public static function deleteWithDependencies($id)
     {
+        //delete relevant category entry
+        RelevantPageRepository::deleteRelevantPages($id);
+
         //delete children categories
         self::deleteChildrenByParentCategoryId($id);
 
