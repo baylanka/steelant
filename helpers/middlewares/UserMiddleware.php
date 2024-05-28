@@ -12,6 +12,7 @@ class UserMiddleware
     }
 
 
+
     public static function isAdmin()
     {
         if ($_SESSION["user"]->type != "admin")

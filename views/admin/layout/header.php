@@ -6,12 +6,16 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>SteelWall</title>
+    <title>SteelWall - admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="base-url" content="<?= url("/"); ?>">
     <meta name="title" content="Steelwall">
     <meta name="description" content="Steelwall">
     <meta name="keywords" content="steelwall, walls">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= assets("img/favicon/apple-touch-icon.png") ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= assets("img/favicon/favicon-32x32.png") ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= assets("img/favicon/favicon-32x32.png") ?>">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous"><!--end::Fonts--><!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link rel="stylesheet" href="<?= assets("themes/admin/css/overlayscrollbars.min.css") ?>">
@@ -29,7 +33,7 @@
 
     <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>">
 
-</head> <!--end::Head--> <!--begin::Body-->
+</head>
 
-<body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
 <div class="app-wrapper">
