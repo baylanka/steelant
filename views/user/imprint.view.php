@@ -44,20 +44,20 @@
                 <p>
                     <?= Translate::get('imprint','publisher')?>
                     <?= Translate::get('imprint','publisher_detail')?>
-                    <br/><br/><br/><br/><br/>
+                    <br/><br/><br/>
 
                     <?= Translate::get('imprint','managing_partner')?><br/>
                     <?= Translate::get('imprint','mp_name')?>
-                    <br/><br/><br/><br/>
+                    <br/><br/><br/>
 
 
                     <?= Translate::get('imprint','mp_contact')?>
-                    <br/><br/><br/><br/><br/>
+                    <br/><br/><br/>
 
 
                     <?= Translate::get('imprint','register_court')?><br/><br/>
                     <?= Translate::get('imprint','registration_detail')?>
-                    <br/><br/><br/><br/><br/>
+                    <br/><br/><br/>
 
 
                     <?= Translate::get('imprint','legal_notice')?><br/><br/>
