@@ -14,7 +14,8 @@ class Database
         $config = [
             'host' => $host,
             'port' => $port,
-            'dbname' => $dbname
+            'dbname' => $dbname,
+            'charset'=> "utf8mb4"
         ];
         $dsn = "{$db}:" . http_build_query($config,'',';');
         $this->connection = new PDO($dsn, $username, $password);

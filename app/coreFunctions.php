@@ -62,6 +62,7 @@ function url($uri) {
 
 function preloader()
 {
+    header('Content-Type: text/html; charset=utf-8');
     $pageRoutes = [];
     ini_set('post_max_size', '40M');
     ini_set('upload_max_filesize', '40M');
