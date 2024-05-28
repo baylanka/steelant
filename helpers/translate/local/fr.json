@@ -148,8 +148,8 @@
     "weight": "Poids",
     "request_this_connector": "Faire une demande pour un profilé",
     "remember_this_connector": "Mémoriser profilé",
-    "pressure_load": "Charge de pression",
-    "deformation_path": "Chemin de déformation",
+    "pressure_load": "Pressure load",
+    "deformation_path": "Deformation path",
     "length": "longueur"
   },
 
