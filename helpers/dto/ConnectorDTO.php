@@ -58,7 +58,7 @@ class ConnectorDTO extends ElementDTO
         $this->element = $connector;
 
         $this->id = $this->element->id;
-        $this->name = $this->element->name;
+        $this->setName();
         $this->grade = $this->element->grade ?? '';
         $this->setLengthTypeArray();
         $this->setLanguageDescriptions();
@@ -91,6 +91,15 @@ class ConnectorDTO extends ElementDTO
         $this->setImageFiles();
         $this->setContentId();
         $this->setContentLabel();
+    }
+
+    private function setName()
+    {
+        if($this->language == LanguagePool::FRENCH()->getLabel()){
+            $this->name = str_replace('Leg','Jambe', $this->element->name);
+            return;
+        }
+        $this->name = $this->element->name;
     }
 
     private function setLengthTypeArray()
@@ -288,7 +297,13 @@ class ConnectorDTO extends ElementDTO
                 $arr = [];
                 foreach ($this->maxTensile_i as $key => $value){
                     if(isset($this->maxTensile_m[$key]) && !empty($this->maxTensile_m[$key])){
-                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->maxTensile_m[$key].")</span>";
+                        $metricsValue = $this->maxTensile_m[$key];
+                        $femFlag = (strpos($value,"FEM") !== false
+                                    || strpos($metricsValue,"FEM") !== false) ? ", (FEM)" : "";
+
+                        $value = str_replace(', (FEM)','', $value)
+                                 .  " <span class='m-0 d-inline-block'>(" . str_replace(', (FEM)','', $metricsValue).")</span>"
+                                 .   $femFlag;
                         $arr[$key] = $value;
                     }
 
