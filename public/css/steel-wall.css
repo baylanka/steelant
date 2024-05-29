@@ -632,3 +632,7 @@ body {
 .black-80{
     color: #707696;
 }
+
+.text-bold{
+    font-weight: bold !important;
+}

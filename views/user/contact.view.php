@@ -20,7 +20,7 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected"><?= Translate::get("contact_page", "contact") ?></h4>
+                        <h4 class="selected"><?= Translate::get("contact_page", "contact") ?></h4>
                     </dl>
 
                 </div>
