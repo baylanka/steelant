@@ -30,28 +30,31 @@ use helpers\translate\Translate;
             <div class="col-12 col-md-8 col-xxl-8  d-flex flex-row flex-wrap">
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
-                        <dt>
+                        <dt class="color-blue ">
                             <?= Translate::get("contact_page", "headquarters_germany") ?>
                         </dt>
-                        <dd class="mt-4"><a href="#eu" class="link color-black">Africa</a></dd>
-                        <dd><a href="#eu" class="link color-black">Asia</a></dd>
-                        <dd><a href="#eu" class="link color-black">Australia</a></dd>
-                        <dd><a href="#eu" class="link color-black">Caribbean</a></dd>
-                        <dd><a href="#eu" class="link color-black">Europe</a></dd>
-                        <dd><a href="#eu" class="link color-black">India</a></dd>
-                        <dd><a href="#eu" class="link color-black">New Zealand</a></dd>
-                        <dd><a href="#eu" class="link color-black">South America</a></dd>
-                        <dd><a href="#eu" class="link color-black">South East Asia</dd>
+                        <dd class="mt-4"><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "africa") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "asia") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "australia") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "caribbean") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "europe") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "india") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "new_zealand") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "south_america") ?></a></dd>
+                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "south_east_asia") ?></dd>
                     </dl>
 
                 </div>
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
-                        <dt>
+                        <dt class="color-blue ">
                             <?= Translate::get("contact_page", "sales_line_north_america") ?>
                         </dt>
-                        <dd class="mt-4"><a href="#north-america" class="link color-black">Canada</a></dd>
-                        <dd><a href="#north-america" class="link color-black">USA</a></dd>
+                        <dd class="mt-4"><a href="#north-america" class="link  black-80"><?= Translate::get("home_footer", "europe") ?></a></dd>
+                        <dd><a href="#japan" class="link  black-80"><?= Translate::get("home_footer", "japan") ?></a></dd>
+                        <dd><a href="#oceania" class="link  black-80"><?= Translate::get("home_footer", "oceania") ?></a></dd>
+                        <dd><a href="#south_east_asia" class="link  black-80"><?= Translate::get("home_footer", "south_east_asia") ?></a></dd>
+                        <dd><a href="#usa" class="link  black-80"><?= Translate::get("home_footer", "usa") ?></a></dd>
                     </dl>
 
                 </div>
@@ -74,25 +77,25 @@ use helpers\translate\Translate;
 
         <div class="divider"></div>
 
-        <p class="mt-5">SteelWall ISH GmbH
+        <p class="mt-5  black-80">SteelWall ISH GmbH
             <br/> Tassilostr. 21
             <br/> 82166 Gräfelfi ng
             <br/> Germany</p>
 
-        <p class="mt-3">
+        <p class="mt-3  black-80">
             <?= Translate::get("common", "phone") ?>
             <br/>+49-89-74 120 122</p>
 
-        <p class="mt-3">
+        <p class="mt-3  black-80">
             <?= Translate::get("common", "fax") ?>
             <br/>+49-89-74 120 128</p>
 
-        <p class="mt-3">
+        <p class="mt-3 black-80">
             <?= Translate::get("common", "email") ?>
             <br/>info@steelwall.eu</p>
 
 
-        <p class="mt-5"><?= Translate::get("contact_page", "please_leave_a_message_here") ?>: </p>
+        <p class="mt-5  black-80"><?= Translate::get("contact_page", "please_leave_a_message_here") ?>: </p>
 
         <div class="row justify-content-start mb-5">
             <div class="col-12 col-md-6">
@@ -184,24 +187,24 @@ use helpers\translate\Translate;
         <div class="divider"></div>
 
 
-        <p class="mt-5">SteelWall ISH GmbH
+        <p class="mt-5  black-80">SteelWall ISH GmbH
             <br/> Tassilostr. 21
             <br/> 82166 Gräfelfi ng
             <br/> Germany</p>
 
-        <p class="mt-3">
+        <p class="mt-3  black-80">
             <?= Translate::get("user_info", "phone") ?>
             <br/>+49-89-74 120 122</p>
 
-        <p class="mt-3">
+        <p class="mt-3  black-80">
             <?= Translate::get("common", "fax") ?>
             <br/>+49-89-74 120 128</p>
 
-        <p class="mt-3">
+        <p class="mt-3  black-80">
             <?= Translate::get("common", "email") ?>
             <br/>info@steelwall.eu</p>
 
-        <p class="mt-5"> Please leave a message here: </p>
+        <p class="mt-5  black-80"> Please leave a message here: </p>
 
         <div class="row justify-content-start mb-5">
             <div class="col-12 col-md-6">
