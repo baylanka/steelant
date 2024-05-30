@@ -201,7 +201,7 @@ body {
 
 
 .divider {
-    height: 0.5px;
+    height: 1px;
     background-color: var(--blue);
     display: block;
     margin-left: auto;
