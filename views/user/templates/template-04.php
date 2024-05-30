@@ -10,7 +10,7 @@ use model\Template;
 
     <div class="col-12 col-md-4 col-xxl-4 margin-bottom-sm">
         <?php
-        require basePath("/views/template/text_view.template.php");
+            require basePath("/views/template/text_view.template.php");
         ?>
     </div>
 

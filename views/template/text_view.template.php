@@ -13,7 +13,7 @@ use \helpers\pools\LanguagePool;
 <dl>
     <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
     <?php if (!empty($connector->getSubtitleOfLang())): ?>
-        <dd class="custom-dd custom-font mb-4">
+        <dd class="custom-font mb-4">
             <?= $connector->getSubtitleOfLang() ?>
         </dd>
     <?php endif; ?>

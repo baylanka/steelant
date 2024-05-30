@@ -24,7 +24,7 @@ $imageContainerSize02 = "col-6 col-md-2 col-xxl-2 d-flex flex-column margin-bott
         <dl>
             <dt class="color-blue mb-2"><?= $connector->name ?? 'Connector Name' ?></dt>
             <?php if (!empty($connector->getSubtitleOfLang())): ?>
-                <dd class="custom-dd custom-font mb-4">
+                <dd class="custom-font mb-4">
                     <?= $connector->getSubtitleOfLang() ?>
                 </dd>
             <?php endif; ?>
