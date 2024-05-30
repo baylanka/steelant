@@ -18,7 +18,7 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-2">
                     <dl>
-                        <h4 class="color-blue selected"><?= Translate::get("gallery_page","gallery") ?></h4>
+                        <h4 class="selected"><?= Translate::get("gallery_page","gallery") ?></h4>
                     </dl>
 
                 </div>

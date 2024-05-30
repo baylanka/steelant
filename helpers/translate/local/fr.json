@@ -55,7 +55,9 @@
     "south_east_asia": "Asie du Sud-Est",
     "japan": "Japan",
     "oceania": "Océanie",
-    "about_mf_pipe": "MF-Pipe est une division\nde SteelWall-ISH GmbH"
+    "about_mf_pipe": "MF-Pipe est une division\nde SteelWall-ISH GmbH",
+    "canada": "Canada",
+    "usa": "États-Unis"
   },
 
 
@@ -95,7 +97,13 @@
     "brochures": "Brochures",
     "data_sheets": "Fiche technique",
     "brochures_and_data_sheets": "Brochures et fiches techniques",
-    "steelwall_connectors_overview": "Steelwall aperçu des connecteurs"
+    "steelwall_connectors_overview": "Steelwall aperçu des connecteurs",
+    "report_1": "Tensile test report LPB100-9A",
+    "report_2": "Tensile test report MF64, WOM-S/WOM-F",
+    "report_3": "FEM simulations MDF100, MF130",
+    "report_4": "Tensile test report F40-IC",
+    "report_5": "Tensile test report F90",
+    "report_6": "Tensile test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
 
 
@@ -148,8 +156,8 @@
     "weight": "Poids",
     "request_this_connector": "Faire une demande pour un profilé",
     "remember_this_connector": "Mémoriser profilé",
-    "pressure_load": "Charge de pression",
-    "deformation_path": "Chemin de déformation",
+    "pressure_load": "Pressure load",
+    "deformation_path": "Deformation path",
     "length": "longueur"
   },
 
@@ -195,7 +203,7 @@
     "legal_notice": "Mentions légales :",
     "legal_detail": "Le contenu de ce site Web est protégé par le droit d’auteur. Une copie des informations sur\nle site Web peut être stockée sur un seul ordinateur pour un usage interne, non commercial\net personnel. Les graphiques, textes, logos, images, etc. ne peuvent être téléchargés, reproduits, copiés, modifiés, publiés, envoyés, transmis ou utilisés sous quelque forme que ce\nsoit qu’avec l’accord écrit de SteelWall ISH GmbH. Les fichiers DWG mis à disposition pour\ntéléchargement ne peuvent pas être modifiés, redistribués ou mis à la disposition du public.\nLes noms de produits et de sociétés mentionnés peuvent être des marques déposées ou des\nmarques. L’utilisati on non autorisée peut donner lieu à des demandes de dommages et intérêts et à des demandes d’injonction.",
     "design": "Conception et design :<br/>Werbeagentur Armin Meier, Passau, <a href='https://www.meier-design.com/'  target='_blank' style='text-decoration: none;'>www.meier-design.com</a>",
-    "programming": "Programmierung:<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (Allemagne)</a>"
+    "programming": "Programmierung :<br/><a href='https://comalpine-infosys.de/'   target='_blank' style='text-decoration: none;'>comAlpine Informationssysteme GmbH, Passau (Allemagne)</a>"
   },
   "privacy": {
     "privacy_policy": "Datenschutzerklärung",

@@ -58,7 +58,7 @@ class ConnectorDTO extends ElementDTO
         $this->element = $connector;
 
         $this->id = $this->element->id;
-        $this->name = $this->element->name;
+        $this->setName();
         $this->grade = $this->element->grade ?? '';
         $this->setLengthTypeArray();
         $this->setLanguageDescriptions();
@@ -74,11 +74,9 @@ class ConnectorDTO extends ElementDTO
         $this->footer_en_gb = $this->element->getFooterOtherAttr(LanguagePool::UK_ENGLISH()->getLabel());
         $this->footer_en_us = $this->element->getFooterOtherAttr(LanguagePool::US_ENGLISH()->getLabel());
 
-        $this->pressure_load_m = stripcslashes($this->element->getPressureLoadMetricsValue());
-        $this->pressure_load_i = stripcslashes($this->element->getPressureLoadImperialValue());
 
-        $this->deformation_path_m = stripcslashes($this->element->getDeformationPathMetricsValue());
-        $this->deformation_path_i = stripcslashes($this->element->getDeformationPathImperialValue());
+        $this->setPressureLoadValues($lang);
+        $this->setDeformationPathValue($lang);
 
         $this->setThickness($lang);
         $this->setLength($lang);
@@ -91,6 +89,55 @@ class ConnectorDTO extends ElementDTO
         $this->setImageFiles();
         $this->setContentId();
         $this->setContentLabel();
+    }
+
+    private function setPressureLoadValues($lang)
+    {
+        $this->pressure_load_m = stripcslashes($this->element->getPressureLoadMetricsValue());
+        $this->pressure_load_i = stripcslashes($this->element->getPressureLoadImperialValue());
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                $this->pressure_load_m = $this->replaceWithComma($this->pressure_load_m);
+                $this->pressure_load_i = $this->replaceWithComma($this->pressure_load_i);
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                $this->pressure_load_m = $this->replaceWithDot($this->pressure_load_m);
+                $this->pressure_load_i = $this->replaceWithDot($this->pressure_load_i);
+                break;
+        }
+    }
+
+    private function setDeformationPathValue($lang)
+    {
+        $this->deformation_path_m = stripcslashes($this->element->getDeformationPathMetricsValue());
+        $this->deformation_path_i = stripcslashes($this->element->getDeformationPathImperialValue());
+
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                $this->deformation_path_m = $this->replaceWithComma($this->deformation_path_m);
+                $this->deformation_path_i = $this->replaceWithComma($this->deformation_path_i);
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                $this->deformation_path_m = $this->replaceWithDot($this->deformation_path_m);
+                $this->deformation_path_i = $this->replaceWithDot($this->deformation_path_i);
+                break;
+
+        }
+    }
+
+    private function setName()
+    {
+        if($this->language == LanguagePool::FRENCH()->getLabel()){
+            $this->name = str_replace('Leg','Jambe', $this->element->name);
+            return;
+        }
+        $this->name = $this->element->name;
     }
 
     private function setLengthTypeArray()
@@ -288,7 +335,13 @@ class ConnectorDTO extends ElementDTO
                 $arr = [];
                 foreach ($this->maxTensile_i as $key => $value){
                     if(isset($this->maxTensile_m[$key]) && !empty($this->maxTensile_m[$key])){
-                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $this->maxTensile_m[$key].")</span>";
+                        $metricsValue = $this->maxTensile_m[$key];
+                        $femFlag = (strpos($value,"FEM") !== false
+                                    || strpos($metricsValue,"FEM") !== false) ? ", (FEM)" : "";
+
+                        $value = str_replace(', (FEM)','', $value)
+                                 .  " <span class='m-0 d-inline-block'>(" . str_replace(', (FEM)','', $metricsValue).")</span>"
+                                 .   $femFlag;
                         $arr[$key] = $value;
                     }
 
@@ -426,10 +479,7 @@ class ConnectorDTO extends ElementDTO
     }
     private function setThickness($lang): void
     {
-        $thicknessMetrics = json_decode($this->element->thickness_m ?? '{}', true);
-        $this->thickness_m  = array_map('stripcslashes', $thicknessMetrics);
-        $thicknessImperial =  json_decode($this->element->thickness_i ?? '{}', true);
-        $this->thickness_i =   array_map('stripcslashes', $thicknessImperial);
+        $this->setRawThickness($lang);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -445,12 +495,43 @@ class ConnectorDTO extends ElementDTO
 
     }
 
+    private function setRawThickness($lang)
+    {
+        $thicknessMetrics = json_decode($this->element->thickness_m ?? '{}', true);
+        $this->thickness_m  = array_map('stripcslashes', $thicknessMetrics);
+        $thicknessImperial =  json_decode($this->element->thickness_i ?? '{}', true);
+        $this->thickness_i =   array_map('stripcslashes', $thicknessImperial);
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                foreach ($this->thickness_m as $key => $value){
+                    $this->thickness_m[$key] = $this->replaceWithComma($value);
+                }
+
+                foreach ($this->thickness_i as $key => $value){
+                    $this->thickness_i[$key] = $this->replaceWithComma($value);
+                }
+
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                foreach ($this->thickness_m as $key => $value){
+                    $this->thickness_m[$key] = $this->replaceWithDot($value);
+                }
+
+                foreach ($this->thickness_i as $key => $value){
+                    $this->thickness_i[$key] = $this->replaceWithDot($value);
+                }
+
+                break;
+        }
+
+
+    }
     private function setLength($lang): void
     {
-        $standardLengthM = json_decode($this->element->standard_lengths_m ?? '{}', true);
-        $this->standardLength_m  = array_map('stripcslashes', $standardLengthM);
-        $standardLengthI = json_decode($this->element->standard_lengths_i ?? '{}', true);
-        $this->standardLength_i = array_map('stripcslashes', $standardLengthI);
+        $this->setRawLengths($lang);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -464,12 +545,43 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
+    private function setRawLengths($lang)
+    {
+        $standardLengthM = json_decode($this->element->standard_lengths_m ?? '{}', true);
+        $this->standardLength_m  = array_map('stripcslashes', $standardLengthM);
+        $standardLengthI = json_decode($this->element->standard_lengths_i ?? '{}', true);
+        $this->standardLength_i = array_map('stripcslashes', $standardLengthI);
+
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                foreach ($this->standardLength_m as $key => $value){
+                    $this->standardLength_m[$key] = $this->replaceWithComma($value);
+                }
+
+                foreach ($this->standardLength_i as $key => $value){
+                    $this->standardLength_i[$key] = $this->replaceWithComma($value);
+                }
+
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                    foreach ($this->standardLength_m as $key => $value){
+                        $this->standardLength_m[$key] = $this->replaceWithDot($value);
+                    }
+
+                    foreach ($this->standardLength_i as $key => $value){
+                        $this->standardLength_i[$key] = $this->replaceWithDot($value);
+                    }
+
+                break;
+        }
+    }
+
     private function setWeight($lang)
     {
-        $weightsM  = json_decode($this->element->weight_m ?? '{}', true);
-        $this->weights_m  = array_map('stripcslashes', $weightsM);
-        $weightsI =  json_decode($this->element->weight_i ?? '{}', true);
-        $this->weights_i =  array_map('stripcslashes', $weightsI);
+        $this->setRawWeight($lang);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -483,12 +595,42 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
+    private function setRawWeight($lang)
+    {
+        $weightsM  = json_decode($this->element->weight_m ?? '{}', true);
+        $this->weights_m  = array_map('stripcslashes', $weightsM);
+        $weightsI =  json_decode($this->element->weight_i ?? '{}', true);
+        $this->weights_i =  array_map('stripcslashes', $weightsI);
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                foreach ($this->weights_m as $key => $value){
+                    $this->weights_m[$key] = $this->replaceWithComma($value);
+                }
+
+                foreach ($this->weights_i as $key => $value){
+                    $this->weights_i[$key] = $this->replaceWithComma($value);
+                }
+
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                foreach ($this->weights_m as $key => $value){
+                    $this->weights_m[$key] = $this->replaceWithDot($value);
+                }
+
+                foreach ($this->weights_i as $key => $value){
+                    $this->weights_i[$key] = $this->replaceWithDot($value);
+                }
+
+                break;
+        }
+    }
+
     private function setMaxTensileStrength($lang)
     {
-        $maxTensileM = json_decode($this->element->max_tensile_strength_m ?? '{}', true);
-        $this->maxTensile_m = array_map('stripcslashes', $maxTensileM);
-        $maxTensileI = json_decode($this->element->max_tensile_strength_i ?? '{}', true);
-        $this->maxTensile_i = array_map('stripcslashes', $maxTensileI);
+        $this->setRawMaxTensileStrength($lang);
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
@@ -501,4 +643,52 @@ class ConnectorDTO extends ElementDTO
                 break;
         }
     }
+
+    private function setRawMaxTensileStrength($lang)
+    {
+        $maxTensileM = json_decode($this->element->max_tensile_strength_m ?? '{}', true);
+        $this->maxTensile_m = array_map('stripcslashes', $maxTensileM);
+        $maxTensileI = json_decode($this->element->max_tensile_strength_i ?? '{}', true);
+        $this->maxTensile_i = array_map('stripcslashes', $maxTensileI);
+
+        switch($lang){
+            case LanguagePool::FRENCH()->getLabel():
+                foreach ($this->maxTensile_m as $key => $value){
+                    $this->maxTensile_m[$key] = $this->replaceWithComma($value);
+                }
+
+                foreach ($this->maxTensile_i as $key => $value){
+                    $this->maxTensile_i[$key] = $this->replaceWithComma($value);
+                }
+
+                break;
+            case LanguagePool::GERMANY()->getLabel():
+            case LanguagePool::US_ENGLISH()->getLabel():
+            case LanguagePool::UK_ENGLISH()->getLabel():
+                foreach ($this->maxTensile_m as $key => $value){
+                    $this->maxTensile_m[$key] = $this->replaceWithDot($value);
+                }
+
+                foreach ($this->maxTensile_i as $key => $value){
+                    $this->maxTensile_i[$key] = $this->replaceWithDot($value);
+                }
+
+                break;
+        }
+    }
+
+    private function replaceWithDot($value)
+    {
+        $pattern = '/(\d+),(\d+)/';
+        $replacement = '$1.$2';
+        return preg_replace($pattern, $replacement, $value);
+    }
+
+    private function replaceWithComma($value)
+    {
+        $pattern = '/(\d+)\.(\d+)/';
+        $replacement = '$1,$2';
+        return preg_replace($pattern, $replacement, $value);
+    }
+
 }

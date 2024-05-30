@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <link rel="stylesheet" href="<?= assets("themes/user/style.css") ?>"/>
-    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>">
+    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>?v=1.0">
 
 
 </head>

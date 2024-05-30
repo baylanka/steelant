@@ -55,7 +55,9 @@
     "south_east_asia": "South East Asia",
     "japan": "Japan",
     "oceania": "Oceania",
-    "about_mf_pipe": "MF-Pipe is a division\nof SteelWall"
+    "about_mf_pipe": "MF-Pipe is a division\nof SteelWall",
+    "canada": "Canada",
+    "usa": "USA"
   },
   "login_page": {
     "forgot_password": "Forgot Password",
@@ -88,7 +90,13 @@
     "brochures": "Brochures",
     "data_sheets": "Data Sheet",
     "brochures_and_data_sheets": "Brochures and Data Sheets",
-    "steelwall_connectors_overview": "Steelwall connectors overview"
+    "steelwall_connectors_overview": "Steelwall connectors overview",
+    "report_1": "Tensile test report LPB100-9A",
+    "report_2": "Tensile test report MF64, WOM-S/WOM-F",
+    "report_3": "FEM simulations MDF100, MF130",
+    "report_4": "Tensile test report F40-IC",
+    "report_5": "Tensile test report F90",
+    "report_6": "Tensile test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
   "gallery_page": {
     "gallery": "Gallery"

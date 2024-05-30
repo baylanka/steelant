@@ -84,21 +84,22 @@ use helpers\translate\Translate;
             <div class="divider"></div>
 
             <?php foreach ($pages as $page): ?>
-                <div class="col-12 col-md-12 col-xxl-4 row   align-middle" style="cursor: pointer"
+                <div class="col-12 col-md-12 col-xxl-12 d-flex gap-3 flex-wrap align-middle" style="cursor: pointer"
                      data-id="<?=$page->relevant_category_id?>"
                      onclick="window.location.href='<?= RouterService::getCategoryPageRoute($page->relevant_category_id) ?>'">
-                    <div class="col-md-1 col-4">
+
                         <img
                                 src="<?= $page->category->icon_url ?>"
                                 alt="<?= $page->category->icon_name ?>"
                                 height="80"/>
-                    </div>
-                    <div class="col-md-8 col-8 d-flex flex-column justify-content-evenly">
-                        <dl class="text-gray m-0">
-                            <?= $page->description ?>
-                        </dl>
 
-                    </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <dl class="text-gray m-0 ">
+                                <?= $page->description ?>
+                            </dl>
+                        </div>
+
+
 
                 </div>
                 <?php if(sizeof($pages) > 1): ?>

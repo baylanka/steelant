@@ -57,7 +57,9 @@
     "south_east_asia": "Südostasien",
     "japan": "Japan",
     "oceania": "Ozeanien",
-    "about_mf_pipe": "MF-Pipe ist eine Division\nder SteelWall-ISH GmbH"
+    "about_mf_pipe": "MF-Pipe ist eine Division\nder SteelWall-ISH GmbH",
+    "canada": "Kanada",
+    "usa": "USA"
   },
 
 
@@ -98,7 +100,13 @@
     "brochures": "Broschüren",
     "data_sheets": "Datenblätter",
     "brochures_and_data_sheets": "Broschüren und Datenblätter",
-    "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile"
+    "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile",
+    "report_1": "Tensile Prüfbericht LPB100-9A",
+    "report_2": "Tensile Prüfbericht MF64, WOM-S/WOM-F",
+    "report_3": "FEM simulations MDF100, MF130",
+    "report_4": "Tensile Prüfbericht F40-IC",
+    "report_5": "Tensile Prüfbericht F90",
+    "report_6": "Tensile Prüfbericht LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
 
 

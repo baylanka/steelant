@@ -21,8 +21,8 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-md-7">
                     <dl class="pl-3">
-                        <h4 class="color-blue"><?= Translate::get("download_page","downloads") ?></h4>
-                        <p class="color-blue"><?= Translate::get("download_page","please_register_before_download") ?></p>
+                        <h4 class="selected"><?= Translate::get("download_page","downloads") ?></h4>
+                        <p class="color-black"><?= Translate::get("download_page","please_register_before_download") ?></p>
                     </dl>
 
                 </div>
@@ -62,42 +62,42 @@ use helpers\translate\Translate;
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">Tensile test report LPB100-9A</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_1") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2019 Tensile test report SteelWall LPB100-9A.pdf") : url("/login") ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">Tensile test report MF64, WOM-S/WOM-F</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_2") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2019 Tensile test report SteelWall MF64 and WOM-S_WOF-S .pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">FEM simulations MDF100, MF130</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_3") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/20231120 FEM Tensile Test_MDF100_MF130.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">Tensile test report F40-IC</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_4") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/F40-IC Tensile Test.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">Tensile test report F90</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_5") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/F90 Tensile Test.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
         <div class="divider"></div>
 
         <div class="d-flex align-middle w-100 justify-content-between">
-            <h6 class="connector-heading my-4">Tensile test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US</h6>
+            <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_6") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/SteelWall Tensile- and Twist out tests s2.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
@@ -111,7 +111,7 @@ use helpers\translate\Translate;
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="connector-heading col-md-4 col-12">Schlossprofile Übersicht 2024</h6>
+            <h6 class="connector-heading col-md-4 col-12 text-bold">Schlossprofile Übersicht 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 11 SW Schlossprofile - Übersichten v45-02 lowres DE.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
@@ -129,30 +129,11 @@ use helpers\translate\Translate;
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="connector-heading col-md-4 col-12">Aperçu connecteurs 2024</h6>
+            <h6 class="color-blue col-md-4 col-12 text-bold">Aperçu connecteurs 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 16 SW Aperçu connecteurs 2024 v19 FR lowres.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
                     <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-fr.jpg") ?>" height="250"
-                         class=" shadow ">
-                </a>
-                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25">
-            </span>
-
-        </div>
-
-
-        <div class="divider"></div>
-
-
-
-        <div class="row gap-5 my-5 w-100">
-
-            <h6 class="connector-heading col-md-4 col-12">Connectors overview 2024</h6>
-
-            <span class="d-flex gap-2 col-md-6 col-12">
-                <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 19 SW connectors - overview 2024 v39 EN lowres.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
-                    <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-en.jpg") ?>" height="250"
                          class=" shadow ">
                 </a>
                 <img src="<?= assets("img/flags/fr.png") ?>" height="25">
@@ -161,12 +142,31 @@ use helpers\translate\Translate;
         </div>
 
 
+        <div class="divider"></div>
+
+
+
+        <div class="row gap-5 my-5 w-100">
+
+            <h6 class="connector-heading col-md-4 col-12 text-bold">Connectors overview 2024</h6>
+
+            <span class="d-flex gap-2 col-md-6 col-12">
+                <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 19 SW connectors - overview 2024 v39 EN lowres.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
+                    <img src="<?= assets("themes/user/img/brochures-thumbnail/brocher-en.jpg") ?>" height="250"
+                         class=" shadow ">
+                </a>
+                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25">
+            </span>
+
+        </div>
+
+
 
         <div class="divider"></div>
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="connector-heading col-md-4 col-12">Connectors overview 2024</h6>
+            <h6 class="connector-heading col-md-4 col-12 text-bold">Connectors overview 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2024 02 24 SW connectors - overview v37 US lowres.pdf") : url("/login")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
