@@ -87,6 +87,6 @@ class AdOnDTO extends ElementDTO
 
     private function setContentLabel()
     {
-        $this->label = $this->title;
+        $this->label = $this->title ?? '';
     }
 }

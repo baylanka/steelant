@@ -162,9 +162,9 @@
   },
 
   "connector_mf_64": {
-    "test_setup": "Configuration des tests",
-    "after_testing": "Après essai, rupture par déformation",
-    "conclusion": "Conclusion"
+    "test_setup": "Montage d’essai",
+    "after_testing": "Après l’essai, échec par déformation",
+    "conclusion": "Résumé"
   },
 
   "connector_page": {

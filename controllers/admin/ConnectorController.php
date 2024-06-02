@@ -32,7 +32,7 @@ class ConnectorController extends BaseController
     }
     public function index(Request $request)
     {
-        $lang = LanguagePool::getByLabel($request->get('tableLang', 'de'))->getLabel();
+        $lang = LanguagePool::getByLabel($request->get('tableLang', 'en-us'))->getLabel();
         $search = $request->get('search', '');
         $filters = $request->get('filters', []);
         $publishedStatus = $request->get('published', 'none');

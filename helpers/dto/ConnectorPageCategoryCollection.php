@@ -19,7 +19,7 @@ class ConnectorPageCategoryCollection
 
     public function __construct(Category $category, int $selectedCategoryId)
     {
-        $this->hasBanner = $category->bannerExists();
+        $this->hasBanner = false;
         $this->parentCategory = $category;
         $this->multiLevelExists = CategoryRepository::hasThirdLevelsOfChildren($this->parentCategory->id);
         $this->setChildren($category);
@@ -38,9 +38,14 @@ class ConnectorPageCategoryCollection
             foreach ($group as $child){
                 if($child->id == $selectedCategoryId){
                     if($child->bannerExists()){
+                        $this->hasBanner = true;
                         $this->bannerURL = $child->getBannerUrl();
                         $this->bannerName = $child->getBannerImageName();
                     }else{
+                        if($this->parentCategory->bannerExists()){
+                            $this->hasBanner = true;
+                        }
+
                         $this->bannerURL = $this->parentCategory->getBannerUrl();
                         $this->bannerName = $this->parentCategory->getBannerImageName();
                     }
