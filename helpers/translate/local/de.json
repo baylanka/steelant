@@ -152,7 +152,8 @@
 
 
   "template_context": {
-    "steel_grade": "Stahlgüten",
+    "steel_grade": "Stahlgüte",
+    "steel_grades": "Stahlgüten",
     "steel_thickness": "Stahldicke",
     "standard_length": "Standardlänge",
     "standard_lengths": "Standardlängen",
@@ -163,7 +164,7 @@
     "remember_this_connector": "Profil merken",
     "pressure_load": "Pressure load",
     "deformation_path": "Deformation path",
-    "length": "länge"
+    "length": "Länge"
   },
 
   "connector_mf_64": {

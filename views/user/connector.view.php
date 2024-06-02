@@ -18,8 +18,14 @@ use helpers\translate\Translate;
 <!--body section-->
 <div class="jumbotron p-0 m-0">
 
-    <img src="<?= $categoryDTOCollection->bannerURL ?>"
-         alt="<?= $categoryDTOCollection->bannerName ?>" class="w-100 banner-image"/>
+    <?php
+        if($categoryDTOCollection->hasBanner):
+    ?>
+        <img src="<?= $categoryDTOCollection->bannerURL ?>"
+             alt="<?= $categoryDTOCollection->bannerName ?>" class="w-100 banner-image"/>
+    <?php
+        endif;
+    ?>
 
     <div class="responsive-wrap px-4">
 

@@ -172,7 +172,7 @@ class Category extends BaseModel
     public function bannerExists($force=false): bool
     {
         $banner = $this->getBanner($force);
-        return !is_null($banner);
+        return !is_null($banner) || isset($banner->path) || !empty($banner->path);
     }
 
     public function getThumbnailUrl($force=false): string
@@ -195,11 +195,11 @@ class Category extends BaseModel
     }
     public function getBannerUrl($force=false): string
     {
-        $banner = $this->getBanner($force);
-        if(is_null($banner)){
+        if(!$this->bannerExists($force)){
             return FileService::getNoImage();
         }
 
+        $banner = $this->getBanner();
         $fullPath = "storage/" . $banner->path;
         return assets($fullPath);
     }

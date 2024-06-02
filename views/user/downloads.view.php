@@ -6,7 +6,7 @@ use helpers\translate\Translate;
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
 
-    <img src="<?= assets("themes/user/img/hero-image.png") ?>" class="w-100"/>
+<!--    <img src="--><?php //= assets("themes/user/img/hero-image.png") ?><!--" class="w-100"/>-->
 
     <div class="mt-5 responsive-wrap">
 

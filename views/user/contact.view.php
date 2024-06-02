@@ -30,7 +30,7 @@ use helpers\translate\Translate;
             <div class="col-12 col-md-8 col-xxl-8  d-flex flex-row flex-wrap">
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
-                        <dt class="color-blue ">
+                        <dt class="color-blue contact_head_dt">
                             <?= Translate::get("contact_page", "headquarters_germany") ?>
                         </dt>
                         <dd class="mt-4"><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "africa") ?></a></dd>
@@ -47,7 +47,7 @@ use helpers\translate\Translate;
                 </div>
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
-                        <dt class="color-blue ">
+                        <dt class="color-blue contact_head_dt">
                             <?= Translate::get("contact_page", "sales_line_north_america") ?>
                         </dt>
                         <dd class="mt-4"><a href="#north-america" class="link  black-80"><?= Translate::get("home_footer", "europe") ?></a></dd>

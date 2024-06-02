@@ -636,3 +636,7 @@ body {
 .text-bold{
     font-weight: bold !important;
 }
+
+.contact_head_dt{
+    padding-right: 40px;
+}

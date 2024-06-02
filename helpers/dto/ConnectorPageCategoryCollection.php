@@ -15,9 +15,11 @@ class ConnectorPageCategoryCollection
 
     public string $thumbnailURL;
     public string $thumbnailName;
+    public bool $hasBanner;
 
     public function __construct(Category $category, int $selectedCategoryId)
     {
+        $this->hasBanner = $category->bannerExists();
         $this->parentCategory = $category;
         $this->multiLevelExists = CategoryRepository::hasThirdLevelsOfChildren($this->parentCategory->id);
         $this->setChildren($category);

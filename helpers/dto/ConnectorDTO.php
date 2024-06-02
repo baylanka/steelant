@@ -15,6 +15,7 @@ class ConnectorDTO extends ElementDTO
 
     public string $name;
     public string $grade;
+    public bool $hasMultiGrades;
     public array $thickness;
     public array $thickness_i;
     public array $thickness_m;
@@ -60,6 +61,8 @@ class ConnectorDTO extends ElementDTO
         $this->id = $this->element->id;
         $this->setName();
         $this->grade = $this->element->grade ?? '';
+        $this->setHasMultiGrades();
+
         $this->setLengthTypeArray();
         $this->setLanguageDescriptions();
         $this->isPublished = $this->element->visibility;
@@ -91,6 +94,12 @@ class ConnectorDTO extends ElementDTO
         $this->setContentLabel();
     }
 
+    private function setHasMultiGrades()
+    {
+        $gradeArr = explode(',', $this->grade);
+        $this->hasMultiGrades = sizeof($gradeArr) > 1;
+    }
+
     private function setPressureLoadValues($lang)
     {
         $this->pressure_load_m = stripcslashes($this->element->getPressureLoadMetricsValue());
@@ -98,10 +107,10 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 $this->pressure_load_m = $this->replaceWithComma($this->pressure_load_m);
                 $this->pressure_load_i = $this->replaceWithComma($this->pressure_load_i);
                 break;
-            case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 $this->pressure_load_m = $this->replaceWithDot($this->pressure_load_m);
@@ -118,10 +127,10 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 $this->deformation_path_m = $this->replaceWithComma($this->deformation_path_m);
                 $this->deformation_path_i = $this->replaceWithComma($this->deformation_path_i);
                 break;
-            case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 $this->deformation_path_m = $this->replaceWithDot($this->deformation_path_m);
@@ -172,47 +181,67 @@ class ConnectorDTO extends ElementDTO
         }
     }
 
-    private function getTranslatedValue($lengthArray, $replaceCollection)
+    private function getTranslatedValue($rawArray, $replaceCollection)
     {
-        foreach ($lengthArray as $key => $value)
+        foreach ($rawArray as $key => $value)
         {
             foreach ($replaceCollection as $replaceArr){
-                $lengthArray[$key] = str_replace($replaceArr[0], $replaceArr[1], $value);
+                $key = str_replace($replaceArr[0], $replaceArr[1], $key);
+                $rawArray[$key] = str_replace($replaceArr[0], $replaceArr[1], $value);
             }
         }
 
-        return $lengthArray;
+        return $rawArray;
+    }
+
+    private function getTranslatedKey($rawArray, $replaceCollection)
+    {
+        $arr = [];
+        foreach ($rawArray as $key => $value)
+        {
+            $updatedKey = $key;
+            foreach ($replaceCollection as $replaceArr){
+                $updatedKey = str_replace($replaceArr[0], $replaceArr[1], $updatedKey);
+            }
+
+            $arr[$updatedKey] = $value;
+        }
+
+        return $arr;
     }
 
     public function getLengthOfLang()
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
-                return $this->getTranslatedValue($this->standardLength_m, [
+                $valueArray = $this->getTranslatedValue($this->standardLength_m, [
                     ['to', ' à '],
-                    ['-', ' à '],
+                    ['up to', ' jusqu’à '],
+                    ['Center', 'Centre'],
+                ]);
+
+                return  $this->getTranslatedKey($valueArray, [
+                    ['Center', 'Centre'],
+                    ['Leg', 'Jambe'],
                 ]);
             case LanguagePool::GERMANY()->getLabel():
                 return $this->getTranslatedValue($this->standardLength_m, [
                     ['to', ' bis '],
-                    ['-', ' bis '],
+                    ['up to', ' bis zu '],
                 ]);
             case LanguagePool::UK_ENGLISH()->getLabel():
-                return $this->getTranslatedValue($this->standardLength_m, [
-                    ['-', ' to '],
-                ]);
+                return $this->standardLength_m;
             case LanguagePool::US_ENGLISH()->getLabel():
                 $arr = [];
-                $standardLength_i = $this->getTranslatedValue($this->standardLength_i, [
-                                                                    ['-', ' to '],
-                                                                ]);
-                $standardLength_m = $this->getTranslatedValue($this->standardLength_m, [
-                                                                    ['-', ' to '],
-                                                                ]);
+                $standardLength_i = $this->standardLength_i;
+                $standardLength_m = $this->standardLength_m;
 
                 foreach ($standardLength_i as $key => $value){
                     if(isset($standardLength_m[$key]) && !empty($standardLength_m[$key])){
-                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $standardLength_m[$key].")</span>";
+                        $metricsValue = $standardLength_m[$key];
+                        $metricsValue = str_replace('up to','', $metricsValue);
+
+                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $metricsValue.")</span>";
                         $arr[$key] = $value;
                     }
 
@@ -226,6 +255,10 @@ class ConnectorDTO extends ElementDTO
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
+                return  $this->getTranslatedKey($this->thickness_m, [
+                    ['Center', 'Centre'],
+                    ['Leg', 'Jambe'],
+                ]);
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return  $this->thickness_m ;
@@ -247,6 +280,10 @@ class ConnectorDTO extends ElementDTO
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
+                return  $this->getTranslatedKey($this->weights_m, [
+                    ['Center', 'Centre'],
+                    ['Leg', 'Jambe'],
+                ]);
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return $this->weights_m;
@@ -328,6 +365,10 @@ class ConnectorDTO extends ElementDTO
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
+                return  $this->getTranslatedKey($this->maxTensile_m, [
+                    ['Center', 'Centre'],
+                    ['Leg', 'Jambe'],
+                ]);
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 return  $this->maxTensile_m;
@@ -504,6 +545,7 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 foreach ($this->thickness_m as $key => $value){
                     $this->thickness_m[$key] = $this->replaceWithComma($value);
                 }
@@ -513,7 +555,7 @@ class ConnectorDTO extends ElementDTO
                 }
 
                 break;
-            case LanguagePool::GERMANY()->getLabel():
+
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 foreach ($this->thickness_m as $key => $value){
@@ -555,6 +597,7 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 foreach ($this->standardLength_m as $key => $value){
                     $this->standardLength_m[$key] = $this->replaceWithComma($value);
                 }
@@ -564,7 +607,7 @@ class ConnectorDTO extends ElementDTO
                 }
 
                 break;
-            case LanguagePool::GERMANY()->getLabel():
+
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                     foreach ($this->standardLength_m as $key => $value){
@@ -604,6 +647,7 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 foreach ($this->weights_m as $key => $value){
                     $this->weights_m[$key] = $this->replaceWithComma($value);
                 }
@@ -613,7 +657,7 @@ class ConnectorDTO extends ElementDTO
                 }
 
                 break;
-            case LanguagePool::GERMANY()->getLabel():
+
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 foreach ($this->weights_m as $key => $value){
@@ -653,6 +697,7 @@ class ConnectorDTO extends ElementDTO
 
         switch($lang){
             case LanguagePool::FRENCH()->getLabel():
+            case LanguagePool::GERMANY()->getLabel():
                 foreach ($this->maxTensile_m as $key => $value){
                     $this->maxTensile_m[$key] = $this->replaceWithComma($value);
                 }
@@ -662,7 +707,7 @@ class ConnectorDTO extends ElementDTO
                 }
 
                 break;
-            case LanguagePool::GERMANY()->getLabel():
+
             case LanguagePool::US_ENGLISH()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():
                 foreach ($this->maxTensile_m as $key => $value){

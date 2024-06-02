@@ -17,7 +17,10 @@ use \helpers\pools\LanguagePool;
             <?= $connector->getSubtitleOfLang() ?>
         </dd>
     <?php endif; ?>
-    <dd class="custom-dd custom-font"><?= Translate::get("template_context", "steel_grade", $language) ?><?=$spaceApplicable?" ":''?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
+    <?php
+        $steelGradeKey = $connector->hasMultiGrades ? 'steel_grades' : 'steel_grade';
+    ?>
+    <dd class="custom-dd custom-font"><?= Translate::get("template_context", $steelGradeKey, $language) ?><?=$spaceApplicable?" ":''?>: <?= empty($connector->grade) ? '---' : $connector->grade ?></dd>
 
 
     <?php if (empty(sizeof(array_values($connector->getThicknessArrayOfLang())))): ?>

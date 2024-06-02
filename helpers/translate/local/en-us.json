@@ -133,6 +133,7 @@
   },
   "template_context": {
     "steel_grade": "Steel grade",
+    "steel_grades": "Steel grades",
     "steel_thickness": "Steel thickness",
     "standard_length": "Standard length",
     "standard_lengths": "Standard lengths",
@@ -143,7 +144,7 @@
     "remember_this_connector": "Remember this connector",
     "pressure_load": "Pressure load",
     "deformation_path": "Deformation path",
-    "length": "length"
+    "length": "Length"
   },
 
   "connector_mf_64": {
