@@ -1,13 +1,21 @@
 {
+  "sur_names": {
+    "dr": "Dr.,",
+    "mr": "M.,",
+    "mrs": "Mme."
+  },
+  "countries": {
+    "germany": "Allemagne"
+  },
   "common": {
     "logo_text": "Connecteurs pour palplanches en acier",
     "login": "Login",
     "logout": "Se déconnecter",
     "menu": "Menu",
-    "email": "E-mail",
-    "password": "Mot de passe",
+    "email": "E-MAIL",
+    "password": "MOT DE PASSE",
     "register": "Enregistrement",
-    "related_section": "Section connexe",
+    "related_section": "Thème connexe",
     "copyright": "Copyright",
     "home": "Maison",
     "fax": "Fax",
@@ -53,7 +61,7 @@
     "south_america": "Amérique du Sud",
     "north_america": "Amérique du Nord",
     "south_east_asia": "Asie du Sud-Est",
-    "japan": "Japan",
+    "japan": "Japon",
     "oceania": "Océanie",
     "about_mf_pipe": "MF-Pipe est une division\nde SteelWall-ISH GmbH",
     "canada": "Canada",
@@ -67,14 +75,14 @@
   },
 
   "user_info": {
-    "your_name": "Votre nom",
-    "job_position": "Emploi / Poste",
-    "division": "Division",
-    "company_name": "Nom de l'entreprise",
-    "country_state": "Pays / État",
-    "website": "Site web",
-    "phone": "Téléphone",
-    "email": "E-mail"
+    "your_name": "VOTRE NOM",
+    "job_position": "EMPLOI / POSTE",
+    "division": "SERVICE",
+    "company_name": "NOM DE L’ENTREPRISE\n",
+    "country_state": "PAYS / RÉGION",
+    "website": "SITE WEB",
+    "phone": "TÉLÉPHONE",
+    "email": "E-MAIL"
   },
 
 
@@ -84,7 +92,7 @@
     "save_your_requests_and_products": "Sauvegardez vos demandes et produits (Favoris) !",
     "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter !",
     "subscribe_to_newsletter": "S'inscrire à la Newsletter",
-    "by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter",
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "En vous inscrivant, vous recevrez automatiquement notre newsletter.",
     "already_a_member": "Déjà membre?"
   },
 
@@ -108,17 +116,24 @@
 
 
   "gallery_page": {
-    "gallery": "Galerie"
+    "gallery": "Galerie",
+    "pipe_pile_walls": "ideaux de pieux tubulai-res",
+    "pipe_pile_sheet_pile_combined_walls": "Rideaux mixtes palplan-ches / pieux tubulaire",
+    "DTH_driving_method": "procédé d’insertion DTH"
   },
 
   "contact_page": {
     "contact": "Contact",
     "headquarters_germany": "SIÈGE SOCIAL ALLEMAGNE",
+    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Allemagne",
     "sales_line_north_america": "LIGNE DE VENTE AMÉRIQUE DU NORD",
-    "headquarters": "Quartier général",
+    "headquarters": "Siège social Allemagne",
     "please_leave_a_message_here": "Veuillez laisser un message ici",
     "send": "Envoyer",
-    "your_message": "VOTRE MESSAGE"
+    "your_message": "VOTRE MESSAGE",
+    "phone": "Téléphone",
+    "fax": "Fax",
+    "email": "E-Mail"
   },
 
   "profile_page": {
@@ -175,15 +190,16 @@
   "about_page": {
     "about_steel_wall": "À propos de SteelWall",
     "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "De nombreuses années d’expérience dans le développement de connecteurs pour rideaux de palplanches en acier",
-    "paragraph_01": "SteelWall ISH s’occupe du développement, de la production et de la vente de systèmes de\nserrures en acier pour l’assemblage de tubes en acier (palplanches tubulaires), de poutres en\nacier (palplanches en H) et de tôles en acier avec des lisières de serrure (palplanches) afin de\nréaliser des murs de soutènement et de retenue en acier continus, reliés entre eux et très\nsolides, appelés rideaux de palplanches en acier.",
-    "paragraph_02": "Les rideaux de palplanches en acier sont utilisés depuis plus de 100 ans dans les ouvrages\nsuivants : fouilles, ponts, sauts de terrain, murs de quai, bassins portuaires, murs d’écluse,\ncanaux, jetées, pour la protection contre les crues, la construction de tunnels, de parkings\nsouterrains et pour l’encapsulage de sites contaminés.",
-    "paragraph_03": "Fabriqués dans des entreprises certifi ées de transformation de l’acier, les systèmes de connecteurs en acier SteelWall de troisième génération sont techniquement parfaits, extrêmement stables, faciles à foncer et, en même temps, d’une rentabilité imbattable.",
+    "paragraph_01": "SteelWall ISH s’occupe du développement, de la production et de la vente de systèmes de serrures en acier pour l’assemblage de tubes en acier (palplanches tubulaires), de poutres en acier (palplanches en H) et de tôles en acier avec des lisières de serrure (palplanches) afin de réaliser des murs de soutènement et de retenue en acier continus, reliés entre eux et très solides, appelés rideaux de palplanches en acier.",
+    "paragraph_02": "Les rideaux de palplanches en acier sont utilisés depuis plus de 100 ans dans les ouvrages suivants : fouilles, ponts, sauts de terrain, murs de quai, bassins portuaires, murs d’écluse, canaux, jetées, pour la protection contre les crues, la construction de tunnels, de parkings souterrains et pour l’encapsulage de sites contaminés.",
+    "paragraph_03": "Fabriqués dans des entreprises certifiées de transformation de l’acier, les systèmes de con-necteurs en acier SteelWall de troisième génération sont techniquement parfaits, extrême-ment stables, faciles à foncer et, en même temps, d’une rentabilité imbattable.",
     "paragraph_04": ""
   },
   "news_letter_page": {
     "newsletter": "Bulletin",
     "subscribe_unsubscribe": "S'inscrire Se désinscrire",
-    "advantages_of_a_registration": "Avantages d'une inscription",
+    "why_register": "Pourquoi s’enregistrer ?",
+    "advantages_of_a_registration": "Avantages :",
     "request_products_easily": "Demandez des produits facilement",
     "save_your_requests_and_products": "Sauvegardez vos demandes et produits",
     "receive_latest_connector_information_via_newsletter": "Recevez les dernières informations sur les connecteurs via la newsletter (environ 4 fois / an)",

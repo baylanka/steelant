@@ -26,14 +26,15 @@ use helpers\translate\Translate;
             </div>
 
             <div class="col-12 col-md-8 col-xxl-8 row gap-3">
-                <div class="col-12 col-md-3 col-xxl-3">
+                <div class="col-12 col-md-6 col-xxl-6">
                     <dl>
-                        <dd><a href="#" class="link selected">Pipe pile steel walls</a></dd>
-                        <dd><a href="#" class="link color-black">Pipe pile combined walls</a></dd>
+                        <dd><a href="#" class="link selected"><?= Translate::get("gallery_page","pipe_pile_walls") ?></a></dd>
+                        <dd><a href="#" class="link color-black"><?= Translate::get("gallery_page","pipe_pile_sheet_pile_combined_walls") ?></a></dd>
+                        <dd><a href="#" class="link color-black"><?= Translate::get("gallery_page","DTH_driving_method") ?></a></dd>
                     </dl>
 
                 </div>
-                <div class="col-12 col-md-3 col-xxl-3">
+                <div class="col-12 col-md-3 col-xxl-3 d-none">
                     <dl>
                         <dd><a href="#" class="link color-black">H-pile steel walls</a></dd>
                         <dd><a href="#" class="link color-black">H-pile combined walls</a></dd>
@@ -53,7 +54,7 @@ use helpers\translate\Translate;
 
         <div class="divider"></div>
 
-        <h4 class="connector-heading my-3">Pipe pile steel walls</h4>
+        <h4 class="connector-heading my-3"><?= Translate::get("gallery_page","pipe_pile_walls") ?></h4>
 
 
         <div class="row  mb-5" id="gallery-container">
@@ -69,27 +70,40 @@ use helpers\translate\Translate;
             </div>
 
 
+
+
+
+
+
+
+
+
             <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
                 <img src="<?= assets("themes/user/img/gallery-3.png") ?>" class="img-fluid h-100 w-100">
             </div>
 
+            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+                <img src="<?= assets("themes/user/img/gallery-8.png") ?>" class="img-fluid h-100 w-100">
+            </div>
 
             <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-                <img src="<?= assets("themes/user/img/gallery-4.png") ?>" class="img-fluid h-100 w-100">
+                <img src="<?= assets("themes/user/img/gallery-9.png") ?>" class="img-fluid h-100 w-100">
             </div>
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-                <img src="<?= assets("themes/user/img/gallery-5.png") ?>" class="img-fluid h-100 w-100">
-            </div>
-
-            <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
-                <img src="<?= assets("themes/user/img/gallery-7.png") ?>" class="img-fluid h-100 w-100">
-            </div>
 
 
             <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-                <img src="<?= assets("themes/user/img/gallery-6.png") ?>" class="img-fluid h-100 w-100">
+                <img src="<?= assets("themes/user/img/gallery-11.png") ?>" class="img-fluid h-100 w-100">
             </div>
+
+            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+                <img src="<?= assets("themes/user/img/gallery-10.png") ?>" class="img-fluid h-100 w-100">
+            </div>
+
+            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+                <img src="<?= assets("themes/user/img/gallery-12.png") ?>" class="img-fluid h-100 w-100">
+            </div>
+
 
 
         </div>

@@ -54,12 +54,12 @@
                         <form action="<?=url('/register')?>" class="register-form pt-5">
 
 
-                            <div class="form-group d-flex">
+                            <div class="form-group d-flex gap-1">
                                 <div class="input-group-prepend w-25">
                                     <select class="form-select" name="title" aria-label="Default select example">
-                                        <option selected value="Dr.">Dr.</option>
-                                        <option value="Mr.">Mr.</option>
-                                        <option value="Mrs.">Mrs.</option>
+                                        <option selected value="<?= Translate::get("sur_names", "dr") ?>"><?= Translate::get("sur_names", "dr") ?></option>
+                                        <option value="<?= Translate::get("sur_names", "mr") ?>"><?= Translate::get("sur_names", "mr") ?></option>
+                                        <option value="<?= Translate::get("sur_names", "mrs") ?>"><?= Translate::get("sur_names", "mrs") ?></option>
                                     </select></div>
                                 <input type="text" class="form-control" name="name"
                                        placeholder="<?= strtoupper(Translate::get("user_info", "your_name")) ?>">
@@ -153,7 +153,8 @@
                             <?= Translate::get("register_page", "already_a_member") ?>
                             <a data-toggle="tab" href="<?= url("/login") ?>?lang=<?=Translate::getLang()?>">
                                 <?= Translate::get("common", "login") ?>
-                            </a></p>
+                            </a>
+                        </p>
 
                         <div class="w-100 d-flex justify-content-center mt-1 pt-5 gap-3 align-middle">
                             <a
@@ -162,10 +163,22 @@
                                     data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
                                     class="lang"
                             >
+
                                 <img src="<?= assets("img/flags/de.png") ?>" height="25"
                                      class="flag
                                         <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::GERMANY()->getLabel()
                                             ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a
+                                    href="?lang=<?=LanguagePool::FRENCH()->getLabel()?>"
+                                    title="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                    data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
+                                    class="lang"
+                            >
+                                <img src="<?= assets("img/flags/fr.png") ?>" height="25"
+                                     class="flag
+                                            <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
+                                         ? "selected-flag" : "" ?>"/>
                             </a>
                             <a
                                     href="?lang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
@@ -189,18 +202,6 @@
                                             <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::US_ENGLISH()->getLabel()
                                                 ? "selected-flag" : "" ?>"/>
                             </a>
-                            <a
-                                    href="?lang=<?=LanguagePool::FRENCH()->getLabel()?>"
-                                    title="<?=LanguagePool::FRENCH()->getLabel()?>"
-                                    data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
-                                    class="lang"
-                            >
-                                <img src="<?= assets("img/flags/fr.png") ?>" height="25"
-                                     class="flag
-                                            <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
-                                                ? "selected-flag" : "" ?>"/>
-                            </a>
-
                         </div>
                     </div>
                 </div>

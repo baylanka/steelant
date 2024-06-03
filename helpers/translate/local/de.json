@@ -1,13 +1,21 @@
 {
+  "sur_names": {
+    "dr": "Dr.,",
+    "mr": "Herr.,",
+    "mrs": "Frau"
+  },
+  "address": {
+    "germany": "Germany"
+  },
   "common": {
     "logo_text": "Schlossprofile für Stahlspundwände",
     "login": "Anmelden",
     "logout": "Abmelden",
     "menu": "Menü",
-    "email": "E-Mail",
-    "password": "Kennwort",
+    "email": "E-MAIL",
+    "password": "KENNWORT",
     "register": "Registrierung",
-    "related_section": "Siehe auch",
+    "related_section": "Related sections",
     "copyright": "Copyright",
     "home": "Home",
     "fax": "Fax",
@@ -65,19 +73,19 @@
 
   "login_page": {
     "forgot_password": "Kennwort vergessen",
-    "not_a_member": "Nicht registriert"
+    "not_a_member": "Nicht registriert?"
   },
 
 
   "user_info": {
-    "your_name": "Ihr Name",
-    "job_position": "Job / Position",
-    "division": "Abteilung",
-    "company_name": "Name des Unternehmens",
-    "country_state": "Land / Staat",
-    "website": "Webseite",
-    "phone": "Telefon",
-    "email": "E-Mail"
+    "your_name": "IHR NAME",
+    "job_position": "JOB / POSITION",
+    "division": "ABTEILUNG",
+    "company_name": "NAME DES UNTERNEHMENS",
+    "country_state": "LAND / BUNDESLAND",
+    "website": "WEBSITE",
+    "phone": "TELEFON",
+    "email": "E-MAIL"
   },
 
 
@@ -87,7 +95,7 @@
     "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte!",
     "receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Informationen per Newsletter!",
     "subscribe_to_newsletter": "Newsletter abonnieren",
-    "by_subscribing_you_will_automatically_receive_our_newsletter": "Mit der Registrierung erhalten Sie automatisch unseren Newsletter",
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "Mit der Registrierung erhalten Sie automatisch unseren Newsletter.",
     "already_a_member": "Schon registriert?"
   },
 
@@ -103,7 +111,7 @@
     "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile",
     "report_1": "Tensile Prüfbericht LPB100-9A",
     "report_2": "Tensile Prüfbericht MF64, WOM-S/WOM-F",
-    "report_3": "FEM simulations MDF100, MF130",
+    "report_3": "FEM simulations MDF100f, MF130",
     "report_4": "Tensile Prüfbericht F40-IC",
     "report_5": "Tensile Prüfbericht F90",
     "report_6": "Tensile Prüfbericht LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
@@ -111,18 +119,25 @@
 
 
   "gallery_page": {
-    "gallery": "Galerie"
+    "gallery": "Galerie",
+    "pipe_pile_walls": "Rohrspundwände",
+    "pipe_pile_sheet_pile_combined_walls": "Rohrkombispundwände",
+    "DTH_driving_method": "DTH Einbringverfahren"
   },
 
 
   "contact_page": {
     "contact": "Kontakt",
     "headquarters_germany": "Hauptsitz Deutschland",
+    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschand",
     "sales_line_north_america": "Vertriebslinie Nordamerika",
-    "headquarters": "Hauptsitz",
+    "headquarters": "Hauptsitz Deutschland",
     "please_leave_a_message_here": "Bitte schreiben Sie uns hier",
     "send": "Schicken",
-    "your_message": "Ihre Nachricht"
+    "your_message": "IHRE NACHRICHT",
+    "phone": "Telefon",
+    "fax": "Fax",
+    "email": "E-Mail"
   },
 
 
@@ -179,19 +194,20 @@
   },
   "about_page": {
     "about_steel_wall": "Über SteelWall",
-    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Viele Jahre Erfahung in der Entwicklung von Schlossprofilen für Stahlspundwände",
-    "paragraph_01": "SteelWall ISH befasst sich mit Entwicklung, Produktion und Vertrieb von Stahlschlosssystemen zum Verbinden von Stahlrohren (Rohrspundbohlen), Stahlträgern (H-Spundbohlen) und\nStahlblechen mit Schlossleisten (Spundbohlen) um durchgehende, miteinander verbundene,\nsehr stabile Stahlstütz- und Stahlrückhaltewände, sogenannte Stahlspundwände, zu erstellen.",
-    "paragraph_02": "Stahlspundwände werden seit über 100 Jahren in folgenden Bauwerken eingesetzt: Baugruben, Brücken, Geländesprüngen, Kaimauern, Hafenbecken, Schleusenwänden, Kanälen,\nMolen, zum Hochwasserschutz, Tunnelbau, Tiefgaragen und zum Einkapseln von Altlasten.",
-    "paragraph_03": "Die in zertifizierten Unternehmen der Stahlverarbeitung gefertigten SteelWall Stahlschlosssysteme der dritt en Generation sind technisch perfekt, extrem stabil, leichtgängig rammbar und dabei unschlagbar wirtschaftlich.",
+    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Viele Jahre Erfahung in der Entwicklung von Schlossprofi len für Stahlspundwände",
+    "paragraph_01": "SteelWall ISH befasst sich mit Entwicklung, Produktion und Vertrieb von Stahlschlosssyste-men zum Verbinden von Stahlrohren (Rohrspundbohlen), Stahlträgern (H-Spundbohlen) und Stahlblechen mit Schlossleisten (Spundbohlen) um durchgehende, miteinander verbundene, sehr stabile Stahlstütz- und Stahlrückhaltewände, sogenannte Stahlspundwände, zu erstel-len.",
+    "paragraph_02": "Stahlspundwände werden seit über 100 Jahren in folgenden Bauwerken eingesetzt: Bau-gruben, Brücken, Geländesprüngen, Kaimauern, Hafenbecken, Schleusenwänden, Kanälen, Molen, zum Hochwasserschutz, Tunnelbau, Tiefgaragen und zum Einkapseln von Altlasten.",
+    "paragraph_03": "Die in zertifizierten Unternehmen der Stahlverarbeitung gefertigten SteelWall Stahlschloss-systeme der dritten Generation sind technisch perfekt, extrem stabil, leichtgängig rammbar und dabei unschlagbar wirtschaftlich.",
     "paragraph_04": ""
   },
   "news_letter_page": {
     "newsletter": "Newsletter",
     "subscribe_unsubscribe": "Abonnieren / Abmelden",
-    "advantages_of_a_registration": "Vorteile einer Registrierung",
-    "request_products_easily": "Fordern Sie Produkte einfach an",
-    "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte",
-    "receive_latest_connector_information_via_newsletter": "Aktuelle Connector-Informationen per Newsletter erhalten (ca. 4 Mal pro Jahr)",
+    "why_register": "Warum registrieren?",
+    "advantages_of_a_registration": "Vorteile:",
+    "request_products_easily": "Produktanfragen leicht gemacht!",
+    "save_your_requests_and_products": "Speichern Sie Ihre Anfragen und Produkte!",
+    "receive_latest_connector_information_via_newsletter": "Erhalten Sie aktuelle Informationen per Newsletter!",
     "unsubscribe": "Abbestellen",
     "Subscribe": "Abonnieren",
     "login_to_subscribe": "Melden Sie sich an, um sich anzumelden"

@@ -41,7 +41,7 @@ use helpers\translate\Translate;
                         <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "india") ?></a></dd>
                         <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "new_zealand") ?></a></dd>
                         <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "south_america") ?></a></dd>
-                        <dd><a href="#eu" class="link  black-80"><?= Translate::get("home_footer", "south_east_asia") ?></dd>
+<!--                        <dd><a href="#eu" class="link  black-80">--><?php //= Translate::get("home_footer", "south_east_asia") ?><!--</dd>-->
                     </dl>
 
                 </div>
@@ -50,7 +50,7 @@ use helpers\translate\Translate;
                         <dt class="color-blue contact_head_dt">
                             <?= Translate::get("contact_page", "sales_line_north_america") ?>
                         </dt>
-                        <dd class="mt-4"><a href="#north-america" class="link  black-80"><?= Translate::get("home_footer", "europe") ?></a></dd>
+                        <dd class="mt-4"><a href="#north-america" class="link  black-80"><?= Translate::get("home_footer", "canada") ?></a></dd>
                         <dd><a href="#japan" class="link  black-80"><?= Translate::get("home_footer", "japan") ?></a></dd>
                         <dd><a href="#oceania" class="link  black-80"><?= Translate::get("home_footer", "oceania") ?></a></dd>
                         <dd><a href="#south_east_asia" class="link  black-80"><?= Translate::get("home_footer", "south_east_asia") ?></a></dd>
@@ -77,21 +77,18 @@ use helpers\translate\Translate;
 
         <div class="divider"></div>
 
-        <p class="mt-5  black-80">SteelWall ISH GmbH
-            <br/> Tassilostr. 21
-            <br/> 82166 Gräfelfi ng
-            <br/> Germany</p>
+        <p class="mt-5  black-80"><?= Translate::get("contact_page", "address_germany") ?></p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("common", "phone") ?>
+            <?= Translate::get("contact_page", "phone") ?>
             <br/>+49-89-74 120 122</p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("common", "fax") ?>
+            <?= Translate::get("contact_page", "fax") ?>
             <br/>+49-89-74 120 128</p>
 
         <p class="mt-3 black-80">
-            <?= Translate::get("common", "email") ?>
+            <?= Translate::get("contact_page", "email") ?>
             <br/>info@steelwall.eu</p>
 
 
@@ -187,21 +184,18 @@ use helpers\translate\Translate;
         <div class="divider"></div>
 
 
-        <p class="mt-5  black-80">SteelWall ISH GmbH
-            <br/> Tassilostr. 21
-            <br/> 82166 Gräfelfi ng
-            <br/> Germany</p>
+        <p class="mt-5  black-80"><?= Translate::get("contact_page", "address_germany") ?></p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("user_info", "phone") ?>
+            <?= Translate::get("contact_page", "phone") ?>
             <br/>+49-89-74 120 122</p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("common", "fax") ?>
+            <?= Translate::get("contact_page", "fax") ?>
             <br/>+49-89-74 120 128</p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("common", "email") ?>
+            <?= Translate::get("contact_page", "email") ?>
             <br/>info@steelwall.eu</p>
 
         <p class="mt-5  black-80"> Please leave a message here: </p>

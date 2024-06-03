@@ -1,11 +1,19 @@
 {
+  "sur_names": {
+    "dr": "Dr.,",
+    "mr": "Mr.,",
+    "mrs": "Mrs."
+  },
+  "countries": {
+    "germany": "Germany"
+  },
   "common": {
     "logo_text": "Connectors for sheet pile wall structures",
     "login": "Login",
     "logout": "Logout",
     "menu": "Menu",
-    "email": "Email",
-    "password": "Password",
+    "email": "EMAIL",
+    "password": "PASSWORD",
     "register": "Register",
     "related_section": "Related section",
     "copyright": "Copyright",
@@ -64,22 +72,22 @@
     "not_a_member": "Not a member?"
   },
   "user_info": {
-    "your_name": "Your name",
-    "job_position": "Job / Position",
-    "division": "Division",
-    "company_name": "Company name",
-    "country_state": "Country / State",
-    "website": "Website",
-    "phone": "Phone",
-    "email": "Email"
+    "your_name": "YOUR NAME",
+    "job_position": "JOB / POSITION",
+    "division": "DIVISION",
+    "company_name": "COMPANY NAME",
+    "country_state": "COUNTRY / STATE",
+    "website": "WEBSITE",
+    "phone": "PHONE",
+    "email": "EMAIL"
   },
   "register_page": {
     "advantages_of_a_registration": "Advantages of a registration",
     "request_products_easily": "Request products easily!",
-    "save_your_requests_and_products": " Save your requests and products (Favourites)!",
+    "save_your_requests_and_products": "Save your requests and products (Favourites)!",
     "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter!",
     "subscribe_to_newsletter": "Subscribe to newsletter",
-    "by_subscribing_you_will_automatically_receive_our_newsletter": "By subscribing, you will automatically receive our newsletter",
+    "by_subscribing_you_will_automatically_receive_our_newsletter": "By subscribing, you will automatically receive our newsletter.",
     "already_a_member": "Already a member?"
   },
   "download_page": {
@@ -99,16 +107,23 @@
     "report_6": "Tensile test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
   "gallery_page": {
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "pipe_pile_walls": "Pipe pile walls",
+    "pipe_pile_sheet_pile_combined_walls": "Pipe pile + sheet pile combined walls",
+    "DTH_driving_method": "DTH driving method"
   },
   "contact_page": {
     "contact": "Contact",
     "headquarters_germany": "HEADQUARTERS GERMANY",
+    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Germany",
     "sales_line_north_america": "SALES LINE NORTH AMERICA",
     "headquarters": "Headquarters",
     "please_leave_a_message_here": "Please leave a message here",
     "send": "Send",
-    "your_message": "YOUR MESSAGE"
+    "your_message": "YOUR MESSAGE",
+    "phone": "Phone",
+    "fax": "Fax",
+    "email": "E-Mail"
   },
   "profile_page": {
     "update": "Update",
@@ -159,7 +174,7 @@
   },
   "about_page": {
     "about_steel_wall": "About SteelWall",
-    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "More than 25 years of experience in creating connectors for steel walls",
+    "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Many years of experience in creating connectors for steel walls",
     "paragraph_01": "SteelWall ISH designs, develops, produces and sells interlocking systems (connector bars) to connect steel structures such as steel pipes (pipe-pilings), heavy steel profiles (H sheet-piles), and steel sheets with fi xed clutch bars (sheet piles) to build continuous, interconnected and extremely stable steel-support and steel-retention walls, commonly referred to as sheet-pile walls.",
     "paragraph_02": "Over the last one hundred years, sheet-pile walls have seen their use skyrocket in applications such as excavation retention, bridge sites, quays, docks, water-lock walls, channels, fl ood protection, tunnels, underground parking garages, hazardous material leakage prevention, among many other applications.",
     "paragraph_03": "SteelWall connectors are third-generation technology that are manufactured at certified mills of the highest quality and precision. From an engineering, design, and ease-of-use standpoint they are a technologically superior product, extremely strong, easy to drive and are simply unbeatable from an economic efficiency point of view.",
@@ -168,10 +183,11 @@
   "news_letter_page": {
     "newsletter": "Newsletter",
     "subscribe_unsubscribe": "Subscribe / unsubscribe",
-    "advantages_of_a_registration": "Advantages of a registration",
-    "request_products_easily": "Request products easily",
-    "save_your_requests_and_products": "Save your requests and products",
-    "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter (approx. 4 times / year)",
+    "why_register": "Why register?",
+    "advantages_of_a_registration": "Advantages:",
+    "request_products_easily": "Request products easily!",
+    "save_your_requests_and_products": "Save your requests and products (Favourites)!",
+    "receive_latest_connector_information_via_newsletter": "Receive latest connector information via newsletter!",
     "unsubscribe": "Unsubscribe",
     "Subscribe": "Subscribe",
     "login_to_subscribe": "Login to Subscribe"

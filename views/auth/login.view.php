@@ -70,37 +70,17 @@
                         </p>
 
                         <div class="w-100 d-flex justify-content-center mt-1 pt-5 gap-3 align-middle">
+
                             <a
                                     href="?lang=<?=LanguagePool::GERMANY()->getLabel()?>"
                                     title="<?=LanguagePool::GERMANY()->getLabel()?>"
                                     data-lang="<?=LanguagePool::GERMANY()->getLabel()?>"
                                     class="lang"
                             >
+
                                 <img src="<?= assets("img/flags/de.png") ?>" height="25"
                                      class="flag
-                                    <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::GERMANY()->getLabel()
-                                         ? "selected-flag" : "" ?>"/>
-                            </a>
-                            <a
-                                    href="?lang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
-                                    title="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
-                                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
-                                    class="lang"
-                            >
-                                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
-                                     class="flag
-                                    <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::UK_ENGLISH()->getLabel()
-                                         ? "selected-flag" : "" ?>"/>
-                            </a>
-                            <a
-                                    href="?lang=<?=LanguagePool::US_ENGLISH()->getLabel()?>"
-                                    title="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
-                                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
-                                    class="lang"
-                            >
-                                <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
-                                     class="flag
-                                    <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::US_ENGLISH()->getLabel()
+                                        <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::GERMANY()->getLabel()
                                          ? "selected-flag" : "" ?>"/>
                             </a>
                             <a
@@ -111,10 +91,31 @@
                             >
                                 <img src="<?= assets("img/flags/fr.png") ?>" height="25"
                                      class="flag
-                                    <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
+                                            <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
                                          ? "selected-flag" : "" ?>"/>
                             </a>
-
+                            <a
+                                    href="?lang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                    title="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
+                                    class="lang"
+                            >
+                                <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
+                                     class="flag
+                                         <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::UK_ENGLISH()->getLabel()
+                                         ? "selected-flag" : "" ?>"/>
+                            </a>
+                            <a
+                                    href="?lang=<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                    title="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
+                                    class="lang"
+                            >
+                                <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
+                                     class="flag
+                                            <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::US_ENGLISH()->getLabel()
+                                         ? "selected-flag" : "" ?>"/>
+                            </a>
                         </div>
                     </div>
                 </div>
