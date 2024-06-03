@@ -183,8 +183,8 @@
   },
 
   "connector_mf_64": {
-    "test_setup": "Test-Setup",
-    "after_testing": "Nach der Prüfung Versagen durch Verformung",
+    "test_setup": "Versuchsaufbau",
+    "after_testing": "Nach Versuch Versagen durch Verformung",
     "conclusion": "Fazit"
   },
 

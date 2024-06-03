@@ -30,7 +30,7 @@ class AdOnController extends BaseController
     }
     public function index(Request $request)
     {
-        $lang = Translate::getLang();
+        $lang = 'en-us';
         $separate = '  <i class="bi bi-arrow-right text-success"></i>  ';
         $adOnContents = AdOnContent::getAll();
         $adOnDTOCollection = AdOnDTOCollection::getCollection($adOnContents, $lang, $separate);

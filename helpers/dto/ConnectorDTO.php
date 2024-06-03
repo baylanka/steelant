@@ -380,8 +380,14 @@ class ConnectorDTO extends ElementDTO
                         $femFlag = (strpos($value,"FEM") !== false
                                     || strpos($metricsValue,"FEM") !== false) ? ", (FEM)" : "";
 
-                        $value = str_replace(', (FEM)','', $value)
-                                 .  " <span class='m-0 d-inline-block'>(" . str_replace(', (FEM)','', $metricsValue).")</span>"
+                        $pureImperialValue =  str_replace(', (FEM)','', $value);
+                        $pureImperialValue =  str_replace('(FEM)','', $pureImperialValue);
+
+                        $pureMetricsValue = str_replace(', (FEM)','', $metricsValue);
+                        $pureMetricsValue = str_replace('(FEM)','', $pureMetricsValue);
+
+                        $value = $pureImperialValue
+                                 .  " <span class='m-0 d-inline-block'>(" . $pureMetricsValue .")</span>"
                                  .   $femFlag;
                         $arr[$key] = $value;
                     }

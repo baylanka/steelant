@@ -24,7 +24,7 @@ class PageController extends BaseController
     }
     public function index(Request $request)
     {
-        $lang = Translate::getLang();
+        $lang = LanguagePool::ENGLISH()->getLabel();
         $categories = Category::getAll();
         $leafCategoryDTOCollection =  LeafCategoryDTOCollection::getCollection($categories,$lang,
             ' <i class="bi bi-arrow-right text-success"></i> ');
