@@ -1,8 +1,8 @@
 {
   "sur_names": {
-    "dr": "Dr.,",
-    "mr": "Herr.,",
-    "mrs": "Frau"
+    "dr": "Dr.",
+    "mr": "Herr.",
+    "mrs": "Frau."
   },
   "address": {
     "germany": "Germany"
