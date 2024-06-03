@@ -100,7 +100,7 @@ use helpers\translate\Translate;
                                 height="80"/>
 
                         <div class="d-flex flex-column justify-content-center">
-                            <dl class="text-gray m-0 ">
+                            <dl class="text-gray m-0 text-bold">
                                 <?= $page->description ?>
                             </dl>
                         </div>
