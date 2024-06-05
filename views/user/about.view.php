@@ -15,23 +15,26 @@ use helpers\translate\Translate;
             <?= Translate::get("about_page","about_steel_wall") ?>
         </h5>
 
-        <div class="divider mt-5"></div>
+
         <h5 class="connector-heading my-4">
             <?= Translate::get("about_page","more_than_25_years_of_experience_in_creating_connectors_for_steel_walls") ?>
         </h5>
         <div class="divider"></div>
 
         <div class="row justify-content-start mt-5">
-            <div class="col-12 col-md-6">
-                <p style="font-size: 0.9rem;">
-                    <?= Translate::get("about_page","paragraph_01") ?><br/><br/><br/><br/>
-
-                    <?= Translate::get("about_page","paragraph_02") ?><br/><br/><br/><br/>
-
-                    <?= Translate::get("about_page","paragraph_03") ?><br/><br/><br/>
-
-                    <?= Translate::get("about_page","paragraph_04") ?>
+            <div class="col-12 col-md-12">
+                <p style="font-size: 0.9rem;" class="mb-3">
+                    <?= Translate::get("about_page","paragraph_01") ?>
                 </p>
+                <p  style="font-size: 0.9rem;" class="mb-3">
+                    <?= Translate::get("about_page","paragraph_02") ?>
+                </p>
+<!--                <p style="font-size: 0.9rem;" class="mb-3">-->
+<!--                    --><?php //= Translate::get("about_page","paragraph_03") ?>
+<!--                </p>-->
+<!--                <p style="font-size: 0.9rem;" class="mb-3">-->
+<!--                    --><?php //= Translate::get("about_page","paragraph_04") ?>
+<!--                </p>-->
             </div>
         </div>
     </div>
