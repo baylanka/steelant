@@ -280,9 +280,13 @@ class ConnectorDTO extends ElementDTO
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
-                return  $this->getTranslatedKey($this->weights_m, [
+                $value = $this->getTranslatedKey($this->weights_m, [
                     ['Center', 'Centre'],
                     ['Leg', 'Jambe'],
+                ]);
+
+                return $this->getTranslatedValue($value, [
+                    ['each', 'chacune'],
                 ]);
             case LanguagePool::GERMANY()->getLabel():
             case LanguagePool::UK_ENGLISH()->getLabel():

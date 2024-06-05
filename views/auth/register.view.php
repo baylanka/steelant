@@ -57,7 +57,8 @@
                             <div class="form-group d-flex gap-1">
                                 <div class="input-group-prepend w-25">
                                     <select class="form-select" name="title" aria-label="Default select example">
-                                        <option selected value="<?= Translate::get("sur_names", "dr") ?>"><?= Translate::get("sur_names", "dr") ?></option>
+                                        <option selected value=""> - </option>
+                                        <option  value="<?= Translate::get("sur_names", "dr") ?>"><?= Translate::get("sur_names", "dr") ?></option>
                                         <option value="<?= Translate::get("sur_names", "mr") ?>"><?= Translate::get("sur_names", "mr") ?></option>
                                         <option value="<?= Translate::get("sur_names", "mrs") ?>"><?= Translate::get("sur_names", "mrs") ?></option>
                                     </select></div>

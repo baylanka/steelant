@@ -25,7 +25,7 @@ class UserCreateRequestMapper
 
         $user = new User();
         $user->name = $request->get('name');
-        $user->title = $request->get('title');
+        $user->title = $request->get('title','');
         $user->type =  $type;
         $user->job_position = $request->get('job_position');
         $user->division = $request->get('division');
