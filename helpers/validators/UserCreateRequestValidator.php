@@ -39,9 +39,7 @@ class UserCreateRequestValidator
         if (!ValidatorUtility::required($request->all(),"name")) {
             ResponseUtility::response("Please provide your name.",423,["key"=>"name"]);
         }
-        if (!ValidatorUtility::required($request->all(),"title")) {
-            ResponseUtility::response("Please provide your title.",423,["key"=>"title"]);
-        }
+
         if (!ValidatorUtility::required($request->all(),"job_position")) {
             ResponseUtility::response("Please provide your job / position.",423,["key"=>"job_position"]);
         }
