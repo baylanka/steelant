@@ -29,12 +29,12 @@ use helpers\translate\Translate;
                 <p  style="font-size: 0.9rem;" class="mb-3">
                     <?= Translate::get("about_page","paragraph_02") ?>
                 </p>
-<!--                <p style="font-size: 0.9rem;" class="mb-3">-->
-<!--                    --><?php //= Translate::get("about_page","paragraph_03") ?>
-<!--                </p>-->
-<!--                <p style="font-size: 0.9rem;" class="mb-3">-->
-<!--                    --><?php //= Translate::get("about_page","paragraph_04") ?>
-<!--                </p>-->
+                <p style="font-size: 0.9rem;" class="mb-3">
+                    <?= Translate::get("about_page","paragraph_03") ?>
+                </p>
+                <p style="font-size: 0.9rem;" class="mb-3">
+                    <?= Translate::get("about_page","paragraph_04") ?>
+                </p>
             </div>
         </div>
     </div>
