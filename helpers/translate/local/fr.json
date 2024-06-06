@@ -236,7 +236,8 @@
   "terms_and_conditions": {
     "general_terms_and_conditions": "Conditions générales",
     "legal_advices" : "Mentions légales",
-    "please_download_open_pdf_file": "Veuillez télécharger/ouvrir le fichier PDF"
+    "please_download_open_pdf_file": "Veuillez télécharger/ouvrir le fichier PDF",
+    "general_terms_and_conditions_file" : "SteelWall - General terms and conditions.pdf"
   },
 
 
