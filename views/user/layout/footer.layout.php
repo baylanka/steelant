@@ -119,7 +119,7 @@ use helpers\translate\Translate;
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">South
+                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
                         <?= Translate::get("home_footer", "south_america") ?>
                     </a>
                 </li>
