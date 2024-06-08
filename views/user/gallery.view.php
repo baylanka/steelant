@@ -13,7 +13,7 @@ use helpers\translate\Translate;
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
-                <div class="col-md-3">
+                <div class="col-md-2 me-3">
                     <img src="<?= assets("themes/user/img/gallery-icon.png") ?>" height="80"/>
                 </div>
                 <div class="col-md-2">

@@ -93,7 +93,7 @@
   "download_page": {
     "downloads": "Downloads",
     "please_register_before_download": "Please register before download!",
-    "test_reports": "TEST REPORTS",
+    "test_reports": "Test Reports",
     "test_report": "Test Report",
     "brochures": "Brochures",
     "data_sheets": "Data Sheet",
@@ -115,15 +115,15 @@
   "contact_page": {
     "contact": "Contact",
     "headquarters_germany": "HEADQUARTERS GERMANY",
-    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Germany",
+    "address": "SteelWall US, Humphrey Chang<br/>US sales line 8:30 am to 4:30 pm (Arizona time)",
     "sales_line_north_america": "SALES LINE NORTH AMERICA",
     "headquarters": "Headquarters",
     "please_leave_a_message_here": "Please leave a message here",
     "send": "Send",
     "your_message": "YOUR MESSAGE",
     "phone": "Phone",
-    "fax": "Fax",
-    "email": "E-Mail"
+    "fax": "Fax:",
+    "email": "E-Mail:"
   },
   "profile_page": {
     "update": "Update",

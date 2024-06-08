@@ -16,7 +16,7 @@ use helpers\translate\Translate;
 
 
             <div class="col-12 col-md-5 col-xxl-5 row">
-                <div class="col-md-4">
+                <div class="col-md-2 me-3">
                     <img src="<?= assets("themes/user/img/download-icon.png") ?>" height="80" class="mb-3"/>
                 </div>
                 <div class="col-md-7">

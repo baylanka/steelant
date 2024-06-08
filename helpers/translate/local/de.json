@@ -129,15 +129,15 @@
   "contact_page": {
     "contact": "Kontakt",
     "headquarters_germany": "Hauptsitz Deutschland",
-    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschand",
+    "address": "SteelWall US, Humphrey Chang<br/>US sales line 8:30 am to 4:30 pm (Arizona time)",
     "sales_line_north_america": "Vertriebslinie Nordamerika",
     "headquarters": "Hauptsitz Deutschland",
     "please_leave_a_message_here": "Bitte schreiben Sie uns hier",
     "send": "Schicken",
     "your_message": "IHRE NACHRICHT",
     "phone": "Telefon",
-    "fax": "Fax",
-    "email": "E-Mail"
+    "fax": "Fax:",
+    "email": "E-Mail:"
   },
 
 

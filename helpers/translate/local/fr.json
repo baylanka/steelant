@@ -125,15 +125,15 @@
   "contact_page": {
     "contact": "Contact",
     "headquarters_germany": "SIÈGE SOCIAL ALLEMAGNE",
-    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Allemagne",
+    "address": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Allemagne",
     "sales_line_north_america": "LIGNE DE VENTE AMÉRIQUE DU NORD",
     "headquarters": "Siège social Allemagne",
     "please_leave_a_message_here": "Veuillez laisser un message ici",
     "send": "Envoyer",
     "your_message": "VOTRE MESSAGE",
     "phone": "Téléphone",
-    "fax": "Fax",
-    "email": "E-Mail"
+    "fax": "Fax :",
+    "email": "E-Mail :"
   },
 
   "profile_page": {

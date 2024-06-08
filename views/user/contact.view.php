@@ -15,7 +15,7 @@ use helpers\translate\Translate;
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
-                <div class="col-md-3">
+                <div class="col-md-2 me-3">
                     <img src="<?= assets("themes/user/img/contact-icon.png") ?>" height="80"/>
                 </div>
                 <div class="col-md-2">
@@ -184,19 +184,15 @@ use helpers\translate\Translate;
         <div class="divider"></div>
 
 
-        <p class="mt-5  black-80"><?= Translate::get("contact_page", "address_germany") ?></p>
+        <p class="mt-5  black-80"><?= Translate::get("contact_page", "address") ?></p>
+
+        <p class="mt-3  black-80">Toll free 1(888) 309 2250</p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("contact_page", "phone") ?>
-            <br/>+49-89-74 120 122</p>
+            <?= Translate::get("contact_page", "fax") ?> 1(888) 743 7712</p>
 
         <p class="mt-3  black-80">
-            <?= Translate::get("contact_page", "fax") ?>
-            <br/>+49-89-74 120 128</p>
-
-        <p class="mt-3  black-80">
-            <?= Translate::get("contact_page", "email") ?>
-            <br/>info@steelwall.eu</p>
+            <?= Translate::get("contact_page", "email") ?> info@steelwallus.com</p>
 
         <p class="mt-5  black-80"> Please leave a message here: </p>
 

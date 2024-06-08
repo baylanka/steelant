@@ -64,7 +64,7 @@ $imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bott
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
                 <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"
-                      style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
+                      style="display: block; ;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
@@ -230,7 +230,7 @@ $imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bott
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
                 <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"
-                      style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
+                      style="display: block; "><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
@@ -389,7 +389,7 @@ $imageContainerSize01 = "col-6 col-md-3 col-xxl-3 d-flex flex-column margin-bott
             $imageTitleExists = !empty($imageAttr->title);
             if ($mode === Template::MODE_VIEW): ?>
                 <span class="color-blue <?= $imageTitleExists ? '' : 'invisible' ?>"
-                      style="display: block; text-align: center;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
+                      style="display: block; ;"><?= empty($imageAttr->title) ? "heading" : $imageAttr->title ?></span>
             <?php else: ?>
                 <?php if ($imageTitleExists): ?>
                     <div class=" d-flex align-middle gap-2">
