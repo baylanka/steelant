@@ -83,6 +83,7 @@ global $env;
                     <th class="text-center">Status</th>
                     <th class="text-center">Project name</th>
                     <th class="text-center">Requested connector</th>
+                    <th class="text-center">Standard Length</th>
                     <th class="text-center">Number of piles</th>
                     <th class="text-center">Name of used sheet piles</th>
                     <th class="text-center">Delivery date</th>
@@ -105,6 +106,9 @@ global $env;
                 }
 
                 foreach ($orders as $order): ?>
+                    <?php
+                        $connector = \model\Connector::getById($order->connector_id);
+                    ?>
                     <tr class="align-middle">
                         <td class="text-left">
                             <?= $env["ORDER_ID_PREFIX"] . $order->id ?>
@@ -116,13 +120,16 @@ global $env;
                             <?= $order->project ?>
                         </td>
                         <td class="text-center">
-                            lv200
+                            <?= $connector->name ?>
+                        </td>
+                        <td class="text-center">
+                            <?= $order->connector_s_length ?>
                         </td>
                         <td class="text-center">
                             <?= $order->number_of_piles ?>
                         </td>
                         <td class="text-center">
-                            tewst
+                            <?=$order->sheet_pile_name?>
                         </td>
                         <td class="text-center">
                             <?php

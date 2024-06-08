@@ -26,10 +26,11 @@ use helpers\translate\Translate;
                 </div>
                 <div class="form-group mt-4">
                     <label for="inputLength"><?=Translate::get('request_pop_up','length')?></label>
-                    <?php foreach ($connector->getLengthOfLang() as $each): ?>
-                        <input type="text" class="form-control" id="inputDivision" aria-describedby="length"
-                               value="<?= $each ?>" disabled>
+                    <select name="s_length" id="length" class="form-control">
+                    <?php foreach ($connector->getLengthOfLang(true) as $each): ?>
+                        <option value="<?= $each ?>"><?= $each ?></option>
                     <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group mt-4">
                     <label for="inputPiles"><?=Translate::get('request_pop_up','no_of_piles')?></label>

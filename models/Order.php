@@ -11,6 +11,7 @@ class Order extends BaseModel
     public string $status;
     public string $sheet_pile_name;
     public int $connector_id;
+    public string $connector_s_length;
     public int $user_id;
     public int $number_of_piles;
     public ?string $delivery_address;

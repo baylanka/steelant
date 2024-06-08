@@ -210,7 +210,7 @@ class ConnectorDTO extends ElementDTO
         return $arr;
     }
 
-    public function getLengthOfLang()
+    public function getLengthOfLang($pure_values=false)
     {
         switch($this->language){
             case LanguagePool::FRENCH()->getLabel():
@@ -240,8 +240,11 @@ class ConnectorDTO extends ElementDTO
                     if(isset($standardLength_m[$key]) && !empty($standardLength_m[$key])){
                         $metricsValue = $standardLength_m[$key];
                         $metricsValue = str_replace('up to','', $metricsValue);
-
-                        $value = $value .  " <span class='m-0 d-inline-block'>(" . $metricsValue.")</span>";
+                        if($pure_values){
+                            $value = $value .  " (" . $metricsValue.")";
+                        }else{
+                            $value = $value .  " <span class='m-0 d-inline-block'>(" . $metricsValue.")</span>";
+                        }
                         $arr[$key] = $value;
                     }
 

@@ -52,7 +52,12 @@ use \helpers\pools\LanguagePool;
             $customizedLabelExists = !(empty($key) || $key == "general");
             $label = '';
             if ($totalLengths > 1) {
-                $label = Translate::get("template_context", "length", $language);
+                if(!$customizedLabelExists){
+                    $label = Translate::get("template_context", "standard_length", $language);
+                }else{
+                    $label = Translate::get("template_context", "length", $language);
+                }
+
                 if ($customizedLabelExists) {
                     $label .= " {$key}";
                 }
