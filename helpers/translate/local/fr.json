@@ -152,7 +152,7 @@
     "project_name": "Titre du projet",
     "connector_name": "Nom du connecteur",
     "date_time_of_request": "Date/Heure de la demande",
-    "amount": "Montant (running m)",
+    "amount": "Montant",
     "location": "Emplacement",
     "country_state": "Pays / État",
     "seen_on_date_or_time": "Vu le date/heure",

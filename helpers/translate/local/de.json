@@ -157,7 +157,7 @@
     "project_name": "Projektname",
     "connector_name": "Schlossprofil",
     "date_time_of_request": "Datum der Anfrage",
-    "amount": "Menge (laufende m)",
+    "amount": "Menge",
     "location": "Standort",
     "country_state": "Land / Staat",
     "seen_on_date_or_time": "Gemerkt am",

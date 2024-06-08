@@ -100,8 +100,20 @@ global $env;
                                 echo date_format($date, "Y-m-d / h:m");
                             ?>
                         </td>
-                        <td class="">500 running m</td>
-                        <td class="">Hamburg</td>
+                        <td class=""><?=$order->number_of_piles?></td>
+                        <?php
+                            $arr = [];
+                            $deliveryAddress = $order->delivery_address ?? '';
+                            $postalCode = $order->postal_code ?? '';
+                            if(!empty($deliveryAddress)){
+                                $arr[] = $deliveryAddress;
+                            }
+
+                            if(!empty($postalCode)){
+                                $arr[] = $postalCode;
+                            }
+                        ?>
+                        <td class=""><?= implode('<br/>', $arr)?></td>
                         <td class=""><?= $order->country ?></td>
                         <td class=" d-flex justify-content-end gap-4">
                             <i class="bi bi-trash3-fill text-danger delete_request" data-id="<?= $order->id ?>" data-toggle="tooltip" title="Delete"></i>

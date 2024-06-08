@@ -139,7 +139,7 @@
     "project_name": "Project name",
     "connector_name": "Connector name",
     "date_time_of_request": "Date / Time of request",
-    "amount": "Amount (running m)",
+    "amount": "Amount",
     "location": "Location",
     "country_state": "Country / State",
     "seen_on_date_or_time": "Seen on date / time",
