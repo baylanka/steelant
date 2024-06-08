@@ -108,12 +108,12 @@ use helpers\translate\Translate;
 
 
                 </div>
-                <?php if(sizeof($pages) > 1): ?>
-                    <div class="divider"></div>
-                <?php endif; ?>
+
+                <div class="divider"></div>
+
             <?php endforeach; ?>
 
-
+        <?php else: ?>
 
             <div class="divider mb-5"></div>
 
