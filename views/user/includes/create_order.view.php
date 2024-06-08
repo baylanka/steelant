@@ -1,13 +1,14 @@
 <?php
 
 use helpers\pools\LanguagePool;
+use helpers\translate\Translate;
 
 ?>
 
 <div class="modal-dialog modal-md">
     <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Request connector</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><?=Translate::get('request_pop_up','request')?></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="<?= url("/order/request/create") ?>" method="POST" class="orderRequestForm">
@@ -15,28 +16,29 @@ use helpers\pools\LanguagePool;
 
                 <input type="hidden" name="connectorId" value="<?= $connector->id ?>">
                 <div class="form-group mt-3">
-                    <label for="inputProject">YOUR PROJECT</label>
+                    <label for="inputProject"><?=Translate::get('request_pop_up','your_project')?></label>
                     <input type="text" name="project" class="form-control" id="inputProject" aria-describedby="project">
                 </div>
                 <div class="form-group mt-4">
-                    <label for="inputConnector">REQUESTED CONNECTOR</label>
+                    <label for="inputConnector"><?=Translate::get('request_pop_up','name')?></label>
                     <input type="text" class="form-control" id="inputConnector" aria-describedby="connector"
                            value="<?= $connector->name ?>" disabled>
                 </div>
                 <div class="form-group mt-4">
-                    <label for="inputLength">LENGTH OF CONNECTOR</label>
-                    <?php foreach ($connector->getLengthOfLang() as $each): ?>
-                        <input type="text" class="form-control" id="inputDivision" aria-describedby="length"
-                               value="<?= $each ?>" disabled>
+                    <label for="inputLength"><?=Translate::get('request_pop_up','length')?></label>
+                    <select name="s_length" id="length" class="form-control">
+                    <?php foreach ($connector->getLengthOfLang(true) as $each): ?>
+                        <option value="<?= $each ?>"><?= $each ?></option>
                     <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group mt-4">
-                    <label for="inputPiles">NUMBER OF PILES</label>
+                    <label for="inputPiles"><?=Translate::get('request_pop_up','no_of_piles')?></label>
                     <input type="number" name="connectorCount" class="form-control" id="inputPiles" aria-describedby="piles"
                            value="0">
                 </div>
                 <div class="form-group mt-4">
-                    <label for="inputSheet">NAME OF USED SHEET PILES</label>
+                    <label for="inputSheet"><?=Translate::get('request_pop_up','name_of_sheet_piles')?></label>
                     <input type="text" name="usedSheetPileName" class="form-control" id="inputSheet" aria-describedby="sheet">
                 </div>
 
@@ -44,26 +46,26 @@ use helpers\pools\LanguagePool;
                 <div class="form-group mt-3">
                     <div class="form-check form-switch">
                         <input class="form-check-input" name="selfPickup" type="checkbox" id="self-pickup">
-                        <label class="form-check-label" for="self-pickup">SELF PICKUP</label>
+                        <label class="form-check-label" for="self-pickup"><?=Translate::get('request_pop_up','self_pickup')?></label>
                     </div>
                 </div>
                 <div class="form-group mt-4">
-                    <label for="inputAddress">DELIVERY ADDRESS</label>
+                    <label for="inputAddress"><?=Translate::get('request_pop_up','delivery_address')?></label>
                     <input type="text" name="address" class="form-control disable-on-self-pickup" id="inputAddress"
                            aria-describedby="address">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="inputPostal">POSTAL CODE / CITY</label>
+                    <label for="inputPostal"><?=Translate::get('request_pop_up','postal_code')?></label>
                     <input type="text" name="postalCode" class="form-control disable-on-self-pickup" id="inputPostal"
                            aria-describedby="postal / address">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="inputCountry">COUNTRY / STATE</label>
+                    <label for="inputCountry"><?=Translate::get('request_pop_up','country')?></label>
                     <input type="text" name="country" class="form-control disable-on-self-pickup" id="inputCountry"
                            aria-describedby="country">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="inputDeliveryDate">DESIRED DELIVERY DATE / COLLECTION</label>
+                    <label for="inputDeliveryDate"><?=Translate::get('request_pop_up','desired_delivery_date')?></label>
                     <input type="date" name="deliveryDate" class="form-control datepicker" id="inputDeliveryDate"
                            aria-describedby="delivery date">
                 </div>
@@ -71,7 +73,7 @@ use helpers\pools\LanguagePool;
                 <p class="text-danger text-center error-msg mt-4"></p>
 
                 <p class="mt-5">
-                    REQUEST FROM:<br/><br/>
+                    <?=Translate::get('request_pop_up','requested_from')?><br/><br/>
                     <small>
                         <?= $_SESSION["user"]->title . $_SESSION["user"]->name ?> - <?= $_SESSION["user"]->job_position ?><br/>
                         <?= $_SESSION["user"]->division ?>

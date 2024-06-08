@@ -239,6 +239,20 @@
     "please_download_open_pdf_file": "Veuillez télécharger/ouvrir le fichier PDF",
     "general_terms_and_conditions_file" : "SteelWall - General terms and conditions.pdf"
   },
+  "request_pop_up": {
+    "request": "Demande",
+    "your_project": "NOM DU PROJET",
+    "name": "NOM DU CONNECTEUR",
+    "length": "LONGUEUR",
+    "no_of_piles": "QUANTITÉ EN MÈTRES COURANTS",
+    "name_of_sheet_piles": "NOM DES PALPLANCHES UTILISÉES",
+    "self_pickup": "ENLÈVEMENT PAR LE CLIENT",
+    "delivery_address": "ADRESSE DE LIVRAISON",
+    "postal_code": "CODE POSTAL, VILLE",
+    "country": "PAYS / RÉGION",
+    "desired_delivery_date": "DATE DE LIVRAISON SOUHAITÉE",
+    "requested_from": "DEMANDE DE :"
+  },
 
 
 

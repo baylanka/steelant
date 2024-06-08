@@ -322,10 +322,6 @@ class ConnectorUpdateRequestValidator
         $lengthLabelArr = $request->get('standard_length_label');
 
         foreach ($lengthMetricArr as $index => $value){
-            if($index > 0 && (!isset($lengthLabelArr[$index]) || empty($lengthLabelArr[$index]))) {
-                throw new \Exception("Can not leave standard length labels empty unless first one");
-            }
-
             if(empty($lengthMetricArr[$index]) || empty($lengthImperialArr[$index])){
                 throw new \Exception("Both metrics & imperial standard length values should be filled");
             }

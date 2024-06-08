@@ -244,6 +244,20 @@
     "please_download_open_pdf_file": "Bitte PDF-Datei herunterladen/öffnen",
     "general_terms_and_conditions_file" : "20200214 AGB SteelWall Verkauf und Lieferung.pdf"
   },
+  "request_pop_up": {
+    "request": "Request",
+    "your_project": "YOUR PROJECT",
+    "name": "REQUESTED CONNECTOR",
+    "length": "LENGTH OF CONNECTOR",
+    "no_of_piles": "NUMBER OF PILES",
+    "name_of_sheet_piles": "NAME OF USED SHEET PILES",
+    "self_pickup": "SELBSTABHOLUNG",
+    "delivery_address": "DELIVERY ADDRESS",
+    "postal_code": "POSTAL CODE / CITY",
+    "country": "COUNTRY / STATE",
+    "desired_delivery_date": "GEWÜNSCHTER LIEFERTERMIN / ABHOLUNG",
+    "requested_from": "REQUEST FROM:"
+  },
 
 
 

@@ -48,14 +48,14 @@ global $env;
             <table class="table border-primary mt-3 mb-5 w-100">
                 <thead>
                 <tr>
-<!--                    <th scope="col"-->
-<!--                        class="color-blue font-weight-700"></th>-->
+                    <th scope="col"
+                        class="color-blue font-weight-700"></th>
 
                     <th scope="col"
                         class="color-blue font-weight-700"><?= Translate::get("favourites_page", "project_name") ?></th>
 
-<!--                    <th scope="col"-->
-<!--                        class="color-blue font-weight-700">--><?php //= Translate::get("favourites_page", "status") ?><!--</th>-->
+                    <th scope="col"
+                        class="color-blue font-weight-700"><?= Translate::get("favourites_page", "status") ?></th>
                     <th scope="col"
                         class="color-blue font-weight-700"><?= Translate::get("favourites_page", "connector_name") ?></th>
 
@@ -88,11 +88,11 @@ global $env;
 
                 foreach ($orders as $order): ?>
                     <tr>
-<!--                        <td>--><?php //= $env["ORDER_ID_PREFIX"].$order->id ?><!--</td>-->
+                        <td><?= $env["ORDER_ID_PREFIX"].$order->id ?></td>
                         <td class=""><?= $order->project ?></td>
-<!--                        <td class=""><span-->
-<!--                                    class="badge bg---><?php //= getStatusColorCode($order->status) ?><!--"> --><?php //= $order->status ?><!--</span>-->
-<!--                        </td>-->
+                        <td class=""><span
+                                    class="badge bg-<?= getStatusColorCode($order->status) ?>"> <?= $order->status ?></span>
+                        </td>
                         <td class=""><?= $order->connector_name ?></td>
                         <td class="">
                             <?php
