@@ -15,8 +15,5 @@
           integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <link rel="stylesheet" href="<?= assets("themes/user/style.css") ?>"/>
-    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>?v=1.0">
-
-
+    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>?v=<?=  date("h:i:sa") ?>">
 </head>
