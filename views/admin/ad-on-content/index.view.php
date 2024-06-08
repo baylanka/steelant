@@ -9,7 +9,7 @@
         <div class="card-header">
             <h3 class="card-title"></h3>
             <div class="float-end">
-                <button class="btn btn-sm btn-primary background-blue" type="button" id="create-ad-on">Create Ad-on
+                <button class="btn btn-sm btn-primary background-blue" type="button" id="create-ad-on">Create Add-on
                 </button>
             </div>
         </div>
@@ -102,7 +102,7 @@
 
     $(document).on("click", "#create-ad-on", async function () {
         const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/ad-on/create?tableLang=${language}`;
+        let path = `admin/add-on/create?tableLang=${language}`;
         const btn = $(this);
         const loadingBtnText = btn.text();
         try {
@@ -128,19 +128,19 @@
     $(document).on("click", ".view-adOnContent", async function (e) {
         e.preventDefault();
         const adOnId = $(this).attr('data-id');
-        let path = `admin/ad-on-content/templates?id=${adOnId}`;
+        let path = `admin/add-on-content/templates?id=${adOnId}`;
         try {
             await loadModal(modalId, path);
 
         } catch (err) {
-            toast.error("An error occurred while attempting to open the view ad-on content.. " + err);
+            toast.error("An error occurred while attempting to open the view add-on content.. " + err);
         }
     });
 
     $(document).on('click',".delete-addOnContent", async function(e){
         e.preventDefault();
         const notice = `
-                <p class="text-danger"><b>If you proceed with deleting the Ad-on content:<b><p>
+                <p class="text-danger"><b>If you proceed with deleting the Add-on content:<b><p>
                 <ol class="text-start text-primary">
                     <li>It cannot be undone.</li>
                 </ol>
@@ -150,7 +150,7 @@
         }
 
         const adOnContentId = $(this).attr('data-id');
-        let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
+        let URL = `${getBaseUrl()}/admin/add-on-content/delete?id=${adOnContentId}`;
         const trTag = $(this).closest('tr');
         try {
             spinnerEnabled();
@@ -158,7 +158,7 @@
             toast.success(response.message);
             trTag.remove();
         }catch (err) {
-            toast.error("An error occurred while attempting to delete the ad-on content.. ");
+            toast.error("An error occurred while attempting to delete the add-on content.. ");
         }finally {
             spinnerDisable();
         }
@@ -167,7 +167,7 @@
     $(document).on("click", ".edit-adOnContent", async function (e) {
         e.preventDefault();
         const adOnContentId = $(this).attr('data-id');
-        let path = `admin/ad-on-content/edit?id=${adOnContentId}`;
+        let path = `admin/add-on-content/edit?id=${adOnContentId}`;
         const trTag = $(`a[data-id="${adOnContentId}"]`).closest('tr');
         try {
             const modal = await loadModal(modalId, path);

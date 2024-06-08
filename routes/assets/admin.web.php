@@ -12,13 +12,13 @@ $app->get('/admin/connectors/templates',  ["admin\ConnectorController", "showAll
 $app->delete('/admin/connectors/delete',  ["admin\ConnectorController", "destroy"]);
 
 //Ad-on routes
-$app->get('/admin/ad-on',  ["admin\AdOnController", "index"]);
-$app->get('/admin/ad-on/create',  ["admin\AdOnController", "create"]);
-$app->post('/admin/ad-on-content/store',  ["admin\AdOnController", "store"]);
-$app->get('/admin/ad-on-content/templates',  ["admin\AdOnController", "showAllTemplates"]);
-$app->get('/admin/ad-on-content/edit',  ["admin\AdOnController", "edit"]);
-$app->post('/admin/ad-on-content/update',  ["admin\AdOnController", "update"]);
-$app->delete('/admin/ad-on-content/delete',  ["admin\AdOnController", "destroy"]);
+$app->get('/admin/add-on',  ["admin\AdOnController", "index"]);
+$app->get('/admin/add-on/create',  ["admin\AdOnController", "create"]);
+$app->post('/admin/add-on-content/store',  ["admin\AdOnController", "store"]);
+$app->get('/admin/add-on-content/templates',  ["admin\AdOnController", "showAllTemplates"]);
+$app->get('/admin/add-on-content/edit',  ["admin\AdOnController", "edit"]);
+$app->post('/admin/add-on-content/update',  ["admin\AdOnController", "update"]);
+$app->delete('/admin/add-on-content/delete',  ["admin\AdOnController", "destroy"]);
 
 //Category routes
 $app->get('/admin/categories', ["admin\CategoryController", "index"]);

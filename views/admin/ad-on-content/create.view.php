@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Ad-On</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Create Add-on</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -26,7 +26,7 @@
 
                 </ul>
 
-                <form action="<?= url('/admin/ad-on-content/store') ?>">
+                <form action="<?= url('/admin/add-on-content/store') ?>">
                     <div class="tab-content" id="myTabContent">
                         <?php include_once basePath('/views/admin/ad-on-content/assets/create.details_tab.view.php') ?>
                         <?php include_once basePath('/views/admin/ad-on-content/assets/create.templates_tab.view.php') ?>

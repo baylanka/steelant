@@ -35,7 +35,7 @@ class AdOnController extends BaseController
         $adOnContents = AdOnContent::getAll();
         $adOnDTOCollection = AdOnDTOCollection::getCollection($adOnContents, $lang, $separate);
         $data = [
-            'heading' => "Ad-on",
+            'heading' => "Add-on",
             'adOnContents' => $adOnDTOCollection
         ];
         return view("admin/ad-on-content/index.view.php", $data);

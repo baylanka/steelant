@@ -330,7 +330,7 @@ use model\CategoryContent;
     $(document).on("click", "#create-addon", async function (e) {
         e.preventDefault();
         const language = $('img.selected-flag').closest('a').attr('data-lang');
-        let path = `admin/ad-on/create?tableLang=${language}&categoryId=<?=$categoryId?>`;
+        let path = `admin/add-on/create?tableLang=${language}&categoryId=<?=$categoryId?>`;
         const btn = $(this);
         const loadingBtnText = btn.text();
         try {
@@ -371,7 +371,7 @@ use model\CategoryContent;
     $(document).on("click", ".ad-on-edit", async function (e) {
         e.preventDefault();
         const adOnContentId = $(this).attr('data-id');
-        let path = `admin/ad-on-content/edit?id=${adOnContentId}&categoryId=<?=$categoryId?>`;
+        let path = `admin/add-on-content/edit?id=${adOnContentId}&categoryId=<?=$categoryId?>`;
         const trTag = $(`a[data-id="${adOnContentId}"]`).closest('tr');
         try {
             const modal = await loadModal(modalId, path);
@@ -419,7 +419,7 @@ use model\CategoryContent;
     $(document).on("click", ".ad-on-view", async function (e) {
         e.preventDefault();
         const adOnId = $(this).attr('data-id');
-        let path = `admin/ad-on-content/templates?id=${adOnId}`;
+        let path = `admin/add-on-content/templates?id=${adOnId}`;
         try {
             await loadModal(modalId, path);
 
@@ -441,7 +441,7 @@ use model\CategoryContent;
         }
 
         const adOnContentId = $(this).attr('data-id');
-        let URL = `${getBaseUrl()}/admin/ad-on-content/delete?id=${adOnContentId}`;
+        let URL = `${getBaseUrl()}/admin/add-on-content/delete?id=${adOnContentId}`;
         await deleteElement(URL, $(this));
     });
 

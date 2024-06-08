@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Update Ad-On</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Update Add-on</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -26,7 +26,7 @@
 
                 </ul>
 
-                <form action="<?= url('/admin/ad-on-content/update') ?>">
+                <form action="<?= url('/admin/add-on-content/update') ?>">
                     <input type="hidden" name="id" value="<?=$ad_on_content->id?>"/>
                     <div class="tab-content" id="myTabContent">
                         <?php include_once basePath('/views/admin/ad-on-content/assets/edit.details_tab.view.php') ?>
