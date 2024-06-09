@@ -10,6 +10,15 @@ use model\Connector;
 
 class CategoryContentRepository extends CategoryContent
 {
+    public static function getLastUpdatedContent()
+    {
+        $sql = "
+                SELECT * FROM category_contents
+                    ORDER BY updated_at DESC LIMIT 1;
+        ";
+
+        return CategoryContent::query($sql)->first();
+    }
     public static function getContentByConnectorId($connectorId)
     {
         return self::getFirstBy([
