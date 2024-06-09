@@ -55,59 +55,59 @@ use helpers\translate\Translate;
 
         <?php require_once "layout/sub_nav.layout.php" ?>
 
-        <div class="divider"></div>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("download_page","test_reports") ?></h4>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_1") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2019 Tensile test report SteelWall LPB100-9A.pdf") : url("/register") ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_2") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2019 Tensile test report SteelWall MF64 and WOM-S_WOF-S .pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_3") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/20231120 FEM Tensile Test_MDF100_MF130.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_4") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/F40-IC Tensile Test.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_5") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/F90 Tensile Test.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="d-flex align-middle w-100 justify-content-between">
             <h6 class="connector-heading my-4 text-bold"><?= Translate::get("download_page","report_6") ?></h6>
             <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/SteelWall Tensile- and Twist out tests s2.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>> <img src="<?= assets("themes/user/img/pdf.png") ?>" height="25"></a>
         </div>
 
-        <div class="divider mb-5"></div>
+        <hr class="mb-5"/>
 
-        <div class="divider mt-5"></div>
+        <hr class="mt-5"/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("download_page","brochures_and_data_sheets") ?></h4>
 
-        <div class="divider"></div>
+        <hr/>
 
 
         <div class="row gap-5 my-5 w-100">
@@ -124,8 +124,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="divider"></div>
-
+        <hr/>
 
 
         <div class="row gap-5 my-5 w-100">
@@ -142,8 +141,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="divider"></div>
-
+        <hr/>
 
 
         <div class="row gap-5 my-5 w-100">
@@ -162,7 +160,7 @@ use helpers\translate\Translate;
 
 
 
-        <div class="divider"></div>
+        <hr/>
 
 
         <div class="row gap-5 my-5 w-100">
@@ -179,14 +177,12 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="divider"></div>
-
+        <hr/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
 
 
-        <div class="divider"></div>
-
+        <hr/>
 
     </div>
 </div>

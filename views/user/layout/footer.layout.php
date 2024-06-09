@@ -14,8 +14,6 @@ use helpers\translate\Translate;
                 <?= Translate::get("home_footer", "disclaimer_text") ?>
             </p>
         </div>
-
-
     </div>
 
 
@@ -27,29 +25,23 @@ use helpers\translate\Translate;
             <h4 class="color-custom-light">SteelWall</h4>
 
             <ul style="list-style-type: none; padding-left: 0;">
-                <li><a href="<?= url("/about") ?>?lang=<?=Translate::getLang()?>"
+                <li><a href="<?= url("/about") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none  <?= RequestService::isRequestedRoute("/about") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "about_steelwall") ?>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/register") ?>?lang=<?=Translate::getLang()?>"
+                    <a href="<?= url("/register") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/register") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("common", "register") ?>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/newsletter") ?>?lang=<?=Translate::getLang()?>"
+                    <a href="<?= url("/newsletter") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/newsletter") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "newsletter") ?>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_nav", "languages_and_measures") ?>
-                    </a>
-                </li>
-
             </ul>
 
             <h4 class="mt-5 color-custom-light">
@@ -58,19 +50,19 @@ use helpers\translate\Translate;
 
             <ul style="list-style-type: none; padding-left: 0;">
                 <li>
-                    <a href="<?= url("/imprint") ?>?lang=<?=Translate::getLang()?>"
+                    <a href="<?= url("/imprint") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "imprint") ?>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/privacy") ?>?lang=<?=Translate::getLang()?>"
+                    <a href="<?= url("/privacy") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/privacy") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "privacy_policy") ?>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= url("/general/terms&condition") ?>?lang=<?=Translate::getLang()?>"
+                    <a href="<?= url("/general/terms&condition") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/general/terms&condition") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "general_terms_and_conditions") ?>
                     </a>
@@ -79,90 +71,68 @@ use helpers\translate\Translate;
         </div>
 
         <div class="col-12 col-md-2 col-xxl-2">
-            <h4 class="mb-4 color-custom-light">steelwall.eu</h4>
+            <a href="https://www.steelwall.eu" class="text-decoration-none color-custom-light mb-4">
+                <h4>steelwall.eu</h4>
+            </a>
 
-            <ul style="list-style-type: none; padding-left: 0;">
-
+            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "africa") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "africa") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "asia") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "asia") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "australia") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "australia") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "caribbean") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "caribbean") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "europe") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "europe") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "india") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "india") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "new_zealand") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "new_zealand") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#eu" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "south_america") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "south_america") ?>
                 </li>
             </ul>
         </div>
 
 
         <div class="col-12 col-md-2 col-xxl-2">
-            <h4 class="mb-4 color-custom-light">steelwallus.com</h4>
+            <a href="https://www.steelwallus.com" class="text-decoration-none color-custom-light mb-4">
+                <h4>steelwallus.com</h4>
+            </a>
 
-            <ul style="list-style-type: none; padding-left: 0;">
+            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#north-america" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "north_america") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "north_america") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#north-america" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "south_east_asia") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "south_east_asia") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#north-america" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "japan") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "japan") ?>
                 </li>
                 <li>
-                    <a href="<?= url("/contact") ?>?lang=<?=Translate::getLang()?>#north-america" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "oceania") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "oceania") ?>
                 </li>
             </ul>
         </div>
 
 
         <div class="col-12 col-md-2 col-xxl-2">
-            <h4 class="mb-4 color-custom-light">MF-pipe.com</h4>
-
-            <ul style="list-style-type: none; padding-left: 0;">
+            <a href="https://mf-pipe.com/" target="_blank" class="text-decoration-none color-custom-light mb-4">
+                <h4>mf-pipe.com</h4>
+            </a>
+            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
                 <li>
-                    <a href="https://mf-pipe.com/" target="_blank" class="text-decoration-none color-custom-light">
-                        <?= Translate::get("home_footer", "about_mf_pipe") ?>
-                    </a>
+                    <?= Translate::get("home_footer", "about_mf_pipe") ?>
                 </li>
             </ul>
         </div>

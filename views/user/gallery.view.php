@@ -52,7 +52,7 @@ use helpers\translate\Translate;
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-        <div class="divider"></div>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("gallery_page","pipe_pile_walls") ?></h4>
 
@@ -110,7 +110,7 @@ use helpers\translate\Translate;
 
         <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="col-12 col-md-4 col-xxl-4 row gap-3  align-middle my-4">
             <div class="col-md-3">
@@ -125,7 +125,7 @@ use helpers\translate\Translate;
 
         </div>
 
-        <div class="divider mb-5"></div>
+        <hr class="mb-5"/>
 
 
     </div>

@@ -37,11 +37,11 @@ global $env;
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-        <div class="divider"></div>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("favourites_page", "your_request") ?></h4>
 
-        <div class="divider"></div>
+        <hr/>
 
 
         <div class="table-responsive">
@@ -127,11 +127,11 @@ global $env;
         </div>
 
 
-        <div class="divider mt-5"></div>
+        <hr class="mb-5"/>
 
         <h4 class="connector-heading my-3"><?= Translate::get("favourites_page", "favourite_connectors") ?></h4>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="table-responsive">
             <table class="table border-primary mt-3 mb-5 w-100">

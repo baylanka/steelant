@@ -68,14 +68,13 @@ use helpers\translate\Translate;
 
         <?php require_once "layout/sub_nav.layout.php" ?>
 
-
-        <div class="divider"></div>
+        <hr/>
 
         <h4 class="connector-heading my-3" id="eu">
             <?= Translate::get("contact_page", "headquarters") ?>
         </h4>
 
-        <div class="divider"></div>
+        <hr/>
 
         <p class="mt-5  black-80"><?= Translate::get("contact_page", "address_germany") ?></p>
 
@@ -175,13 +174,13 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="divider"></div>
+        <hr>
 
         <h4 class="connector-heading my-3" id="north-america">
             <?= Translate::get("contact_page", "sales_line_north_america") ?>
         </h4>
 
-        <div class="divider"></div>
+        <hr/>
 
 
         <p class="mt-5  black-80"><?= Translate::get("contact_page", "address") ?></p>
@@ -277,8 +276,8 @@ use helpers\translate\Translate;
             </div>
         </div>
 
+        <hr class="mb-5"/>
 
-        <div class="divider mb-5"></div>
 
     </div>
 
