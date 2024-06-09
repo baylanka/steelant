@@ -33,11 +33,11 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-        <div class="divider"></div>
+         <hr/>
 
         <h4 class="connector-heading my-3"><?=Translate::get('privacy','legal_advices')?></h4>
 
-        <div class="divider"></div>
+         <hr/>
 
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-12">

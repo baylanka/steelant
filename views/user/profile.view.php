@@ -41,7 +41,7 @@ use helpers\translate\Translate;
 
         ?>
 
-        <div class="divider"></div>
+        <hr/>
 
         <div class="row justify-content-start my-5">
             <div class="col-12 col-md-6">
@@ -138,7 +138,7 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="divider"></div>
+        <hr/>
 
 
         <div class="row justify-content-start my-5">

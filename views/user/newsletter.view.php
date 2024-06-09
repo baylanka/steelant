@@ -32,7 +32,7 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-        <div class="divider"></div>
+         <hr/>
 
         <?php  if (isset($_SESSION["auth"]) && $_SESSION["auth"] == true) { ?>
 
@@ -43,7 +43,7 @@
             <h4 class="connector-heading my-3"> <?=Translate::get("news_letter_page" , "why_register")  ?></h4>
 
         <?php } ?>
-        <div class="divider"></div>
+         <hr/>
 
 
         <div class="row justify-content-start mt-5">

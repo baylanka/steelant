@@ -255,6 +255,24 @@ body {
 .margin-t-50px{
     margin-top: 50px;
 }
+#user-page-body table tr{
+    border-color:var(--blue);
+}
+
+#user-page-body a .bi-box-arrow-up-right{
+   color:var(--blue);
+}
+
+hr{
+    height: 1px;
+    color:var(--blue);
+    opacity: unset !important;
+}
+
+.non-margin{
+  margin:0 !important;
+}
+
 @media (max-width: 575.98px) {
 
 
@@ -652,4 +670,12 @@ body {
 
 .size-20 {
     font-size: 2rem;
+}
+
+.check-box-label{
+    opacity: 1;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #162f7b;
+    font-weight: 700;
 }

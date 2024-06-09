@@ -69,25 +69,25 @@ use helpers\translate\Translate;
 
         <?php require_once "layout/sub_nav.layout.php" ?>
 
-        <div class="divider"></div>
+        <hr/>
         <?php if(!empty($categoryDTO->getTitle())): ?>
             <h4 class="connector-heading my-4" id="heading"><?= $categoryDTO->getTitle() ?></h4>
 
-            <div class="divider"></div>
+            <hr/>
         <?php endif ?>
 
 
         <?php foreach ($templates as $template): ?>
             <?= $template ?>
-            <div class="divider"></div>
         <?php endforeach; ?>
 
         <?php if($categoryDTO->hasRelevantCategories()): ?>
             <?php
                 $pages = $categoryDTO->getRelevantCategories();
             ?>
+            <hr/>
             <h4 class="my-3 text-gray"><?= $pages[0]->title ?></h4>
-            <div class="divider"></div>
+             <hr class="non-margin"/>
 
             <?php foreach ($pages as $page): ?>
                 <div class="col-12 col-md-12 col-xxl-12 d-flex gap-3 flex-wrap align-middle" style="cursor: pointer"
@@ -109,13 +109,13 @@ use helpers\translate\Translate;
 
                 </div>
 
-                <div class="divider"></div>
+                <hr class="non-margin"/>
 
             <?php endforeach; ?>
 
         <?php else: ?>
 
-            <div class="divider mb-5"></div>
+            <hr class="mb-5"/>
 
         <?php endif; ?>
     </div>

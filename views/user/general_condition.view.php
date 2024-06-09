@@ -36,17 +36,17 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-        <div class="divider"></div>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?=Translate::get('terms_and_conditions','legal_advices')?></h4>
 
-<!--        <div class="divider"></div>-->
+<!--         <hr/> -->
 <!---->
 <!--        <h5 class="connector-heading my-3">-->
 <!--            --><?php //=Translate::get('terms_and_conditions','please_download_open_pdf_file')?>
 <!--        </h5>-->
 
-        <div class="divider"></div>
+        <hr/>
 
         <?php
             $fileName = Translate::get('terms_and_conditions','general_terms_and_conditions_file');
@@ -62,7 +62,7 @@
             </a>
         </div>
 
-        <div class="divider"></div>
+        <hr/>
     </div>
 
 
