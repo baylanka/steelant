@@ -1,5 +1,6 @@
 <?php
 
+use helpers\services\ContentService;
 use helpers\services\RequestService;
 use helpers\translate\Translate;
 
@@ -143,7 +144,7 @@ use helpers\translate\Translate;
         <div class="col-6 col-md-4">
 
             <p class="color-custom-light">
-                <?= Translate::get("home_footer", "last_website_update") ?> 01. Mar. 2024<br/>
+                <?= Translate::get("home_footer", "last_website_update") ?> <?=ContentService::getLastUpdatedDate()?><br/>
                 Copyright by SteelWall ISH GmbH<br/>
                 Connectors designed by Richard Heindl
             </p>

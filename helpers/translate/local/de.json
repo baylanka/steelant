@@ -189,7 +189,7 @@
   },
 
   "connector_page": {
-    "add_to_favourite_message": "Vous souhaitez ajouter ce connecteur en favori",
+    "add_to_favourite_message": "Dieses Produkt wird in Ihren Favoriten gespeichert.",
     "connector_series": "SCHLOSSPROFIL-SERIEN"
   },
   "about_page": {
@@ -245,18 +245,18 @@
     "general_terms_and_conditions_file" : "20200214 AGB SteelWall Verkauf und Lieferung.pdf"
   },
   "request_pop_up": {
-    "request": "Request",
-    "your_project": "YOUR PROJECT",
-    "name": "REQUESTED CONNECTOR",
-    "length": "LENGTH OF CONNECTOR",
-    "no_of_piles": "NUMBER OF PILES",
-    "name_of_sheet_piles": "NAME OF USED SHEET PILES",
+    "request": "Anfrage",
+    "your_project": "PROJEKTNAME",
+    "name": "NAME DES SCHLOSSPROFILS",
+    "length": "LÄNGE",
+    "no_of_piles": "MENGE IN LFD. METERN",
+    "name_of_sheet_piles": "NAME DER VERWENDETEN SPUNDBOHLEN",
     "self_pickup": "SELBSTABHOLUNG",
-    "delivery_address": "DELIVERY ADDRESS",
-    "postal_code": "POSTAL CODE / CITY",
-    "country": "COUNTRY / STATE",
-    "desired_delivery_date": "GEWÜNSCHTER LIEFERTERMIN / ABHOLUNG",
-    "requested_from": "REQUEST FROM:"
+    "delivery_address": "LIEFERADRESSE",
+    "postal_code": "PLZ, ORT",
+    "country": "LAND / BUNDESSTAAT",
+    "desired_delivery_date": "GEWÜNSCHTER LIEFERTERMIN",
+    "requested_from": "ANFRAGE VON:"
   },
 
 
