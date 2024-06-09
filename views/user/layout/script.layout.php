@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script src="<?= assets("js/app.js") ?>"></script>
+<script src="<?= assets("js/app.js") ?>?v=<?=  date("h:i:sa") ?>"></script>
 <script>
     const baseModal = "baseModal";
     $(function () {

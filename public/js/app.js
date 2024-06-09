@@ -248,20 +248,31 @@ let spinnerDisable = ()=>{
 
 let isConfirmToProcess = (description, alert_type='warning', title = 'Are you sure!',confirm_btn = 'Confirm',cancel_btn = 'Cancel')=>{
     return new Promise((resolve, reject)=>{
-        Swal.fire({
+
+        let swalObj = {
             title: title,
             html: description,
-            icon: alert_type,
             showCancelButton: true,
             showLoaderOnConfirm: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#1d357c',
+            cancelButtonColor: '#8f9093',
             confirmButtonText: confirm_btn,
             cancelButtonText: cancel_btn,
             confirmButtonClass: 'btn btn-primary',
             cancelButtonClass: 'btn btn-danger ml-1',
             buttonsStyling: true,
-        })
+        };
+
+        if(alert_type == "favourite"){
+            swalObj.iconHtml = '<img src="'+getBaseUrl()+'/public/themes/user/img/star.png" height="80" class="mb-3"/>';
+            swalObj.customClass =  {
+                icon: 'no-border'
+            };
+        }else{
+            swalObj.icon = alert_type;
+        }
+
+        Swal.fire(swalObj)
             .then(async function (result) {
                 if (result.value) {
                     resolve(true);

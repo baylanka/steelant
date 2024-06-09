@@ -679,3 +679,7 @@ hr{
     color: #162f7b;
     font-weight: 700;
 }
+
+.no-border {
+    border: 0;
+}

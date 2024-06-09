@@ -222,8 +222,8 @@ use helpers\translate\Translate;
         const notice = `
                 <p><b><?= Translate::get("connector_page", "add_to_favourite_message") ?><b><p>
             `;
-        if (!await isConfirmToProcess(notice, 'info',
-            "<?= Translate::get("alert", "are_you_sure") ?>",
+        if (!await isConfirmToProcess(notice, 'favourite',
+            "",
             "<?= Translate::get("common", "confirm") ?>",
             "<?= Translate::get("common", "cancel") ?>")) {
             return;
