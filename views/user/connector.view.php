@@ -77,8 +77,11 @@ use helpers\translate\Translate;
         <?php endif ?>
 
 
-        <?php foreach ($templates as $template): ?>
+        <?php foreach ($templates as $index => $template): ?>
             <?= $template ?>
+            <?php if(($index+1) < sizeof($templates)): ?>
+                <hr class="non-margin"/>
+            <?php endif; ?>
         <?php endforeach; ?>
 
         <?php if($categoryDTO->hasRelevantCategories()): ?>
