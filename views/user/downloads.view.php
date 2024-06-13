@@ -111,7 +111,7 @@ use helpers\translate\Translate;
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="connector-heading col-md-4 col-12 text-bold">Schlossprofile Übersicht 2024</h6>
+            <h6 class="connector-heading col-md-3 col-12 text-bold">Schlossprofile Übersicht 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 11 SW Schlossprofile - Übersichten v45-02 lowres DE.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
@@ -128,7 +128,7 @@ use helpers\translate\Translate;
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="color-blue col-md-4 col-12 text-bold">Aperçu connecteurs 2024</h6>
+            <h6 class="color-blue col-md-3 col-12 text-bold">Aperçu connecteurs 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 16 SW Aperçu connecteurs 2024 v19 FR lowres.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
@@ -146,7 +146,7 @@ use helpers\translate\Translate;
 
         <div class="row gap-5 my-5 w-100">
 
-            <h6 class="connector-heading col-md-4 col-12 text-bold">Connectors overview 2024</h6>
+            <h6 class="connector-heading col-md-3 col-12 text-bold">Connectors overview 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2023 12 19 SW connectors - overview 2024 v39 EN lowres.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
@@ -164,7 +164,7 @@ use helpers\translate\Translate;
 
 
         <div class="row gap-5 my-5 w-100">
-            <h6 class="connector-heading col-md-4 col-12 text-bold">Connectors overview 2024</h6>
+            <h6 class="connector-heading col-md-3 col-12 text-bold">Connectors overview 2024</h6>
 
             <span class="d-flex gap-2 col-md-6 col-12">
                 <a href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"]  ? assets("storage/downloads_assets/2024 02 24 SW connectors - overview v37 US lowres.pdf") : url("/register")  ?>" class="mt-auto mb-auto" <?= isset($_SESSION["auth"]) ? "download" : "" ?>>
@@ -175,12 +175,6 @@ use helpers\translate\Translate;
             </span>
 
         </div>
-
-
-        <hr/>
-
-        <h4 class="connector-heading my-3"><?= Translate::get("common","related_section") ?></h4>
-
 
         <hr/>
 

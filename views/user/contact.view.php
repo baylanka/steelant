@@ -183,17 +183,19 @@ use helpers\translate\Translate;
         <hr/>
 
 
-        <p class="mt-5  black-80"><?= Translate::get("contact_page", "address") ?></p>
+        <p class="mt-5  black-80">
+            <?= Translate::get("contact_page", "address") ?><br>
+        </p>
 
-        <p class="mt-3  black-80">Toll free 1(888) 309 2250</p>
+
 
         <p class="mt-3  black-80">
-            <?= Translate::get("contact_page", "fax") ?> 1(888) 743 7712</p>
+            Toll free 1(888) 309 2250<br/>
+            <?= Translate::get("contact_page", "fax") ?> 1(888) 743 7712<br/>
+            <?= Translate::get("contact_page", "email") ?> info@steelwallus.com
+        </p>
 
-        <p class="mt-3  black-80">
-            <?= Translate::get("contact_page", "email") ?> info@steelwallus.com</p>
-
-        <p class="mt-5  black-80"> Please leave a message here: </p>
+        <p class="mt-5  black-80"> <?= Translate::get("contact_page", "please_leave_a_message_here") ?> </p>
 
         <div class="row justify-content-start mb-5">
             <div class="col-12 col-md-6">

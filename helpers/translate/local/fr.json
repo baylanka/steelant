@@ -109,12 +109,12 @@
     "data_sheets": "Fiche technique",
     "brochures_and_data_sheets": "Brochures et fiches techniques",
     "steelwall_connectors_overview": "Steelwall aperçu des connecteurs",
-    "report_1": "Tensile test report LPB100-9A",
-    "report_2": "Tensile test report MF64, WOM-S/WOM-F",
+    "report_1": "Test report LPB100-9A",
+    "report_2": "Test report MF64, WOM-S/WOM-F",
     "report_3": "FEM simulations MDF100, MF130",
-    "report_4": "Tensile test report F40-IC",
-    "report_5": "Tensile test report F90",
-    "report_6": "Tensile test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
+    "report_4": "Test report F40-IC",
+    "report_5": "Test report F90",
+    "report_6": "Test report LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
 
 
@@ -128,6 +128,7 @@
   "contact_page": {
     "contact": "Contact",
     "headquarters_germany": "SIÈGE SOCIAL ALLEMAGNE",
+    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschland",
     "address": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Allemagne",
     "sales_line_north_america": "LIGNE DE VENTE AMÉRIQUE DU NORD",
     "headquarters": "Siège social Allemagne",

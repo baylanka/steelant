@@ -112,12 +112,12 @@
     "data_sheets": "Datenblätter",
     "brochures_and_data_sheets": "Broschüren und Datenblätter",
     "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile",
-    "report_1": "Tensile Prüfbericht LPB100-9A",
-    "report_2": "Tensile Prüfbericht MF64, WOM-S/WOM-F",
+    "report_1": "Prüfbericht LPB100-9A",
+    "report_2": "Prüfbericht MF64, WOM-S/WOM-F",
     "report_3": "FEM simulations MDF100f, MF130",
-    "report_4": "Tensile Prüfbericht F40-IC",
-    "report_5": "Tensile Prüfbericht F90",
-    "report_6": "Tensile Prüfbericht LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
+    "report_4": "Prüfbericht F40-IC",
+    "report_5": "Prüfbericht F90",
+    "report_6": "Prüfbericht LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
   },
 
 
@@ -132,6 +132,7 @@
   "contact_page": {
     "contact": "Kontakt",
     "headquarters_germany": "Hauptsitz Deutschland",
+    "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschland",
     "address": "SteelWall US, Humphrey Chang<br/>US sales line 8:30 am to 4:30 pm (Arizona time)",
     "sales_line_north_america": "Vertriebslinie Nordamerika",
     "headquarters": "Hauptsitz Deutschland",
@@ -145,7 +146,7 @@
 
 
   "profile_page": {
-    "update": "Stand",
+    "update": "Senden",
     "profile": "Profil",
     "old_password": "Altes Passwort",
     "new_password": "Neues Kennwort",
