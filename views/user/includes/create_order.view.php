@@ -78,7 +78,7 @@ use helpers\translate\Translate;
                 <p class="mt-5">
                     <?=Translate::get('request_pop_up','requested_from')?><br/><br/>
                     <small>
-                        <?= $_SESSION["user"]->title . $_SESSION["user"]->name ?> - <?= $_SESSION["user"]->job_position ?><br/>
+                        <?= $_SESSION["user"]->title . " " . $_SESSION["user"]->name ?> - <?= $_SESSION["user"]->job_position ?><br/>
                         <?= $_SESSION["user"]->division ?>
 
                         <?= $_SESSION["user"]->country_or_state ?><br/>
