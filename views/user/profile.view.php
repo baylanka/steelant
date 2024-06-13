@@ -86,7 +86,7 @@ use helpers\translate\Translate;
 
                     <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="company_name" value="<?= $user->company_name ?>"
-                               placeholder="<?= Translate::get("user_info", "company_name") ?>">
+                               placeholder="<?= Translate::get("user_info", "company_name_placeholder") ?>">
                         <label class="form-control-placeholder" for="comp-name">
                             <?= Translate::get("user_info", "company_name",null,true) ?>
                         </label>
@@ -95,7 +95,7 @@ use helpers\translate\Translate;
                     <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="country_or_state"
                                value="<?= $user->country_or_state ?>"
-                               placeholder="<?= Translate::get("user_info", "country_state") ?>">
+                               placeholder="<?= Translate::get("user_info", "country_state_placeholder") ?>">
                         <label class="form-control-placeholder required-field" for="country-state">
                             <?= Translate::get("user_info", "country_state",null,true) ?>
                         </label>
@@ -119,9 +119,9 @@ use helpers\translate\Translate;
 
                     <div class="form-group margin-t-50px">
                         <input type="text" class="form-control" name="email" value="<?= $user->email ?>"
-                               placeholder="<?= Translate::get("common", "email") ?>">
+                               placeholder="<?= Translate::get("user_info", "email_placeholder") ?>">
                         <label class="form-control-placeholder required-field" for="email">
-                            <?= Translate::get("common", "email",null,true) ?>
+                            <?= Translate::get("user_info", "email",null,true) ?>
                         </label>
                     </div>
 

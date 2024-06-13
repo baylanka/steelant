@@ -51,7 +51,7 @@
 
   "home_footer": {
     "disclaimer": "Technische Hinweise / Disclaimer",
-    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind ZirkaWerte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die\nSpundwandschlossleisten mit Musterabschnitt en der gewünschten Schlossprofile auf Gängigkeit.",
+    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind ZirkaWerte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitt en der gewünschten Schlossprofile auf Gängigkeit.",
     "last_website_update": "Letztes Update der Website:",
     "africa": "Afrika",
     "asia": "Asien",
@@ -82,10 +82,13 @@
     "job_position": "JOB / POSITION",
     "division": "ABTEILUNG",
     "company_name": "NAME DES UNTERNEHMENS",
+    "company_name_placeholder": "Werbeagentur Meier",
     "country_state": "LAND / BUNDESLAND",
+    "country_state_placeholder": "Deutschland ",
     "website": "WEBSITE",
     "phone": "TELEFON",
-    "email": "E-MAIL"
+    "email": "E-MAIL",
+    "email_placeholder": "meierdesign@gmx.de"
   },
 
 
@@ -146,7 +149,7 @@
     "profile": "Profil",
     "old_password": "Altes Passwort",
     "new_password": "Neues Kennwort",
-    "verify_password": "Passwort bestätigen"
+    "verify_password": "Passwort Bestätigen"
   },
 
 

@@ -78,11 +78,14 @@
     "your_name": "VOTRE NOM",
     "job_position": "EMPLOI / POSTE",
     "division": "SERVICE",
-    "company_name": "NOM DE L’ENTREPRISE\n",
+    "company_name": "NOM DE L’ENTREPRISE",
+    "company_name_placeholder": "Werbeagentur Meier",
     "country_state": "PAYS / RÉGION",
+    "country_state_placeholder": "Deutschland ",
     "website": "SITE WEB",
     "phone": "TÉLÉPHONE",
-    "email": "E-MAIL"
+    "email": "E-MAIL",
+    "email_placeholder": "meierdesign@gmx.de"
   },
 
 

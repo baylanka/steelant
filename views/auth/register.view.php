@@ -86,14 +86,14 @@
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="company_name"
-                                       placeholder="<?= strtoupper(Translate::get("user_info", "company_name")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "company_name_placeholder")) ?>">
                                 <label class="form-control-placeholder" for="comp-name">
                                     <?= Translate::get("user_info", "company_name") ?>
                                 </label>
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="country_or_state"
-                                       placeholder="<?= strtoupper(Translate::get("user_info", "country_state")) ?>">
+                                       placeholder="<?= strtoupper(Translate::get("user_info", "country_state_placeholder")) ?>">
                                 <label class="form-control-placeholder required-field" for="country-state">
                                     <?= Translate::get("user_info", "country_state") ?>
                                 </label>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="form-group mt-5">
                                 <input type="text" class="form-control" name="email"
-                                       placeholder="<?= strtoupper(Translate::get("user_info", "email")) ?>">
+                                       placeholder="<?= Translate::get("user_info", "email_placeholder") ?>">
                                 <label class="form-control-placeholder required-field" for="email">
                                     <?= Translate::get("user_info", "email") ?>
                                 </label>

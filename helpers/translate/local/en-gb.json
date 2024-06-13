@@ -81,10 +81,13 @@
     "job_position": "JOB / POSITION",
     "division": "DIVISION",
     "company_name": "COMPANY NAME",
+    "company_name_placeholder": "Werbeagentur Meier",
     "country_state": "COUNTRY / STATE",
+    "country_state_placeholder": "Deutschland ",
     "website": "WEBSITE",
     "phone": "PHONE",
-    "email": "EMAIL"
+    "email": "EMAIL",
+    "email_placeholder": "meierdesign@gmx.de"
   },
 
 
