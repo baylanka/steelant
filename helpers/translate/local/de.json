@@ -51,7 +51,7 @@
 
   "home_footer": {
     "disclaimer": "Technische Hinweise / Disclaimer",
-    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind ZirkaWerte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitt en der gewünschten Schlossprofile auf Gängigkeit.",
+    "disclaimer_text": "SteelWall-Profile entsprechen i.d.R. den europäischen Normen und werden in zertifizierten Unternehmen der stahlverarbeitenden Industrie hergestellt. Alle Zahlenangaben sind ZirkaWerte und können abweichen. Stabverdrehungen sind bis zu 2 mm je Meter möglich. Toleranz der Stahldicke ±1 mm. Stahldicke kann sich an Profilenden um bis zu 2 mm reduzieren. Längentoleranz bis zu ±200 mm. Gradangaben beziehen sich auf die Schlossprofilachsen. Technische Änderungen sind vorbehalten. Wir verweisen auf die DIN EN 12063. Bitte prüfen Sie die Spundwandschlossleisten mit Musterabschnitten der gewünschten Schlossprofile auf Gängigkeit.",
     "last_website_update": "Letztes Update der Website:",
     "africa": "Afrika",
     "asia": "Asien",
@@ -114,7 +114,7 @@
     "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile",
     "report_1": "Prüfbericht LPB100-9A",
     "report_2": "Prüfbericht MF64, WOM-S/WOM-F",
-    "report_3": "FEM simulations MDF100f, MF130",
+    "report_3": "FEM simulations MDF100, MF130",
     "report_4": "Prüfbericht F40-IC",
     "report_5": "Prüfbericht F90",
     "report_6": "Prüfbericht LPB100, LPB180, LPB300; FD180, 300; PZM-US/PZF-US"
@@ -133,11 +133,11 @@
     "contact": "Kontakt",
     "headquarters_germany": "Hauptsitz Deutschland",
     "address_germany": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschland",
-    "address": "SteelWall US, Humphrey Chang<br/>US sales line 8:30 am to 4:30 pm (Arizona time)",
+    "address": "SteelWall US, Humphrey Chang<br/>US sales line 8:30 am to 4:30 pm (US Central Time)",
     "sales_line_north_america": "Vertriebslinie Nordamerika",
     "headquarters": "Hauptsitz Deutschland",
     "please_leave_a_message_here": "Bitte schreiben Sie uns hier",
-    "send": "Schicken",
+    "send": "Senden",
     "your_message": "IHRE NACHRICHT",
     "phone": "Telefon",
     "fax": "Fax:",

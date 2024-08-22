@@ -87,19 +87,28 @@ use helpers\translate\Translate;
                     <?= Translate::get("home_footer", "australia") ?>
                 </li>
                 <li>
-                    <?= Translate::get("home_footer", "caribbean") ?>
-                </li>
-                <li>
                     <?= Translate::get("home_footer", "europe") ?>
                 </li>
                 <li>
                     <?= Translate::get("home_footer", "india") ?>
                 </li>
                 <li>
+                    <?= Translate::get("home_footer", "japan") ?>
+                </li>
+                <li>
+                    <?= Translate::get("home_footer", "caribbean") ?>
+                </li>
+                <li>
                     <?= Translate::get("home_footer", "new_zealand") ?>
                 </li>
                 <li>
+                    <?= Translate::get("home_footer", "oceania") ?>
+                </li>
+                <li>
                     <?= Translate::get("home_footer", "south_america") ?>
+                </li>
+                <li>
+                    <?= Translate::get("home_footer", "south_east_asia") ?>
                 </li>
             </ul>
         </div>
@@ -113,15 +122,6 @@ use helpers\translate\Translate;
             <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
                 <li>
                     <?= Translate::get("home_footer", "north_america") ?>
-                </li>
-                <li>
-                    <?= Translate::get("home_footer", "south_east_asia") ?>
-                </li>
-                <li>
-                    <?= Translate::get("home_footer", "japan") ?>
-                </li>
-                <li>
-                    <?= Translate::get("home_footer", "oceania") ?>
                 </li>
             </ul>
         </div>
