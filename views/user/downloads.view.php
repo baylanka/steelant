@@ -22,7 +22,9 @@ use helpers\translate\Translate;
                 <div class="col-md-7">
                     <dl class="pl-3">
                         <h4 class="selected"><?= Translate::get("download_page","downloads") ?></h4>
-                        <p class="color-black"><?= Translate::get("download_page","please_register_before_download") ?></p>
+                         <?php if(!isset($_SESSION["auth"]) || !$_SESSION["auth"]): ?>
+                            <p class="color-black"><?= Translate::get("download_page","please_register_before_download") ?></p>
+                         <?php endif; ?>
                     </dl>
 
                 </div>
