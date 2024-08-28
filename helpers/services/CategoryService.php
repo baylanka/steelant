@@ -157,25 +157,30 @@ class CategoryService
 
     public static function getCategoryGroupsByPageCol()
     {
-        $pageColLimit = 15;
-        $categories = Category::getAll();
-        $categories = self::organizingCategoriesTreeView($categories);
+        $allCategories = Category::getAll();
+        $masterCategories = self::organizingCategoriesTreeView($allCategories);
 
         $array = [];
-        $arrayIndex = 0;
-        $arrayPositionCount = 0;
-        foreach ($categories as $category) {
-            $categoryLength = self::getChildrenCount($category) + 1;
-            if(($arrayPositionCount+$categoryLength) > $pageColLimit){
+        $arrayIndex = -1;
+        $previouslyPushedCategoryArrayPositionCount = 0;
+        foreach ($masterCategories as $category) {
+            $currentCategorySize = self::getChildrenCount($category) + 1;
+            if(self::isColumnFilled($previouslyPushedCategoryArrayPositionCount, $currentCategorySize)){
                 $arrayIndex++;
-                $arrayPositionCount = 0;
+                $previouslyPushedCategoryArrayPositionCount = 0;
             }
 
             $array[$arrayIndex][] = $category;
-            $arrayPositionCount += $categoryLength;
+            $previouslyPushedCategoryArrayPositionCount += $currentCategorySize;
         }
 
         return $array;
+    }
+
+    private static function isColumnFilled($previouslyPushedCategoryArrayPositionCount, $categorySize)
+    {
+        define('CATEGORY_COL_LIMIT',15);
+        return (($previouslyPushedCategoryArrayPositionCount+$categorySize) > constant("CATEGORY_COL_LIMIT"));
     }
 
     private static function getChildren(array $categories, $parentCategory)
