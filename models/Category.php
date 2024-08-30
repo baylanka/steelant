@@ -215,7 +215,7 @@ class Category extends BaseModel
 
     public function isLeafCategroy(): bool
     {
-        return !empty($this->title);
+        return !$this->isParent();
     }
 
     public function isPublished(): bool

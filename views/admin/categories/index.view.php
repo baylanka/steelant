@@ -82,6 +82,13 @@ use helpers\pools\LanguagePool;
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item delete-category" data-id="<?=$category->id?>" href="#">Delete</a></li>
+                                    <?php if($category->isLeafCategroy()): ?>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li><a class="dropdown-item update-exclude-regions" data-id="<?=$category->id?>" href="#">Exclude Regions</a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </td>
@@ -195,7 +202,6 @@ use helpers\pools\LanguagePool;
 
     $(document).on('click', 'a.add-sub-category', async function (event) {
         event.preventDefault();
-        const trTag = $(this).closest('tr');
         const categoryId = $(this).attr("data-id");
         const path = `admin/categories/sub/store?parent_id=${categoryId}`;
         let modal;
@@ -206,6 +212,26 @@ use helpers\pools\LanguagePool;
                 const category = event.originalEvent.detail.category;
                 const categoryRowElement = getCategoryRow(category);
                 trTag.after(categoryRowElement);
+                modal.hide();
+            });
+
+        } catch (err) {
+            toast.error("add sub category functionality is broken down. " + err);
+        }
+
+    });
+
+
+    $(document).on('click', 'a.update-exclude-regions', async function (event) {
+        event.preventDefault();
+        const trTag = $(this).closest('tr');
+        const categoryId = $(this).attr("data-id");
+        const path = `admin/categories/exceptional-regions?category_id=${categoryId}`;
+        let modal;
+        try {
+            modal = await loadModal(modalId, path);
+            $(document).off('updateExceptionalRegionsSuccessEvent');
+            $(document).on('updateExceptionalRegionsSuccessEvent', function (event) {
                 modal.hide();
             });
 

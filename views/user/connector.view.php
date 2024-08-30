@@ -47,6 +47,11 @@ use helpers\translate\Translate;
                             <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector_series") ?></dd>
                         <?php endif ?>
                         <?php foreach ($group as $category): ?>
+                            <?php if($exception_region->isExceptionalRegion($category->id, $language)): ?>
+                                <?php continue ?>
+                            <?php endif ?>
+
+
                             <?php if($categoryDTOCollection->multiLevelExists && $category->level == 2):?>
                                 <dt class="color-blue mb-2"><?=$category->getNameByLang($language)?></dt>
                             <?php else: ?>

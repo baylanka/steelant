@@ -62,3 +62,7 @@ $app->post('/admin/users/create',  ["admin\UserController", "store"]);
 $app->get('/admin/orders',  ["admin\OrderController", "index"]);
 $app->get('/admin/orders/change/status',  ["admin\OrderController", "changeStatus"]);
 $app->get('/admin/orders/delete',  ["admin\OrderController", "destroy"]);
+
+//exceptional-regions
+$app->get('/admin/categories/exceptional-regions', ["admin\ExceptionalRegionController", "edit"]);
+$app->post('/admin/categories/exceptional-regions', ["admin\ExceptionalRegionController", "update"]);

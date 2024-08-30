@@ -21,6 +21,9 @@
                 <?php $multiRowExists = sizeof($group) > 1; ?>
                     <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                         <?php foreach($group as $category): ?>
+                            <?php if($exception_region->isExceptionalRegion($category->id, $lang)): ?>
+                                <?php continue ?>
+                            <?php endif ?>
                             <div class="col-4 col-md-3 col-xl-3 col-xxl-3 <?= $multiRowExists ? 'item-height-200' : '' ?>">
                                 <img src="<?= $category->getThumbnailUrl(); ?>" height="80"/>
                             </div>
@@ -31,6 +34,9 @@
                                     <dl>
                                         <p class="category-name"><?php print($category->getNameByLang($language))?></p>
                                         <?php foreach ($category->getChildren() as $index => $child): ?>
+                                            <?php  if($exception_region->isExceptionalRegion($child->id, $lang)): ?>
+                                                <?php continue ?>
+                                            <?php endif ?>
 
                                             <?php if($hasThirdLevels): ?>
                                                 <dt class="color-blue <?=$index>0? 'mt-4':''?>  mb-2"><?=$child->getNameByLang($language)?></dt>
@@ -43,6 +49,9 @@
                                             <?php endif; ?>
 
                                             <?php foreach ($child->getChildren() as $each): ?>
+                                                <?php  if($exception_region->isExceptionalRegion($each->id, $lang)): ?>
+                                                    <?php continue ?>
+                                                <?php endif ?>
                                                 <dd class="category-item">
                                                     <a href="<?= RouterService::getCategoryPageRoute($each->id) ?>#heading"
                                                        class="link color-black category-item-text"><?=$each->getNameByLang($language)?>

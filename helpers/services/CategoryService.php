@@ -179,8 +179,8 @@ class CategoryService
 
     private static function isColumnFilled($previouslyPushedCategoryArrayPositionCount, $categorySize)
     {
-        define('CATEGORY_COL_LIMIT',15);
-        return (($previouslyPushedCategoryArrayPositionCount+$categorySize) > constant("CATEGORY_COL_LIMIT"));
+        $categoryColLimit = 15;
+        return (($previouslyPushedCategoryArrayPositionCount+$categorySize) > $categoryColLimit);
     }
 
     private static function getChildren(array $categories, $parentCategory)

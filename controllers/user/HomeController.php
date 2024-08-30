@@ -8,7 +8,9 @@ use helpers\services\CategoryService;
 use helpers\services\FavouriteService;
 use helpers\services\OrderService;
 use helpers\services\RouterService;
+use helpers\translate\Translate;
 use model\Category;
+use model\ExceptionalRegion;
 
 class HomeController
 {
@@ -16,7 +18,9 @@ class HomeController
     public function home(Request $request)
     {
         $data = [
-            'categoryGroups' => CategoryService::getCategoryGroupsByPageCol()
+            'categoryGroups' => CategoryService::getCategoryGroupsByPageCol(),
+            'lang' => Translate::getLang(),
+            'exception_region' => new ExceptionalRegion()
         ];
 
         return view("user/home.view.php", $data);

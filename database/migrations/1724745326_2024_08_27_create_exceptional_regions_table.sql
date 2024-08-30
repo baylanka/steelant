@@ -1,0 +1,9 @@
+CREATE TABLE  IF NOT EXISTS   exceptional_regions
+(
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    leaf_category_id  BIGINT UNSIGNED,
+    region_lang_code VARCHAR(6),
+    is_deleted TINYINT DEFAULT(0),
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME  DEFAULT CURRENT_TIMESTAMP
+);

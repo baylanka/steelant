@@ -9,6 +9,7 @@ use helpers\services\CategoryService;
 use helpers\services\ContentService;
 use helpers\translate\Translate;
 use model\Category;
+use model\ExceptionalRegion;
 
 class ContentController extends BaseController
 {
@@ -29,7 +30,8 @@ class ContentController extends BaseController
             'categoryDTOCollection'=> CategoryService::getCategoryPageCollectionDTO($categoryId),
             'language' => $activatedLanguage,
             'templates' => $templates,
-            'categoryDTO' => new CategoryDTO($category)
+            'categoryDTO' => new CategoryDTO($category),
+            'exception_region' => new ExceptionalRegion()
         ];
 
         return view("user/connector.view.php", $data);
