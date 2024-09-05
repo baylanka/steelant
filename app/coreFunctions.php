@@ -15,6 +15,14 @@ function view($path, $data=[])
     return require_once basePath("views/" . $path);
 }
 
+function view_str($path, $data=[])
+{
+    ob_start();
+    extract($data);
+    require_once basePath("views/" . $path);
+    return ob_get_clean();
+}
+
 function public_path($path)
 {
     $firstChar = substr($path,0,1);

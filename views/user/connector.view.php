@@ -19,12 +19,12 @@ use helpers\translate\Translate;
 <div class="jumbotron p-0 m-0">
 
     <?php
-        if($categoryDTOCollection->hasBanner):
-    ?>
+    if ($categoryDTOCollection->hasBanner):
+        ?>
         <img src="<?= $categoryDTOCollection->bannerURL ?>"
              alt="<?= $categoryDTOCollection->bannerName ?>" class="w-100 banner-image"/>
     <?php
-        endif;
+    endif;
     ?>
 
     <div class="responsive-wrap px-4">
@@ -41,24 +41,24 @@ use helpers\translate\Translate;
 
 
             <?php foreach ($categoryDTOCollection->children as $group): ?>
-                <div class="col-12 <?=$categoryDTOCollection->multiLevelExists ? 'col-md-2': 'col-md-3'?>">
+                <div class="col-12 <?= $categoryDTOCollection->multiLevelExists ? 'col-md-2' : 'col-md-3' ?>">
                     <dl>
-                        <?php if(!$categoryDTOCollection->multiLevelExists): ?>
+                        <?php if (!$categoryDTOCollection->multiLevelExists): ?>
                             <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector_series") ?></dd>
                         <?php endif ?>
                         <?php foreach ($group as $category): ?>
-                            <?php if($exception_region->isExceptionalRegion($category->id, $language)): ?>
+                            <?php if ($exception_region->isExceptionalRegion($category->id, $language)): ?>
                                 <?php continue ?>
                             <?php endif ?>
 
 
-                            <?php if($categoryDTOCollection->multiLevelExists && $category->level == 2):?>
-                                <dt class="color-blue mb-2"><?=$category->getNameByLang($language)?></dt>
+                            <?php if ($categoryDTOCollection->multiLevelExists && $category->level == 2): ?>
+                                <dt class="color-blue mb-2"><?= $category->getNameByLang($language) ?></dt>
                             <?php else: ?>
                                 <dd class="category-item custom-font">
                                     <a href="<?= RouterService::getCategoryPageRoute($category->id) ?>"
                                        class="link <?= $_GET["id"] == $category->id ? "selected" : "color-black" ?> category-item-text">
-                                        <?=$category->getNameByLang($language)?>
+                                        <?= $category->getNameByLang($language) ?>
                                     </a>
                                 </dd>
                             <?php endif; ?>
@@ -75,7 +75,7 @@ use helpers\translate\Translate;
         <?php require_once "layout/sub_nav.layout.php" ?>
 
         <hr/>
-        <?php if(!empty($categoryDTO->getTitle())): ?>
+        <?php if (!empty($categoryDTO->getTitle())): ?>
             <h4 class="connector-heading my-4" id="heading"><?= $categoryDTO->getTitle() ?></h4>
 
             <hr/>
@@ -84,35 +84,72 @@ use helpers\translate\Translate;
 
         <?php foreach ($templates as $index => $template): ?>
             <?= $template ?>
-            <?php if(($index+1) < sizeof($templates)): ?>
+            <?php if (($index + 1) < sizeof($templates)): ?>
                 <hr class="non-margin"/>
             <?php endif; ?>
         <?php endforeach; ?>
 
-        <?php if($categoryDTO->hasRelevantCategories()): ?>
+
+
+        <?php
+                $hasNonCategoricalLink = $categoryDTO->id == 22;
+
+                function getPage($language)
+                {
+                      ;
+                    $title = '';
+                    $description = '';
+                    $iconName = Translate::get("gallery_page","gallery");
+                    switch ($language) {
+                        case \helpers\pools\LanguagePool::GERMANY()->getLabel():
+                            $title = "Verwandte Themen";
+                            $description = "$iconName: DTH Bohrverfahren";
+                            break;
+                        case \helpers\pools\LanguagePool::FRENCH()->getLabel():
+                            $title = "Thèmes connexes";
+                            $description = "$iconName: Procédé d’insertion DTH";
+                            break;
+                        case \helpers\pools\LanguagePool::UK_ENGLISH()->getLabel():
+                        case \helpers\pools\LanguagePool::US_ENGLISH()->getLabel():
+                            $title = "Related chapters";
+                            $description = "$iconName: DTH driving method";
+                            break;
+                    }
+
+                    return json_decode(json_encode([
+                        'title' => $title,
+                        'url' => url('/gallery'),
+                        'icon_url' => assets("themes/user/img/gallery-icon.png"),
+                        'icon_name' => $iconName,
+                        'description' => $description
+                    ]));
+
+                }
+        ?>
+
+        <?php if ($categoryDTO->hasRelevantCategories()): ?>
             <?php
                 $pages = $categoryDTO->getRelevantCategories();
             ?>
             <hr/>
             <h4 class="my-3 text-gray"><?= $pages[0]->title ?></h4>
-             <hr class="non-margin"/>
+            <hr class="non-margin"/>
 
             <?php foreach ($pages as $page): ?>
                 <div class="col-12 col-md-12 col-xxl-12 d-flex gap-3 flex-wrap align-middle" style="cursor: pointer"
-                     data-id="<?=$page->relevant_category_id?>"
+                     data-id="<?= $page->relevant_category_id ?>"
                      onclick="window.location.href='<?= RouterService::getCategoryPageRoute($page->relevant_category_id) ?>'">
 
-                        <img
-                                src="<?= $page->category->icon_url ?>"
-                                alt="<?= $page->category->icon_name ?>"
-                                height="80"/>
+                    <img
+                            src="<?= $page->category->icon_url ?>"
+                            alt="<?= $page->category->icon_name ?>"
+                            height="80"/>
 
-                        <div class="d-flex flex-column justify-content-center">
-                            <dl class="text-gray m-0 text-bold">
-                                <?= $page->description ?>
-                            </dl>
-                        </div>
-
+                    <div class="d-flex flex-column justify-content-center">
+                        <dl class="text-gray m-0 text-bold">
+                            <?= $page->description ?>
+                        </dl>
+                    </div>
 
 
                 </div>
@@ -121,14 +158,36 @@ use helpers\translate\Translate;
 
             <?php endforeach; ?>
 
+        <?php elseif($hasNonCategoricalLink): ?>
+            <?php $page = getPage($language); ?>
+            <hr/>
+            <h4 class="my-3 text-gray"><?= $page->title ?></h4>
+            <hr class="non-margin"/>
+
+            <div class="col-12 col-md-12 col-xxl-12 d-flex gap-3 flex-wrap align-middle" style="cursor: pointer"
+                 onclick="window.location.href='<?= $page->url ?>'">
+
+                <img
+                        src="<?= $page->icon_url ?>"
+                        alt="<?= $page->icon_name ?>"
+                        height="80"/>
+
+                <div class="d-flex flex-column justify-content-center">
+                    <dl class="text-gray m-0 text-bold">
+                        <?= $page->description ?>
+                    </dl>
+                </div>
+
+
+            </div>
+
+            <hr class="non-margin"/>
         <?php else: ?>
 
             <hr class="mb-5"/>
 
         <?php endif; ?>
     </div>
-
-
 
 
 </div>
@@ -138,7 +197,6 @@ use helpers\translate\Translate;
 <?php require_once "layout/end.layout.php" ?>
 
 <script>
-
 
 
     $(document).on("click", ".request-connector", async function () {
@@ -175,28 +233,28 @@ use helpers\translate\Translate;
         $(".request-connector-btn").addClass("request-connector");
 
 
-        if($(".convert_by_image").length){
-            let height  = $(".convert_by_image").css("height");
-            $(".convertable_image").css("height",height)
+        if ($(".convert_by_image").length) {
+            let height = $(".convert_by_image").css("height");
+            $(".convertable_image").css("height", height)
         }
 
-        if($(".convert_by_image_2").length){
-            let height  = $(".convert_by_image_2").css("height");
+        if ($(".convert_by_image_2").length) {
+            let height = $(".convert_by_image_2").css("height");
             height.replace("px", "");
-            height = (parseInt(height) - 20.8)/2;
-            $(".convertable_image_2").css("height",height+"px");
+            height = (parseInt(height) - 20.8) / 2;
+            $(".convertable_image_2").css("height", height + "px");
         }
 
-        if($(".convert_by_image3").length){
-            let height  = $(".convert_by_image3").css("height");
-            $(".convertable_image3").css("height",height)
+        if ($(".convert_by_image3").length) {
+            let height = $(".convert_by_image3").css("height");
+            $(".convertable_image3").css("height", height)
         }
 
-        $(document).on("fullscreenchange","video",function () {
-            if($(this).css("object-fit") === "cover")
-                $(this).css("object-fit","contain");
+        $(document).on("fullscreenchange", "video", function () {
+            if ($(this).css("object-fit") === "cover")
+                $(this).css("object-fit", "contain");
             else
-                $(this).css("object-fit","cover");
+                $(this).css("object-fit", "cover");
 
         })
 

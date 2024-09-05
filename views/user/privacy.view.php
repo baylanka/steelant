@@ -62,7 +62,7 @@
                     - Webseite, von der aus der Zugriff erfolgte<br/>
                     - verwendeter Internetbrowser<br/>
                     - das verwendete Betriebssystem Ihres Rechners und<br/>
-                    - Name des Internetanbieters (auch Provider genannt)r<br/><br/>
+                    - Name des Internetanbieters (auch Provider genannt)<br/><br/>
 
 
                     <p style="font-weight: bold;" class="mb-2">
@@ -92,7 +92,7 @@
 
                     <p class="mb-2">
                         Wir verarbeiten die Daten unserer Kunden im Rahmen der Bestellvorgänge in unserem Onlineportal bzw.
-                        Musterbestellung, um ihnen die Auswahl und die Bestellung der gewählten Produkte und Leistungen,
+                        Musterbestellung, um Ihnen die Auswahl und die Bestellung der gewählten Produkte und Leistungen,
                         sowie deren Bezahlung und Lieferung, bzw. Ausführung zu ermöglichen.
                         Zu den verarbeiteten Daten gehören Bestandsdaten, Kommunikationsdaten, Vertragsdaten, Zahlungsdaten
                         und zu den von der Verarbeitung betroffenen Personen gehören unsere Kunden, Interessenten und

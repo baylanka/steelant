@@ -16,6 +16,7 @@ use helpers\translate\Translate;
         </h5>
 
 
+        <hr/>
         <h5 class="connector-heading my-4">
             <?= Translate::get("about_page","more_than_25_years_of_experience_in_creating_connectors_for_steel_walls") ?>
         </h5>

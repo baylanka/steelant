@@ -36,7 +36,16 @@ class HomeController
     public function gallery(Request $request)
     {
         $data = [];
-        return view("user/gallery.view.php", $data);
+        switch ($request->get("page")) {
+            case 1:
+                return view("user/gallery-1.view.php", $data);
+            case 2:
+                return view("user/gallery-2.view.php", $data);
+            case 3:
+                return view("user/gallery-3.view.php", $data);
+            default:
+                return view("user/gallery-1.view.php", $data);
+        }
     }
 
 
