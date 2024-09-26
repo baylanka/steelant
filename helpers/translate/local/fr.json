@@ -183,7 +183,8 @@
   "connector_mf_64": {
     "test_setup": "Montage d’essai",
     "after_testing": "Après l’essai, échec par déformation",
-    "conclusion": "Résumé"
+    "conclusion": "Résumé",
+    "comparative_tensile": "Test de force de traction MF64 en comparaison avec WOM-S/WOF-S"
   },
 
   "connector_page": {

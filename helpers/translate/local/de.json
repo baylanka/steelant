@@ -189,7 +189,8 @@
   "connector_mf_64": {
     "test_setup": "Versuchsaufbau",
     "after_testing": "Nach Versuch Versagen durch Verformung",
-    "conclusion": "Fazit"
+    "conclusion": "Fazit",
+    "comparative_tensile": "Zugkrafttest MF64 im Vergleich mit WOM-S/WOF-S"
   },
 
   "connector_page": {
