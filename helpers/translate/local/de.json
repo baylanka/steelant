@@ -113,7 +113,7 @@
     "brochures_and_data_sheets": "Broschüren und Datenblätter",
     "steelwall_connectors_overview": "SteelWall Übersicht Schlossprofile",
     "report_1": "Prüfbericht LPB100-9A",
-    "report_2": "Prüfbericht MF64, WOM-S/WOM-F",
+    "report_2": "Prüfbericht MF64",
     "report_3": "FEM simulations MDF100, MF130",
     "report_4": "Prüfbericht F40-IC",
     "report_5": "Prüfbericht F90",
@@ -200,7 +200,7 @@
   "about_page": {
     "about_steel_wall": "Über SteelWall",
     "more_than_25_years_of_experience_in_creating_connectors_for_steel_walls": "Viele Jahre Erfahrung in der Entwicklung von Schlossprofilen für Stahlspundwände",
-    "paragraph_01": "SteelWall ISH befasst sich mit Entwicklung, Produktion und Vertrieb von Stahlschlosssystemen zum Verbinden von Stahlrohren (Rohrspundbohlen), Stahlträgern (H-Spundbohlen) und Stahlblechen mit Schlossleisten (Spundbohlen) um durchgehende, miteinander verbundene, sehr stabile Stahlstütz- und Stahlrückhaltewände, sogenannte Stahlspundwände, zu erstel-len.",
+    "paragraph_01": "SteelWall ISH befasst sich mit Entwicklung, Produktion und Vertrieb von Stahlschlosssystemen zum Verbinden von Stahlrohren (Rohrspundbohlen), Stahlträgern (H-Spundbohlen) und Stahlblechen mit Schlossleisten (Spundbohlen) um durchgehende, miteinander verbundene, sehr stabile Stahlstütz- und Stahlrückhaltewände, sogenannte Stahlspundwände, zu erstellen.",
     "paragraph_02": "Stahlspundwände werden seit über 100 Jahren in folgenden Bauwerken eingesetzt: Baugruben, Brücken, Geländesprüngen, Kaimauern, Hafenbecken, Schleusenwänden, Kanälen, Molen, zum Hochwasserschutz, Tunnelbau, Tiefgaragen und zum Einkapseln von Altlasten.",
     "paragraph_03": "Die in zertifizierten Unternehmen der Stahlverarbeitung gefertigten SteelWall Stahlschlosssysteme der dritten Generation sind technisch perfekt, extrem stabil, leichtgängig rammbar und dabei unschlagbar wirtschaftlich.",
     "paragraph_04": ""
@@ -218,7 +218,7 @@
     "login_to_subscribe": "Melden Sie sich an, um sich anzumelden"
   },
   "imprint": {
-    "legal_advices": "Legal advices",
+    "legal_advices": "Rechtliche Hinweise",
     "publisher": "Herausgeber:<br/><br/>",
     "publisher_detail": "SteelWall ISH GmbH<br/>Tassilostr. 21<br/>82166 Gräfelfing<br/>Deutschand",
     "managing_partner": "Vertretungsberechtigter:",
