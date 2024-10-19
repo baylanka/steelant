@@ -44,7 +44,11 @@ use helpers\translate\Translate;
                 <div class="col-12 <?= $categoryDTOCollection->multiLevelExists ? 'col-md-2' : 'col-md-3' ?>">
                     <dl>
                         <?php if (!$categoryDTOCollection->multiLevelExists): ?>
-                            <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector_series") ?></dd>
+                            <?php if(sizeof($group) > 1): ?>
+                                <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector_series") ?></dd>
+                            <?php else: ?>
+                                <dd class="color-blue mb-2 font-weight-bold"><?= Translate::get("connector_page", "connector") ?></dd>
+                            <?php endif; ?>
                         <?php endif ?>
                         <?php foreach ($group as $category): ?>
                             <?php if ($exception_region->isExceptionalRegion($category->id, $language)): ?>
