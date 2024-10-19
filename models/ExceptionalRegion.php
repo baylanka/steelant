@@ -27,8 +27,6 @@ class ExceptionalRegion extends BaseModel
         foreach ($regions as $region){
             $regionCollection[$region->leaf_category_id][] = $region->region_lang_code;
         }
-        $path = storage_path("kt_" . time() .".txt");
-        file_put_contents($path, "loaded");
         $this->temp_arrangedRegions = $regionCollection;
         return $this->temp_arrangedRegions;
     }
