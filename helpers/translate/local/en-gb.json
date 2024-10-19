@@ -189,7 +189,7 @@
     "test_setup": "Test setup",
     "after_testing": "After testing, failure through deformation",
     "conclusion": "Conclusion",
-    "comparative_tensile": "Comparative tensile test with WOM-S/WOF-S",
+    "comparative_tensile": "Comparative tensile test with WOM-S/WOF-S"
   },
 
   "connector_page": {
