@@ -145,7 +145,8 @@ use helpers\translate\Translate;
 
             <p class="color-custom-light">
                 <?= Translate::get("home_footer", "last_website_update") ?> <?=ContentService::getLastUpdatedDate()?><br/>
-                Copyright by SteelWall ISH GmbH<br/>
+                Copyrighted property of<br/>
+                Steelwall ISH GmbH, all rights reserved.<br/>
                 Connectors designed by Richard Heindl
             </p>
         </div>
