@@ -195,7 +195,8 @@
 
   "connector_page": {
     "add_to_favourite_message": "Dieses Produkt wird in Ihren Favoriten gespeichert.",
-    "connector_series": "SCHLOSSPROFIL-SERIEN"
+    "connector_series": "SCHLOSSPROFIL-SERIEN",
+    "connector": "SCHLOSSPROFIL-SERIE"
   },
   "about_page": {
     "about_steel_wall": "Über SteelWall",

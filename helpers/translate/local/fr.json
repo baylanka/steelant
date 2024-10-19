@@ -189,7 +189,8 @@
 
   "connector_page": {
     "add_to_favourite_message": "Ce produit sera ajouté à vos Enregistrer dans les favoris.",
-    "connector_series": "SÉRIE DE CONNECTEURS"
+    "connector_series": "SÉRIE DE CONNECTEURS",
+    "connector": "CONNECTEUR"
   },
 
   "about_page": {
