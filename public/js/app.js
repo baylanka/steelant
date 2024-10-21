@@ -317,4 +317,17 @@ const toSnakeCase = (str = '') => {
     return snakeArr.join('_');
 };
 
+const showManipulatedURLOnDownloadableAnchorTags = ()=>{
+    $('a[download]').each(function(){
+        const element = $(this);
+        const downloadAttr = element.attr('download');
+        if(downloadAttr){
+            const manipulatedURL = getBaseUrl() + "/download/" + encodeURIComponent(downloadAttr);
+            const realURL = element.attr('href');
+            element.attr('onmouseover',`this.href='${manipulatedURL}';`);
+            element.attr('onmouseout',`this.href='${realURL}';`);
+            element.attr('onclick',`this.href='${realURL}';`);
+        }
+    });
+};
 
