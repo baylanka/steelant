@@ -8,7 +8,7 @@
 <?php require_once "layout/start.layout.php"; ?>
 
 <!--body section-->
-<div class="jumbotron">
+<div class="jumbotron" style="background-color: #ECEDF5;">
 
     <img src="<?= assets("themes/user/img/hero-image.png") ?>" srcset="<?= assets("themes/user/img/hero-image.png") ?> 3x" class="w-100 banner-image"/>
 
@@ -28,7 +28,7 @@
                                 <img src="<?= $category->getThumbnailUrl(); ?>" height="80"/>
                             </div>
 
-                            <div class="col-7 col-md-7 col-xl-7 col-xxl-7 <?= $multiRowExists ? 'item-height-200' : '' ?>">
+                            <div class="col-8 col-md-8 col-xl-8 col-xxl-8 <?= $multiRowExists ? 'item-height-200' : '' ?>">
                                     <?php $hasThirdLevels = CategoryRepository::hasThirdLevelsOfChildren($category->id) ?>
 
                                     <dl>
@@ -74,10 +74,10 @@
         <!--categories section-->
 
 
-        <div class="row pt-5 mb-5" id="gallery-container">
+        <div class="row pt-1 ps-3 pe-3 mb-5" id="gallery-container" style="background-color: white;">
 
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 mt-3 col-lg-4 pe-0">
                 <img src="<?= assets("themes/user/img/gallery-1.png") ?>" srcset="<?= assets("themes/user/img/gallery-1.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
@@ -87,25 +87,25 @@
             </div>
 
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 col-lg-4 pe-0" style="margin-top: 35px;">
                 <img src="<?= assets("themes/user/img/gallery-3.png") ?>"  srcset="<?= assets("themes/user/img/gallery-3.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 col-lg-4 pe-0"  style="margin-top: 35px;">
                 <img src="<?= assets("themes/user/img/gallery-4.png") ?>"  srcset="<?= assets("themes/user/img/gallery-4.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 col-lg-4"  style="margin-top: 35px;">
                 <img src="<?= assets("themes/user/img/gallery-5.png") ?>"  srcset="<?= assets("themes/user/img/gallery-5.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
-            <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
+            <div class="col-sm-12 col-md-8  col-lg-8  pe-0"  style="margin-top: 35px;">
                 <img src="<?= assets("themes/user/img/gallery-7.png") ?>"  srcset="<?= assets("themes/user/img/gallery-7.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
 
-            <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
+            <div class="col-sm-12 col-md-4  col-lg-4"  style="margin-top: 35px;">
                 <img src="<?= assets("themes/user/img/gallery-6.png") ?>"  srcset="<?= assets("themes/user/img/gallery-6.png") ?> 3x" class="img-fluid h-100 w-100">
             </div>
 
