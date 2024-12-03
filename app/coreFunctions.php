@@ -70,6 +70,7 @@ function url($uri) {
 
 function preloader()
 {
+    rateLimiter();
     header('Content-Type: text/html; charset=utf-8');
     $pageRoutes = [];
     ini_set('post_max_size', '40M');
@@ -121,9 +122,80 @@ function get_url_by_lang($url)
             return url($url["fr"]);
     }
 
+}
 
+function rateLimiter()
+{
+    global $env;
+    $timeFrame = $env['TIME_FRAME'];
+    $maxRequests = $env['MAX_REQUEST'];
+    $blockDuration = $env['BLOCK_DURATION'];
+    $filePath =  storage_path("/logs/rate_limit.json");
+    // Get the client's IP address
+    $ipAddress = $_SERVER['REMOTE_ADDR'];
 
+    // Check if the file exists, if not create it
+    if (!file_exists($filePath)) {
+        file_put_contents($filePath, json_encode([]));
+    }
 
+    // Read the file content
+    $data = json_decode(file_get_contents($filePath), true);
+    $currentTime = time();
+    $currentDate = date('Y-m-d');
+    $twoDaysAgo = date('Y-m-d', strtotime('-2 days'));
 
+    // Remove entries older than two days
+    foreach ($data as $date => $entries) {
+        if ($date < $twoDaysAgo) {
+            unset($data[$date]);
+        }
+    }
 
+    // Initialize data structure if not already done
+    if (!isset($data[$currentDate])) {
+        $data[$currentDate] = [];
+    }
+
+    if (!isset($data[$currentDate][$ipAddress])) {
+        $data[$currentDate][$ipAddress] = [
+            'requests' => [],
+            'blocked_until' => 0
+        ];
+    }
+
+    // Check if the IP is currently blocked
+    if ($data[$currentDate][$ipAddress]['blocked_until'] > $currentTime) {
+        // Deny the request
+        http_response_code(429); // Too Many Requests
+        echo "Too many requests. Try again later.";
+        exit;
+    }
+
+    // Filter out outdated entries
+    $data[$currentDate][$ipAddress]['requests'] = array_filter(
+        $data[$currentDate][$ipAddress]['requests'],
+        function ($timestamp) use ($currentTime, $timeFrame) {
+            return ($currentTime - $timestamp) <= $timeFrame;
+        }
+    );
+
+    // Check the request count
+    if (count($data[$currentDate][$ipAddress]['requests']) >= $maxRequests) {
+        // Block the IP for the next 30 seconds
+        $data[$currentDate][$ipAddress]['blocked_until'] = $currentTime + $blockDuration;
+        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+        http_response_code(429); // Too Many Requests
+        echo "Too many requests. You are blocked for $blockDuration seconds.";
+        exit;
+    }
+
+    // Add the current request timestamp
+    $data[$currentDate][$ipAddress]['requests'][] = $currentTime;
+
+    // Save the updated data back to the file
+    file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+
+    // Allow the request
+    return true;
 }

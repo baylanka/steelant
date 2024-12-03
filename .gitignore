@@ -6,7 +6,7 @@
 docs
 public/storage/*
 public/storage
-
+storage/logs/*
 vendor
 
 
