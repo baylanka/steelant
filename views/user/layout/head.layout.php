@@ -2,7 +2,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="base-url" content="<?= url("/"); ?>">
-
+    <meta name="description" content="SteelWall connectors comply with European standards, manufactured by certified steel processing companies. Precision-engineered with strict tolerances, they ensure durability and compatibility. Check interlocks with a physical sample for optimal fit.">
     <title>SteelWall</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?= assets("img/favicon/apple-touch-icon.png") ?>">
@@ -15,5 +15,5 @@
           integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <link rel="stylesheet" href="<?= assets("css/steel-wall.css") ?>?v=<?=  date("h:i:sa") ?>">
+    <link rel="stylesheet" href="<?= assets("css/steel-wall-min.css") ?>?v=<?=  date("h:i:sa") ?>">
 </head>

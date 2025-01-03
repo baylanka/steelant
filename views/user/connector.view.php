@@ -13,6 +13,10 @@ use helpers\translate\Translate;
         width: 100% !important;
         display: block;
     }
+
+    .footer-nav-list-padding{
+        padding: 10.5px 0 0 10.5px !important;
+    }
 </style>
 
 <!--body section-->
@@ -27,20 +31,20 @@ use helpers\translate\Translate;
     endif;
     ?>
 
-    <div class="responsive-wrap px-4">
+    <div class="responsive-wrap alignment-full-padding">
 
 
         <!--categories section-->
-        <div class="row pt-5 gap-0">
+        <div class="row gap-0">
 
 
             <div class="col-md-4 col-12 d-flex gap-3 margin-bottom-sm">
-                <img src="<?= $categoryDTOCollection->parentCategory->getThumbnailUrl() ?>" height="80"/>
+                <img src="<?= $categoryDTOCollection->parentCategory->getThumbnailUrl() ?>" height="80" alt="thumbnail image"/>
                 <p class="category-name selected"><?= $categoryDTOCollection->parentCategory->getNameByLang(Translate::getLang()); ?></p>
             </div>
 
 
-            <?php foreach ($categoryDTOCollection->children as $group): ?>
+            <?php foreach ($categoryDTOCollection->children as $index => $group): ?>
                 <div class="col-12 <?= $categoryDTOCollection->multiLevelExists ? 'col-md-2' : 'col-md-3' ?>">
                     <dl>
                         <?php if (!$categoryDTOCollection->multiLevelExists): ?>
@@ -96,44 +100,44 @@ use helpers\translate\Translate;
 
 
         <?php
-                $hasNonCategoricalLink = $categoryDTO->id == 22;
+        $hasNonCategoricalLink = $categoryDTO->id == 22;
 
-                function getPage($language)
-                {
-                      ;
-                    $title = '';
-                    $description = '';
-                    $iconName = Translate::get("gallery_page","gallery");
-                    switch ($language) {
-                        case \helpers\pools\LanguagePool::GERMANY()->getLabel():
-                            $title = "Verwandte Themen";
-                            $description = "$iconName: DTH Bohrverfahren";
-                            break;
-                        case \helpers\pools\LanguagePool::FRENCH()->getLabel():
-                            $title = "Thèmes connexes";
-                            $description = "$iconName: Procédé d’insertion DTH";
-                            break;
-                        case \helpers\pools\LanguagePool::UK_ENGLISH()->getLabel():
-                        case \helpers\pools\LanguagePool::US_ENGLISH()->getLabel():
-                            $title = "Related chapters";
-                            $description = "$iconName: DTH driving method";
-                            break;
-                    }
+        function getPage($language)
+        {
+            ;
+            $title = '';
+            $description = '';
+            $iconName = Translate::get("gallery_page","gallery");
+            switch ($language) {
+                case \helpers\pools\LanguagePool::GERMANY()->getLabel():
+                    $title = "Verwandte Themen";
+                    $description = "$iconName: DTH Bohrverfahren";
+                    break;
+                case \helpers\pools\LanguagePool::FRENCH()->getLabel():
+                    $title = "Thèmes connexes";
+                    $description = "$iconName: Procédé d’insertion DTH";
+                    break;
+                case \helpers\pools\LanguagePool::UK_ENGLISH()->getLabel():
+                case \helpers\pools\LanguagePool::US_ENGLISH()->getLabel():
+                    $title = "Related chapters";
+                    $description = "$iconName: DTH driving method";
+                    break;
+            }
 
-                    return json_decode(json_encode([
-                        'title' => $title,
-                        'url' => url('/gallery'),
-                        'icon_url' => assets("themes/user/img/gallery-icon.png"),
-                        'icon_name' => $iconName,
-                        'description' => $description
-                    ]));
+            return json_decode(json_encode([
+                'title' => $title,
+                'url' => url('/gallery'),
+                'icon_url' => assets("themes/user/img/gallery-icon.png"),
+                'icon_name' => $iconName,
+                'description' => $description
+            ]));
 
-                }
+        }
         ?>
 
         <?php if ($categoryDTO->hasRelevantCategories()): ?>
             <?php
-                $pages = $categoryDTO->getRelevantCategories();
+            $pages = $categoryDTO->getRelevantCategories();
             ?>
             <hr/>
             <h4 class="my-3 text-gray"><?= $pages[0]->title ?></h4>

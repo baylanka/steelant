@@ -1,5 +1,5 @@
 <?php
-    use helpers\translate\Translate;
+use helpers\translate\Translate;
 ?>
 <?php require_once "layout/start.layout.php" ?>
 
@@ -7,14 +7,14 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-padding">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80"/>
+                    <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80" alt="steelwall_imprint_icon"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -33,11 +33,11 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-         <hr/>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?= Translate::get('imprint','legal_advices')?></h4>
 
-         <hr/>
+        <hr/>
 
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-6">

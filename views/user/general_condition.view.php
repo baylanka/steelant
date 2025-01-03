@@ -7,9 +7,9 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-paddin">
         <!--categories section-->
-        <div class="row w-100 mt-4">
+        <div class="row w-100">
 
 
             <div class="col-12 col-md-12 col-xxl-12 row gap-3">
