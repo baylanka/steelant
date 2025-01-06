@@ -11,14 +11,14 @@ global $env;
 <div class="jumbotron w-100 m-0">
 
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-padding">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-2 me-3">
-                    <img src="<?= assets("themes/user/img/favourite-icon.png") ?>" height="80"/>
+                    <img src="<?= assets("themes/user/img/favourite-icon.png") ?>" height="80" alt="steelwall_favourite_icon"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -96,22 +96,22 @@ global $env;
                         <td class=""><?= $order->connector_name ?></td>
                         <td class="">
                             <?php
-                                $date = date_create($order->created_at);
-                                echo date_format($date, "Y-m-d / h:m");
+                            $date = date_create($order->created_at);
+                            echo date_format($date, "Y-m-d / h:m");
                             ?>
                         </td>
                         <td class=""><?=$order->number_of_piles?></td>
                         <?php
-                            $arr = [];
-                            $deliveryAddress = $order->delivery_address ?? '';
-                            $postalCode = $order->postal_code ?? '';
-                            if(!empty($deliveryAddress)){
-                                $arr[] = $deliveryAddress;
-                            }
+                        $arr = [];
+                        $deliveryAddress = $order->delivery_address ?? '';
+                        $postalCode = $order->postal_code ?? '';
+                        if(!empty($deliveryAddress)){
+                            $arr[] = $deliveryAddress;
+                        }
 
-                            if(!empty($postalCode)){
-                                $arr[] = $postalCode;
-                            }
+                        if(!empty($postalCode)){
+                            $arr[] = $postalCode;
+                        }
                         ?>
                         <td class=""><?= implode('<br/>', $arr)?></td>
                         <td class=""><?= $order->country ?></td>
@@ -148,19 +148,19 @@ global $env;
                 </thead>
                 <tbody>
                 <?php foreach ($favourites as $favourite): ?>
-                <tr>
-                    <td><?= $favourite->connector_name ?></td>
-                    <td>
-                        <?php
+                    <tr>
+                        <td><?= $favourite->connector_name ?></td>
+                        <td>
+                            <?php
                             $date = date_create($favourite->created_at);
                             echo date_format($date, "Y-m-d / h:m");
-                        ?>
-                    </td>
-                    <td class="text-center d-flex justify-content-end gap-4">
-                        <i class="bi bi-trash3-fill text-danger delete_favourite" data-toggle="tooltip" title="Delete" data-id="<?= $favourite->id ?>"></i>
-                        <a href="<?= RouterService::getCategoryPageRoute( $favourite->leaf_category_id) ?>#<?= $favourite->connector_id ?>"><i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></a>
-                    </td>
-                </tr>
+                            ?>
+                        </td>
+                        <td class="text-center d-flex justify-content-end gap-4">
+                            <i class="bi bi-trash3-fill text-danger delete_favourite" data-toggle="tooltip" title="Delete" data-id="<?= $favourite->id ?>"></i>
+                            <a href="<?= RouterService::getCategoryPageRoute( $favourite->leaf_category_id) ?>#<?= $favourite->connector_id ?>"><i class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View"></i></a>
+                        </td>
+                    </tr>
 
                 <?php endforeach; ?>
 
@@ -189,7 +189,7 @@ global $env;
         try {
             let response = await makeAjaxCall(`<?= url('/order/request/delete') . "?id=" ?>${id}`, {},"GET");
             toast.success(response.message);
-           $(this).closest("tr").remove();
+            $(this).closest("tr").remove();
         } catch (err) {
             err = JSON.parse(err);
             toast.error(err.message);

@@ -8,10 +8,10 @@ use helpers\translate\Translate;
 <!--body section-->
 <div class="jumbotron">
 
-    <img src="<?= assets("themes/user/img/hero-image-about-page.png") ?>" class="w-100"/>
+    <img src="<?= assets("themes/user/img/hero-image-about-page-c.jpg") ?>" class="w-100" loading="eager" alt="steelwall-hero"/>
 
-    <div class="responsive-wrap">
-        <h5 class="connector-heading mt-4 mb-5 selected">
+    <div class="responsive-wrap alignment-full-padding">
+        <h5 class="connector-heading mt-4 selected margin-bottom-7rem">
             <?= Translate::get("about_page","about_steel_wall") ?>
         </h5>
 
@@ -41,45 +41,43 @@ use helpers\translate\Translate;
     </div>
 
 
-    <div class="row pt-5 mb-5" id="gallery-container">
+    <div class="row alignment-full-padding m-0 bg-white justify-content-between" id="gallery-container">
 
 
-        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-1.png") ?>" srcset="<?= assets("themes/user/img/gallery-1.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-4 mt-3 col-lg-4 p-0 only-desktop-square-width">
+            <img data-src="<?= assets("themes/user/img/gallery-1-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-1-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
 
-        <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
-            <img src="<?= assets("themes/user/img/gallery-2.png") ?>"  srcset="<?= assets("themes/user/img/gallery-2.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-8 mt-3 col-lg-8 only-desktop-rectangle-custom-padding">
+            <img data-src="<?= assets("themes/user/img/gallery-2-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-2-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
 
-        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-3.png") ?>"  srcset="<?= assets("themes/user/img/gallery-3.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-4 col-lg-4 p-0 only-desktop-square-width margin-top-35px">
+            <img data-src="<?= assets("themes/user/img/gallery-3-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-3-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
 
-        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-4.png") ?>"  srcset="<?= assets("themes/user/img/gallery-4.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-4 col-lg-4  p-0 only-desktop-square-width margin-top-35px">
+            <img data-src="<?= assets("themes/user/img/gallery-4-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-4-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
-        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-5.png") ?>"  srcset="<?= assets("themes/user/img/gallery-5.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-4 col-lg-4  p-0 only-desktop-square-width margin-top-35px">
+            <img data-src="<?= assets("themes/user/img/gallery-5-c.jpg") ?>" data-srcset="3x"  srcset="<?= assets("themes/user/img/gallery-5-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
-        <div class="col-sm-12 col-md-8 mt-3 col-lg-8">
-            <img src="<?= assets("themes/user/img/gallery-7.png") ?>"  srcset="<?= assets("themes/user/img/gallery-7.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-8  col-lg-8  only-desktop-rectangle-custom-padding-right margin-top-35px">
+            <img data-src="<?= assets("themes/user/img/gallery-7-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-7-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
 
-        <div class="col-sm-12 col-md-4 mt-3 col-lg-4">
-            <img src="<?= assets("themes/user/img/gallery-6.png") ?>"  srcset="<?= assets("themes/user/img/gallery-6.png") ?> 3x" class="img-fluid h-100 w-100">
+        <div class="col-sm-12 col-md-4 col-lg-4 p-0 only-desktop-square-width margin-top-35px">
+            <img data-src="<?= assets("themes/user/img/gallery-6-c.jpg") ?>" data-srcset="3x" srcset="<?= assets("themes/user/img/gallery-6-c.jpg") ?> 3x" class="img-fluid h-100 w-100" loading="lazy" alt="steelwall-gallery">
         </div>
 
 
     </div>
-
-
 
 </div>
 

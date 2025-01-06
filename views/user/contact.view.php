@@ -6,17 +6,17 @@ use helpers\translate\Translate;
 ?>
 
 <!--body section-->
-<div class="jumbotron w-100 p-0 m-0">
+<div class="jumbotron w-100 m-0">
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-padding">
 
         <!--categories section-->
-        <div class="row w-100 mt-4">
+        <div class="row w-100">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-2 me-3">
-                    <img src="<?= assets("themes/user/img/contact-icon.png") ?>" height="80"/>
+                    <img src="<?= assets("themes/user/img/contact-icon.png") ?>" height="80" alt="steelwall_contact_icon"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -27,7 +27,7 @@ use helpers\translate\Translate;
 
             </div>
 
-            <div class="col-12 col-md-8 col-xxl-8  d-flex flex-row flex-wrap">
+            <div class="col-12 col-md-8 col-xxl-8  d-flex flex-row flex-wrap padding-left-2point6">
                 <div class="col-12 col-md-3 col-xxl-3 mb-3">
                     <dl>
                         <dt class="color-blue contact_head_dt">
@@ -41,7 +41,7 @@ use helpers\translate\Translate;
                     </dl>
 
                 </div>
-                <div class="col-12 col-md-3 col-xxl-3 mb-3">
+                <div class="col-12 col-md-3 col-xxl-3 mb-3 padding-left-point8">
                     <dl>
                         <dt class="color-blue contact_head_dt">
                             <?= Translate::get("contact_page", "sales_line_north_america") ?>
@@ -144,7 +144,7 @@ use helpers\translate\Translate;
                             <?= Translate::get("user_info", "email",null,true) ?>
                         </label>
                     </div>
-                    
+
                     <div class="form-group margin-t-50px">
 
                         <input type="text" class="form-control" id="inputPhone" name="phone"
@@ -155,7 +155,7 @@ use helpers\translate\Translate;
                     </div>
 
                     <div class="form-group margin-t-50px">
-                        <textarea type="text" class="form-control" id="message" name="message"
+                        <textarea type="text" class="form-control" id="message" name="message" rows="4"
                                   aria-describedby="message"  placeholder="<?= Translate::get("contact_page", "your_message") ?>"></textarea>
                         <label class="form-control-placeholder" for="message">
                             <?= Translate::get("contact_page", "your_message",null,true) ?>
@@ -260,7 +260,7 @@ use helpers\translate\Translate;
                     </div>
 
                     <div class="form-group margin-t-50px">
-                        <textarea type="text" class="form-control" id="message" name="message"
+                        <textarea type="text" class="form-control" id="message" name="message" rows="4"
                                   aria-describedby="message"  placeholder="<?= Translate::get("contact_page", "your_message") ?>"></textarea>
                         <label class="form-control-placeholder" for="message">
                             <?= Translate::get("contact_page", "your_message",null,true) ?>
