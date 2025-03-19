@@ -1,16 +1,16 @@
 <?php
-    use \helpers\services\RequestService;
-    use \helpers\translate\Translate;
-    use \helpers\pools\LanguagePool;
+use \helpers\services\RequestService;
+use \helpers\translate\Translate;
+use \helpers\pools\LanguagePool;
 ?>
 
 <?php
-    global $env;
+global $env;
 ?>
 <!--navbar section-->
 <nav class="navbar fixed-top position-relative">
 
-    <div class="container-fluid">
+    <div class="container-fluid align-items-base">
         <div class="text-center row position-relative p-2">
             <div class="col-4 mt-5 text-center reveal-on-sm" style="display: none;">
                 <img src="<?= assets("themes/user/img/menu.png") ?>"
@@ -24,21 +24,21 @@
                 /><br/>
             </div>
 
-            <div class="w-25 d-flex gap-3 align-middle remove-on-sm invisible">
+            <div class="w-25 d-flex gap-2 align-middle remove-on-sm invisible">
                 <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/de.png") ?>" height="25"
-                         class="flag selected-flag"/>
+                    <img src="<?= assets("img/flags/de.png") ?>" height="20" width="20"
+                         class="flag selected-flag" alt="lang-de"/>
                 </a>
                 <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
-                         class="flag"/>
+                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="20" width="20"
+                         class="flag" alt="lang-en-gb"/>
                 </a> <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
-                         class="flag"/>
+                    <img src="<?= assets("img/flags/en-us.png") ?>" height="20" width="20"
+                         class="flag" alt="lang-en-us"/>
                 </a>
                 <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/fr.png") ?>" height="25"
-                         class="flag"/>
+                    <img src="<?= assets("img/flags/fr.png") ?>" height="20" width="20"
+                         class="flag" alt="lang-fr"/>
                 </a>
 
             </div>
@@ -53,49 +53,49 @@
             <div class="col-md-4 mt-5 text-center login-btn" style="display: none;">
                 <a class="nav-link"
                    href="<?= isset($_SESSION["auth"]) && $_SESSION["auth"] === true ? url("/profile") : url("/login") ?>">
-                    <img src="<?= assets("themes/user/img/user.png") ?>" height="30"/><br/>
+                    <img src="<?= assets("themes/user/img/user.png") ?>" height="30"  alt="profile"/><br/>
                 </a>
             </div>
 
-            <div class="w-25 d-flex gap-3 align-middle remove-on-sm">
+            <div class="w-25 d-flex gap-2 align-middle remove-on-sm">
                 <a href="?lang=<?=LanguagePool::GERMANY()->getLabel()?>"
-                        title="<?=LanguagePool::GERMANY()->getLabel()?>"
-                        class="lang"
-                        data-lang="<?=LanguagePool::GERMANY()->getLabel()?>">
-                    <img src="<?= assets("img/flags/de.png") ?>" height="25"
+                   title="<?=LanguagePool::GERMANY()->getLabel()?>"
+                   class="lang"
+                   data-lang="<?=LanguagePool::GERMANY()->getLabel()?>">
+                    <img src="<?= assets("img/flags/de.png") ?>" height="20" width="20"
                          class="flag
                               <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::GERMANY()->getLabel()
-                                    ? "selected-flag" : "" ?>"/>
+                             ? "selected-flag" : "" ?>"  alt="lang-de"/>
                 </a>
                 <a href="?lang=<?=LanguagePool::FRENCH()->getLabel()?>"
                    title="<?=LanguagePool::FRENCH()->getLabel()?>"
                    data-lang="<?=LanguagePool::FRENCH()->getLabel()?>"
                    class="lang"
                 >
-                    <img src="<?= assets("img/flags/fr.png") ?>" height="25"
+                    <img src="<?= assets("img/flags/fr.png") ?>" height="20" width="20"
                          class="flag
                                 <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::FRENCH()->getLabel()
-                             ? "selected-flag" : "" ?>"/>
+                             ? "selected-flag" : "" ?>"  alt="lang-fr"/>
                 </a>
                 <a href="?lang=<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                    title="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                    data-lang="<?=LanguagePool::UK_ENGLISH()->getLabel()?>"
                    class="lang"
                 >
-                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="25"
+                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="20" width="20"
                          class="flag
                                <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::UK_ENGLISH()->getLabel()
-                                    ? "selected-flag" : "" ?>"/>
+                             ? "selected-flag" : "" ?>" alt="lang-en-gb"/>
                 </a>
                 <a href="?lang=<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                    title="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                    data-lang="<?=LanguagePool::US_ENGLISH()->getLabel()?>"
                    class="lang"
                 >
-                    <img src="<?= assets("img/flags/en-us.png") ?>" height="25"
+                    <img src="<?= assets("img/flags/en-us.png") ?>" height="20" width="20"
                          class="flag
                                 <?= isset($_SESSION["lang"]) && $_SESSION["lang"] == LanguagePool::US_ENGLISH()->getLabel()
-                                    ? "selected-flag" : "" ?>"/>
+                             ? "selected-flag" : "" ?>" alt="lang-en-us"/>
                 </a>
             </div>
         </div>
@@ -113,7 +113,7 @@
             <?php if (!isset($_SESSION["auth"])) { ?>
                 <div class="col-5 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>">
-                        <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/>
+                        <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20" width="20" alt="profile"/>
                         <?= Translate::get("common", "login") ?>
                     </a>
                 </div>
@@ -134,7 +134,7 @@
                    class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
                    data-toggle="tooltip" title="Favourite">
                     <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center"
-                         height="23"/></a>
+                         height="23" width="23" alt="favourite"/></a>
 
 
             </div>
@@ -144,14 +144,14 @@
                     <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>" data-toggle="tooltip"
                        title="Profile"><img
                                 src="<?= assets("themes/user/img/user-white.png") ?>" class="align-self-center"
-                                height="23"/></a>
+                                height="23" alt="profile"/></a>
 
                 </div>
                 <div class="col-2 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip"
                        title="Logout"><img
                                 src="<?= assets("themes/user/img/logout-white.png") ?>" class="align-self-center"
-                                height="23"/></a>
+                                height="23" alt="logout"/></a>
 
                 </div>
 
@@ -190,7 +190,7 @@
             <?php if (!isset($_SESSION["auth"])) { ?>
                 <div class="col-5 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/login") ?>?lang=<?=Translate::getLang()?>">
-                        <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20"/>
+                        <img src="<?= assets("themes/user/img/user-white.png") ?>" height="20" width="20" alt="login-icon"/>
                         <?= Translate::get("common", "login") ?>
                     </a>
                 </div>
@@ -211,7 +211,7 @@
                    class="text-decoration-none d-flex gap-1 <?= RequestService::isRequestedRoute("/favourite") ? "selected" : "" ?>"
                    data-toggle="tooltip" title="<?= Translate::get("home_nav", "favourites") ?>">
                     <img src="<?= assets("themes/user/img/" . $star_icon . ".png") ?>" class="align-self-center"
-                         height="23"/>
+                         height="23" width="23" alt="profile"/>
                 </a>
 
 
@@ -231,13 +231,13 @@
                     <a class="nav-link d-flex gap-1" href="<?= url("/profile") ?>?lang=<?=Translate::getLang()?>" data-toggle="tooltip"
                        title="<?= Translate::get("home_nav", "profile") ?>">
                         <img src="<?= assets("themes/user/img/" . $user_icon . ".png") ?>" class="align-self-center"
-                             height="23"/>
+                             height="23" alt="profile"/>
                     </a>
                 </div>
                 <div class="col-2 text-center d-flex gap-1">
                     <a class="nav-link d-flex gap-1" href="<?= url("/logout") ?>" data-toggle="tooltip" title="<?= Translate::get("common", "logout") ?>">
                         <img src="<?= assets("themes/user/img/logout-white.png") ?>" class="align-self-center"
-                             height="23"/>
+                             height="23" alt="profile"/>
                     </a>
                 </div>
 

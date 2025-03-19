@@ -1,5 +1,5 @@
 <?php
-    use helpers\translate\Translate;
+use helpers\translate\Translate;
 ?>
 <?php require_once "layout/start.layout.php" ?>
 
@@ -7,14 +7,14 @@
 <div class="jumbotron w-100 p-0 m-0">
 
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-padding">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80"/>
+                    <img src="<?= assets("themes/user/img/copyright-icon.png") ?>" height="80" alt="steelwall_privacy_icon"/>
                 </div>
                 <div class="col-md-8">
                     <dl>
@@ -33,11 +33,11 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-         <hr/>
+        <hr/>
 
         <h4 class="connector-heading my-3"><?=Translate::get('privacy','legal_advices')?></h4>
 
-         <hr/>
+        <hr/>
 
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-12">
@@ -50,11 +50,11 @@
                     <p style="font-weight: bold;" class="mb-3">Beim Besuch der Firmenhomepage</p>
 
                     <p  class="mb-3">
-                    Wenn Sie uns auf unserer Homepage www.steelwall.eu besuchen, werden durch den auf Ihrem
-                    Endgerät (z.B. PC, Laptop, Smartphone, etc.) zum Einsatz kommenden Internetbrowser automatisch
-                    Informationen an den Server unserer Homepage gesendet, welche zeitlich begrenzt als
-                    Logfile-Dateien gespeichert und dann automatisch nach 24 Monaten gelöscht werden.
-                    Diese Daten sind:</p>
+                        Wenn Sie uns auf unserer Homepage www.steelwall.eu besuchen, werden durch den auf Ihrem
+                        Endgerät (z.B. PC, Laptop, Smartphone, etc.) zum Einsatz kommenden Internetbrowser automatisch
+                        Informationen an den Server unserer Homepage gesendet, welche zeitlich begrenzt als
+                        Logfile-Dateien gespeichert und dann automatisch nach 24 Monaten gelöscht werden.
+                        Diese Daten sind:</p>
 
                     - IP-Adresse des anfragenden Rechners<br/>
                     - Datum und Uhrzeit des Webseitenzugriffs<br/>
@@ -115,7 +115,7 @@
                     </p>
 
                     <p style="font-weight: bold;" class="mb-2 mt-3">
-                         Musterbestellung per Kontaktformular:
+                        Musterbestellung per Kontaktformular:
                     </p>
 
                     <p>

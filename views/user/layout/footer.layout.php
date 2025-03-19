@@ -5,11 +5,11 @@ use helpers\services\RequestService;
 use helpers\translate\Translate;
 
 ?>
-<div class="footer fixed-bottom position-relative mt-5 w-100 p-4">
+<div class="footer fixed-bottom position-relative mt-5 w-100 alignment-full-padding">
 
     <div class="row">
-        <div class="col-12 col-md-10">
-            <h4 class="color-custom-light"><?= Translate::get("home_footer", "disclaimer") ?></h4>
+        <div class="col-12 col-md-12">
+            <h5 class="color-custom-light disclaimer-text"><?= Translate::get("home_footer", "disclaimer") ?></h5>
 
             <p class="color-custom-light mb-4">
                 <?= Translate::get("home_footer", "disclaimer_text") ?>
@@ -18,14 +18,14 @@ use helpers\translate\Translate;
     </div>
 
 
-    <div class="divider-white mt-5 mb-3"></div>
+    <div class="divider-white mt-5"></div>
 
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 col-md-4">
-            <h4 class="color-custom-light">SteelWall</h4>
+            <h5 class="color-custom-light">SteelWall</h5>
 
-            <ul style="list-style-type: none; padding-left: 0;">
+            <ul class="footer-content-ul color-custom-light">
                 <li><a href="<?= url("/about") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none  <?= RequestService::isRequestedRoute("/about") ? "selected" : "color-custom-light" ?>">
                         <?= Translate::get("home_nav", "about_steelwall") ?>
@@ -45,11 +45,11 @@ use helpers\translate\Translate;
                 </li>
             </ul>
 
-            <h4 class="mt-5 color-custom-light">
+            <h5 class="mt-5 color-custom-light">
                 <?= Translate::get("home_nav", "legal_advice") ?>
-            </h4>
+            </h5>
 
-            <ul style="list-style-type: none; padding-left: 0;">
+            <ul class="footer-content-ul color-custom-light">
                 <li>
                     <a href="<?= url("/imprint") ?>?lang=<?= Translate::getLang() ?>"
                        class="text-decoration-none <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "color-custom-light" ?>">
@@ -71,12 +71,12 @@ use helpers\translate\Translate;
             </ul>
         </div>
 
-        <div class="col-12 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2 footer-nav-list-padding-2x">
             <a href="https://www.steelwall.eu" class="text-decoration-none color-custom-light mb-4">
-                <h4>steelwall.eu</h4>
+                <h5>steelwall.eu</h5>
             </a>
 
-            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
+            <ul class="footer-content-ul color-custom-light">
                 <li>
                     <?= Translate::get("home_footer", "africa") ?>
                 </li>
@@ -114,12 +114,12 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="col-12 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2 footer-nav-list-padding">
             <a href="https://www.steelwallus.com" class="text-decoration-none color-custom-light mb-4">
-                <h4>steelwallus.com</h4>
+                <h5>steelwallus.com</h5>
             </a>
 
-            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
+            <ul class="footer-content-ul color-custom-light">
                 <li>
                     <?= Translate::get("home_footer", "north_america") ?>
                 </li>
@@ -127,11 +127,11 @@ use helpers\translate\Translate;
         </div>
 
 
-        <div class="col-12 col-md-2 col-xxl-2">
+        <div class="col-12 col-md-2 col-xxl-2 footer-nav-list-padding">
             <a href="https://mf-pipe.com/" target="_blank" class="text-decoration-none color-custom-light mb-4">
-                <h4>mf-pipe.com</h4>
+                <h5>mf-pipe.com</h5>
             </a>
-            <ul style="list-style-type: none; padding-left: 0;" class="color-custom-light">
+            <ul class="footer-content-ul color-custom-light">
                 <li>
                     <?= Translate::get("home_footer", "about_mf_pipe") ?>
                 </li>
@@ -141,10 +141,10 @@ use helpers\translate\Translate;
     </div>
 
     <div class="row">
-        <div class="col-6 col-md-4">
+        <div class="col-12 col-md-4">
 
             <p class="color-custom-light">
-                <?= Translate::get("home_footer", "last_website_update") ?> <?=ContentService::getLastUpdatedDate()?><br/>
+                <?= Translate::get("home_footer", "last_website_update") ?> <?= ContentService::getLastUpdatedDate()?><br/>
                 Copyrighted property of<br/>
                 Steelwall ISH GmbH, all rights reserved.<br/>
                 Connectors designed by Richard Heindl

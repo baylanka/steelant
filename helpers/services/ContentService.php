@@ -13,7 +13,7 @@ class ContentService
         $latestUpdatedContent = CategoryContentRepository::getLastUpdatedContent();
         $date =  $latestUpdatedContent->updated_at;
         $date=date_create($date);
-        return date_format($date,"d.M.Y");
+        return date_format($date,"d. M. Y");
     }
     public static function getTemplatesByCategoryId(int $categoryId, string $lang)
     {

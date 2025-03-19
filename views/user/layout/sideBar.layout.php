@@ -25,10 +25,10 @@
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-                <a class="nav-link color-blue" aria-current="page"
+                <span class="nav-link color-blue" aria-current="page"
                    href="#">
                     Connectors / Categories
-                </a>
+                </span>
 
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
@@ -117,9 +117,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link color-blue">
+                <span class="nav-link color-blue">
                     <?= Translate::get("home_nav", "user_information") ?>
-                </a>
+                </span>
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/about") ? "selected" : "" ?>"
@@ -140,18 +140,18 @@
                         </a>
                     </li>
                     <li class="nav-item" href="#">
-                        <a class="nav-link">
+                        <span class="nav-link">
                             <?= Translate::get("home_nav", "languages_and_measures") ?>
-                        </a>
+                        </span>
                     </li>
 
                 </ul>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link color-blue">
+                <span class="nav-link color-blue">
                     <?= Translate::get("home_nav", "legal_advice") ?>
-                </a>
+                </span>
                 <ul style="list-style-type: none;">
                     <li class="nav-item">
                         <a class="nav-link <?= RequestService::isRequestedRoute("/imprint") ? "selected" : "" ?>"

@@ -1,19 +1,19 @@
 <?php
- use \helpers\translate\Translate;
+use \helpers\translate\Translate;
 ?>
 <?php require_once "layout/start.layout.php" ?>
 
 <!--body section-->
 <div class="jumbotron w-100 p-0 m-0">
 
-    <div class="responsive-wrap">
+    <div class="responsive-wrap alignment-full-padding">
         <!--categories section-->
         <div class="row w-100 mt-4">
 
 
             <div class="col-12 col-md-4 col-xxl-4 row gap-3">
                 <div class="col-md-3">
-                    <img src="<?= assets("themes/user/img/news-letter-icon-2.png") ?>" height="80"/>
+                    <img src="<?= assets("themes/user/img/news-letter-icon-2.png") ?>" height="80" alt="steelwall_newsletter_icon"/>
                 </div>
                 <div class="col-md-2">
                     <dl>
@@ -32,7 +32,7 @@
         <?php require_once "layout/sub_nav.layout.php" ?>
 
 
-         <hr/>
+        <hr/>
 
         <?php  if (isset($_SESSION["auth"]) && $_SESSION["auth"] == true) { ?>
 
@@ -43,13 +43,13 @@
             <h4 class="connector-heading my-3"> <?=Translate::get("news_letter_page" , "why_register")  ?></h4>
 
         <?php } ?>
-         <hr/>
+        <hr/>
 
 
         <div class="row justify-content-start mt-5">
             <div class="col-12 col-md-6">
                 <p>
-                   <?=Translate::get("news_letter_page" , "advantages_of_a_registration")  ?><br/><br/>
+                    <?=Translate::get("news_letter_page" , "advantages_of_a_registration")  ?><br/><br/>
                     - <?=Translate::get("news_letter_page" , "request_products_easily")  ?> <br/>
                     - <?=Translate::get("news_letter_page" , "save_your_requests_and_products")  ?> <br/>
                     - <?=Translate::get("news_letter_page" , "receive_latest_connector_information_via_newsletter")  ?> <br/>

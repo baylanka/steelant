@@ -8,7 +8,7 @@ use helpers\translate\Translate;
 
 <!--    <img src="--><?php //= assets("themes/user/img/hero-image.png") ?><!--" class="w-100"/>-->
 
-    <div class="mt-5 responsive-wrap">
+    <div class="mt-5 ps-5 pe-5 responsive-wrap">
 
 
         <!--categories section-->
