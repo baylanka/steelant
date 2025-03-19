@@ -81,6 +81,9 @@ class ValidatorUtility
 
     public static function isImage(array $file): bool
     {
+        if(!isset($file["tmp_name"])){
+            return false;
+        }
         return getimagesize($file["tmp_name"]) !== false;
     }
 
