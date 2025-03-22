@@ -10,41 +10,9 @@ global $env;
 <!--navbar section-->
 <nav class="navbar fixed-top position-relative">
 
-    <div class="container-fluid align-items-base">
-        <div class="text-center row position-relative p-2">
-            <div class="col-4 mt-5 text-center reveal-on-sm" style="display: none;">
-                <img src="<?= assets("themes/user/img/menu.png") ?>"
-                     type="button"
-                     data-bs-toggle="offcanvas"
-                     data-bs-target="#offcanvasNavbar"
-                     aria-controls="offcanvasNavbar"
-                     aria-label="Toggle navigation"
-                     height="30"
-                     alt="menu-image"
-                /><br/>
-            </div>
-
-            <div class="w-25 d-flex gap-2 align-middle remove-on-sm invisible">
-                <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/de.png") ?>" height="20" width="20"
-                         class="flag selected-flag" alt="lang-de"/>
-                </a>
-                <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/en-gb.png") ?>" height="20" width="20"
-                         class="flag" alt="lang-en-gb"/>
-                </a> <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/en-us.png") ?>" height="20" width="20"
-                         class="flag" alt="lang-en-us"/>
-                </a>
-                <a href="" title="" class="">
-                    <img src="<?= assets("img/flags/fr.png") ?>" height="20" width="20"
-                         class="flag" alt="lang-fr"/>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="nav-logo w-50">
+    <div class="container-fluid align-items-base padding-top-30px">
+       
+        <div class="w-50">
             <?php require_once "brand.layout.php" ?>
         </div>
 
